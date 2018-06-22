@@ -1,0 +1,11 @@
+{
+  "projectPath": "D:/LSHTM/overleaf-thesis-template-master",
+  "title": "LaTeX-Plus Project",
+  "root": "main.tex",
+  "program": "pdflatex",
+  "latexmkOptions": "-bibtex -pdf -shell-escape",
+  "output": ".latex",
+  "openOutput": "true",
+  "postAction": "link",
+  "postPath": ""
+}
