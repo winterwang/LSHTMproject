@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 2.8 $
+% $ biblatex bbl format version 2.9 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,7 +16,7 @@
   {}
 \endgroup
 
-\sortlist[entry]{nyt/global/}
+\datalist[entry]{nyt/global//global/global}
   \entry{Reference3}{article}{}
     \name{author}{4}{}{%
       {{hash=AAS}{%
@@ -49,6 +49,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{1998}
+    \field{labeldatesource}{year}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{abstract}{%
@@ -98,6 +99,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2001}
+    \field{labeldatesource}{year}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \field{abstract}{%
@@ -142,6 +144,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{1991}
+    \field{labeldatesource}{year}
     \field{sortinit}{W}
     \field{sortinithash}{W}
     \field{abstract}{%
@@ -164,5 +167,5 @@
     \field{month}{01}
     \field{year}{1991}
   \endentry
-\endsortlist
+\enddatalist
 \endinput

@@ -84,7 +84,7 @@
       <file>main-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>example.bib</file>
+      <file>summer.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>

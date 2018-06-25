@@ -43,9 +43,10 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage{mathpazo} % Use the Palatino font by default
 
+
 \usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
-\addbibresource{example.bib} % The filename of the bibliography
+\addbibresource{summer.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
@@ -87,6 +88,8 @@ headsepline, % Uncomment to get a line under the header
 \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 }
 
+
+
 \begin{document}
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
@@ -105,25 +108,25 @@ headsepline, % Uncomment to get a line under the header
 
 
 \vspace*{.06\textheight}
-{\scshape\Huge \bfseries \univname\par}\vspace{1.5cm} % University name
+{\scshape\huge \bfseries \univname\par}\vspace{1.5cm} % University name
 \textsc{\Large MSc Project Report \\ 2017-2018}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
-{\Large \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
+{\Huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
 \HRule \\[1.5cm] % Horizontal line
 
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-\href{wangcc.me}{\authorname} % Author name - remove the \href bracket to remove the link
-\end{flushleft}
-\end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushright} \large
+%\begin{minipage}[t]{0.4\textwidth}
+%\begin{flushleft} \large
+%\emph{Author:}\\
+%\href{wangcc.me}{\authorname} % Author name - remove the \href bracket to remove the link
+%\end{flushleft}
+%\end{minipage}
+%\begin{minipage}[t]{0.4\textwidth}
+%\begin{flushright} \large
 \emph{Supervisor:} \\
 \href{https://www.lshtm.ac.uk/aboutus/people/palla.luigi}{\supname} % Supervisor name - remove the \href bracket to remove the link
-\end{flushright}
-\end{minipage}\\[3cm]
+%\end{flushright}
+%\end{minipage}\\[3cm]
 
 \vfill
 

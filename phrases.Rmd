@@ -1,0 +1,107 @@
+---
+title: "Some usefull words/expressions/sentences"
+output: html_document
+---
+
+
+# Words
+
+- discernable [di'sə:nəbl, -'zə:-]
+
+```
+===== 辞典翻译: discernable ======
+adj. 可辨别的；可认识的
+============ 网络释义 ============
+-------- discernable ---------
+可辨别的
+方向
+分辨
+-- discernable recognizable --
+可辨别的
+--- discernable visible ----
+可辨别的
+```
+
+-   abstinence ['æbstinəns]
+
+```
+====== 辞典翻译: abstinence ======
+  n. 节制；节欲；戒酒；禁食
+============ 网络释义 ============
+--------- abstinence ---------
+  节制
+  禁欲
+  禁戒
+----- alcohol abstinence -----
+  酒戒断
+----- Abstinence theory ------
+  节欲论
+  弃权
+  忍欲说
+```
+
+-  exhaustive [iɡ'zɔ:stiv]
+
+```
+====== 辞典翻译: exhaustive ======
+  adj. 详尽的；彻底的；消耗的
+============ 网络释义 ============
+--------- Exhaustive ---------
+  无遗
+  详尽的
+  全部
+----- Exhaustive search ------
+  穷举搜索
+  穷举搜索完全搜索
+  全程搜索
+----- exhaustive voting ------
+  淘汰投票
+  消耗性投票
+```
+
+-   temperament ['tempərəmənt]
+
+```
+===== 辞典翻译: temperament ======
+  n. 气质，性情，性格；急躁
+============ 网络释义 ============
+-------- temperament ---------
+  气质
+  气质 (心理学)
+  性格
+------ Well Temperament ------
+  Well temperament
+  Well Temperament
+  平均律
+---- Musical temperament -----
+  律学
+  一份音乐的气质
+  音乐性
+```
+
+# Expressions
+
+
+
+# Sentences
+
+#### terry2017discontinuous - Discontinuous Patterns of Cigarette Smoking From Ages 18 to 50 in the United States: A Repeated-Measures Latent Class Analysis
+
+- RMLCA models were fitted in SAS 9.4 using PROC LCA. Parameters were estimated by maximum likelihood using the EM algorithm.
+
+- To ascertain if the same latent class structure was observed for males and females, multiple-group RMLCA models by sex were fitted in PROC LCA using the GROUPS statement (both with and without imposing measurement invariance across males and females).
+
+- Model selection (ie, the number of latent classes specified) was determined by model fit, parsimony, and stability. 
+
+- Simulations have shown that the Bayesian information criterion (BIC) and sample size-adjusted BIC (a-BIC) perform particularly well at selecting the “correct” latent class model.
+
+- Improvement in both BIC and consistent Akaike information criterion (CAIC) values continued only through the 12-class model; thus, the 12-class model was selected as optimal.
+
+
+#### lanza2007proc - PROC LCA: A SAS procedure for latent class analysis
+
+- In traditional LCA, two sets of parameters are estimated: class membership probabilities and item-response probabilities conditional on class membership.
+
+- Latent class models usually involve categorical indicators (although a version of LCA involving continuous indicators called latent profile analysis [Gibson, 1959] is being used increasingly).
+
+- When categorical data are used, the latent class model has the advantage of making no assumptions about the distributions of the indicators other than that of local independence; that is, the assumption that within a latent class the indicators are independent.
