@@ -1,13 +1,17 @@
-setwd("D:/Dropbox/LSHTM/study/project/6533STATA11/UKDA-6533-stata11_se/stata11_se/")
-install.packages("poLCA")
+# setwd("D:/Dropbox/LSHTM/study/project/6533STATA11/UKDA-6533-stata11_se/stata11_se/") # on Win 10
+setwd("~/Dropbox/LSHTM/study/project/6533STATA11/UKDA-6533-stata11_se/stata11_se") # on Ubuntu
+
+# setwd("~/Documents/LSHTMproject") # back to project
+
+# install.packages("poLCA")
 # install.packages("ggplot")
 # install.packages("ggplot2")
-library(plyr)
-library(ggplot2)
-source("../../../Rcode/Raoulmycode.R")
-
-
-options(stringsAsFactors=FALSE)
+# library(plyr)
+# library(ggplot2)
+# source("../../../Rcode/Raoulmycode.R")
+# 
+# 
+# options(stringsAsFactors=FALSE)
 library(haven)
 data <- read_dta("ndns_rp_yr1-4a_foodleveldietarydata_uk.dta")
 data56 <- read_dta("ndns_rp_yr5-6a_foodleveldietarydata.dta")
@@ -34,7 +38,7 @@ dfs1<-rbind(df14d,df56d)
 
 
 dfs2<-dfs1[dfs1$Age>=19,]
-rm(data, data56)
+ rm(data, data56)
 dfs2$MealTime_chr <- as.character(dfs2$MealTime)
 dfs2$MealTime_hm <- unlist(strsplit(dfs2$MealTime_chr," "))[c(FALSE, TRUE)]
 

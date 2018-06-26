@@ -1,0 +1,52 @@
+---
+title: "Memo of meeting"
+output: word_document
+---
+
+
+**Date and time:** 2018-06-25 14:00 - 15:00
+
+**Attendees:** Professor Luigi Palla, Dr. Suzana Almoosawi, Chaochen Wang
+
+**Notekeeper:** Chaochen Wang
+
+**Main Topic:** how to define an eating occasion specifically for carbohydrate intake or what approaches can we use to analysis the eating time pattern of carbohydrate. 
+
+- From Professor Luigi: 
+    - We may use gram consumed per hour; 
+    - Percentage of energy from carbohydrate per eating occasion (we already know that the cut-off value for energy eating occasion is defined as $\geqslant$ 210 kJ); 
+    - Or is there any definition of eating time window block? (For total energy intake we used 15 minutes).
+    
+- From Dr. Suzana: 
+    - According to the guideline (which?), it is suggested that the distribution of carbohydrate intake should be equal for breakfast (25%), lunch (25%), dinner (25%), and snacks (25%). Therefore, the recommendation is 270 g/day (for both men and women?) which lead to 67.5 gram per meal.
+    - Or if we consider the composition of energy sources, it is also recommended that 25% of the total energy should come from carbohydrates.
+    - We may also use the ratio of carbohydrates and (for example) fibre: 1 g fibre/ 10 g carbohydrates.
+    - In the NDNS survey, they already defined 7 meal blocks: 
+        - breakfast (6 am to 9 am); 
+        - mid-morning snack (9 am to 12 noon); 
+        - lunch (12 noon to 2 pm); 
+        - afternoon snack (2 pm to 5 pm); 
+        - dinner (5 pm to 8 pm); 
+        - late-night snack (8 pm to 10 pm); 
+        - midnight snack (10 pm to 6 am).
+    - Use the already defined 7 meal blocks will be easier in terms of comparing with existing publications from NDNS data.
+    
+- From Professor Luigi: 
+    - Can we use 1 hour window for each participant? So each person will have 24 time sequence of eating (carbohydrates) per day. 
+    - **We may calculate the energy consumption per hour for each participant. And also calculate the percentage of energy that come from carbohydrate each hour. Would that be sensible?**
+    - What cut-off would be appropriate to say that within that specific hour, the consumption of carbohydrates would be good or bad?
+    
+- From Dr. Suzana: 
+    - Probably, this could be an option. Usually, a food product/meal can be categorised as with low carbohydrates or sugar condensed if the contribution of energy from carbohydrates in that food/meal is lower than 25% or higher than 70%: 
+        - if 25% energy from carbohydrates $\Rightarrow$ low-carbohydrates; 
+        - if 70% energy from carbohydrates $\Rightarrow$ high-carbohydrates; 
+        - if 26% ~ 69% energy from carbohydrates $\Rightarrow$ medium-carbohydrates.
+    - But if we need to dichotomise, I need to confirm again whether there is any evidence/suggestion about that.
+    - Still, this could the first step of our analysis. The second step we may think about is the quality (ratio) between different subtypes of carbohydrates within the hour. 
+    
+
+        
+        
+
+
+
