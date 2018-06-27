@@ -35,6 +35,7 @@ output: word_document
     - Can we use 1 hour window for each participant? So each person will have 24 time sequence of eating (carbohydrates) per day. 
     - **We may calculate the energy consumption per hour for each participant. And also calculate the percentage of energy that come from carbohydrate each hour. Would that be sensible?**
     - What cut-off would be appropriate to say that within that specific hour, the consumption of carbohydrates would be good or bad?
+    - **Just to add that if there is a concern that too few people would have consumed CH for example at night then we can collapse the hours at night into one class as we did with Raoul, say from 11pm till 5am or from 12 till 6am.**
     
 - From Dr. Suzana: 
     - Probably, this could be an option. Usually, a food product/meal can be categorised as with low carbohydrates or sugar condensed if the contribution of energy from carbohydrates in that food/meal is lower than 25% or higher than 70%: 

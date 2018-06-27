@@ -118,6 +118,43 @@ adj. 可辨别的；可认识的
   普鲁登特总统城
 ```
 
+- daunting ['dɔ:ntiŋ]
+
+```
+======= 辞典翻译: daunting =======
+adj. 使人畏缩的；使人气馁的；令人怯步的
+============ 网络释义 ============
+---------- Daunting ----------
+令人生畏
+使人畏缩的
+使人气馁的
+------ However Daunting ------
+但艰巨
+--------- B daunting ---------
+使胆怯
+```
+
+- discern [di'sə:n, -'zə:n]
+
+```
+======= 辞典翻译: discern ========
+  vt. 识别；领悟，认识
+  vi. 看清楚，辨别
+============ 网络释义 ============
+---------- discern -----------
+  看出
+  辨别
+  识别
+-------- Discern Lies --------
+  辨知谎言
+  辨识谎言
+  洞悉谎言
+------- discern safely -------
+  安全识别
+```
+
+
+
 # Expressions
 
 
@@ -172,3 +209,14 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 - The best way to detect identification problems or local optima (i.e., solutions other than the optimal one) is to fit the same model using multiple sets of starting values. This can be done by calling the procedure repeatedly with different seeds specified.
 
 - Even well-identified models can land on a different solution occasionally; if the solution with the smallest log-likelihood is arrived at using the majority of the seeds, one can have confidence that it is the optimal solution.
+
+
+#### collins2010latent - Latent Class and Latent Transition Analysis: With Applications in the Social, Behavioral, and Health Sciences
+
+- It is particularly noteworthy that the causal flow is *from* the latent variable *to* the indicator variable, not the other way around. That is, observed indicator variables do not cause the latent variables.
+
+- The purpose of LCA is to help the investigator to discern any meaningful, scientifically interesting classes against the noisy background of error.
+
+- In LCA, it is the responsibility of the investigator to assign names to the latent classes. 
+
+- The starting point for conducting a latent class analysis on empirical data is a contingency table formed by cross-tabulating all the observed variables to be involved in the analysis.
