@@ -220,3 +220,32 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 - In LCA, it is the responsibility of the investigator to assign names to the latent classes. 
 
 - The starting point for conducting a latent class analysis on empirical data is a contingency table formed by cross-tabulating all the observed variables to be involved in the analysis.
+
+- The local independence assumption refers only to conditioning on the latent variable. It does not imply that in a data set that is to be analyzed, the observed variables are independent. In fact, it is the relations among the observed variables that are explained by the latent classes.
+
+- An observed data set is a mixture of all the latent classes. Independence is assumed to hold only within each latent class, which is why it is called "local".
+
+- LCA makes the assumption of local independence, which states that conditional on latent class, observed variables are independent. 
+
+- **A high degree of latent class separation implies a high degree of homogeneity.**
+
+- **However, a high degree of homegeneity does not necessarily imply a high degree of latent class separation.**
+
+- Thus, it is possible to have high homogeneity but poor latent class separation.
+
+- Some of the latent classes may be characterized by more than one response pattern, but there is no response pattern that appears to be closely associated with more than one latent class. Thus the latent classes are conceptually distinct and can readily be labeled.
+
+- Model selection may be challenging. Furtunately, a variety of tools are available to assist, including tests of absolute model fit, assessment of relative fit of competing models, and cross-validation. In addition to the tools discussed, there are two additional consideration that are critically important when evaluating a model: **parsimony and model interpretability**. 
+
+- We see statistical models as lenses through which investigators examine their data in order to gain useful insights. 
+
+- The likelihood-ratio statistics $G^2$  $$G^2 = 2\sum_{w=1}^W f_w\log(\frac{f_w}{\widehat{f_w}})$$
+
+- Where $f_w$ represents the observed frequency of cell $w$, and $\widehat{f_w}$ represent the expected frequency of cell $w$ according to the model that has been fit. 
+
+- The larger the value of $G^2$, the more evidence there is against the null hypothesis. (The larger it is, the worse model fitting it is.) 
+
+- The degrees of freedom of $G^2$: $$df = W - P - 1$$ 
+
+- Where $P$ is the number of estimated parameters. 
+
