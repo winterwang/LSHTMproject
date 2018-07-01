@@ -361,4 +361,94 @@ lc2 <- poLCA(f, dta_d1_wide, nclass = 2, graphs = T, maxiter = 10000)
 lc1 <- poLCA(f, dta_d1_wide, nclass = 1, graphs = T, maxiter = 10000)
 
 
+
+# LCA in day2 -------------------------------------------------------------
+
+lc1 <- poLCA(f, dta_d2_wide, nclass = 1, graphs = T, maxiter = 10000)
+
+lc2 <- poLCA(f, dta_d2_wide, nclass = 2, graphs = T, maxiter = 10000)
+
+
+
+
+
+lc3 <- poLCA(f, dta_d2_wide, nclass = 3, graphs = TRUE, maxiter = 10000)
+
+lc3$llik
+
+# lc3[[4]][[1]][1,2]
+# 
+lc3$P #Estimated class population shares 
+
+lc3$predclass
+
+a <- (data.frame(lc3$probs))
+a$Class <- c("Class1", "Class2", "Class3")
+
+a_long <- a %>% 
+  gather(Hour, Prob, -Class) %>% 
+  separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
+
+a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13",
+                                                "H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
+
+a_long <- a_long %>% 
+  filter(Carbo != "Not_eating")
+
+
+ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+lc4 <- poLCA(f, dta_d2_wide, nclass = 4, graphs = TRUE, maxiter = 10000)
+
+
+lc4_prob <- (data.frame(lc4$probs))
+lc4_prob$Class <- c("Class1", "Class2", "Class3", "Class4")
+
+lc4_long <- lc4_prob %>% 
+  gather(Hour, Prob, -Class) %>% 
+  separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
+
+lc4_long$HourN <- factor(lc4_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13",
+                                                    "H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
+
+lc4_long <- lc4_long %>% 
+  filter(Carbo != "Not_eating")
+
+
+ggplot(lc4_long[lc4_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+ggplot(lc4_long[lc4_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+ggplot(lc4_long[lc4_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+ggplot(lc4_long[lc4_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point() + 
+  geom_line()
+
+
+lc5 <- poLCA(f, dta_d2_wide, nclass = 5, graphs = FALSE, maxiter = 10000)
+
+lc6 <- poLCA(f, dta_d2_wide, nclass = 6, graphs = FALSE,  maxiter = 10000)
+
+lc7 <- poLCA(f, dta_d2_wide, nclass = 7, graphs = FALSE, maxiter = 10000)
+
+lc8 <- poLCA(f, dta_d2_wide, nclass = 8, graphs = FALSE, maxiter = 10000)
+
+
 save.image("LCA.Rdata")
