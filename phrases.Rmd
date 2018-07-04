@@ -1,6 +1,9 @@
 ---
 title: "Some usefull words/expressions/sentences"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 
@@ -161,7 +164,9 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
 
 # Sentences
 
-#### terry2017discontinuous - Discontinuous Patterns of Cigarette Smoking From Ages 18 to 50 in the United States: A Repeated-Measures Latent Class Analysis
+## terry2017discontinuous
+
+(Discontinuous Patterns of Cigarette Smoking From Ages 18 to 50 in the United States: A Repeated-Measures Latent Class Analysis)
 
 - RMLCA models were fitted in SAS 9.4 using PROC LCA. Parameters were estimated by maximum likelihood using the EM algorithm.
 
@@ -174,7 +179,9 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
 - Improvement in both BIC and consistent Akaike information criterion (CAIC) values continued only through the 12-class model; thus, the 12-class model was selected as optimal.
 
 
-#### lanza2007proc - PROC LCA: A SAS procedure for latent class analysis
+## lanza2007proc 
+
+(PROC LCA: A SAS procedure for latent class analysis)
 
 - In traditional LCA, two sets of parameters are estimated: class membership probabilities and item-response probabilities conditional on class membership.
 
@@ -211,7 +218,9 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 - Even well-identified models can land on a different solution occasionally; if the solution with the smallest log-likelihood is arrived at using the majority of the seeds, one can have confidence that it is the optimal solution.
 
 
-#### collins2010latent - Latent Class and Latent Transition Analysis: With Applications in the Social, Behavioral, and Health Sciences
+## collins2010latent
+
+(Latent Class and Latent Transition Analysis: With Applications in the Social, Behavioral, and Health Sciences)
 
 - It is particularly noteworthy that the causal flow is *from* the latent variable *to* the indicator variable, not the other way around. That is, observed indicator variables do not cause the latent variables.
 
@@ -248,4 +257,12 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 - The degrees of freedom of $G^2$: $$df = W - P - 1$$ 
 
 - Where $P$ is the number of estimated parameters. 
+
+- Sometimes fitting a series of latent class models with different numbers of latent classes to data at a single time point can be helpful as a preliminary step in model selection in LTA. Doing this at each time point can be informative about the latent structrue within times, and how that structure changes accross timie points. 
+
+- It is important to note that the best-fitting latent class model at any given time may not correspond to the best-fitting latent transition model fit to all occasions of measurements. The best-fitting model based on the data from all occasions of measurement may include a different number of latent stuatuses than the number of latent classes identified at one particular time.
+
+- However, based on the latent status prevalences at each time alone, it is impossible to tell hou and to what extent individuals were moving between latent statuses. 
+
+- **In 7.11 we used a different empirical example to test the hypothesis that the item-response probabilities in a LTA are equal across times. This type of restriction on the item-response probabilities is commonly used in LTA. It helps with model identification and, importantly, ensures that the meaning of the latent statuses remains constant over time.**
 

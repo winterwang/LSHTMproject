@@ -1,10 +1,14 @@
 ---
 title: "Preliminary results"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
 ---
 
 
-## Data description
+# Data description
 
 ```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 setwd("~/Documents/LSHTMproject/Rcode")
@@ -49,7 +53,7 @@ setdiff(vecid, vecid4) # 129 subjects did not have day 4 data
 
 
 
-### day 1 data (3 classes)
+## day 1 data (3 classes)
 
 ```{r}
 
@@ -70,7 +74,7 @@ lc3 <- poLCA(f, dta_d1_wide, nclass = 3, graphs = TRUE, maxiter = 10000)
 # lc3$predclass
 ```
 
-### day 1 data (Fig.)
+## day 1 data (Fig.)
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
 
@@ -148,7 +152,7 @@ ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo,
 ```
 
 
-### Model comparison and selection
+## Model comparison and selection
 
 ```{r echo=FALSE}
 library(kableExtra)
@@ -164,7 +168,7 @@ kable(dt, digits = 3, row.names = FALSE, align = "c",
   footnote(general = "Abbreviation: N, number; G^2, the likelihood ratio statistic; df, degree of freedom; AIC, Akaike information criterion; BIC, Bayesian information criterion.")
 ```
 
-### Five classes visualisation
+## Five classes visualisation
 
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
@@ -288,7 +292,7 @@ ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo,
 
 
 
-### day 2 data (Fig.)
+## day 2 data (Fig.)
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
 
@@ -369,7 +373,7 @@ ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo,
 ```
 
 
-### Model comparison and selection
+## Model comparison and selection
 
 ```{r echo=FALSE}
 library(kableExtra)
@@ -385,7 +389,7 @@ kable(dt, digits = 3, row.names = FALSE, align = "c",
   footnote(general = "Abbreviation: N, number; G^2, the likelihood ratio statistic; df, degree of freedom; AIC, Akaike information criterion; BIC, Bayesian information criterion.")
 ```
 
-### Four classes visualisation
+## Four classes visualisation
 
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
