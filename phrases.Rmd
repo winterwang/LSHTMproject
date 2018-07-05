@@ -266,3 +266,6 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 
 - **In 7.11 we used a different empirical example to test the hypothesis that the item-response probabilities in a LTA are equal across times. This type of restriction on the item-response probabilities is commonly used in LTA. It helps with model identification and, importantly, ensures that the meaning of the latent statuses remains constant over time.**
 
+- Note that because each row of the transition probability matrix is conditioned on Time 1 latent status, this analysis of change in delinquency over time implicitly controls for time 1 delinquency.
+
+- Data can be used from individuals who provide responses to only some questions at a particular time and from those 
