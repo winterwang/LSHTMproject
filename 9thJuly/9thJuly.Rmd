@@ -120,7 +120,7 @@ with(dta_Sat_wide, tab1(DayNo, graph = FALSE, decimal = 2))
 with(dta_Sun_wide, tab1(DayNo, graph = FALSE, decimal = 2))
 ```
 
-**The problem of analysing data by day of the week would be that every subject only contributed 3-4 days' data. Therefore, we cannot see one subject's dietary change during a Mon-Sun week.**
+**The problem of analysing data by day of the week would be that every subject only contributed 2-4 days' data. Therefore, we cannot see one subject's dietary change during a Mon-Sun week.**
 
 ## Dietary data by day
 
@@ -144,6 +144,17 @@ setdiff(vecid, vecid3) # four subjects did not have day 3 data
 
 setdiff(vecid, vecid4) # 129 subjects did not have day 4 data
 ```
+
+
+# Definition of carbohydrates intake groups:
+
+In this analysis, subjects have 2-4 days' dietary data: their food during the participation were self-recorded. We were able to calculate their energy intake each hour, then we also calculated the percentage of energy coming from carbohydrates that contributed to each hour when there is food consumption recorded. **Four categories were identified:**
+
+1. Not eating; 
+2. Eating low carbohydrate food (energy contribution less than or equal to 25%); 
+3. Eating medium carbohyrate food (energy contribution between 26% and 75%); 
+4. Eating high carbohydrate food (energy contribution higher or equal to 75%). 
+
 
 
 # LCA analyses by day
@@ -180,157 +191,11 @@ kable(lca_results, digits = 3, row.names = FALSE, align = "c",
  kable_styling(font_size = 16, 
         bootstrap_options = c("striped", "hover", "condensed"),
         position = "center", full_width = FALSE) %>% 
-  row_spec(c(4,6), bold = T, color = "white", background = "#D7261E") %>% 
+  row_spec(7, bold = T, color = "white", background = "#D7261E") %>%
   footnote(general = "Abbreviation: N, number; resid.df, residual degree of freedom; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; cAIC, consistent AIC; Entropy, a pseudo-r-squared index.")
 ```
 
-### Day 1 data (Fig. 4 classes) 
-
-```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
-
-library(ggthemr)
-
-# lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000)
-
-
-# a <- (data.frame(lc5$probs))
-a <- (data.frame(lc4$probs))
-# a <- (data.frame(lc6$probs))
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
-a$Class <- c("Class1", "Class2", "Class3", "Class4")
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
-
-a_long <- a %>% 
-  gather(Hour, Prob, -Class) %>% 
-  separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
-
-a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
-
-a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb"))
-
-
-a_long <- a_long %>% 
-  filter(Carbo != "Not_eating")
-
-ggthemr("fresh", layout = "scientific")
-
-ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
-  geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 1: 38.80%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 2:  28.25%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 3:  10.81%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-
-
-ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 4:  23.14%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-# 
-# ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 5:  18.52%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-# 
-# ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 6:  10.02%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-```
-
-
-
-### Day 1 data (Fig. 6 classes) 
+### Day 1 data (Fig. 7 classes) 
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
 
@@ -341,13 +206,16 @@ library(ggthemr)
 
 # a <- (data.frame(lc5$probs))
 # a <- (data.frame(lc4$probs))
-a <- (data.frame(lc6$probs))
+# a <- (data.frame(lc6$probs))
+ a <- (data.frame(lc7$probs))
 
 # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
 # a$Class <- c("Class1", "Class2", "Class3", "Class4")
 
-a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
 
+a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6", "Class7") 
+ 
 a_long <- a %>% 
   gather(Hour, Prob, -Class) %>% 
   separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
@@ -375,7 +243,7 @@ ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 1: 26.79%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 1: 18.67%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -393,7 +261,7 @@ ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 2:  11.72%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 2:  11.81%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -411,7 +279,7 @@ ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 3:  7.37%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 3:  10.66%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -431,7 +299,7 @@ ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 4:  25.58%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 4:  6.78%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -450,7 +318,7 @@ ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 5:  18.52%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 5:  17.45%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
@@ -468,11 +336,175 @@ ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 6:  10.02%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 6:  25.50%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") +
+  scale_color_discrete(labels = c("Low", "Medium", "High")) +
+  ylim(c(0,1))
+
+ggplot(a_long[a_long$Class == "Class7", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 7:  9.15%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
 ```
+
+
+
+<!-- ### Day 1 data (Fig. 6 classes)  -->
+
+<!-- ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE} -->
+
+<!-- library(ggthemr) -->
+
+<!-- # lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000) -->
+
+
+<!-- # a <- (data.frame(lc5$probs)) -->
+<!-- # a <- (data.frame(lc4$probs)) -->
+<!-- a <- (data.frame(lc6$probs)) -->
+
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5") -->
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4") -->
+
+<!-- a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6") -->
+
+<!-- a_long <- a %>%  -->
+<!--   gather(Hour, Prob, -Class) %>%  -->
+<!--   separate(Hour, into = c("HourN", "Carbo"), sep = "\\.")  -->
+
+<!-- a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")) -->
+
+<!-- a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb")) -->
+
+
+<!-- a_long <- a_long %>%  -->
+<!--   filter(Carbo != "Not_eating") -->
+
+<!-- ggthemr("fresh", layout = "scientific") -->
+
+<!-- ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--   geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 1: 26.79%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 2:  11.72%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 3:  7.37%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+
+<!-- ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 4:  25.58%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+<!-- ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 5:  18.52%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 6:  10.02%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+<!-- ``` -->
 
 
 
@@ -513,157 +545,12 @@ kable(lca_results, digits = 3, row.names = FALSE, align = "c",
  kable_styling(font_size = 16, 
         bootstrap_options = c("striped", "hover", "condensed"),
         position = "center", full_width = FALSE) %>% 
-  row_spec(c(4,6), bold = T, color = "white", background = "#D7261E") %>% 
+  row_spec(7, bold = T, color = "white", background = "#D7261E") %>% 
   footnote(general = "Abbreviation: N, number; resid.df, residual degree of freedom; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; cAIC, consistent AIC; Entropy, a pseudo-r-squared index.")
 ```
 
 
-### Day 2 data (Fig. 4 classes) 
-
-```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
-
-library(ggthemr)
-
-# lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000)
-
-
-# a <- (data.frame(lc5$probs))
-a <- (data.frame(lc4$probs))
-# a <- (data.frame(lc6$probs))
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
-a$Class <- c("Class1", "Class2", "Class3", "Class4")
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
-
-a_long <- a %>% 
-  gather(Hour, Prob, -Class) %>% 
-  separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
-
-a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
-
-a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb"))
-
-
-a_long <- a_long %>% 
-  filter(Carbo != "Not_eating")
-
-ggthemr("fresh", layout = "scientific")
-
-ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
-  geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 1: 9.77%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 2:  24.68%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 3:  38.28%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-
-
-ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 4:  27.27%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-# 
-# ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 5:  18.52%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-# 
-# ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 6:  10.02%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-```
-
-
-### Day 2 data (Fig. 6 classes) 
+### Day 2 data (Fig. 7 classes) 
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
 
@@ -674,12 +561,14 @@ library(ggthemr)
 
 # a <- (data.frame(lc5$probs))
 # a <- (data.frame(lc4$probs))
-a <- (data.frame(lc6$probs))
+# a <- (data.frame(lc6$probs))
+a <- (data.frame(lc7$probs))
 
 # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
 # a$Class <- c("Class1", "Class2", "Class3", "Class4")
 
-a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6", "Class7")
 
 a_long <- a %>% 
   gather(Hour, Prob, -Class) %>% 
@@ -708,7 +597,7 @@ ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 1: 23.54%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 1: 18.67%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -726,7 +615,7 @@ ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 2:  17.43%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 2:  11.81%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -744,7 +633,7 @@ ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 3:  7.50%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 3:  10.66%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -764,7 +653,7 @@ ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 4:  23.53%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 4:  6.78%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -783,7 +672,7 @@ ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 5:  18.29%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 5:  17.45%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
@@ -801,11 +690,174 @@ ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 6:  9.70%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 6:  25.50%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") +
+  scale_color_discrete(labels = c("Low", "Medium", "High")) +
+  ylim(c(0,1))
+
+ggplot(a_long[a_long$Class == "Class7", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 7:  9.15%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
 ```
+
+
+<!-- ### Day 2 data (Fig. 6 classes)  -->
+
+<!-- ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE} -->
+
+<!-- library(ggthemr) -->
+
+<!-- # lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000) -->
+
+
+<!-- # a <- (data.frame(lc5$probs)) -->
+<!-- # a <- (data.frame(lc4$probs)) -->
+<!-- a <- (data.frame(lc6$probs)) -->
+
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5") -->
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4") -->
+
+<!-- a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6") -->
+
+<!-- a_long <- a %>%  -->
+<!--   gather(Hour, Prob, -Class) %>%  -->
+<!--   separate(Hour, into = c("HourN", "Carbo"), sep = "\\.")  -->
+
+<!-- a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")) -->
+
+<!-- a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb")) -->
+
+
+<!-- a_long <- a_long %>%  -->
+<!--   filter(Carbo != "Not_eating") -->
+
+<!-- ggthemr("fresh", layout = "scientific") -->
+
+<!-- ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--   geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 1: 23.54%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 2:  17.43%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 3:  7.50%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+
+<!-- ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 4:  23.53%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+<!-- ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 5:  18.29%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 6:  9.70%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+<!-- ``` -->
 
 
 ## Day 3
@@ -844,157 +896,12 @@ kable(lca_results, digits = 3, row.names = FALSE, align = "c",
  kable_styling(font_size = 16, 
         bootstrap_options = c("striped", "hover", "condensed"),
         position = "center", full_width = FALSE) %>% 
-  row_spec(c(4,6), bold = T, color = "white", background = "#D7261E") %>% 
+  row_spec(7, bold = T, color = "white", background = "#D7261E") %>% 
   footnote(general = "Abbreviation: N, number; resid.df, residual degree of freedom; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; cAIC, consistent AIC; Entropy, a pseudo-r-squared index.")
 ```
 
 
-### Day 3 data (Fig. 4 classes) 
-
-```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
-
-library(ggthemr)
-
-# lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000)
-
-
-# a <- (data.frame(lc5$probs))
-a <- (data.frame(lc4$probs))
-# a <- (data.frame(lc6$probs))
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
-a$Class <- c("Class1", "Class2", "Class3", "Class4")
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
-
-a_long <- a %>% 
-  gather(Hour, Prob, -Class) %>% 
-  separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
-
-a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
-
-a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb"))
-
-
-a_long <- a_long %>% 
-  filter(Carbo != "Not_eating")
-
-ggthemr("fresh", layout = "scientific")
-
-ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
-  geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 1: 8.79%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 2:  39.49%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 3:  25.02%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-
-
-ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 4:  26.69%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-# 
-# ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 5:  18.52%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-# 
-# ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 6:  10.02%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-```
-
-
-### Day 3 data (Fig. 6 classes) 
+### Day 3 data (Fig. 7 classes) 
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
 
@@ -1005,12 +912,15 @@ library(ggthemr)
 
 # a <- (data.frame(lc5$probs))
 # a <- (data.frame(lc4$probs))
-a <- (data.frame(lc6$probs))
+# a <- (data.frame(lc6$probs))
+a <- (data.frame(lc7$probs))
 
 # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
 # a$Class <- c("Class1", "Class2", "Class3", "Class4")
 
-a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+
+a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6", "Class7")
 
 a_long <- a %>% 
   gather(Hour, Prob, -Class) %>% 
@@ -1039,7 +949,7 @@ ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 1: 19.41%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 1: 6.13%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1057,7 +967,7 @@ ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 2:  6.65%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 2:  13.32%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1075,7 +985,7 @@ ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 3:  15.12%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 3:  17.95%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1095,7 +1005,7 @@ ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 4:  15.43%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 4:  8.16%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1114,7 +1024,7 @@ ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 5:  20.84%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 5:  20.48%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
@@ -1132,11 +1042,174 @@ ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 6:  22.56%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 6:  20.58%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") +
+  scale_color_discrete(labels = c("Low", "Medium", "High")) +
+  ylim(c(0,1))
+
+ggplot(a_long[a_long$Class == "Class7", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 7:  13.38%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
 ```
+
+
+<!-- ### Day 3 data (Fig. 6 classes)  -->
+
+<!-- ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE} -->
+
+<!-- library(ggthemr) -->
+
+<!-- # lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000) -->
+
+
+<!-- # a <- (data.frame(lc5$probs)) -->
+<!-- # a <- (data.frame(lc4$probs)) -->
+<!-- a <- (data.frame(lc6$probs)) -->
+
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5") -->
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4") -->
+
+<!-- a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6") -->
+
+<!-- a_long <- a %>%  -->
+<!--   gather(Hour, Prob, -Class) %>%  -->
+<!--   separate(Hour, into = c("HourN", "Carbo"), sep = "\\.")  -->
+
+<!-- a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")) -->
+
+<!-- a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb")) -->
+
+
+<!-- a_long <- a_long %>%  -->
+<!--   filter(Carbo != "Not_eating") -->
+
+<!-- ggthemr("fresh", layout = "scientific") -->
+
+<!-- ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--   geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 1: 19.41%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 2:  6.65%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 3:  15.12%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+
+<!-- ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 4:  15.43%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+<!-- ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 5:  20.84%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 6:  22.56%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+<!-- ``` -->
 
 
 ## Day 4
@@ -1175,157 +1248,12 @@ kable(lca_results, digits = 3, row.names = FALSE, align = "c",
  kable_styling(font_size = 16, 
         bootstrap_options = c("striped", "hover", "condensed"),
         position = "center", full_width = FALSE) %>% 
-  row_spec(c(4,6), bold = T, color = "white", background = "#D7261E") %>% 
+  row_spec(8, bold = T, color = "white", background = "#D7261E") %>% 
   footnote(general = "Abbreviation: N, number; resid.df, residual degree of freedom; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; cAIC, consistent AIC; Entropy, a pseudo-r-squared index.")
 ```
 
 
-### Day 4 data (Fig. 4 classes) 
-
-```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
-
-library(ggthemr)
-
-# lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000)
-
-
-# a <- (data.frame(lc5$probs))
-a <- (data.frame(lc4$probs))
-# a <- (data.frame(lc6$probs))
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
-a$Class <- c("Class1", "Class2", "Class3", "Class4")
-
-# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
-
-a_long <- a %>% 
-  gather(Hour, Prob, -Class) %>% 
-  separate(Hour, into = c("HourN", "Carbo"), sep = "\\.") 
-
-a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
-
-a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb"))
-
-
-a_long <- a_long %>% 
-  filter(Carbo != "Not_eating")
-
-ggthemr("fresh", layout = "scientific")
-
-ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
-  geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 1: 10.11%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 2:  29.94%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 3:  24.40%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-
-
-ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
- geom_point(size = 3) + 
-  geom_line(size = 1.5) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
-        axis.line = element_line(colour = "black"), 
-        panel.border = element_blank(), 
-        panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15) 
-        # legend.position = "bottom", 
-        # legend.direction = "horizontal"
-        ) + 
-  labs(title = "Class 4:  35.55%", x = "Hour of the day", y = "Probability",
-       color = "Carbohydrate\nintake") + 
-  scale_color_discrete(labels = c("Low", "Medium", "High")) + 
-  ylim(c(0,1))
-
-# 
-# ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 5:  18.52%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-# 
-# ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
-#  geom_point(size = 3) +
-#   geom_line(size = 1.5) +
-#   theme(axis.title = element_text(size = 18),
-#         axis.text = element_text(size = 18),
-#         axis.line = element_line(colour = "black"),
-#         panel.border = element_blank(),
-#         panel.background = element_blank(),
-#         legend.text = element_text(size = 15),
-#         legend.title = element_text(size = 15)
-#         # legend.position = "bottom",
-#         # legend.direction = "horizontal"
-#         ) +
-#   labs(title = "Class 6:  10.02%", x = "Hour of the day", y = "Probability",
-#        color = "Carbohydrate\nintake") +
-#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
-#   ylim(c(0,1))
-```
-
-
-### Day 4 data (Fig. 6 classes) 
+### Day 4 data (Fig. 8 classes) 
 
 ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE}
 
@@ -1336,12 +1264,16 @@ library(ggthemr)
 
 # a <- (data.frame(lc5$probs))
 # a <- (data.frame(lc4$probs))
-a <- (data.frame(lc6$probs))
+# a <- (data.frame(lc6$probs))
+a <- (data.frame(lc8$probs))
 
 # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5")
 # a$Class <- c("Class1", "Class2", "Class3", "Class4")
 
-a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+# a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6")
+
+a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6", "Class7", "Class8")
+
 
 a_long <- a %>% 
   gather(Hour, Prob, -Class) %>% 
@@ -1370,7 +1302,7 @@ ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 1: 7.51%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 1: 6.67%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1388,7 +1320,7 @@ ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 2:  27.19%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 2:  10.61%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1406,7 +1338,7 @@ ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 3:  25.77%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 3:  14.93%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1426,7 +1358,7 @@ ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
         ) + 
-  labs(title = "Class 4:  16.17%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 4:  20.54%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
   ylim(c(0,1))
@@ -1445,7 +1377,7 @@ ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 5:  7.87%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 5:  5.76%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
@@ -1463,9 +1395,190 @@ ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
         ) +
-  labs(title = "Class 6:  15.49%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 6:  16.97%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") +
+  scale_color_discrete(labels = c("Low", "Medium", "High")) +
+  ylim(c(0,1))
+
+ggplot(a_long[a_long$Class == "Class7", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 7:  12.17%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") +
+  scale_color_discrete(labels = c("Low", "Medium", "High")) +
+  ylim(c(0,1))
+
+ggplot(a_long[a_long$Class == "Class8", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 8:  12.36%", x = "Hour of the day", y = "Probability",
        color = "Carbohydrate\nintake") +
   scale_color_discrete(labels = c("Low", "Medium", "High")) +
   ylim(c(0,1))
 ```
+
+
+<!-- ### Day 4 data (Fig. 6 classes)  -->
+
+<!-- ```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE} -->
+
+<!-- library(ggthemr) -->
+
+<!-- # lc5 <- poLCA(f, dta_d1_wide, nclass = 5, graphs = FALSE, maxiter = 10000) -->
+
+
+<!-- # a <- (data.frame(lc5$probs)) -->
+<!-- # a <- (data.frame(lc4$probs)) -->
+<!-- a <- (data.frame(lc6$probs)) -->
+
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5") -->
+<!-- # a$Class <- c("Class1", "Class2", "Class3", "Class4") -->
+
+<!-- a$Class <- c("Class1", "Class2", "Class3", "Class4", "Class5", "Class6") -->
+
+<!-- a_long <- a %>%  -->
+<!--   gather(Hour, Prob, -Class) %>%  -->
+<!--   separate(Hour, into = c("HourN", "Carbo"), sep = "\\.")  -->
+
+<!-- a_long$HourN <- factor(a_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")) -->
+
+<!-- a_long$Carbo <- factor(a_long$Carbo, levels = c("Low_carb", "Med_carb", "High_carb")) -->
+
+
+<!-- a_long <- a_long %>%  -->
+<!--   filter(Carbo != "Not_eating") -->
+
+<!-- ggthemr("fresh", layout = "scientific") -->
+
+<!-- ggplot(a_long[a_long$Class == "Class1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--   geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 1: 7.51%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 2:  27.19%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 3:  25.77%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+
+<!-- ggplot(a_long[a_long$Class == "Class4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +  -->
+<!--  geom_point(size = 3) +  -->
+<!--   geom_line(size = 1.5) +  -->
+<!--   theme(axis.title = element_text(size = 18),  -->
+<!--         axis.text = element_text(size = 18),  -->
+<!--         axis.line = element_line(colour = "black"),  -->
+<!--         panel.border = element_blank(),  -->
+<!--         panel.background = element_blank(),  -->
+<!--         legend.text = element_text(size = 15),  -->
+<!--         legend.title = element_text(size = 15)  -->
+<!--         # legend.position = "bottom",  -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) +  -->
+<!--   labs(title = "Class 4:  16.17%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") +  -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) +  -->
+<!--   ylim(c(0,1)) -->
+
+
+<!-- ggplot(a_long[a_long$Class == "Class5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 5:  7.87%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+
+<!-- ggplot(a_long[a_long$Class == "Class6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + -->
+<!--  geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
+<!--         # legend.direction = "horizontal" -->
+<!--         ) + -->
+<!--   labs(title = "Class 6:  15.49%", x = "Hour of the day", y = "Probability", -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Low", "Medium", "High")) + -->
+<!--   ylim(c(0,1)) -->
+<!-- ``` -->
 

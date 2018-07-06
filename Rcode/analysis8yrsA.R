@@ -149,12 +149,12 @@ vecid<-unique(Energy$id)
 Energy <- Energy %>% 
   mutate(KJcarbo = Tot_Carb*16) %>% 
   mutate(CarKJpercentage = KJcarbo/Tot_Energ) %>% 
-  mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.25999999999999, 0.7, 1.01), right = FALSE)) %>% 
-  mutate(Carbo2 = cut(CarKJpercentage, breaks = c(0, 0.25999999999999, 2), right = FALSE))
+  mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.26, 0.75, 2), right = FALSE)) %>% 
+  mutate(Carbo2 = cut(CarKJpercentage, breaks = c(0, 0.26, 2), right = FALSE))
 
 Energy0 <- Energy[!(Energy$Tot_Energ == 0), ] # some food consumption does not contain any carbohydrates
 
-Energy0$Carbo[is.na(Energy0$Carbo)] <- "[0.7,1.01)"
+# Energy0$Carbo[is.na(Energy0$Carbo)] <- "[0.7,1.01)"
 #
 
 
@@ -568,6 +568,7 @@ f <- cbind(H0, H1, H2, H3, H4, H5, H6, H7, H8, H9, H10,H11,H12,H13,H14,H15,H16,H
 
 set.seed(20180705)
 max_II <- 100000
+old <- Sys.time()
 lc1 <- poLCA(f, data=dta_d1_wide, nclass=1, na.rm = FALSE, nrep=20, maxiter=max_II) #Loglinear independence model.
 lc2 <- poLCA(f, data=dta_d1_wide, nclass=2, na.rm = FALSE, nrep=20, maxiter=max_II)
 lc3 <- poLCA(f, data=dta_d1_wide, nclass=3, na.rm = FALSE, nrep=20, maxiter=max_II)
@@ -576,6 +577,8 @@ lc5 <- poLCA(f, data=dta_d1_wide, nclass=5, na.rm = FALSE, nrep=20, maxiter=max_
 lc6 <- poLCA(f, data=dta_d1_wide, nclass=6, na.rm = FALSE, nrep=20, maxiter=max_II)
 lc7 <- poLCA(f, data=dta_d1_wide, nclass=7, na.rm = FALSE, nrep=20, maxiter=max_II)
 lc8 <- poLCA(f, data=dta_d1_wide, nclass=8, na.rm = FALSE, nrep=20, maxiter=max_II)
+new <- Sys.time()-old
+print(new)  #Time difference of 32.71098 mins
 
 # generate dataframe with fit-values
 
@@ -795,7 +798,7 @@ lc6 <- poLCA(f, data=dta_d2_wide, nclass=6, na.rm = FALSE, nrep=20, maxiter=max_
 lc7 <- poLCA(f, data=dta_d2_wide, nclass=7, na.rm = FALSE, nrep=20, maxiter=max_II)
 lc8 <- poLCA(f, data=dta_d2_wide, nclass=8, na.rm = FALSE, nrep=20, maxiter=max_II)
 new <- Sys.time()-old
-print(new)  #Time difference of 31.60514 mins
+print(new)  #Time difference of 35.34783 mins
 
 # generate dataframe with fit-values
 
@@ -1103,7 +1106,7 @@ lc6 <- poLCA(f, data=dta_d4_wide, nclass=6, na.rm = FALSE, nrep=20, maxiter=max_
 lc7 <- poLCA(f, data=dta_d4_wide, nclass=7, na.rm = FALSE, nrep=20, maxiter=max_II)
 lc8 <- poLCA(f, data=dta_d4_wide, nclass=8, na.rm = FALSE, nrep=20, maxiter=max_II)
 new <- Sys.time()-old
-print(new)  #Time difference of 27.12666 mins
+print(new)  #Time difference of 30.44217 mins
 
 # generate dataframe with fit-values
 
