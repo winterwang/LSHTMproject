@@ -157,8 +157,25 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
 ```
 
 
+  heuristics [hjuə'ristiks]
 
-# Expressions
+```
+====== 辞典翻译: heuristics ======
+  n. 启发法；启发式教学法
+============ 网络释义 ============
+--------- heuristics ---------
+  试探法
+  启发
+  启发式
+ representativeness heuristics
+  代表性启发式
+  代表性启发法
+---- Advanced Heuristics -----
+  高级启发式
+  先进的启发式辨认引擎
+```
+
+
 
 
 
