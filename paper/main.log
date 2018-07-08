@@ -1,6 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  24 JUN 2018 11:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  8 JUL 2018 22:53
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
@@ -1958,29 +1959,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--160
 1: section
 [3] [4
 
-] [5] [6
+]
+--------------------
+ Acknowledgements
+--------------------
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+1: section
+[5] [6
+
+] [7] [8
 
 ]
 --------------------
  Abstract
 --------------------
-
-Package hyperref Warning: Suppressing link with empty target on input line 185.
-
-
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 185.
-1: section
-[7] [8
-
-]
---------------------
- Acknowledgements
---------------------
 1: section
 [9] [10
 
 ] (./main.toc
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 3.
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 18.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -2067,7 +2089,7 @@ tclass
  []
 
 [6] [7]
-<Figures/Electron.pdf, id=345, 398.3386pt x 284.52756pt>
+<Figures/Electron.pdf, id=343, 398.3386pt x 284.52756pt>
 File: Figures/Electron.pdf Graphic file (type pdf)
 <use Figures/Electron.pdf>
 Package pdftex.def Info: Figures/Electron.pdf  used on input line 262.
@@ -2100,16 +2122,16 @@ Appendix A.
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 306.
 
 1: section
 [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 306.
  (./main.aux (./Chapters/Chapter1.aux) (./Appendices/AppendixA.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 306.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 306.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3740FF7137D3EBF468951DF07ABAC71B;4862.
+(rerunfilecheck)             Checksum: E03D3F24FE6744793A85F1718FE77BDA;4862.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
@@ -2117,7 +2139,7 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  34158 strings out of 492982
  690606 string characters out of 6134896
- 910482 words of memory out of 5000000
+ 910662 words of memory out of 5000000
  37285 multiletter control sequences out of 15000+600000
  600597 words of font info for 152 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2134,10 +2156,10 @@ usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (37 pages, 410716 bytes).
+Output written on main.pdf (37 pages, 411439 bytes).
 PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
- 442 compressed objects within 5 object streams
+ 506 PDF objects out of 1000 (max. 8388607)
+ 440 compressed objects within 5 object streams
  85 named destinations out of 1000 (max. 500000)
  251 words of extra memory for PDF output out of 10000 (max. 10000000)
 
