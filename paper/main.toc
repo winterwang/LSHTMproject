@@ -3,7 +3,7 @@
 \contentsline {chapter}{Declaration of Authorship}{iii}{section*.1}
 \contentsline {chapter}{Acknowledgements}{v}{section*.2}
 \contentsline {chapter}{Abstract}{ix}{section*.3}
-\contentsline {chapter}{\numberline {1}Chapter 1}{1}{chapter.12}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.12}
 \contentsline {section}{\numberline {1.1}Welcome and Thank You}{1}{section.13}
 \contentsline {section}{\numberline {1.2}Learning \LaTeX {}}{1}{section.14}
 \contentsline {subsection}{\numberline {1.2.1}A (not so short) Introduction to \LaTeX {}}{1}{subsection.15}

@@ -175,9 +175,61 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
   先进的启发式辨认引擎
 ```
 
+-  posit ['pɔzit]
 
+```
+======== 辞典翻译: posit =========
+  n. 假设；设想
+  vt. 安置；假定
+============ 网络释义 ============
+----------- posit ------------
+  断定
+  位置
+  假定
+------- Posit Science --------
+  研究对波赛特科学
+-------- posit clause --------
+  断定子句
+```
 
+- circumvent 
 
+```
+====== 辞典翻译: circumvent ======
+  v. 包围；智取；绕行，规避
+============ 网络释义 ============
+--------- circumvent ---------
+  避免
+  欺诈
+  用计谋战胜
+------ Circumvent glass ------
+  防御玻璃墙
+----- around circumvent ------
+  绕圈子
+```
+
+-  manifest ['mænifest]
+
+```
+======= 辞典翻译: manifest =======
+  n. 载货单，货单；旅客名单
+  vt. 证明，表明；显示
+  adj. 显然的，明显的；明白的
+  vi. 显示，出现
+============ 网络释义 ============
+---------- MANIFEST ----------
+  舱单
+  清单
+  显示
+------ Manifest Destiny ------
+  昭昭天命
+  昭昭天命
+  天定命运
+------- cargo manifest -------
+  载货清单
+  货物舱单
+  货物清单
+```  
 
 # Sentences
 
@@ -286,3 +338,17 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 - Note that because each row of the transition probability matrix is conditioned on Time 1 latent status, this analysis of change in delinquency over time implicitly controls for time 1 delinquency.
 
 - Data can be used from individuals who provide responses to only some questions at a particular time and from those 
+
+
+## bray2015eliminating
+
+(Eliminating bias in classify-analyze approaches for latent class analysis)
+
+- The latent class model, which posits a mutually exclusive and exhaustive underlying set of latent classes (i.e. subgroups) inferred from multiple categorical observed variables. 
+
+- LCA has been proven to be a useful tool for identifying qualitatively different population subgroups in a variety of disciplines. 
+
+- Classify-analyze (Clogg, 1995) is a common technique used to circumvent the challenge of not having an LCA model-based solution. This technique first classifying individuals into latent classes, and then performing a subsequent analysis treating latent class membership as known (i.e., as manifest categorical variable) in a larger model of interest.
+
+- Fundamentally, LCA is a probability-based approach that does not require assignment of individuals to latent classes; this is one of its greatest strengths....
+
