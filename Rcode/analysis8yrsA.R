@@ -1245,3 +1245,12 @@ save(lc1, lc2, lc3, lc4, lc5, lc6, lc7, lc8, lca_results, file = "day4LCA1_6.Rda
 
 
 # save.image("LCA.Rdata")
+
+
+
+
+# Try randomLCA -----------------------------------------------------------
+# 
+# library(randomLCA)
+# 
+# randomLCA(dta_d1_wide[, 5:28], nclass = 1)

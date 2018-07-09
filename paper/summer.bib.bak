@@ -126,8 +126,33 @@
   author    = {Collins, L.M. and Lanza, S.T.},
   series    = {Wiley Series in Probability and Statistics},
   isbn      = {9780470567326},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/Linda M. Collins, Stephanie T. Lanza-Latent Class and Latent Transition Analysis_ With Applications in the Socia[4409].pdf:PDF},
   lccn      = {2009025970},
   url       = {https://books.google.co.jp/books?id=3xJaoIqhZhEC},
+}
+
+@Article{chung2008latent,
+  author    = {Chung, Hwan and Lanza, Stephanie T and Loken, Eric},
+  title     = {Latent transition analysis: Inference and estimation},
+  journal   = {Statistics in medicine},
+  year      = {2008},
+  volume    = {27},
+  number    = {11},
+  pages     = {1834--1854},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/chung2008.pdf:PDF},
+  publisher = {Wiley Online Library},
+}
+
+@Article{Beath2017,
+  author  = {Ken J. Beath},
+  title   = {{randomLCA}: An {R} Package for Latent Class with Random Effects Analysis},
+  journal = {Journal of Statistical Software},
+  year    = {2017},
+  volume  = {81},
+  number  = {13},
+  pages   = {1--25},
+  doi     = {10.18637/jss.v081.i13},
+  file    = {:/home/wangcc-me/Documents/LSHTMproject/references/randomLCA-package.pdf:PDF},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

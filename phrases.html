@@ -356,9 +356,70 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
   洞悉谎言
 ------- discern safely -------
   安全识别</code></pre>
-</div>
-<div id="expressions" class="section level1">
-<h1>Expressions</h1>
+<p>heuristics [hjuə’ristiks]</p>
+<pre><code>====== 辞典翻译: heuristics ======
+  n. 启发法；启发式教学法
+============ 网络释义 ============
+--------- heuristics ---------
+  试探法
+  启发
+  启发式
+ representativeness heuristics
+  代表性启发式
+  代表性启发法
+---- Advanced Heuristics -----
+  高级启发式
+  先进的启发式辨认引擎</code></pre>
+<ul>
+<li>posit [’pɔzit]</li>
+</ul>
+<pre><code>======== 辞典翻译: posit =========
+  n. 假设；设想
+  vt. 安置；假定
+============ 网络释义 ============
+----------- posit ------------
+  断定
+  位置
+  假定
+------- Posit Science --------
+  研究对波赛特科学
+-------- posit clause --------
+  断定子句</code></pre>
+<ul>
+<li>circumvent</li>
+</ul>
+<pre><code>====== 辞典翻译: circumvent ======
+  v. 包围；智取；绕行，规避
+============ 网络释义 ============
+--------- circumvent ---------
+  避免
+  欺诈
+  用计谋战胜
+------ Circumvent glass ------
+  防御玻璃墙
+----- around circumvent ------
+  绕圈子</code></pre>
+<ul>
+<li>manifest [’mænifest]</li>
+</ul>
+<pre><code>======= 辞典翻译: manifest =======
+  n. 载货单，货单；旅客名单
+  vt. 证明，表明；显示
+  adj. 显然的，明显的；明白的
+  vi. 显示，出现
+============ 网络释义 ============
+---------- MANIFEST ----------
+  舱单
+  清单
+  显示
+------ Manifest Destiny ------
+  昭昭天命
+  昭昭天命
+  天定命运
+------- cargo manifest -------
+  载货清单
+  货物舱单
+  货物清单</code></pre>
 </div>
 <div id="sentences" class="section level1">
 <h1>Sentences</h1>
@@ -419,6 +480,38 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
 <li><p>It is important to note that the best-fitting latent class model at any given time may not correspond to the best-fitting latent transition model fit to all occasions of measurements. The best-fitting model based on the data from all occasions of measurement may include a different number of latent stuatuses than the number of latent classes identified at one particular time.</p></li>
 <li><p>However, based on the latent status prevalences at each time alone, it is impossible to tell hou and to what extent individuals were moving between latent statuses.</p></li>
 <li><p><strong>In 7.11 we used a different empirical example to test the hypothesis that the item-response probabilities in a LTA are equal across times. This type of restriction on the item-response probabilities is commonly used in LTA. It helps with model identification and, importantly, ensures that the meaning of the latent statuses remains constant over time.</strong></p></li>
+<li><p>Note that because each row of the transition probability matrix is conditioned on Time 1 latent status, this analysis of change in delinquency over time implicitly controls for time 1 delinquency.</p></li>
+<li><p>Data can be used from individuals who provide responses to only some questions at a particular time and from those</p></li>
+</ul>
+</div>
+<div id="bray2015eliminating" class="section level2">
+<h2>bray2015eliminating</h2>
+<p>(Eliminating bias in classify-analyze approaches for latent class analysis)</p>
+<ul>
+<li><p>The latent class model, which posits a mutually exclusive and exhaustive underlying set of latent classes (i.e. subgroups) inferred from multiple categorical observed variables.</p></li>
+<li><p>LCA has been proven to be a useful tool for identifying qualitatively different population subgroups in a variety of disciplines.</p></li>
+<li><p>Classify-analyze (Clogg, 1995) is a common technique used to circumvent the challenge of not having an LCA model-based solution. This technique first classifying individuals into latent classes, and then performing a subsequent analysis treating latent class membership as known (i.e., as manifest categorical variable) in a larger model of interest.</p></li>
+<li><p>Fundamentally, LCA is a probability-based approach that does not require assignment of individuals to latent classes; this is one of its greatest strengths….</p></li>
+<li><p>The classification of individuals to latent classes is a form of imputation; because an individual’s true class membership cannot be known, the latent class variable is 100% missing.</p></li>
+<li><p>Once the parameters of a latent class model have been estimated, posterior probabilities of membership in each latent class can be obtained for each individual using Bayes’ theorem.</p></li>
+<li><p>Two classify-analyze approaches for LCA are commonly used in practice. Both approaches reply on posterior probablities to classify individuals. We refer to the first approach as the <em>maximum-probability assignment</em> rule. … The second approach is <em>multiple pseudo-class draws</em>. This approach is similar to maximum-proability assignment but accounts for uncertainty in class assignment. Using this method, individuals are randomly classified into latent class multiple times based on their distributions of posterior probabilities. Often, 20 pseudo-class draws are used; that is, individuals are classfied 20 times. The subsequent analysis is performed once for each draw (i.e., 20 times) and results are combined across draws using rules derived for multiple imputation for missing data.</p></li>
+<li><p>We showed that maximum-probability assignment is less biased than multiple pseudo-class draws regardless of whether inclusive or non-inclusive LCA is used.</p></li>
+<li>A series of steps when using classify-analyze approaches for LCA:
+<ol style="list-style-type: decimal">
+<li>determine the optimal number of latent classes by fitting and comparing models without covariates included in the model (i.e., use non-inclusive LCA for model selection);</li>
+<li>re-fit the latent class model with the other variables of interest included as covariates to produce posterior probabilities;</li>
+<li>use either maximum-probability assignment or multiple pseudo-class draw, as the analyst prefers, to classify individuals;</li>
+<li>treat class membership as known to perform the desired analysis.</li>
+</ol></li>
+<li><p>Simply by including other variables of interest as covariates, inclusive LCA can be conducted with any of these packages.</p></li>
+<li><p>Inclusive LCA is analogous to multiple imputation, a model-based procedure that requires assumptions about the missing data mechanism, specifically that data are missing at random (MAR).</p></li>
+<li><p>Multiple imputation also typically requires the additional assumption that data are from a multivariate normal distribution.</p></li>
+<li>Similarly, the inclusive strategy for imputing latent class membership, a variable that is 100% missing, relies on certain assumptions. In the scenarios examined here, we have assumed:
+<ol style="list-style-type: decimal">
+<li>independence of the indicators conditional latent class;</li>
+<li>a linear relation (on the logit scale) between the latent class variable and any other variables of interest (here, distal outcome);</li>
+<li>independence of the indicators and any other variables of interest conditional on latent class</li>
+</ol></li>
 </ul>
 </div>
 </div>

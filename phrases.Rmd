@@ -231,6 +231,25 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
   货物清单
 ```  
 
+-  undue [,ʌn'dju:]
+
+```
+======== 辞典翻译: undue =========
+  adj. 过度的，过分的；不适当的；未到期的
+============ 网络释义 ============
+----------- undue ------------
+  不适当的
+  过度的
+  过分
+--------- undue wear ---------
+  过度的磨损
+  不正常磨损
+  过度磨损
+------- undue pressure -------
+  不必要的压力
+  不适当的压力
+```
+
 # Sentences
 
 ## terry2017discontinuous
@@ -352,3 +371,34 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 
 - Fundamentally, LCA is a probability-based approach that does not require assignment of individuals to latent classes; this is one of its greatest strengths....
 
+- The classification of individuals to latent classes is a form of imputation; because an individual's true class membership cannot be known, the latent class variable is 100% missing. 
+
+- Once the parameters of a latent class model have been estimated, posterior probabilities of membership in each latent class can be obtained for each individual using Bayes' theorem. 
+
+- Two classify-analyze approaches for LCA are commonly used in practice. Both approaches reply on posterior probablities to classify individuals. We refer to the first approach as the *maximum-probability assignment* rule. ... The second approach is *multiple pseudo-class draws*. This approach is similar to maximum-proability  assignment but accounts for uncertainty in class assignment. Using this method, individuals are randomly classified into latent class multiple times based on their distributions of posterior probabilities. Often, 20 pseudo-class draws are used; that is, individuals are classfied 20 times. The subsequent analysis is performed once for each draw (i.e., 20 times) and results are combined across draws using rules derived for multiple imputation for missing data.
+
+- We showed that maximum-probability assignment is less biased than multiple pseudo-class draws regardless of whether inclusive or non-inclusive LCA is used. 
+
+- A series of steps when using classify-analyze approaches for LCA: 
+    1. determine the optimal number of latent classes by fitting and comparing models without covariates included in the model (i.e., use non-inclusive LCA for model selection); 
+    2. re-fit the latent class model with the other variables of interest included as covariates to produce posterior probabilities; 
+    3. use either maximum-probability assignment or multiple pseudo-class draw, as the analyst prefers, to classify individuals; 
+    4. treat class membership as known to perform the desired analysis. 
+
+- Simply by including other variables of interest as covariates, inclusive LCA can be conducted with any of these packages. 
+
+- Inclusive LCA is analogous to multiple imputation, a model-based procedure that requires assumptions about the missing data mechanism, specifically that data are missing at random (MAR). 
+
+- Multiple imputation also typically requires the additional assumption that data are from a multivariate normal distribution. 
+
+- Similarly, the inclusive strategy for imputing latent class membership, a variable that is 100% missing, relies on certain assumptions. In the scenarios examined here, we have assumed: 
+    1. independence of the indicators conditional latent class; 
+    2. a linear relation (on the logit scale) between the latent class variable and any other variables of interest (here, distal outcome); 
+    3. independence of the indicators and any other variables of interest conditional on latent class 
+    
+    
+## Beath2017 - randomLCA: An R Package for Latent Class with Random Effects Analysis
+    
+- An advantage of using latent class analysis over other classification methods is that the classification is model based, allowing use of model selection techniques to determine which classfication scheme is most appropriate.     
+
+- The assumption of latent class models is conditional or local independence, where the outcomes are independent conditional on the latent class. This assumes that subjects within a class are homogeneous. 
