@@ -1,7 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  10 JUL 2018 14:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  10 JUL 2018 23:34
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
@@ -1734,24 +1733,6 @@ Package microtype Info: Loading configuration file microtype.cfg.
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2018/01/14 v2.7a microtype main configuration file (RS)
 ))
-
-./main.tex:103: LaTeX Error: Option clash for package geometry.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.103 \usepackage
-                 {hyperref}
-The package geometry has already been loaded with options:
-  []
-There has now been an attempt to load it with options
-  [margin=1in]
-Adding the global options:
-  ,margin=1in
-to your \documentclass declaration may fix this.
-Try typing  <return>  to proceed.
-
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
@@ -1832,7 +1813,7 @@ LaTeX Info: Redefining \pageref on input line 6443.
 )
 Package scrhack Info: hyperref hack deactivated because of
 (scrhack)             detection of hyperref version, that doesn't
-(scrhack)             need that hack, on input line 104.
+(scrhack)             need that hack, on input line 105.
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -1847,14 +1828,14 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip75
 )
-Package hyperref Info: Option `unicode' set `true' on input line 107.
+Package hyperref Info: Option `unicode' set `true' on input line 108.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 107.
+Package hyperref Info: Option `breaklinks' set `true' on input line 108.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
@@ -1892,7 +1873,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks24
 \@floatcapt=\box55
 )
-Package scrhack Info: loading float hack on input line 179.
+Package scrhack Info: loading float hack on input line 180.
 
 (/usr/share/texlive/texmf-dist/tex/latex/koma-script/float.hak
 File: float.hak 2017/09/07 v3.24 KOMA-Script package (hacking package float)
@@ -1906,12 +1887,12 @@ Package scrhack Info: redefining \newfloat on input line 161.
 Package scrhack Info: redefining \listof on input line 161.
 Package scrhack Info: undefining \float@addtolists on input line 161.
 )
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 181.
-Package hyperref Info: Option `hypertexnames' set `false' on input line 181.
-Package hyperref Info: Option `colorlinks' set `true' on input line 181.
-Package hyperref Info: Option `unicode' set `true' on input line 181.
-Package hyperref Info: Option `breaklinks' set `true' on input line 181.
-Package hyperref Info: Option `colorlinks' set `false' on input line 181.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 182.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 182.
+Package hyperref Info: Option `colorlinks' set `true' on input line 182.
+Package hyperref Info: Option `unicode' set `true' on input line 182.
+Package hyperref Info: Option `breaklinks' set `true' on input line 182.
+Package hyperref Info: Option `colorlinks' set `false' on input line 182.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -1926,31 +1907,31 @@ Package csquotes Info: ... found 'babel' package.
 (./Appendices/AppendixB.aux) (./Appendices/AppendixC.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 181.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 181.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 182.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 182.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 181.
-LaTeX Font Info:    ... okay on input line 181.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 181.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 182.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
@@ -2033,14 +2014,14 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package scrlayer Info: Setting magic \footheight to \baselineskip while
-(scrlayer)             \begin{document} on input line 181.
-Package scrbase Info: activating english \abbrevname on input line 181.
-Package scrbase Info: activating english \byname on input line 181.
-Package scrbase Info: activating english \acknowledgementname on input line 181
+(scrlayer)             \begin{document} on input line 182.
+Package scrbase Info: activating english \abbrevname on input line 182.
+Package scrbase Info: activating english \byname on input line 182.
+Package scrbase Info: activating english \acknowledgementname on input line 182
 .
-Package scrbase Info: activating english \authorshipname on input line 181.
-Package scrbase Info: activating english \constantsname on input line 181.
-Package scrbase Info: activating english \symbolsname on input line 181.
+Package scrbase Info: activating english \authorshipname on input line 182.
+Package scrbase Info: activating english \constantsname on input line 182.
+Package scrbase Info: activating english \symbolsname on input line 182.
 \big@size=\dimen192
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
@@ -2053,9 +2034,9 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 181.
-Package biblatex Info: Reference segment=0 on input line 181.
-LaTeX Info: Redefining \microtypecontext on input line 181.
+Package biblatex Info: Reference section=0 on input line 182.
+Package biblatex Info: Reference segment=0 on input line 182.
+LaTeX Info: Redefining \microtypecontext on input line 182.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -2069,7 +2050,7 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 181.
+Package hyperref Info: Link coloring OFF on input line 182.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -2079,40 +2060,40 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count425
 )
-LaTeX Info: Redefining \ref on input line 181.
-LaTeX Info: Redefining \pageref on input line 181.
-LaTeX Info: Redefining \nameref on input line 181.
+LaTeX Info: Redefining \ref on input line 182.
+LaTeX Info: Redefining \pageref on input line 182.
+LaTeX Info: Redefining \nameref on input line 182.
 
 (./main.out) (./main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
 \c__siunitx_mathsf_int=\count426
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 181.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 182.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 181
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 182
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 181
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 182
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 181
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 182
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 181
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 182
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -2128,14 +2109,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 <Figures/logos.jpg, id=116, 752.8125pt x 361.35pt>
 File: Figures/logos.jpg Graphic file (type jpg)
 <use Figures/logos.jpg>
-Package pdftex.def Info: Figures/logos.jpg  used on input line 193.
+Package pdftex.def Info: Figures/logos.jpg  used on input line 194.
 (pdftex.def)             Requested size: 128.03386pt x 61.45625pt.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sc' in size <24.88> not available
-(Font)              Font shape `T1/ppl/b/sc' tried instead on input line 199.
+(Font)              Font shape `T1/ppl/b/sc' tried instead on input line 200.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 203.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 204.
 
-Package hyperref Warning: Suppressing link with empty target on input line 223.
+Package hyperref Warning: Suppressing link with empty target on input line 224.
 
 
 [1
@@ -2149,12 +2130,12 @@ Package hyperref Warning: Suppressing link with empty target on input line 223.
 --------------------
  Declaration of Authorship
 --------------------
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 242.
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 243.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 247--248
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 
  []
 
@@ -2166,27 +2147,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 247--248
  Acknowledgements
 --------------------
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--271
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 
  []
 
@@ -2366,13 +2347,13 @@ File: Figures/Diary3.png Graphic file (type png)
 Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
 (pdftex.def)             Requested size: 446.70174pt x 240.24857pt.
 ) [20 <./Figures/Diary2.png> <./Figures/Diary3.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 408.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 408.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
 (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
 (./Chapters/Chapter3.aux) (./Chapters/Chapter4.aux) (./Appendices/AppendixA.aux
 ) (./Appendices/AppendixB.aux) (./Appendices/AppendixC.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 408.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 408.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: AB9474C603BE5755224DC4C84A66636E;4062.
 Package logreq Info: Writing requests to 'main.run.xml'.
