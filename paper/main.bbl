@@ -16,5 +16,31 @@
   {}
 \endgroup
 
-\datalist[entry]{nyt/global//global/global}\enddatalist
+\datalist[entry]{nyt/global//global/global}
+  \entry{NDNSdatabase2018}{misc}{}
+    \name{author}{1}{}{%
+  {{hash=NatCenSocialResearchNatCenSocialResearchMRCElsieWiddowsonLaboratoryUniveristyCollegeLondonMedicalSchool}{%
+         family={{\firstsecond{NatCen Social Research}{NatCen Social Research,
+  MRC Elsie Widdowson Laboratory, Univeristy College London. Medical
+  School.}}},
+         familyi={{\firstsecond{NatCen Social Research}{NatCen Social Research,
+  MRC Elsie Widdowson Laboratory, Univeristy College London\bibinitperiod
+  Medical School\bibinitperiod}}},
+      }}%
+    }
+  \strng{namehash}{NatCenSocialResearchNatCenSocialResearchMRCElsieWiddowsonLaboratoryUniveristyCollegeLondonMedicalSchool1}
+  \strng{fullhash}{NatCenSocialResearchNatCenSocialResearchMRCElsieWiddowsonLaboratoryUniveristyCollegeLondonMedicalSchool1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{edition}{9th Edition}
+    \field{note}{\url{http://doi.org/10.5255/UKDA-SN-6533-8}}
+    \field{title}{National Diet and Nutrition Survey Years 1-8,
+  2008/09-2015/16}
+    \field{year}{2018}
+  \endentry
+\enddatalist
 \endinput

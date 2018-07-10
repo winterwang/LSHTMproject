@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  9 JUL 2018 17:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  10 JUL 2018 14:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1735,13 +1735,13 @@ Package microtype Info: Loading configuration file microtype.cfg.
 File: microtype.cfg 2018/01/14 v2.7a microtype main configuration file (RS)
 ))
 
-./main.tex:104: LaTeX Error: Option clash for package geometry.
+./main.tex:103: LaTeX Error: Option clash for package geometry.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.104 \usepackage
+l.103 \usepackage
                  {hyperref}
 The package geometry has already been loaded with options:
   []
@@ -1832,7 +1832,7 @@ LaTeX Info: Redefining \pageref on input line 6443.
 )
 Package scrhack Info: hyperref hack deactivated because of
 (scrhack)             detection of hyperref version, that doesn't
-(scrhack)             need that hack, on input line 105.
+(scrhack)             need that hack, on input line 104.
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -1847,14 +1847,14 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip75
 )
-Package hyperref Info: Option `unicode' set `true' on input line 108.
+Package hyperref Info: Option `unicode' set `true' on input line 107.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 108.
+Package hyperref Info: Option `breaklinks' set `true' on input line 107.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
@@ -1884,6 +1884,28 @@ Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
 (/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count418
+\float@exts=\toks23
+\float@box=\box54
+\@float@everytoks=\toks24
+\@floatcapt=\box55
+)
+Package scrhack Info: loading float hack on input line 179.
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/float.hak
+File: float.hak 2017/09/07 v3.24 KOMA-Script package (hacking package float)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2017/09/07 v3.24 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip77
+\scr@dte@tocline@numbox=\box56
+)
+Package scrhack Info: redefining \newfloat on input line 161.
+Package scrhack Info: redefining \listof on input line 161.
+Package scrhack Info: undefining \float@addtolists on input line 161.
+)
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 181.
 Package hyperref Info: Option `hypertexnames' set `false' on input line 181.
 Package hyperref Info: Option `colorlinks' set `true' on input line 181.
@@ -1899,8 +1921,9 @@ File: english.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./main.aux
-(./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux) (./Appendices/AppendixA.aux
-))
+(./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux) (./Chapters/Chapter3.aux)
+(./Chapters/Chapter4.aux) (./Appendices/AppendixA.aux)
+(./Appendices/AppendixB.aux) (./Appendices/AppendixC.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 181.
@@ -1918,7 +1941,8 @@ LaTeX Font Info:    ... okay on input line 181.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 181.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 181.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 181.
@@ -1940,17 +1964,17 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count418
+\scratchcounter=\count419
 \scratchdimen=\dimen190
-\scratchbox=\box54
-\nofMPsegments=\count419
-\nofMParguments=\count420
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count421
+\scratchbox=\box57
+\nofMPsegments=\count420
+\nofMParguments=\count421
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count422
 \MPscratchDim=\dimen191
-\MPnumerator=\count422
-\makeMPintoPDFobject=\count423
-\everyMPtoPDFconversion=\toks24
+\MPnumerator=\count423
+\makeMPintoPDFobject=\count424
+\everyMPtoPDFconversion=\toks26
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1969,6 +1993,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
@@ -2043,7 +2068,7 @@ Package microtype Info: No adjustment of character kerning.
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-\AtBeginShipoutBox=\box55
+\AtBeginShipoutBox=\box58
 Package hyperref Info: Link coloring OFF on input line 181.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -2052,7 +2077,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count424
+\c@section@level=\count425
 )
 LaTeX Info: Redefining \ref on input line 181.
 LaTeX Info: Redefining \pageref on input line 181.
@@ -2062,7 +2087,7 @@ LaTeX Info: Redefining \nameref on input line 181.
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
-\c__siunitx_mathsf_int=\count425
+\c__siunitx_mathsf_int=\count426
 LaTeX Font Info:    Try loading font information for OT1+ppl on input line 181.
 
 
@@ -2097,10 +2122,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\c__siunitx_mathtt_int=\count426
+\c__siunitx_mathtt_int=\count427
 
 1: section
-<Figures/logos.jpg, id=56, 752.8125pt x 361.35pt>
+<Figures/logos.jpg, id=116, 752.8125pt x 361.35pt>
 File: Figures/logos.jpg Graphic file (type jpg)
 <use Figures/logos.jpg>
 Package pdftex.def Info: Figures/logos.jpg  used on input line 193.
@@ -2233,13 +2258,43 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <17.28> not available
 ]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 18.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 17.
 )
 1: section
-[3] [4]
+[3]
+\openout2 = `Chapters/Chapter3.aux'.
+
+ (./Chapters/Chapter3.tex [4
+
+
+
+]
+Chapter 3.
+)
+1: section
+[5]
+\openout2 = `Chapters/Chapter4.aux'.
+
+ (./Chapters/Chapter4.tex [6
+
+
+
+]
+Chapter 4.
+)
+1: section
+[7] [8
+
+
+]
+1: section
+[9]
 \openout2 = `Appendices/AppendixA.aux'.
 
- (./Appendices/AppendixA.tex
+ (./Appendices/AppendixA.tex [10
+
+
+]
 Appendix A.
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 16.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -2249,11 +2304,7 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 20.
 
 1: section
-[5
-
-
-
-]
+[11]
 Underfull \vbox (badness 10000) detected at line 196
  []
 
@@ -2261,7 +2312,7 @@ Underfull \vbox (badness 10000) detected at line 196
 Underfull \vbox (badness 10000) detected at line 196
  []
 
-[6]
+[12]
 Underfull \vbox (badness 10000) detected at line 196
  []
 
@@ -2269,7 +2320,7 @@ Underfull \vbox (badness 10000) detected at line 196
 Overfull \vbox (0.84413pt too high) detected at line 196
  []
 
-[7]
+[13]
 Underfull \vbox (badness 10000) detected at line 196
  []
 
@@ -2277,40 +2328,75 @@ Underfull \vbox (badness 10000) detected at line 196
 Underfull \vbox (badness 10000) detected at line 196
  []
 
-[8]) [9]
+[14]) [15]
+\openout2 = `Appendices/AppendixB.aux'.
 
-LaTeX Warning: Empty bibliography on input line 400.
+ (./Appendices/AppendixB.tex [16
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 404.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 404.
+
+
+]
+Appendix B.
+)
+1: section
+[17]
+\openout2 = `Appendices/AppendixC.aux'.
+
+ (./Appendices/AppendixC.tex [18
+
+
+
+]
+Appendix C.
+<Figures/Diary1.png, id=319, 1349.04pt x 934.49126pt>
+File: Figures/Diary1.png Graphic file (type png)
+<use Figures/Diary1.png>
+Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
+(pdftex.def)             Requested size: 446.70784pt x 309.43825pt.
+<Figures/Diary2.png, id=320, 1380.15625pt x 923.45pt>
+File: Figures/Diary2.png Graphic file (type png)
+<use Figures/Diary2.png>
+Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
+(pdftex.def)             Requested size: 446.7133pt x 298.8918pt.
+1: section
+[19 <./Figures/Diary1.png>]
+<Figures/Diary3.png, id=326, 1340.00626pt x 720.6925pt>
+File: Figures/Diary3.png Graphic file (type png)
+<use Figures/Diary3.png>
+Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
+(pdftex.def)             Requested size: 446.70174pt x 240.24857pt.
+) [20 <./Figures/Diary2.png> <./Figures/Diary3.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 408.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 408.
 (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
-(./Appendices/AppendixA.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 404.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 404.
+(./Chapters/Chapter3.aux) (./Chapters/Chapter4.aux) (./Appendices/AppendixA.aux
+) (./Appendices/AppendixB.aux) (./Appendices/AppendixC.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 408.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 408.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9F7F5F6A42A9E52F41CB0E5460851534;1942.
+(rerunfilecheck)             Checksum: AB9474C603BE5755224DC4C84A66636E;4062.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36375 strings out of 492982
- 729449 string characters out of 6134896
- 993923 words of memory out of 5000000
- 39403 multiletter control sequences out of 15000+600000
- 573085 words of font info for 148 fonts, out of 8000000 for 9000
+ 36951 strings out of 492982
+ 740614 string characters out of 6134896
+ 1024197 words of memory out of 5000000
+ 39907 multiletter control sequences out of 15000+600000
+ 576966 words of font info for 152 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,19n,85p,10377b,1950s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
-e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/public/c
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/c
 m-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (27 pages, 251161 bytes).
+Output written on main.pdf (38 pages, 587419 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 193 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
- 28782 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 320 compressed objects within 4 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 37109 words of extra memory for PDF output out of 42996 (max. 10000000)
 

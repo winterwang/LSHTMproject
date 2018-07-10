@@ -47,9 +47,8 @@ headsepline, % Uncomment to get a line under the header
 \usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 \addbibresource{summer.bib} % The filename of the bibliography
-
+\DeclareRobustCommand{\firstsecond}[2]{#1}
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
-
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -176,6 +175,7 @@ headsepline, % Uncomment to get a line under the header
 \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
+\usepackage{float}
 
 
 \begin{document}
@@ -318,6 +318,7 @@ The National Dietary and Nutrition Survey (NDNS) database of detailed four-day f
 \textbf{cAIC} & \textbf{c}onsistent \textbf{A}kaike \textbf{I}nformation \textbf{C}riterion \\
 \textbf{BIC} & \textbf{B}ayesian \textbf{I}information \textbf{C}riterion \\
 \textbf{EM}  & \textbf{E}xpectation \textbf{M}aximazation  \\
+\textbf{FSA} & \textbf{F}ood \textbf{S}tandards \textbf{A}gency  \\
 \textbf{LCA} & \textbf{L}atent \textbf{C}lass \textbf{A}nalysis\\
 \textbf{LTA} & \textbf{L}atent \textbf{T}ransition \textbf{A}nalysis \\
 \textbf{MAR} & \textbf{M}issing \textbf{A}t \textbf{R}andom \\
@@ -326,6 +327,7 @@ The National Dietary and Nutrition Survey (NDNS) database of detailed four-day f
 \textbf{ML} & \textbf{M}aximum \textbf{L}ikelihood \\
 \textbf{NDNS} & the \textbf{N}ational \textbf{D}ietary and \textbf{N}utrition \textbf{S}urvey \\
 \textbf{OR} & \textbf{O}dds \textbf{R}atio \\
+\textbf{PHE} & \textbf{P}ublic \textbf{H}ealth \textbf{E}ngland  \\
 \end{abbreviations}
 
 %----------------------------------------------------------------------------------------
@@ -376,9 +378,16 @@ The National Dietary and Nutrition Survey (NDNS) database of detailed four-day f
 
 \include{Chapters/Chapter1}
 \include{Chapters/Chapter2}
-%\include{Chapters/Chapter3}
-%\include{Chapters/Chapter4}
+\include{Chapters/Chapter3}
+\include{Chapters/Chapter4}
 %\include{Chapters/Chapter5}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[heading=bibintoc]
+
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -390,14 +399,9 @@ The National Dietary and Nutrition Survey (NDNS) database of detailed four-day f
 % Uncomment the lines as you write the Appendices
 
 \include{Appendices/AppendixA}
-%\include{Appendices/AppendixB}
-%\include{Appendices/AppendixC}
+\include{Appendices/AppendixB}
+\include{Appendices/AppendixC}
 
-%----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-\printbibliography[heading=bibintoc]
 
 %----------------------------------------------------------------------------------------
 

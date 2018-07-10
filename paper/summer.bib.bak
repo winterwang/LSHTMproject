@@ -155,4 +155,12 @@
   file    = {:/home/wangcc-me/Documents/LSHTMproject/references/randomLCA-package.pdf:PDF},
 }
 
+@Misc{NDNSdatabase2018,
+  author  = {{\firstsecond{NatCen Social Research}{NatCen Social Research, MRC Elsie Widdowson Laboratory, Univeristy College London. Medical School.}}},
+  title   = {National Diet and Nutrition Survey Years 1-8, 2008/09-2015/16},
+  year    = {2018},
+  note    = {\url{http://doi.org/10.5255/UKDA-SN-6533-8}},
+  edition = {9th Edition},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
