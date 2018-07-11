@@ -1,0 +1,787 @@
+---
+title: "Updated results"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    nature:
+      highlightLines: true
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(epiDisplay)
+library(plyr)
+library(tidyverse)
+library(poLCA)
+```
+
+[Link (http://rpubs.com/winterwang/ndnsd1)](http://rpubs.com/winterwang/ndnsd1) to the preliminary results.
+
+
+# Mixed effect LCA with carbohydrates intake groups redefined: (cutoff = 25%, 50%, 75%)
+
+1. Not eating; 
+2. Eating low carbohydrate food (energy contribution less than 25%); 
+3. Eating low-to-medium carbohydrate food (energy contribution between 25% and 50%); 
+3. Eating medium-to-high carbohydrate food (energy contribution between 50% and 75%); 
+4. Eating high carbohydrate food (energy contribution higher or equal to 75%).
+
+
+
+
+## Model comparison and selection
+
+```{r echo=FALSE}
+rm(list=ls(all=TRUE))
+# load("~/Documents/LSHTMproject/Rcode/day4LCA1_6.Rdata")
+
+library(kableExtra)
+dt <- read.csv("../Tablecsv/ModelsMixed255075.csv", header = T)
+names(dt) <- c("N of classes", "log-likelihood", "G^2",  "AIC", "BIC", "cAIC", "aBIC", "Entropy")
+dt[1,8] <- "---"
+kable(dt, digits = 3, row.names = FALSE, align = "c",
+              format = "html", caption = "Model Comparison. (All data, n = 6155)") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  row_spec(c(3,7), bold = T, color = "white", background = "#D7261E") %>% 
+  footnote(general = "Abbreviation: N, number; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; cAIC, consistent AIC; Entropy, a pseudo-r-squared index.")
+```
+
+
+## Visualisation of the 3-class model
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+
+library(ggthemr)
+rm(list=ls(all=TRUE))
+
+dt <- read.csv("../Tablecsv/ndns_param3255075.csv", header = T)
+
+dt_long <- dt[-1,-c(1,2)] %>% 
+  gather(Hour, Prob, -VARIABLE, -RESPCAT) %>% 
+  separate(Hour, into = c("EST" ,"Class"), sep = "T") 
+
+
+dt_long <- dt_long %>% 
+  filter(RESPCAT != 1) %>% 
+  mutate(RESPCAT = as.factor(RESPCAT)) %>% 
+  mutate(Carbo = revalue(RESPCAT, c("2" = "< 25%", "3" = "25% - 50%", "4" = "50% - 75%", "5" = "> 75%"))) %>% 
+  mutate(HourN = as.character(VARIABLE)) %>% 
+  mutate(HourN = factor(HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")))
+
+
+
+# ggthemr("pale", layout = "scientific")
+
+
+ggthemr("fresh", layout = "scientific")
+
+ggplot(dt_long[dt_long$Class == "LC1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Class 1: 22.57%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") + 
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+ geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Class 2:  27.85%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") + 
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 3:  49.6%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+
+# 
+# ggplot(dt_long[dt_long$Class == "LC4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+#  geom_point(size = 3) + 
+#   geom_line(size = 1.5) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 18), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#         ) + 
+#   labs(title = "Class 4:  23.08%", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrates\nContribution") + 
+#   scale_color_discrete(labels = c("Low", "Medium", "High")) + 
+#   ylim(c(0,1))
+# 
+# 
+# ggplot(dt_long[dt_long$Class == "LC5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+#  geom_point(size = 3) +
+#   geom_line(size = 1.5) +
+#   theme(axis.title = element_text(size = 18),
+#         axis.text = element_text(size = 18),
+#         axis.line = element_line(colour = "black"),
+#         panel.border = element_blank(),
+#         panel.background = element_blank(),
+#         legend.text = element_text(size = 15),
+#         legend.title = element_text(size = 15)
+#         # legend.position = "bottom",
+#         # legend.direction = "horizontal"
+#         ) +
+#   labs(title = "Class 5:  4.07%", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrates\nContribution") +
+#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
+#   ylim(c(0,1))
+# 
+# ggplot(dt_long[dt_long$Class == "LC6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+#  geom_point(size = 3) +
+#   geom_line(size = 1.5) +
+#   theme(axis.title = element_text(size = 18),
+#         axis.text = element_text(size = 18),
+#         axis.line = element_line(colour = "black"),
+#         panel.border = element_blank(),
+#         panel.background = element_blank(),
+#         legend.text = element_text(size = 15),
+#         legend.title = element_text(size = 15)
+#         # legend.position = "bottom",
+#         # legend.direction = "horizontal"
+#         ) +
+#   labs(title = "Class 6:  14.10%", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrates\nContribution") +
+#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
+#   ylim(c(0,1))
+```
+
+
+
+## Visualisation of the classes by Carbohydrate eating types (3 classes)
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+
+ggthemr("pale", layout = "scientific")
+
+
+ggplot(dt_long[dt_long$Carbo == "< 25%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Low carbohydarte food consumption (< 25%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Carbo == "25% - 50%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Low-to-Medium carbohydarte food consumption (25% - 50%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3")) + 
+  ylim(c(0,1))
+ 
+
+ggplot(dt_long[dt_long$Carbo == "50% - 75%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Medium-to-High carbohydarte food consumption (50% - 75%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Carbo == "> 75%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "High carbohydarte food consumption (> 75%) probability by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3")) + 
+  ylim(c(0,1))
+```
+
+
+
+
+## Visualisation of the 7-class model
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+
+library(ggthemr)
+rm(list=ls(all=TRUE))
+
+# ggthemr("fresh", layout = "scientific")
+
+dt <- read.csv("../Tablecsv/ndns_param7255075.csv", header = T)
+
+dt_long <- dt[-1,-c(1,2)] %>% 
+  gather(Hour, Prob, -VARIABLE, -RESPCAT) %>% 
+  separate(Hour, into = c("EST" ,"Class"), sep = "T") 
+
+
+dt_long <- dt_long %>% 
+  filter(RESPCAT != 1) %>% 
+  mutate(RESPCAT = as.factor(RESPCAT)) %>% 
+  mutate(Carbo = revalue(RESPCAT, c("2" = "< 25%", "3" = "25% - 50%", "4" = "50% - 75%", "5" = "> 75%"))) %>% 
+  mutate(HourN = as.character(VARIABLE)) %>% 
+  mutate(HourN = factor(HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")))
+
+
+
+ggthemr("pale", layout = "scientific")
+
+ggplot(dt_long[dt_long$Class == "LC1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Class 1: 10.64%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") + 
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+ geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Class 2:  15.01%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") + 
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 3:  11.56%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+
+
+ggplot(dt_long[dt_long$Class == "LC4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 4:  11.31%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Class == "LC5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 5:  9.3%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 6:  9.41%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC7", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 7:  32.7%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c( "< 25%", "25% - 50%", "50% - 75%", "> 75%")) + 
+  ylim(c(0,1))
+```
+
+
+
+
+
+## Visualisation of the classes by Carbohydrate eating types (7 classes)
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+
+ggthemr("pale", layout = "scientific")
+
+
+ggplot(dt_long[dt_long$Carbo == "< 25%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Low carbohydarte food consumption (< 25%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3", "4", "5", "6", "7")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Carbo == "25% - 50%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Low-to-Medium carbohydarte food consumption (25% - 50%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3", "4", "5", "6", "7")) + 
+  ylim(c(0,1))
+ 
+
+ggplot(dt_long[dt_long$Carbo == "50% - 75%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Medium-to-High carbohydarte food consumption (50% - 75%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3", "4", "5", "6", "7")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Carbo == "> 75%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "High carbohydarte food consumption (> 75%) probability by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3", "4", "5", "6", "7")) + 
+  ylim(c(0,1))
+```
+
+
+
+# Mixed effect LCA with carbohydrates intake groups redefined: (cutoff = 50%)
+
+1. Not eating; 
+2. ~~Eating low carbohydrate food (energy contribution less than or equal to 25%);~~
+3. Eating low-to-medium carbohydrate food (energy contribution between < 50%); 
+3. Eating medium-to-high carbohydrate food (energy contribution between > = 50%); 
+4. ~~Eating high carbohydrate food (energy contribution higher or equal to 75%).~~
+
+
+
+
+## Model comparison and selection
+
+```{r echo=FALSE}
+rm(list=ls(all=TRUE))
+# load("~/Documents/LSHTMproject/Rcode/day4LCA1_6.Rdata")
+
+library(kableExtra)
+dt <- read.csv("../Tablecsv/ModelsMixed50.csv", header = T)
+names(dt) <- c("N of classes", "log-likelihood", "G^2",  "AIC", "BIC", "cAIC", "aBIC", "Entropy")
+dt[1,8] <- "---"
+kable(dt, digits = 3, row.names = FALSE, align = "c",
+              format = "html", caption = "Model Comparison. (All data, n = 6155)") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  row_spec(c(5,7), bold = T, color = "white", background = "#D7261E") %>% 
+  footnote(general = "Abbreviation: N, number; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; cAIC, consistent AIC; Entropy, a pseudo-r-squared index.")
+```
+
+
+
+## Visualisation of the 5-class model
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+
+library(ggthemr)
+rm(list=ls(all=TRUE))
+
+dt <- read.csv("../Tablecsv/ndns_param5_50.csv", header = T)
+
+dt_long <- dt[-1,-c(1,2)] %>% 
+  gather(Hour, Prob, -VARIABLE, -RESPCAT) %>% 
+  separate(Hour, into = c("EST" ,"Class"), sep = "T") 
+
+
+dt_long <- dt_long %>% 
+  filter(RESPCAT != 1) %>% 
+  mutate(RESPCAT = as.factor(RESPCAT)) %>% 
+  mutate(Carbo = revalue(RESPCAT, c("2" = "< 50%", "3" = ">= 50%"))) %>% 
+  mutate(HourN = as.character(VARIABLE)) %>% 
+  mutate(HourN = factor(HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23")))
+
+
+
+# ggthemr("pale", layout = "scientific")
+
+
+ggthemr("fresh", layout = "scientific")
+
+ggplot(dt_long[dt_long$Class == "LC1", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Class 1: 32.3%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") + 
+  scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC2", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+ geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Class 2:  20.70%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") + 
+  scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+ggplot(dt_long[dt_long$Class == "LC3", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 3:  2.73%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+
+
+ggplot(dt_long[dt_long$Class == "LC4", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 4:  25.38%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Class == "LC5", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+ geom_point(size = 3) +
+  geom_line(size = 1.5) +
+  theme(axis.title = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 15)
+        # legend.position = "bottom",
+        # legend.direction = "horizontal"
+        ) +
+  labs(title = "Class 5:  18.87%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrates\nContribution") +
+  scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+# 
+# ggplot(dt_long[dt_long$Class == "LC6", ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) +
+#  geom_point(size = 3) +
+#   geom_line(size = 1.5) +
+#   theme(axis.title = element_text(size = 18),
+#         axis.text = element_text(size = 18),
+#         axis.line = element_line(colour = "black"),
+#         panel.border = element_blank(),
+#         panel.background = element_blank(),
+#         legend.text = element_text(size = 15),
+#         legend.title = element_text(size = 15)
+#         # legend.position = "bottom",
+#         # legend.direction = "horizontal"
+#         ) +
+#   labs(title = "Class 6:  14.10%", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrates\nContribution") +
+#   scale_color_discrete(labels = c("Low", "Medium", "High")) +
+#   ylim(c(0,1))
+```
+
+
+
+## Visualisation of the classes by Carbohydrate eating types (5 classes)
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+
+ggthemr("pale", layout = "scientific")
+
+
+ggplot(dt_long[dt_long$Carbo == "< 50%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Low carbohydarte food consumption (< 50%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3", "4", "5")) + 
+  ylim(c(0,1))
+
+
+ggplot(dt_long[dt_long$Carbo == ">= 50%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1.2) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+        ) + 
+  labs(title = "Medium to high carbohydarte food consumption (> 50%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+  scale_color_discrete(labels = c("1", "2", "3", "4", "5")) + 
+  ylim(c(0,1))
+ 
+# 
+# ggplot(dt_long[dt_long$Carbo == "50% - 75%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+#   geom_point(size = 2) + 
+#   geom_line(size = 1.2) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 18), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#         ) + 
+#   labs(title = "Medium-to-High carbohydarte food consumption (50% - 75%) by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+#   scale_color_discrete(labels = c("1", "2", "3", "4", "5")) + 
+#   ylim(c(0,1))
+
+
+# ggplot(dt_long[dt_long$Carbo == "> 75%", ], aes(y = Prob, x=HourN, group = Class, color = Class)) + 
+#   geom_point(size = 2) + 
+#   geom_line(size = 1.2) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 18), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#         ) + 
+#   labs(title = "High carbohydarte food consumption (> 75%) probability by people in different classes", x = "Hour of the day", y = "Probability", color = "Latent classes") + 
+#   scale_color_discrete(labels = c("1", "2", "3", "4", "5")) + 
+#   ylim(c(0,1))
+```
+
+
+# Some comments on changing the cut-off values
+
+In the above analyses, cut-off values were 25%, 50%, 75% or simply 50% only. However, both analyese produced worse models compared with cut-offs (25%, 75% or simply 25%) in the [preliminary results](http://rpubs.com/winterwang/ndnsd1). Entropy dropped largely, BIC, AIC etc. also increased. 
+
+
+
+
+

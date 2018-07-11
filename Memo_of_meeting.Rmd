@@ -46,8 +46,39 @@ output: word_document
     - Still, this could the first step of our analysis. The second step we may think about is the quality (ratio) between different subtypes of carbohydrates within the hour. 
     
 
+
+----------
+
+
+**Date and time:** 2018-07-10 14:00 - 15:00
+
+**Attendees:** Professor Luigi Palla, Dr. Suzana Almoosawi, Chaochen Wang
+
+**Notekeeper:** Chaochen Wang
+
+**Main Topic:** Discuss about the preliminary results and what should we do next?         
         
-        
+- From what we have seen from the preliminary results, maybe we should change the cut-off values to 25%, 50%, and 75% (i.e. four categories), in order to divide the previous 26% to 75% category (medium carbohydrate food/meal). 
 
+- After the above step, maybe we can further consider combining the lower two categories (< 25% and 26% to 50%) and the higher two categories (50% to 75% and > 75%). 
 
+- One possiblity of next analysis objective could be:  carb-fibre ratio and various variation of this ratio. Usually I (Dr. Suzana) would calculate how much fibre is provided for every 10g of carbohydrate for each food product. For example, a product providing 30g of carb and 15g of fibre would have a carb-fibre ratio of 10:5. It may be the case that the same rules applies to eating occasions/meals. In the past I (Dr. Suzana) usually used to calculate the ratio and then use the actual proportion within the analysis, so a fibre-carb ratio of 2-10 would expressed as 0.2, and 1-10 would be 0.1. I wonder if given that the carb value remain always constant at 10g whether we could simply use the value for the fibre 2, 1...etc
 
+- How to use our results from mixed LCA analysis to express the variability or regularity of carbohydrate eating within a person?
+
+(The following idea is from Chaochen Wang, not fully discussed yet.)
+
+- After we can decide the number of classes in the study sample, maybe we can create a variable according to their change of classes during the survey. 
+    - For example, if we decided to use 3 classes or maybe 4 classes. We can use the personal class change as a way to express the regularity. 
+        - In this case, if for four days survey, the subject stayed in the same class, he/she can be considered as a regular eater. 
+        - For the others, if they change class for more than 1 day, he/she can be considered as a irregular eater.
+        - So in the sample we will separate the subjects into regular eaters or not (2 groups)
+    - Another way, probably we can try to define them with less strict rules:
+        - For more than half (2 in 2, 2 in 3, or >=2 in 4) survey days, if the subject managed to stay in the same class, then he/she can be defined as a regular eater.
+        - Otherwise, he/she is defined as irregular eaters. 
+    - The two approaches proposed here, one is more strict than the other is because there may be only small numbers of people actually stayed in the same class for all four survey days. Because with the number of latent classes increases, the probability of jumping from one class to the other will increase, in other words, the probability of staying in the same class for four days will become lower and lower. 
+
+    
+    
+- Survey weighting variables.    
+    - There are different weighting variables in the data set.
