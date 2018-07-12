@@ -163,4 +163,40 @@
   edition = {9th Edition},
 }
 
+@Article{almoosawi2016chrono,
+  author    = {Almoosawi, S and Vingeliene, S and Karagounis, LG and Pot, GK},
+  title     = {Chrono-nutrition: a review of current evidence from observational studies on global trends in time-of-day of energy intake and its association with obesity},
+  journal   = {Proceedings of the Nutrition Society},
+  year      = {2016},
+  volume    = {75},
+  number    = {4},
+  pages     = {487--500},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/chrononutrition_a_review_of_current_evidence_from_observational_studies_on_global_trends_in_timeofday_of_energy_intake_and_its_association_with_obesity.pdf:PDF},
+  publisher = {Cambridge University Press},
+}
+
+@Article{leech2017temporal,
+  author    = {Leech, Rebecca M and Worsley, Anthony and Timperio, Anna and McNaughton, Sarah A},
+  title     = {Temporal eating patterns: a latent class analysis approach},
+  journal   = {International Journal of Behavioral Nutrition and Physical Activity},
+  year      = {2017},
+  volume    = {14},
+  number    = {1},
+  pages     = {3},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/s12966-016-0459-6.pdf:PDF},
+  publisher = {BioMed Central},
+}
+
+@Article{johnston2014physiological,
+  author    = {Johnston, Jonathan D},
+  title     = {Physiological responses to food intake throughout the day},
+  journal   = {Nutrition research reviews},
+  year      = {2014},
+  volume    = {27},
+  number    = {1},
+  pages     = {107--118},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/physiological_responses_to_food_intake_throughout_the_day.pdf:PDF},
+  publisher = {Cambridge University Press},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

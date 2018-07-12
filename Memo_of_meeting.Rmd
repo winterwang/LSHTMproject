@@ -62,9 +62,16 @@ output: word_document
 
 - After the above step, maybe we can further consider combining the lower two categories (< 25% and 26% to 50%) and the higher two categories (50% to 75% and > 75%). 
 
-- One possiblity of next analysis objective could be:  carb-fibre ratio and various variation of this ratio. Usually I (Dr. Suzana) would calculate how much fibre is provided for every 10g of carbohydrate for each food product. For example, a product providing 30g of carb and 15g of fibre would have a carb-fibre ratio of 10:5. It may be the case that the same rules applies to eating occasions/meals. In the past I (Dr. Suzana) usually used to calculate the ratio and then use the actual proportion within the analysis, so a fibre-carb ratio of 2-10 would expressed as 0.2, and 1-10 would be 0.1. I wonder if given that the carb value remain always constant at 10g whether we could simply use the value for the fibre 2, 1...etc
+- One possibility of next analysis objective could be:  carb-fibre ratio and various variation of this ratio. Usually I (Dr. Suzana) would calculate how much fibre is provided for every 10g of carbohydrate for each food product. For example, a product providing 30g of carb and 15g of fibre would have a carb-fibre ratio of 10:5. It may be the case that the same rules applies to eating occasions/meals. In the past I (Dr. Suzana) usually used to calculate the ratio and then use the actual proportion within the analysis, so a fibre-carb ratio of 2-10 would expressed as 0.2, and 1-10 would be 0.1. I wonder if given that the carb value remain always constant at 10g whether we could simply use the value for the fibre 2, 1...etc
 
-- How to use our results from mixed LCA analysis to express the variability or regularity of carbohydrate eating within a person?
+- Comment SA: Reviewing the work of Morimoto and Ghodsian, Morimoto calculated a fibre-to-carb ratio by dividing fibre in grams by carbohydrates in grams multiplied by 100%. Taken the example above, this will be 15/30*100 = 50.
+Ghodsian calculated the carb:fibre ratio by diving carbohyrdrates in grams by fibre in grams.  Although these methods are currently used in the literature, **standardizing everything by 10g of carbohydrates makes the findings easier to interpret in terms of public health.** For example, a person can see that a food product with a minimum of 1g of fibre per 10g of crabohydrates is a good quality carbohydrate product, whereas if the fibre value falls below 1 then it means it is of poorer carbohydrate quality.
+
+(Morimoto, N., Kasuga, C., Tanaka, A., Kamachi, K., Ai, M., Urayama, K., & Tanaka, A. (2018). Association between dietary fibre:carbohydrate intake ratio and insulin resistance in Japanese adults without type 2 diabetes. British Journal of Nutrition,119(6), 620-628. doi:10.1017/S0007114517003725)
+
+(Ghodsian B1, Madden AM1.Evaluating the ≤10:1 wholegrain criterion in identifying nutrient quality and health implications of UK breads and breakfast cereals. Public Health Nutr. 2018 Apr;21(6):1186-1193. doi: 10.1017/S1368980017003718. Epub 2017 Dec 26.)
+
+- How to use our results from mixed LCA analysis to express the variability or regularity of carbohydrate eating within a person? 
 
 (The following idea is from Chaochen Wang, not fully discussed yet.)
 
@@ -75,10 +82,15 @@ output: word_document
         - So in the sample we will separate the subjects into regular eaters or not (2 groups)
     - Another way, probably we can try to define them with less strict rules:
         - For more than half (2 in 2, 2 in 3, or >=2 in 4) survey days, if the subject managed to stay in the same class, then he/she can be defined as a regular eater.
-        - Otherwise, he/she is defined as irregular eaters. 
+        - Otherwise, he/she is defined as an irregular eater. 
     - The two approaches proposed here, one is more strict than the other is because there may be only small numbers of people actually stayed in the same class for all four survey days. Because with the number of latent classes increases, the probability of jumping from one class to the other will increase, in other words, the probability of staying in the same class for four days will become lower and lower. 
+- Comment SA: I like both approaches as it simply gives a dichotomized variable.  It is true that a certain degree of change in clusters is expected between weekdays and weekends.  Hence, it is difficult to assume that if a person shifts clusters between weekdays and weekends that they are irregular eaters. Moreover, defining how much change is a bad change is tricky, hence why I would have perhaps in the future used some form of a coefficient of variation to define variability or irregularity of eating, potentially based on the variable ‘Best’. 
 
     
     
 - Survey weighting variables.    
     - There are different weighting variables in the data set.
+        - Wti_CY1234 for dietary data
+        - Wtb_CY1234 if using blood data to calculate presence or absence of diabetes status
+        - wti_Y56
+        - wtb_Y56

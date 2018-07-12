@@ -779,7 +779,7 @@ ggplot(dt_long[dt_long$Carbo == ">= 50%", ], aes(y = Prob, x=HourN, group = Clas
 
 # Some comments on changing the cut-off values
 
-In the above analyses, cut-off values were 25%, 50%, 75% or simply 50% only. However, both analyese produced worse models compared with cut-offs (25%, 75% or simply 25%) in the [preliminary results](http://rpubs.com/winterwang/ndnsd1). Entropy dropped largely, BIC, AIC etc. also increased. 
+In the above analyses, cut-off values were 25%, 50%, 75% or simply 50% only. However, both analyses produced worse models compared with cut-offs (25%, 75% or simply 25%) in the [preliminary results](http://rpubs.com/winterwang/ndnsd1). Entropy dropped largely, BIC, AIC etc. also increased. 
 
 
 
