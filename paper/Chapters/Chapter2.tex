@@ -21,16 +21,16 @@
 %	SUBSECTION 2
 %-----------------------------------
 
-\subsection{Multilevel latent class analysis (MLCA)}
+\subsection{Multilevel latent class analysis (MLCA)}\vspace{-0.3cm}
 
 
 Multilevel latent class analysis accounts for the nested structure of the data by allowing latent class intercepts to vary across level 2 units and thereby examining if and how level 2 units influence the level 1 latent classes. These random intercepts allow the probability of
 membership in a particular level 1 (observations) latent class to vary across level 2 units (e.g., here in the current context are the individuals). Essentially this allows the probability that an observation will belong to a
-particular level 1 latent class to vary across Level 2 units (individuals). 
+particular level 1 latent class to vary across Level 2 units (individuals). \vspace{-0.5cm}
 
-\subsubsection{Parametric approach}
+\subsubsection{Parametric approach}\vspace{-0.3cm}
 
-A traditional, parametric approach can be applied using a logistic regression model. In an unconditional logistic regression model, the probability of the outcome (i.e. being in latent class $k$) is constant within the 4-day survey for each individual (level 2). Therefore, say when we are fitting a model with $k (k = 1, \cdots, K)$ latent classes in level 1, then in each individual (level 2), there is a probability of being in latent class $k$. A random effect model consider the individual (level 2) to be drawn from a population of adults in the UK, and the probability of the outcome (i.e. being in latent class $k$) across individuals is considered to be a random variable \parencite{stawski2013multilevel}. The 2-level random intercept effect regression model can be expressed as:
+Proposed by Vermunt \parencite{Vermunt, vermunt2008latent} and Asparouhov and Muth\'en \parencite{muthen2009multilevel},  a traditional, parametric approach can be applied using a logistic regression model. In an unconditional logistic regression model, the probability of the outcome (i.e. being in latent class $k$) is constant within the 4-day survey for each individual (level 2). Therefore, say when we are fitting a model with $k (k = 1, \cdots, K)$ latent classes in level 1, then in each individual (level 2), there is a probability of being in latent class $k$. A random effect model consider the individual (level 2) to be drawn from a population of adults in the UK, and the probability of the outcome (i.e. being in latent class $k$) across individuals is considered to be a random variable \parencite{snijders2011multilevel}. The 2-level random intercept effect regression model can be expressed as:\vspace{-0.4cm}
 
 
 \begin{equation}
@@ -39,7 +39,9 @@ A traditional, parametric approach can be applied using a logistic regression mo
 \beta_{0j} & = \gamma_0 + \gamma_1 w_j + u_{0j} & \textbf{(level 2)} \\ 
 \Rightarrow P(C_{ij} = t) & = \frac{\exp{(\gamma_0 + \gamma_1 w_j + u_{0j})}}{1 + \exp{(\gamma_0 + \gamma_1 w_j + u_{0j})}} \\
 \end{aligned}
+\label{randomLCA}
 \end{equation}
+\vspace{-0.3cm}
 
 Where we define: 
 
@@ -51,7 +53,7 @@ Where we define:
 \end{itemize}
 
 
-
+Same as in the typical LCA models, the latent class variable in a MLCA is defined by multiple observed indicators (here is defined by the responses of eating carbohydrates within each hour, over 24 hours and during 4 consecutive days of survey period). Considering that the latent class indicators are indicator variables ($U_{ijk}$), the MLCA model can be written as follows:\vspace{-0.8cm}
 
 \begin{equation}
 %\begin{aligned}
@@ -59,21 +61,25 @@ P(U_{ij1} = s_1, U_{ij2} = s_2, \cdots, U_{ijk} = s_{k}) = \sum_{t=1}^{T}P(C_{ij
 %\end{aligned}
 \label{MLCA}
 \end{equation}
+\vspace{-0.8cm}
+
 
 Where, 
 
 \begin{itemize}
 	\item $ U_{ijk} $ represents the response of eating \textcolor{red}{high/low} carbohydrates on $i$th day of the survey ($i \in (1,2,3,4)$) in subject $j$ (level 2) at the $k$th hour of the day ($k \in (1, 2, 3, \cdots, 24)$);
 	\item $C_{ij}$ denotes the latent class membership for subject $j$ on $i$th day of the survey;
-	\item A specific latent class is referred to as $t$, and the total number of latent classes by $T$;
+	\item A specific latent class is referred to as $t$, and the total number of level 1 latent classes is denoted by $T$;
 	\item $P(U_{ijk} = s_k|C_{ij} = t)$ is the probability of a specific response pattern, conditional on membership in latent class $t$.
 \end{itemize}
 
 
-The $P(C_{ij} = t)$ in equation \ref{MLCA} can be defined by following steps: 
+The $P(C_{ij} = t)$ in equation \ref{MLCA} is what we have already defined in equation \ref{randomLCA}.
 
+\vspace{-0.5cm}
+\subsubsection{Non-Parametric approach}\vspace{-0.3cm}
 
-\subsubsection{Non-Parametric approach}
+Another approach is a non-parametric MLCA. The $T-1$
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2

@@ -49,6 +49,44 @@
     \field{year}{2014}
   \endentry
 
+  \entry{muthen2009multilevel}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MB}{%
+         family={Muth{\'e}n},
+         familyi={M\bibinitperiod},
+         given={Bengt},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Asparouhov},
+         familyi={A\bibinitperiod},
+         given={Tihomir},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{MBAT1}
+    \strng{fullhash}{MBAT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{year}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{3}
+    \field{pages}{639\bibrangedash 657}
+    \field{title}{Multilevel regression mixture analysis}
+    \field{volume}{172}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/muthn2009.pdf:PDF
+    \endverb
+    \field{journaltitle}{Journal of the Royal Statistical Society: Series A
+  (Statistics in Society)}
+    \field{year}{2009}
+  \endentry
+
   \entry{NDNSdatabase2018}{misc}{}
     \name{author}{1}{}{%
   {{hash=NatCenSocialResearchNatCenSocialResearchMRCElsieWiddowsonLaboratoryUniveristyCollegeLondonMedicalSchool}{%
@@ -75,29 +113,108 @@
     \field{year}{2018}
   \endentry
 
-  \entry{stawski2013multilevel}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=SRS}{%
-         family={Stawski},
+  \entry{snijders2011multilevel}{book}{}
+    \name{author}{2}{}{%
+      {{hash=ST}{%
+         family={Snijders},
          familyi={S\bibinitperiod},
-         given={Robert\bibnamedelima S},
-         giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={T.A.B.},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Bosker},
+         familyi={B\bibinitperiod},
+         given={R.J.},
+         giveni={R\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
-      {Taylor \& Francis}%
+      {SAGE Publications}%
     }
-    \strng{namehash}{SRS1}
-    \strng{fullhash}{SRS1}
+    \strng{namehash}{STBR1}
+    \strng{fullhash}{STBR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2013}
+    \field{labelyear}{2011}
     \field{labeldatesource}{year}
     \field{sortinit}{S}
     \field{sortinithash}{S}
-    \field{title}{Multilevel analysis: an introduction to basic and advanced
-  multilevel modeling}
-    \field{year}{2013}
+    \field{isbn}{9781446254332}
+    \field{title}{Multilevel Analysis: An Introduction to Basic and Advanced
+  Multilevel Modeling}
+    \field{year}{2011}
+  \endentry
+
+  \entry{Vermunt}{book}{}
+    \name{author}{1}{}{%
+      {{hash=VJK}{%
+         family={Vermunt},
+         familyi={V\bibinitperiod},
+         given={Jeroen\bibnamedelima K.},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VJK1}
+    \strng{fullhash}{VJK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{labeldatesource}{year}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{abstract}{%
+    The latent class (LC) models that have been developed so far assume that
+  observations are independent. Parametric and nonparametric
+  random–coefficient LC models are proposed here, which will make it possible
+  to modify this assumption. For example, the models can be used for the
+  analysis of data collected with complex sampling designs, data with a
+  multilevel structure, and multiple–group data for more than a few groups.
+  An adapted EM algorithm is presented that makes maximum–likelihood
+  estimation feasible. The new model is illustrated with examples from
+  organizational, educational, and cross–national comparative research.%
+    }
+    \verb{doi}
+    \verb 10.1111/j.0081-1750.2003.t01-1-00131.x
+    \endverb
+    \field{number}{1}
+    \field{pages}{213\bibrangedash 239}
+    \field{title}{Multilevel Latent Class Models}
+    \field{volume}{33}
+    \field{journaltitle}{Sociological Methodology}
+    \field{year}{2003}
+  \endentry
+
+  \entry{vermunt2008latent}{article}{}
+    \name{author}{1}{}{%
+      {{hash=VJK}{%
+         family={Vermunt},
+         familyi={V\bibinitperiod},
+         given={Jeroen\bibnamedelima K},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Sage Publications Sage UK: London, England}%
+    }
+    \strng{namehash}{VJK2}
+    \strng{fullhash}{VJK2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{number}{1}
+    \field{pages}{33\bibrangedash 51}
+    \field{title}{Latent class and finite mixture models for multilevel data
+  sets}
+    \field{volume}{17}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/vermunt2007.pdf:PD
+    \verb F
+    \endverb
+    \field{journaltitle}{Statistical Methods in Medical Research}
+    \field{year}{2008}
   \endentry
 \enddatalist
 \endinput
