@@ -74,5 +74,30 @@
   2008/09-2015/16}
     \field{year}{2018}
   \endentry
+
+  \entry{stawski2013multilevel}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SRS}{%
+         family={Stawski},
+         familyi={S\bibinitperiod},
+         given={Robert\bibnamedelima S},
+         giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Taylor \& Francis}%
+    }
+    \strng{namehash}{SRS1}
+    \strng{fullhash}{SRS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{year}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Multilevel analysis: an introduction to basic and advanced
+  multilevel modeling}
+    \field{year}{2013}
+  \endentry
 \enddatalist
 \endinput

@@ -199,4 +199,22 @@
   publisher = {Cambridge University Press},
 }
 
+@Article{henry2010multilevel,
+  author    = {Henry, Kimberly L and Muth{\'e}n, Bengt},
+  title     = {Multilevel latent class analysis: An application of adolescent smoking typologies with individual and contextual predictors},
+  journal   = {Structural Equation Modeling},
+  year      = {2010},
+  volume    = {17},
+  number    = {2},
+  pages     = {193--215},
+  publisher = {Taylor \& Francis},
+}
+
+@Misc{stawski2013multilevel,
+  author    = {Stawski, Robert S},
+  title     = {Multilevel analysis: an introduction to basic and advanced multilevel modeling},
+  year      = {2013},
+  publisher = {Taylor \& Francis},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
