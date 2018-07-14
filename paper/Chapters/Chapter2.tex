@@ -4,31 +4,43 @@
 
 \label{Chapter 2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-%----------------------------------------------------------------------------------------
+
+%-----------------------------------
 %	SECTION 1
-%----------------------------------------------------------------------------------------
-
-\section{Strategy}
-
-
 %-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Latent class analysis (LCA)}
+\section{Latent class analysis (LCA)}\vspace{-0.3cm}
 
+Latent class analysis is a statistical technique that identifies categorical latent (unobserved) class variables on the basis of observed categorical variables \parencite{collins2010latent}. It belongs to the family of latent variable models, and is directly analogous to the factor analysis model. The major difference is that the latent variable in LCA is categorical, not continuous as in factor analysis. The basic assumptions in LCA are independent observations, and local independence, as shown in the fundamental expression of a typical LCA model: \vspace{-0.8cm}
+
+\begin{equation}
+P(U_{i1} = s_1, U_{i2} = s_2, \cdots, U_{ik} = s_K) = \sum_{t=t}^{T}P(C_i = t)\prod_{k = 1}^{K}P(U_{ik} = s_k | C_i = t)
+\label{LCA}
+\end{equation}\vspace{-0.7cm}
+
+Where, 
+
+\begin{itemize}
+	\item $P(U_{i1} = s_1, U_{i2} = s_2, \cdots, U_{ik} = s_k)$ is the probability of observing a particular vector of responses;
+	\item $P(C_i = t)$ is the probability that a randomly selected $i$th observation will be in class $t$;
+	\item $P(U_{ik} = s_k | C_i = t)$ is the probability of a particular observed response pattern $U_{ik} = s_k$ conditional on membership in latent class $t$.
+\end{itemize}
+
+
+Equation \ref{LCA} indicates that responses for an observation to the measuring variables are independent of one another given its membership in latent class $t$. However, in the NDNS RP data set, the assumption of independent observations is violated. Each individual completed their dietary diary for four consecutive days, their diary recordings were later converted into 4 sequences of categorical responses reflecting the type of carbohydrate consumption at each hour of the day. The 4 observed sequences (observations) are nested in the participants and therefore are not independent. This nested data structure requires multilevel techniques. 
+\vspace{-0.3cm}
 
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
 
-\subsection{Multilevel latent class analysis (MLCA)}\vspace{-0.3cm}
+\section{Multilevel latent class analysis (MLCA)}\vspace{-0.3cm}
 
 
 Multilevel latent class analysis accounts for the nested structure of the data by allowing latent class intercepts to vary across level 2 units and thereby examining if and how level 2 units influence the level 1 latent classes. These random intercepts allow the probability of
 membership in a particular level 1 (observations) latent class to vary across level 2 units (e.g., here in the current context are the individuals). Essentially this allows the probability that an observation will belong to a
 particular level 1 latent class to vary across Level 2 units (individuals). \vspace{-0.5cm}
 
-\subsubsection{Parametric approach}\vspace{-0.3cm}
+\subsection{Parametric approach}\vspace{-0.3cm}
 
 Proposed by Vermunt \parencite{Vermunt, vermunt2008latent} and Asparouhov and Muth\'en \parencite{muthen2009multilevel},  a traditional, parametric approach can be applied using a logistic regression model. In an unconditional logistic regression model, the probability of the outcome (i.e. being in latent class $k$) is constant within the 4-day survey for each individual (level 2). Therefore, say when we are fitting a model with $k (k = 1, \cdots, K)$ latent classes in level 1, then in each individual (level 2), there is a probability of being in latent class $k$. A random effect model consider the individual (level 2) to be drawn from a population of adults in the UK, and the probability of the outcome (i.e. being in latent class $k$) across individuals is considered to be a random variable \parencite{snijders2011multilevel}. The 2-level random intercept effect regression model can be expressed as:\vspace{-0.4cm}
 
@@ -46,7 +58,7 @@ Proposed by Vermunt \parencite{Vermunt, vermunt2008latent} and Asparouhov and Mu
 Where we define: 
 
 \begin{itemize}
-	\item $P(C_{ij} = t)$ as the probability that the observation is belonging to latent class $t$;
+	\item $P(C_{ij} = t)$ as the probability that the randomly selected $i$th observation of $j$th individual is belonging to latent class $t$;
 	\item $u_{0j}$ as the random intercept for $j$th individual; 
 	\item the random intercept are assumed be normally distributed (i.e. $u_{0j} \sim N(0, \sigma_{u_0}^2)$), the magnitude of the $u_{0j}$ variance ($\sigma_{u_0}^2$) indicates the influence of the individuals (level 2);
 	\item $w_j$ is the predictor for individual (level 2), such as age, and/or sex.
@@ -57,7 +69,7 @@ Same as in the typical LCA models, the latent class variable in a MLCA is define
 
 \begin{equation}
 %\begin{aligned}
-P(U_{ij1} = s_1, U_{ij2} = s_2, \cdots, U_{ijk} = s_{k}) = \sum_{t=1}^{T}P(C_{ij}=t)\prod_{k=1}^{K}P(U_{ijk} = s_k | C_{ij} = t)
+P(U_{ij1} = s_1, U_{ij2} = s_2, \cdots, U_{ijk} = s_{K}) = \sum_{t=1}^{T}P(C_{ij}=t)\prod_{k=1}^{K}P(U_{ijk} = s_k | C_{ij} = t)
 %\end{aligned}
 \label{MLCA}
 \end{equation}
@@ -77,9 +89,25 @@ Where,
 The $P(C_{ij} = t)$ in equation \ref{MLCA} is what we have already defined in equation \ref{randomLCA}.
 
 \vspace{-0.5cm}
-\subsubsection{Non-Parametric approach}\vspace{-0.3cm}
+\subsection{Non-Parametric approach}\vspace{-0.3cm}
 
-Another approach is a non-parametric MLCA. The $T-1$
+
+Another approach is using a non-parametric MLCA, in which separate latent class models are specified for level 1 and level 2. Similar with the parametric MLCA approach, there are $T-1$ random intercepts, where $T$ is the number of level 1 latent classes. However, rather than assuming the random intercepts following a normal distribution, the non-parametric MLCA assumes a multinomial (discrete) distribution of the level 2 latent classes. This approach is less computationally demanding compared with the parametric approach. These level 2 latent
+classes reflect differences in the probability of belonging to a specific level 1 latent class, so that clusters (i.e., individuals) that contain observations with similar probabilities for the level 1 latent classes will be grouped together. The non-parametric MLCA model can be defined as follows: \vspace{-0.7cm}
+
+\begin{equation}
+P(C_{ij} = t | CB_j = m)  = \frac{\exp(\gamma_{tm})}{\sum_{r=1}^{T}\exp(\gamma_{tm})}
+\end{equation}
+
+Where, 
+
+\begin{itemize}
+	\item $CB_j$ is level 2 latent class membership for $j$th individual;
+	\item $\gamma_{tm}$ is level 1 and level 2 indicators.
+\end{itemize}
+
+According to Finch and French's simulation study \parencite{finch2014multilevel}, non-parametric approach generally resulted in more accurate recovery of the underlying latent structure of the data at both levels and provided better latent class model. Specifically, we are interested in exploring meaningful individual (level 2) latent classes rather than their daily consumption classification. Therefore, non-parametric MLCA was employed 1) to identify latent classes of observations (level 1) based on the subjects' responses to the 4-day food and drink diary and 2) to form distinct latent classes of individuals (level 2) based on the distribution of observation-level latent classes within individuals.
+ 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
