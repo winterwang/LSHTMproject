@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/404653/7d7c6b02efe84b6e856a7e3bd60fbb73
+bundleId: https://api.rpubs.com/api/v1/document/404653/7d7c6b02efe84b6e856a7e3bd60fbb73
+url: http://rpubs.com/winterwang/404653
+when: 1531687445.31996

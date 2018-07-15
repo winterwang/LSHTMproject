@@ -20,7 +20,7 @@ library(poLCA)
 [Link (http://rpubs.com/winterwang/ndnsd1)](http://rpubs.com/winterwang/ndnsd1) to the preliminary results.
 
 
-# Mixed effect LCA with carbohydrates intake groups redefined: (cutoff = 25%, 50%, 75%)
+# ~~Mixed effect~~ LCA with carbohydrates intake groups redefined: (cutoff = 25%, 50%, 75%)
 
 1. Not eating; 
 2. Eating low carbohydrate food (energy contribution less than 25%); 
@@ -521,7 +521,7 @@ ggplot(dt_long[dt_long$Carbo == "> 75%", ], aes(y = Prob, x=HourN, group = Class
 
 
 
-# Mixed effect LCA with carbohydrates intake groups redefined: (cutoff = 50%)
+# ~~Mixed effect~~ LCA with carbohydrates intake groups redefined: (cutoff = 50%)
 
 1. Not eating; 
 2. ~~Eating low carbohydrate food (energy contribution less than or equal to 25%);~~

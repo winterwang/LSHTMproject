@@ -1,0 +1,914 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+07/15/2018   1:33 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  3-class at level 1, 2-classes at level 2 random effects model - non-parametric approach
+
+
+  DATA:
+  File is H:\summer_project\SAS\sasdata\ndns_3cat.dat;
+
+  VARIABLE:
+     Names are     id          id_day      Age         Sex         H0          H1
+       H2          H3          H4          H5          H6          H7
+       H8          H9          H10         H11         H12         H13
+       H14         H15         H16         H17         H18         H19
+       H20         H21         H22         H23  ;
+
+  USEVARIABLES =   H0          H1
+       H2          H3          H4          H5          H6          H7
+       H8          H9          H10         H11         H12         H13
+       H14         H15         H16         H17         H18         H19
+       H20         H21         H22         H23  ;
+
+  auxiliary = Age Sex;
+
+  IDVARIABLE = ID_DAY;
+
+  CATEGORICAL are H0-H23;
+
+  CLUSTER = id;
+
+  BETWEEN = CB;
+
+  WITHIN = H0-H23;
+
+  CLASSES = CB(2) CW(3);
+
+  ANALYSIS:
+  type = mixture twolevel;
+  starts = 200 100;
+  process = 15(starts);
+
+
+  MODEL:
+  %within%
+  %overall%
+  %between%
+  %overall%
+  CW ON CB;
+
+
+  Savedata:
+    file is 50NDNS_CW3CB2.txt ;
+    save is cprob;
+    format is free;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+3-class at level 1, 2-classes at level 2 random effects model - non-parametric approach
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       24483
+
+Number of dependent variables                                   24
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           2
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   H0          H1          H2          H3          H4          H5
+   H6          H7          H8          H9          H10         H11
+   H12         H13         H14         H15         H16         H17
+   H18         H19         H20         H21         H22         H23
+
+Observed auxiliary variables
+   AGE         SEX
+
+Categorical latent variables
+   CB          CW
+
+Variables with special functions
+
+  Cluster variable      ID
+  ID variable           ID_DAY
+
+  Within variables
+   H0          H1          H2          H3          H4          H5
+   H6          H7          H8          H9          H10         H11
+   H12         H13         H14         H15         H16         H17
+   H18         H19         H20         H21         H22         H23
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            0
+  Adaptive quadrature                                           ON
+Random Starts Specifications
+  Number of initial stage random starts                        200
+  Number of final stage optimizations                          100
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Parameterization                                             LOGIT
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  H:\summer_project\SAS\sasdata\ndns_3cat.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of clusters                       6155
+
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    H0
+      Category 1    0.974        23838.000
+      Category 2    0.015          364.000
+      Category 3    0.011          281.000
+    H1
+      Category 1    0.988        24190.000
+      Category 2    0.006          150.000
+      Category 3    0.006          143.000
+    H2
+      Category 1    0.992        24295.000
+      Category 2    0.004           89.000
+      Category 3    0.004           99.000
+    H3
+      Category 1    0.993        24315.000
+      Category 2    0.003           77.000
+      Category 3    0.004           91.000
+    H4
+      Category 1    0.992        24284.000
+      Category 2    0.003           73.000
+      Category 3    0.005          126.000
+    H5
+      Category 1    0.986        24143.000
+      Category 2    0.005          125.000
+      Category 3    0.009          215.000
+    H6
+      Category 1    0.869        21265.000
+      Category 2    0.051         1253.000
+      Category 3    0.080         1965.000
+    H7
+      Category 1    0.678        16599.000
+      Category 2    0.095         2315.000
+      Category 3    0.227         5569.000
+    H8
+      Category 1    0.623        15248.000
+      Category 2    0.118         2881.000
+      Category 3    0.260         6354.000
+    H9
+      Category 1    0.660        16149.000
+      Category 2    0.117         2872.000
+      Category 3    0.223         5462.000
+    H10
+      Category 1    0.630        15428.000
+      Category 2    0.154         3769.000
+      Category 3    0.216         5286.000
+    H11
+      Category 1    0.723        17706.000
+      Category 2    0.121         2952.000
+      Category 3    0.156         3825.000
+    H12
+      Category 1    0.600        14683.000
+      Category 2    0.222         5431.000
+      Category 3    0.178         4369.000
+    H13
+      Category 1    0.501        12262.000
+      Category 2    0.277         6778.000
+      Category 3    0.222         5443.000
+    H14
+      Category 1    0.738        18061.000
+      Category 2    0.129         3163.000
+      Category 3    0.133         3259.000
+    H15
+      Category 1    0.676        16548.000
+      Category 2    0.144         3527.000
+      Category 3    0.180         4408.000
+    H16
+      Category 1    0.696        17045.000
+      Category 2    0.146         3581.000
+      Category 3    0.158         3857.000
+    H17
+      Category 1    0.685        16779.000
+      Category 2    0.189         4638.000
+      Category 3    0.125         3066.000
+    H18
+      Category 1    0.577        14134.000
+      Category 2    0.276         6750.000
+      Category 3    0.147         3599.000
+    H19
+      Category 1    0.621        15207.000
+      Category 2    0.242         5913.000
+      Category 3    0.137         3363.000
+    H20
+      Category 1    0.619        15144.000
+      Category 2    0.227         5546.000
+      Category 3    0.155         3793.000
+    H21
+      Category 1    0.641        15690.000
+      Category 2    0.199         4871.000
+      Category 3    0.160         3922.000
+    H22
+      Category 1    0.752        18403.000
+      Category 2    0.132         3242.000
+      Category 3    0.116         2838.000
+    H23
+      Category 1    0.921        22548.000
+      Category 2    0.043         1062.000
+      Category 3    0.036          873.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+         -361571.164  458181           189
+         -361571.171  887676           22
+         -361573.159  576220           115
+         -361574.696  247224           94
+         -361595.168  802779           122
+         -361601.995  253358           2
+         -361611.037  848890           95
+         -361612.926  654136           167
+         -361626.500  70118            104
+         -361638.769  717754           180
+         -361752.532  783110           72
+         -361752.549  76974            16
+         -361823.093  846194           93
+         -361849.835  741888           138
+         -361860.942  153942           31
+         -361860.959  576596           99
+         -361861.578  268217           83
+         -361868.415  202790           198
+         -361868.415  851945           18
+         -361868.416  93468            3
+         -361868.424  509733           130
+         -361868.586  579995           183
+         -361890.534  345070           114
+         -361896.830  575700           100
+         -361904.914  860772           174
+         -361904.914  902278           21
+         -361911.101  761633           50
+         -361918.429  967902           52
+         -361918.632  856536           144
+         -361920.906  340112           126
+         -361923.903  12477            155
+         -361929.051  432148           30
+         -361930.459  784664           75
+         -361930.461  152496           123
+         -361935.406  466971           109
+         -361936.895  939021           8
+         -361936.924  347515           24
+         -361936.925  136842           58
+         -361937.675  606576           151
+         -361950.545  603842           61
+         -361950.548  618000           190
+         -361950.549  950604           172
+         -361950.558  131856           90
+         -361950.558  314084           81
+         -361950.559  190339           102
+         -361951.188  415931           10
+         -361951.636  650371           14
+         -361951.899  263268           165
+         -361960.198  370466           41
+         -361970.768  268896           124
+         -361971.078  963053           43
+         -362020.941  318230           46
+         -362021.987  319144           176
+         -362029.021  957392           79
+         -362043.565  695155           150
+         -362048.957  383986           159
+         -362054.899  794236           127
+         -362057.123  782200           84
+         -362058.341  25127            107
+         -362071.154  369602           146
+         -362074.947  636396           168
+         -362075.429  751153           110
+         -362075.763  436460           89
+         -362082.574  496881           192
+         -362082.875  526324           178
+         -362084.453  399671           13
+         -362087.902  405079           68
+         -362088.928  814975           129
+         -362095.203  468036           131
+         -362111.920  863094           147
+         -362113.222  966014           37
+         -362116.707  440841           118
+         -362138.189  40340            188
+         -362139.768  476498           179
+         -362149.422  85462            51
+         -362175.496  366706           29
+         -362192.874  414284           158
+         -362195.042  751054           117
+         -362197.478  297518           166
+         -362199.097  754100           56
+         -362216.035  120506           45
+         -362223.255  674171           195
+         -362239.463  311214           64
+         -362241.384  292884           103
+         -362251.142  127215           9
+         -362252.082  587946           120
+         -362283.446  407168           44
+         -362288.034  915642           40
+         -362296.161  931874           141
+         -362305.480  443917           60
+         -362444.795  813779           92
+         -362509.299  471398           74
+         -362604.548  232559           136
+         -362697.778  392418           28
+         -362718.499  685657           69
+         -363208.089  991329           182
+         -363333.969  456213           160
+
+3 perturbed starting value run(s) did not converge.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                      293
+
+Loglikelihood
+
+          H0 Value                     -361571.164
+          H0 Scaling Correction Factor      1.5346
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  723728.328
+          Bayesian (BIC)                726103.308
+          Sample-Size Adjusted BIC      725172.162
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   CB  CW
+
+  Latent Class Variable Patterns
+
+         CB        CW
+      Class     Class
+
+         1         1
+         1         2
+         1         3
+         2         1
+         2         2
+         2         3
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1       4178.45140          0.17067
+    1  2       4234.73840          0.17297
+    1  3       6290.04282          0.25691
+    2  1        569.92555          0.02328
+    2  2       5095.94636          0.20814
+    2  3       4113.89547          0.16803
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    CB             1     14703.23242          0.60055
+                   2      9779.76758          0.39945
+    CW             1      4748.37695          0.19395
+                   2      9330.68457          0.38111
+                   3     10403.93848          0.42495
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1             4658          0.19025
+    1  2             4190          0.17114
+    1  3             6037          0.24658
+    2  1              473          0.01932
+    2  2             4761          0.19446
+    2  3             4364          0.17825
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    CB             1           14885          0.60797
+                   2            9598          0.39203
+    CW             1            5131          0.20957
+                   2            8951          0.36560
+                   3           10401          0.42483
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.798
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Pattern (Row)
+by Latent Class Pattern (Column)
+
+  Latent Class Variable Patterns
+
+  Latent Class         CB        CW
+   Pattern No.      Class     Class
+
+         1             1         1
+         2             1         2
+         3             1         3
+         4             2         1
+         5             2         2
+         6             2         3
+
+           1        2        3        4        5        6
+
+    1   0.808    0.071    0.069    0.001    0.051    0.001
+    2   0.019    0.878    0.044    0.002    0.018    0.039
+    3   0.017    0.003    0.907    0.003    0.026    0.044
+    4   0.007    0.005    0.016    0.836    0.081    0.054
+    5   0.047    0.015    0.025    0.018    0.878    0.017
+    6   0.002    0.030    0.042    0.014    0.093    0.818
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Within Level
+
+Latent Class Pattern 1 1
+
+ Thresholds
+    H0$1               4.460      0.266     16.767      0.000
+    H0$2               4.858      0.296     16.385      0.000
+    H1$1               5.830      0.395     14.756      0.000
+    H1$2               6.217      0.472     13.167      0.000
+    H2$1               5.650      0.344     16.412      0.000
+    H2$2               5.789      0.357     16.238      0.000
+    H3$1               5.648      0.336     16.834      0.000
+    H3$2               5.743      0.341     16.835      0.000
+    H4$1               5.314      0.307     17.294      0.000
+    H4$2               5.462      0.325     16.817      0.000
+    H5$1               4.408      0.206     21.391      0.000
+    H5$2               4.462      0.209     21.330      0.000
+    H6$1               1.908      0.100     19.084      0.000
+    H6$2               2.020      0.090     22.391      0.000
+    H7$1               0.658      0.069      9.498      0.000
+    H7$2               0.780      0.064     12.109      0.000
+    H8$1               0.365      0.061      6.022      0.000
+    H8$2               0.603      0.060     10.071      0.000
+    H9$1               0.843      0.061     13.721      0.000
+    H9$2               1.115      0.064     17.347      0.000
+    H10$1              0.634      0.057     11.180      0.000
+    H10$2              1.090      0.056     19.545      0.000
+    H11$1              1.742      0.073     23.837      0.000
+    H11$2              2.055      0.078     26.346      0.000
+    H12$1            -15.000      0.000    999.000    999.000
+    H12$2              0.156      0.047      3.314      0.001
+    H13$1              2.797      0.288      9.700      0.000
+    H13$2              2.829      0.205     13.813      0.000
+    H14$1              1.177      0.055     21.219      0.000
+    H14$2              1.595      0.061     26.237      0.000
+    H15$1              0.680      0.051     13.373      0.000
+    H15$2              1.216      0.056     21.649      0.000
+    H16$1              0.984      0.059     16.733      0.000
+    H16$2              1.559      0.064     24.314      0.000
+    H17$1              0.377      0.066      5.738      0.000
+    H17$2              1.544      0.060     25.730      0.000
+    H18$1              0.431      0.072      5.983      0.000
+    H18$2              1.600      0.062     25.613      0.000
+    H19$1              0.807      0.059     13.587      0.000
+    H19$2              1.752      0.065     26.799      0.000
+    H20$1              0.506      0.050     10.149      0.000
+    H20$2              1.338      0.056     23.806      0.000
+    H21$1              0.724      0.048     14.966      0.000
+    H21$2              1.427      0.057     25.221      0.000
+    H22$1              1.378      0.065     21.344      0.000
+    H22$2              1.944      0.074     26.352      0.000
+    H23$1              3.127      0.119     26.269      0.000
+    H23$2              3.584      0.132     27.064      0.000
+
+Latent Class Pattern 1 2
+
+ Thresholds
+    H0$1               3.570      0.147     24.306      0.000
+    H0$2               3.956      0.174     22.791      0.000
+    H1$1               4.800      0.231     20.800      0.000
+    H1$2               4.962      0.241     20.627      0.000
+    H2$1               4.903      0.256     19.147      0.000
+    H2$2               5.078      0.288     17.643      0.000
+    H3$1               6.174      0.433     14.261      0.000
+    H3$2               6.638      0.550     12.071      0.000
+    H4$1               5.126      0.311     16.499      0.000
+    H4$2               5.174      0.320     16.170      0.000
+    H5$1               4.805      0.234     20.546      0.000
+    H5$2               4.847      0.236     20.541      0.000
+    H6$1               2.341      0.100     23.431      0.000
+    H6$2               2.437      0.100     24.415      0.000
+    H7$1               0.971      0.070     13.972      0.000
+    H7$2               1.120      0.064     17.587      0.000
+    H8$1               0.487      0.053      9.247      0.000
+    H8$2               0.743      0.053     14.005      0.000
+    H9$1               0.665      0.051     13.112      0.000
+    H9$2               0.955      0.054     17.847      0.000
+    H10$1              0.530      0.048     10.964      0.000
+    H10$2              0.975      0.049     20.003      0.000
+    H11$1              0.780      0.052     15.127      0.000
+    H11$2              1.245      0.055     22.442      0.000
+    H12$1              1.406      0.112     12.603      0.000
+    H12$2              2.005      0.105     19.033      0.000
+    H13$1             -0.816      0.075    -10.934      0.000
+    H13$2              0.636      0.046     13.960      0.000
+    H14$1              1.125      0.055     20.491      0.000
+    H14$2              1.744      0.062     28.069      0.000
+    H15$1              0.594      0.046     13.028      0.000
+    H15$2              1.119      0.050     22.410      0.000
+    H16$1              1.042      0.056     18.753      0.000
+    H16$2              1.463      0.058     25.298      0.000
+    H17$1              2.259      0.133     16.933      0.000
+    H17$2              2.845      0.118     24.066      0.000
+    H18$1            -15.000      0.000    999.000    999.000
+    H18$2              0.513      0.055      9.277      0.000
+    H19$1              1.624      0.088     18.525      0.000
+    H19$2              2.150      0.075     28.498      0.000
+    H20$1              0.751      0.051     14.693      0.000
+    H20$2              1.429      0.057     24.953      0.000
+    H21$1              0.609      0.044     13.870      0.000
+    H21$2              1.295      0.052     25.135      0.000
+    H22$1              1.097      0.055     20.046      0.000
+    H22$2              1.604      0.063     25.387      0.000
+    H23$1              2.618      0.095     27.467      0.000
+    H23$2              2.944      0.104     28.291      0.000
+
+Latent Class Pattern 1 3
+
+ Thresholds
+    H0$1               3.692      0.195     18.910      0.000
+    H0$2               4.211      0.224     18.781      0.000
+    H1$1               4.515      0.302     14.927      0.000
+    H1$2               4.788      0.284     16.836      0.000
+    H2$1               5.047      0.440     11.472      0.000
+    H2$2               5.301      0.528     10.042      0.000
+    H3$1               4.566      0.333     13.713      0.000
+    H3$2               4.825      0.340     14.206      0.000
+    H4$1               4.675      0.344     13.607      0.000
+    H4$2               4.817      0.340     14.150      0.000
+    H5$1               4.598      0.210     21.852      0.000
+    H5$2               4.705      0.219     21.493      0.000
+    H6$1               2.395      0.087     27.545      0.000
+    H6$2               2.525      0.081     31.156      0.000
+    H7$1               1.061      0.067     15.788      0.000
+    H7$2               1.199      0.060     19.836      0.000
+    H8$1               0.673      0.048     13.920      0.000
+    H8$2               0.953      0.046     20.528      0.000
+    H9$1               0.676      0.042     16.179      0.000
+    H9$2               0.979      0.044     22.314      0.000
+    H10$1              0.691      0.040     17.353      0.000
+    H10$2              1.141      0.041     27.589      0.000
+    H11$1              0.802      0.043     18.840      0.000
+    H11$2              1.309      0.047     28.117      0.000
+    H12$1              1.860      0.114     16.294      0.000
+    H12$2              2.316      0.101     22.972      0.000
+    H13$1             -0.606      0.052    -11.755      0.000
+    H13$2              0.769      0.038     20.023      0.000
+    H14$1              1.132      0.049     23.339      0.000
+    H14$2              1.807      0.052     34.794      0.000
+    H15$1              1.003      0.040     25.381      0.000
+    H15$2              1.501      0.045     33.026      0.000
+    H16$1              0.816      0.040     20.496      0.000
+    H16$2              1.459      0.044     33.048      0.000
+    H17$1              0.361      0.046      7.800      0.000
+    H17$2              1.466      0.045     32.463      0.000
+    H18$1              3.210      0.473      6.782      0.000
+    H18$2              3.337      0.348      9.586      0.000
+    H19$1              0.015      0.041      0.359      0.720
+    H19$2              1.337      0.042     31.766      0.000
+    H20$1              0.586      0.041     14.262      0.000
+    H20$2              1.507      0.046     32.419      0.000
+    H21$1              0.684      0.038     18.135      0.000
+    H21$2              1.403      0.044     31.748      0.000
+    H22$1              1.222      0.053     22.905      0.000
+    H22$2              1.821      0.053     34.343      0.000
+    H23$1              2.461      0.090     27.332      0.000
+    H23$2              2.939      0.089     33.097      0.000
+
+Latent Class Pattern 2 1
+
+ Thresholds
+    H0$1               0.399      0.206      1.940      0.052
+    H0$2               2.616      0.419      6.249      0.000
+    H1$1               1.104      0.258      4.281      0.000
+    H1$2               2.770      0.514      5.393      0.000
+    H2$1               1.760      0.306      5.747      0.000
+    H2$2               3.261      0.890      3.663      0.000
+    H3$1               2.294      0.441      5.197      0.000
+    H3$2               4.229      1.693      2.497      0.013
+    H4$1               2.866      0.610      4.700      0.000
+    H4$2               5.322      5.123      1.039      0.299
+    H5$1               3.104      0.391      7.940      0.000
+    H5$2               3.963      0.807      4.909      0.000
+    H6$1               2.076      0.216      9.589      0.000
+    H6$2               2.912      0.265     10.989      0.000
+    H7$1               1.539      0.228      6.761      0.000
+    H7$2               2.168      0.250      8.659      0.000
+    H8$1               0.847      0.198      4.288      0.000
+    H8$2               1.946      0.214      9.083      0.000
+    H9$1               0.653      0.215      3.037      0.002
+    H9$2               1.588      0.229      6.920      0.000
+    H10$1              0.515      0.164      3.144      0.002
+    H10$2              1.600      0.171      9.344      0.000
+    H11$1              0.735      0.166      4.418      0.000
+    H11$2              1.868      0.261      7.161      0.000
+    H12$1              0.555      0.185      2.997      0.003
+    H12$2              1.853      0.201      9.209      0.000
+    H13$1              0.093      0.187      0.500      0.617
+    H13$2              1.525      0.183      8.345      0.000
+    H14$1              0.559      0.176      3.180      0.001
+    H14$2              1.538      0.194      7.924      0.000
+    H15$1              0.679      0.185      3.671      0.000
+    H15$2              1.860      0.210      8.855      0.000
+    H16$1              0.346      0.135      2.557      0.011
+    H16$2              1.606      0.168      9.549      0.000
+    H17$1              0.399      0.160      2.495      0.013
+    H17$2              1.680      0.180      9.338      0.000
+    H18$1              0.200      0.184      1.083      0.279
+    H18$2              1.925      0.185     10.391      0.000
+    H19$1              0.160      0.139      1.151      0.250
+    H19$2              2.313      0.270      8.578      0.000
+    H20$1             -0.532      0.149     -3.563      0.000
+    H20$2              2.326      0.439      5.299      0.000
+    H21$1             -0.526      0.243     -2.163      0.031
+    H21$2              2.714      0.301      9.003      0.000
+    H22$1             -1.045      0.276     -3.791      0.000
+    H22$2              2.492      0.436      5.714      0.000
+    H23$1             -0.646      0.295     -2.190      0.028
+    H23$2              2.459      0.299      8.209      0.000
+
+Latent Class Pattern 2 2
+
+ Thresholds
+    H0$1               4.548      0.304     14.943      0.000
+    H0$2               5.746      0.579      9.918      0.000
+    H1$1               5.680      0.385     14.737      0.000
+    H1$2               6.304      0.526     11.983      0.000
+    H2$1               6.228      0.564     11.052      0.000
+    H2$2               7.422      1.101      6.742      0.000
+    H3$1               5.891      0.396     14.870      0.000
+    H3$2               6.269      0.368     17.038      0.000
+    H4$1               4.668      0.232     20.160      0.000
+    H4$2               5.398      0.344     15.671      0.000
+    H5$1               3.815      0.171     22.245      0.000
+    H5$2               4.677      0.270     17.301      0.000
+    H6$1               1.462      0.089     16.442      0.000
+    H6$2               2.543      0.135     18.796      0.000
+    H7$1               0.552      0.074      7.478      0.000
+    H7$2               1.538      0.094     16.322      0.000
+    H8$1               0.479      0.059      8.190      0.000
+    H8$2               1.585      0.073     21.742      0.000
+    H9$1               0.574      0.061      9.382      0.000
+    H9$2               1.755      0.074     23.661      0.000
+    H10$1              0.427      0.053      8.085      0.000
+    H10$2              1.722      0.065     26.629      0.000
+    H11$1              0.972      0.056     17.347      0.000
+    H11$2              2.172      0.074     29.397      0.000
+    H12$1             -0.440      0.064     -6.844      0.000
+    H12$2              1.304      0.057     23.056      0.000
+    H13$1              2.034      0.594      3.425      0.001
+    H13$2              3.048      0.538      5.663      0.000
+    H14$1              0.419      0.051      8.253      0.000
+    H14$2              1.838      0.060     30.409      0.000
+    H15$1              0.683      0.047     14.545      0.000
+    H15$2              1.964      0.066     29.677      0.000
+    H16$1              0.751      0.055     13.750      0.000
+    H16$2              2.107      0.070     30.277      0.000
+    H17$1              0.763      0.057     13.484      0.000
+    H17$2              2.271      0.072     31.340      0.000
+    H18$1              0.337      0.047      7.214      0.000
+    H18$2              2.133      0.062     34.364      0.000
+    H19$1              0.394      0.055      7.124      0.000
+    H19$2              2.229      0.070     31.632      0.000
+    H20$1              0.348      0.051      6.814      0.000
+    H20$2              2.214      0.074     29.729      0.000
+    H21$1              0.563      0.047     11.850      0.000
+    H21$2              2.286      0.077     29.628      0.000
+    H22$1              1.122      0.067     16.718      0.000
+    H22$2              2.582      0.085     30.359      0.000
+    H23$1              2.722      0.135     20.102      0.000
+    H23$2              3.944      0.156     25.270      0.000
+
+Latent Class Pattern 2 3
+
+ Thresholds
+    H0$1               4.480      0.305     14.672      0.000
+    H0$2               5.211      0.472     11.052      0.000
+    H1$1               5.384      0.327     16.472      0.000
+    H1$2               5.981      0.476     12.560      0.000
+    H2$1               6.209      0.653      9.508      0.000
+    H2$2               6.776      0.953      7.111      0.000
+    H3$1               5.718      0.430     13.290      0.000
+    H3$2               6.885      0.724      9.507      0.000
+    H4$1               5.468      0.423     12.912      0.000
+    H4$2               6.205      0.491     12.630      0.000
+    H5$1               4.244      0.212     19.983      0.000
+    H5$2               5.306      0.356     14.907      0.000
+    H6$1               1.486      0.084     17.608      0.000
+    H6$2               2.665      0.124     21.447      0.000
+    H7$1               0.336      0.075      4.453      0.000
+    H7$2               1.426      0.104     13.660      0.000
+    H8$1               0.385      0.068      5.689      0.000
+    H8$2               1.386      0.072     19.186      0.000
+    H9$1               0.569      0.077      7.357      0.000
+    H9$2               1.605      0.078     20.465      0.000
+    H10$1              0.337      0.055      6.165      0.000
+    H10$2              1.613      0.067     24.187      0.000
+    H11$1              0.780      0.061     12.809      0.000
+    H11$2              2.051      0.078     26.146      0.000
+    H12$1              1.706      0.311      5.492      0.000
+    H12$2              2.924      0.302      9.694      0.000
+    H13$1            -15.000      0.000    999.000    999.000
+    H13$2              0.640      0.056     11.534      0.000
+    H14$1              1.696      0.172      9.858      0.000
+    H14$2              2.797      0.151     18.564      0.000
+    H15$1              0.625      0.053     11.764      0.000
+    H15$2              1.848      0.066     28.113      0.000
+    H16$1              0.664      0.058     11.373      0.000
+    H16$2              1.978      0.076     25.932      0.000
+    H17$1              0.922      0.082     11.189      0.000
+    H17$2              2.372      0.083     28.730      0.000
+    H18$1              0.207      0.051      4.053      0.000
+    H18$2              2.016      0.068     29.845      0.000
+    H19$1              0.199      0.053      3.726      0.000
+    H19$2              2.099      0.073     28.565      0.000
+    H20$1              0.358      0.064      5.631      0.000
+    H20$2              2.192      0.088     24.863      0.000
+    H21$1              0.432      0.049      8.853      0.000
+    H21$2              2.084      0.080     26.098      0.000
+    H22$1              1.040      0.071     14.713      0.000
+    H22$2              2.446      0.094     25.955      0.000
+    H23$1              2.585      0.139     18.560      0.000
+    H23$2              3.795      0.183     20.703      0.000
+
+Between Level
+
+Categorical Latent Variables
+
+Within Level
+
+ Intercepts
+    CW#1              -1.976      0.175    -11.318      0.000
+    CW#2               0.214      0.139      1.546      0.122
+
+Between Level
+
+ CW#1       ON
+    CB#1               1.567      0.180      8.709      0.000
+
+ CW#2       ON
+    CB#1              -0.610      0.150     -4.067      0.000
+
+ Means
+    CB#1               0.409      0.062      6.625      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.414E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    50NDNS_CW3CB2.txt
+
+  Order of variables
+
+    H0
+    H1
+    H2
+    H3
+    H4
+    H5
+    H6
+    H7
+    H8
+    H9
+    H10
+    H11
+    H12
+    H13
+    H14
+    H15
+    H16
+    H17
+    H18
+    H19
+    H20
+    H21
+    H22
+    H23
+    ID_DAY
+    AGE
+    SEX
+    CPROB1
+    CPROB2
+    CPROB3
+    CPROB4
+    CPROB5
+    CPROB6
+    CB
+    CW
+    MLCJOINT
+    ID
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  13:33:22
+        Ending Time:  13:53:17
+       Elapsed Time:  00:19:55
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen
