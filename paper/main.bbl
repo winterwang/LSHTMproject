@@ -92,6 +92,44 @@
     \field{year}{2014}
   \endentry
 
+  \entry{henry2010multilevel}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HKL}{%
+         family={Henry},
+         familyi={H\bibinitperiod},
+         given={Kimberly\bibnamedelima L},
+         giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=MB}{%
+         family={Muth{\'e}n},
+         familyi={M\bibinitperiod},
+         given={Bengt},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Taylor \& Francis}%
+    }
+    \strng{namehash}{HKLMB1}
+    \strng{fullhash}{HKLMB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{labeldatesource}{year}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{2}
+    \field{pages}{193\bibrangedash 215}
+    \field{title}{Multilevel latent class analysis: An application of
+  adolescent smoking typologies with individual and contextual predictors}
+    \field{volume}{17}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/henry2010.pdf:PDF
+    \endverb
+    \field{journaltitle}{Structural Equation Modeling}
+    \field{year}{2010}
+  \endentry
+
   \entry{johnston2014physiological}{article}{}
     \name{author}{1}{}{%
       {{hash=JJD}{%

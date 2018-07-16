@@ -9,24 +9,26 @@
 \contentsline {section}{Aims and objectives}{2}{section*.12}
 \contentsline {chapter}{\numberline {2}Methods}{3}{chapter.13}
 \contentsline {section}{Dietary diary collected in the NDNS RP}{3}{section*.14}
-\contentsline {section}{Latent class analysis (LCA)}{3}{section*.15}
-\contentsline {section}{Multilevel latent class analysis (MLCA)}{4}{section*.17}
-\contentsline {subsection}{Parametric approach}{4}{section*.18}
-\contentsline {subsection}{Non-Parametric approach}{5}{section*.21}
-\contentsline {section}{Survey Data}{6}{section*.23}
-\contentsline {subsection}{Survey Selection Method}{6}{section*.24}
-\contentsline {subsection}{Response rates}{6}{section*.25}
-\contentsline {chapter}{\numberline {3}Results}{7}{chapter.26}
-\contentsline {section}{Main Section 1}{7}{section*.27}
-\contentsline {subsection}{Subsection 1}{7}{section*.28}
-\contentsline {subsection}{Subsection 2}{7}{section*.29}
-\contentsline {section}{Main Section 2}{7}{section*.30}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{9}{chapter.31}
-\contentsline {section}{Main Section 1}{9}{section*.32}
-\contentsline {subsection}{Subsection 1}{9}{section*.33}
-\contentsline {subsection}{Subsection 2}{9}{section*.34}
-\contentsline {section}{Main Section 2}{9}{section*.35}
-\contentsline {chapter}{Bibliography}{11}{chapter*.36}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{13}{appendix.37}
-\contentsline {chapter}{\numberline {B}SAS code for mixed effect LCA analysis}{18}{appendix.38}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{19}{appendix.39}
+\contentsline {subsection}{Definition of carbohydrate intake during the survey}{3}{section*.15}
+\contentsline {section}{Latent class analysis (LCA)}{3}{section*.16}
+\contentsline {section}{Multilevel latent class analysis (MLCA)}{4}{section*.18}
+\contentsline {subsection}{Parametric approach}{4}{section*.19}
+\contentsline {subsection}{Non-Parametric approach}{5}{section*.22}
+\contentsline {section}{Strategy}{6}{section*.24}
+\contentsline {section}{Survey Data}{7}{section*.25}
+\contentsline {subsection}{Survey Selection Method}{7}{section*.26}
+\contentsline {subsection}{Response rates}{7}{section*.27}
+\contentsline {chapter}{\numberline {3}Results}{9}{chapter.28}
+\contentsline {section}{Main Section 1}{9}{section*.29}
+\contentsline {subsection}{Subsection 1}{9}{section*.30}
+\contentsline {subsection}{Subsection 2}{9}{section*.31}
+\contentsline {section}{Main Section 2}{9}{section*.32}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{11}{chapter.33}
+\contentsline {section}{Main Section 1}{11}{section*.34}
+\contentsline {subsection}{Subsection 1}{11}{section*.35}
+\contentsline {subsection}{Subsection 2}{11}{section*.36}
+\contentsline {section}{Main Section 2}{11}{section*.37}
+\contentsline {chapter}{Bibliography}{13}{chapter*.38}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{15}{appendix.39}
+\contentsline {chapter}{\numberline {B}SAS code for mixed effect LCA analysis}{20}{appendix.40}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{21}{appendix.41}

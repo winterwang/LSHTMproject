@@ -14,7 +14,7 @@ Participants were asked to keep a record of everything eaten or drunk over four 
 
 In the diary, participants were asked to record portion sizes in household measures (e.g. one tablespoon of beans, one Kit Kat finger-size), or for packaged foods to note the weight indicated on the packet. For homemade dishes, participants were asked to record on a separate page in the diary the individual ingredients and quantities for the whole dish along with a brief description of the cooking method and how much of dish they had consumed. In addition to details of what and how much was eaten, participants recorded for each eating occasion; when was it, where they were, who they were eating with. An example, used as guidance for participants, of a food diary for one day is shown in \textbf{Appendix \ref{AppendixC}}.
 
-
+\subsection{Definition of carbohydrate intake during the survey}
 
 
 %-----------------------------------
@@ -115,11 +115,22 @@ Where,
 
 \begin{itemize}
 	\item $CB_j$ is level 2 latent class membership for $j$th individual;
-	\item $\gamma_{tm}$ is level 1 and level 2 indicators.
+	\item $\gamma_{tm}$ is level 1 and level 2 indicators. 
 \end{itemize}
 
 According to Finch and French's simulation study \parencite{finch2014multilevel}, non-parametric approach generally resulted in more accurate recovery of the underlying latent structure of the data at both levels and provided better latent class model. Specifically, we are interested in exploring meaningful individual (level 2) latent classes rather than their daily consumption classification. Therefore, non-parametric MLCA was employed 1) to identify latent classes of observations (level 1) based on the subjects' responses to the 4-day food and drink diary and 2) to form distinct latent classes of individuals (level 2) based on the distribution of observation-level latent classes within individuals.
  
+
+\section{Strategy}
+
+To identify the best-fitting model, we used the following sequential modelling strategy \parencite{henry2010multilevel}: 
+
+\begin{itemize}
+	\item Firstly, we ignored the multilevel structure of the data and estimated a series of traditional LC models to determine the number of classes at the observational-level;
+	\item Next, a series of MLCA models were fitted to account for the multi-level structrure of the data. In these models, the number of observational-level classes was based on the best fitting LCA model from the first step, and the LCA model at the individual-level was estimated to identify the number of individual-level latent classes;
+	\item Thirdly, when number of individual-level latent classes is defined based on the previous stage, observational-level classes was modified (one class lower and one class higher than in the second step), to see the effect of changing level 1 classes and confirm the best fitting model.
+\end{itemize}
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
