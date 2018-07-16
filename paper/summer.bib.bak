@@ -175,7 +175,6 @@
   publisher = {SAGE Publications},
   year      = {2011},
   author    = {Snijders, T.A.B. and Bosker, R.J.},
-  isbn      = {9781446254332},
 }
 
 @Article{vermunt2008latent,
@@ -257,4 +256,35 @@
   publisher = {Taylor \& Francis},
 }
 
-@Comment{jabref-meta: databaseType:bibtex;}
+@Article{smithers1993maff,
+  author    = {Smithers, Gillian},
+  title     = {MAFF's nutrient databank},
+  journal   = {Nutrition \& Food Science},
+  year      = {1993},
+  volume    = {93},
+  number    = {2},
+  pages     = {16--19},
+  publisher = {MCB UP Ltd},
+}
+
+@Article{mann2015low,
+  author        = {Mann, Kay D and Pearce, Mark S and McKevith, Brigid and Thielecke, Frank and Seal, Chris J},
+  title         = {Low whole grain intake in the UK: results from the National Diet and Nutrition Survey rolling programme 2008--11},
+  journal       = {British Journal of Nutrition},
+  year          = {2015},
+  volume        = {113},
+  number        = {10},
+  pages         = {1643--1651},
+  __markedentry = {[wangcc-me:5]},
+  file          = {:/home/wangcc-me/Documents/LSHTMproject/references/low_whole_grain_intake_in_the_uk_results_from_the_national_diet_and_nutrition_survey_rolling_programme_200811.pdf:PDF},
+  publisher     = {Cambridge University Press},
+}
+
+@Misc{NDNSofficial,
+  author = {Department of Health},
+  title  = {National Diet and Nutrition Survey Rolling Programme},
+  year   = {2018},
+  url    = {https://www.gov.uk/government/collections/national-diet-and-nutrition-survey},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

@@ -9,12 +9,12 @@
 \contentsline {section}{Aims and objectives}{2}{section*.12}
 \contentsline {chapter}{\numberline {2}Methods}{3}{chapter.13}
 \contentsline {section}{Dietary diary collected in the NDNS RP}{3}{section*.14}
-\contentsline {subsection}{Definition of carbohydrate intake during the survey}{3}{section*.15}
-\contentsline {section}{Latent class analysis (LCA)}{3}{section*.16}
-\contentsline {section}{Multilevel latent class analysis (MLCA)}{4}{section*.18}
-\contentsline {subsection}{Parametric approach}{4}{section*.19}
-\contentsline {subsection}{Non-Parametric approach}{5}{section*.22}
-\contentsline {section}{Strategy}{6}{section*.24}
+\contentsline {subsection}{Definition of carbohydrate intake}{3}{section*.15}
+\contentsline {section}{Latent class analysis (LCA)}{4}{section*.16}
+\contentsline {section}{Multilevel latent class analysis (MLCA)}{5}{section*.18}
+\contentsline {subsection}{Parametric approach}{5}{section*.19}
+\contentsline {subsection}{Non-Parametric approach}{6}{section*.22}
+\contentsline {section}{Strategy}{7}{section*.24}
 \contentsline {section}{Survey Data}{7}{section*.25}
 \contentsline {subsection}{Survey Selection Method}{7}{section*.26}
 \contentsline {subsection}{Response rates}{7}{section*.27}
