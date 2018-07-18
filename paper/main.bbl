@@ -54,6 +54,26 @@
     \field{year}{2010}
   \endentry
 
+  \entry{NDNSofficial}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=DepartmentofHealthDepartmentofHealth}{%
+         family={{\firstsecond{Department of Health}{Department of Health}}},
+         familyi={{\firstsecond{Department of Health}{Department of Health}}},
+      }}%
+    }
+    \strng{namehash}{DepartmentofHealthDepartmentofHealth1}
+    \strng{fullhash}{DepartmentofHealthDepartmentofHealth1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+  \field{note}{\url{https://www.gov.uk/government/collections/national-diet-and-nutrition-survey}}
+    \field{title}{National Diet and Nutrition Survey Rolling Programme}
+    \field{year}{2018}
+  \endentry
+
   \entry{finch2014multilevel}{article}{}
     \name{author}{2}{}{%
       {{hash=FWH}{%
@@ -90,33 +110,6 @@
     \endverb
     \field{journaltitle}{The Journal of Experimental Education}
     \field{year}{2014}
-  \endentry
-
-  \entry{NDNSofficial}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=oHD}{%
-         prefix={of},
-         prefixi={o\bibinitperiod},
-         family={Health},
-         familyi={H\bibinitperiod},
-         given={Department},
-         giveni={D\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{HDo1}
-    \strng{fullhash}{HDo1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2018}
-    \field{labeldatesource}{year}
-    \field{sortinit}{H}
-    \field{sortinithash}{H}
-    \field{title}{National Diet and Nutrition Survey Rolling Programme}
-    \verb{url}
-    \verb https://www.gov.uk/government/collections/national-diet-and-nutrition
-    \verb -survey
-    \endverb
-    \field{year}{2018}
   \endentry
 
   \entry{henry2010multilevel}{article}{}
@@ -189,6 +182,46 @@
     \field{year}{2014}
   \endentry
 
+  \entry{lo2001testing}{article}{}
+    \name{author}{3}{}{%
+      {{hash=LY}{%
+         family={Lo},
+         familyi={L\bibinitperiod},
+         given={Yungtai},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=MNR}{%
+         family={Mendell},
+         familyi={M\bibinitperiod},
+         given={Nancy\bibnamedelima R},
+         giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=RDB}{%
+         family={Rubin},
+         familyi={R\bibinitperiod},
+         given={Donald\bibnamedelima B},
+         giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{LYMNRRDB1}
+    \strng{fullhash}{LYMNRRDB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{year}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{3}
+    \field{pages}{767\bibrangedash 778}
+    \field{title}{Testing the number of components in a normal mixture}
+    \field{volume}{88}
+    \field{journaltitle}{Biometrika}
+    \field{year}{2001}
+  \endentry
+
   \entry{muthen2009multilevel}{article}{}
     \name{author}{2}{}{%
       {{hash=MB}{%
@@ -251,6 +284,81 @@
     \field{title}{National Diet and Nutrition Survey Years 1-8,
   2008/09-2015/16}
     \field{year}{2018}
+  \endentry
+
+  \entry{nylund2007deciding}{article}{}
+    \name{author}{3}{}{%
+      {{hash=NKL}{%
+         family={Nylund},
+         familyi={N\bibinitperiod},
+         given={Karen\bibnamedelima L},
+         giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Asparouhov},
+         familyi={A\bibinitperiod},
+         given={Tihomir},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MBO}{%
+         family={Muth{\'e}n},
+         familyi={M\bibinitperiod},
+         given={Bengt\bibnamedelima O},
+         giveni={B\bibinitperiod\bibinitdelim O\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Taylor \& Francis}%
+    }
+    \strng{namehash}{NKLATMBO1}
+    \strng{fullhash}{NKLATMBO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{number}{4}
+    \field{pages}{535\bibrangedash 569}
+    \field{title}{Deciding on the number of classes in latent class analysis
+  and growth mixture modeling: A Monte Carlo simulation study}
+    \field{volume}{14}
+    \field{journaltitle}{Structural equation modeling}
+    \field{year}{2007}
+  \endentry
+
+  \entry{peel2000robust}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PD}{%
+         family={Peel},
+         familyi={P\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MGJ}{%
+         family={McLachlan},
+         familyi={M\bibinitperiod},
+         given={Geoffrey\bibnamedelima J},
+         giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{PDMGJ1}
+    \strng{fullhash}{PDMGJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2000}
+    \field{labeldatesource}{year}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{4}
+    \field{pages}{339\bibrangedash 348}
+    \field{title}{Robust mixture modelling using the t distribution}
+    \field{volume}{10}
+    \field{journaltitle}{Statistics and computing}
+    \field{year}{2000}
   \endentry
 
   \entry{smithers1993maff}{article}{}

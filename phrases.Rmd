@@ -402,3 +402,19 @@ rithm iterates between the Expectation (E) step and the Maximization (M) step un
 - An advantage of using latent class analysis over other classification methods is that the classification is model based, allowing use of model selection techniques to determine which classfication scheme is most appropriate.     
 
 - The assumption of latent class models is conditional or local independence, where the outcomes are independent conditional on the latent class. This assumes that subjects within a class are homogeneous. 
+
+
+## hashimoto2018intake - Intake of Carbohydrate to Fiber Ratio Is a Useful Marker for Metabolic Syndrome in Patients with Type 2 Diabetes: A Cross-Sectional Study
+
+
+- Recent studies revealed that low carbohydrate diet (LCD) is useful for weight reduction [4, 5]. However,
+whether LCD is useful for human health, including all causes and cardiovascular disease mortality, or not is still
+controversial [6–8].
+
+
+
+## alessa2018carbohydrate - Carbohydrate quality and quantity and risk of coronary heart disease among US women and men
+
+
+- Compared with total carbohydrates, saturated fat intake was not significantly associated with CHD or cardiovascu-
+lar disease outcomes (10).
