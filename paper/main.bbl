@@ -17,6 +17,99 @@
 \endgroup
 
 \datalist[entry]{nyt/global//global/global}
+  \entry{almoosawi2016chrono}{article}{}
+    \name{author}{4}{}{%
+      {{hash=AS}{%
+         family={Almoosawi},
+         familyi={A\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=VS}{%
+         family={Vingeliene},
+         familyi={V\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=KL}{%
+         family={Karagounis},
+         familyi={K\bibinitperiod},
+         given={LG},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=PG}{%
+         family={Pot},
+         familyi={P\bibinitperiod},
+         given={GK},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{AS+1}
+    \strng{fullhash}{ASVSKLPG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{4}
+    \field{pages}{487\bibrangedash 500}
+    \field{title}{Chrono-nutrition: a review of current evidence from
+  observational studies on global trends in time-of-day of energy intake and
+  its association with obesity}
+    \field{volume}{75}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/chrononutrition_a_
+    \verb review_of_current_evidence_from_observational_studies_on_global_trend
+    \verb s_in_timeofday_of_energy_intake_and_its_association_with_obesity.pdf:
+    \verb PDF
+    \endverb
+    \field{journaltitle}{Proceedings of the Nutrition Society}
+    \field{year}{2016}
+  \endentry
+
+  \entry{asher2015time}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AG}{%
+         family={Asher},
+         familyi={A\bibinitperiod},
+         given={Gad},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=SCP}{%
+         family={Sassone-Corsi},
+         familyi={S\bibinitperiod-C\bibinitperiod},
+         given={Paolo},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{AGSCP1}
+    \strng{fullhash}{AGSCP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{1}
+    \field{pages}{84\bibrangedash 92}
+    \field{title}{Time for food: the intimate interplay between nutrition,
+  metabolism, and the circadian clock}
+    \field{volume}{161}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/1-s2.0-S0092867415
+    \verb 003025-main.pdf:PDF
+    \endverb
+    \field{journaltitle}{Cell}
+    \field{year}{2015}
+  \endentry
+
   \entry{collins2010latent}{book}{}
     \name{author}{2}{}{%
       {{hash=CL}{%
@@ -52,6 +145,65 @@
     \verb Applications in the Socia[4409].pdf:PDF
     \endverb
     \field{year}{2010}
+  \endentry
+
+  \entry{de2009rotating}{article}{}
+    \name{author}{6}{}{%
+      {{hash=DBD}{%
+         family={De\bibnamedelima Bacquer},
+         familyi={D\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={Dirk},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=VRM}{%
+         family={Van\bibnamedelima Risseghem},
+         familyi={V\bibinitperiod\bibinitdelim R\bibinitperiod},
+         given={Marleen},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CE}{%
+         family={Clays},
+         familyi={C\bibinitperiod},
+         given={Els},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=KF}{%
+         family={Kittel},
+         familyi={K\bibinitperiod},
+         given={France},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=DBG}{%
+         family={De\bibnamedelima Backer},
+         familyi={D\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={Gui},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=BL}{%
+         family={Braeckman},
+         familyi={B\bibinitperiod},
+         given={Lutgart},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{DBD+1}
+    \strng{fullhash}{DBDVRMCEKFDBGBL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{year}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{number}{3}
+    \field{pages}{848\bibrangedash 854}
+    \field{title}{Rotating shift work and the metabolic syndrome: a prospective
+  study}
+    \field{volume}{38}
+    \field{journaltitle}{International journal of epidemiology}
+    \field{year}{2009}
   \endentry
 
   \entry{NDNSofficial}{misc}{}
@@ -327,6 +479,53 @@
     \field{year}{2007}
   \endentry
 
+  \entry{pan2011rotating}{article}{}
+    \name{author}{4}{}{%
+      {{hash=PA}{%
+         family={Pan},
+         familyi={P\bibinitperiod},
+         given={An},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SES}{%
+         family={Schernhammer},
+         familyi={S\bibinitperiod},
+         given={Eva\bibnamedelima S},
+         giveni={E\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SQ}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Qi},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=HFB}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Frank\bibnamedelima B},
+         giveni={F\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Public Library of Science}%
+    }
+    \strng{namehash}{PA+1}
+    \strng{fullhash}{PASESSQHFB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{year}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{12}
+    \field{pages}{e1001141}
+    \field{title}{Rotating night shift work and risk of type 2 diabetes: two
+  prospective cohort studies in women}
+    \field{volume}{8}
+    \field{journaltitle}{PLoS medicine}
+    \field{year}{2011}
+  \endentry
+
   \entry{peel2000robust}{article}{}
     \name{author}{2}{}{%
       {{hash=PD}{%
@@ -418,6 +617,89 @@
     \field{title}{Multilevel Analysis: An Introduction to Basic and Advanced
   Multilevel Modeling}
     \field{year}{2011}
+  \endentry
+
+  \entry{uemura2015breakfast}{article}{}
+    \name{author}{10}{}{%
+      {{hash=UM}{%
+         family={Uemura},
+         familyi={U\bibinitperiod},
+         given={Mayu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=YH}{%
+         family={Yatsuya},
+         familyi={Y\bibinitperiod},
+         given={Hiroshi},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=HEH}{%
+         family={Hilawe},
+         familyi={H\bibinitperiod},
+         given={Esayas\bibnamedelima Haregot},
+         giveni={E\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Yuanying},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=WC}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Chaochen},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=CC}{%
+         family={Chiang},
+         familyi={C\bibinitperiod},
+         given={Chifa},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=OR}{%
+         family={Otsuka},
+         familyi={O\bibinitperiod},
+         given={Rei},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=TH}{%
+         family={Toyoshima},
+         familyi={T\bibinitperiod},
+         given={Hideaki},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=TK}{%
+         family={Tamakoshi},
+         familyi={T\bibinitperiod},
+         given={Koji},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Aoyama},
+         familyi={A\bibinitperiod},
+         given={Atsuko},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Japan Epidemiological Association}%
+    }
+    \strng{namehash}{UM+1}
+    \strng{fullhash}{UMYHHEHLYWCCCORTHTKAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{U}
+    \field{sortinithash}{U}
+    \field{number}{5}
+    \field{pages}{351\bibrangedash 358}
+    \field{title}{Breakfast skipping is positively associated with incidence of
+  type 2 diabetes mellitus: evidence from the Aichi Workers’ Cohort Study}
+    \field{volume}{25}
+    \field{journaltitle}{Journal of epidemiology}
+    \field{year}{2015}
   \endentry
 
   \entry{Vermunt}{book}{}
