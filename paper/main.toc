@@ -5,7 +5,7 @@
 \contentsline {chapter}{Abstract}{ix}{section*.3}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.9}
 \contentsline {section}{Background}{1}{section*.10}
-\contentsline {section}{The National Dietary and Nutrition Survey (NDNS)}{1}{section*.11}
+\contentsline {section}{The National Dietary and Nutrition Survey (NDNS)}{2}{section*.11}
 \contentsline {section}{Aims and objectives}{2}{section*.12}
 \contentsline {chapter}{\numberline {2}Methods}{3}{chapter.13}
 \contentsline {section}{Dietary diary collected in the NDNS RP}{3}{section*.14}
@@ -13,11 +13,11 @@
 \contentsline {section}{Latent class analysis (LCA)}{4}{section*.16}
 \contentsline {section}{Multilevel latent class analysis (MLCA)}{5}{section*.18}
 \contentsline {subsection}{Parametric approach}{5}{section*.19}
-\contentsline {subsection}{Non-Parametric approach}{6}{section*.22}
+\contentsline {subsection}{Non-Parametric approach}{7}{section*.22}
 \contentsline {section}{Strategy}{7}{section*.24}
-\contentsline {section}{Survey Data}{7}{section*.25}
-\contentsline {subsection}{Survey Selection Method}{7}{section*.26}
-\contentsline {subsection}{Response rates}{7}{section*.27}
+\contentsline {section}{Survey Data}{8}{section*.25}
+\contentsline {subsection}{Survey Selection Method}{8}{section*.26}
+\contentsline {subsection}{Response rates}{8}{section*.27}
 \contentsline {chapter}{\numberline {3}Results}{9}{chapter.28}
 \contentsline {section}{Main Section 1}{9}{section*.29}
 \contentsline {subsection}{Subsection 1}{9}{section*.30}
@@ -30,5 +30,5 @@
 \contentsline {section}{Main Section 2}{11}{section*.37}
 \contentsline {chapter}{Bibliography}{13}{chapter*.38}
 \contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{15}{appendix.39}
-\contentsline {chapter}{\numberline {B}SAS code for mixed effect LCA analysis}{20}{appendix.40}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{21}{appendix.41}
+\contentsline {chapter}{\numberline {B}SAS code for mixed effect LCA analysis}{21}{appendix.40}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{22}{appendix.41}

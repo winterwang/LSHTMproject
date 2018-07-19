@@ -1,0 +1,52 @@
+TITLE: 
+2-class at level 1, 3-classes at level 2 random effects model - non-parametric approach
+
+
+DATA:
+File is H:\summer_project\SAS\sasdata\ndns_3cat.dat;
+
+VARIABLE: 
+   Names are     id          id_day      Age         Sex         H0          H1          
+     H2          H3          H4          H5          H6          H7          
+     H8          H9          H10         H11         H12         H13         
+     H14         H15         H16         H17         H18         H19         
+     H20         H21         H22         H23  ; 
+
+USEVARIABLES =   H0          H1          
+     H2          H3          H4          H5          H6          H7          
+     H8          H9          H10         H11         H12         H13         
+     H14         H15         H16         H17         H18         H19         
+     H20         H21         H22         H23  ; 
+
+auxiliary = Age Sex;
+
+IDVARIABLE = ID_DAY;
+
+CATEGORICAL are H0-H23;
+
+CLUSTER = id;
+
+BETWEEN = CB;
+
+WITHIN = H0-H23;
+
+CLASSES = CB(3) CW(2);
+
+ANALYSIS: 
+type = mixture twolevel; 
+starts = 100 50; 
+process = 15(starts);
+
+
+MODEL: 
+%within%
+%overall%
+%between%
+%overall%
+CW ON CB;
+
+
+Savedata:
+  file is 50NDNS_CW2CB3.txt ;
+  save is cprob;
+  format is free;

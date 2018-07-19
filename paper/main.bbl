@@ -334,6 +334,57 @@
     \field{year}{2014}
   \endentry
 
+  \entry{leech2017temporal}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LRM}{%
+         family={Leech},
+         familyi={L\bibinitperiod},
+         given={Rebecca\bibnamedelima M},
+         giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Worsley},
+         familyi={W\bibinitperiod},
+         given={Anthony},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Timperio},
+         familyi={T\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MSA}{%
+         family={McNaughton},
+         familyi={M\bibinitperiod},
+         given={Sarah\bibnamedelima A},
+         giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {BioMed Central}%
+    }
+    \strng{namehash}{LRM+1}
+    \strng{fullhash}{LRMWATAMSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{year}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{1}
+    \field{pages}{3}
+    \field{title}{Temporal eating patterns: a latent class analysis approach}
+    \field{volume}{14}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/s12966-016-0459-6.
+    \verb pdf:PDF
+    \endverb
+    \field{journaltitle}{International Journal of Behavioral Nutrition and
+  Physical Activity}
+    \field{year}{2017}
+  \endentry
+
   \entry{lo2001testing}{article}{}
     \name{author}{3}{}{%
       {{hash=LY}{%
@@ -372,6 +423,37 @@
     \field{volume}{88}
     \field{journaltitle}{Biometrika}
     \field{year}{2001}
+  \endentry
+
+  \entry{Mansukhani2018}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MR}{%
+         family={Mansukhani},
+         familyi={M\bibinitperiod},
+         given={Raoul},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PL}{%
+         family={Palla},
+         familyi={P\bibinitperiod},
+         given={Luigi},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MRPL1}
+    \strng{fullhash}{MRPL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{Proceedings of the Nutrition Society}
+    \field{title}{Investigating eating time patterns in UK adults from The
+  2008–2012 National Diet and Nutrition Survey}
+    \field{volume}{77}
+    \field{month}{01}
+    \field{year}{2018}
   \endentry
 
   \entry{muthen2009multilevel}{article}{}
