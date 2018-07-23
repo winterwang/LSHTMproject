@@ -1,0 +1,763 @@
+---
+title: "NDNS multilevel LCA CW2CB2 or CW2CB3 (carb cutoff 255075)"
+author: "Chaochen Wang"
+date: "22 July 2018"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    nature:
+      highlightLines: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+The following analysis are based on the same logic as in [another Multilevel LCA using NDNS](http://rpubs.com/winterwang/405841). The only difference is that in this analysis, the cut-off value of carb contribution within each hour used: 25%, 50%, and 75%: 
+
+- In this analysis, within each hour of the day carbohydrates intake was defined as: 
+    - not eating; 
+    - eating and carbohydrates contributed less than 25% of energy;
+    - eating and carbohydrates contributed 25~50% of energy; 
+    - eating and carbohydrates contributed 50-75% of energy; 
+    - eating and carbohydrates contributed higher or equal to 75% of energy; 
+
+
+# Level 1 classes selection
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(RColorBrewer)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(epiDisplay)
+library(scales)
+library(readr)
+rm(list=ls(all=TRUE))
+# load("~/Documents/LSHTMproject/Rcode/day4LCA1_6.Rdata")
+
+library(kableExtra)
+dt <- read.csv("../LSHTMproject/Tablecsv/ndns_level1only255075.csv", header = T)
+names(dt) <- c("N of classes", "N of free parameters","log-likelihood",  "AIC", "BIC", "aBIC", "Entropy", "Lo-Mendel-Rubin LRT")
+dt[1,8] <- "--"
+dt[2,8] <- "< 0.0001"
+# dt[3,8] <- "< 0.0001"
+kable(dt, digits = 3, row.names = FALSE, align = "c",
+              format = "html", caption = "Level 1 class selection. (All data, n = 6155, 24483 data points)") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  row_spec(2, bold = T, color = "white", background = "#D7261E") %>% 
+  footnote(general = "Abbreviation: N, number; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; Entropy, a pseudo-r-squared index; Lo-Mendel-Rubin LRT, likelihood ratio test comparing q classes models with q-1 classes models.")
+```
+
+We will choose the 2 classes level 1 solution for this analysis. 
+
+
+
+
+
+
+## Fit information for each model (combination of level 1 and level 2 classes)
+
+
+```{r echo=FALSE}
+rm(list=ls(all=TRUE))
+# load("~/Documents/LSHTMproject/Rcode/day4LCA1_6.Rdata")
+
+library(kableExtra)
+dt <- read.csv("../LSHTMproject/Tablecsv/Mixed_255075.csv", header = T)
+names(dt) <- c("Model", "1 class","2 classes",  "3 classes", "4 classes", "5 classes")
+dt[is.na(dt)] <- ""
+# library(formattable)
+dt %>% 
+  # mutate(
+  #   `2 classes` = cell_spec(`2 classes`, color = ifelse())) %>% 
+  kable(escape = F, 
+        digits = 3, row.names = FALSE, align = "l",
+        format = "html", caption = "Models Specification") %>% 
+  add_header_above(c(" ", "Number of level 1 classes" = 5)) %>% 
+  group_rows("Fixed effects model", 1, 5) %>%
+  group_rows("Random effects model", 6, 20) %>%
+  add_indent(c(2:5,7:10,12:15,17:20)) %>% 
+  kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  #row_spec(c(2,3), bold = T, color = "white", background = "#D7261E") %>% 
+  footnote(general = "Abbreviation: No, number; BIC, Bayesian information criterion; Entropy, a pseudo-r-squared index; Lo-Mendel-Rubin LRT, likelihood ratio test comparing q classes models with q-1 classes models.")
+```
+
+
+
+# (CW = 2) Level 1 latent classes 
+
+## Visualisation of level 1 latent classes 
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+
+CW2CB2 <- read_table2("results/NDNS_5cat_CW2CB2.txt",
+                         col_names = FALSE)
+
+names(CW2CB2) <- c("H0",
+                      "H1",
+                      "H2",
+                      "H3",
+                      "H4",
+                      "H5",
+                      "H6",
+                      "H7",
+                      "H8",
+                      "H9",
+                      "H10",
+                      "H11",
+                      "H12",
+                      "H13",
+                      "H14",
+                      "H15",
+                      "H16",
+                      "H17",
+                      "H18",
+                      "H19",
+                      "H20",
+                      "H21",
+                      "H22",
+                      "H23",
+                      "ID_DAY",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      # "CPROB5",
+                      # "CPROB6",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID")
+
+pp <- CW2CB2 %>% 
+  group_by(CW) %>% 
+  summarise(H0_0 = sum(H0 == 0)/length(H0), 
+            H0_1 = sum(H0 == 1)/length(H0), 
+            H0_2 = sum(H0 == 2)/length(H0),
+            H0_3 = sum(H0 == 3)/length(H0),
+            H0_4 = sum(H0 == 4)/length(H0),
+            H1_0 = sum(H1 == 0)/length(H1),
+            H1_1 = sum(H1 == 1)/length(H1), 
+            H1_2 = sum(H1 == 2)/length(H1),
+            H1_3 = sum(H1 == 3)/length(H1),
+            H1_4 = sum(H1 == 4)/length(H1),
+            H2_0 = sum(H2 == 0)/length(H2),
+            H2_1 = sum(H2 == 1)/length(H2), 
+            H2_2 = sum(H2 == 2)/length(H2),
+            H2_3 = sum(H2 == 3)/length(H2),
+            H2_4 = sum(H2 == 4)/length(H2),
+            H3_0 = sum(H3 == 0)/length(H3),
+            H3_1 = sum(H3 == 1)/length(H3), 
+            H3_2 = sum(H3 == 2)/length(H3),
+            H3_3 = sum(H3 == 3)/length(H3),
+            H3_4 = sum(H3 == 4)/length(H3),
+            H4_0 = sum(H4 == 0)/length(H4),
+            H4_1 = sum(H4 == 1)/length(H4), 
+            H4_2 = sum(H4 == 2)/length(H4),
+            H4_3 = sum(H4 == 3)/length(H4),
+            H4_4 = sum(H4 == 4)/length(H4),
+            H5_0 = sum(H5 == 0)/length(H5),
+            H5_1 = sum(H5 == 1)/length(H5), 
+            H5_2 = sum(H5 == 2)/length(H5),
+            H5_3 = sum(H5 == 3)/length(H5),
+            H5_4 = sum(H5 == 4)/length(H5),
+            H6_0 = sum(H6 == 0)/length(H6),
+            H6_1 = sum(H6 == 1)/length(H6), 
+            H6_2 = sum(H6 == 2)/length(H6),
+            H6_3 = sum(H6 == 3)/length(H6),
+            H6_4 = sum(H6 == 4)/length(H6),
+            H7_0 = sum(H7 == 0)/length(H7),
+            H7_1 = sum(H7 == 1)/length(H7), 
+            H7_2 = sum(H7 == 2)/length(H7),
+            H7_3 = sum(H7 == 3)/length(H7),
+            H7_4 = sum(H7 == 4)/length(H7),
+            H8_0 = sum(H8 == 0)/length(H8),
+            H8_1 = sum(H8 == 1)/length(H8), 
+            H8_2 = sum(H8 == 2)/length(H8),
+            H8_3 = sum(H8 == 3)/length(H8),
+            H8_4 = sum(H8 == 4)/length(H8),
+            H9_0 = sum(H9 == 0)/length(H9),
+            H9_1 = sum(H9 == 1)/length(H9), 
+            H9_2 = sum(H9 == 2)/length(H9),
+            H9_3 = sum(H9 == 3)/length(H9),
+            H9_4 = sum(H9 == 4)/length(H9),
+            H10_0 = sum(H10 == 0)/length(H10),
+            H10_1 = sum(H10 == 1)/length(H10), 
+            H10_2 = sum(H10 == 2)/length(H10),
+            H10_3 = sum(H10 == 3)/length(H10),
+            H10_4 = sum(H10 == 4)/length(H10),
+            H11_0 = sum(H11 == 0)/length(H11),
+            H11_1 = sum(H11 == 1)/length(H11), 
+            H11_2 = sum(H11 == 2)/length(H11),
+            H11_3 = sum(H11 == 3)/length(H11),
+            H11_4 = sum(H11 == 4)/length(H11),
+            H12_0 = sum(H12 == 0)/length(H12),
+            H12_1 = sum(H12 == 1)/length(H12), 
+            H12_2 = sum(H12 == 2)/length(H12),
+            H12_3 = sum(H12 == 3)/length(H12),
+            H12_4 = sum(H12 == 4)/length(H12),
+            H13_0 = sum(H13 == 0)/length(H13),
+            H13_1 = sum(H13 == 1)/length(H13), 
+            H13_2 = sum(H13 == 2)/length(H13),
+            H13_3 = sum(H13 == 3)/length(H13),
+            H13_4 = sum(H13 == 4)/length(H13),
+            H14_0 = sum(H14 == 0)/length(H14),
+            H14_1 = sum(H14 == 1)/length(H14), 
+            H14_2 = sum(H14 == 2)/length(H14),
+            H14_3 = sum(H14 == 3)/length(H14),
+            H14_4 = sum(H14 == 4)/length(H14),
+            H15_0 = sum(H15 == 0)/length(H15),
+            H15_1 = sum(H15 == 1)/length(H15), 
+            H15_2 = sum(H15 == 2)/length(H15),
+            H15_3 = sum(H15 == 3)/length(H15),
+            H15_4 = sum(H15 == 4)/length(H15),
+            H16_0 = sum(H16 == 0)/length(H16),
+            H16_1 = sum(H16 == 1)/length(H16), 
+            H16_2 = sum(H16 == 2)/length(H16),
+            H16_3 = sum(H16 == 3)/length(H16),
+            H16_4 = sum(H16 == 4)/length(H16),
+            H17_0 = sum(H17 == 0)/length(H17),
+            H17_1 = sum(H17 == 1)/length(H17), 
+            H17_2 = sum(H17 == 2)/length(H17),
+            H17_3 = sum(H17 == 3)/length(H17),
+            H17_4 = sum(H17 == 4)/length(H17),
+            H18_0 = sum(H18 == 0)/length(H18),
+            H18_1 = sum(H18 == 1)/length(H18), 
+            H18_2 = sum(H18 == 2)/length(H18),
+            H18_3 = sum(H18 == 3)/length(H18),
+            H18_4 = sum(H18 == 4)/length(H18),
+            H19_0 = sum(H19 == 0)/length(H19),
+            H19_1 = sum(H19 == 1)/length(H19), 
+            H19_2 = sum(H19 == 2)/length(H19),
+            H19_3 = sum(H19 == 3)/length(H19),
+            H19_4 = sum(H19 == 4)/length(H19),
+            H20_0 = sum(H20 == 0)/length(H20),
+            H20_1 = sum(H20 == 1)/length(H20), 
+            H20_2 = sum(H20 == 2)/length(H20),
+            H20_3 = sum(H20 == 3)/length(H20),
+            H20_4 = sum(H20 == 4)/length(H20),
+            H21_0 = sum(H21 == 0)/length(H21),
+            H21_1 = sum(H21 == 1)/length(H21), 
+            H21_2 = sum(H21 == 2)/length(H21),
+            H21_3 = sum(H21 == 3)/length(H21),
+            H21_4 = sum(H21 == 4)/length(H21),
+            H22_0 = sum(H22 == 0)/length(H22),
+            H22_1 = sum(H22 == 1)/length(H22), 
+            H22_2 = sum(H22 == 2)/length(H22),
+            H22_3 = sum(H22 == 3)/length(H22),
+            H22_4 = sum(H22 == 4)/length(H22),
+            H23_0 = sum(H23 == 0)/length(H23),
+            H23_1 = sum(H23 == 1)/length(H23), 
+            H23_2 = sum(H23 == 2)/length(H23),
+            H23_3 = sum(H23 == 3)/length(H23),
+            H23_4 = sum(H23 == 4)/length(H23))
+
+
+
+pp_long <- pp %>% 
+  gather(Hour, Prob, -CW) %>% 
+  separate(Hour, into = c("HourN", "Carbo"), sep = "_") 
+
+
+
+
+pp_long$HourN <- factor(pp_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
+```
+
+
+
+
+```{r echo=FALSE, fig.height=5, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+library(ggthemr)
+ggthemr("fresh", layout = "scientific")
+library(ggplot2)
+
+
+ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 1 Lunch at noon lower carb all day", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating", "< 25%", "25 ~ 50%", "50 ~ 75%", "75 ~ 100%")) + 
+  ylim(c(0,1))
+
+
+
+ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 2 peak of eating at 1 pm/6 pm", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating", "< 25%", "25 ~ 50%", "50 ~ 75%", "75 ~ 100%")) + 
+  ylim(c(0,1))
+
+
+# 
+# 
+# ggplot(pp_long[pp_long$Class == 3, ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+#   geom_point(size = 3) + 
+#   geom_line(size = 1.5) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 18), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#   ) + 
+#   labs(title = "Class 3 normal lunch at noon", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrate\nintake") + 
+#   scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+#   ylim(c(0,1))
+# 
+# 
+# 
+# ggplot(pp_long[pp_long$Class == 4, ], aes(y = Prob, x=HourN, group = Carbo, color = Carbo)) + 
+#   geom_point(size = 3) + 
+#   geom_line(size = 1.5) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 18), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#   ) + 
+#   labs(title = "Class 4 Low carb all day", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrate\nintake") + 
+#   scale_color_discrete(labels = c("< 50%", ">= 50%")) + 
+#   ylim(c(0,1))
+```
+
+
+
+
+## Visualisation of level 2 latent classes (CB = 2)
+
+
+
+
+```{r echo=FALSE, fig.height=6, fig.width=7, message=FALSE, warning=FALSE, cache=TRUE}
+
+ndnsNNN <- read_csv("results/ndnsNNN.dat")
+dt <- ndnsNNN[, c(2,5)]
+names(dt) <- c("ID_DAY", "DayofWeek")
+
+
+
+
+CW2CB4_50 <- read_table2("results/50NDNS_CW2CB4.txt",
+                         col_names = FALSE)
+
+names(CW2CB4_50) <- c("H0",
+                      "H1",
+                      "H2",
+                      "H3",
+                      "H4",
+                      "H5",
+                      "H6",
+                      "H7",
+                      "H8",
+                      "H9",
+                      "H10",
+                      "H11",
+                      "H12",
+                      "H13",
+                      "H14",
+                      "H15",
+                      "H16",
+                      "H17",
+                      "H18",
+                      "H19",
+                      "H20",
+                      "H21",
+                      "H22",
+                      "H23",
+                      "ID_DAY",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CPROB7",
+                      "CPROB8",
+                      # "CPROB9",
+                      # "CPROB10",
+                      # "CPROB11",
+                      # "CPROB12",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID")
+
+
+
+CW2CB2$ID_DAY <- CW2CB4_50$ID_DAY
+
+
+CW2CB2 <- CW2CB2 %>% 
+  left_join(dt, by = "ID_DAY")
+
+
+
+chart.data <- CW2CB2 %>% 
+  group_by(CB, CW) %>% 
+  tally %>% 
+  group_by(CB) %>% 
+  mutate(pct = n/sum(n))
+
+chart.data <- ddply(chart.data, .(CB),
+                     transform, pos = cumsum(pct) - (0.5 * pct))
+
+chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"), 
+                        labels = c("Peak of eating at 1 pm/6 pm", "Lunch at noon lower carb all day"))
+chart.data$CB <- factor(chart.data$CB, levels = c("1", "2"), 
+                        labels = c("Individual class 1\n(36.82%)",  "Individual class 2\n(63.18%)"))
+
+
+
+library(ggthemr)
+ggthemr("dust", layout = "scientific")
+ggplot() + 
+  geom_bar(aes(y = pct, x = CB, fill = CW), data = chart.data, width = 0.6,
+           stat="identity") + 
+  geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+            size=4, colour="white", family="Atlas Grotesk Medium") + 
+  theme(legend.position="bottom", legend.direction="horizontal",
+        legend.title = element_blank(), 
+        axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 15), 
+        axis.line = element_line(colour = "black"), 
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light")) + 
+  labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") +
+  scale_y_continuous(labels=percent)
+```
+
+
+
+
+
+
+
+
+
+## Visualisation of level 2 latent classes (CB = 3)
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+
+CW2CB3 <- read_table2("results/NDNS_5cat_CW2CB3.txt",
+                         col_names = FALSE)
+
+names(CW2CB3) <- c("H0",
+                      "H1",
+                      "H2",
+                      "H3",
+                      "H4",
+                      "H5",
+                      "H6",
+                      "H7",
+                      "H8",
+                      "H9",
+                      "H10",
+                      "H11",
+                      "H12",
+                      "H13",
+                      "H14",
+                      "H15",
+                      "H16",
+                      "H17",
+                      "H18",
+                      "H19",
+                      "H20",
+                      "H21",
+                      "H22",
+                      "H23",
+                      "ID_DAY",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID")
+
+pp <- CW2CB3 %>% 
+  group_by(CW) %>% 
+  summarise(H0_0 = sum(H0 == 0)/length(H0), 
+            H0_1 = sum(H0 == 1)/length(H0), 
+            H0_2 = sum(H0 == 2)/length(H0),
+            H0_3 = sum(H0 == 3)/length(H0),
+            H0_4 = sum(H0 == 4)/length(H0),
+            H1_0 = sum(H1 == 0)/length(H1),
+            H1_1 = sum(H1 == 1)/length(H1), 
+            H1_2 = sum(H1 == 2)/length(H1),
+            H1_3 = sum(H1 == 3)/length(H1),
+            H1_4 = sum(H1 == 4)/length(H1),
+            H2_0 = sum(H2 == 0)/length(H2),
+            H2_1 = sum(H2 == 1)/length(H2), 
+            H2_2 = sum(H2 == 2)/length(H2),
+            H2_3 = sum(H2 == 3)/length(H2),
+            H2_4 = sum(H2 == 4)/length(H2),
+            H3_0 = sum(H3 == 0)/length(H3),
+            H3_1 = sum(H3 == 1)/length(H3), 
+            H3_2 = sum(H3 == 2)/length(H3),
+            H3_3 = sum(H3 == 3)/length(H3),
+            H3_4 = sum(H3 == 4)/length(H3),
+            H4_0 = sum(H4 == 0)/length(H4),
+            H4_1 = sum(H4 == 1)/length(H4), 
+            H4_2 = sum(H4 == 2)/length(H4),
+            H4_3 = sum(H4 == 3)/length(H4),
+            H4_4 = sum(H4 == 4)/length(H4),
+            H5_0 = sum(H5 == 0)/length(H5),
+            H5_1 = sum(H5 == 1)/length(H5), 
+            H5_2 = sum(H5 == 2)/length(H5),
+            H5_3 = sum(H5 == 3)/length(H5),
+            H5_4 = sum(H5 == 4)/length(H5),
+            H6_0 = sum(H6 == 0)/length(H6),
+            H6_1 = sum(H6 == 1)/length(H6), 
+            H6_2 = sum(H6 == 2)/length(H6),
+            H6_3 = sum(H6 == 3)/length(H6),
+            H6_4 = sum(H6 == 4)/length(H6),
+            H7_0 = sum(H7 == 0)/length(H7),
+            H7_1 = sum(H7 == 1)/length(H7), 
+            H7_2 = sum(H7 == 2)/length(H7),
+            H7_3 = sum(H7 == 3)/length(H7),
+            H7_4 = sum(H7 == 4)/length(H7),
+            H8_0 = sum(H8 == 0)/length(H8),
+            H8_1 = sum(H8 == 1)/length(H8), 
+            H8_2 = sum(H8 == 2)/length(H8),
+            H8_3 = sum(H8 == 3)/length(H8),
+            H8_4 = sum(H8 == 4)/length(H8),
+            H9_0 = sum(H9 == 0)/length(H9),
+            H9_1 = sum(H9 == 1)/length(H9), 
+            H9_2 = sum(H9 == 2)/length(H9),
+            H9_3 = sum(H9 == 3)/length(H9),
+            H9_4 = sum(H9 == 4)/length(H9),
+            H10_0 = sum(H10 == 0)/length(H10),
+            H10_1 = sum(H10 == 1)/length(H10), 
+            H10_2 = sum(H10 == 2)/length(H10),
+            H10_3 = sum(H10 == 3)/length(H10),
+            H10_4 = sum(H10 == 4)/length(H10),
+            H11_0 = sum(H11 == 0)/length(H11),
+            H11_1 = sum(H11 == 1)/length(H11), 
+            H11_2 = sum(H11 == 2)/length(H11),
+            H11_3 = sum(H11 == 3)/length(H11),
+            H11_4 = sum(H11 == 4)/length(H11),
+            H12_0 = sum(H12 == 0)/length(H12),
+            H12_1 = sum(H12 == 1)/length(H12), 
+            H12_2 = sum(H12 == 2)/length(H12),
+            H12_3 = sum(H12 == 3)/length(H12),
+            H12_4 = sum(H12 == 4)/length(H12),
+            H13_0 = sum(H13 == 0)/length(H13),
+            H13_1 = sum(H13 == 1)/length(H13), 
+            H13_2 = sum(H13 == 2)/length(H13),
+            H13_3 = sum(H13 == 3)/length(H13),
+            H13_4 = sum(H13 == 4)/length(H13),
+            H14_0 = sum(H14 == 0)/length(H14),
+            H14_1 = sum(H14 == 1)/length(H14), 
+            H14_2 = sum(H14 == 2)/length(H14),
+            H14_3 = sum(H14 == 3)/length(H14),
+            H14_4 = sum(H14 == 4)/length(H14),
+            H15_0 = sum(H15 == 0)/length(H15),
+            H15_1 = sum(H15 == 1)/length(H15), 
+            H15_2 = sum(H15 == 2)/length(H15),
+            H15_3 = sum(H15 == 3)/length(H15),
+            H15_4 = sum(H15 == 4)/length(H15),
+            H16_0 = sum(H16 == 0)/length(H16),
+            H16_1 = sum(H16 == 1)/length(H16), 
+            H16_2 = sum(H16 == 2)/length(H16),
+            H16_3 = sum(H16 == 3)/length(H16),
+            H16_4 = sum(H16 == 4)/length(H16),
+            H17_0 = sum(H17 == 0)/length(H17),
+            H17_1 = sum(H17 == 1)/length(H17), 
+            H17_2 = sum(H17 == 2)/length(H17),
+            H17_3 = sum(H17 == 3)/length(H17),
+            H17_4 = sum(H17 == 4)/length(H17),
+            H18_0 = sum(H18 == 0)/length(H18),
+            H18_1 = sum(H18 == 1)/length(H18), 
+            H18_2 = sum(H18 == 2)/length(H18),
+            H18_3 = sum(H18 == 3)/length(H18),
+            H18_4 = sum(H18 == 4)/length(H18),
+            H19_0 = sum(H19 == 0)/length(H19),
+            H19_1 = sum(H19 == 1)/length(H19), 
+            H19_2 = sum(H19 == 2)/length(H19),
+            H19_3 = sum(H19 == 3)/length(H19),
+            H19_4 = sum(H19 == 4)/length(H19),
+            H20_0 = sum(H20 == 0)/length(H20),
+            H20_1 = sum(H20 == 1)/length(H20), 
+            H20_2 = sum(H20 == 2)/length(H20),
+            H20_3 = sum(H20 == 3)/length(H20),
+            H20_4 = sum(H20 == 4)/length(H20),
+            H21_0 = sum(H21 == 0)/length(H21),
+            H21_1 = sum(H21 == 1)/length(H21), 
+            H21_2 = sum(H21 == 2)/length(H21),
+            H21_3 = sum(H21 == 3)/length(H21),
+            H21_4 = sum(H21 == 4)/length(H21),
+            H22_0 = sum(H22 == 0)/length(H22),
+            H22_1 = sum(H22 == 1)/length(H22), 
+            H22_2 = sum(H22 == 2)/length(H22),
+            H22_3 = sum(H22 == 3)/length(H22),
+            H22_4 = sum(H22 == 4)/length(H22),
+            H23_0 = sum(H23 == 0)/length(H23),
+            H23_1 = sum(H23 == 1)/length(H23), 
+            H23_2 = sum(H23 == 2)/length(H23),
+            H23_3 = sum(H23 == 3)/length(H23),
+            H23_4 = sum(H23 == 4)/length(H23))
+
+
+
+pp_long <- pp %>% 
+  gather(Hour, Prob, -CW) %>% 
+  separate(Hour, into = c("HourN", "Carbo"), sep = "_") 
+
+
+
+
+pp_long$HourN <- factor(pp_long$HourN, levels = c("H0","H1" ,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10","H11","H12","H13","H14","H15","H16","H17","H18","H19","H20","H21","H22","H23"))
+```
+
+
+```{r echo=FALSE, fig.height=6, fig.width=7, message=FALSE, warning=FALSE, cache=TRUE}
+
+ndnsNNN <- read_csv("results/ndnsNNN.dat")
+dt <- ndnsNNN[, c(2,5)]
+names(dt) <- c("ID_DAY", "DayofWeek")
+
+CW2CB4_50 <- read_table2("results/50NDNS_CW2CB4.txt",
+                         col_names = FALSE)
+
+names(CW2CB4_50) <- c("H0",
+                      "H1",
+                      "H2",
+                      "H3",
+                      "H4",
+                      "H5",
+                      "H6",
+                      "H7",
+                      "H8",
+                      "H9",
+                      "H10",
+                      "H11",
+                      "H12",
+                      "H13",
+                      "H14",
+                      "H15",
+                      "H16",
+                      "H17",
+                      "H18",
+                      "H19",
+                      "H20",
+                      "H21",
+                      "H22",
+                      "H23",
+                      "ID_DAY",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CPROB7",
+                      "CPROB8",
+                      # "CPROB9",
+                      # "CPROB10",
+                      # "CPROB11",
+                      # "CPROB12",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID")
+
+
+
+CW2CB3$ID_DAY <- CW2CB4_50$ID_DAY
+
+
+
+CW2CB3 <- CW2CB3 %>% 
+  left_join(dt, by = "ID_DAY")
+
+
+chart.data <- CW2CB3 %>% 
+  group_by(CB, CW) %>% 
+  tally %>% 
+  group_by(CB) %>% 
+  mutate(pct = n/sum(n))
+
+
+chart.data <- chart.data[order(chart.data$CB, chart.data$CW),]
+chart.data <- ddply(chart.data, .(CB), 
+                    transform, pos = cumsum(pct) - (0.5 * pct)) 
+
+
+
+chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"), 
+                        labels = c("Peak of eating at 1 pm/6 pm", "Lunch at noon lower carb all day"))
+chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), 
+                        labels = c("Individual class 1\n(26.35%)",  "Individual class 2\n(54.79%)", 
+                                   "Individual class 3\n(18.86%)"))
+
+
+
+library(ggthemr)
+ggthemr("dust", layout = "scientific")
+ggplot() + 
+  geom_bar(aes(y = pct, x = CB, fill = CW), data = chart.data, width = 0.6,
+           stat="identity") + 
+  geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+            size=4, colour="white", family="Atlas Grotesk Medium") + 
+  theme(legend.position="bottom", legend.direction="horizontal",
+        legend.title = element_blank(), 
+        axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 15), 
+        axis.line = element_line(colour = "black"), 
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light")) + 
+  labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") +
+  scale_y_continuous(labels=percent)
+```

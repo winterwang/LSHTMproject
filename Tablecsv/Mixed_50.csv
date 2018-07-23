@@ -2,7 +2,7 @@ Model,1 class,2 classes,3 classes,4 classes,5 classes,6 classes
 No. of free parameters,48,97,146,195,244,293
 Log-likelihood,-372017.293,-368913.708,-366664.971,-365528.553,-364901.166,-363641.759
 BIC,744519.661,738807.672,734805.379,733027.723,732268.13,730244.498
-Lo-Mendell-Rubun LRT,----,< 0.0001,< 0.0001,0.8478,0.7602,0.7632
+Lo-Mendell-Rubun LRT,---,< 0.0001,< 0.0001,0.8478,0.7602,0.7632
 Entropy,1,0.777,0.666,0.658,0.648,0.701
 2 between classes,,,,,,
 No. of free parameters,,195,293,391,,

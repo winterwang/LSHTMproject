@@ -43,10 +43,10 @@ df14d <- data[,c(113,1,2,3,5,6,7,8,9,21,24,55,57,58,59,60,61,62,63,64)]
 var <- names(df14d)
 
 df56d <- data56 %>% 
-  select(var)
+  dplyr::select(var)
 
 df78d <- data78 %>% 
-  select(var)
+  dplyr::select(var)
 
 dfs1 <- rbind(df14d, df56d, df78d)
 
@@ -149,23 +149,27 @@ vecid<-unique(Energy$id)
 Energy <- Energy %>% 
   mutate(KJcarbo = Tot_Carb*16) %>% 
   mutate(CarKJpercentage = KJcarbo/Tot_Energ) %>% 
-  mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.26, 0.75, 2), right = FALSE)) %>% 
-  mutate(Carbo2 = cut(CarKJpercentage, breaks = c(0, 0.26, 2), right = FALSE))
+  # mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.5, 2), right = FALSE))
+   mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.25, 0.50, 0.75, 2), right = FALSE)) #%>% 
+  # mutate(Carbo2 = cut(CarKJpercentage, breaks = c(0, 0.26, 2), right = FALSE))
 
 Energy0 <- Energy[!(Energy$Tot_Energ == 0), ] # some food consumption does not contain any carbohydrates
 
 # Energy0$Carbo[is.na(Energy0$Carbo)] <- "[0.7,1.01)"
 #
 
+Energy0$Carbo <- factor(Energy0$Carbo, labels = c("1", "2", "3", "4"))
 
-Energy0$Carbo <- factor(Energy0$Carbo, labels = c("Low_carb", "Med_carb", "High_carb"))
+# Energy0$Carbo <- factor(Energy0$Carbo, labels = c("< 50%", ">= 50%"))
 
-Energy0$Carbo2 <- factor(Energy0$Carbo2, labels = c("Low_carb", "Med_or_high_carb"))
+# Energy0$Carbo <- factor(Energy0$Carbo, labels = c("Low_carb", "Med_carb", "High_carb"))
+# 
+# Energy0$Carbo2 <- factor(Energy0$Carbo2, labels = c("Low_carb", "Med_or_high_carb"))
 
 
 with(Energy0, tab1(Carbo))
 # with(Energy0, summary(CarKJpercentage))
-with(Energy0, tab1(Carbo2))
+# with(Energy0, tab1(Carbo2))
 
 with(Energy0, tab1(DayofWeek))
 
@@ -175,22 +179,26 @@ with(Energy0, tab1(DayofWeek))
 
 dta_day1 <- Energy0 %>% 
   filter(DayNo == 1) %>% 
-  select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  dplyr::select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo"#, "Carbo2"
+                  )) %>% 
   mutate(DayofWeek = factor(DayofWeek, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
 
 dta_day2 <- Energy0 %>% 
   filter(DayNo == 2) %>% 
-  select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  dplyr::select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo"#, "Carbo2"
+                  )) %>% 
   mutate(DayofWeek = factor(DayofWeek, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
 
 dta_day3 <- Energy0 %>% 
   filter(DayNo == 3) %>% 
-  select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  dplyr::select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo"#, "Carbo2"
+                  )) %>% 
   mutate(DayofWeek = factor(DayofWeek, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
 
 dta_day4 <- Energy0 %>% 
   filter(DayNo == 4) %>% 
-  select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  dplyr::select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo"#, "Carbo2"
+                  )) %>% 
   mutate(DayofWeek = factor(DayofWeek, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
 
 vecid1<-unique(dta_day1$id) # n = 6153
@@ -260,30 +268,38 @@ names(dta_d4_wide)
 
 for (i in 5:ncol(dta_d1_wide)) 
   if(is.factor(dta_d1_wide[,i])) 
-    levels(dta_d1_wide[,i]) <- c(levels(dta_d1_wide[,i]), "Not_eating")
+   levels(dta_d1_wide[,i]) <- c(levels(dta_d1_wide[,i]), "0")
+      # levels(dta_d1_wide[,i]) <- c("1", "2", "0")
+    #levels(dta_d1_wide[,i]) <- c(levels(dta_d1_wide[,i]), "Not_eating")
 
-dta_d1_wide[is.na(dta_d1_wide)] <- "Not_eating"
+dta_d1_wide[is.na(dta_d1_wide)] <- "0"
 
 
 for (i in 5:ncol(dta_d2_wide)) 
   if(is.factor(dta_d2_wide[,i])) 
-    levels(dta_d2_wide[,i]) <- c(levels(dta_d2_wide[,i]), "Not_eating")
+    levels(dta_d2_wide[,i]) <- c(levels(dta_d2_wide[,i]), "0")
+    # levels(dta_d2_wide[,i]) <- c("1", "2", "0")
+    #levels(dta_d2_wide[,i]) <- c(levels(dta_d2_wide[,i]), "Not_eating")
 
-dta_d2_wide[is.na(dta_d2_wide)] <- "Not_eating"
+dta_d2_wide[is.na(dta_d2_wide)] <- "0"
 
 
 for (i in 5:ncol(dta_d3_wide)) 
   if(is.factor(dta_d3_wide[,i])) 
-    levels(dta_d3_wide[,i]) <- c(levels(dta_d3_wide[,i]), "Not_eating")
+    levels(dta_d3_wide[,i]) <- c(levels(dta_d3_wide[,i]), "0")
+    # levels(dta_d3_wide[,i]) <- c("1", "2", "0")
+#    levels(dta_d3_wide[,i]) <- c(levels(dta_d3_wide[,i]), "Not_eating")
 
-dta_d3_wide[is.na(dta_d3_wide)] <- "Not_eating"
+dta_d3_wide[is.na(dta_d3_wide)] <- "0"
 
 
 for (i in 5:ncol(dta_d4_wide)) 
   if(is.factor(dta_d4_wide[,i])) 
-    levels(dta_d4_wide[,i]) <- c(levels(dta_d4_wide[,i]), "Not_eating")
+    levels(dta_d4_wide[,i]) <- c(levels(dta_d4_wide[,i]), "0")
+    # levels(dta_d4_wide[,i]) <- c("1", "2", "0")
+#    levels(dta_d4_wide[,i]) <- c(levels(dta_d4_wide[,i]), "Not_eating")
 
-dta_d4_wide[is.na(dta_d4_wide)] <- "Not_eating"
+dta_d4_wide[is.na(dta_d4_wide)] <- "0"
 
 
 
@@ -1249,8 +1265,64 @@ save(lc1, lc2, lc3, lc4, lc5, lc6, lc7, lc8, lca_results, file = "day4LCA1_6.Rda
 
 
 
-# Try randomLCA -----------------------------------------------------------
+# Combine fourdays data ---------------------------------------------------
+
 # 
-# library(randomLCA)
+# CARB_50 <- Energy0 %>% 
+#   # filter(DayNo == 4) %>% 
+#  dplyr::select(c("id", "Age", "Sex", "DayofWeek", "MealHourN", "Carbo")) %>% 
+#   mutate(DayofWeek = factor(DayofWeek, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
 # 
-# randomLCA(dta_d1_wide[, 5:28], nclass = 1)
+# 
+# 
+# CARB_50_wide <- CARB_50 %>% 
+#   spread(key = MealHourN, 
+#          value = Carbo)
+# 
+# 
+# head(CARB_50_wide)
+# names(CARB_50_wide)[5:28] <- paste(rep("H", 24), 0:23, sep = "")
+# names(CARB_50_wide)
+# 
+# 
+# 
+# for (i in 5:ncol(CARB_50_wide)) 
+#   if(is.factor(CARB_50_wide[,i])) 
+#     levels(CARB_50_wide[,i]) <- c(levels(CARB_50_wide[,i]), "Not_eating")
+# 
+# 
+# 
+# CARB_50_wide[is.na(CARB_50_wide)] <- "Not_eating"
+# 
+
+
+CARB_50 <- dta_d1_wide %>% 
+  full_join(dta_d2_wide[,-c(2,3)], by = "id") 
+
+CARB_50 <- CARB_50 %>% 
+  full_join(dta_d3_wide[,-c(2,3)], by = "id")
+
+CARB_50 <- CARB_50 %>% 
+  full_join(dta_d4_wide[,-c(2,3)], by = "id")
+
+
+head(CARB_50)
+
+write_delim(CARB_50, "CARB_50.dat", na = ".", delim = " ")
+
+
+
+
+CARB_255075 <- dta_d1_wide %>% 
+  full_join(dta_d2_wide[,-c(2,3)], by = "id") 
+
+CARB_255075 <- CARB_255075 %>% 
+  full_join(dta_d3_wide[,-c(2,3)], by = "id")
+
+CARB_255075 <- CARB_255075 %>% 
+  full_join(dta_d4_wide[,-c(2,3)], by = "id")
+
+
+head(CARB_255075)
+
+write_delim(CARB_255075, "CARB_255075.dat", na = ".", delim = " ")
