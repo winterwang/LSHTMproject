@@ -167,7 +167,6 @@
 \NormalTok{dta_d4_wide <-}\StringTok{ }\NormalTok{dta_day4[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
 \KeywordTok{names}\NormalTok{(dta_d4_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
-
 \CommentTok{# recode NA to not eating -------------------------------------------------}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d1_wide)) }
   \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d1_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d1_wide[, }

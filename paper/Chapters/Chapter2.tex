@@ -36,7 +36,7 @@ To produce a sequence of discrete responses about the carbohydrate intake we are
 %-----------------------------------
 %	SECTION 2
 %-----------------------------------
-\section{Latent class analysis (LCA)}\vspace{-0.3cm}
+\section{Latent Class Analysis (LCA)}\vspace{-0.3cm}
 
 Latent class analysis is a statistical technique that identifies categorical latent (unobserved) class variables on the basis of observed categorical variables \parencite{collins2010latent}. It belongs to the family of latent variable models, and is directly analogous to the factor analysis model. The major difference is that the latent variable in LCA is categorical, not continuous as in factor analysis. The basic assumptions in LCA are independent observations, and local independence, as shown in the fundamental expression of a typical LCA model: \vspace{-0.8cm}
 
@@ -61,7 +61,7 @@ Equation \ref{LCA} indicates that responses for an observation to the measuring 
 %	SUBSECTION 2
 %-----------------------------------
 
-\section{Multilevel latent class analysis (MLCA)}\vspace{-0.3cm}
+\section{Multilevel Latent Class Analysis (MLCA)}\vspace{-0.3cm}
 
 
 Multilevel latent class analysis accounts for the nested structure of the data by allowing latent class intercepts to vary across level 2 units and thereby examining if and how level 2 units influence the level 1 latent classes. These random intercepts allow the probability of
@@ -137,7 +137,7 @@ Where,
 According to Finch and French's simulation study \parencite{finch2014multilevel}, non-parametric approach generally resulted in more accurate recovery of the underlying latent structure of the data at both levels and provided better latent class model. Specifically, we are interested in exploring meaningful individual (level 2) latent classes rather than their daily consumption classification. Therefore, non-parametric MLCA was employed 1) to identify latent classes of observations (level 1) based on the subjects' responses to the 4-day food and drink diary and 2) to form distinct latent classes of individuals (level 2) based on the distribution of observation-level latent classes within individuals.\vspace{-0.3cm}
  
 
-\section{Strategy}\vspace{-0.3cm}
+\section{Strategy of conducting MLCA in the current analysis}\vspace{-0.3cm}
 
 To identify the best-fitting model, we used the following sequential modelling strategy \parencite{henry2010multilevel}: 
 
@@ -147,9 +147,9 @@ To identify the best-fitting model, we used the following sequential modelling s
 	\item Thirdly, when number of individual-level latent classes is defined based on the previous stage, observational-level classes was modified (one class lower and one class higher than in the second step), to see the effect of changing level 1 classes and confirm the best fitting model.
 \end{itemize}
 
-The number of classes in either level 1 were determined by 1) the evaluation of model fit indices, including the Akaike information criterion (AIC), Bayesian information criterion (BIC), adjusted Bayesian information criterion (aBIC) where smaller values indicate better, and entropy which is a statistic that summarizes latent class probabilities where values near 1 indicate better latent class separation; 2) the Lo-Mendell-Rubin Likelihood Ratio Test (LMR-LRT) \parencite{lo2001testing, nylund2007deciding} and the Bootstrap Likelihood ratio test (BS-LRT) \parencite{peel2000robust} which compare $q$ vs. $q-1$ class models, where $q$ is the number of latent classes and 3) pattern interpretability. In the step of performing multilevel LCA, where neither LMR-LRT nor BS-LRT were available, same rules of model fit indices and pattern interpretability were used to determine the optimal combination of latent classes in level 1 and level 2. 
+The number of classes in either level 1 were determined by 1) the evaluation of model fit indices, including the Akaike information criterion (AIC), Bayesian information criterion (BIC), adjusted Bayesian information criterion (aBIC) where smaller values indicate better, and entropy which is a statistic that summarizes latent class probabilities where values near 1 indicate better latent class separation; 2) the Lo-Mendell-Rubin Likelihood Ratio Test (LMR-LRT) \parencite{lo2001testing, nylund2007deciding} which compare $q$ vs. $q-1$ class models, where $q$ is the number of latent classes and 3) pattern interpretability. In the step of performing multilevel LCA, where neither LMR-LRT nor BS-LRT were available, same rules of model fit indices and pattern interpretability were used to determine the optimal combination of latent classes in level 1 and level 2. 
 
-
+\section{Latent Class Growth Analysis (LCGA)}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -162,6 +162,7 @@ The number of classes in either level 1 were determined by 1) the evaluation of 
 %-----------------------------------
 \subsection{Survey Selection Method}
 
+The NDNS RP participants were drawn from the UK Postcode Address File, a list of all the addresses in the UK. The addresses were clustered into Primary Sampling Units (PSUs)
 
 %-----------------------------------
 %	SUBSECTION 2

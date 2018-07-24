@@ -10,25 +10,26 @@
 \contentsline {chapter}{\numberline {2}Methods}{3}{chapter.13}
 \contentsline {section}{Dietary diary collected in the NDNS RP}{3}{section*.14}
 \contentsline {subsection}{Definition of carbohydrate intake}{3}{section*.15}
-\contentsline {section}{Latent class analysis (LCA)}{4}{section*.16}
-\contentsline {section}{Multilevel latent class analysis (MLCA)}{5}{section*.18}
+\contentsline {section}{Latent Class Analysis (LCA)}{4}{section*.16}
+\contentsline {section}{Multilevel Latent Class Analysis (MLCA)}{5}{section*.18}
 \contentsline {subsection}{Parametric approach}{5}{section*.19}
 \contentsline {subsection}{Non-Parametric approach}{7}{section*.22}
-\contentsline {section}{Strategy}{7}{section*.24}
-\contentsline {section}{Survey Data}{8}{section*.25}
-\contentsline {subsection}{Survey Selection Method}{8}{section*.26}
-\contentsline {subsection}{Response rates}{8}{section*.27}
-\contentsline {chapter}{\numberline {3}Results}{9}{chapter.28}
-\contentsline {section}{Main Section 1}{9}{section*.29}
-\contentsline {subsection}{Subsection 1}{9}{section*.30}
-\contentsline {subsection}{Subsection 2}{9}{section*.31}
-\contentsline {section}{Main Section 2}{9}{section*.32}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{11}{chapter.33}
-\contentsline {section}{Main Section 1}{11}{section*.34}
-\contentsline {subsection}{Subsection 1}{11}{section*.35}
-\contentsline {subsection}{Subsection 2}{11}{section*.36}
-\contentsline {section}{Main Section 2}{11}{section*.37}
-\contentsline {chapter}{Bibliography}{13}{chapter*.38}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{15}{appendix.39}
-\contentsline {chapter}{\numberline {B}SAS code for mixed effect LCA analysis}{21}{appendix.40}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{22}{appendix.41}
+\contentsline {section}{Strategy of conducting MLCA in the current analysis}{7}{section*.24}
+\contentsline {section}{Latent Class Growth Analysis (LCGA)}{8}{section*.25}
+\contentsline {section}{Survey Data}{8}{section*.26}
+\contentsline {subsection}{Survey Selection Method}{8}{section*.27}
+\contentsline {subsection}{Response rates}{8}{section*.28}
+\contentsline {chapter}{\numberline {3}Results}{9}{chapter.29}
+\contentsline {section}{Main Section 1}{9}{section*.30}
+\contentsline {subsection}{Subsection 1}{9}{section*.31}
+\contentsline {subsection}{Subsection 2}{9}{section*.32}
+\contentsline {section}{Main Section 2}{9}{section*.33}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{11}{chapter.34}
+\contentsline {section}{Main Section 1}{11}{section*.35}
+\contentsline {subsection}{Subsection 1}{11}{section*.36}
+\contentsline {subsection}{Subsection 2}{11}{section*.37}
+\contentsline {section}{Main Section 2}{11}{section*.38}
+\contentsline {chapter}{Bibliography}{13}{chapter*.39}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{15}{appendix.40}
+\contentsline {chapter}{\numberline {B}Mplus code for Multilevel LCA models}{20}{appendix.41}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{21}{appendix.42}

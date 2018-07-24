@@ -1326,3 +1326,9 @@ CARB_255075 <- CARB_255075 %>%
 head(CARB_255075)
 
 write_delim(CARB_255075, "CARB_255075.dat", na = ".", delim = " ")
+
+
+
+# posterior analysis classification with BMI etc. -------------------------
+
+
