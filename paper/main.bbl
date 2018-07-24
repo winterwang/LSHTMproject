@@ -110,6 +110,68 @@
     \field{year}{2015}
   \endentry
 
+  \entry{bates2014national}{book}{}
+    \name{author}{7}{}{%
+      {{hash=BB}{%
+         family={Bates},
+         familyi={B\bibinitperiod},
+         given={Beverley},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lennox},
+         familyi={L\bibinitperiod},
+         given={Alison},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Prentice},
+         familyi={P\bibinitperiod},
+         given={Ann},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BCJ}{%
+         family={Bates},
+         familyi={B\bibinitperiod},
+         given={Christopher\bibnamedelima J},
+         giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=PP}{%
+         family={Page},
+         familyi={P\bibinitperiod},
+         given={Polly},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=NS}{%
+         family={Nicholson},
+         familyi={N\bibinitperiod},
+         given={Sonja},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Swan},
+         familyi={S\bibinitperiod},
+         given={Gillian},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Public Health England}%
+    }
+    \strng{namehash}{BB+1}
+    \strng{fullhash}{BBLAPABCJPPNSSG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{National Diet and Nutrition Survey: Results from Years 1, 2,
+  3 and 4 (combined) of the Rolling Programme (2008/2009-2011/2012): A survey
+  carried out on behalf of Public Health England and the Food Standards Agency}
+    \field{year}{2014}
+  \endentry
+
   \entry{collins2010latent}{book}{}
     \name{author}{2}{}{%
       {{hash=CL}{%
@@ -202,7 +264,7 @@
     \field{title}{Rotating shift work and the metabolic syndrome: a prospective
   study}
     \field{volume}{38}
-    \field{journaltitle}{International journal of epidemiology}
+    \field{journaltitle}{International Journal of Epidemiology}
     \field{year}{2009}
   \endentry
 
@@ -330,7 +392,7 @@
     \verb :/home/wangcc-me/Documents/LSHTMproject/references/physiological_resp
     \verb onses_to_food_intake_throughout_the_day.pdf:PDF
     \endverb
-    \field{journaltitle}{Nutrition research reviews}
+    \field{journaltitle}{Nutrition Research Reviews}
     \field{year}{2014}
   \endentry
 
@@ -561,6 +623,29 @@
     \field{year}{2007}
   \endentry
 
+  \entry{OfficeofNationalStat}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=OfficeforNationalStatisticsOfficeforNationalStatistics}{%
+         family={{\firstsecond{Office for National Statistics}{Office for
+  National Statistics}}},
+         familyi={{\firstsecond{Office for National Statistics}{Office for
+  National Statistics}}},
+      }}%
+    }
+    \strng{namehash}{OfficeforNationalStatisticsOfficeforNationalStatistics1}
+    \strng{fullhash}{OfficeforNationalStatisticsOfficeforNationalStatistics1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+  \field{note}{\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates}}
+    \field{title}{Mid 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, and 2016
+  Population Estimates}
+    \field{year}{2018}
+  \endentry
+
   \entry{pan2011rotating}{article}{}
     \name{author}{4}{}{%
       {{hash=PA}{%
@@ -608,38 +693,71 @@
     \field{year}{2011}
   \endentry
 
-  \entry{peel2000robust}{article}{}
-    \name{author}{2}{}{%
-      {{hash=PD}{%
-         family={Peel},
-         familyi={P\bibinitperiod},
-         given={David},
-         giveni={D\bibinitperiod},
+  \entry{roberts2018national}{article}{}
+    \name{author}{8}{}{%
+      {{hash=RC}{%
+         family={Roberts},
+         familyi={R\bibinitperiod},
+         given={Caireen},
+         giveni={C\bibinitperiod},
       }}%
-      {{hash=MGJ}{%
-         family={McLachlan},
+      {{hash=ST}{%
+         family={Steer},
+         familyi={S\bibinitperiod},
+         given={Toni},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MN}{%
+         family={Maplethorpe},
          familyi={M\bibinitperiod},
-         given={Geoffrey\bibnamedelima J},
-         giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+         given={Natalie},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=CL}{%
+         family={Cox},
+         familyi={C\bibinitperiod},
+         given={Lorna},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Meadows},
+         familyi={M\bibinitperiod},
+         given={Sarah},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=NS}{%
+         family={Nicholson},
+         familyi={N\bibinitperiod},
+         given={Sonja},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PP}{%
+         family={Page},
+         familyi={P\bibinitperiod},
+         given={Polly},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Swan},
+         familyi={S\bibinitperiod},
+         given={Gillian},
+         giveni={G\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
-      {Springer}%
+      {Public Health England}%
     }
-    \strng{namehash}{PDMGJ1}
-    \strng{fullhash}{PDMGJ1}
+    \strng{namehash}{RC+1}
+    \strng{fullhash}{RCSTMNCLMSNSPPSG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2000}
+    \field{labelyear}{2018}
     \field{labeldatesource}{year}
-    \field{sortinit}{P}
-    \field{sortinithash}{P}
-    \field{number}{4}
-    \field{pages}{339\bibrangedash 348}
-    \field{title}{Robust mixture modelling using the t distribution}
-    \field{volume}{10}
-    \field{journaltitle}{Statistics and Computing}
-    \field{year}{2000}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{National Diet and Nutrition Survey: results from years 7 and
+  8 (combined) of the Rolling Programme (2014/2015--2015/2016)}
+    \field{year}{2018}
   \endentry
 
   \entry{smithers1993maff}{article}{}
