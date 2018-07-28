@@ -48,6 +48,24 @@ kable(dt,  align = "l", row.names = FALSE,
 ```
 
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# library(kableExtra)
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/ndns_level1only.csv", header = T)
+names(dt) <- c("N of classes", "N of free parameters","log-likelihood",  "AIC", "BIC", "aBIC", "Entropy", "Lo-Mendel-Rubin LRT")
+dt[1,8] <- "--"
+dt[2,8] <- "< 0.0001"
+dt[3,8] <- "< 0.0001"
+kable(dt, digits = 3, row.names = FALSE, align = "c",
+              format = "latex", caption = "Level 1 class selection. (All data, n = 6155, 24483 data points)", 
+      booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+# row_spec(c(2,3), bold = T, color = "white", background = "#D7261E") %>% 
+  footnote(general = c("Abbreviation: N, number; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC;" ,
+                       "Entropy, a pseudo-r-squared index; Lo-Mendel-Rubin LRT, likelihood ratio test comparing q classes models with", 
+                       "q-1 classes models."))
+```
+
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/LCGA3Cresults.csv", header = T, row.names = NULL, colClasses = "character")
@@ -79,3 +97,25 @@ kable(dt,  align = "l", row.names = FALSE,
                notation = "symbol")
 ```
 
+
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Mixed_50_paper.csv", header = T)
+names(dt) <- c("Model", "1 class", "2 classes",  "3 classes", "4 classes", "5 classes")
+dt[is.na(dt)] <- ""
+# library(formattable)
+
+kable(dt, digits = 3, row.names = FALSE, align = "c",
+      format = "latex", caption = "Fit Criteria for Each Model Specification", 
+      booktabs = T, linesep = "") %>% 
+  kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  add_header_above(c(" ", "Number of level 1 classes" = 5)) %>% 
+  group_rows("Fixed effects model", 1, 5) %>%
+  group_rows("Random effects model", 6, 20) %>%
+  add_indent(c(2:5,7:10,12:15,17:20)) %>% 
+  footnote(general = c("Abbreviation: No, number; BIC, Bayesian information criterion; Entropy, a pseudo-r-squared index; Lo-Mendel-Rubin LRT, likelihood ratio test comparing q classes models with q-1 classes models."))
+
+```

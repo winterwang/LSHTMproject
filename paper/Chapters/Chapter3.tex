@@ -4,6 +4,106 @@
 
 \label{Chapter 3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+
+
+
+
+%
+%\rowcolors{2}{gray!6}{white}
+%
+%\begin{table}
+%%	\captionsetup{font=small}
+%	\caption{\label{tab:MLCA-level1}Level 1 classes comparison in the first step of MLCA. (All data, n = 6155, 24483 data points)}\vspace{-0.3cm}
+%	\centering
+%	\fontsize{9}{10}\selectfont
+%	\begin{tabular}[t]{cccccccc}
+%		\hiderowcolors
+%		\toprule
+%		\Centerstack{N of \\ classes} & \Centerstack{N of free \\ parameters} & log-likelihood & AIC & BIC & aBIC & Entropy & \Centerstack{ Lo-Mendel-Rubin \\ LRT}   \\
+%		\midrule
+%		\showrowcolors
+%		1 & 48 & -372017.3 & 744130.6 & 744519.7 & 744367.1 & -- & --\\
+%		2 & 97 & -368913.7 & 738021.4 & 738807.7 & 738499.4 & 0.777 & < 0.0001\\
+%		3 & 146 & -366665.0 & 733621.9 & 734805.4 & 734341.4 & 0.666 & < 0.0001\\
+%		4 & 195 & -365528.6 & 731447.1 & 733027.7 & 732408.0 & 0.658 & 0.8478\\
+%		5 & 244 & -364901.2 & 730290.3 & 732268.1 & 731492.7 & 0.648 & 0.7602\\
+%		6 & 293 & -363641.8 & 727869.5 & 730244.5 & 729313.4 & 0.701 & 0.7632\\
+%		7 & 342 & -362789.9 & 726263.7 & 729035.9 & 727949.0 & 0.729 & 0.7702\\
+%		8 & 391 & -362047.9 & 724877.9 & 728047.2 & 726804.6 & 0.737 & 0.8261\\
+%		\bottomrule
+%		\multicolumn{8}{l}{\textit{Note: }}\\
+%		\multicolumn{8}{l}{\textbf{Abbreviations:} MLCA, multilevel class analysis; N, number; AIC, Akaike information criterion; BIC, }\\
+%		\multicolumn{8}{l}{Bayesian information criterion; aBIC, adjusted BIC; Entropy, a pseudo-r-squared index; Lo-Mendel-Rubin}\\
+%		\multicolumn{8}{l}{LRT, likelihood ratio test comparing $q$ classes models with $q-1$ classes models.}\\
+%	\end{tabular}
+%\end{table}
+%
+%\rowcolors{2}{white}{white}
+
+
+\begin{figure}
+	%\vspace*{13cm}
+	\centering
+	\includegraphics{Figures/class1mlcalevel1.png}
+	\decoRule
+	\caption[Level 1 Classes in MLCA]{Carbohydrate temporal eating patterns at observational day level.}
+	\label{fig:MLCAfig1}
+\end{figure}
+%%\end{verbatim}
+
+
+
+\rowcolors{2}{gray!6}{white}
+\begin{table}
+	
+	\caption{\label{tab:}Fit Criteria for Each Model Specification}
+	\centering
+	\fontsize{9}{11}\selectfont
+	\begin{tabular}[t]{lccccc}
+		\hiderowcolors
+		\toprule
+		\multicolumn{1}{c}{ } & \multicolumn{5}{c}{Number of level 1 classes} \\
+		\cmidrule(l{2pt}r{2pt}){2-6}
+		Model & 1 class & 2 classes & 3 classes & 4 classes & 5 classes\\
+		\midrule
+		\showrowcolors
+		\addlinespace[0.3em]
+		\multicolumn{6}{l}{\textbf{Fixed effects model}}\\
+		\hspace{1em}No. of free parameters & 48 & 97 & 146 & 195 & 244\\
+		\hspace{1em}\hspace{1em}Log-likelihood & -372017.293 & -368913.708 & -366664.971 & -365528.553 & -364901.166\\
+		\hspace{1em}\hspace{1em}BIC & 744519.661 & 738807.672 & 734805.379 & 733027.723 & 732268.13\\
+		\hspace{1em}\hspace{1em}Lo-Mendell-Rubun LRT & --- & < 0.0001 & < 0.0001 & 0.8478 & 0.7602\\
+		\hspace{1em}\hspace{1em}Entropy & 1 & 0.777 & 0.666 & 0.658 & 0.648\\
+		\addlinespace[0.3em]
+		\multicolumn{6}{l}{\textbf{Random effects model}}\\
+		\hspace{1em}2 between classes &  &  &  &  & \\
+		\hspace{1em}\hspace{1em}No. of free parameters &  & 195 & 293 & 391 & \\
+		\hspace{1em}\hspace{1em}Log-likelihood &  & -363460.153 & -361571.164 & -360297.394 & \\
+		\hspace{1em}\hspace{1em}BIC &  & 728890.925 & 726103.308 & 724546.13 & \\
+		\hspace{1em}\hspace{1em}Entropy &  & 0.834 & 0.798 & 0.784 & \\
+		\hspace{1em}3 between classes &  &  &  &  & \\
+		\hspace{1em}\hspace{1em}No. of free parameters &  & 293 & 440 & 587 & \\
+		\hspace{1em}\hspace{1em}Log-likelihood &  & -360910.13 & -358902.821 & -357404.521 & \\
+		\hspace{1em}\hspace{1em}BIC &  & 724781.241 & 722252.166 & 720741.109 & \\
+		\hspace{1em}\hspace{1em}Entropy &  & 0.824 & 0.793 & 0.824 & \\
+		\hspace{1em}4 between classes &  &  &  &  & \\
+		\hspace{1em}\hspace{1em}No. of free parameters &  & 391 & 587 & 783 & \\
+		\hspace{1em}\hspace{1em}Log-likelihood &  & -358684.859 & -356668.354 & -355235.955 & \\
+		\hspace{1em}\hspace{1em}BIC &  & 720078.473 & 719268.774 & 718384.699 & \\
+		\hspace{1em}\hspace{1em}Entropy &  & 0.816 & 0.817 & 0.806 & \\
+		\bottomrule
+		\multicolumn{6}{l}{\textit{Note: }}\\
+		\multicolumn{6}{l}{Abbreviation: No, number; BIC, Bayesian information criterion; Entropy, a pseudo-r-squared index;}\\ 
+		\multicolumn{6}{l}{Lo-Mendel-Rubin LRT, likelihood ratio test comparing $q$ classes models with $q-1$ classes models.}\\
+	\end{tabular}
+\end{table}
+\rowcolors{2}{white}{white}
+
+
+
+
+
+
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -11,15 +111,15 @@
 \section{Main Section 1}
 
 
-\begin{table}
+\begin{table}[h]
 	\rowcolors{2}{gray!6}{white}	
-	\caption{\label{tab:}Means, percentages, and 95\% CIs of the characteristics by multilevel latent class analysis memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}\vspace{-0.3cm}
+	\caption{\label{tab:MLCAtab1}Means, percentages, and 95\% CIs of the characteristics  of carbohydrate temporal eating patterns by MLCA memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}\vspace{-0.3cm}
 		\centering
 		\fontsize{9}{10}\selectfont
 		\begin{tabular}[t]{lccc}
 			\hiderowcolors
 			\toprule
-			Variables & Latent class = 1 & Latent class = 2 & P value \textsuperscript{*}\\
+			 & Latent class = 1 & Latent class = 2 & P value \textsuperscript{*}\\
 			\midrule
 			\showrowcolors
 			Total (\%) & 66.4  (64.8 , 68.1) & 33.6  (31.9 , 35.2) & \\
@@ -62,9 +162,12 @@
 			activity (hours/day) \textsuperscript{\P} & 1.51 (1.39, 1.63) & 1.64 (1.45, 1.82) & 0.244\\
 			\bottomrule
 			\multicolumn{4}{l}{\textit{Note: }}\\
-			\multicolumn{4}{l}{Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey}\\ 
-			\multicolumn{4}{l}{rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c;}\\ 
-			\multicolumn{4}{l}{DM, diabetes mellitus.}\\
+			\multicolumn{4}{l}{\textbf{Abbreviations}: CI, confidence intervals; MLCA, multilevel latent class analysis; NDNS RP, national}\\ 
+			\multicolumn{4}{l}{dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; }\\
+			\multicolumn{4}{l}{A1C, haemoglobin A1c;DM, diabetes mellitus; h, hour.}\\
+			\multicolumn{4}{l}{Variables from the blood tests (glucose and A1C) are weighted by blood sample weights,}\\
+			\multicolumn{4}{l}{the others are weighted by individual weights.}\\
+			\multicolumn{4}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
 			\multicolumn{4}{l}{Variables from the blood tests (glucose and A1C) are weighted by blood sample weights,}\\  
 			\multicolumn{4}{l}{the others are weighted by individual weights.}\\
 			\multicolumn{4}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
@@ -80,6 +183,16 @@
 		\end{tabular}
 	\rowcolors{2}{white}{white}
 	\end{table}
+
+
+
+
+
+
+
+
+
+
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -105,13 +218,13 @@
 
 \begin{table}
 	
-	\caption{\label{tab:unnamed-chunk-2}Means, percentages, and 95\% CIs of the characteristics by latent class growth analysis memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}\vspace{-0.3cm}
+	\caption{\label{tab:LCGAtab1}Means, percentages, and 95\% CIs of the characteristics of carbohydrate temporal eating patterns by LCGA memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}\vspace{-0.3cm}
 	\centering
 	\fontsize{9}{11}\selectfont
 	\begin{tabular}[t]{lcccc}
 		\hiderowcolors
 		\toprule
-		Variables & Latent class = 1 & Latent class = 2 & Latent class = 3 & P value \textsuperscript{*}\\
+		 & Latent class = 1 & Latent class = 2 & Latent class = 3 & P value \textsuperscript{*}\\
 		\midrule
 		\showrowcolors
 		Total (\%) & 28.4 (26.8, 30.1) & 7.0 (6.2, 7.9) & 64.6 (62.9, 66.2) & \\
@@ -153,9 +266,9 @@
         Physical activity (hs/day) \textsuperscript{\P}& 1.31 (1.14, 1.49) & 1.82 (1.44, 2.19) & 1.62 (1.49, 1.76) & 0.018\\
 		\bottomrule
 		\multicolumn{5}{l}{\textit{Note: }}\\
-		\multicolumn{5}{l}{Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey}\\
-		\multicolumn{5}{l}{rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c;}\\
-		\multicolumn{5}{l}{DM, diabetes mellitus; h, hour.}\\
+		\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; LCGA, latent class growth analysis; NDNS RP, national}\\ 
+		\multicolumn{5}{l}{dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; }\\
+		\multicolumn{5}{l}{A1C, haemoglobin A1c;DM, diabetes mellitus; h, hour.}\\
 		\multicolumn{5}{l}{Variables from the blood tests (glucose and A1C) are weighted by blood sample weights,}\\
 		\multicolumn{5}{l}{the others are weighted by individual weights.}\\
 		\multicolumn{5}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
