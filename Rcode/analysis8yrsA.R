@@ -9,6 +9,7 @@ setwd("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/") # on Ubuntu
 
 library(epiDisplay)
 library(plyr)
+library(dplyr)
 library(tidyverse)
 
 
@@ -1331,4 +1332,236 @@ write_delim(CARB_255075, "CARB_255075.dat", na = ".", delim = " ")
 
 # posterior analysis classification with BMI etc. -------------------------
 
+setwd("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/") # on Ubuntu
 
+
+library(epiDisplay)
+library(plyr)
+library(dplyr)
+library(tidyverse)
+
+
+library(haven)
+
+# 
+# data <- read_dta("ndns_rp_yr1-4a_foodleveldietarydata_uk.dta")
+# 
+# data56 <- read_dta("ndns_rp_yr5-6a_foodleveldietarydata.dta")
+# 
+# data78 <- read_dta("ndns_rp_yr7-8a_foodleveldietarydata.dta")
+
+library(readr)
+CW2CB2 <- read_table2("~/Documents/LSHTMproject/results/50NDNS_CW2CB2.txt", 
+                              col_names = FALSE)
+
+
+names(CW2CB2) <- c("H0",
+                   "H1",
+                   "H2",
+                   "H3",
+                   "H4",
+                   "H5",
+                   "H6",
+                   "H7",
+                   "H8",
+                   "H9",
+                   "H10",
+                   "H11",
+                   "H12",
+                   "H13",
+                   "H14",
+                   "H15",
+                   "H16",
+                   "H17",
+                   "H18",
+                   "H19",
+                   "H20",
+                   "H21",
+                   "H22",
+                   "H23",
+                   "ID_DAY",
+                   "AGE",
+                   "SEX",
+                   "CPROB1",
+                   "CPROB2",
+                   "CPROB3",
+                   "CPROB4",
+                   # "CPROB5",
+                   # "CPROB6",
+                   "CB",
+                   "CW",
+                   "MLCJOINT",
+                   "ID")
+
+
+CW3CB2 <- read_table2("~/Documents/LSHTMproject/results/50NDNS_CW3CB2.txt", 
+                      col_names = FALSE)
+
+names(CW3CB2) <- c("H0",
+                   "H1",
+                   "H2",
+                   "H3",
+                   "H4",
+                   "H5",
+                   "H6",
+                   "H7",
+                   "H8",
+                   "H9",
+                   "H10",
+                   "H11",
+                   "H12",
+                   "H13",
+                   "H14",
+                   "H15",
+                   "H16",
+                   "H17",
+                   "H18",
+                   "H19",
+                   "H20",
+                   "H21",
+                   "H22",
+                   "H23",
+                   "ID_DAY",
+                   "AGE",
+                   "SEX",
+                   "CPROB1",
+                   "CPROB2",
+                   "CPROB3",
+                   "CPROB4",
+                   "CPROB5",
+                   "CPROB6",
+                   "CB",
+                   "CW",
+                   "MLCJOINT",
+                   "ID")
+
+
+names(CW2CB2)
+names(CW3CB2)
+
+CW2CB2_reg <- CW2CB2[!duplicated(CW2CB2$ID), ]
+
+CW2CB2_reg <- CW2CB2_reg %>% 
+  select(ID, AGE, SEX, CB) # extract only the CB variable (Between individual classes == 1 or 2)
+
+tab1(CW2CB2_reg$CB)
+
+CW3CB2_reg <- CW3CB2[!duplicated(CW3CB2$ID), ]
+
+CW3CB2_reg <- CW3CB2_reg %>% 
+  select(ID, AGE, SEX, CB) # extract only the CB variable (Between individual classes == 1 or 2)
+
+
+tab1(CW3CB2_reg$CB)
+
+blood78 <- read_dta("ndns_rp_yr7-8a_indiv.dta")
+blood56 <- read_dta("ndns_rp_yr5-6a_indiv.dta")
+blood14 <- read_dta("ndns_rp_yr1-4a_indiv_uk.dta")
+
+names(blood14)
+library(naniar)
+names(blood78)[names(blood78)=="seriali"] <- "ID"
+names(blood56)[names(blood56)=="seriali"] <- "ID"
+names(blood14)[names(blood14)=="seriali"] <- "ID"
+BMI78 <- blood78 %>% 
+  select(ID, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2,
+         Glucose, A1C, cigsta3, wti_Y78, wtn_Y78, wtb_Y78, cluster1, cluster2, cluster3, 
+         cluster4, cluster5, area) %>% 
+  rename(wti = wti_Y78, wtn = wtn_Y78, wtb = wtb_Y78) %>% 
+  mutate(Years = "7-8") %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 cigsta3 = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1))
+
+BMI56 <- blood56 %>% 
+  select(ID, area, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2,
+         Glucose, A1C, cigsta3, wti_Y56, wtn_Y56, wtb_Y56, cluster1, cluster2, cluster3, 
+         cluster4, cluster5, area) %>% 
+  mutate(Years = "5-6") %>% 
+  rename(wti = wti_Y56, wtn = wtn_Y56, wtb = wtb_Y56) %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1,
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 cigsta3 = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1))
+
+BMI14 <- blood14 %>% 
+  select(ID, bmival, wstval, Diabetes, bpmedc, bpmedd, hyper140, hibp140,
+         Glucose, A1C, cigsta3, wti_CY1234 , wtn_CY1234, wtb_CY1234, cluster, area) %>%
+  rename(hyper140_2 = hyper140, hibp140_2 = hibp140, bpmedd2 = bpmedd, 
+         bpmedc2 = bpmedc, cluster1 = cluster, 
+         wti = wti_CY1234, wtn = wtn_CY1234, wtb =  wtb_CY1234) %>% 
+  mutate(cluster2 = NA, cluster3 = NA, cluster4 = NA, cluster5 = NA, Years = "1-4") %>% 
+  replace_with_na(replace = list(bmival = -1,
+                                 wstval = -1,
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 cigsta3 = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1))
+
+
+
+
+BMI <- bind_rows(BMI14, BMI56, BMI78)
+
+CW2CB2_regss <- CW2CB2_reg %>% 
+  left_join(BMI, by = "ID")
+
+CW3CB2_regss <- CW3CB2_reg %>% 
+  left_join(BMI, by = "ID")
+
+
+
+# rescale the weights
+
+CW2CB2_regss %>% 
+  # select(wti) %>% 
+  filter(Years == "1-4") %>% 
+  summarise(mean = mean(wti), sum1_4 = sum(wti) )
+
+CW2CB2_regss %>% 
+  # select(wti) %>% 
+  filter(Years == "5-6") %>% 
+  summarise(mean = mean(wti), sum5_6 = sum(wti))
+
+CW2CB2_regss %>% 
+  # select(wti) %>% 
+  filter(Years == "7-8") %>% 
+  summarise(mean = mean(wti), sum7_8 = sum(wti))
+
+
+write_delim(CW2CB2_regss, "CW2CB2_regss.dat", na = ".", delim = " ")
+write_delim(CW3CB2_regss, "CW3CB2_regss.dat", na = ".", delim = " ")
+
+
+# 
+# with(CW2CB2_reg, summ(bmival, by = CB))
+# summary(lm(bmival ~ as.factor(CB) + factor(SEX) + AGE, data = CW2CB2_reg))
+
+
+write_dta(LCGA_3class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_3class.dta")
+write_dta(LCGA_2class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta")
+write_dta(CW3CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_regss.dta")
+write_dta(CW2CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta")

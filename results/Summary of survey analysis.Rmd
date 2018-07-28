@@ -1,0 +1,142 @@
+---
+title: "Summary of Survey Analysis"
+author: "Chaochen Wang"
+date: "27 July 2018"
+output:
+  html_document:
+    nature:
+      highlightLines: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(RColorBrewer)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(epiDisplay)
+library(scales)
+library(readr)
+library(kableExtra)
+```
+
+
+# Multilevel classes results (2by2)
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/CW2CB2results.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "P value [note]")
+
+dt[28, 1] <- c("Hypertension (%) [note]")
+dt[32, 1] <- c("Carbohydrate percent (%) [note]")
+dt[35, 1] <- c("DM [note]")
+
+
+kable(dt,  align = "l", escape = F, row.names = FALSE,
+              format = "html", caption = "Means, percentages, and 95% CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  add_indent(c(3:6, 9, 10, 12:19, 23:25, 27, 29)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.", 
+                       "Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.", 
+                       "Glucose and A1C levels are estimated in subgroups of people without diabetes.")) %>% 
+  add_footnote(c("For continuous variables, the F test was used to determine differences between latent classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for survey data.",
+                 "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.", 
+                 "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 "DM was defined by A1C > 6.5%."), 
+               notation = "symbol")
+```
+
+
+# Multilevel classes results (3by2)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/CW3CB2results.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "P value [note]")
+
+
+dt[28, 1] <- c("Hypertension (%) [note]")
+dt[32, 1] <- c("Carbohydrate percent (%) [note]")
+dt[35, 1] <- c("DM [note]")
+
+
+kable(dt,  align = "l", escape = F, row.names = FALSE,
+              format = "html", caption = "Means, percentages, and 95% CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  add_indent(c(3:6, 9, 10, 12:19, 23:25, 27, 29)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.", 
+                       "Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.", 
+                       "Glucose and A1C levels are estimated in subgroups of people without diabetes.")) %>% 
+  add_footnote(c("For continuous variables, the F test was used to determine differences between latent classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for survey data.",
+                 "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.", 
+                 "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 "DM was defined by A1C > 6.5%."), 
+               notation = "symbol")
+```
+
+
+# LCGA 2 classes results
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/LCGA2Cresults.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "P value [note]")
+
+
+dt[28, 1] <- c("Hypertension (%) [note]")
+dt[32, 1] <- c("Carbohydrate percent (%) [note]")
+dt[35, 1] <- c("DM [note]")
+
+
+kable(dt,  align = "l", escape = F, row.names = FALSE,
+              format = "html", caption = "Means, percentages, and 95% CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  add_indent(c(3:6, 9, 10, 12:19, 23:25, 27, 29)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.", 
+                       "Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.", 
+                       "Glucose and A1C levels are estimated in subgroups of people without diabetes.")) %>% 
+  add_footnote(c("For continuous variables, the F test was used to determine differences between latent classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for survey data.",
+                 "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.", 
+                 "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 "DM was defined by A1C > 6.5%."), 
+               notation = "symbol")
+```
+
+
+# LCGA 3 classes results
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/LCGA3Cresults.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "Latent class = 3", "P value [note]")
+
+
+dt[28, 1] <- c("Hypertension (%) [note]")
+dt[32, 1] <- c("Carbohydrate percent (%) [note]")
+dt[35, 1] <- c("DM [note]")
+
+
+kable(dt,  align = "l", escape = F, row.names = FALSE,
+              format = "html", caption = "Means, percentages, and 95% CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  add_indent(c(3:6, 9, 10, 12:19, 23:25, 27, 29)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.", 
+                       "Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.", 
+                       "Glucose and A1C levels are estimated in subgroups of people without diabetes.")) %>% 
+  add_footnote(c("For continuous variables, the F test was used to determine differences between latent classes with Bonferroni correction to account for multiple testing across >2 classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for survey data.",
+                 "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.", 
+                 "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 "DM was defined by A1C > 6.5%."), 
+               notation = "symbol")
+```

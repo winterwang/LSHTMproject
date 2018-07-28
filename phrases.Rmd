@@ -250,6 +250,23 @@ adj. 使人畏缩的；使人气馁的；令人怯步的
   不适当的压力
 ```
 
+-  jargon ['dʒɑ:ɡən, -ɡɔn]
+
+```
+======== 辞典翻译: jargon ========
+  n. 行话，术语；黄锆石
+============ 网络释义 ============
+----------- jargon -----------
+  行话
+  专门术语
+  术语
+------ phonemic jargon -------
+  音韵性乱语
+------ Computer Jargon -------
+  电脑流行语
+  行话
+```
+
 # Sentences
 
 ## terry2017discontinuous
@@ -418,3 +435,11 @@ controversial [6–8].
 
 - Compared with total carbohydrates, saturated fat intake was not significantly associated with CHD or cardiovascu-
 lar disease outcomes (10).
+
+## lumley2011complex - Complex surveys: a guide to analysis using R
+
+- In everyday speech, "taking a random sample" of 1000 individuals means a sampling procedure when any subset of 1000 people from the population is equally likely to be selected. 
+
+- The expected value of the estimate is the value of the estimate when we select person $i$, times the probability of selecting person $i$, added up over all peole in the population. 
+
+- Sampling weights: A sampling weight of 1000 means that the observation represents 1000 individuals in the population.

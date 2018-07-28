@@ -1,0 +1,592 @@
+---
+title: "Svyset analysis"
+author: "Chaochen Wang"
+date: "25 July 2018"
+output:
+  html_document:
+    nature:
+      highlightLines: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup, message=FALSE}
+statapath <- "/usr/local/stata15/stata" # <- Ubuntu path to stata
+#statapath <- "D:/software/STATA/Stata-64.exe" # <- Windows STATA path modify if needed
+knitr::opts_chunk$set(engine.path = list(
+  stata = statapath
+))
+library(naniar)
+library(epiDisplay)
+library(readr)
+library(plyr)
+library(dplyr)
+library(tidyverse)
+library(haven)
+library(survey)
+ # install packages if needed
+```
+
+
+# Read the datasets and prepare datasets
+
+## CW2CB2 data set (2by2 multilevel classes)
+
+```{r cache=TRUE, message=FALSE}
+CW2CB2 <- read_table2("~/Documents/LSHTMproject/results/50NDNS_CW2CB2.txt",  
+                              col_names = FALSE)# change the path to your own path
+
+names(CW2CB2) <- c("H0", "H1", "H2", "H3", "H4", "H5", "H6", "H7",
+                   "H8", "H9", "H10", "H11", "H12", "H13", "H14",
+                   "H15", "H16", "H17", "H18", "H19", "H20", "H21",
+                   "H22", "H23", "ID_DAY", "AGE", "SEX", "CPROB1",
+                   "CPROB2", "CPROB3", "CPROB4",
+                   # "CPROB5",
+                   # "CPROB6",
+                   "CB", "CW", "MLCJOINT", "ID")
+CW2CB2_reg <- CW2CB2[!duplicated(CW2CB2$ID), ]
+
+CW2CB2_reg <- CW2CB2_reg %>% 
+  select(ID, AGE, SEX, CB) # extract only the CB variable (Between individual classes == 1 or 2)
+
+tab1(CW2CB2_reg$CB, graph = FALSE)
+```
+
+## CW3CB2 data set (3by2 multilevel classes)
+
+```{r message=FALSE, cache=TRUE}
+CW3CB2 <- read_table2("~/Documents/LSHTMproject/results/50NDNS_CW3CB2.txt",  
+                      col_names = FALSE)# change the path to your own path
+
+names(CW3CB2) <- c("H0", "H1", "H2", "H3", "H4", "H5", "H6", "H7",
+                   "H8", "H9", "H10", "H11", "H12", "H13", "H14",
+                   "H15", "H16", "H17", "H18", "H19", "H20", "H21",
+                   "H22", "H23", "ID_DAY", "AGE", "SEX", "CPROB1",
+                   "CPROB2", "CPROB3", "CPROB4", "CPROB5", "CPROB6",
+                   "CB", "CW", "MLCJOINT", "ID")
+CW3CB2_reg <- CW3CB2[!duplicated(CW3CB2$ID), ]
+
+CW3CB2_reg <- CW3CB2_reg %>% 
+  select(ID, AGE, SEX, CB) # extract only the CB variable (Between individual classes == 1 or 2)
+
+tab1(CW3CB2_reg$CB, graph = FALSE)
+```
+
+
+## LCGA data set (2 classes)
+
+```{r message=FALSE, cache=TRUE, warning=FALSE}
+CARB_50_LGCA_2CLASS <- read_table2("~/Documents/LSHTMproject/results/LCGA/CARB_50_LGCA_2CLASS.txt", 
+    col_names = FALSE)# change the path to your own path
+
+names(CARB_50_LGCA_2CLASS) <- c("H0_X",  "H1_X", "H2_X",  "H3_X", "H4_X",  "H5_X", "H6_X",  "H7_X",
+  "H8_X",  "H9_X",  "H10_X",  "H11_X", "H12_X",  "H13_X", "H14_X",  "H15_X", "H16_X",  "H17_X",
+  "H18_X",  "H19_X", "H20_X",  "H21_X", "H22_X",  "H23_X", "H0_Y",  "H1_Y", "H2_Y",  "H3_Y",
+  "H4_Y",  "H5_Y", "H6_Y",  "H7_Y", "H8_Y",  "H9_Y", "H10_Y",  "H11_Y", "H12_Y",  "H13_Y",
+  "H14_Y",  "H15_Y", "H16_Y",  "H17_Y", "H18_Y",  "H19_Y", "H20_Y",  "H21_Y",
+  "H22_Y",  "H23_Y", "H0_X_X",  "H1_X_X", "H2_X_X",  "H3_X_X", "H4_X_X",  "H5_X_X",
+  "H6_X_X",  "H7_X_X", "H8_X_X",  "H9_X_X", "H10_X_X",  "H11_X_X", "H12_X_X",  "H13_X_X",
+  "H14_X_X",  "H15_X_X", "H16_X_X",  "H17_X_X", "H18_X_X",  "H19_X_X", "H20_X_X",  "H21_X_X",
+  "H22_X_X",  "H23_X_X", "H0_Y_Y",  "H1_Y_Y", "H2_Y_Y",  "H3_Y_Y", "H4_Y_Y",  "H5_Y_Y",
+  "H6_Y_Y",  "H7_Y_Y", "H8_Y_Y",  "H9_Y_Y", "H10_Y_Y",  "H11_Y_Y", "H12_Y_Y",  "H13_Y_Y",
+  "H14_Y_Y",  "H15_Y_Y", "H16_Y_Y",  "H17_Y_Y", "H18_Y_Y",  "H19_Y_Y", "H20_Y_Y",  "H21_Y_Y",
+  "H22_Y_Y",  "H23_Y_Y", "ID", "CPROB1",  "CPROB2",
+  #"CPROB3",  #"CPROB4", 
+  "C")
+
+CARB_50_LGCA_2CLASS[CARB_50_LGCA_2CLASS == "*"] <- NA
+
+LCGA_2class <- CARB_50_LGCA_2CLASS %>% 
+  select(ID, C) # extract only the C variable (classes == 1 or 2)
+
+tab1(LCGA_2class$C, graph = FALSE)
+```
+
+
+
+## LCGA data set (3 classes)
+
+```{r message=FALSE, cache=TRUE, warning=FALSE}
+CARB_50_LGCA_3CLASS <- read_table2("~/Documents/LSHTMproject/results/LCGA/CARB_50_LGCA_3CLASS.DAT", 
+    col_names = FALSE)# change the path to your own path
+
+names(CARB_50_LGCA_3CLASS) <- c("H0_X",  "H1_X", "H2_X",  "H3_X", "H4_X",  "H5_X", "H6_X",  "H7_X",
+  "H8_X",  "H9_X",  "H10_X",  "H11_X", "H12_X",  "H13_X", "H14_X",  "H15_X", "H16_X",  "H17_X",
+  "H18_X",  "H19_X", "H20_X",  "H21_X", "H22_X",  "H23_X", "H0_Y",  "H1_Y", "H2_Y",  "H3_Y",
+  "H4_Y",  "H5_Y", "H6_Y",  "H7_Y", "H8_Y",  "H9_Y", "H10_Y",  "H11_Y", "H12_Y",  "H13_Y",
+  "H14_Y",  "H15_Y", "H16_Y",  "H17_Y", "H18_Y",  "H19_Y", "H20_Y",  "H21_Y",
+  "H22_Y",  "H23_Y", "H0_X_X",  "H1_X_X", "H2_X_X",  "H3_X_X", "H4_X_X",  "H5_X_X",
+  "H6_X_X",  "H7_X_X", "H8_X_X",  "H9_X_X", "H10_X_X",  "H11_X_X", "H12_X_X",  "H13_X_X",
+  "H14_X_X",  "H15_X_X", "H16_X_X",  "H17_X_X", "H18_X_X",  "H19_X_X", "H20_X_X",  "H21_X_X",
+  "H22_X_X",  "H23_X_X", "H0_Y_Y",  "H1_Y_Y", "H2_Y_Y",  "H3_Y_Y", "H4_Y_Y",  "H5_Y_Y",
+  "H6_Y_Y",  "H7_Y_Y", "H8_Y_Y",  "H9_Y_Y", "H10_Y_Y",  "H11_Y_Y", "H12_Y_Y",  "H13_Y_Y",
+  "H14_Y_Y",  "H15_Y_Y", "H16_Y_Y",  "H17_Y_Y", "H18_Y_Y",  "H19_Y_Y", "H20_Y_Y",  "H21_Y_Y",
+  "H22_Y_Y",  "H23_Y_Y", "ID", "CPROB1",  "CPROB2",
+  "CPROB3",   "C")
+
+CARB_50_LGCA_3CLASS[CARB_50_LGCA_3CLASS == "*"] <- NA
+
+LCGA_3class <- CARB_50_LGCA_3CLASS %>% 
+  select(ID, C) # extract only the C variable (classes == 1 or 2)
+
+tab1(LCGA_3class$C, graph = FALSE)
+```
+
+
+## Individual data (BMI, WC, blood pressure, A1C etc.)
+
+```{r message=FALSE, cache=TRUE, warning=FALSE}
+# change the following path according to your own data folders
+
+blood78 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_indiv.dta")
+blood56 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr5-6a_indiv.dta")
+blood14 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_indiv_uk.dta")
+
+food14 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_personleveldietarydata_uk.dta")
+
+food56 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr5-6a_personleveldietarydata.dta")
+
+food78 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_personleveldietarydata.dta")
+
+names(blood78)[names(blood78)=="seriali"] <- "ID"
+names(blood56)[names(blood56)=="seriali"] <- "ID"
+names(blood14)[names(blood14)=="seriali"] <- "ID"
+names(food78)[names(food78)=="seriali"] <- "ID"
+names(food56)[names(food56)=="seriali"] <- "ID"
+names(food14)[names(food14)=="seriali"] <- "ID"
+
+
+
+
+BMI78 <- blood78 %>% 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2, MVPAtime, 
+         Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y78, wtn_Y78, wtb_Y78, cluster1, cluster2, cluster3, 
+         cluster4, cluster5, area, gor) %>% 
+  rename(wti = wti_Y78, wtn = wtn_Y78, wtb = wtb_Y78, drink = dnoft3) %>% 
+  mutate(Years = "7-8") %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 dnnow = -1,
+                                 drink = -1,
+                                 cigsta3 = -1, 
+                                 MVPAtime = -4)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, MVPAtime = -1,
+                                 drink = -8)) %>% 
+    replace_with_na(replace = list(drink = -9,
+                                 cigsta3 = -8))
+
+
+
+
+BMI56 <- blood56 %>% 
+  select(ID, Sex, age, area, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2, MVPAtime,
+         Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y56, wtn_Y56, wtb_Y56, cluster1, cluster2, cluster3, 
+         cluster4, cluster5, area, gor) %>% 
+  mutate(Years = "5-6") %>% 
+  rename(wti = wti_Y56, wtn = wtn_Y56, wtb = wtb_Y56, drink = dnoft3) %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 dnnow = -1,
+                                 drink = -1,
+                                 cigsta3 = -1,
+                                 MVPAtime = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, 
+                                 drink = -8)) %>% 
+    replace_with_na(replace = list(drink = -9,
+                                 cigsta3 = -8))
+
+BMI14 <- blood14 %>% 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc, bpmedd, hyper140, hibp140, MVPAtime,
+         Glucose, A1C, cigsta3, dnoft3, dnnow, wti_CY1234, wtn_CY1234, wtb_CY1234, cluster, area, gor) %>%
+  rename(hyper140_2 = hyper140, hibp140_2 = hibp140, bpmedd2 = bpmedd, 
+         bpmedc2 = bpmedc, cluster1 = cluster, 
+         wti = wti_CY1234, wtn = wtn_CY1234, wtb =  wtb_CY1234, drink = dnoft3) %>% 
+  mutate(cluster2 = NA, cluster3 = NA, cluster4 = NA, cluster5 = NA, Years = "1-4") %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 dnnow = -1,
+                                 drink = -1,
+                                 cigsta3 = -1,
+                                 MVPAtime = -4)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, MVPAtime = -1,
+                                 drink = -8)) %>% 
+  replace_with_na(replace = list(drink = -9,
+                                 cigsta3 = -8))
+
+
+BMI <- bind_rows(BMI14, BMI56, BMI78)
+
+
+
+Energy14 <- food14 %>% 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE)
+Energy14$Country[Energy14$Country == "Northern Ireland"] <- "NI"
+
+Energy56 <- food56 %>% 
+  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, CHOpctotE) %>% 
+  rename(SurveyYear = Surveyyear)
+
+Energy78 <- food78 %>% 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE)
+
+Energy <- bind_rows(Energy14, Energy56, Energy78)
+
+
+
+
+CW2CB2_regss <- CW2CB2_reg %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID")## dataset for 2by2 multilevel latent classes 
+
+CW3CB2_regss <- CW3CB2_reg %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID")## dataset for 3by2 multilevel latent classes
+
+LCGA_2class <- LCGA_2class %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID")## dataset for 2 classes LCGA
+
+LCGA_3class <- LCGA_3class %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID")## dataset for 3 classes LCGA
+
+rm(blood14, blood56, blood78, BMI14, BMI56, BMI78, BMI, food14, food56, food78, Energy14,    Energy56, Energy78, Energy, CW2CB2, CW2CB2_reg, CW3CB2, CW3CB2_reg, CARB_50_LGCA_2CLASS, CARB_50_LGCA_3CLASS)
+```
+
+
+# Rescale the weighting values
+
+```{r message=FALSE, cache=TRUE, warning=FALSE}
+# individual weighting
+a <- sum(CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wti)
+b <- sum(CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wti)
+c <- sum(CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wti)
+
+CW2CB2_regss$wti1to8 <- CW2CB2_regss$wti
+
+CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wti1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wti*(a+b+c)*(1/2)/a
+CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wti1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wti*(a+b+c)*(1/4)/b
+CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wti1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wti*(a+b+c)*(1/4)/c
+mean(CW2CB2_regss$wti1to8)
+
+CW2CB2_regss$wti1to8 <- CW2CB2_regss$wti1to8/1.209816814
+summ(CW2CB2_regss$wti1to8, graph = FALSE)
+sum(CW2CB2_regss$wti1to8, graph = FALSE) #Check if the weighting sum up to the sample size we have
+
+# Nurse weights
+
+a <- sum(CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wtn)
+b <- sum(CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wtn)
+c <- sum(CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wtn)
+
+CW2CB2_regss$wtn1to8 <- CW2CB2_regss$wtn
+
+CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wtn1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wtn*(a+b+c)*(1/2)/a
+CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wtn1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wtn*(a+b+c)*(1/4)/b
+CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wtn1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wtn*(a+b+c)*(1/4)/c
+mean(CW2CB2_regss$wtn1to8)
+
+CW2CB2_regss$wtn1to8 <- CW2CB2_regss$wtn1to8/0.907003577
+summ(CW2CB2_regss$wtn1to8, graph = FALSE)
+sum(CW2CB2_regss$wtn1to8, graph = FALSE) #Check if the weighting sum up to the sample size we have
+
+# Blood weights
+a <- sum(CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wtb)
+b <- sum(CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wtb)
+c <- sum(CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wtb)
+
+CW2CB2_regss$wtb1to8 <- CW2CB2_regss$wtb
+
+CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wtb1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "1-4",]$wtb*(a+b+c)*(1/2)/a
+CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wtb1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "5-6",]$wtb*(a+b+c)*(1/4)/b
+CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wtb1to8 <- CW2CB2_regss[CW2CB2_regss$Years == "7-8",]$wtb*(a+b+c)*(1/4)/c
+mean(CW2CB2_regss$wtb1to8)
+
+CW2CB2_regss$wtb1to8 <- CW2CB2_regss$wtb1to8/0.4817444505
+summ(CW2CB2_regss$wtb1to8, graph = FALSE)
+sum(CW2CB2_regss$wtb1to8, graph = FALSE) #Check if the weighting sum up to the sample size we have
+
+
+weightings <- CW2CB2_regss %>% select(ID, wti1to8, wtn1to8, wtb1to8)
+
+# add the weightings to the other datasets
+CW3CB2_regss <- CW3CB2_regss %>% 
+  left_join(weightings, by = "ID")
+
+LCGA_2class <- LCGA_2class %>% 
+  left_join(weightings, by = "ID")
+
+LCGA_3class <- LCGA_3class %>% 
+  left_join(weightings, by = "ID")
+```
+
+
+# (BMI) survey designed analysis 
+
+
+## 2by2 multilevel LCA dataset (BMI)
+```{r message=FALSE, cache=TRUE, warning=FALSE, eval=FALSE}
+ # specifying a survey design
+
+CW2CB2_regss$dnnow <- as.factor(CW2CB2_regss$dnnow)
+CW2CB2_regss$cigsta3 <- as.factor(CW2CB2_regss$cigsta3)
+
+cw2cb2 <- svydesign(id = ~area, strat = ~gor, weights=~wti1to8, data = CW2CB2_regss, nest = TRUE)
+
+summary(svyglm(bmival ~ CB, design = cw2cb2))
+summary(svyglm(bmival ~ CB + AGE + SEX + cigsta3 + dnnow, design = cw2cb2))
+```
+
+
+
+```
+## Call:
+## svyglm(formula = bmival ~ CB, design = cw2cb2)
+## 
+## Survey design:
+## svydesign(id = ~area, strat = ~gor, weights = ~wti1to8, data = CW2CB2_regss, 
+##     nest = TRUE)
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  26.6815     0.2917  91.468  < 2e-16 ***
+## CB            0.5474     0.2026   2.702  0.00699 ** 
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+## 
+## (Dispersion parameter for gaussian family taken to be 28.88983)
+## 
+## Number of Fisher Scoring iterations: 2
+## 
+## 
+## Call:
+## svyglm(formula = bmival ~ CB + AGE + SEX + cigsta3 + dnnow, design = cw2cb2)
+## 
+## Survey design:
+## svydesign(id = ~area, strat = ~gor, weights = ~wti1to8, data = CW2CB2_regss, 
+##     nest = TRUE)
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 24.53607    0.49745  49.324  < 2e-16 ***
+## CB           0.44258    0.20174   2.194   0.0285 *  
+## AGE          0.04177    0.00582   7.176 1.33e-12 ***
+## SEX         -0.21736    0.18620  -1.167   0.2433    
+## cigsta32     1.18384    0.29947   3.953 8.22e-05 ***
+## cigsta33     0.48760    0.24885   1.959   0.0503 .  
+## dnnow2       0.42970    0.24531   1.752   0.0801 .  
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+## 
+## (Dispersion parameter for gaussian family taken to be 27.97746)
+## 
+## Number of Fisher Scoring iterations: 2
+```
+
+
+After adjusting for age, sex, smoking, and drinking, subjects in latent class 2 were averagely with 0.748599 kg/m^2^ higher BMI compared with subjects in latent class 1.
+
+### Compare with results in Stata (they are very similar, and we use Stata subsequently): 
+
+```{r engine='stata', echo=FALSE}
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define drinking 1 "no" 2 "yes"
+label values dnnow drinking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+
+// weighting with individual weights, area is primary sampling unit, gor is the cluster variable
+
+svyset area [pweight = wti1to8], strata(gor)
+
+svydescribe wti
+svy: mean bmival
+
+// two-way table
+
+svy: tabulate Sex CB, row se ci format(%7.3f)
+svy: tabulate Sex CB, col se ci format(%7.3f)
+
+// comparing means
+svy: mean bmi, over(CB)
+
+svy: regress bmival i.CB
+svy: regress bmival i.CB age i.Sex i.cigsta3 i.dnnow
+
+svy: regress wstval i.CB#i.Sex age  i.cigsta3 i.dnnow
+
+svy: regress wst i.CB age i.cigsta3 i.dnnow if Sex == 1
+svy: regress wst i.CB age i.cigsta3 i.dnnow if Sex == 2
+```
+
+
+
+## 3by2 multilevel LCA dataset (BMI)
+
+```{r engine='stata', echo=FALSE}
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_regss.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define drinking 1 "no" 2 "yes"
+label values dnnow drinking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+
+
+svyset area [pweight = wti1to8], strata(gor)
+svydescribe wti
+svy: mean bmival
+svy: mean bmival if CB == 1
+svy: mean bmival if CB == 2
+
+svy: regress bmival i.CB
+svy: regress bmival i.CB age i.Sex i.cigsta3 i.dnnow
+```
+
+
+
+## 2 classes LCGA dataset (BMI)
+
+```{r engine='stata', echo=FALSE}
+
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define drinking 1 "no" 2 "yes"
+label values dnnow drinking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+
+
+
+svyset area [pweight = wti1to8], strata(gor)
+svydescribe wti
+svy: mean bmival
+svy: mean bmival if C == 1
+svy: mean bmival if C == 2
+
+
+
+svy: regress bmival i.C
+svy: regress bmival i.C age i.Sex i.cigsta3 i.dnnow
+```
+
+
+## 3 classes LCGA dataset (BMI)
+
+```{r engine='stata', echo=FALSE}
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_3class.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define drinking 1 "no" 2 "yes"
+label values dnnow drinking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+
+
+svyset area [pweight = wti1to8], strata(gor)
+svy: mean bmival
+svy: mean bmival if C == 1
+svy: mean bmival if C == 2
+svy: mean bmival if C == 3
+svy: regress bmival i.C
+svy: regress bmival i.C age i.Sex i.cigsta3 i.dnnow
+```
+
+
+
+# (Waist Circumference) survey designed analysis 
+
+## 2by2 multilevel LCA dataset (WC)
+
+
+```{r engine='stata', echo=FALSE}
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define drinking 1 "no" 2 "yes"
+label values dnnow drinking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+
+
+svyset area [pweight = wti1to8], strata(gor)
+
+//svydescribe wti
+svy: mean wstval
+svy: mean wstval if CB == 1
+svy: mean wstval if CB == 2
+
+
+svy: regress wst i.CB
+svy: regress wst i.CB age i.Sex i.cigsta3 i.dnnow
+svy: regress wstval i.CB#i.Sex age  i.cigsta3 i.dnnow
+
+svy: regress wst i.CB age i.cigsta3 i.dnnow if Sex == 1
+svy: regress wst i.CB age i.cigsta3 i.dnnow if Sex == 2
+```
+
+
+
+## 3by2 multilevel LCA dataset (WC)
+
+```{r engine='stata', echo=FALSE}
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_regss.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define drinking 1 "no" 2 "yes"
+label values dnnow drinking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+
+
+svyset area [pweight = wti1to8], strata(gor)
+//svydescribe wti
+svy: mean wstval
+svy: mean wstval if CB == 1
+svy: mean wstval if CB == 2
+
+svy: regress wstval i.CB
+svy: regress wstval i.CB age i.Sex i.cigsta3 i.dnnow
+svy: regress wstval i.CB#i.Sex age  i.cigsta3 i.dnnow
+
+svy: regress wst i.CB age i.cigsta3 i.dnnow if Sex == 1
+svy: regress wst i.CB age i.cigsta3 i.dnnow if Sex == 2
+```
