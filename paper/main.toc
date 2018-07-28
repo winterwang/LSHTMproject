@@ -23,15 +23,15 @@
 \contentsline {section}{Association between latent classes and other variables}{10}{section*.32}
 \contentsline {chapter}{\numberline {3}Results}{11}{chapter.33}
 \contentsline {section}{Main Section 1}{11}{section*.34}
-\contentsline {subsection}{Subsection 1}{11}{section*.35}
-\contentsline {subsection}{Subsection 2}{11}{section*.36}
-\contentsline {section}{Main Section 2}{11}{section*.37}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{12}{chapter.38}
-\contentsline {section}{Main Section 1}{12}{section*.39}
-\contentsline {subsection}{Subsection 1}{12}{section*.40}
-\contentsline {subsection}{Subsection 2}{12}{section*.41}
-\contentsline {section}{Main Section 2}{12}{section*.42}
-\contentsline {chapter}{Bibliography}{13}{chapter*.43}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{15}{appendix.44}
-\contentsline {chapter}{\numberline {B}Mplus code for Multilevel LCA models}{20}{appendix.45}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{21}{appendix.46}
+\contentsline {subsection}{Subsection 1}{11}{section*.36}
+\contentsline {subsection}{Subsection 2}{11}{section*.37}
+\contentsline {section}{Main Section 2}{11}{section*.38}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{14}{chapter.40}
+\contentsline {section}{Main Section 1}{14}{section*.41}
+\contentsline {subsection}{Subsection 1}{14}{section*.42}
+\contentsline {subsection}{Subsection 2}{14}{section*.43}
+\contentsline {section}{Main Section 2}{14}{section*.44}
+\contentsline {chapter}{Bibliography}{15}{chapter*.45}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{17}{appendix.46}
+\contentsline {chapter}{\numberline {B}Mplus code for Multilevel LCA models}{22}{appendix.47}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{23}{appendix.48}

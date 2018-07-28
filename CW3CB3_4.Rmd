@@ -1,7 +1,7 @@
 ---
 title: "NDNS multilevel LCA CW2CB2 or CW2CB3"
 author: "Chaochen Wang"
-date: "19 July 2018"
+date: "Created at 2018-7-19, Updated at `r Sys.Date()`"
 output: 
   html_document:
     toc: true

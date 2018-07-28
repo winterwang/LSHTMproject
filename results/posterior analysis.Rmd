@@ -144,6 +144,8 @@ tab1(LCGA_3class$C, graph = FALSE)
 # change the following path according to your own data folders
 
 blood78 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_indiv.dta")
+# blood78 <- read_dta("~/Documents/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_indiv.dta")
+
 blood56 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr5-6a_indiv.dta")
 blood14 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_indiv_uk.dta")
 
@@ -164,11 +166,11 @@ names(food14)[names(food14)=="seriali"] <- "ID"
 
 
 BMI78 <- blood78 %>% 
-  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2, MVPAtime, 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2,  
          Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y78, wtn_Y78, wtb_Y78, cluster1, cluster2, cluster3, 
          cluster4, cluster5, area, gor) %>% 
   rename(wti = wti_Y78, wtn = wtn_Y78, wtb = wtb_Y78, drink = dnoft3) %>% 
-  mutate(Years = "7-8") %>% 
+  mutate(Years = "7-8", MVPAtime = NA) %>% 
   replace_with_na(replace = list(bmival = -1, 
                                  wstval = -1, 
                                  bpmedd2 = -1, 
@@ -181,9 +183,8 @@ BMI78 <- blood78 %>%
                                  A1C  = -1, 
                                  dnnow = -1,
                                  drink = -1,
-                                 cigsta3 = -1, 
-                                 MVPAtime = -4)) %>% 
-  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, MVPAtime = -1,
+                                 cigsta3 = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1,
                                  drink = -8)) %>% 
     replace_with_na(replace = list(drink = -9,
                                  cigsta3 = -8))

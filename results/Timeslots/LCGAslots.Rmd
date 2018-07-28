@@ -1,0 +1,748 @@
+---
+title: "LCGA 7 timeslots"
+author: "Chaochen Wang"
+date: "Created at 28 July 2018, Updated at `r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    nature:
+      highlightLines: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Model comparison and selection
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(RColorBrewer)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(epiDisplay)
+library(scales)
+library(readr)
+rm(list=ls(all=TRUE))
+# load("~/Documents/LSHTMproject/Rcode/day4LCA1_6.Rdata")
+
+library(kableExtra)
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/ndns_LGCA_slots.csv", header = T)
+names(dt) <- c("N of classes", "N of free parameters","log-likelihood",  "AIC", "BIC", "aBIC", "Entropy")
+# dt[1,8] <- "--"
+# dt[2,8] <- "< 0.0001"
+# dt[3,8] <- "< 0.0001"
+kable(dt, digits = 4, row.names = FALSE, align = "c",
+              format = "html", caption = "Latent class growth analysis class selection. (All data, n = 6155, 24483 data points)") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  # row_spec(3, bold = T, color = "white", background = "#D7261E") %>% 
+  footnote(general = "Abbreviation: N, number; AIC, Akaike information criterion; BIC, Bayesian information criterion; aBIC, adjusted BIC; Entropy, a pseudo-r-squared index.")
+```
+
+
+# LCGA in four days of Survey (2 classes)
+
+
+```{r echo=FALSE, fig.height=6, fig.width=15, message=FALSE, warning=FALSE, cache=TRUE}
+library(readr)
+Slots_LGCA_2CLASS <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/LGCA/NDNSslot_LGCA_2CLASS.txt", 
+    col_names = FALSE)
+
+
+Slots_LGCA_2CLASS[, 1:32] <- sapply(Slots_LGCA_2CLASS[, 1:32], as.numeric)
+names(Slots_LGCA_2CLASS) <- c(
+  "H6_9_X",  "H9_12_X",
+  "H12_14_X",  "H14_17_X",
+  "H17_20_X",  "H20_22_X",
+  "H22_6_X",  
+  "H6_9_Y",  "H9_12_Y",
+  "H12_14_Y",  "H14_17_Y",
+  "H17_20_Y",  "H20_22_Y",
+  "H22_6_Y",  
+  "H6_9_X_X",  "H9_12_X_X",
+  "H12_14_X_X",  "H14_17_X_X",
+  "H17_20_X_X",  "H20_22_X_X",
+  "H22_6_X_X",  
+  "H6_9_Y_Y",  "H9_12_Y_Y",
+  "H12_14_Y_Y",  "H14_17_Y_Y",
+  "H17_20_Y_Y",  "H20_22_Y_Y",
+  "H22_6_Y_Y",  
+  "ID",
+  "CPROB1",  "CPROB2",
+  #"CPROB3",  #"CPROB4", 
+  "C")
+
+Slots_LGCA_2CLASS[Slots_LGCA_2CLASS == "*"] <- NA
+ppd1 <- Slots_LGCA_2CLASS %>% 
+  group_by(C) %>% 
+  summarise(d1H6_9_0 = sum(H6_9_X == 0, na.rm = T)/length(H6_9_X), 
+            d1H6_9_1 = sum(H6_9_X == 1, na.rm = T)/length(H6_9_X), 
+            d1H6_9_2 = sum(H6_9_X == 2, na.rm = T)/length(H6_9_X),
+            d1H9_12_0 = sum(H9_12_X == 0, na.rm = T)/length(H9_12_X),
+            d1H9_12_1 = sum(H9_12_X == 1, na.rm = T)/length(H9_12_X), 
+            d1H9_12_2 = sum(H9_12_X == 2, na.rm = T)/length(H9_12_X),
+            d1H12_14_0 = sum(H12_14_X == 0, na.rm = T)/length(H12_14_X),
+            d1H12_14_1 = sum(H12_14_X == 1, na.rm = T)/length(H12_14_X), 
+            d1H12_14_2 = sum(H12_14_X == 2, na.rm = T)/length(H12_14_X),
+            d1H14_17_0 = sum(H14_17_X == 0, na.rm = T)/length(H14_17_X),
+            d1H14_17_1 = sum(H14_17_X == 1, na.rm = T)/length(H14_17_X), 
+            d1H14_17_2 = sum(H14_17_X == 2, na.rm = T)/length(H14_17_X),
+            d1H17_20_0 = sum(H17_20_X == 0, na.rm = T)/length(H17_20_X),
+            d1H17_20_1 = sum(H17_20_X == 1, na.rm = T)/length(H17_20_X), 
+            d1H17_20_2 = sum(H17_20_X == 2, na.rm = T)/length(H17_20_X),
+            d1H20_22_0 = sum(H20_22_X == 0, na.rm = T)/length(H20_22_X),
+            d1H20_22_1 = sum(H20_22_X == 1, na.rm = T)/length(H20_22_X), 
+            d1H20_22_2 = sum(H20_22_X == 2, na.rm = T)/length(H20_22_X),
+            d1H22_6_0 = sum(H22_6_X == 0, na.rm = T)/length(H22_6_X),
+            d1H22_6_1 = sum(H22_6_X == 1, na.rm = T)/length(H22_6_X), 
+            d1H22_6_2 = sum(H22_6_X == 2, na.rm = T)/length(H22_6_X)
+            )
+
+
+ppd2 <- Slots_LGCA_2CLASS %>% 
+  group_by(C) %>% 
+  summarise(d2H6_9_0 = sum(H6_9_Y == 0, na.rm = T)/length(H6_9_Y), 
+            d2H6_9_1 = sum(H6_9_Y == 1, na.rm = T)/length(H6_9_Y), 
+            d2H6_9_2 = sum(H6_9_Y == 2, na.rm = T)/length(H6_9_Y),
+            d2H9_12_0 = sum(H9_12_Y == 0, na.rm = T)/length(H9_12_Y),
+            d2H9_12_1 = sum(H9_12_Y == 1, na.rm = T)/length(H9_12_Y), 
+            d2H9_12_2 = sum(H9_12_Y == 2, na.rm = T)/length(H9_12_Y),
+            d2H12_14_0 = sum(H12_14_Y == 0, na.rm = T)/length(H12_14_Y),
+            d2H12_14_1 = sum(H12_14_Y == 1, na.rm = T)/length(H12_14_Y), 
+            d2H12_14_2 = sum(H12_14_Y == 2, na.rm = T)/length(H12_14_Y),
+            d2H14_17_0 = sum(H14_17_Y == 0, na.rm = T)/length(H14_17_Y),
+            d2H14_17_1 = sum(H14_17_Y == 1, na.rm = T)/length(H14_17_Y), 
+            d2H14_17_2 = sum(H14_17_Y == 2, na.rm = T)/length(H14_17_Y),
+            d2H17_20_0 = sum(H17_20_Y == 0, na.rm = T)/length(H17_20_Y),
+            d2H17_20_1 = sum(H17_20_Y == 1, na.rm = T)/length(H17_20_Y), 
+            d2H17_20_2 = sum(H17_20_Y == 2, na.rm = T)/length(H17_20_Y),
+            d2H20_22_0 = sum(H20_22_Y == 0, na.rm = T)/length(H20_22_Y),
+            d2H20_22_1 = sum(H20_22_Y == 1, na.rm = T)/length(H20_22_Y), 
+            d2H20_22_2 = sum(H20_22_Y == 2, na.rm = T)/length(H20_22_Y),
+            d2H22_6_0 = sum(H22_6_Y == 0, na.rm = T)/length(H22_6_Y),
+            d2H22_6_1 = sum(H22_6_Y == 1, na.rm = T)/length(H22_6_Y), 
+            d2H22_6_2 = sum(H22_6_Y == 2, na.rm = T)/length(H22_6_Y))
+
+
+
+
+ppd3 <- Slots_LGCA_2CLASS %>% 
+  group_by(C) %>% 
+  summarise(
+            d3H6_9_0 = sum(H6_9_X_X == 0.000, na.rm = T)/length(H6_9_X_X), 
+            d3H6_9_1 = sum(H6_9_X_X == 1.000, na.rm = T)/length(H6_9_X_X), 
+            d3H6_9_2 = sum(H6_9_X_X == 2.000, na.rm = T)/length(H6_9_X_X),
+            d3H9_12_0 = sum(H9_12_X_X == 0.000, na.rm = T)/length(H9_12_X_X),
+            d3H9_12_1 = sum(H9_12_X_X == 1.000, na.rm = T)/length(H9_12_X_X), 
+            d3H9_12_2 = sum(H9_12_X_X == 2.000, na.rm = T)/length(H9_12_X_X),
+            d3H12_14_0 = sum(H12_14_X_X == 0.000, na.rm = T)/length(H12_14_X_X),
+            d3H12_14_1 = sum(H12_14_X_X == 1.000, na.rm = T)/length(H12_14_X_X), 
+            d3H12_14_2 = sum(H12_14_X_X == 2.000, na.rm = T)/length(H12_14_X_X),
+            d3H14_17_0 = sum(H14_17_X_X == 0.000, na.rm = T)/length(H14_17_X_X),
+            d3H14_17_1 = sum(H14_17_X_X == 1.000, na.rm = T)/length(H14_17_X_X), 
+            d3H14_17_2 = sum(H14_17_X_X == 2.000, na.rm = T)/length(H14_17_X_X),
+            d3H17_20_0 = sum(H17_20_X_X == 0.000, na.rm = T)/length(H17_20_X_X),
+            d3H17_20_1 = sum(H17_20_X_X == 1.000, na.rm = T)/length(H17_20_X_X), 
+            d3H17_20_2 = sum(H17_20_X_X == 2.000, na.rm = T)/length(H17_20_X_X),
+            d3H20_22_0 = sum(H20_22_X_X == 0.000, na.rm = T)/length(H20_22_X_X),
+            d3H20_22_1 = sum(H20_22_X_X == 1.000, na.rm = T)/length(H20_22_X_X), 
+            d3H20_22_2 = sum(H20_22_X_X == 2.000, na.rm = T)/length(H20_22_X_X),
+            d3H22_6_0 = sum(H22_6_X_X == 0.000, na.rm = T)/length(H22_6_X_X),
+            d3H22_6_1 = sum(H22_6_X_X == 1.000, na.rm = T)/length(H22_6_X_X), 
+            d3H22_6_2 = sum(H22_6_X_X == 2.000, na.rm = T)/length(H22_6_X_X))
+
+
+ppd4 <- Slots_LGCA_2CLASS %>% 
+  group_by(C) %>% 
+  summarise(d4H6_9_0 = sum(H6_9_Y_Y == 0.000, na.rm = T)/length(H6_9_Y_Y), 
+            d4H6_9_1 = sum(H6_9_Y_Y == 1.000, na.rm = T)/length(H6_9_Y_Y), 
+            d4H6_9_2 = sum(H6_9_Y_Y == 2.000, na.rm = T)/length(H6_9_Y_Y),
+            d4H9_12_0 = sum(H9_12_Y_Y == 0.000, na.rm = T)/length(H9_12_Y_Y),
+            d4H9_12_1 = sum(H9_12_Y_Y == 1.000, na.rm = T)/length(H9_12_Y_Y), 
+            d4H9_12_2 = sum(H9_12_Y_Y == 2.000, na.rm = T)/length(H9_12_Y_Y),
+            d4H12_14_0 = sum(H12_14_Y_Y == 0.000, na.rm = T)/length(H12_14_Y_Y),
+            d4H12_14_1 = sum(H12_14_Y_Y == 1.000, na.rm = T)/length(H12_14_Y_Y), 
+            d4H12_14_2 = sum(H12_14_Y_Y == 2.000, na.rm = T)/length(H12_14_Y_Y),
+            d4H14_17_0 = sum(H14_17_Y_Y == 0.000, na.rm = T)/length(H14_17_Y_Y),
+            d4H14_17_1 = sum(H14_17_Y_Y == 1.000, na.rm = T)/length(H14_17_Y_Y), 
+            d4H14_17_2 = sum(H14_17_Y_Y == 2.000, na.rm = T)/length(H14_17_Y_Y),
+            d4H17_20_0 = sum(H17_20_Y_Y == 0.000, na.rm = T)/length(H17_20_Y_Y),
+            d4H17_20_1 = sum(H17_20_Y_Y == 1.000, na.rm = T)/length(H17_20_Y_Y), 
+            d4H17_20_2 = sum(H17_20_Y_Y == 2.000, na.rm = T)/length(H17_20_Y_Y),
+            d4H20_22_0 = sum(H20_22_Y_Y == 0.000, na.rm = T)/length(H20_22_Y_Y),
+            d4H20_22_1 = sum(H20_22_Y_Y == 1.000, na.rm = T)/length(H20_22_Y_Y), 
+            d4H20_22_2 = sum(H20_22_Y_Y == 2.000, na.rm = T)/length(H20_22_Y_Y),
+            d4H22_6_0 = sum(H22_6_Y_Y == 0.000, na.rm = T)/length(H22_6_Y_Y),
+            d4H22_6_1 = sum(H22_6_Y_Y == 1.000, na.rm = T)/length(H22_6_Y_Y), 
+            d4H22_6_2 = sum(H22_6_Y_Y == 2.000, na.rm = T)/length(H22_6_Y_Y))
+
+
+
+ppd1_long <- ppd1 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd", "Carbo"), sep = "_(?=[:digit:])") 
+ppd2_long <- ppd2 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd","Carbo"), sep = "_(?=[:digit:])") 
+ppd3_long <- ppd3 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd", "Carbo"), sep = "_(?=[:digit:])") 
+ppd4_long <- ppd4 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd", "Carbo"), sep = "_(?=[:digit:])") 
+
+
+pp <- bind_rows(ppd1_long, ppd2_long, ppd3_long, ppd4_long)
+
+
+pp$DHourN <- factor(pp$DHourN, 
+                        levels = c("d1H6",  "d1H9",
+                                   "d1H12",  "d1H14",
+                                   "d1H17",  "d1H20",
+                                   "d1H22",  
+                                   "d2H6",    "d2H9",
+                                   "d2H12",  "d2H14",
+                                   "d2H17",  "d2H20",
+                                   "d2H22",  
+                                   "d3H6",    "d3H9",
+                                   "d3H12",    "d3H14",
+                                   "d3H17",    "d3H20",
+                                   "d3H22",  
+                                   "d4H6",    "d4H9",
+                                   "d4H12",   "d4H14",
+                                   "d4H17",   "d4H20",
+                                   "d4H22"))
+
+
+
+
+
+
+
+library(ggthemr)
+ggthemr("fresh", layout = "scientific")
+library(ggplot2)
+
+
+ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 14), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15),
+        legend.position = "bottom",
+        legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 1: 43.9%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+  ylim(c(0,1)) + 
+  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("rect", xmin = "d3H6", xmax = "d4H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d4H6", xmax = "d4H22", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("text", x = "d1H12", y = 0.9,
+            label = "Day 1", size = 7) +
+  annotate("text", x = "d2H12", y = 0.9,
+            label = "Day 2", size = 7) + 
+  annotate("text", x = "d3H12", y = 0.9,
+            label = "Day 3", size = 7) +
+  annotate("text", x = "d4H12", y = 0.9,
+            label = "Day 4", size = 7) + 
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",    "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
+                                   "d3H12" = "12-14",    "d3H14" = "14-17",
+                                   "d3H17" = "17-20",    "d3H20" = "20-22",
+                                   "d3H22" = "22-6",  
+                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
+                                   "d4H12" = "12-14",   "d4H14" = "14-17",
+                                   "d4H17" = "17-20",   "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
+
+
+
+ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 14), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15), 
+        legend.position = "bottom",
+        legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 2: 56.1%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+  ylim(c(0,1)) + 
+  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("rect", xmin = "d3H6", xmax = "d4H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d4H6", xmax = "d4H22", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("text", x = "d1H12", y = 0.9,
+            label = "Day 1", size = 7) +
+  annotate("text", x = "d2H12", y = 0.9,
+            label = "Day 2", size = 7) + 
+  annotate("text", x = "d3H12", y = 0.9,
+            label = "Day 3", size = 7) +
+  annotate("text", x = "d4H12", y = 0.9,
+            label = "Day 4", size = 7) + 
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",    "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
+                                   "d3H12" = "12-14",    "d3H14" = "14-17",
+                                   "d3H17" = "17-20",    "d3H20" = "20-22",
+                                   "d3H22" = "22-6",  
+                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
+                                   "d4H12" = "12-14",   "d4H14" = "14-17",
+                                   "d4H17" = "17-20",   "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
+
+
+
+# ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
+#   geom_point(size = 2) + 
+#   geom_line(size = 1) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 10), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#   ) + 
+#   labs(title = "Class 3", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrate\nintake") + 
+#   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+#   ylim(c(0,1)) + 
+#   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+
+
+# ggplot(pp[pp$C == 4, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
+#   geom_point(size = 2) + 
+#   geom_line(size = 1) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 10), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#   ) + 
+#   labs(title = "Class 3", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrate\nintake") + 
+#   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+#   ylim(c(0,1)) + 
+#   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+
+# LCGA in four days of Survey (3 classes)
+
+
+```{r echo=FALSE, fig.height=6, fig.width=15, message=FALSE, warning=FALSE, cache=TRUE}
+library(readr)
+Slots_LGCA_3CLASS <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/LGCA/NDNSslot_LGCA_3CLASS.txt", 
+    col_names = FALSE)
+
+
+Slots_LGCA_3CLASS[, 1:32] <- sapply(Slots_LGCA_3CLASS[, 1:32], as.numeric)
+names(Slots_LGCA_3CLASS) <- c(
+  "H6_9_X",  "H9_12_X",
+  "H12_14_X",  "H14_17_X",
+  "H17_20_X",  "H20_22_X",
+  "H22_6_X",  
+  "H6_9_Y",  "H9_12_Y",
+  "H12_14_Y",  "H14_17_Y",
+  "H17_20_Y",  "H20_22_Y",
+  "H22_6_Y",  
+  "H6_9_X_X",  "H9_12_X_X",
+  "H12_14_X_X",  "H14_17_X_X",
+  "H17_20_X_X",  "H20_22_X_X",
+  "H22_6_X_X",  
+  "H6_9_Y_Y",  "H9_12_Y_Y",
+  "H12_14_Y_Y",  "H14_17_Y_Y",
+  "H17_20_Y_Y",  "H20_22_Y_Y",
+  "H22_6_Y_Y",  
+  "ID",
+  "CPROB1",  "CPROB2",
+  "CPROB3",  #"CPROB4", 
+  "C")
+
+Slots_LGCA_3CLASS[Slots_LGCA_3CLASS == "*"] <- NA
+ppd1 <- Slots_LGCA_3CLASS %>% 
+  group_by(C) %>% 
+  summarise(d1H6_9_0 = sum(H6_9_X == 0, na.rm = T)/length(H6_9_X), 
+            d1H6_9_1 = sum(H6_9_X == 1, na.rm = T)/length(H6_9_X), 
+            d1H6_9_2 = sum(H6_9_X == 2, na.rm = T)/length(H6_9_X),
+            d1H9_12_0 = sum(H9_12_X == 0, na.rm = T)/length(H9_12_X),
+            d1H9_12_1 = sum(H9_12_X == 1, na.rm = T)/length(H9_12_X), 
+            d1H9_12_2 = sum(H9_12_X == 2, na.rm = T)/length(H9_12_X),
+            d1H12_14_0 = sum(H12_14_X == 0, na.rm = T)/length(H12_14_X),
+            d1H12_14_1 = sum(H12_14_X == 1, na.rm = T)/length(H12_14_X), 
+            d1H12_14_2 = sum(H12_14_X == 2, na.rm = T)/length(H12_14_X),
+            d1H14_17_0 = sum(H14_17_X == 0, na.rm = T)/length(H14_17_X),
+            d1H14_17_1 = sum(H14_17_X == 1, na.rm = T)/length(H14_17_X), 
+            d1H14_17_2 = sum(H14_17_X == 2, na.rm = T)/length(H14_17_X),
+            d1H17_20_0 = sum(H17_20_X == 0, na.rm = T)/length(H17_20_X),
+            d1H17_20_1 = sum(H17_20_X == 1, na.rm = T)/length(H17_20_X), 
+            d1H17_20_2 = sum(H17_20_X == 2, na.rm = T)/length(H17_20_X),
+            d1H20_22_0 = sum(H20_22_X == 0, na.rm = T)/length(H20_22_X),
+            d1H20_22_1 = sum(H20_22_X == 1, na.rm = T)/length(H20_22_X), 
+            d1H20_22_2 = sum(H20_22_X == 2, na.rm = T)/length(H20_22_X),
+            d1H22_6_0 = sum(H22_6_X == 0, na.rm = T)/length(H22_6_X),
+            d1H22_6_1 = sum(H22_6_X == 1, na.rm = T)/length(H22_6_X), 
+            d1H22_6_2 = sum(H22_6_X == 2, na.rm = T)/length(H22_6_X)
+            )
+
+
+ppd2 <- Slots_LGCA_3CLASS %>% 
+  group_by(C) %>% 
+  summarise(d2H6_9_0 = sum(H6_9_Y == 0, na.rm = T)/length(H6_9_Y), 
+            d2H6_9_1 = sum(H6_9_Y == 1, na.rm = T)/length(H6_9_Y), 
+            d2H6_9_2 = sum(H6_9_Y == 2, na.rm = T)/length(H6_9_Y),
+            d2H9_12_0 = sum(H9_12_Y == 0, na.rm = T)/length(H9_12_Y),
+            d2H9_12_1 = sum(H9_12_Y == 1, na.rm = T)/length(H9_12_Y), 
+            d2H9_12_2 = sum(H9_12_Y == 2, na.rm = T)/length(H9_12_Y),
+            d2H12_14_0 = sum(H12_14_Y == 0, na.rm = T)/length(H12_14_Y),
+            d2H12_14_1 = sum(H12_14_Y == 1, na.rm = T)/length(H12_14_Y), 
+            d2H12_14_2 = sum(H12_14_Y == 2, na.rm = T)/length(H12_14_Y),
+            d2H14_17_0 = sum(H14_17_Y == 0, na.rm = T)/length(H14_17_Y),
+            d2H14_17_1 = sum(H14_17_Y == 1, na.rm = T)/length(H14_17_Y), 
+            d2H14_17_2 = sum(H14_17_Y == 2, na.rm = T)/length(H14_17_Y),
+            d2H17_20_0 = sum(H17_20_Y == 0, na.rm = T)/length(H17_20_Y),
+            d2H17_20_1 = sum(H17_20_Y == 1, na.rm = T)/length(H17_20_Y), 
+            d2H17_20_2 = sum(H17_20_Y == 2, na.rm = T)/length(H17_20_Y),
+            d2H20_22_0 = sum(H20_22_Y == 0, na.rm = T)/length(H20_22_Y),
+            d2H20_22_1 = sum(H20_22_Y == 1, na.rm = T)/length(H20_22_Y), 
+            d2H20_22_2 = sum(H20_22_Y == 2, na.rm = T)/length(H20_22_Y),
+            d2H22_6_0 = sum(H22_6_Y == 0, na.rm = T)/length(H22_6_Y),
+            d2H22_6_1 = sum(H22_6_Y == 1, na.rm = T)/length(H22_6_Y), 
+            d2H22_6_2 = sum(H22_6_Y == 2, na.rm = T)/length(H22_6_Y))
+
+
+
+
+ppd3 <- Slots_LGCA_3CLASS %>% 
+  group_by(C) %>% 
+  summarise(
+            d3H6_9_0 = sum(H6_9_X_X == 0.000, na.rm = T)/length(H6_9_X_X), 
+            d3H6_9_1 = sum(H6_9_X_X == 1.000, na.rm = T)/length(H6_9_X_X), 
+            d3H6_9_2 = sum(H6_9_X_X == 2.000, na.rm = T)/length(H6_9_X_X),
+            d3H9_12_0 = sum(H9_12_X_X == 0.000, na.rm = T)/length(H9_12_X_X),
+            d3H9_12_1 = sum(H9_12_X_X == 1.000, na.rm = T)/length(H9_12_X_X), 
+            d3H9_12_2 = sum(H9_12_X_X == 2.000, na.rm = T)/length(H9_12_X_X),
+            d3H12_14_0 = sum(H12_14_X_X == 0.000, na.rm = T)/length(H12_14_X_X),
+            d3H12_14_1 = sum(H12_14_X_X == 1.000, na.rm = T)/length(H12_14_X_X), 
+            d3H12_14_2 = sum(H12_14_X_X == 2.000, na.rm = T)/length(H12_14_X_X),
+            d3H14_17_0 = sum(H14_17_X_X == 0.000, na.rm = T)/length(H14_17_X_X),
+            d3H14_17_1 = sum(H14_17_X_X == 1.000, na.rm = T)/length(H14_17_X_X), 
+            d3H14_17_2 = sum(H14_17_X_X == 2.000, na.rm = T)/length(H14_17_X_X),
+            d3H17_20_0 = sum(H17_20_X_X == 0.000, na.rm = T)/length(H17_20_X_X),
+            d3H17_20_1 = sum(H17_20_X_X == 1.000, na.rm = T)/length(H17_20_X_X), 
+            d3H17_20_2 = sum(H17_20_X_X == 2.000, na.rm = T)/length(H17_20_X_X),
+            d3H20_22_0 = sum(H20_22_X_X == 0.000, na.rm = T)/length(H20_22_X_X),
+            d3H20_22_1 = sum(H20_22_X_X == 1.000, na.rm = T)/length(H20_22_X_X), 
+            d3H20_22_2 = sum(H20_22_X_X == 2.000, na.rm = T)/length(H20_22_X_X),
+            d3H22_6_0 = sum(H22_6_X_X == 0.000, na.rm = T)/length(H22_6_X_X),
+            d3H22_6_1 = sum(H22_6_X_X == 1.000, na.rm = T)/length(H22_6_X_X), 
+            d3H22_6_2 = sum(H22_6_X_X == 2.000, na.rm = T)/length(H22_6_X_X))
+
+
+ppd4 <- Slots_LGCA_3CLASS %>% 
+  group_by(C) %>% 
+  summarise(d4H6_9_0 = sum(H6_9_Y_Y == 0.000, na.rm = T)/length(H6_9_Y_Y), 
+            d4H6_9_1 = sum(H6_9_Y_Y == 1.000, na.rm = T)/length(H6_9_Y_Y), 
+            d4H6_9_2 = sum(H6_9_Y_Y == 2.000, na.rm = T)/length(H6_9_Y_Y),
+            d4H9_12_0 = sum(H9_12_Y_Y == 0.000, na.rm = T)/length(H9_12_Y_Y),
+            d4H9_12_1 = sum(H9_12_Y_Y == 1.000, na.rm = T)/length(H9_12_Y_Y), 
+            d4H9_12_2 = sum(H9_12_Y_Y == 2.000, na.rm = T)/length(H9_12_Y_Y),
+            d4H12_14_0 = sum(H12_14_Y_Y == 0.000, na.rm = T)/length(H12_14_Y_Y),
+            d4H12_14_1 = sum(H12_14_Y_Y == 1.000, na.rm = T)/length(H12_14_Y_Y), 
+            d4H12_14_2 = sum(H12_14_Y_Y == 2.000, na.rm = T)/length(H12_14_Y_Y),
+            d4H14_17_0 = sum(H14_17_Y_Y == 0.000, na.rm = T)/length(H14_17_Y_Y),
+            d4H14_17_1 = sum(H14_17_Y_Y == 1.000, na.rm = T)/length(H14_17_Y_Y), 
+            d4H14_17_2 = sum(H14_17_Y_Y == 2.000, na.rm = T)/length(H14_17_Y_Y),
+            d4H17_20_0 = sum(H17_20_Y_Y == 0.000, na.rm = T)/length(H17_20_Y_Y),
+            d4H17_20_1 = sum(H17_20_Y_Y == 1.000, na.rm = T)/length(H17_20_Y_Y), 
+            d4H17_20_2 = sum(H17_20_Y_Y == 2.000, na.rm = T)/length(H17_20_Y_Y),
+            d4H20_22_0 = sum(H20_22_Y_Y == 0.000, na.rm = T)/length(H20_22_Y_Y),
+            d4H20_22_1 = sum(H20_22_Y_Y == 1.000, na.rm = T)/length(H20_22_Y_Y), 
+            d4H20_22_2 = sum(H20_22_Y_Y == 2.000, na.rm = T)/length(H20_22_Y_Y),
+            d4H22_6_0 = sum(H22_6_Y_Y == 0.000, na.rm = T)/length(H22_6_Y_Y),
+            d4H22_6_1 = sum(H22_6_Y_Y == 1.000, na.rm = T)/length(H22_6_Y_Y), 
+            d4H22_6_2 = sum(H22_6_Y_Y == 2.000, na.rm = T)/length(H22_6_Y_Y))
+
+
+
+ppd1_long <- ppd1 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd", "Carbo"), sep = "_(?=[:digit:])") 
+ppd2_long <- ppd2 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd","Carbo"), sep = "_(?=[:digit:])") 
+ppd3_long <- ppd3 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd", "Carbo"), sep = "_(?=[:digit:])") 
+ppd4_long <- ppd4 %>% 
+  gather(DHour, Prob, -C) %>% 
+  separate(DHour, into = c("DHourN", "HourEnd", "Carbo"), sep = "_(?=[:digit:])") 
+
+
+pp <- bind_rows(ppd1_long, ppd2_long, ppd3_long, ppd4_long)
+
+
+pp$DHourN <- factor(pp$DHourN, 
+                        levels = c("d1H6",  "d1H9",
+                                   "d1H12",  "d1H14",
+                                   "d1H17",  "d1H20",
+                                   "d1H22",  
+                                   "d2H6",    "d2H9",
+                                   "d2H12",  "d2H14",
+                                   "d2H17",  "d2H20",
+                                   "d2H22",  
+                                   "d3H6",    "d3H9",
+                                   "d3H12",    "d3H14",
+                                   "d3H17",    "d3H20",
+                                   "d3H22",  
+                                   "d4H6",    "d4H9",
+                                   "d4H12",   "d4H14",
+                                   "d4H17",   "d4H20",
+                                   "d4H22"))
+
+
+
+
+
+
+
+library(ggthemr)
+ggthemr("fresh", layout = "scientific")
+library(ggplot2)
+
+
+ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 14), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15),
+        legend.position = "bottom",
+        legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 1: 67.2%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+  ylim(c(0,1)) + 
+  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("rect", xmin = "d3H6", xmax = "d4H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d4H6", xmax = "d4H22", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("text", x = "d1H12", y = 0.9,
+            label = "Day 1", size = 7) +
+  annotate("text", x = "d2H12", y = 0.9,
+            label = "Day 2", size = 7) + 
+  annotate("text", x = "d3H12", y = 0.9,
+            label = "Day 3", size = 7) +
+  annotate("text", x = "d4H12", y = 0.9,
+            label = "Day 4", size = 7) + 
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",    "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
+                                   "d3H12" = "12-14",    "d3H14" = "14-17",
+                                   "d3H17" = "17-20",    "d3H20" = "20-22",
+                                   "d3H22" = "22-6",  
+                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
+                                   "d4H12" = "12-14",   "d4H14" = "14-17",
+                                   "d4H17" = "17-20",   "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
+
+
+
+ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) + 
+  geom_point(size = 2) + 
+  geom_line(size = 1) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 14), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15), 
+        legend.position = "bottom",
+        legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 2: 21.9%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+  ylim(c(0,1)) + 
+  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("rect", xmin = "d3H6", xmax = "d4H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d4H6", xmax = "d4H22", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("text", x = "d1H12", y = 0.9,
+            label = "Day 1", size = 7) +
+  annotate("text", x = "d2H12", y = 0.9,
+            label = "Day 2", size = 7) + 
+  annotate("text", x = "d3H12", y = 0.9,
+            label = "Day 3", size = 7) +
+  annotate("text", x = "d4H12", y = 0.9,
+            label = "Day 4", size = 7) + 
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",    "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
+                                   "d3H12" = "12-14",    "d3H14" = "14-17",
+                                   "d3H17" = "17-20",    "d3H20" = "20-22",
+                                   "d3H22" = "22-6",  
+                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
+                                   "d4H12" = "12-14",   "d4H14" = "14-17",
+                                   "d4H17" = "17-20",   "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
+
+
+
+ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
+  geom_point(size = 2) +
+  geom_line(size = 1) +
+   theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 14), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15), 
+        legend.position = "bottom",
+        legend.direction = "horizontal"
+  ) + 
+  labs(title = "Class 3: 10.9%", x = "Hour of the day", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+  ylim(c(0,1)) + 
+  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("rect", xmin = "d3H6", xmax = "d4H6", ymin = 0, ymax = 1.00, 
+            alpha = 0.2, fill = "pink") + 
+  annotate("rect", xmin = "d4H6", xmax = "d4H22", ymin = 0, ymax = 1.00, 
+             alpha = 0.18, fill = "turquoise") + 
+  annotate("text", x = "d1H12", y = 0.9,
+            label = "Day 1", size = 7) +
+  annotate("text", x = "d2H12", y = 0.9,
+            label = "Day 2", size = 7) + 
+  annotate("text", x = "d3H12", y = 0.9,
+            label = "Day 3", size = 7) +
+  annotate("text", x = "d4H12", y = 0.9,
+            label = "Day 4", size = 7) + 
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",    "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
+                                   "d3H12" = "12-14",    "d3H14" = "14-17",
+                                   "d3H17" = "17-20",    "d3H20" = "20-22",
+                                   "d3H22" = "22-6",  
+                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
+                                   "d4H12" = "12-14",   "d4H14" = "14-17",
+                                   "d4H17" = "17-20",   "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
+
+
+
+
+# ggplot(pp[pp$C == 4, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
+#   geom_point(size = 2) + 
+#   geom_line(size = 1) + 
+#   theme(axis.title = element_text(size = 18), 
+#         axis.text = element_text(size = 10), 
+#         axis.line = element_line(colour = "black"), 
+#         panel.border = element_blank(), 
+#         panel.background = element_blank(), 
+#         legend.text = element_text(size = 15), 
+#         legend.title = element_text(size = 15) 
+#         # legend.position = "bottom", 
+#         # legend.direction = "horizontal"
+#   ) + 
+#   labs(title = "Class 3", x = "Hour of the day", y = "Probability",
+#        color = "Carbohydrate\nintake") + 
+#   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
+#   ylim(c(0,1)) + 
+#   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```

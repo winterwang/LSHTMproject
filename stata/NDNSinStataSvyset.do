@@ -48,11 +48,12 @@ svy: tabulate Sex CB, col se ci format(%7.3f)
 svy: tabulate Country CB, col se ci format(%7.3f)
 svy: tabulate SurveyYear CB, col se ci format(%7.3f)
 
+
 // when dealing with LCGA classes use C instead of CB
 svy: tabulate Sex C, row se ci format(%7.3f)
 svy: tabulate Sex C, col se ci format(%7.3f)
 svy: tabulate Country C, col se ci format(%7.3f)
-
+svy: tabulate SurveyYear C, col se ci format(%7.3f)
 
 
 svy: mean bmi, over(CB)

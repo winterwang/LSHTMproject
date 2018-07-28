@@ -1,0 +1,2224 @@
+Mplus VERSION 7.4
+MUTHEN & MUTHEN
+07/27/2018  11:50 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:    LCGA  2 CLASSES
+            ordered polytomous variables for carb intake at each time slot over four
+            days of NDNS survey 2008/09 - 2015/16
+            variable 0 = not eating
+                     1 = eating & carb provided < 50% calorie
+                     2 = eating & carb provided >= 50% calorie
+
+  DATA:     File is H:\summer_project\Mplus\TimeSlots\NDNS_slot_LCGA.dat;
+
+
+  VARIABLE: NAMES = id id_dy Age Sex DayofWeek_x H6_9_x H9_12_x H12_14_x H14_17_x H17_20_x
+                    H20_22_x H22_6_x DayofWeek_y H6_9_y H9_12_y H12_14_y H14_17_y H17_20_y
+                    H20_22_y H22_6_y DayofWeek_x_x H6_9_x_x H9_12_x_x H12_14_x_x H14_17_x_x
+                    H17_20_x_x H20_22_x_x H22_6_x_x DayofWeek_y_y H6_9_y_y H9_12_y_y
+                    H12_14_y_y H14_17_y_y H17_20_y_y H20_22_y_y H22_6_y_y;
+
+            USEVAR = H6_9_x H9_12_x H12_14_x H14_17_x H17_20_x
+                    H20_22_x H22_6_x H6_9_y H9_12_y H12_14_y H14_17_y H17_20_y
+                    H20_22_y H22_6_y H6_9_x_x H9_12_x_x H12_14_x_x H14_17_x_x
+                    H17_20_x_x H20_22_x_x H22_6_x_x H6_9_y_y H9_12_y_y
+                    H12_14_y_y H14_17_y_y H17_20_y_y H20_22_y_y H22_6_y_y;
+
+            CATEGORICAL =  H6_9_x H9_12_x H12_14_x H14_17_x H17_20_x
+                    H20_22_x H22_6_x H6_9_y H9_12_y H12_14_y H14_17_y H17_20_y
+                    H20_22_y H22_6_y H6_9_x_x H9_12_x_x H12_14_x_x H14_17_x_x
+                    H17_20_x_x H20_22_x_x H22_6_x_x H6_9_y_y H9_12_y_y
+                    H12_14_y_y H14_17_y_y H17_20_y_y H20_22_y_y H22_6_y_y;
+            IDVARIABLE = id;
+            CLASSES = C(2);
+
+            MISSING are .;
+
+
+
+  ANALYSIS: TYPE = MIXTURE;
+
+  MODEL:    %OVERALL%
+
+            i s | H6_9_x@-0.9 H9_12_x@-0.8 H12_14_x@-0.7 H14_17_x@-0.6 H17_20_x@-0.5
+                    H20_22_x@-0.4 H22_6_x@-0.3 H6_9_y@-0.2 H9_12_y@-0.1 H12_14_y@0
+                    H14_17_y@0.1 H17_20_y@0.2
+                    H20_22_y@0.3 H22_6_y@0.4 H6_9_x_x@0.5 H9_12_x_x@0.6 H12_14_x_x@0.7
+                    H14_17_x_x@0.8
+                    H17_20_x_x@0.9 H20_22_x_x@1.0 H22_6_x_x@1.1 H6_9_y_y@1.2
+                     H9_12_y_y@1.3 H12_14_y_y@1.4 H14_17_y_y@1.5 H17_20_y_y@1.6
+                     H20_22_y_y@1.7 H22_6_y_y@1.8;
+
+  OUTPUT: TECH1 TECH8;
+
+  PLOT:   SERIES = H6_9_x H9_12_x H12_14_x H14_17_x H17_20_x
+                    H20_22_x H22_6_x H6_9_y H9_12_y H12_14_y H14_17_y H17_20_y
+                    H20_22_y H22_6_y H6_9_x_x H9_12_x_x H12_14_x_x H14_17_x_x
+                    H17_20_x_x H20_22_x_x H22_6_x_x H6_9_y_y H9_12_y_y
+                    H12_14_y_y H14_17_y_y H17_20_y_y H20_22_y_y H22_6_y_y(s);
+           TYPE = PLOT3;
+
+
+
+  Savedata:
+    file is H:\summer_project\Mplus\TimeSlots\LCGA\NDNSslot_LGCA_2CLASS.txt;
+    save is cprob;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+LCGA  2 CLASSES
+ordered polytomous variables for carb intake at each time slot over four
+days of NDNS survey 2008/09 - 2015/16
+variable 0 = not eating
+1 = eating & carb provided < 50% calorie
+2 = eating & carb provided >= 50% calorie
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        6155
+
+Number of dependent variables                                   28
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   H6_9_X      H9_12_X     H12_14_X    H14_17_X    H17_20_X    H20_22_X
+   H22_6_X     H6_9_Y      H9_12_Y     H12_14_Y    H14_17_Y    H17_20_Y
+   H20_22_Y    H22_6_Y     H6_9_X_X    H9_12_X_    H12_14_X    H14_17_X
+   H17_20_X    H20_22_X    H22_6_X_    H6_9_Y_Y    H9_12_Y_    H12_14_Y
+   H14_17_Y    H17_20_Y    H20_22_Y    H22_6_Y_
+
+Continuous latent variables
+   I           S
+
+Categorical latent variables
+   C
+
+Variables with special functions
+
+  ID variable           ID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  H:\summer_project\Mplus\TimeSlots\NDNS_slot_LCGA.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             7
+     Number of y missing data patterns           0
+     Number of u missing data patterns           7
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              H6_9_X        H9_12_X       H12_14_X      H14_17_X      H17_20_X
+              ________      ________      ________      ________      ________
+ H6_9_X         1.000
+ H9_12_X        1.000         1.000
+ H12_14_X       1.000         1.000         1.000
+ H14_17_X       1.000         1.000         1.000         1.000
+ H17_20_X       1.000         1.000         1.000         1.000         1.000
+ H20_22_X       1.000         1.000         1.000         1.000         1.000
+ H22_6_X        1.000         1.000         1.000         1.000         1.000
+ H6_9_Y         0.999         0.999         0.999         0.999         0.999
+ H9_12_Y        0.999         0.999         0.999         0.999         0.999
+ H12_14_Y       0.999         0.999         0.999         0.999         0.999
+ H14_17_Y       0.999         0.999         0.999         0.999         0.999
+ H17_20_Y       0.999         0.999         0.999         0.999         0.999
+ H20_22_Y       0.999         0.999         0.999         0.999         0.999
+ H22_6_Y        0.999         0.999         0.999         0.999         0.999
+ H6_9_X_X       0.999         0.999         0.999         0.999         0.999
+ H9_12_X_       0.999         0.999         0.999         0.999         0.999
+ H12_14_X       0.999         0.999         0.999         0.999         0.999
+ H14_17_X       0.999         0.999         0.999         0.999         0.999
+ H17_20_X       0.999         0.999         0.999         0.999         0.999
+ H20_22_X       0.999         0.999         0.999         0.999         0.999
+ H22_6_X_       0.999         0.999         0.999         0.999         0.999
+ H6_9_Y_Y       0.979         0.979         0.979         0.979         0.979
+ H9_12_Y_       0.979         0.979         0.979         0.979         0.979
+ H12_14_Y       0.979         0.979         0.979         0.979         0.979
+ H14_17_Y       0.979         0.979         0.979         0.979         0.979
+ H17_20_Y       0.979         0.979         0.979         0.979         0.979
+ H20_22_Y       0.979         0.979         0.979         0.979         0.979
+ H22_6_Y_       0.979         0.979         0.979         0.979         0.979
+
+
+           Covariance Coverage
+              H20_22_X      H22_6_X       H6_9_Y        H9_12_Y       H12_14_Y
+              ________      ________      ________      ________      ________
+ H20_22_X       1.000
+ H22_6_X        1.000         1.000
+ H6_9_Y         0.999         0.999         1.000
+ H9_12_Y        0.999         0.999         1.000         1.000
+ H12_14_Y       0.999         0.999         1.000         1.000         1.000
+ H14_17_Y       0.999         0.999         1.000         1.000         1.000
+ H17_20_Y       0.999         0.999         1.000         1.000         1.000
+ H20_22_Y       0.999         0.999         1.000         1.000         1.000
+ H22_6_Y        0.999         0.999         1.000         1.000         1.000
+ H6_9_X_X       0.999         0.999         0.999         0.999         0.999
+ H9_12_X_       0.999         0.999         0.999         0.999         0.999
+ H12_14_X       0.999         0.999         0.999         0.999         0.999
+ H14_17_X       0.999         0.999         0.999         0.999         0.999
+ H17_20_X       0.999         0.999         0.999         0.999         0.999
+ H20_22_X       0.999         0.999         0.999         0.999         0.999
+ H22_6_X_       0.999         0.999         0.999         0.999         0.999
+ H6_9_Y_Y       0.979         0.979         0.979         0.979         0.979
+ H9_12_Y_       0.979         0.979         0.979         0.979         0.979
+ H12_14_Y       0.979         0.979         0.979         0.979         0.979
+ H14_17_Y       0.979         0.979         0.979         0.979         0.979
+ H17_20_Y       0.979         0.979         0.979         0.979         0.979
+ H20_22_Y       0.979         0.979         0.979         0.979         0.979
+ H22_6_Y_       0.979         0.979         0.979         0.979         0.979
+
+
+           Covariance Coverage
+              H14_17_Y      H17_20_Y      H20_22_Y      H22_6_Y       H6_9_X_X
+              ________      ________      ________      ________      ________
+ H14_17_Y       1.000
+ H17_20_Y       1.000         1.000
+ H20_22_Y       1.000         1.000         1.000
+ H22_6_Y        1.000         1.000         1.000         1.000
+ H6_9_X_X       0.999         0.999         0.999         0.999         0.999
+ H9_12_X_       0.999         0.999         0.999         0.999         0.999
+ H12_14_X       0.999         0.999         0.999         0.999         0.999
+ H14_17_X       0.999         0.999         0.999         0.999         0.999
+ H17_20_X       0.999         0.999         0.999         0.999         0.999
+ H20_22_X       0.999         0.999         0.999         0.999         0.999
+ H22_6_X_       0.999         0.999         0.999         0.999         0.999
+ H6_9_Y_Y       0.979         0.979         0.979         0.979         0.979
+ H9_12_Y_       0.979         0.979         0.979         0.979         0.979
+ H12_14_Y       0.979         0.979         0.979         0.979         0.979
+ H14_17_Y       0.979         0.979         0.979         0.979         0.979
+ H17_20_Y       0.979         0.979         0.979         0.979         0.979
+ H20_22_Y       0.979         0.979         0.979         0.979         0.979
+ H22_6_Y_       0.979         0.979         0.979         0.979         0.979
+
+
+           Covariance Coverage
+              H9_12_X_      H12_14_X      H14_17_X      H17_20_X      H20_22_X
+              ________      ________      ________      ________      ________
+ H9_12_X_       0.999
+ H12_14_X       0.999         0.999
+ H14_17_X       0.999         0.999         0.999
+ H17_20_X       0.999         0.999         0.999         0.999
+ H20_22_X       0.999         0.999         0.999         0.999         0.999
+ H22_6_X_       0.999         0.999         0.999         0.999         0.999
+ H6_9_Y_Y       0.979         0.979         0.979         0.979         0.979
+ H9_12_Y_       0.979         0.979         0.979         0.979         0.979
+ H12_14_Y       0.979         0.979         0.979         0.979         0.979
+ H14_17_Y       0.979         0.979         0.979         0.979         0.979
+ H17_20_Y       0.979         0.979         0.979         0.979         0.979
+ H20_22_Y       0.979         0.979         0.979         0.979         0.979
+ H22_6_Y_       0.979         0.979         0.979         0.979         0.979
+
+
+           Covariance Coverage
+              H22_6_X_      H6_9_Y_Y      H9_12_Y_      H12_14_Y      H14_17_Y
+              ________      ________      ________      ________      ________
+ H22_6_X_       0.999
+ H6_9_Y_Y       0.979         0.979
+ H9_12_Y_       0.979         0.979         0.979
+ H12_14_Y       0.979         0.979         0.979         0.979
+ H14_17_Y       0.979         0.979         0.979         0.979         0.979
+ H17_20_Y       0.979         0.979         0.979         0.979         0.979
+ H20_22_Y       0.979         0.979         0.979         0.979         0.979
+ H22_6_Y_       0.979         0.979         0.979         0.979         0.979
+
+
+           Covariance Coverage
+              H17_20_Y      H20_22_Y      H22_6_Y_
+              ________      ________      ________
+ H17_20_Y       0.979
+ H20_22_Y       0.979         0.979
+ H22_6_Y_       0.979         0.979         0.979
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    H6_9_X
+      Category 1    0.297         1826.000
+      Category 2    0.185         1138.000
+      Category 3    0.518         3189.000
+    H9_12_X
+      Category 1    0.219         1349.000
+      Category 2    0.294         1807.000
+      Category 3    0.487         2997.000
+    H12_14_X
+      Category 1    0.183         1129.000
+      Category 2    0.463         2851.000
+      Category 3    0.353         2173.000
+    H14_17_X
+      Category 1    0.268         1649.000
+      Category 2    0.335         2062.000
+      Category 3    0.397         2442.000
+    H17_20_X
+      Category 1    0.115          710.000
+      Category 2    0.583         3587.000
+      Category 3    0.302         1856.000
+    H20_22_X
+      Category 1    0.345         2122.000
+      Category 2    0.368         2265.000
+      Category 3    0.287         1766.000
+    H22_6_X
+      Category 1    0.656         4037.000
+      Category 2    0.174         1069.000
+      Category 3    0.170         1047.000
+    H6_9_Y
+      Category 1    0.306         1884.000
+      Category 2    0.191         1173.000
+      Category 3    0.503         3096.000
+    H9_12_Y
+      Category 1    0.213         1310.000
+      Category 2    0.295         1816.000
+      Category 3    0.492         3027.000
+    H12_14_Y
+      Category 1    0.188         1156.000
+      Category 2    0.450         2771.000
+      Category 3    0.362         2226.000
+    H14_17_Y
+      Category 1    0.269         1658.000
+      Category 2    0.345         2122.000
+      Category 3    0.386         2373.000
+    H17_20_Y
+      Category 1    0.118          723.000
+      Category 2    0.590         3630.000
+      Category 3    0.293         1800.000
+    H20_22_Y
+      Category 1    0.353         2170.000
+      Category 2    0.373         2297.000
+      Category 3    0.274         1686.000
+    H22_6_Y
+      Category 1    0.659         4056.000
+      Category 2    0.175         1077.000
+      Category 3    0.166         1020.000
+    H6_9_X_X
+      Category 1    0.325         2001.000
+      Category 2    0.180         1109.000
+      Category 3    0.494         3041.000
+    H9_12_X_
+      Category 1    0.224         1376.000
+      Category 2    0.295         1813.000
+      Category 3    0.482         2962.000
+    H12_14_X
+      Category 1    0.202         1244.000
+      Category 2    0.451         2776.000
+      Category 3    0.346         2131.000
+    H14_17_X
+      Category 1    0.297         1825.000
+      Category 2    0.336         2068.000
+      Category 3    0.367         2258.000
+    H17_20_X
+      Category 1    0.130          797.000
+      Category 2    0.578         3558.000
+      Category 3    0.292         1796.000
+    H20_22_X
+      Category 1    0.360         2212.000
+      Category 2    0.359         2211.000
+      Category 3    0.281         1728.000
+    H22_6_X_
+      Category 1    0.662         4074.000
+      Category 2    0.169         1040.000
+      Category 3    0.169         1037.000
+    H6_9_Y_Y
+      Category 1    0.323         1944.000
+      Category 2    0.179         1080.000
+      Category 3    0.498         3002.000
+    H9_12_Y_
+      Category 1    0.234         1412.000
+      Category 2    0.297         1791.000
+      Category 3    0.468         2823.000
+    H12_14_Y
+      Category 1    0.208         1254.000
+      Category 2    0.450         2714.000
+      Category 3    0.342         2058.000
+    H14_17_Y
+      Category 1    0.298         1794.000
+      Category 2    0.336         2025.000
+      Category 3    0.366         2207.000
+    H17_20_Y
+      Category 1    0.135          813.000
+      Category 2    0.575         3465.000
+      Category 3    0.290         1748.000
+    H20_22_Y
+      Category 1    0.368         2218.000
+      Category 2    0.353         2125.000
+      Category 3    0.279         1683.000
+    H22_6_Y_
+      Category 1    0.685         4128.000
+      Category 2    0.159          958.000
+      Category 3    0.156          940.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+         -185714.999  93468            3
+         -185714.999  650371           14
+         -185714.999  127215           9
+         -185714.999  939021           8
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+     THE CHI-SQUARE TEST CANNOT BE COMPUTED BECAUSE THE FREQUENCY TABLE FOR THE
+     LATENT CLASS INDICATOR MODEL PART IS TOO LARGE.
+
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        6
+
+Loglikelihood
+
+          H0 Value                     -185714.999
+          H0 Scaling Correction Factor      1.6207
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  371441.999
+          Bayesian (BIC)                371482.349
+          Sample-Size Adjusted BIC      371463.282
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       2746.63286          0.44624
+       2       3408.36714          0.55376
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       2746.63286          0.44624
+       2       3408.36714          0.55376
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             2704          0.43932
+       2             3451          0.56068
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.571
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2
+
+    1   0.858    0.142
+    2   0.124    0.876
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.844    0.156
+    2   0.113    0.887
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      1.691    0.000
+    2     -2.062    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    H6_9_X             1.000      0.000    999.000    999.000
+    H9_12_X            1.000      0.000    999.000    999.000
+    H12_14_X           1.000      0.000    999.000    999.000
+    H14_17_X           1.000      0.000    999.000    999.000
+    H17_20_X           1.000      0.000    999.000    999.000
+    H20_22_X           1.000      0.000    999.000    999.000
+    H22_6_X            1.000      0.000    999.000    999.000
+    H6_9_Y             1.000      0.000    999.000    999.000
+    H9_12_Y            1.000      0.000    999.000    999.000
+    H12_14_Y           1.000      0.000    999.000    999.000
+    H14_17_Y           1.000      0.000    999.000    999.000
+    H17_20_Y           1.000      0.000    999.000    999.000
+    H20_22_Y           1.000      0.000    999.000    999.000
+    H22_6_Y            1.000      0.000    999.000    999.000
+    H6_9_X_X           1.000      0.000    999.000    999.000
+    H9_12_X_X          1.000      0.000    999.000    999.000
+    H12_14_X_X         1.000      0.000    999.000    999.000
+    H14_17_X_X         1.000      0.000    999.000    999.000
+    H17_20_X_X         1.000      0.000    999.000    999.000
+    H20_22_X_X         1.000      0.000    999.000    999.000
+    H22_6_X_X          1.000      0.000    999.000    999.000
+    H6_9_Y_Y           1.000      0.000    999.000    999.000
+    H9_12_Y_Y          1.000      0.000    999.000    999.000
+    H12_14_Y_Y         1.000      0.000    999.000    999.000
+    H14_17_Y_Y         1.000      0.000    999.000    999.000
+    H17_20_Y_Y         1.000      0.000    999.000    999.000
+    H20_22_Y_Y         1.000      0.000    999.000    999.000
+    H22_6_Y_Y          1.000      0.000    999.000    999.000
+
+ S        |
+    H6_9_X            -0.900      0.000    999.000    999.000
+    H9_12_X           -0.800      0.000    999.000    999.000
+    H12_14_X          -0.700      0.000    999.000    999.000
+    H14_17_X          -0.600      0.000    999.000    999.000
+    H17_20_X          -0.500      0.000    999.000    999.000
+    H20_22_X          -0.400      0.000    999.000    999.000
+    H22_6_X           -0.300      0.000    999.000    999.000
+    H6_9_Y            -0.200      0.000    999.000    999.000
+    H9_12_Y           -0.100      0.000    999.000    999.000
+    H12_14_Y           0.000      0.000    999.000    999.000
+    H14_17_Y           0.100      0.000    999.000    999.000
+    H17_20_Y           0.200      0.000    999.000    999.000
+    H20_22_Y           0.300      0.000    999.000    999.000
+    H22_6_Y            0.400      0.000    999.000    999.000
+    H6_9_X_X           0.500      0.000    999.000    999.000
+    H9_12_X_X          0.600      0.000    999.000    999.000
+    H12_14_X_X         0.700      0.000    999.000    999.000
+    H14_17_X_X         0.800      0.000    999.000    999.000
+    H17_20_X_X         0.900      0.000    999.000    999.000
+    H20_22_X_X         1.000      0.000    999.000    999.000
+    H22_6_X_X          1.100      0.000    999.000    999.000
+    H6_9_Y_Y           1.200      0.000    999.000    999.000
+    H9_12_Y_Y          1.300      0.000    999.000    999.000
+    H12_14_Y_Y         1.400      0.000    999.000    999.000
+    H14_17_Y_Y         1.500      0.000    999.000    999.000
+    H17_20_Y_Y         1.600      0.000    999.000    999.000
+    H20_22_Y_Y         1.700      0.000    999.000    999.000
+    H22_6_Y_Y          1.800      0.000    999.000    999.000
+
+ Means
+    I                  0.836      0.013     62.682      0.000
+    S                 -0.195      0.008    -24.241      0.000
+
+ Thresholds
+    H6_9_X$1          -0.557      0.022    -25.422      0.000
+    H6_9_X$2           0.931      0.022     41.702      0.000
+    H9_12_X$1         -0.557      0.022    -25.422      0.000
+    H9_12_X$2          0.931      0.022     41.702      0.000
+    H12_14_X$1        -0.557      0.022    -25.422      0.000
+    H12_14_X$2         0.931      0.022     41.702      0.000
+    H14_17_X$1        -0.557      0.022    -25.422      0.000
+    H14_17_X$2         0.931      0.022     41.702      0.000
+    H17_20_X$1        -0.557      0.022    -25.422      0.000
+    H17_20_X$2         0.931      0.022     41.702      0.000
+    H20_22_X$1        -0.557      0.022    -25.422      0.000
+    H20_22_X$2         0.931      0.022     41.702      0.000
+    H22_6_X$1         -0.557      0.022    -25.422      0.000
+    H22_6_X$2          0.931      0.022     41.702      0.000
+    H6_9_Y$1          -0.557      0.022    -25.422      0.000
+    H6_9_Y$2           0.931      0.022     41.702      0.000
+    H9_12_Y$1         -0.557      0.022    -25.422      0.000
+    H9_12_Y$2          0.931      0.022     41.702      0.000
+    H12_14_Y$1        -0.557      0.022    -25.422      0.000
+    H12_14_Y$2         0.931      0.022     41.702      0.000
+    H14_17_Y$1        -0.557      0.022    -25.422      0.000
+    H14_17_Y$2         0.931      0.022     41.702      0.000
+    H17_20_Y$1        -0.557      0.022    -25.422      0.000
+    H17_20_Y$2         0.931      0.022     41.702      0.000
+    H20_22_Y$1        -0.557      0.022    -25.422      0.000
+    H20_22_Y$2         0.931      0.022     41.702      0.000
+    H22_6_Y$1         -0.557      0.022    -25.422      0.000
+    H22_6_Y$2          0.931      0.022     41.702      0.000
+    H6_9_X_X$1        -0.557      0.022    -25.422      0.000
+    H6_9_X_X$2         0.931      0.022     41.702      0.000
+    H9_12_X_$1        -0.557      0.022    -25.422      0.000
+    H9_12_X_$2         0.931      0.022     41.702      0.000
+    H12_14_X$1        -0.557      0.022    -25.422      0.000
+    H12_14_X$2         0.931      0.022     41.702      0.000
+    H14_17_X$1        -0.557      0.022    -25.422      0.000
+    H14_17_X$2         0.931      0.022     41.702      0.000
+    H17_20_X$1        -0.557      0.022    -25.422      0.000
+    H17_20_X$2         0.931      0.022     41.702      0.000
+    H20_22_X$1        -0.557      0.022    -25.422      0.000
+    H20_22_X$2         0.931      0.022     41.702      0.000
+    H22_6_X_$1        -0.557      0.022    -25.422      0.000
+    H22_6_X_$2         0.931      0.022     41.702      0.000
+    H6_9_Y_Y$1        -0.557      0.022    -25.422      0.000
+    H6_9_Y_Y$2         0.931      0.022     41.702      0.000
+    H9_12_Y_$1        -0.557      0.022    -25.422      0.000
+    H9_12_Y_$2         0.931      0.022     41.702      0.000
+    H12_14_Y$1        -0.557      0.022    -25.422      0.000
+    H12_14_Y$2         0.931      0.022     41.702      0.000
+    H14_17_Y$1        -0.557      0.022    -25.422      0.000
+    H14_17_Y$2         0.931      0.022     41.702      0.000
+    H17_20_Y$1        -0.557      0.022    -25.422      0.000
+    H17_20_Y$2         0.931      0.022     41.702      0.000
+    H20_22_Y$1        -0.557      0.022    -25.422      0.000
+    H20_22_Y$2         0.931      0.022     41.702      0.000
+    H22_6_Y_$1        -0.557      0.022    -25.422      0.000
+    H22_6_Y_$2         0.931      0.022     41.702      0.000
+
+Latent Class 2
+
+ I        |
+    H6_9_X             1.000      0.000    999.000    999.000
+    H9_12_X            1.000      0.000    999.000    999.000
+    H12_14_X           1.000      0.000    999.000    999.000
+    H14_17_X           1.000      0.000    999.000    999.000
+    H17_20_X           1.000      0.000    999.000    999.000
+    H20_22_X           1.000      0.000    999.000    999.000
+    H22_6_X            1.000      0.000    999.000    999.000
+    H6_9_Y             1.000      0.000    999.000    999.000
+    H9_12_Y            1.000      0.000    999.000    999.000
+    H12_14_Y           1.000      0.000    999.000    999.000
+    H14_17_Y           1.000      0.000    999.000    999.000
+    H17_20_Y           1.000      0.000    999.000    999.000
+    H20_22_Y           1.000      0.000    999.000    999.000
+    H22_6_Y            1.000      0.000    999.000    999.000
+    H6_9_X_X           1.000      0.000    999.000    999.000
+    H9_12_X_X          1.000      0.000    999.000    999.000
+    H12_14_X_X         1.000      0.000    999.000    999.000
+    H14_17_X_X         1.000      0.000    999.000    999.000
+    H17_20_X_X         1.000      0.000    999.000    999.000
+    H20_22_X_X         1.000      0.000    999.000    999.000
+    H22_6_X_X          1.000      0.000    999.000    999.000
+    H6_9_Y_Y           1.000      0.000    999.000    999.000
+    H9_12_Y_Y          1.000      0.000    999.000    999.000
+    H12_14_Y_Y         1.000      0.000    999.000    999.000
+    H14_17_Y_Y         1.000      0.000    999.000    999.000
+    H17_20_Y_Y         1.000      0.000    999.000    999.000
+    H20_22_Y_Y         1.000      0.000    999.000    999.000
+    H22_6_Y_Y          1.000      0.000    999.000    999.000
+
+ S        |
+    H6_9_X            -0.900      0.000    999.000    999.000
+    H9_12_X           -0.800      0.000    999.000    999.000
+    H12_14_X          -0.700      0.000    999.000    999.000
+    H14_17_X          -0.600      0.000    999.000    999.000
+    H17_20_X          -0.500      0.000    999.000    999.000
+    H20_22_X          -0.400      0.000    999.000    999.000
+    H22_6_X           -0.300      0.000    999.000    999.000
+    H6_9_Y            -0.200      0.000    999.000    999.000
+    H9_12_Y           -0.100      0.000    999.000    999.000
+    H12_14_Y           0.000      0.000    999.000    999.000
+    H14_17_Y           0.100      0.000    999.000    999.000
+    H17_20_Y           0.200      0.000    999.000    999.000
+    H20_22_Y           0.300      0.000    999.000    999.000
+    H22_6_Y            0.400      0.000    999.000    999.000
+    H6_9_X_X           0.500      0.000    999.000    999.000
+    H9_12_X_X          0.600      0.000    999.000    999.000
+    H12_14_X_X         0.700      0.000    999.000    999.000
+    H14_17_X_X         0.800      0.000    999.000    999.000
+    H17_20_X_X         0.900      0.000    999.000    999.000
+    H20_22_X_X         1.000      0.000    999.000    999.000
+    H22_6_X_X          1.100      0.000    999.000    999.000
+    H6_9_Y_Y           1.200      0.000    999.000    999.000
+    H9_12_Y_Y          1.300      0.000    999.000    999.000
+    H12_14_Y_Y         1.400      0.000    999.000    999.000
+    H14_17_Y_Y         1.500      0.000    999.000    999.000
+    H17_20_Y_Y         1.600      0.000    999.000    999.000
+    H20_22_Y_Y         1.700      0.000    999.000    999.000
+    H22_6_Y_Y          1.800      0.000    999.000    999.000
+
+ Means
+    I                  0.000      0.000    999.000    999.000
+    S                 -0.180      0.006    -28.967      0.000
+
+ Thresholds
+    H6_9_X$1          -0.557      0.022    -25.422      0.000
+    H6_9_X$2           0.931      0.022     41.702      0.000
+    H9_12_X$1         -0.557      0.022    -25.422      0.000
+    H9_12_X$2          0.931      0.022     41.702      0.000
+    H12_14_X$1        -0.557      0.022    -25.422      0.000
+    H12_14_X$2         0.931      0.022     41.702      0.000
+    H14_17_X$1        -0.557      0.022    -25.422      0.000
+    H14_17_X$2         0.931      0.022     41.702      0.000
+    H17_20_X$1        -0.557      0.022    -25.422      0.000
+    H17_20_X$2         0.931      0.022     41.702      0.000
+    H20_22_X$1        -0.557      0.022    -25.422      0.000
+    H20_22_X$2         0.931      0.022     41.702      0.000
+    H22_6_X$1         -0.557      0.022    -25.422      0.000
+    H22_6_X$2          0.931      0.022     41.702      0.000
+    H6_9_Y$1          -0.557      0.022    -25.422      0.000
+    H6_9_Y$2           0.931      0.022     41.702      0.000
+    H9_12_Y$1         -0.557      0.022    -25.422      0.000
+    H9_12_Y$2          0.931      0.022     41.702      0.000
+    H12_14_Y$1        -0.557      0.022    -25.422      0.000
+    H12_14_Y$2         0.931      0.022     41.702      0.000
+    H14_17_Y$1        -0.557      0.022    -25.422      0.000
+    H14_17_Y$2         0.931      0.022     41.702      0.000
+    H17_20_Y$1        -0.557      0.022    -25.422      0.000
+    H17_20_Y$2         0.931      0.022     41.702      0.000
+    H20_22_Y$1        -0.557      0.022    -25.422      0.000
+    H20_22_Y$2         0.931      0.022     41.702      0.000
+    H22_6_Y$1         -0.557      0.022    -25.422      0.000
+    H22_6_Y$2          0.931      0.022     41.702      0.000
+    H6_9_X_X$1        -0.557      0.022    -25.422      0.000
+    H6_9_X_X$2         0.931      0.022     41.702      0.000
+    H9_12_X_$1        -0.557      0.022    -25.422      0.000
+    H9_12_X_$2         0.931      0.022     41.702      0.000
+    H12_14_X$1        -0.557      0.022    -25.422      0.000
+    H12_14_X$2         0.931      0.022     41.702      0.000
+    H14_17_X$1        -0.557      0.022    -25.422      0.000
+    H14_17_X$2         0.931      0.022     41.702      0.000
+    H17_20_X$1        -0.557      0.022    -25.422      0.000
+    H17_20_X$2         0.931      0.022     41.702      0.000
+    H20_22_X$1        -0.557      0.022    -25.422      0.000
+    H20_22_X$2         0.931      0.022     41.702      0.000
+    H22_6_X_$1        -0.557      0.022    -25.422      0.000
+    H22_6_X_$2         0.931      0.022     41.702      0.000
+    H6_9_Y_Y$1        -0.557      0.022    -25.422      0.000
+    H6_9_Y_Y$2         0.931      0.022     41.702      0.000
+    H9_12_Y_$1        -0.557      0.022    -25.422      0.000
+    H9_12_Y_$2         0.931      0.022     41.702      0.000
+    H12_14_Y$1        -0.557      0.022    -25.422      0.000
+    H12_14_Y$2         0.931      0.022     41.702      0.000
+    H14_17_Y$1        -0.557      0.022    -25.422      0.000
+    H14_17_Y$2         0.931      0.022     41.702      0.000
+    H17_20_Y$1        -0.557      0.022    -25.422      0.000
+    H17_20_Y$2         0.931      0.022     41.702      0.000
+    H20_22_Y$1        -0.557      0.022    -25.422      0.000
+    H20_22_Y$2         0.931      0.022     41.702      0.000
+    H22_6_Y_$1        -0.557      0.022    -25.422      0.000
+    H22_6_Y_$2         0.931      0.022     41.702      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1               -0.216      0.099     -2.176      0.030
+
+
+RESULTS IN PROBABILITY SCALE
+
+Latent Class 1
+
+ H6_9_X
+    Category 1         0.172      0.004     42.249      0.000
+    Category 2         0.307      0.003     89.603      0.000
+    Category 3         0.520      0.007     73.603      0.000
+ H9_12_X
+    Category 1         0.175      0.004     42.833      0.000
+    Category 2         0.310      0.003     91.810      0.000
+    Category 3         0.515      0.007     73.600      0.000
+ H12_14_X
+    Category 1         0.178      0.004     43.401      0.000
+    Category 2         0.312      0.003     94.030      0.000
+    Category 3         0.510      0.007     73.558      0.000
+ H14_17_X
+    Category 1         0.181      0.004     43.951      0.000
+    Category 2         0.314      0.003     96.260      0.000
+    Category 3         0.506      0.007     73.474      0.000
+ H17_20_X
+    Category 1         0.184      0.004     44.480      0.000
+    Category 2         0.316      0.003     98.495      0.000
+    Category 3         0.501      0.007     73.344      0.000
+ H20_22_X
+    Category 1         0.187      0.004     44.985      0.000
+    Category 2         0.317      0.003    100.734      0.000
+    Category 3         0.496      0.007     73.167      0.000
+ H22_6_X
+    Category 1         0.190      0.004     45.465      0.000
+    Category 2         0.319      0.003    102.973      0.000
+    Category 3         0.491      0.007     72.939      0.000
+ H6_9_Y
+    Category 1         0.193      0.004     45.915      0.000
+    Category 2         0.321      0.003    105.208      0.000
+    Category 3         0.486      0.007     72.660      0.000
+ H9_12_Y
+    Category 1         0.196      0.004     46.335      0.000
+    Category 2         0.323      0.003    107.439      0.000
+    Category 3         0.481      0.007     72.328      0.000
+ H12_14_Y
+    Category 1         0.199      0.004     46.721      0.000
+    Category 2         0.325      0.003    109.663      0.000
+    Category 3         0.476      0.007     71.941      0.000
+ H14_17_Y
+    Category 1         0.202      0.004     47.072      0.000
+    Category 2         0.327      0.003    111.879      0.000
+    Category 3         0.471      0.007     71.499      0.000
+ H17_20_Y
+    Category 1         0.205      0.004     47.387      0.000
+    Category 2         0.328      0.003    114.087      0.000
+    Category 3         0.467      0.007     71.002      0.000
+ H20_22_Y
+    Category 1         0.208      0.004     47.663      0.000
+    Category 2         0.330      0.003    116.286      0.000
+    Category 3         0.462      0.007     70.450      0.000
+ H22_6_Y
+    Category 1         0.212      0.004     47.900      0.000
+    Category 2         0.331      0.003    118.478      0.000
+    Category 3         0.457      0.007     69.843      0.000
+ H6_9_X_X
+    Category 1         0.215      0.004     48.097      0.000
+    Category 2         0.333      0.003    120.664      0.000
+    Category 3         0.452      0.007     69.185      0.000
+ H9_12_X_
+    Category 1         0.218      0.005     48.253      0.000
+    Category 2         0.335      0.003    122.846      0.000
+    Category 3         0.447      0.007     68.475      0.000
+ H12_14_X
+    Category 1         0.222      0.005     48.368      0.000
+    Category 2         0.336      0.003    125.028      0.000
+    Category 3         0.442      0.007     67.717      0.000
+ H14_17_X
+    Category 1         0.225      0.005     48.443      0.000
+    Category 2         0.337      0.003    127.212      0.000
+    Category 3         0.438      0.007     66.912      0.000
+ H17_20_X
+    Category 1         0.228      0.005     48.478      0.000
+    Category 2         0.339      0.003    129.403      0.000
+    Category 3         0.433      0.007     66.065      0.000
+ H20_22_X
+    Category 1         0.232      0.005     48.474      0.000
+    Category 2         0.340      0.003    131.605      0.000
+    Category 3         0.428      0.007     65.178      0.000
+ H22_6_X_
+    Category 1         0.235      0.005     48.433      0.000
+    Category 2         0.341      0.003    133.821      0.000
+    Category 3         0.423      0.007     64.256      0.000
+ H6_9_Y_Y
+    Category 1         0.239      0.005     48.355      0.000
+    Category 2         0.343      0.003    136.058      0.000
+    Category 3         0.419      0.007     63.301      0.000
+ H9_12_Y_
+    Category 1         0.242      0.005     48.242      0.000
+    Category 2         0.344      0.002    138.319      0.000
+    Category 3         0.414      0.007     62.318      0.000
+ H12_14_Y
+    Category 1         0.246      0.005     48.097      0.000
+    Category 2         0.345      0.002    140.609      0.000
+    Category 3         0.409      0.007     61.310      0.000
+ H14_17_Y
+    Category 1         0.250      0.005     47.921      0.000
+    Category 2         0.346      0.002    142.932      0.000
+    Category 3         0.404      0.007     60.282      0.000
+ H17_20_Y
+    Category 1         0.253      0.005     47.716      0.000
+    Category 2         0.347      0.002    145.291      0.000
+    Category 3         0.400      0.007     59.238      0.000
+ H20_22_Y
+    Category 1         0.257      0.005     47.486      0.000
+    Category 2         0.348      0.002    147.689      0.000
+    Category 3         0.395      0.007     58.180      0.000
+ H22_6_Y_
+    Category 1         0.261      0.006     47.232      0.000
+    Category 2         0.349      0.002    150.126      0.000
+    Category 3         0.390      0.007     57.114      0.000
+
+Latent Class 2
+
+ H6_9_X
+    Category 1         0.328      0.005     62.223      0.000
+    Category 2         0.356      0.002    182.132      0.000
+    Category 3         0.317      0.005     60.341      0.000
+ H9_12_X
+    Category 1         0.332      0.005     63.332      0.000
+    Category 2         0.356      0.002    181.988      0.000
+    Category 3         0.313      0.005     60.676      0.000
+ H12_14_X
+    Category 1         0.336      0.005     64.439      0.000
+    Category 2         0.355      0.002    181.662      0.000
+    Category 3         0.309      0.005     60.991      0.000
+ H14_17_X
+    Category 1         0.340      0.005     65.540      0.000
+    Category 2         0.355      0.002    181.170      0.000
+    Category 3         0.305      0.005     61.284      0.000
+ H17_20_X
+    Category 1         0.344      0.005     66.631      0.000
+    Category 2         0.355      0.002    180.525      0.000
+    Category 3         0.301      0.005     61.552      0.000
+ H20_22_X
+    Category 1         0.348      0.005     67.709      0.000
+    Category 2         0.355      0.002    179.739      0.000
+    Category 3         0.298      0.005     61.792      0.000
+ H22_6_X
+    Category 1         0.352      0.005     68.770      0.000
+    Category 2         0.354      0.002    178.825      0.000
+    Category 3         0.294      0.005     62.002      0.000
+ H6_9_Y
+    Category 1         0.356      0.005     69.811      0.000
+    Category 2         0.354      0.002    177.794      0.000
+    Category 3         0.290      0.005     62.180      0.000
+ H9_12_Y
+    Category 1         0.360      0.005     70.827      0.000
+    Category 2         0.354      0.002    176.654      0.000
+    Category 3         0.286      0.005     62.324      0.000
+ H12_14_Y
+    Category 1         0.364      0.005     71.815      0.000
+    Category 2         0.353      0.002    175.413      0.000
+    Category 3         0.283      0.005     62.430      0.000
+ H14_17_Y
+    Category 1         0.368      0.005     72.771      0.000
+    Category 2         0.352      0.002    174.079      0.000
+    Category 3         0.279      0.004     62.498      0.000
+ H17_20_Y
+    Category 1         0.373      0.005     73.690      0.000
+    Category 2         0.352      0.002    172.656      0.000
+    Category 3         0.275      0.004     62.525      0.000
+ H20_22_Y
+    Category 1         0.377      0.005     74.570      0.000
+    Category 2         0.351      0.002    171.150      0.000
+    Category 3         0.272      0.004     62.510      0.000
+ H22_6_Y
+    Category 1         0.381      0.005     75.407      0.000
+    Category 2         0.351      0.002    169.564      0.000
+    Category 3         0.268      0.004     62.451      0.000
+ H6_9_X_X
+    Category 1         0.385      0.005     76.198      0.000
+    Category 2         0.350      0.002    167.901      0.000
+    Category 3         0.265      0.004     62.348      0.000
+ H9_12_X_
+    Category 1         0.390      0.005     76.938      0.000
+    Category 2         0.349      0.002    166.163      0.000
+    Category 3         0.261      0.004     62.199      0.000
+ H12_14_X
+    Category 1         0.394      0.005     77.627      0.000
+    Category 2         0.348      0.002    164.351      0.000
+    Category 3         0.258      0.004     62.004      0.000
+ H14_17_X
+    Category 1         0.398      0.005     78.262      0.000
+    Category 2         0.347      0.002    162.467      0.000
+    Category 3         0.254      0.004     61.764      0.000
+ H17_20_X
+    Category 1         0.403      0.005     78.840      0.000
+    Category 2         0.346      0.002    160.512      0.000
+    Category 3         0.251      0.004     61.478      0.000
+ H20_22_X
+    Category 1         0.407      0.005     79.361      0.000
+    Category 2         0.345      0.002    158.486      0.000
+    Category 3         0.248      0.004     61.146      0.000
+ H22_6_X_
+    Category 1         0.411      0.005     79.823      0.000
+    Category 2         0.344      0.002    156.391      0.000
+    Category 3         0.244      0.004     60.771      0.000
+ H6_9_Y_Y
+    Category 1         0.416      0.005     80.227      0.000
+    Category 2         0.343      0.002    154.227      0.000
+    Category 3         0.241      0.004     60.354      0.000
+ H9_12_Y_
+    Category 1         0.420      0.005     80.572      0.000
+    Category 2         0.342      0.002    151.998      0.000
+    Category 3         0.238      0.004     59.895      0.000
+ H12_14_Y
+    Category 1         0.424      0.005     80.859      0.000
+    Category 2         0.341      0.002    149.703      0.000
+    Category 3         0.234      0.004     59.397      0.000
+ H14_17_Y
+    Category 1         0.429      0.005     81.089      0.000
+    Category 2         0.340      0.002    147.347      0.000
+    Category 3         0.231      0.004     58.862      0.000
+ H17_20_Y
+    Category 1         0.433      0.005     81.263      0.000
+    Category 2         0.339      0.002    144.932      0.000
+    Category 3         0.228      0.004     58.292      0.000
+ H20_22_Y
+    Category 1         0.438      0.005     81.383      0.000
+    Category 2         0.337      0.002    142.462      0.000
+    Category 3         0.225      0.004     57.690      0.000
+ H22_6_Y_
+    Category 1         0.442      0.005     81.451      0.000
+    Category 2         0.336      0.002    139.940      0.000
+    Category 3         0.222      0.004     57.059      0.000
+
+
+LATENT CLASS ODDS RATIO RESULTS
+
+Latent Class 1 Compared to Latent Class 2
+
+ H6_9_X
+    Category > 1       2.340      0.044     53.067      0.000
+    Category > 2       2.340      0.044     53.067      0.000
+ H9_12_X
+    Category > 1       2.336      0.042     55.343      0.000
+    Category > 2       2.336      0.042     55.343      0.000
+ H12_14_X
+    Category > 1       2.333      0.040     57.723      0.000
+    Category > 2       2.333      0.040     57.723      0.000
+ H14_17_X
+    Category > 1       2.329      0.039     60.195      0.000
+    Category > 2       2.329      0.039     60.195      0.000
+ H17_20_X
+    Category > 1       2.326      0.037     62.736      0.000
+    Category > 2       2.326      0.037     62.736      0.000
+ H20_22_X
+    Category > 1       2.322      0.036     65.315      0.000
+    Category > 2       2.322      0.036     65.315      0.000
+ H22_6_X
+    Category > 1       2.319      0.034     67.889      0.000
+    Category > 2       2.319      0.034     67.889      0.000
+ H6_9_Y
+    Category > 1       2.315      0.033     70.400      0.000
+    Category > 2       2.315      0.033     70.400      0.000
+ H9_12_Y
+    Category > 1       2.312      0.032     72.779      0.000
+    Category > 2       2.312      0.032     72.779      0.000
+ H12_14_Y
+    Category > 1       2.308      0.031     74.941      0.000
+    Category > 2       2.308      0.031     74.941      0.000
+ H14_17_Y
+    Category > 1       2.305      0.030     76.798      0.000
+    Category > 2       2.305      0.030     76.798      0.000
+ H17_20_Y
+    Category > 1       2.301      0.029     78.259      0.000
+    Category > 2       2.301      0.029     78.259      0.000
+ H20_22_Y
+    Category > 1       2.298      0.029     79.246      0.000
+    Category > 2       2.298      0.029     79.246      0.000
+ H22_6_Y
+    Category > 1       2.294      0.029     79.699      0.000
+    Category > 2       2.294      0.029     79.699      0.000
+ H6_9_X_X
+    Category > 1       2.291      0.029     79.591      0.000
+    Category > 2       2.291      0.029     79.591      0.000
+ H9_12_X_
+    Category > 1       2.287      0.029     78.929      0.000
+    Category > 2       2.287      0.029     78.929      0.000
+ H12_14_X
+    Category > 1       2.284      0.029     77.753      0.000
+    Category > 2       2.284      0.029     77.753      0.000
+ H14_17_X
+    Category > 1       2.280      0.030     76.130      0.000
+    Category > 2       2.280      0.030     76.130      0.000
+ H17_20_X
+    Category > 1       2.277      0.031     74.146      0.000
+    Category > 2       2.277      0.031     74.146      0.000
+ H20_22_X
+    Category > 1       2.274      0.032     71.891      0.000
+    Category > 2       2.274      0.032     71.891      0.000
+ H22_6_X_
+    Category > 1       2.270      0.033     69.452      0.000
+    Category > 2       2.270      0.033     69.452      0.000
+ H6_9_Y_Y
+    Category > 1       2.267      0.034     66.909      0.000
+    Category > 2       2.267      0.034     66.909      0.000
+ H9_12_Y_
+    Category > 1       2.263      0.035     64.327      0.000
+    Category > 2       2.263      0.035     64.327      0.000
+ H12_14_Y
+    Category > 1       2.260      0.037     61.758      0.000
+    Category > 2       2.260      0.037     61.758      0.000
+ H14_17_Y
+    Category > 1       2.256      0.038     59.241      0.000
+    Category > 2       2.256      0.038     59.241      0.000
+ H17_20_Y
+    Category > 1       2.253      0.040     56.802      0.000
+    Category > 2       2.253      0.040     56.802      0.000
+ H20_22_Y
+    Category > 1       2.250      0.041     54.461      0.000
+    Category > 2       2.250      0.041     54.461      0.000
+ H22_6_Y_
+    Category > 1       2.246      0.043     52.227      0.000
+    Category > 2       2.246      0.043     52.227      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.282E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H6_9_X$1      H6_9_X$2      H9_12_X$      H9_12_X$      H12_14_X
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H12_14_X      H14_17_X      H14_17_X      H17_20_X      H17_20_X
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H20_22_X      H20_22_X      H22_6_X$      H22_6_X$      H6_9_Y$1
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H6_9_Y$2      H9_12_Y$      H9_12_Y$      H12_14_Y      H12_14_Y
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H14_17_Y      H14_17_Y      H17_20_Y      H17_20_Y      H20_22_Y
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H20_22_Y      H22_6_Y$      H22_6_Y$      H6_9_X_X      H6_9_X_X
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H9_12_X_      H9_12_X_      H12_14_X      H12_14_X      H14_17_X
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H14_17_X      H17_20_X      H17_20_X      H20_22_X      H20_22_X
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H22_6_X_      H22_6_X_      H6_9_Y_Y      H6_9_Y_Y      H9_12_Y_
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H9_12_Y_      H12_14_Y      H12_14_Y      H14_17_Y      H14_17_Y
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H17_20_Y      H17_20_Y      H20_22_Y      H20_22_Y      H22_6_Y_
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H22_6_Y_
+              ________
+ 1                  2
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H6_9_X$1      H6_9_X$2      H9_12_X$      H9_12_X$      H12_14_X
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H12_14_X      H14_17_X      H14_17_X      H17_20_X      H17_20_X
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H20_22_X      H20_22_X      H22_6_X$      H22_6_X$      H6_9_Y$1
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H6_9_Y$2      H9_12_Y$      H9_12_Y$      H12_14_Y      H12_14_Y
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H14_17_Y      H14_17_Y      H17_20_Y      H17_20_Y      H20_22_Y
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H20_22_Y      H22_6_Y$      H22_6_Y$      H6_9_X_X      H6_9_X_X
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H9_12_X_      H9_12_X_      H12_14_X      H12_14_X      H14_17_X
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H14_17_X      H17_20_X      H17_20_X      H20_22_X      H20_22_X
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H22_6_X_      H22_6_X_      H6_9_Y_Y      H6_9_Y_Y      H9_12_Y_
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H9_12_Y_      H12_14_Y      H12_14_Y      H14_17_Y      H14_17_Y
+              ________      ________      ________      ________      ________
+ 1                  2             1             2             1             2
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H17_20_Y      H17_20_Y      H20_22_Y      H20_22_Y      H22_6_Y_
+              ________      ________      ________      ________      ________
+ 1                  1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H22_6_Y_
+              ________
+ 1                  2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+ 1                  6             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR GROWTH MODEL PART
+
+
+           LAMBDA(F) FOR LATENT CLASS 1
+              I             S
+              ________      ________
+ H6_9_X             0             0
+ H9_12_X            0             0
+ H12_14_X           0             0
+ H14_17_X           0             0
+ H17_20_X           0             0
+ H20_22_X           0             0
+ H22_6_X            0             0
+ H6_9_Y             0             0
+ H9_12_Y            0             0
+ H12_14_Y           0             0
+ H14_17_Y           0             0
+ H17_20_Y           0             0
+ H20_22_Y           0             0
+ H22_6_Y            0             0
+ H6_9_X_X           0             0
+ H9_12_X_           0             0
+ H12_14_X           0             0
+ H14_17_X           0             0
+ H17_20_X           0             0
+ H20_22_X           0             0
+ H22_6_X_           0             0
+ H6_9_Y_Y           0             0
+ H9_12_Y_           0             0
+ H12_14_Y           0             0
+ H14_17_Y           0             0
+ H17_20_Y           0             0
+ H20_22_Y           0             0
+ H22_6_Y_           0             0
+
+
+           ALPHA(F) FOR LATENT CLASS 1
+              I             S
+              ________      ________
+ 1                  3             4
+
+
+           LAMBDA(F) FOR LATENT CLASS 2
+              I             S
+              ________      ________
+ H6_9_X             0             0
+ H9_12_X            0             0
+ H12_14_X           0             0
+ H14_17_X           0             0
+ H17_20_X           0             0
+ H20_22_X           0             0
+ H22_6_X            0             0
+ H6_9_Y             0             0
+ H9_12_Y            0             0
+ H12_14_Y           0             0
+ H14_17_Y           0             0
+ H17_20_Y           0             0
+ H20_22_Y           0             0
+ H22_6_Y            0             0
+ H6_9_X_X           0             0
+ H9_12_X_           0             0
+ H12_14_X           0             0
+ H14_17_X           0             0
+ H17_20_X           0             0
+ H20_22_X           0             0
+ H22_6_X_           0             0
+ H6_9_Y_Y           0             0
+ H9_12_Y_           0             0
+ H12_14_Y           0             0
+ H14_17_Y           0             0
+ H17_20_Y           0             0
+ H20_22_Y           0             0
+ H22_6_Y_           0             0
+
+
+           ALPHA(F) FOR LATENT CLASS 2
+              I             S
+              ________      ________
+ 1                  0             5
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H6_9_X$1      H6_9_X$2      H9_12_X$      H9_12_X$      H12_14_X
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H12_14_X      H14_17_X      H14_17_X      H17_20_X      H17_20_X
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H20_22_X      H20_22_X      H22_6_X$      H22_6_X$      H6_9_Y$1
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H6_9_Y$2      H9_12_Y$      H9_12_Y$      H12_14_Y      H12_14_Y
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H14_17_Y      H14_17_Y      H17_20_Y      H17_20_Y      H20_22_Y
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H20_22_Y      H22_6_Y$      H22_6_Y$      H6_9_X_X      H6_9_X_X
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H9_12_X_      H9_12_X_      H12_14_X      H12_14_X      H14_17_X
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H14_17_X      H17_20_X      H17_20_X      H20_22_X      H20_22_X
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H22_6_X_      H22_6_X_      H6_9_Y_Y      H6_9_Y_Y      H9_12_Y_
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H9_12_Y_      H12_14_Y      H12_14_Y      H14_17_Y      H14_17_Y
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H17_20_Y      H17_20_Y      H20_22_Y      H20_22_Y      H22_6_Y_
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 1
+              H22_6_Y_
+              ________
+ 1              0.658
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H6_9_X$1      H6_9_X$2      H9_12_X$      H9_12_X$      H12_14_X
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H12_14_X      H14_17_X      H14_17_X      H17_20_X      H17_20_X
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H20_22_X      H20_22_X      H22_6_X$      H22_6_X$      H6_9_Y$1
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H6_9_Y$2      H9_12_Y$      H9_12_Y$      H12_14_Y      H12_14_Y
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H14_17_Y      H14_17_Y      H17_20_Y      H17_20_Y      H20_22_Y
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H20_22_Y      H22_6_Y$      H22_6_Y$      H6_9_X_X      H6_9_X_X
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H9_12_X_      H9_12_X_      H12_14_X      H12_14_X      H14_17_X
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H14_17_X      H17_20_X      H17_20_X      H20_22_X      H20_22_X
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H22_6_X_      H22_6_X_      H6_9_Y_Y      H6_9_Y_Y      H9_12_Y_
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H9_12_Y_      H12_14_Y      H12_14_Y      H14_17_Y      H14_17_Y
+              ________      ________      ________      ________      ________
+ 1              0.658        -0.892         0.658        -0.892         0.658
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H17_20_Y      H17_20_Y      H20_22_Y      H20_22_Y      H22_6_Y_
+              ________      ________      ________      ________      ________
+ 1             -0.892         0.658        -0.892         0.658        -0.892
+
+
+           TAU(U) FOR LATENT CLASS 2
+              H22_6_Y_
+              ________
+ 1              0.658
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+ 1              0.000         0.000
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR GROWTH MODEL PART
+
+
+           LAMBDA(F) FOR CLASS LATENT CLASS 1
+              I             S
+              ________      ________
+ H6_9_X         1.000        -0.900
+ H9_12_X        1.000        -0.800
+ H12_14_X       1.000        -0.700
+ H14_17_X       1.000        -0.600
+ H17_20_X       1.000        -0.500
+ H20_22_X       1.000        -0.400
+ H22_6_X        1.000        -0.300
+ H6_9_Y         1.000        -0.200
+ H9_12_Y        1.000        -0.100
+ H12_14_Y       1.000         0.000
+ H14_17_Y       1.000         0.100
+ H17_20_Y       1.000         0.200
+ H20_22_Y       1.000         0.300
+ H22_6_Y        1.000         0.400
+ H6_9_X_X       1.000         0.500
+ H9_12_X_       1.000         0.600
+ H12_14_X       1.000         0.700
+ H14_17_X       1.000         0.800
+ H17_20_X       1.000         0.900
+ H20_22_X       1.000         1.000
+ H22_6_X_       1.000         1.100
+ H6_9_Y_Y       1.000         1.200
+ H9_12_Y_       1.000         1.300
+ H12_14_Y       1.000         1.400
+ H14_17_Y       1.000         1.500
+ H17_20_Y       1.000         1.600
+ H20_22_Y       1.000         1.700
+ H22_6_Y_       1.000         1.800
+
+
+           ALPHA(F) FOR LATENT CLASS 1
+              I             S
+              ________      ________
+ 1              0.000         0.000
+
+
+           LAMBDA(F) FOR CLASS LATENT CLASS 2
+              I             S
+              ________      ________
+ H6_9_X         1.000        -0.900
+ H9_12_X        1.000        -0.800
+ H12_14_X       1.000        -0.700
+ H14_17_X       1.000        -0.600
+ H17_20_X       1.000        -0.500
+ H20_22_X       1.000        -0.400
+ H22_6_X        1.000        -0.300
+ H6_9_Y         1.000        -0.200
+ H9_12_Y        1.000        -0.100
+ H12_14_Y       1.000         0.000
+ H14_17_Y       1.000         0.100
+ H17_20_Y       1.000         0.200
+ H20_22_Y       1.000         0.300
+ H22_6_Y        1.000         0.400
+ H6_9_X_X       1.000         0.500
+ H9_12_X_       1.000         0.600
+ H12_14_X       1.000         0.700
+ H14_17_X       1.000         0.800
+ H17_20_X       1.000         0.900
+ H20_22_X       1.000         1.000
+ H22_6_X_       1.000         1.100
+ H6_9_Y_Y       1.000         1.200
+ H9_12_Y_       1.000         1.300
+ H12_14_Y       1.000         1.400
+ H14_17_Y       1.000         1.500
+ H17_20_Y       1.000         1.600
+ H20_22_Y       1.000         1.700
+ H22_6_Y_       1.000         1.800
+
+
+           ALPHA(F) FOR LATENT CLASS 2
+              I             S
+              ________      ________
+ 1              0.000         0.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.18832126D+06    0.0000000    0.0000000   3077.500  3077.500    EM
+     2 -0.18750112D+06  820.1358844    0.0043550   3077.500  3077.500    EM
+     3 -0.18749861D+06    2.5099966    0.0000134   3077.500  3077.500    EM
+     4 -0.18749861D+06    0.0000837    0.0000000   3077.500  3077.500    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.30369497D+06    0.0000000    0.0000000   5079.708  1075.292    EM
+     2 -0.24458087D+06 ************    0.1946496   6047.376   107.624    EM
+     3 -0.21149181D+06 ************    0.1352889   5999.415   155.585    EM
+     4 -0.19392546D+06 ************    0.0830592   5865.850   289.150    EM
+     5 -0.18744894D+06 6476.5138582    0.0333969   5665.157   489.843    EM
+     6 -0.18650930D+06  939.6403699    0.0050128   5460.525   694.475    EM
+     7 -0.18634450D+06  164.7980169    0.0008836   5264.200   890.800    EM
+     8 -0.18622698D+06  117.5278753    0.0006307   5076.445  1078.555    EM
+     9 -0.18613412D+06   92.8559927    0.0004986   4898.507  1256.493    EM
+    10 -0.18606005D+06   74.0716430    0.0003979   4731.251  1423.749    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.38977754D+06    0.0000000    0.0000000     61.838  6093.162    EM
+     2 -0.18715406D+06 ************    0.5198439    155.066  5999.934    EM
+     3 -0.18690835D+06  245.7073138    0.0013129    307.959  5847.041    EM
+     4 -0.18668957D+06  218.7871898    0.0011706    488.900  5666.100    EM
+     5 -0.18650427D+06  185.2963657    0.0009925    682.245  5472.755    EM
+     6 -0.18635432D+06  149.9513361    0.0008040    876.293  5278.707    EM
+     7 -0.18623512D+06  119.2035617    0.0006397   1064.312  5090.688    EM
+     8 -0.18614062D+06   94.4977400    0.0005074   1242.998  4912.002    EM
+     9 -0.18606526D+06   75.3581513    0.0004048   1411.092  4743.908    EM
+    10 -0.18600459D+06   60.6684675    0.0003261   1568.308  4586.692    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.34226334D+06    0.0000000    0.0000000   3212.155  2942.845    EM
+     2 -0.18790729D+06 ************    0.4509862   3234.636  2920.364    EM
+     3 -0.18731822D+06  589.0747041    0.0031349   3212.214  2942.786    EM
+     4 -0.18652862D+06  789.5947477    0.0042153   3173.546  2981.454    EM
+     5 -0.18586685D+06  661.7726694    0.0035478   3138.983  3016.017    EM
+     6 -0.18573433D+06  132.5260628    0.0007130   3107.473  3047.527    EM
+     7 -0.18572395D+06   10.3782933    0.0000559   3078.003  3076.997    EM
+     8 -0.18572219D+06    1.7542037    0.0000094   3050.776  3104.224    EM
+     9 -0.18572104D+06    1.1510516    0.0000062   3025.750  3129.250    EM
+    10 -0.18572009D+06    0.9532932    0.0000051   3002.780  3152.220    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.21830322D+06    0.0000000    0.0000000    205.469  5949.531    EM
+     2 -0.19154652D+06 ************    0.1225667      0.487  6154.513    EM
+     3 -0.18750860D+06 4037.9233982    0.0210806      0.031  6154.969    EM
+     4 -0.18749862D+06    9.9803158    0.0000532      0.025  6154.975    EM
+     5 -0.18749824D+06    0.3744249    0.0000020      0.388  6154.612    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.21160693D+06    0.0000000    0.0000000      3.079  6151.921    EM
+     2 -0.18813578D+06 ************    0.1109186      0.044  6154.956    EM
+     3 -0.18750164D+06  634.1462105    0.0033707      0.000  6155.000    EM
+     4 -0.18749861D+06    3.0278997    0.0000161      0.000  6155.000    EM
+     5 -0.18749861D+06    0.0001514    0.0000000      0.000  6155.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.71662724D+06    0.0000000    0.0000000   6031.543   123.457    EM
+     2 -0.18752925D+06 ************    0.7383169   6063.401    91.599    EM
+     3 -0.18749190D+06   37.3494293    0.0001992   6058.717    96.283    EM
+     4 -0.18729150D+06  200.4070181    0.0010689   5925.966   229.034    EM
+     5 -0.18659173D+06  699.7641363    0.0037362   5676.155   478.845    EM
+     6 -0.18628911D+06  302.6265258    0.0016219   5494.361   660.639    EM
+     7 -0.18615689D+06  132.2197044    0.0007098   5331.897   823.103    EM
+     8 -0.18606341D+06   93.4804000    0.0005022   5180.692   974.308    EM
+     9 -0.18599350D+06   69.9022079    0.0003757   5040.641  1114.359    EM
+    10 -0.18594010D+06   53.4037975    0.0002871   4911.343  1243.657    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.39816930D+06    0.0000000    0.0000000    915.782  5239.218    EM
+     2 -0.18634896D+06 ************    0.5319856   1031.225  5123.775    EM
+     3 -0.18600323D+06  345.7249646    0.0018553   1182.361  4972.639    EM
+     4 -0.18591982D+06   83.4140965    0.0004485   1310.016  4844.984    EM
+     5 -0.18587985D+06   39.9703885    0.0002150   1424.642  4730.358    EM
+     6 -0.18585050D+06   29.3458108    0.0001579   1529.857  4625.143    EM
+     7 -0.18582710D+06   23.4067141    0.0001259   1626.809  4528.191    EM
+     8 -0.18580809D+06   19.0045150    0.0001023   1716.194  4438.806    EM
+     9 -0.18579253D+06   15.5577436    0.0000837   1798.598  4356.402    EM
+    10 -0.18577972D+06   12.8103913    0.0000689   1874.554  4280.446    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.25984400D+06    0.0000000    0.0000000   6118.089    36.911    EM
+     2 -0.20935219D+06 ************    0.1943159   3517.365  2637.635    EM
+     3 -0.18646463D+06 ************    0.1093256   3719.774  2435.226    EM
+     4 -0.18574229D+06  722.3371408    0.0038739   3682.519  2472.481    EM
+     5 -0.18572093D+06   21.3631509    0.0001150   3657.304  2497.696    EM
+     6 -0.18571917D+06    1.7638283    0.0000095   3636.510  2518.490    EM
+     7 -0.18571847D+06    0.6990047    0.0000038   3617.820  2537.180    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.36220506D+06    0.0000000    0.0000000   2065.663  4089.337    EM
+     2 -0.18601383D+06 ************    0.4864406   2092.561  4062.439    EM
+     3 -0.18576950D+06  244.3299008    0.0013135   2150.453  4004.547    EM
+     4 -0.18574147D+06   28.0304921    0.0001509   2200.200  3954.800    EM
+     5 -0.18573557D+06    5.9047869    0.0000318   2244.737  3910.263    EM
+     6 -0.18573215D+06    3.4119158    0.0000184   2285.460  3869.540    EM
+     7 -0.18572942D+06    2.7338893    0.0000147   2322.874  3832.126    EM
+     8 -0.18572713D+06    2.2854066    0.0000123   2357.277  3797.723    EM
+     9 -0.18572521D+06    1.9198964    0.0000103   2388.912  3766.088    EM
+    10 -0.18572360D+06    1.6143266    0.0000087   2417.999  3737.001    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.22845399D+06    0.0000000    0.0000000   6139.272    15.728    EM
+     2 -0.19110879D+06 ************    0.1634692   6154.959     0.041    EM
+     3 -0.18746554D+06 3643.2484236    0.0190637   6139.884    15.116    EM
+     4 -0.18717676D+06  288.7835487    0.0015405   6064.725    90.275    EM
+     5 -0.18685958D+06  317.1795882    0.0016945   5934.961   220.039    EM
+     6 -0.18659494D+06  264.6422011    0.0014163   5776.062   378.938    EM
+     7 -0.18639024D+06  204.6983953    0.0010970   5606.852   548.148    EM
+     8 -0.18623665D+06  153.5841930    0.0008240   5439.800   715.200    EM
+     9 -0.18612294D+06  113.7093348    0.0006106   5281.351   873.649    EM
+    10 -0.18603837D+06   84.5734939    0.0004544   5133.771  1021.229    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.27947312D+06    0.0000000    0.0000000    170.249  5984.751    EM
+     2 -0.18757095D+06 ************    0.3288408     95.887  6059.113    EM
+     3 -0.18744884D+06  122.1137139    0.0006510    127.470  6027.530    EM
+     4 -0.18696059D+06  488.2470427    0.0026047    338.857  5816.143    EM
+     5 -0.18643570D+06  524.8891945    0.0028075    540.484  5614.516    EM
+     6 -0.18624283D+06  192.8723649    0.0010345    711.162  5443.838    EM
+     7 -0.18612562D+06  117.2102743    0.0006293    869.952  5285.048    EM
+     8 -0.18604021D+06   85.4089487    0.0004589   1017.756  5137.244    EM
+     9 -0.18597589D+06   64.3151579    0.0003457   1154.495  5000.505    EM
+    10 -0.18592647D+06   49.4193710    0.0002657   1280.679  4874.321    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.44547936D+06    0.0000000    0.0000000    998.929  5156.071    EM
+     2 -0.18656739D+06 ************    0.5811986   1289.025  4865.975    EM
+     3 -0.18607597D+06  491.4265627    0.0026340   1508.887  4646.113    EM
+     4 -0.18597174D+06  104.2237428    0.0005601   1669.768  4485.232    EM
+     5 -0.18592640D+06   45.3411300    0.0002438   1810.633  4344.367    EM
+     6 -0.18589104D+06   35.3596577    0.0001902   1939.864  4215.136    EM
+     7 -0.18586194D+06   29.1060750    0.0001566   2059.175  4095.825    EM
+     8 -0.18583782D+06   24.1152272    0.0001297   2169.275  3985.725    EM
+     9 -0.18581778D+06   20.0383664    0.0001078   2270.743  3884.257    EM
+    10 -0.18580110D+06   16.6854733    0.0000898   2364.144  3790.856    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 13
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.37712267D+06    0.0000000    0.0000000   1145.707  5009.293    EM
+     2 -0.18598431D+06 ************    0.5068334   1241.876  4913.124    EM
+     3 -0.18590310D+06   81.2126925    0.0004367   1359.793  4795.207    EM
+     4 -0.18586686D+06   36.2416055    0.0001949   1469.896  4685.104    EM
+     5 -0.18584009D+06   26.7675583    0.0001440   1571.503  4583.497    EM
+     6 -0.18581865D+06   21.4370128    0.0001154   1665.198  4489.802    EM
+     7 -0.18580119D+06   17.4614945    0.0000940   1751.585  4403.415    EM
+     8 -0.18578686D+06   14.3310722    0.0000771   1831.221  4323.779    EM
+     9 -0.18577503D+06   11.8241824    0.0000636   1904.620  4250.380    EM
+    10 -0.18576524D+06    9.7959902    0.0000527   1972.253  4182.747    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.73971796D+06    0.0000000    0.0000000   4733.272  1421.728    EM
+     2 -0.18773477D+06 ************    0.7462076   4893.191  1261.809    EM
+     3 -0.18728881D+06  445.9611116    0.0023755   4833.120  1321.880    EM
+     4 -0.18648946D+06  799.3475956    0.0042680   4615.310  1539.690    EM
+     5 -0.18589689D+06  592.5729201    0.0031775   4458.760  1696.240    EM
+     6 -0.18579830D+06   98.5905322    0.0005304   4362.445  1792.555    EM
+     7 -0.18578056D+06   17.7436719    0.0000955   4284.082  1870.918    EM
+     8 -0.18576958D+06   10.9729832    0.0000591   4213.507  1941.493    EM
+     9 -0.18576069D+06    8.8911777    0.0000479   4148.731  2006.269    EM
+    10 -0.18575331D+06    7.3843279    0.0000398   4089.104  2065.896    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.29324684D+06    0.0000000    0.0000000   1221.534  4933.466    EM
+     2 -0.18611699D+06 ************    0.3653231   1348.691  4806.309    EM
+     3 -0.18602846D+06   88.5289453    0.0004757   1505.859  4649.141    EM
+     4 -0.18597433D+06   54.1323200    0.0002910   1656.045  4498.955    EM
+     5 -0.18593054D+06   43.7878591    0.0002355   1796.204  4358.796    EM
+     6 -0.18589457D+06   35.9747016    0.0001935   1926.243  4228.757    EM
+     7 -0.18586487D+06   29.7040907    0.0001598   2046.549  4108.451    EM
+     8 -0.18584025D+06   24.6121810    0.0001324   2157.623  3997.377    EM
+     9 -0.18581981D+06   20.4473373    0.0001100   2260.008  3894.992    EM
+    10 -0.18580278D+06   17.0227367    0.0000916   2354.267  3800.733    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.25783440D+06    0.0000000    0.0000000      5.989  6149.011    EM
+     2 -0.23782118D+06 ************    0.0776204      0.000  6155.000    EM
+     3 -0.20524987D+06 ************    0.1369572      0.000  6155.000    EM
+     4 -0.18803679D+06 ************    0.0838640      0.000  6155.000    EM
+     5 -0.18749895D+06  537.8369773    0.0028603      0.000  6155.000    EM
+     6 -0.18749861D+06    0.3394984    0.0000018      0.000  6155.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 17
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.39969766D+06    0.0000000    0.0000000     47.049  6107.951    EM
+     2 -0.18718882D+06 ************    0.5316740    136.799  6018.201    EM
+     3 -0.18694164D+06  247.1820046    0.0013205    283.433  5871.567    EM
+     4 -0.18671997D+06  221.6627324    0.0011857    460.929  5694.071    EM
+     5 -0.18652945D+06  190.5270727    0.0010204    653.316  5501.684    EM
+     6 -0.18637446D+06  154.9834701    0.0008309    847.792  5307.208    EM
+     7 -0.18625108D+06  123.3830813    0.0006620   1036.980  5118.020    EM
+     8 -0.18615329D+06   97.7856001    0.0005250   1217.164  4937.836    EM
+     9 -0.18607541D+06   77.8849179    0.0004184   1386.861  4768.139    EM
+    10 -0.18601280D+06   62.6112993    0.0003365   1545.688  4609.312    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.21945894D+06    0.0000000    0.0000000   6152.290     2.710    EM
+     2 -0.19099339D+06 ************    0.1297079   6074.061    80.939    EM
+     3 -0.18684113D+06 4152.2531322    0.0217403   5889.705   265.295    EM
+     4 -0.18652645D+06  314.6807376    0.0016842   5724.336   430.664    EM
+     5 -0.18633797D+06  188.4791225    0.0010105   5554.737   600.263    EM
+     6 -0.18619791D+06  140.0612856    0.0007517   5389.907   765.093    EM
+     7 -0.18609423D+06  103.6789703    0.0005568   5234.701   920.299    EM
+     8 -0.18601682D+06   77.4168386    0.0004160   5090.567  1064.433    EM
+     9 -0.18595804D+06   58.7793723    0.0003160   4957.401  1197.599    EM
+    10 -0.18591258D+06   45.4540015    0.0002444   4834.566  1320.434    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.42135647D+06    0.0000000    0.0000000    702.319  5452.681    EM
+     2 -0.18635512D+06 ************    0.5577258    833.969  5321.031    EM
+     3 -0.18607663D+06  278.4838384    0.0014944    994.338  5160.662    EM
+     4 -0.18598674D+06   89.8905558    0.0004831   1134.869  5020.131    EM
+     5 -0.18593320D+06   53.5434428    0.0002879   1262.829  4892.171    EM
+     6 -0.18589295D+06   40.2464476    0.0002165   1380.605  4774.395    EM
+     7 -0.18586122D+06   31.7331818    0.0001707   1489.181  4665.819    EM
+     8 -0.18583578D+06   25.4393985    0.0001369   1589.295  4565.705    EM
+     9 -0.18581517D+06   20.6088228    0.0001109   1681.605  4473.395    EM
+    10 -0.18579834D+06   16.8288557    0.0000906   1766.712  4388.288    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.30134105D+06    0.0000000    0.0000000   5675.255   479.745    EM
+     2 -0.18654621D+06 ************    0.3809466   5496.058   658.942    EM
+     3 -0.18637021D+06  175.9994448    0.0009435   5299.592   855.408    EM
+     4 -0.18624664D+06  123.5748510    0.0006631   5110.397  1044.603    EM
+     5 -0.18614971D+06   96.9317347    0.0005204   4930.589  1224.411    EM
+     6 -0.18607254D+06   77.1699838    0.0004146   4761.337  1393.663    EM
+     7 -0.18601048D+06   62.0597204    0.0003335   4602.960  1552.040    EM
+     8 -0.18596009D+06   50.3831989    0.0002709   4455.361  1699.639    EM
+     9 -0.18591887D+06   41.2233078    0.0002217   4318.242  1836.758    EM
+    10 -0.18588494D+06   33.9282580    0.0001825   4191.199  1963.801    EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+     7 -0.18571847D+06    0.6990047    0.0000038   3617.820  2537.180    EM
+     8 -0.18571792D+06    0.5485424    0.0000030   3600.717  2554.283    EM
+     9 -0.18571746D+06    0.4595310    0.0000025   3585.014  2569.986    EM
+    10 -0.18571707D+06    0.3869220    0.0000021   3570.590  2584.410    EM
+    11 -0.18571675D+06    0.3259534    0.0000018   3557.340  2597.660    EM
+    12 -0.18571647D+06    0.2746220    0.0000015   3545.169  2609.831    EM
+    13 -0.18571624D+06    0.2313887    0.0000012   3533.990  2621.010    EM
+    14 -0.18571604D+06    0.1949709    0.0000010   3523.721  2631.279    EM
+    15 -0.18571588D+06    0.1642915    0.0000009   3514.290  2640.710    EM
+    16 -0.18571574D+06    0.1384442    0.0000007   3505.629  2649.371    EM
+    17 -0.18571562D+06    0.1166667    0.0000006   3497.674  2657.326    EM
+    18 -0.18571553D+06    0.0983171    0.0000005   3490.369  2664.631    EM
+    19 -0.18571544D+06    0.0828552    0.0000004   3483.660  2671.340    EM
+    20 -0.18571537D+06    0.0698261    0.0000004   3477.499  2677.501    EM
+    21 -0.18571531D+06    0.0588466    0.0000003   3471.842  2683.158    EM
+    22 -0.18571527D+06    0.0495941    0.0000003   3466.647  2688.353    EM
+    23 -0.18571522D+06    0.0417968    0.0000002   3461.877  2693.123    EM
+    24 -0.18571519D+06    0.0352257    0.0000002   3457.497  2697.503    EM
+    25 -0.18571516D+06    0.0296879    0.0000002   3453.475  2701.525    EM
+    26 -0.18571513D+06    0.0250208    0.0000001   3449.782  2705.218    EM
+    27 -0.18571511D+06    0.0210875    0.0000001   3446.391  2708.609    EM
+    28 -0.18571509D+06    0.0177726    0.0000001   3443.278  2711.722    EM
+    29 -0.18571508D+06    0.0149789    0.0000001   3440.420  2714.580    EM
+    30 -0.18571507D+06    0.0126243    0.0000001   3437.795  2717.205    EM
+    31 -0.18571506D+06    0.0106399    0.0000001   3435.385  2719.615    EM
+    32 -0.18571505D+06    0.0089674    0.0000000   3433.173  2721.827    EM
+    33 -0.18571504D+06    0.0075578    0.0000000   3431.141  2723.859    EM
+    34 -0.18571503D+06    0.0063699    0.0000000   3429.276  2725.724    EM
+    35 -0.18571503D+06    0.0053686    0.0000000   3427.564  2727.436    EM
+    36 -0.18571502D+06    0.0045247    0.0000000   3425.992  2729.008    EM
+    37 -0.18571502D+06    0.0038135    0.0000000   3424.548  2730.452    EM
+    38 -0.18571502D+06    0.0032141    0.0000000   3423.223  2731.777    EM
+    39 -0.18571501D+06    0.0091784    0.0000000   3418.205  2736.795    FS
+    40 -0.18571500D+06    0.0040708    0.0000000   3415.312  2739.688    FS
+    41 -0.18571500D+06    0.0020133    0.0000000   3413.242  2741.758    FS
+    42 -0.18571500D+06    0.0009960    0.0000000   3411.805  2743.195    FS
+    43 -0.18571500D+06    0.0004928    0.0000000   3410.781  2744.219    FS
+    44 -0.18571500D+06    0.0002439    0.0000000   3410.070  2744.930    FS
+    45 -0.18571500D+06    0.0001207    0.0000000   3409.564  2745.436    FS
+    46 -0.18571500D+06    0.0000597    0.0000000   3409.212  2745.788    FS
+    47 -0.18571500D+06    0.0000296    0.0000000   3408.962  2746.038    FS
+    48 -0.18571500D+06    0.0000146    0.0000000   3408.788  2746.212    FS
+    49 -0.18571500D+06    0.0000072    0.0000000   3408.664  2746.336    FS
+    50 -0.18571500D+06    0.0000036    0.0000000   3408.578  2746.422    FS
+    51 -0.18571500D+06    0.0000018    0.0000000   3408.517  2746.483    FS
+    52 -0.18571500D+06    0.0000009    0.0000000   3408.474  2746.526    FS
+    53 -0.18571500D+06    0.0000004    0.0000000   3408.444  2746.556    FS
+    54 -0.18571500D+06    0.0000002    0.0000000   3408.423  2746.577    FS
+    55 -0.18571500D+06    0.0000001    0.0000000   3408.408  2746.592    FS
+    56 -0.18571500D+06    0.0000001    0.0000000   3408.397  2746.603    FS
+    57 -0.18571500D+06    0.0000000    0.0000000   3408.390  2746.610    FS
+    58 -0.18571500D+06    0.0000000    0.0000000   3408.385  2746.615    FS
+    59 -0.18571500D+06    0.0000000    0.0000000   3408.381  2746.619    FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+    10 -0.18572009D+06    0.9532932    0.0000051   3002.780  3152.220    EM
+    11 -0.18571929D+06    0.8018109    0.0000043   2981.703  3173.297    EM
+    12 -0.18571861D+06    0.6752015    0.0000036   2962.366  3192.634    EM
+    13 -0.18571804D+06    0.5686991    0.0000031   2944.624  3210.376    EM
+    14 -0.18571756D+06    0.4790464    0.0000026   2928.345  3226.655    EM
+    15 -0.18571716D+06    0.4035608    0.0000022   2913.408  3241.592    EM
+    16 -0.18571682D+06    0.3399937    0.0000018   2899.702  3255.298    EM
+    17 -0.18571653D+06    0.2864565    0.0000015   2887.124  3267.876    EM
+    18 -0.18571629D+06    0.2413619    0.0000013   2875.583  3279.417    EM
+    19 -0.18571609D+06    0.2033750    0.0000011   2864.992  3290.008    EM
+    20 -0.18571592D+06    0.1713730    0.0000009   2855.272  3299.728    EM
+    21 -0.18571577D+06    0.1444112    0.0000008   2846.352  3308.648    EM
+    22 -0.18571565D+06    0.1216944    0.0000007   2838.165  3316.835    EM
+    23 -0.18571555D+06    0.1025535    0.0000006   2830.651  3324.349    EM
+    24 -0.18571546D+06    0.0864248    0.0000005   2823.755  3331.245    EM
+    25 -0.18571539D+06    0.0728339    0.0000004   2817.426  3337.574    EM
+    26 -0.18571533D+06    0.0613811    0.0000003   2811.617  3343.383    EM
+    27 -0.18571528D+06    0.0517298    0.0000003   2806.285  3348.715    EM
+    28 -0.18571523D+06    0.0435964    0.0000002   2801.391  3353.609    EM
+    29 -0.18571520D+06    0.0367422    0.0000002   2796.899  3358.101    EM
+    30 -0.18571517D+06    0.0309658    0.0000002   2792.775  3362.225    EM
+    31 -0.18571514D+06    0.0260977    0.0000001   2788.990  3366.010    EM
+    32 -0.18571512D+06    0.0219950    0.0000001   2785.516  3369.484    EM
+    33 -0.18571510D+06    0.0185373    0.0000001   2782.327  3372.673    EM
+    34 -0.18571508D+06    0.0156233    0.0000001   2779.400  3375.600    EM
+    35 -0.18571507D+06    0.0131674    0.0000001   2776.712  3378.288    EM
+    36 -0.18571506D+06    0.0110976    0.0000001   2774.246  3380.754    EM
+    37 -0.18571505D+06    0.0093531    0.0000001   2771.981  3383.019    EM
+    38 -0.18571502D+06    0.0267429    0.0000001   2763.393  3391.607    FS
+    39 -0.18571501D+06    0.0118380    0.0000001   2758.452  3396.548    FS
+    40 -0.18571501D+06    0.0058485    0.0000000   2754.922  3400.078    FS
+    41 -0.18571500D+06    0.0028912    0.0000000   2752.473  3402.527    FS
+    42 -0.18571500D+06    0.0014298    0.0000000   2750.729  3404.271    FS
+    43 -0.18571500D+06    0.0007073    0.0000000   2749.519  3405.481    FS
+    44 -0.18571500D+06    0.0003499    0.0000000   2748.656  3406.344    FS
+    45 -0.18571500D+06    0.0001731    0.0000000   2748.058  3406.942    FS
+    46 -0.18571500D+06    0.0000857    0.0000000   2747.631  3407.369    FS
+    47 -0.18571500D+06    0.0000424    0.0000000   2747.335  3407.665    FS
+    48 -0.18571500D+06    0.0000210    0.0000000   2747.124  3407.876    FS
+    49 -0.18571500D+06    0.0000104    0.0000000   2746.978  3408.022    FS
+    50 -0.18571500D+06    0.0000051    0.0000000   2746.873  3408.127    FS
+    51 -0.18571500D+06    0.0000025    0.0000000   2746.801  3408.199    FS
+    52 -0.18571500D+06    0.0000013    0.0000000   2746.749  3408.251    FS
+    53 -0.18571500D+06    0.0000006    0.0000000   2746.714  3408.286    FS
+    54 -0.18571500D+06    0.0000003    0.0000000   2746.688  3408.312    FS
+    55 -0.18571500D+06    0.0000002    0.0000000   2746.670  3408.330    FS
+    56 -0.18571500D+06    0.0000001    0.0000000   2746.657  3408.343    FS
+    57 -0.18571500D+06    0.0000000    0.0000000   2746.649  3408.351    FS
+    58 -0.18571500D+06    0.0000000    0.0000000   2746.642  3408.358    FS
+    59 -0.18571500D+06    0.0000000    0.0000000   2746.638  3408.362    FS
+    60 -0.18571500D+06    0.0000000    0.0000000   2746.635  3408.365    FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+    10 -0.18572360D+06    1.6143266    0.0000087   2417.999  3737.001    EM
+    11 -0.18572224D+06    1.3579855    0.0000073   2444.740  3710.260    EM
+    12 -0.18572110D+06    1.1427237    0.0000062   2469.320  3685.680    EM
+    13 -0.18572014D+06    0.9618412    0.0000052   2491.912  3663.088    EM
+    14 -0.18571933D+06    0.8097695    0.0000044   2512.674  3642.326    EM
+    15 -0.18571865D+06    0.6818657    0.0000037   2531.753  3623.247    EM
+    16 -0.18571807D+06    0.5742516    0.0000031   2549.283  3605.717    EM
+    17 -0.18571759D+06    0.4836825    0.0000026   2565.390  3589.610    EM
+    18 -0.18571718D+06    0.4074405    0.0000022   2580.187  3574.813    EM
+    19 -0.18571684D+06    0.3432463    0.0000018   2593.781  3561.219    EM
+    20 -0.18571655D+06    0.2891874    0.0000016   2606.268  3548.732    EM
+    21 -0.18571630D+06    0.2436571    0.0000013   2617.738  3537.262    EM
+    22 -0.18571610D+06    0.2053057    0.0000011   2628.273  3526.727    EM
+    23 -0.18571593D+06    0.1729981    0.0000009   2637.949  3517.051    EM
+    24 -0.18571578D+06    0.1457796    0.0000008   2646.836  3508.164    EM
+    25 -0.18571566D+06    0.1228472    0.0000007   2654.998  3500.002    EM
+    26 -0.18571555D+06    0.1035249    0.0000006   2662.493  3492.507    EM
+    27 -0.18571547D+06    0.0872435    0.0000005   2669.376  3485.624    EM
+    28 -0.18571539D+06    0.0735240    0.0000004   2675.697  3479.303    EM
+    29 -0.18571533D+06    0.0619628    0.0000003   2681.502  3473.498    EM
+    30 -0.18571528D+06    0.0522202    0.0000003   2686.832  3468.168    EM
+    31 -0.18571524D+06    0.0440099    0.0000002   2691.727  3463.273    EM
+    32 -0.18571520D+06    0.0370908    0.0000002   2696.221  3458.779    EM
+    33 -0.18571517D+06    0.0312597    0.0000002   2700.348  3454.652    EM
+    34 -0.18571514D+06    0.0263455    0.0000001   2704.137  3450.863    EM
+    35 -0.18571512D+06    0.0222039    0.0000001   2707.616  3447.384    EM
+    36 -0.18571510D+06    0.0187135    0.0000001   2710.811  3444.189    EM
+    37 -0.18571505D+06    0.0533997    0.0000003   2722.895  3432.105    FS
+    38 -0.18571502D+06    0.0237092    0.0000001   2729.874  3425.126    FS
+    39 -0.18571501D+06    0.0117327    0.0000001   2734.868  3420.132    FS
+    40 -0.18571501D+06    0.0058065    0.0000000   2738.339  3416.661    FS
+    41 -0.18571500D+06    0.0028737    0.0000000   2740.810  3414.190    FS
+    42 -0.18571500D+06    0.0014222    0.0000000   2742.527  3412.473    FS
+    43 -0.18571500D+06    0.0007039    0.0000000   2743.750  3411.250    FS
+    44 -0.18571500D+06    0.0003484    0.0000000   2744.598  3410.402    FS
+    45 -0.18571500D+06    0.0001724    0.0000000   2745.204  3409.796    FS
+    46 -0.18571500D+06    0.0000854    0.0000000   2745.624  3409.376    FS
+    47 -0.18571500D+06    0.0000423    0.0000000   2745.923  3409.077    FS
+    48 -0.18571500D+06    0.0000209    0.0000000   2746.131  3408.869    FS
+    49 -0.18571500D+06    0.0000104    0.0000000   2746.279  3408.721    FS
+    50 -0.18571500D+06    0.0000051    0.0000000   2746.382  3408.618    FS
+    51 -0.18571500D+06    0.0000025    0.0000000   2746.455  3408.545    FS
+    52 -0.18571500D+06    0.0000013    0.0000000   2746.506  3408.494    FS
+    53 -0.18571500D+06    0.0000006    0.0000000   2746.542  3408.458    FS
+    54 -0.18571500D+06    0.0000003    0.0000000   2746.567  3408.433    FS
+    55 -0.18571500D+06    0.0000002    0.0000000   2746.585  3408.415    FS
+    56 -0.18571500D+06    0.0000001    0.0000000   2746.598  3408.402    FS
+    57 -0.18571500D+06    0.0000000    0.0000000   2746.607  3408.393    FS
+    58 -0.18571500D+06    0.0000000    0.0000000   2746.613  3408.387    FS
+    59 -0.18571500D+06    0.0000000    0.0000000   2746.617  3408.383    FS
+    60 -0.18571500D+06    0.0000000    0.0000000   2746.620  3408.380    FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+    10 -0.18575331D+06    7.3843279    0.0000398   4089.104  2065.896    EM
+    11 -0.18574715D+06    6.1593798    0.0000332   4034.201  2120.799    EM
+    12 -0.18574200D+06    5.1483102    0.0000277   3983.655  2171.345    EM
+    13 -0.18573769D+06    4.3097766    0.0000232   3937.132  2217.868    EM
+    14 -0.18573408D+06    3.6122108    0.0000194   3894.320  2260.680    EM
+    15 -0.18573105D+06    3.0305356    0.0000163   3854.931  2300.069    EM
+    16 -0.18572850D+06    2.5445691    0.0000137   3818.700  2336.300    EM
+    17 -0.18572636D+06    2.1379322    0.0000115   3785.378  2369.622    EM
+    18 -0.18572457D+06    1.7972439    0.0000097   3754.737  2400.263    EM
+    19 -0.18572306D+06    1.5115129    0.0000081   3726.565  2428.435    EM
+    20 -0.18572178D+06    1.2716706    0.0000068   3700.667  2454.333    EM
+    21 -0.18572071D+06    1.0702067    0.0000058   3676.863  2478.137    EM
+    22 -0.18571981D+06    0.9008832    0.0000049   3654.985  2500.015    EM
+    23 -0.18571905D+06    0.7585050    0.0000041   3634.880  2520.120    EM
+    24 -0.18571842D+06    0.6387375    0.0000034   3616.405  2538.595    EM
+    25 -0.18571788D+06    0.5379574    0.0000029   3599.430  2555.570    EM
+    26 -0.18571743D+06    0.4531316    0.0000024   3583.834  2571.166    EM
+    27 -0.18571704D+06    0.3817187    0.0000021   3569.507  2585.493    EM
+    28 -0.18571672D+06    0.3215865    0.0000017   3556.345  2598.655    EM
+    29 -0.18571645D+06    0.2709455    0.0000015   3544.255  2610.745    EM
+    30 -0.18571622D+06    0.2282919    0.0000012   3533.150  2621.850    EM
+    31 -0.18571603D+06    0.1923622    0.0000010   3522.950  2632.050    EM
+    32 -0.18571587D+06    0.1620937    0.0000009   3513.582  2641.418    EM
+    33 -0.18571573D+06    0.1365926    0.0000007   3504.978  2650.022    EM
+    34 -0.18571562D+06    0.1151065    0.0000006   3497.076  2657.924    EM
+    35 -0.18571552D+06    0.0970025    0.0000005   3489.820  2665.180    EM
+    36 -0.18571544D+06    0.0817474    0.0000004   3483.156  2671.844    EM
+    37 -0.18571520D+06    0.2329081    0.0000013   3457.991  2697.009    FS
+    38 -0.18571510D+06    0.1036227    0.0000006   3443.421  2711.579    FS
+    39 -0.18571505D+06    0.0513336    0.0000003   3432.983  2722.017    FS
+    40 -0.18571502D+06    0.0254222    0.0000001   3425.723  2729.277    FS
+    41 -0.18571501D+06    0.0125878    0.0000001   3420.552  2734.448    FS
+    42 -0.18571501D+06    0.0062318    0.0000000   3416.959  2738.041    FS
+    43 -0.18571500D+06    0.0030850    0.0000000   3414.398  2740.602    FS
+    44 -0.18571500D+06    0.0015271    0.0000000   3412.621  2742.379    FS
+    45 -0.18571500D+06    0.0007559    0.0000000   3411.354  2743.646    FS
+    46 -0.18571500D+06    0.0003742    0.0000000   3410.475  2744.525    FS
+    47 -0.18571500D+06    0.0001852    0.0000000   3409.847  2745.153    FS
+    48 -0.18571500D+06    0.0000917    0.0000000   3409.413  2745.587    FS
+    49 -0.18571500D+06    0.0000454    0.0000000   3409.102  2745.898    FS
+    50 -0.18571500D+06    0.0000225    0.0000000   3408.887  2746.113    FS
+    51 -0.18571500D+06    0.0000111    0.0000000   3408.733  2746.267    FS
+    52 -0.18571500D+06    0.0000055    0.0000000   3408.627  2746.373    FS
+    53 -0.18571500D+06    0.0000027    0.0000000   3408.551  2746.449    FS
+    54 -0.18571500D+06    0.0000013    0.0000000   3408.498  2746.502    FS
+    55 -0.18571500D+06    0.0000007    0.0000000   3408.461  2746.539    FS
+    56 -0.18571500D+06    0.0000003    0.0000000   3408.435  2746.565    FS
+    57 -0.18571500D+06    0.0000002    0.0000000   3408.416  2746.584    FS
+    58 -0.18571500D+06    0.0000001    0.0000000   3408.403  2746.597    FS
+    59 -0.18571500D+06    0.0000000    0.0000000   3408.394  2746.606    FS
+    60 -0.18571500D+06    0.0000000    0.0000000   3408.388  2746.612    FS
+    61 -0.18571500D+06    0.0000000    0.0000000   3408.383  2746.617    FS
+    62 -0.18571500D+06    0.0000000    0.0000000   3408.380  2746.620    FS
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample proportions and estimated probabilities
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    H:\summer_project\Mplus\TimeSlots\LCGA\NDNSslot_LGCA_2CLASS.txt
+
+  Order and format of variables
+
+    H6_9_X         F10.3
+    H9_12_X        F10.3
+    H12_14_X       F10.3
+    H14_17_X       F10.3
+    H17_20_X       F10.3
+    H20_22_X       F10.3
+    H22_6_X        F10.3
+    H6_9_Y         F10.3
+    H9_12_Y        F10.3
+    H12_14_Y       F10.3
+    H14_17_Y       F10.3
+    H17_20_Y       F10.3
+    H20_22_Y       F10.3
+    H22_6_Y        F10.3
+    H6_9_X_X       F10.3
+    H9_12_X_       F10.3
+    H12_14_X       F10.3
+    H14_17_X       F10.3
+    H17_20_X       F10.3
+    H20_22_X       F10.3
+    H22_6_X_       F10.3
+    H6_9_Y_Y       F10.3
+    H9_12_Y_       F10.3
+    H12_14_Y       F10.3
+    H14_17_Y       F10.3
+    H17_20_Y       F10.3
+    H20_22_Y       F10.3
+    H22_6_Y_       F10.3
+    ID             I9
+    CPROB1         F10.3
+    CPROB2         F10.3
+    C              F10.3
+
+  Save file format
+    28F10.3 I9 3F10.3
+
+  Save file record length    10000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  23:50:40
+        Ending Time:  23:51:13
+       Elapsed Time:  00:00:33
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2015 Muthen & Muthen

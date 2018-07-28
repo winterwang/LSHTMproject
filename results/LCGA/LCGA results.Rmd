@@ -1,7 +1,7 @@
 ---
 title: "NDNS LCGA"
 author: "Chaochen Wang"
-date: "22 July 2018"
+date: "22 July 2018, updated: `r Sys.Date()`"
 output: 
   html_document:
     toc: true
