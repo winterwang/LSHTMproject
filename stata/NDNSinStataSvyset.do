@@ -71,6 +71,12 @@ test [age]1 = [age]2
 test [age]1 = [age]2 = [age]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
+svy: mean MVP, over(CB)
+test [MVPAtime]1 = [MVPAtime]2
+
+svy: mean MVP, over(C)
+test [MVPAtime]1 = [MVPAtime]2
+
 *test [bmival]1 - [bmival]2 = -0.5
 
 svy: mean wst, over(CB)

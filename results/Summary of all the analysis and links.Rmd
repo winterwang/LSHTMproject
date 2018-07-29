@@ -1,0 +1,125 @@
+---
+title: "Summary of the analyses we have done"
+author: "Chaochen Wang"
+date: "29 July 2018, Updated at `r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    nature:
+      highlightLines: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Carbohydrate contribution of energy intake cut-off = 50%
+
+
+- In these analyses, within each **hour of the day/time slot** of the day carbohydrates intake was defined as: 
+    - not eating; 
+    - eating and carbohydrates contributed less than 50% of energy;
+    - eating and carbohydrates contributed higher or equal to 50% of energy.
+
+## by 24 hours     
+
+### Multilevel LCA
+
+
+
+[Rpubs link: http://Rpubs.com/winterwang/CW2CB3](http://Rpubs.com/winterwang/CW2CB3): 
+
+- **Proposed solutions:** 
+    - 2 by 2 multilevel LCA solutions (Fig 3.1 & 3.2); 
+        - **Type 1 days**: always having lunch at 1 pm, **high carb between 7-10 am, and 3-4 pm**; 
+        - **Type 2 days**: probability of not having lunch close to 0.5, higher probabitlity of low carb intake than high carb.
+    - Proportions of 2 types of days in person level classes: 
+        - **Class 1 persons**: 52.5%, and 47.5%; 
+        - **Class 2 persons**: 94.8% and 5.2% -> always have type 1 days, regularly having more food.
+
+
+
+### Latent class growth analysis (LCGA)
+
+
+[Rpubs link: http://Rpubs.com/winterwang/LGCA](http://Rpubs.com/winterwang/LGCA)
+
+- Proposed solutions: Fig 3.
+    - 3 classes: 
+        - Class 1 (28.97%): inactive eaters (French style), high carb breakfast, low carb lunch and dinner, no snacks; 
+        - Class 2 (6.11%):  active eaters, high carb intake through out the days; 
+        - Class 3 (64.92%): typical British style eaters, high carb breakfast, morning snack, afternoon snack, and low carb lunch and dinner.
+
+
+
+## by 7 time slots 
+
+
+- Time slots are defined as: 
+    - **Breakfast:** 6 am to 9 am; 
+    - **Morning snack:** 9 am to 12 noon; 
+    - **Lunch:** 12 noon to 2 pm; 
+    - **Afternoon snack:** 2 pm to 5 pm; 
+    - **Dinner:** 5 pm to 8 pm; 
+    - **Before bedtime snack:** 8 pm to 10 pm; 
+    - **Midnight food:** 10pm to 6 am;
+
+### Multilevel LCA
+
+[Rpubs link: http://Rpubs.com/winterwang/NDNS7timeslots_multilevel](http://Rpubs.com/winterwang/NDNS7timeslots_multilevel)
+
+- Proposed solutions: 
+    - 3 by 3 multilevel LCA solutions (Fig 3.1 and 3.3): 
+        - **Type 1 days**: **high carb** at breakfast, afternoon snack, and before bedtime snack;
+        - **Type 2 days**: low carb through out the day, **high probability of not having breakfast**;
+        - **Type 3 days**: high carb breakfast, low carb lunch and dinner, **not eating at night**.
+    - Proportions of three types of days in person level classes:
+        - **Class 1 persons (28.2%)**:  62.3%, 20.5%, and 17.2%; 
+        - **Class 2 persons (28.9%)**:  40.0%, 42.0%, and 18.0%;
+        - **Class 3 persons (42.8%)**:  25.8%, 50.0%, and 24.1%.
+
+### Latent class growth analysis (LCGA)
+
+[Rpubs link: http://Rpubs.com/winterwang/NDNSslots](http://Rpubs.com/winterwang/NDNSslots)
+
+- Proposed solutions: Fig 4.
+    - 3 classes: 
+        - Class 1 (67.2%): high carb breakfast, low carb lunch and dinner; 
+        - Class 2 (21.9%): high prob of skipping breakfast, not eating at night; 
+        - Class 3 (10.9%): high carb all four days, snacking a alot.
+        
+# Carb-fibre ratio cut-off value = 0.1        
+
+
+- In these analyses, within each **hour of the day/time slot** of the day carbohydrates intake was defined as: 
+    - not eating; 
+    - eating and fibre-carbo ratio < 0.1; 
+    - eating and fibre-carbo ratio > 0.1;
+    - eating and no fibre or carbo.
+
+
+## by 24 hours
+
+<!-- ### Multilevel LCA -->
+
+
+### Latent class growth analysis
+
+[Rpubs link: http://rpubs.com/winterwang/FBCB](http://rpubs.com/winterwang/FBCB)
+
+- Proposed solutions: Fig 3.
+    - 3 classes: 
+        - Class 1 (25.2%): inactive eaters (French style) no snacks; 
+        - Class 2 (67.7%):  typical British style eaters;
+        - Class 3 (7.1%):  active eaters 
+
+The probabilities of having food without any carb or fibre are low. This analysis is quite similar with LCGA conducted for the carb >=50% or <50%. 
+
+<!-- ## by 7 time slots -->
+
+<!-- ### Multilevel LCA -->
+
+
+<!-- ### Latent class growth analysis -->

@@ -14,6 +14,25 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Response to carb intake and time slot definition
+
+
+- In this analysis, within each **time slot** of the day carbohydrates intake was defined as: 
+    - not eating; 
+    - eating and carbohydrates contributed less than 50% of energy;
+    - eating and carbohydrates contributed higher or equal to 50% of energy.
+    
+- Time slots are defined as: 
+    - **Breakfast:** 6 am to 9 am; 
+    - **Morning snack:** 9 am to 12 noon; 
+    - **Lunch:** 12 noon to 2 pm; 
+    - **Afternoon snack:** 2 pm to 5 pm; 
+    - **Dinner:** 5 pm to 8 pm; 
+    - **Before bedtime snack:** 8 pm to 10 pm; 
+    - **Midnight food:** 10pm to 6 am;
+    
+
+
 
 # Model comparison and selection
 
@@ -232,7 +251,7 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
   geom_point(size = 2) + 
   geom_line(size = 1) + 
   theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 14), 
+        axis.text = element_text(face="bold", size = 14), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -241,11 +260,11 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
         legend.position = "bottom",
         legend.direction = "horizontal"
   ) + 
-  labs(title = "Class 1: 43.9%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 1: 43.9%", x = "Time slots of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
-  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
             alpha = 0.2, fill = "pink") + 
   annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
@@ -262,23 +281,26 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
-                                   "d1H12" = "12-14",  "d1H14" = "14-17",
-                                   "d1H17" = "17-20",  "d1H20" = "20-22",
-                                   "d1H22" = "22-6",  
-                                   "d2H6" = "6-9",    "d2H9" = "9-12",
-                                   "d2H12" = "12-14",  "d2H14" = "14-17",
-                                   "d2H17" = "17-20",  "d2H20" = "20-22",
-                                   "d2H22" = "22-6",  
-                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
-                                   "d3H12" = "12-14",    "d3H14" = "14-17",
-                                   "d3H17" = "17-20",    "d3H20" = "20-22",
-                                   "d3H22" = "22-6",  
-                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
-                                   "d4H12" = "12-14",   "d4H14" = "14-17",
-                                   "d4H17" = "17-20",   "d4H20" = "20-22",
-                                   "d4H22" = "22-6"
+  scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
+                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
+                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
+                                   "d1H22" = "Midnight food",  
+                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
+                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
+                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
+                                   "d2H22" = "Midnight food",
+                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
+                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
+                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
+                                   "d3H22" = "Midnight food",
+                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
+                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
+                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
+                                   "d4H22" = "Midnight food"
   ))
+
+
+
 
 
 
@@ -286,7 +308,7 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
   geom_point(size = 2) + 
   geom_line(size = 1) + 
   theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 14), 
+        axis.text = element_text(face="bold", size = 14), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -295,11 +317,11 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
         legend.position = "bottom",
         legend.direction = "horizontal"
   ) + 
-  labs(title = "Class 2: 56.1%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 2: 56.1%", x = "Time slots of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
-  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
             alpha = 0.2, fill = "pink") + 
   annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
@@ -316,24 +338,22 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
-                                   "d1H12" = "12-14",  "d1H14" = "14-17",
-                                   "d1H17" = "17-20",  "d1H20" = "20-22",
-                                   "d1H22" = "22-6",  
-                                   "d2H6" = "6-9",    "d2H9" = "9-12",
-                                   "d2H12" = "12-14",  "d2H14" = "14-17",
-                                   "d2H17" = "17-20",  "d2H20" = "20-22",
-                                   "d2H22" = "22-6",  
-                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
-                                   "d3H12" = "12-14",    "d3H14" = "14-17",
-                                   "d3H17" = "17-20",    "d3H20" = "20-22",
-                                   "d3H22" = "22-6",  
-                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
-                                   "d4H12" = "12-14",   "d4H14" = "14-17",
-                                   "d4H17" = "17-20",   "d4H20" = "20-22",
-                                   "d4H22" = "22-6"
-  ))
-
+  scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
+                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
+                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
+                                   "d1H22" = "Midnight food",  
+                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
+                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
+                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
+                                   "d2H22" = "Midnight food",
+                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
+                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
+                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
+                                   "d3H22" = "Midnight food",
+                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
+                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
+                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
+                                   "d4H22" = "Midnight food"))
 
 
 # ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
@@ -349,7 +369,7 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
 #         # legend.position = "bottom", 
 #         # legend.direction = "horizontal"
 #   ) + 
-#   labs(title = "Class 3", x = "Hour of the day", y = "Probability",
+#   labs(title = "Class 3", x = "Time slots of the day", y = "Probability",
 #        color = "Carbohydrate\nintake") + 
 #   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
 #   ylim(c(0,1)) + 
@@ -371,7 +391,7 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
 #         # legend.position = "bottom", 
 #         # legend.direction = "horizontal"
 #   ) + 
-#   labs(title = "Class 3", x = "Hour of the day", y = "Probability",
+#   labs(title = "Class 3", x = "Time slots of the day", y = "Probability",
 #        color = "Carbohydrate\nintake") + 
 #   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
 #   ylim(c(0,1)) + 
@@ -568,7 +588,7 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
   geom_point(size = 2) + 
   geom_line(size = 1) + 
   theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 14), 
+        axis.text = element_text(face="bold", size = 14), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -577,11 +597,11 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
         legend.position = "bottom",
         legend.direction = "horizontal"
   ) + 
-  labs(title = "Class 1: 67.2%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 1: 67.2%", x = "Time slots of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
-  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
             alpha = 0.2, fill = "pink") + 
   annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
@@ -598,23 +618,22 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
-                                   "d1H12" = "12-14",  "d1H14" = "14-17",
-                                   "d1H17" = "17-20",  "d1H20" = "20-22",
-                                   "d1H22" = "22-6",  
-                                   "d2H6" = "6-9",    "d2H9" = "9-12",
-                                   "d2H12" = "12-14",  "d2H14" = "14-17",
-                                   "d2H17" = "17-20",  "d2H20" = "20-22",
-                                   "d2H22" = "22-6",  
-                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
-                                   "d3H12" = "12-14",    "d3H14" = "14-17",
-                                   "d3H17" = "17-20",    "d3H20" = "20-22",
-                                   "d3H22" = "22-6",  
-                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
-                                   "d4H12" = "12-14",   "d4H14" = "14-17",
-                                   "d4H17" = "17-20",   "d4H20" = "20-22",
-                                   "d4H22" = "22-6"
-  ))
+   scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
+                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
+                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
+                                   "d1H22" = "Midnight food",  
+                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
+                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
+                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
+                                   "d2H22" = "Midnight food",
+                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
+                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
+                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
+                                   "d3H22" = "Midnight food",
+                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
+                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
+                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
+                                   "d4H22" = "Midnight food"))
 
 
 
@@ -622,7 +641,7 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
   geom_point(size = 2) + 
   geom_line(size = 1) + 
   theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 14), 
+        axis.text = element_text(face="bold", size = 14), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -631,11 +650,11 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
         legend.position = "bottom",
         legend.direction = "horizontal"
   ) + 
-  labs(title = "Class 2: 21.9%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 2: 21.9%", x = "Time slots of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
-  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
             alpha = 0.2, fill = "pink") + 
   annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
@@ -652,23 +671,22 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
-                                   "d1H12" = "12-14",  "d1H14" = "14-17",
-                                   "d1H17" = "17-20",  "d1H20" = "20-22",
-                                   "d1H22" = "22-6",  
-                                   "d2H6" = "6-9",    "d2H9" = "9-12",
-                                   "d2H12" = "12-14",  "d2H14" = "14-17",
-                                   "d2H17" = "17-20",  "d2H20" = "20-22",
-                                   "d2H22" = "22-6",  
-                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
-                                   "d3H12" = "12-14",    "d3H14" = "14-17",
-                                   "d3H17" = "17-20",    "d3H20" = "20-22",
-                                   "d3H22" = "22-6",  
-                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
-                                   "d4H12" = "12-14",   "d4H14" = "14-17",
-                                   "d4H17" = "17-20",   "d4H20" = "20-22",
-                                   "d4H22" = "22-6"
-  ))
+ scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
+                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
+                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
+                                   "d1H22" = "Midnight food",  
+                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
+                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
+                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
+                                   "d2H22" = "Midnight food",
+                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
+                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
+                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
+                                   "d3H22" = "Midnight food",
+                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
+                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
+                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
+                                   "d4H22" = "Midnight food"))
 
 
 
@@ -676,7 +694,7 @@ ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
   geom_point(size = 2) +
   geom_line(size = 1) +
    theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 14), 
+        axis.text = element_text(face="bold", size = 14), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -685,11 +703,11 @@ ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
         legend.position = "bottom",
         legend.direction = "horizontal"
   ) + 
-  labs(title = "Class 3: 10.9%", x = "Hour of the day", y = "Probability",
+  labs(title = "Class 3: 10.9%", x = "Time slots of the day", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
-  # theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   annotate("rect", xmin = "d1H6", xmax = "d2H6", ymin = 0, ymax = 1.00, 
             alpha = 0.2, fill = "pink") + 
   annotate("rect", xmin = "d2H6", xmax = "d3H6", ymin = 0, ymax = 1.00, 
@@ -706,23 +724,22 @@ ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
-                                   "d1H12" = "12-14",  "d1H14" = "14-17",
-                                   "d1H17" = "17-20",  "d1H20" = "20-22",
-                                   "d1H22" = "22-6",  
-                                   "d2H6" = "6-9",    "d2H9" = "9-12",
-                                   "d2H12" = "12-14",  "d2H14" = "14-17",
-                                   "d2H17" = "17-20",  "d2H20" = "20-22",
-                                   "d2H22" = "22-6",  
-                                   "d3H6"  = "6-9",    "d3H9" = "9-12",
-                                   "d3H12" = "12-14",    "d3H14" = "14-17",
-                                   "d3H17" = "17-20",    "d3H20" = "20-22",
-                                   "d3H22" = "22-6",  
-                                   "d4H6"  = "6-9",    "d4H9" = "9-12",
-                                   "d4H12" = "12-14",   "d4H14" = "14-17",
-                                   "d4H17" = "17-20",   "d4H20" = "20-22",
-                                   "d4H22" = "22-6"
-  ))
+  scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
+                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
+                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
+                                   "d1H22" = "Midnight food",  
+                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
+                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
+                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
+                                   "d2H22" = "Midnight food",
+                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
+                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
+                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
+                                   "d3H22" = "Midnight food",
+                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
+                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
+                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
+                                   "d4H22" = "Midnight food"))
 
 
 
@@ -740,7 +757,7 @@ ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
 #         # legend.position = "bottom", 
 #         # legend.direction = "horizontal"
 #   ) + 
-#   labs(title = "Class 3", x = "Hour of the day", y = "Probability",
+#   labs(title = "Class 3", x = "Time slots of the day", y = "Probability",
 #        color = "Carbohydrate\nintake") + 
 #   scale_color_discrete(labels = c("Not eating\nany food", "< 50%", ">= 50%")) + 
 #   ylim(c(0,1)) + 
