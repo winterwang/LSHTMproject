@@ -204,9 +204,38 @@ The number of classes in either level 1 were determined by 1) the evaluation of 
 %LCGA is a statistical approach that models patterns in longitudinal data by classifying individuals into unobserved latent classes with more homogeneous patterns. LCGA is a special type of Growth Mixture Models (GMM), in which the variance of latent slope and intercept are fixed to zero within class, and allowed to vary only across classes. LCGA assumes that all individual growth trajectories within classes are homogeneous. 
 
 
-LCGA is a semi‐parametric technique used to identify distinct subgroups of individuals following a similar pattern of change over time on a given variable. The analysis identifies distinct subgroups of individuals following a distinct pattern of change over time.  LCGA is a special type of Growth Mixture Models (GMM), in which the variance of latent slope and intercept are fixed to zero within class, and allowed to vary only across classes. LCGA assumes that all individual growth trajectories within classes are homogeneous. 
+LCGA is a semi‐parametric technique used to identify distinct subgroups of individuals following a similar pattern of change over time on a given variable. The analysis identifies distinct subgroups of individuals following a distinct pattern of change over time.  LCGA is a special type of Growth Mixture Models (GMM) \parencite{jung2008introduction}, in which the variance of latent slope and intercept are fixed to zero within class, and allowed to vary only across classes. LCGA assumes that all individual growth trajectories within classes are homogeneous. The diagramme of the LCGA model in the current setting is illustrated in \textbf{Figure \ref{fig:LCGAdiagram}}:
 
-In the NDNS RP data context, we considered a latent categorical variable $c_i$ representing the unobserved subpopulation membership (latent class variable) for participant $i, (c_i = 1,2,\cdots K)$. 
+\begin{figure}[H]
+	%\vspace*{13cm}
+	\centering
+	\includegraphics[width=10cm]{Figures/LCGAdiagramme.jpeg}
+	\decoRule
+	\caption[Diagramme for LCGA model]{Diagram for LCGA model.\\ \scriptsize{\textbf{Abbreviations:} g, latent class variable; i, intercept; l, linear term coefficient; q, quadratic term coefficient; c, cubic term coefficient; u1, u2, ... u96, repeated categorical outcomes of eating carbohydrates at each hour/time slots across four days of survey.}}
+	\label{fig:LCGAdiagram}
+\end{figure}\vspace{-0.6cm}
 
+In the NDNS RP data context, we considered a latent categorical variable $g_i$ representing the unobserved subpopulation membership (latent class variable) for participant $i, (g_{i} = 1,2,\cdots K)$. Then a LCGA model predicts the probability of the carbohydrate eating response $u_{ti}$ at time $t$ in latent class $K$ can be written as: \vspace{-0.3cm}
+
+\begin{equation}
+\begin{aligned}
+P(u_{ti} = 0/1/2 |g_i = K) &  = \frac{1}{1 + e^{-\text{logit}(u_{itK})}} \\
+\text{logit}(u_{itK}) & = \beta_{0K} + \beta_{1K}t_{i} + \beta_{2K}t^2_i + \beta_{3K}t^3_i + \epsilon_{i} \\ 
+\epsilon_{i} \sim N(0, \sigma^2) & \;i = 1,2,...6155
+\end{aligned}
+\end{equation}\vspace{-0.6cm}
+
+Where, 
+
+\begin{itemize}
+	\item $u_{ti}=\left\{ \begin{array}{ll}  0 & \text{if particiant } i \text{ was not eating any food at time } t\\ 
+	 1 & \text{if particiant } i \text{ was eating food and contribution of energy} \\ 
+	   &  \text{from carbohydrate was lower than 50\% at time } t \\ 
+	 2 & \text{if participant } i \text{ was eating food and contribution of energy} \\ 
+	 &  \text{from carbohydrate was higher or equal to 50\% at time } t \end{array} \right.$
+	\item $\beta_{0K}, \beta_{1K}, \beta_{2K}, \beta_{3K}$  correspond to $i, l, q, c$ in \textbf{Figure \ref{fig:LCGAdiagram}}, i.e. the coefficients for intercept, linear, quadratic, and cubic term of time.
+\end{itemize}
+
+An LCGA model can be modelled using either a linear, quadratic, or cubic trend over time. However, in our case, it may not be appropriate to assume the probabilities of responses to eating carbohydrates on the logit scale to change on a linear, or quadratic trend over four days, we chose to fit a more flex time function-a cubic form of time.
 
 \section{Association between latent classes and other variables}\vspace{-0.3cm}

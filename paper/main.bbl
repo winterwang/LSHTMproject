@@ -396,6 +396,44 @@
     \field{year}{2014}
   \endentry
 
+  \entry{jung2008introduction}{article}{}
+    \name{author}{2}{}{%
+      {{hash=JT}{%
+         family={Jung},
+         familyi={J\bibinitperiod},
+         given={Tony},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=WK}{%
+         family={Wickrama},
+         familyi={W\bibinitperiod},
+         given={KAS},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{JTWK1}
+    \strng{fullhash}{JTWK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{number}{1}
+    \field{pages}{302\bibrangedash 317}
+    \field{title}{An introduction to latent class growth analysis and growth
+  mixture modeling}
+    \field{volume}{2}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/jung2008.pdf:PDF
+    \endverb
+    \field{journaltitle}{Social and personality psychology compass}
+    \field{year}{2008}
+  \endentry
+
   \entry{leech2017temporal}{article}{}
     \name{author}{4}{}{%
       {{hash=LRM}{%

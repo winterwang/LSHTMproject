@@ -48,7 +48,7 @@
 @Article{rindskopf1986value,
   author    = {Rindskopf, David and Rindskopf, Wallace},
   title     = {The value of latent class analysis in medical diagnosis},
-  journal   = {Statistics in medicine},
+  journal   = {Statistics in Medicine},
   year      = {1986},
   volume    = {5},
   number    = {1},

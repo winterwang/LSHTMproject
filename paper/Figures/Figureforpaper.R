@@ -175,3 +175,85 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=HourN, group = Carbo,
 
 library(cowplot)
 plot_grid(cls1, cls2, ncol = 1, labels = c('A', 'B'), rel_heights=c(1,1.2))
+
+
+
+
+# diagram for LCGA --------------------------------------------------------
+library(DiagrammeR)
+
+grViz("
+      digraph boxes_and_circles {
+      
+      # a 'graph' statement
+      graph [overlap = true, fontsize = 8]
+      
+      # several 'node' statements
+      node [fillcolor = grey, style = filled, 
+      fontname = Helvetica, shape = circle]
+      A [label = 'g'] 
+      B [label = 'q']
+      C [label = 'c']
+      D [label = 'i']
+      E [label = 'l']
+      
+
+      
+      node [shape = box, 
+      fillcolor = white, 
+      fontname = Helvetica]
+      F [label = 'u96']
+      G [label = 'u1']
+      H [label = 'u2']
+      I [label = 'u3']
+      J [label = '...']
+      
+      
+      # edge statements
+      A->B A->C A->D A->E   B->F C->F D->F E->F 
+      B->G C->G D->G E->G
+      B->H C->H D->H E->H
+      B->I C->I D->I E->I
+      B->J C->J D->J E->J
+      }")
+
+# 
+# grViz("
+# digraph {
+#       
+#       graph [ranksep = 1]
+#       'i' [shape = 'circle']
+#       's' [shape = 'circle']
+#       't1' [shape = 'square']
+#       't2' [shape = 'square']
+#       't3' [shape = 'square']
+#       't4' [shape = 'square']
+#       'x1' [shape = 'square']
+#       'x2' [shape = 'square']
+#       'c1' [shape = 'square']
+#       'c2' [shape = 'square']
+#       'c3' [shape = 'square']
+#       'c4' [shape = 'square']
+#       'i'->'t1' [style = 'dashed', label = '1']
+#       'i'->'t2' [style = 'dashed', label = '1']
+#       'i'->'t3' [style = 'dashed', label = '1']
+#       'i'->'t4' [style = 'dashed', label = '1']
+#       's'->'t1' [style = 'dashed', label = '0']
+#       's'->'t2' [style = 'dashed', label = '1']
+#       's'->'t3' [style = 'dashed', label = '2']
+#       's'->'t4' [style = 'dashed', label = '3']
+#       'x1'->'i' [style = 'solid', label = '0.61']
+#       'x2'->'i' [style = 'solid', label = '0.6']
+#       'x1'->'s' [style = 'solid', label = '0.26']
+#       'x2'->'s' [style = 'solid', label = '0.52']
+#       'c1'->'t1' [style = 'solid', label = '0.14']
+#       'c2'->'t2' [style = 'solid', label = '0.29']
+#       'c3'->'t3' [style = 'solid', label = '0.33']
+#       'c4'->'t4' [style = 'solid', label = '0.33']
+#       
+#       # Additional constraints on the graph
+#       t1->t2->t3->t4 [style='invis']
+#       {rank = 'max'; c1; c2; c3; c4;}
+#       {rank = 'same'; t1; t2; t3; t4;}
+#       }
+#       ")
