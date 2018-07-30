@@ -1,7 +1,7 @@
 ---
 title: "NDNS multilevel carb_50, 7 time slots"
 author: "Chaochen Wang"
-date: "29 July 2018, Updated at `r Sys.Date()`"
+date: "29 July 2018 created, `r Sys.Date()` updated"
 output: 
   html_document:
     toc: true
@@ -171,13 +171,33 @@ pp_long$Slots <- factor(pp_long$Slots, levels = c("Breakfast",
 
 
 
-```{r echo=FALSE, fig.height=8, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+```{r echo=FALSE, fig.height=6, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
 library(ggthemr)
 ggthemr("fresh", layout = "scientific")
 library(ggplot2)
 
+pp_long$Time <- as.character(pp_long$Slots)
+pp_long$Time[pp_long$Slots == "Breakfast"] <- 7.5
+pp_long$Time[pp_long$Slots == "Morning.snack"] <- 10.5
+pp_long$Time[pp_long$Slots == "Lunch"] <- 13
+pp_long$Time[pp_long$Slots == "Afternoon.snack"] <- 15.5
+pp_long$Time[pp_long$Slots == "Dinner"] <- 18.5
+pp_long$Time[pp_long$Slots == "Before.bedtime.snack"] <- 21
+pp_long$Time[pp_long$Slots == "Midnight.food"] <- 26
+pp_long$Time <- as.numeric(pp_long$Time)
 
-ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Slots, group = Carbo, color = Carbo)) + 
+
+ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo))  + 
+  scale_x_continuous(limits = c(6, 29),
+  breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") +
   geom_point(size = 3) + 
   geom_line(size = 1.5) + 
   theme(axis.title = element_text(size = 18), 
@@ -190,15 +210,27 @@ ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Slots, group = Carbo, color =
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days", x = "Time slots of the day", y = "Probability",
+    # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 1 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
-  ylim(c(0,1))
+  ylim(c(0,1)) #+ 
+  # scale_x_discrete(labels = c("6","7","8","9","10","11","12","13","14",
+  #                             "15","16","17","18","19", "20","21","22",
+  #                             "23","0","1","2","3","4","5"))
 
 
-
-ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Slots, group = Carbo, color = Carbo)) + 
+ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) + 
+  scale_x_continuous(limits = c(6, 29),
+  breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") +
   geom_point(size = 3) + 
   geom_line(size = 1.5) + 
   theme(axis.title = element_text(size = 18), 
@@ -211,8 +243,8 @@ ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Slots, group = Carbo, color =
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-      theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days", x = "Time slots of the day", y = "Probability",
+    # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 2 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1))
@@ -504,13 +536,34 @@ pp_long$Slots <- factor(pp_long$Slots, levels = c("Breakfast",
 
 
 
-```{r echo=FALSE, fig.height=8, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
+```{r echo=FALSE,fig.height=6, fig.width=14, message=FALSE, warning=FALSE, cache=TRUE}
 library(ggthemr)
 ggthemr("fresh", layout = "scientific")
 library(ggplot2)
 
 
-ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Slots, group = Carbo, color = Carbo)) + 
+pp_long$Time <- as.character(pp_long$Slots)
+pp_long$Time[pp_long$Slots == "Breakfast"] <- 7.5
+pp_long$Time[pp_long$Slots == "Morning.snack"] <- 10.5
+pp_long$Time[pp_long$Slots == "Lunch"] <- 13
+pp_long$Time[pp_long$Slots == "Afternoon.snack"] <- 15.5
+pp_long$Time[pp_long$Slots == "Dinner"] <- 18.5
+pp_long$Time[pp_long$Slots == "Before.bedtime.snack"] <- 21
+pp_long$Time[pp_long$Slots == "Midnight.food"] <- 26
+pp_long$Time <- as.numeric(pp_long$Time)
+
+
+ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo))  + 
+  scale_x_continuous(limits = c(6, 29),
+  breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") +
   geom_point(size = 3) + 
   geom_line(size = 1.5) + 
   theme(axis.title = element_text(size = 18), 
@@ -523,15 +576,27 @@ ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Slots, group = Carbo, color =
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days", x = "Time slots of the day", y = "Probability",
+    # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 1 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
-  ylim(c(0,1))
+  ylim(c(0,1)) #+ 
+  # scale_x_discrete(labels = c("6","7","8","9","10","11","12","13","14",
+  #                             "15","16","17","18","19", "20","21","22",
+  #                             "23","0","1","2","3","4","5"))
 
 
-
-ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Slots, group = Carbo, color = Carbo)) + 
+ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) + 
+  scale_x_continuous(limits = c(6, 29),
+  breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") +
   geom_point(size = 3) + 
   geom_line(size = 1.5) + 
   theme(axis.title = element_text(size = 18), 
@@ -544,13 +609,23 @@ ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Slots, group = Carbo, color =
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-      theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days", x = "Time slots of the day", y = "Probability",
+    # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 2 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1))
 
-ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Slots, group = Carbo, color = Carbo)) + 
+ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) + 
+  scale_x_continuous(limits = c(6, 29),
+  breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+            alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+             alpha = 0.5, fill = "grey") +
   geom_point(size = 3) + 
   geom_line(size = 1.5) + 
   theme(axis.title = element_text(size = 18), 
@@ -563,11 +638,12 @@ ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Slots, group = Carbo, color =
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-      theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 3 days", x = "Time slots of the day", y = "Probability",
+    # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 3 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
        color = "Carbohydrate\nintake") + 
   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1))
+
 
 ```
 

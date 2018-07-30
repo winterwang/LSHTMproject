@@ -1,7 +1,7 @@
 ---
 title: "LCGA 7 timeslots"
 author: "Chaochen Wang"
-date: "Created at 28 July 2018, Updated at `r Sys.Date()`"
+date: "28 July 2018 created, `r Sys.Date()` Updated"
 output: 
   html_document:
     toc: true
@@ -281,22 +281,22 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
-                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
-                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
-                                   "d1H22" = "Midnight food",  
-                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
-                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
-                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
-                                   "d2H22" = "Midnight food",
-                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
-                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
-                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
-                                   "d3H22" = "Midnight food",
-                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
-                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
-                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
-                                   "d4H22" = "Midnight food"
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",     "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6" = "6-9",     "d3H9" = "9-12",
+                                   "d3H12" = "12-14",  "d3H14" = "14-17",
+                                   "d3H17" = "17-20",  "d3H20" = "20-22",
+                                   "d3H22" = "22-6", 
+                                   "d4H6" = "6-9",     "d4H9" = "9-12",
+                                   "d4H12" = "12-14",  "d4H14" = "14-17",
+                                   "d4H17" = "17-20",  "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
   ))
 
 
@@ -338,22 +338,24 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
-                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
-                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
-                                   "d1H22" = "Midnight food",  
-                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
-                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
-                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
-                                   "d2H22" = "Midnight food",
-                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
-                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
-                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
-                                   "d3H22" = "Midnight food",
-                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
-                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
-                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
-                                   "d4H22" = "Midnight food"))
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",     "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6" = "6-9",     "d3H9" = "9-12",
+                                   "d3H12" = "12-14",  "d3H14" = "14-17",
+                                   "d3H17" = "17-20",  "d3H20" = "20-22",
+                                   "d3H22" = "22-6", 
+                                   "d4H6" = "6-9",     "d4H9" = "9-12",
+                                   "d4H12" = "12-14",  "d4H14" = "14-17",
+                                   "d4H17" = "17-20",  "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
+
 
 
 # ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
@@ -618,22 +620,23 @@ ggplot(pp[pp$C == 1, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-   scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
-                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
-                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
-                                   "d1H22" = "Midnight food",  
-                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
-                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
-                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
-                                   "d2H22" = "Midnight food",
-                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
-                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
-                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
-                                   "d3H22" = "Midnight food",
-                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
-                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
-                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
-                                   "d4H22" = "Midnight food"))
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",     "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6" = "6-9",     "d3H9" = "9-12",
+                                   "d3H12" = "12-14",  "d3H14" = "14-17",
+                                   "d3H17" = "17-20",  "d3H20" = "20-22",
+                                   "d3H22" = "22-6", 
+                                   "d4H6" = "6-9",     "d4H9" = "9-12",
+                                   "d4H12" = "12-14",  "d4H14" = "14-17",
+                                   "d4H17" = "17-20",  "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
 
 
 
@@ -671,22 +674,23 @@ ggplot(pp[pp$C == 2, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
- scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
-                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
-                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
-                                   "d1H22" = "Midnight food",  
-                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
-                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
-                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
-                                   "d2H22" = "Midnight food",
-                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
-                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
-                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
-                                   "d3H22" = "Midnight food",
-                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
-                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
-                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
-                                   "d4H22" = "Midnight food"))
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",     "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6" = "6-9",     "d3H9" = "9-12",
+                                   "d3H12" = "12-14",  "d3H14" = "14-17",
+                                   "d3H17" = "17-20",  "d3H20" = "20-22",
+                                   "d3H22" = "22-6", 
+                                   "d4H6" = "6-9",     "d4H9" = "9-12",
+                                   "d4H12" = "12-14",  "d4H14" = "14-17",
+                                   "d4H17" = "17-20",  "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
 
 
 
@@ -724,23 +728,23 @@ ggplot(pp[pp$C == 3, ], aes(y = Prob, x=DHourN, group = Carbo, color = Carbo)) +
             label = "Day 3", size = 7) +
   annotate("text", x = "d4H12", y = 0.9,
             label = "Day 4", size = 7) + 
-  scale_x_discrete(labels=c(        "d1H6" = "Breakfast",    "d1H9" = "Morning snack",
-                                   "d1H12" = "Lunch",  "d1H14" = "Afternoon snack",
-                                   "d1H17" = "Dinner",  "d1H20" = "Before bedtime snack",
-                                   "d1H22" = "Midnight food",  
-                                   "d2H6" = "Breakfast",    "d2H9" = "Morning snack",
-                                   "d2H12" = "Lunch",  "d2H14" = "Afternoon snack",
-                                   "d2H17" = "Dinner",  "d2H20" = "Before bedtime snack",
-                                   "d2H22" = "Midnight food",
-                                   "d3H6" = "Breakfast",    "d3H9" = "Morning snack",
-                                   "d3H12" = "Lunch",  "d3H14" = "Afternoon snack",
-                                   "d3H17" = "Dinner",  "d3H20" = "Before bedtime snack",
-                                   "d3H22" = "Midnight food",
-                                  "d4H6" = "Breakfast",    "d4H9" = "Morning snack",
-                                   "d4H12" = "Lunch",  "d4H14" = "Afternoon snack",
-                                   "d4H17" = "Dinner",  "d4H20" = "Before bedtime snack",
-                                   "d4H22" = "Midnight food"))
-
+  scale_x_discrete(labels=c(        "d1H6" = "6-9",    "d1H9" = "9-12",
+                                   "d1H12" = "12-14",  "d1H14" = "14-17",
+                                   "d1H17" = "17-20",  "d1H20" = "20-22",
+                                   "d1H22" = "22-6",  
+                                   "d2H6" = "6-9",     "d2H9" = "9-12",
+                                   "d2H12" = "12-14",  "d2H14" = "14-17",
+                                   "d2H17" = "17-20",  "d2H20" = "20-22",
+                                   "d2H22" = "22-6",  
+                                   "d3H6" = "6-9",     "d3H9" = "9-12",
+                                   "d3H12" = "12-14",  "d3H14" = "14-17",
+                                   "d3H17" = "17-20",  "d3H20" = "20-22",
+                                   "d3H22" = "22-6", 
+                                   "d4H6" = "6-9",     "d4H9" = "9-12",
+                                   "d4H12" = "12-14",  "d4H14" = "14-17",
+                                   "d4H17" = "17-20",  "d4H20" = "20-22",
+                                   "d4H22" = "22-6"
+  ))
 
 
 

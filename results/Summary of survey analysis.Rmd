@@ -1,7 +1,7 @@
 ---
-title: "Summary of Survey Analysis"
+title: "Summary of Survey Analysis NDNS carb50, 24 hours"
 author: "Chaochen Wang"
-date: "27 July 2018"
+date: "27 July 2018 created, `r Sys.Date()` updated"
 output:
   html_document:
     nature:

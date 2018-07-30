@@ -18,6 +18,15 @@ use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta",
 use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_3class.dta", clear
 
 
+// import data from CW3CB2_7slotsregss.dta
+
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_7slotsregss.dta", clear
+
+// import data from LCGA_7slots3class.dta
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_7slots3class.dta", clear
+
+
+
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
 label values cigsta3 smoking
 label define drinking 1 "no" 2 "yes"
@@ -76,6 +85,8 @@ test [MVPAtime]1 = [MVPAtime]2
 
 svy: mean MVP, over(C)
 test [MVPAtime]1 = [MVPAtime]2
+test [MVPAtime]1 = [MVPAtime]2 = [MVPAtime]3, mtest(b)
+
 
 *test [bmival]1 - [bmival]2 = -0.5
 
@@ -113,6 +124,8 @@ svy: tabulate cigsta3 CB, col se ci format(%7.3f)
 
 
 svy: tabulate cigsta3 C, col se ci format(%7.3f)
+
+svy: tabulate dnnow CB, col se ci format(%7.3f)
 
 svy: tabulate dnnow C, col se ci format(%7.3f)
 
@@ -168,9 +181,11 @@ gen DM = A1C <= 6.5 if !missing(A1C)
 
 svy, subpop(DM): mean Glucose, over(CB)
 test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
 
 svy, subpop(DM): mean A1C, over(CB)
 test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
 
 svy: tabulate DM CB, col se ci format(%7.3f)
 

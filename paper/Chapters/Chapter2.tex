@@ -197,10 +197,16 @@ To identify the best-fitting model, we used the following sequential modelling s
 	\item Thirdly, when number of individual-level latent classes is defined based on the previous stage, observational-level classes was modified (one class lower and one class higher than in the second step), to see the effect of changing level 1 classes and confirm the best fitting model.
 \end{itemize}
 
-The number of classes in either level 1 were determined by 1) the evaluation of model fit indices, including the Akaike information criterion (AIC), Bayesian information criterion (BIC), adjusted Bayesian information criterion (aBIC) where smaller values indicate better, and entropy which is a statistic that summarizes latent class probabilities where values near 1 indicate better latent class separation; 2) the Lo-Mendell-Rubin Likelihood Ratio Test (LMR-LRT) \parencite{lo2001testing, nylund2007deciding} which compare $q$ vs. $q-1$ class models, where $q$ is the number of latent classes and 3) pattern interpretability. In the step of performing multilevel LCA, where neither LMR-LRT nor BS-LRT were available, same rules of model fit indices and pattern interpretability were used to determine the optimal combination of latent classes in level 1 and level 2. 
+The number of classes in either level 1 were determined by 1) the evaluation of model fit indices, including the Akaike information criterion (AIC), Bayesian information criterion (BIC), adjusted Bayesian information criterion (aBIC) where smaller values indicate better, and entropy which is a statistic that summarizes latent class probabilities where values near 1 indicate better latent class separation; 2) the Lo-Mendell-Rubin Likelihood Ratio Test (LMR-LRT) \parencite{lo2001testing, nylund2007deciding} which compare $q$ vs. $q-1$ class models, where $q$ is the number of latent classes and 3) pattern interpretability. In the step of performing multilevel LCA, where neither LMR-LRT nor BS-LRT were available, same rules of model fit indices and pattern interpretability were used to determine the optimal combination of latent classes in level 1 and level 2. \vspace{-0.3cm}
 
 \section{Latent Class Growth Analysis (LCGA)}\vspace{-0.3cm}
 
+%LCGA is a statistical approach that models patterns in longitudinal data by classifying individuals into unobserved latent classes with more homogeneous patterns. LCGA is a special type of Growth Mixture Models (GMM), in which the variance of latent slope and intercept are fixed to zero within class, and allowed to vary only across classes. LCGA assumes that all individual growth trajectories within classes are homogeneous. 
+
+
+LCGA is a semi‐parametric technique used to identify distinct subgroups of individuals following a similar pattern of change over time on a given variable. The analysis identifies distinct subgroups of individuals following a distinct pattern of change over time.  LCGA is a special type of Growth Mixture Models (GMM), in which the variance of latent slope and intercept are fixed to zero within class, and allowed to vary only across classes. LCGA assumes that all individual growth trajectories within classes are homogeneous. 
+
+In the NDNS RP data context, we considered a latent categorical variable $c_i$ representing the unobserved subpopulation membership (latent class variable) for participant $i, (c_i = 1,2,\cdots K)$. 
 
 
 \section{Association between latent classes and other variables}\vspace{-0.3cm}

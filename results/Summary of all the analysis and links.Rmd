@@ -1,7 +1,7 @@
 ---
 title: "Summary of the analyses we have done"
 author: "Chaochen Wang"
-date: "29 July 2018, Updated at `r Sys.Date()`"
+date: "29 July 2018 created, `r Sys.Date()` updated"
 output: 
   html_document:
     toc: true
@@ -54,6 +54,12 @@ editor_options:
 
 
 
+### Table 1 for latent classes identified (24 hours)
+
+[Rpubs link:http://rpubs.com/winterwang/NDNStable1](http://rpubs.com/winterwang/NDNStable1)
+
+
+
 ## by 7 time slots 
 
 
@@ -76,7 +82,7 @@ editor_options:
         - **Type 2 days**: low carb through out the day, **high probability of not having breakfast**;
         - **Type 3 days**: high carb breakfast, low carb lunch and dinner, **not eating at night**.
     - Proportions of three types of days in person level classes:
-        - **Class 1 persons (28.2%)**:  62.3%, 20.5%, and 17.2%; 
+        - **Class 1 persons (28.2%)**:  62.3%, 20.5%, and 17.2%; -> higher BMI, WC, more DM than the other two groups
         - **Class 2 persons (28.9%)**:  40.0%, 42.0%, and 18.0%;
         - **Class 3 persons (42.8%)**:  25.8%, 50.0%, and 24.1%.
 
@@ -88,7 +94,15 @@ editor_options:
     - 3 classes: 
         - Class 1 (67.2%): high carb breakfast, low carb lunch and dinner; 
         - Class 2 (21.9%): high prob of skipping breakfast, not eating at night; 
-        - Class 3 (10.9%): high carb all four days, snacking a alot.
+        - Class 3 (10.9%): high carb all four days, snacking frequently. -> also high physical activity, high prob in drinking and smoking 
+        
+
+### Table 1 for latent classes identified (7 time slots)
+
+[Rpubs link:http://rpubs.com/winterwang/tab1slots7](http://rpubs.com/winterwang/tab1slots7)
+
+
+        
         
 # Carb-fibre ratio cut-off value = 0.1        
 

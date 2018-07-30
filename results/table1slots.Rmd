@@ -1,0 +1,357 @@
+---
+title: "Summary of Survey Analysis NDNS carb50, 7 time slots"
+author: "Chaochen Wang"
+date: "30 July 2018 created, `r Sys.Date()` updated"
+output:
+  html_document:
+    nature:
+      highlightLines: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(RColorBrewer)
+library(plyr)
+library(epiDisplay)
+library(tidyverse)
+library(dplyr)
+library(scales)
+library(readr)
+library(kableExtra)
+library(haven)
+library(naniar)
+```
+
+
+# Multilevel classes results (3by3)
+
+
+```{r bigdataset, echo=FALSE, eval=FALSE, warning=FALSE}
+# read the big data sets
+blood78 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_indiv.dta")
+# blood78 <- read_dta("~/Documents/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_indiv.dta")
+
+blood56 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr5-6a_indiv.dta")
+blood14 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_indiv_uk.dta")
+
+food14 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_personleveldietarydata_uk.dta")
+
+food56 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr5-6a_personleveldietarydata.dta")
+
+food78 <- read_dta("~/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_personleveldietarydata.dta")
+
+names(blood78)[names(blood78)=="seriali"] <- "ID"
+names(blood56)[names(blood56)=="seriali"] <- "ID"
+names(blood14)[names(blood14)=="seriali"] <- "ID"
+names(food78)[names(food78)=="seriali"] <- "ID"
+names(food56)[names(food56)=="seriali"] <- "ID"
+names(food14)[names(food14)=="seriali"] <- "ID"
+
+
+
+BMI78 <- blood78 %>% 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2,  
+         Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y78, wtn_Y78, wtb_Y78, cluster1, cluster2, cluster3, 
+         cluster4, cluster5, area, gor) %>% 
+  rename(wti = wti_Y78, wtn = wtn_Y78, wtb = wtb_Y78, drink = dnoft3) %>% 
+  mutate(Years = "7-8", MVPAtime = NA) %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 dnnow = -1,
+                                 drink = -1,
+                                 cigsta3 = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1,
+                                 drink = -8)) %>% 
+    replace_with_na(replace = list(drink = -9,
+                                 cigsta3 = -8))
+
+
+
+
+BMI56 <- blood56 %>% 
+  select(ID, Sex, age, area, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2, MVPAtime,
+         Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y56, wtn_Y56, wtb_Y56, cluster1, cluster2, cluster3, 
+         cluster4, cluster5, area, gor) %>% 
+  mutate(Years = "5-6") %>% 
+  rename(wti = wti_Y56, wtn = wtn_Y56, wtb = wtb_Y56, drink = dnoft3) %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 dnnow = -1,
+                                 drink = -1,
+                                 cigsta3 = -1,
+                                 MVPAtime = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, 
+                                 drink = -8)) %>% 
+    replace_with_na(replace = list(drink = -9,
+                                 cigsta3 = -8))
+
+BMI14 <- blood14 %>% 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc, bpmedd, hyper140, hibp140, MVPAtime,
+         Glucose, A1C, cigsta3, dnoft3, dnnow, wti_CY1234, wtn_CY1234, wtb_CY1234, cluster, area, gor) %>%
+  rename(hyper140_2 = hyper140, hibp140_2 = hibp140, bpmedd2 = bpmedd, 
+         bpmedc2 = bpmedc, cluster1 = cluster, 
+         wti = wti_CY1234, wtn = wtn_CY1234, wtb =  wtb_CY1234, drink = dnoft3) %>% 
+  mutate(cluster2 = NA, cluster3 = NA, cluster4 = NA, cluster5 = NA, Years = "1-4") %>% 
+  replace_with_na(replace = list(bmival = -1, 
+                                 wstval = -1, 
+                                 bpmedd2 = -1, 
+                                 bpmedc2 = -1,
+                                 hyper140_2 = -7, 
+                                 # hyper140_2 = -1, 
+                                 hibp140_2 = -7, 
+                                 # hibp140_2 = -1, 
+                                 Glucose = -1, 
+                                 A1C  = -1, 
+                                 dnnow = -1,
+                                 drink = -1,
+                                 cigsta3 = -1,
+                                 MVPAtime = -4)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, MVPAtime = -1,
+                                 drink = -8)) %>% 
+  replace_with_na(replace = list(drink = -9,
+                                 cigsta3 = -8))
+
+
+BMI <- bind_rows(BMI14, BMI56, BMI78)
+
+
+
+Energy14 <- food14 %>% 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE)
+Energy14$Country[Energy14$Country == "Northern Ireland"] <- "NI"
+
+Energy56 <- food56 %>% 
+  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, CHOpctotE) %>% 
+  rename(SurveyYear = Surveyyear)
+
+Energy78 <- food78 %>% 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE)
+
+Energy <- bind_rows(Energy14, Energy56, Energy78)
+
+
+```
+
+
+
+```{r combinedata, echo=FALSE, eval=FALSE, warning=FALSE}
+# ready to combine with the classification data
+
+CW3CB3 <- read_table2("~/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB3.txt",  
+                              col_names = FALSE)# change the path to your own path
+
+names(CW3CB3) <- c("Breakfast", "Morning.snack", "Lunch",
+                   "Afternoon.snack", "Dinner", "Before.bedtime.snack",
+                   "Midnight.food", "ID_DAY", "AGE", "SEX", "CPROB1",
+                      "CPROB2", "CPROB3", "CPROB4", "CPROB5", "CPROB6", "CPROB7", "CPROB8", "CPROB9",
+                      "CB", "CW", "MLCJOINT", "ID")
+CW3CB3_reg <- CW3CB3[!duplicated(CW3CB3$ID), ]
+
+CW3CB3_reg <- CW3CB3_reg %>% 
+  select(ID, AGE, SEX, CB) # extract only the CB variable (Between individual classes == 1 or 2)
+
+tab1(CW3CB3_reg$CB, graph = FALSE)
+
+
+
+CW3CB3_regss <- CW3CB3_reg %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID")## dataset for 3by3 multilevel latent classes 
+
+
+
+Slots_LGCA_3CLASS <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/LGCA/NDNSslot_LGCA_3CLASS.txt",  col_names = FALSE)
+
+Slots_LGCA_3CLASS[, 1:32] <- sapply(Slots_LGCA_3CLASS[, 1:32], as.numeric)
+names(Slots_LGCA_3CLASS) <- c(
+  "H6_9_X",  "H9_12_X",
+  "H12_14_X",  "H14_17_X",
+  "H17_20_X",  "H20_22_X",
+  "H22_6_X",  
+  "H6_9_Y",  "H9_12_Y",
+  "H12_14_Y",  "H14_17_Y",
+  "H17_20_Y",  "H20_22_Y",
+  "H22_6_Y",  
+  "H6_9_X_X",  "H9_12_X_X",
+  "H12_14_X_X",  "H14_17_X_X",
+  "H17_20_X_X",  "H20_22_X_X",
+  "H22_6_X_X",  
+  "H6_9_Y_Y",  "H9_12_Y_Y",
+  "H12_14_Y_Y",  "H14_17_Y_Y",
+  "H17_20_Y_Y",  "H20_22_Y_Y",
+  "H22_6_Y_Y",  
+  "ID",
+  "CPROB1",  "CPROB2",
+  "CPROB3",  #"CPROB4", 
+  "C")
+
+Slots_LGCA_3CLASS[Slots_LGCA_3CLASS == "*"] <- NA
+
+
+LCGA_3class <- Slots_LGCA_3CLASS %>% 
+  select(ID, C) # extract only the C variable (classes == 1 or 2)
+
+tab1(LCGA_3class$C, graph = FALSE)
+
+LCGA_3class <- LCGA_3class %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID")## dataset for 3 classes latent classes growth analysis
+
+
+
+
+```
+
+
+```{r rescale the weighting,eval=FALSE,message=FALSE, cache=TRUE, warning=FALSE}
+# Rescale the weighting values
+# individual weighting
+a <- sum(CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wti)
+b <- sum(CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wti)
+c <- sum(CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wti)
+
+CW3CB3_regss$wti1to8 <- CW3CB3_regss$wti
+
+CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wti1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wti*(a+b+c)*(1/2)/a
+CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wti1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wti*(a+b+c)*(1/4)/b
+CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wti1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wti*(a+b+c)*(1/4)/c
+mean(CW3CB3_regss$wti1to8)
+
+CW3CB3_regss$wti1to8 <- CW3CB3_regss$wti1to8/1.209816814
+summ(CW3CB3_regss$wti1to8, graph = FALSE)
+sum(CW3CB3_regss$wti1to8, graph = FALSE) #Check if the weighting sum up to the sample size we have
+
+# Nurse weights
+
+a <- sum(CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtn)
+b <- sum(CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtn)
+c <- sum(CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtn)
+
+CW3CB3_regss$wtn1to8 <- CW3CB3_regss$wtn
+
+CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtn1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtn*(a+b+c)*(1/2)/a
+CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtn1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtn*(a+b+c)*(1/4)/b
+CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtn1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtn*(a+b+c)*(1/4)/c
+mean(CW3CB3_regss$wtn1to8)
+
+CW3CB3_regss$wtn1to8 <- CW3CB3_regss$wtn1to8/0.907003577
+summ(CW3CB3_regss$wtn1to8, graph = FALSE)
+sum(CW3CB3_regss$wtn1to8, graph = FALSE) #Check if the weighting sum up to the sample size we have
+
+# Blood weights
+a <- sum(CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtb)
+b <- sum(CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtb)
+c <- sum(CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtb)
+
+CW3CB3_regss$wtb1to8 <- CW3CB3_regss$wtb
+
+CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtb1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtb*(a+b+c)*(1/2)/a
+CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtb1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtb*(a+b+c)*(1/4)/b
+CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtb1to8 <- CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtb*(a+b+c)*(1/4)/c
+mean(CW3CB3_regss$wtb1to8)
+
+CW3CB3_regss$wtb1to8 <- CW3CB3_regss$wtb1to8/0.4817444505
+summ(CW3CB3_regss$wtb1to8, graph = FALSE)
+sum(CW3CB3_regss$wtb1to8, graph = FALSE) #Check if the weighting sum up to the sample size we have
+
+
+weightings <- CW3CB3_regss %>% select(ID, wti1to8, wtn1to8, wtb1to8)
+
+# add the weightings to the other datasets
+# CW3CB3_regss <- CW3CB3_regss %>% 
+#   left_join(weightings, by = "ID")
+
+LCGA_3class <- LCGA_3class %>%
+  left_join(weightings, by = "ID")
+
+
+write_dta(LCGA_3class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_7slots3class.dta")
+# write_dta(LCGA_2class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta")
+write_dta(CW3CB3_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_7regss.dta")
+# write_dta(CW2CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta")
+```
+
+
+```{r tab1, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Timeslots_CW3CB3results.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "Latent class = 3", "P value [note]")
+
+
+dt[28, 1] <- c("Hypertension (%) [note]")
+dt[32, 1] <- c("Carbohydrate\npercent (%) [note]")
+dt[35, 1] <- c("DM [note]")
+dt[36, 1] <- c("Physical\nactivity (hours/day) [note]")
+
+
+kable(dt,  align = "l", escape = F, row.names = FALSE,
+              format = "html", caption = "Means, percentages, and 95% CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  add_indent(c(3:6, 9, 10, 12:19, 23:25, 27, 29)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.", 
+                       "Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.", 
+                       "Glucose and A1C levels are estimated in subgroups of people without diabetes.")) %>% 
+  add_footnote(c("For continuous variables, the F test was used to determine differences between latent classes with Bonferroni correction to account for multiple testing across >2 classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for survey data.",
+                 "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.", 
+                 "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 "DM was defined by A1C > 6.5%.", 
+                 "Physical activity was calculated as mean time spent at moderate or vigorous physical activity during the survey."), 
+               notation = "symbol")
+```
+
+
+# LCGA results (3 classes)
+
+
+
+
+```{r tab1LCGA, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Timeslots_LCGA2classesresults.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "Latent class = 3", "P value [note]")
+
+
+dt[28, 1] <- c("Hypertension (%) [note]")
+dt[32, 1] <- c("Carbohydrate\npercent (%) [note]")
+dt[35, 1] <- c("DM [note]")
+dt[36, 1] <- c("Physical\nactivity (hours/day) [note]")
+
+
+kable(dt,  align = "l", escape = F, row.names = FALSE,
+              format = "html", caption = "Means, percentages, and 95% CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).") %>%
+ kable_styling(font_size = 16, 
+        bootstrap_options = c("striped", "hover", "condensed"),
+        position = "center", full_width = FALSE) %>% 
+  add_indent(c(3:6, 9, 10, 12:19, 23:25, 27, 29)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.", 
+                       "Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.", 
+                       "Glucose and A1C levels are estimated in subgroups of people without diabetes.")) %>% 
+  add_footnote(c("For continuous variables, the F test was used to determine differences between latent classes with Bonferroni correction to account for multiple testing across >2 classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for survey data.",
+                 "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.", 
+                 "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 "DM was defined by A1C > 6.5%.", 
+                 "Physical activity was calculated as mean time spent at moderate or vigorous physical activity during the survey."), 
+               notation = "symbol")
+```
