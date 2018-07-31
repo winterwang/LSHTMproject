@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  31 JUL 2018 00:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  31 JUL 2018 20:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1594,6 +1594,16 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \@centerbox=\box56
 \c@ROWcellindex@=\count409
 )
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
 (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
@@ -2190,6 +2200,26 @@ LaTeX Font Info:    Try loading font information for OT1+zplm on input line 192
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 12.50409pt on input line 192.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 192.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 192.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 12.50409pt on input line 192.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 192.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 192.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -2197,7 +2227,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 \c__siunitx_mathtt_int=\count446
 
 1: section
-<Figures/logos.jpg, id=144, 752.8125pt x 361.35pt>
+<Figures/logos.jpg, id=140, 752.8125pt x 361.35pt>
 File: Figures/logos.jpg Graphic file (type jpg)
 <use Figures/logos.jpg>
 Package pdftex.def Info: Figures/logos.jpg  used on input line 204.
@@ -2333,25 +2363,20 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
 
 
 
-] [4] [5] [6] [7] [8] [9]
-<Figures/LCGAdiagramme.jpeg, id=379, 742.27313pt x 402.00188pt>
-File: Figures/LCGAdiagramme.jpeg Graphic file (type jpg)
-<use Figures/LCGAdiagramme.jpeg>
-Package pdftex.def Info: Figures/LCGAdiagramme.jpeg  used on input line 212.
-(pdftex.def)             Requested size: 284.5245pt x 154.09338pt.
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <8> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 214.
- [10 <./Figures/LCGAdiagramme.jpeg>]) [11]
+] [4] [5] [6] [7] [8] [9] [10]) [11]
 \openout2 = `Chapters/Chapter3.aux'.
 
-
-(./Chapters/Chapter3.tex
+ (./Chapters/Chapter3.tex
 Chapter 3.
-<Figures/class1mlcalevel1.png, id=394, 1053.9375pt x 602.25pt>
+<Figures/class1mlcalevel1.png, id=383, 1053.9375pt x 602.25pt>
 File: Figures/class1mlcalevel1.png Graphic file (type png)
 <use Figures/class1mlcalevel1.png>
 Package pdftex.def Info: Figures/class1mlcalevel1.png  used on input line 47.
 (pdftex.def)             Requested size: 431.34525pt x 246.48299pt.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 62.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 62.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -2452,12 +2477,12 @@ Appendix B.
 
  (./Appendices/AppendixC.tex
 Appendix C.
-<Figures/Diary1.png, id=459, 1349.04pt x 934.49126pt>
+<Figures/Diary1.png, id=449, 1349.04pt x 934.49126pt>
 File: Figures/Diary1.png Graphic file (type png)
 <use Figures/Diary1.png>
 Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.3311pt x 298.78665pt.
-<Figures/Diary2.png, id=460, 1380.15625pt x 923.45pt>
+<Figures/Diary2.png, id=450, 1380.15625pt x 923.45pt>
 File: Figures/Diary2.png Graphic file (type png)
 <use Figures/Diary2.png>
 Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
@@ -2468,7 +2493,7 @@ Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
 
 
  <./Figures/Diary1.png>]
-<Figures/Diary3.png, id=465, 1340.00626pt x 720.6925pt>
+<Figures/Diary3.png, id=455, 1340.00626pt x 720.6925pt>
 File: Figures/Diary3.png Graphic file (type png)
 <use Figures/Diary3.png>
 Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
@@ -2482,34 +2507,35 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 429.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 429.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 429.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7B716DABE614D8F31687E553484A12E2;6106.
+(rerunfilecheck)             Checksum: 587BD711C5DC467788025EF2EDD9D954;5857.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38245 strings out of 492982
- 758566 string characters out of 6134896
- 1101371 words of memory out of 5000000
- 40983 multiletter control sequences out of 15000+600000
- 601332 words of font info for 273 fonts, out of 8000000 for 9000
+ 38518 strings out of 492982
+ 761686 string characters out of 6134896
+ 1104209 words of memory out of 5000000
+ 41254 multiletter control sequences out of 15000+600000
+ 598316 words of font info for 270 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,20n,85p,10377b,2406s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpaz
 o/fplmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmri.p
-fb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
-no/uplri8a.pfb>
-Output written on main.pdf (42 pages, 838976 bytes).
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pf
+b></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatin
+o/uplri8a.pfb>
+Output written on main.pdf (42 pages, 733332 bytes).
 PDF statistics:
- 536 PDF objects out of 1000 (max. 8388607)
- 470 compressed objects within 5 object streams
- 122 named destinations out of 1000 (max. 500000)
- 37175 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 528 PDF objects out of 1000 (max. 8388607)
+ 462 compressed objects within 5 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 37162 words of extra memory for PDF output out of 42996 (max. 10000000)
 

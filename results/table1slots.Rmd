@@ -139,15 +139,18 @@ BMI <- bind_rows(BMI14, BMI56, BMI78)
 
 
 Energy14 <- food14 %>% 
-  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE)
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE, Proteing, ProteinpctotE, 
+         Fatg, FatpctotE)
 Energy14$Country[Energy14$Country == "Northern Ireland"] <- "NI"
 
 Energy56 <- food56 %>% 
-  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, CHOpctotE) %>% 
+  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, CHOpctotE, Proteing, ProteinpctotE, 
+         Fatg, FatpctotE) %>% 
   rename(SurveyYear = Surveyyear)
 
 Energy78 <- food78 %>% 
-  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE)
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE, Proteing, ProteinpctotE, 
+         Fatg, FatpctotE)
 
 Energy <- bind_rows(Energy14, Energy56, Energy78)
 
@@ -167,6 +170,47 @@ names(CW3CB3) <- c("Breakfast", "Morning.snack", "Lunch",
                    "Midnight.food", "ID_DAY", "AGE", "SEX", "CPROB1",
                       "CPROB2", "CPROB3", "CPROB4", "CPROB5", "CPROB6", "CPROB7", "CPROB8", "CPROB9",
                       "CB", "CW", "MLCJOINT", "ID")
+
+
+dta_NDNS <- read_csv("/home/wangcc-me/Documents/LSHTMproject/Rcode/dta_NDNS.csv") # extract the day of week data
+
+CW3idday <- CW3CB3 %>% 
+  select(ID, ID_DAY, CW, CB, MLCJOINT, AGE, SEX)
+
+CW3idday$DayNo <- ave(CW3idday$ID_DAY, CW3idday$ID, FUN = seq_along) # adding the day no 
+
+dta_DayofWeek <- dta_NDNS %>% 
+  select(id, id_dy, DayofWeek)
+
+dta_DayofWeek$DayNo <- unlist(strsplit(dta_DayofWeek$id_dy,"D"))[c(FALSE, TRUE)] # creating a day no
+names(dta_DayofWeek)[1] <- "ID"
+dta_DayofWeek$DayNo <- as.numeric(dta_DayofWeek$DayNo)
+
+
+CW3idday <-   CW3idday %>%  
+  left_join(dta_DayofWeek, by= c("ID", "DayNo"))
+
+CW3idday$DayofWeek[CW3idday$ID_DAY == 40714261000] <- "Saturday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 112050710000] <- "Tuesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 310122510000] <- "Wednesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 5050616100] <- "Monday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 50506161000] <- "Tuesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 505061610000] <- "Wednesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 7090824100] <- "Monday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 70908241000] <- "Tuesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 709082410000] <- "Wednesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 807021910000] <- "Monday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 812101310000] <- "Sunday"
+
+with(CW3idday, tabpct(DayofWeek, CW))
+with(CW3idday, chisq.test(DayofWeek, CW))
+
+CW3idday$Weekend <- ifelse((CW3idday$DayofWeek == "Sunday" | CW3idday$DayofWeek == "Saturday"), TRUE, FALSE)
+
+with(CW3idday, tabpct(Weekend, CW))
+with(CW3idday, chisq.test(Weekend, CW))
+
+
 CW3CB3_reg <- CW3CB3[!duplicated(CW3CB3$ID), ]
 
 CW3CB3_reg <- CW3CB3_reg %>% 
