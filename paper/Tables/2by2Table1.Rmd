@@ -103,7 +103,8 @@ kable(dt,  align = "l", row.names = FALSE,
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Mixed_50_paper.csv", header = T)
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Mixed_7slots.csv", header = T)
+dt <- dt[,-7]
 names(dt) <- c("Model", "1 class", "2 classes",  "3 classes", "4 classes", "5 classes")
 dt[is.na(dt)] <- ""
 # library(formattable)
@@ -119,3 +120,20 @@ kable(dt, digits = 3, row.names = FALSE, align = "c",
   footnote(general = c("Abbreviation: No, number; BIC, Bayesian information criterion; Entropy, a pseudo-r-squared index; Lo-Mendel-Rubin LRT, likelihood ratio test comparing q classes models with q-1 classes models."))
 
 ```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/timeslots_cw3cb3_univariate.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Time slots of the day", "Responses of carbohydrate intake", "Frequency", "Precentages (%)", 
+               "Class 1 (30.8%)", "Class 2 (39.8%)", "Class 3 (29.5%)")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Day Level Latent Class Solution for Three-Class Model (No Individual level Model)", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+    add_header_above(c(" ", " ", " ", " ", "High carbohydrate day", "Lower carbohydrate day", "Regular day"))
+
+```
+
+
+

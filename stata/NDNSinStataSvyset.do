@@ -20,7 +20,7 @@ use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_3class.dta",
 
 // import data from CW3CB2_7slotsregss.dta
 
-use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_7slotsregss.dta", clear
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
 
 // import data from LCGA_7slots3class.dta
 use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_7slots3class.dta", clear
@@ -33,8 +33,12 @@ label define drinking 1 "no" 2 "yes"
 label values dnnow drinking
 label define gender 1 "Men" 2 "Women"
 label values Sex gender
-
-
+label define paid 1 "No" 2 "Yes"
+label values paidemployment paid
+label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+label values ethgrp5 ethnicity5
+label define ethnicity2 1 "White" 2 "non-White"
+label values ethgrp2 ethnicity2
 
 brow
 
@@ -55,7 +59,9 @@ svydescribe wti // describe the weighted data set
 svy: tabulate Sex CB, row se ci format(%7.3f)
 svy: tabulate Sex CB, col se ci format(%7.3f)
 svy: tabulate Country CB, col se ci format(%7.3f)
+svy: tabulate Country CB, row se ci format(%7.3f)
 svy: tabulate SurveyYear CB, col se ci format(%7.3f)
+svy: tabulate SurveyYear CB, row se ci format(%7.3f)
 
 
 // when dealing with LCGA classes use C instead of CB

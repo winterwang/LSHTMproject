@@ -463,4 +463,54 @@
   author    = {Bates, Beverley and Lennox, Alison and Prentice, Ann and Bates, Christopher J and Page, Polly and Nicholson, Sonja and Swan, Gillian},
 }
 
+@Article{jung2008introduction,
+  author    = {Jung, Tony and Wickrama, KAS},
+  title     = {An introduction to latent class growth analysis and growth mixture modeling},
+  journal   = {Social and personality psychology compass},
+  year      = {2008},
+  volume    = {2},
+  number    = {1},
+  pages     = {302--317},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/jung2008.pdf:PDF},
+  publisher = {Wiley Online Library},
+}
+
+@Article{andruff2009latent,
+  author  = {Andruff, Heather and Carraro, Natasha and Thompson, Amanda and Gaudreau, Patrick and Louvet, Beno{\^\i}t},
+  title   = {Latent Class Growth Modelling: A Tutorial},
+  journal = {Tutorials in Quantitative Methods for Psychology},
+  year    = {2009},
+  volume  = {5},
+  number  = {1},
+  pages   = {11--24},
+  file    = {:/home/wangcc-me/Documents/LSHTMproject/references/p011.pdf:PDF},
+}
+
+@Article{van2008using,
+  author    = {Van Horn, M Lee and Fagan, Abigail A and Jaki, Thomas and Brown, Eric C and Hawkins, J David and Arthur, Michael W and Abbott, Robert D and Catalano, Richard F},
+  title     = {Using multilevel mixtures to evaluate intervention effects in group randomized trials},
+  journal   = {Multivariate Behavioral Research},
+  year      = {2008},
+  volume    = {43},
+  number    = {2},
+  pages     = {289--326},
+  publisher = {Taylor \& Francis},
+}
+
+@InCollection{davidian2008growth,
+  author    = {Davidian, Marie and Fitzmaurice, Garrett and Molenberghs, Geert and Verbeke, Geert},
+  title     = {Growth mixture modeling: Analysis with non-Gaussian random effects},
+  booktitle = {Longitudinal Data Analysis},
+  publisher = {Chapman and Hall/CRC},
+  year      = {2008},
+  pages     = {157--180},
+}
+
+@Book{muthen2005mplus,
+  title     = {Mplus: Statistical analysis with latent variables: User's guide},
+  publisher = {Muth{\'e}n \& Muth{\'e}n Los Angeles},
+  year      = {2017},
+  author    = {Muth{\'e}n, Linda K and Muth{\'e}n, Bengt O},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
