@@ -513,4 +513,15 @@
   author    = {Muth{\'e}n, Linda K and Muth{\'e}n, Bengt O},
 }
 
+@Article{welch1951comparison,
+  author    = {Welch, Bernard Lewis},
+  title     = {On the comparison of several mean values: an alternative approach},
+  journal   = {Biometrika},
+  year      = {1951},
+  volume    = {38},
+  number    = {3/4},
+  pages     = {330--336},
+  publisher = {JSTOR},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

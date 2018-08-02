@@ -137,3 +137,13 @@ kable(dt,  align = "l", row.names = FALSE,
 
 
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Daylevel.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c(" ", "High carbohydrate day", "Low carbohydrate day", "Regular meals day", "P value [note]")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Characteristics of different types of days according to carbohydrate intake", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) 
+
+```
+

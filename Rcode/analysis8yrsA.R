@@ -1565,3 +1565,241 @@ write_dta(LCGA_3class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_s
 write_dta(LCGA_2class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta")
 write_dta(CW3CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_regss.dta")
 write_dta(CW2CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta")
+
+
+
+
+# CW3CB2CB3 and weekdays weekends & CW3----------------------------------------------------------
+
+CW3CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB2.txt",
+                      col_names = FALSE)
+
+names(CW3CB2) <- c("Breakfast", "Morning.snack", "Lunch",
+                   "Afternoon.snack", "Dinner", "Before.bedtime.snack",
+                   "Midnight.food", "ID_DAY", "AGE", "SEX",
+                   "CPROB1", "CPROB2", "CPROB3", "CPROB4",
+                   "CPROB5", "CPROB6",
+                   # "CPROB7",
+                   # "CPROB8",
+                   # "CPROB9",
+                   "CB", "CW", "MLCJOINT", "ID")
+
+
+CW3CB3 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB3.txt",
+                      col_names = FALSE)
+
+names(CW3CB3) <- c("Breakfast",  "Morning.snack", "Lunch",
+                   "Afternoon.snack", "Dinner", "Before.bedtime.snack",
+                   "Midnight.food", "ID_DAY", "AGE", "SEX",
+                   "CPROB1", "CPROB2", "CPROB3", "CPROB4",
+                   "CPROB5", "CPROB6", "CPROB7", "CPROB8",
+                   "CPROB9", "CB", "CW", "MLCJOINT", "ID")
+
+tab1(CW3CB2$CW)
+tab1(CW3CB3$CW)
+
+CW3CB3$CW_new <- 0
+CW3CB3$CW_new[CW3CB3$CW == 1] <- 3
+CW3CB3$CW_new[CW3CB3$CW == 2] <- 1
+CW3CB3$CW_new[CW3CB3$CW == 3] <- 2
+
+CB2_in_CW3CB2 <- CW3CB2 %>% 
+  select(ID, ID_DAY, CW, CB) %>% 
+  rename(CW3_in_2 = CW, CB2_in_2 = CB)
+CW3CB3 <- CW3CB3 %>% 
+  left_join(CB2_in_CW3CB2, by = "ID_DAY")
+
+
+pp <- CW3CB3 %>%  #CW3CB2 change this to check the level 1 classes changes
+  group_by(CW) %>% 
+  summarise(Breakfast_0 = sum(Breakfast == 0)/length(Breakfast), 
+            Breakfast_1 = sum(Breakfast == 1)/length(Breakfast), 
+            Breakfast_2 = sum(Breakfast == 2)/length(Breakfast),
+            Morning.snack_0 = sum(Morning.snack == 0)/length(Morning.snack),
+            Morning.snack_1 = sum(Morning.snack == 1)/length(Morning.snack), 
+            Morning.snack_2 = sum(Morning.snack == 2)/length(Morning.snack),
+            Lunch_0 = sum(Lunch == 0)/length(Lunch),
+            Lunch_1 = sum(Lunch == 1)/length(Lunch), 
+            Lunch_2 = sum(Lunch == 2)/length(Lunch),
+            Afternoon.snack_0 = sum(Afternoon.snack == 0)/length(Afternoon.snack),
+            Afternoon.snack_1 = sum(Afternoon.snack == 1)/length(Afternoon.snack), 
+            Afternoon.snack_2 = sum(Afternoon.snack == 2)/length(Afternoon.snack),
+            Dinner_0 = sum(Dinner == 0)/length(Dinner),
+            Dinner_1 = sum(Dinner == 1)/length(Dinner), 
+            Dinner_2 = sum(Dinner == 2)/length(Dinner),
+            Before.bedtime.snack_0 = sum(Before.bedtime.snack == 0)/length(Before.bedtime.snack),
+            Before.bedtime.snack_1 = sum(Before.bedtime.snack == 1)/length(Before.bedtime.snack), 
+            Before.bedtime.snack_2 = sum(Before.bedtime.snack == 2)/length(Before.bedtime.snack),
+            Midnight.food_0 = sum(Midnight.food == 0)/length(Midnight.food),
+            Midnight.food_1 = sum(Midnight.food == 1)/length(Midnight.food), 
+            Midnight.food_2 = sum(Midnight.food == 2)/length(Midnight.food))
+
+
+
+pp_long <- pp %>% 
+  gather(Hour, Prob, -CW) %>% 
+  separate(Hour, into = c("Slots", "Carbo"), sep = "_") 
+
+
+
+
+pp_long$Slots <- factor(pp_long$Slots, levels = c("Breakfast", 
+                                                  "Morning.snack",
+                                                  "Lunch",
+                                                  "Afternoon.snack",
+                                                  "Dinner",
+                                                  "Before.bedtime.snack",
+                                                  "Midnight.food"))
+
+library(ggthemr)
+ggthemr("fresh", layout = "scientific")
+library(ggplot2)
+
+
+pp_long$Time <- as.character(pp_long$Slots)
+pp_long$Time[pp_long$Slots == "Breakfast"] <- 7.5
+pp_long$Time[pp_long$Slots == "Morning.snack"] <- 10.5
+pp_long$Time[pp_long$Slots == "Lunch"] <- 13
+pp_long$Time[pp_long$Slots == "Afternoon.snack"] <- 15.5
+pp_long$Time[pp_long$Slots == "Dinner"] <- 18.5
+pp_long$Time[pp_long$Slots == "Before.bedtime.snack"] <- 21
+pp_long$Time[pp_long$Slots == "Midnight.food"] <- 26
+pp_long$Time <- as.numeric(pp_long$Time)
+
+
+ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo))  + 
+  scale_x_continuous(limits = c(6, 29),
+                     breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") +
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+  ) + 
+  # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 1 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+
+
+ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) + 
+  scale_x_continuous(limits = c(6, 29),
+                     breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") +
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+  ) + 
+  # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 2 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+
+
+
+ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) + 
+  scale_x_continuous(limits = c(6, 29),
+                     breaks = seq(6, 29, by = 1)) +
+  annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") + 
+  annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
+           alpha = 0.5, fill = "grey") +
+  geom_point(size = 3) + 
+  geom_line(size = 1.5) + 
+  theme(axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 18), 
+        axis.line = element_line(colour = "black"), 
+        panel.border = element_blank(), 
+        panel.background = element_blank(), 
+        legend.text = element_text(size = 15), 
+        legend.title = element_text(size = 15) 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal"
+  ) + 
+  # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+  labs(title = "Class 3 days", x = "Hours of the day (next day from hour 24)", y = "Probability",
+       color = "Carbohydrate\nintake") + 
+  scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
+  ylim(c(0,1))
+
+
+
+
+chart.data <- CW3CB3 %>% 
+  group_by(CB, CW) %>% 
+  tally %>% 
+  group_by(CB) %>% 
+  mutate(pct = n/sum(n))
+
+
+chart.data$CW[chart.data$CW == 1] <- 0
+chart.data$CW[chart.data$CW == 3] <- 1
+chart.data$CW[chart.data$CW == 0] <- 3
+
+chart.data <- chart.data[order(chart.data$CB, chart.data$CW),]
+chart.data <- ddply(chart.data, .(CB), 
+                    transform, pos = cumsum(pct) - (0.5 * pct)) 
+
+
+
+chart.data$CW3_2 <- factor(chart.data$CW, levels = c("3", "2", "1"), 
+                        labels = c("Class 3 days", "Class 2 days", "Class 1 days"))
+chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), 
+                        labels = c("Individual\nclass 1\n(28.2%)",  "Individual\nclass 2\n(28.9%)", 
+                                   "Individual\nclass 3\n(42.8%)"))
+
+
+
+library(ggthemr)
+ggthemr("dust", layout = "scientific")
+ggplot() + 
+  geom_bar(aes(y = pct, x = CB, fill = CW3_2), data = chart.data, width = 0.6,
+           stat="identity") + 
+  geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+            size=4, colour="white", family="Atlas Grotesk Medium") + 
+  theme(legend.position="bottom", legend.direction="horizontal",
+        legend.title = element_blank(), 
+        axis.title = element_text(size = 18), 
+        axis.text = element_text(size = 15), 
+        axis.line = element_line(colour = "black"), 
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light")) + 
+  labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") +
+  scale_y_continuous(labels=percent)

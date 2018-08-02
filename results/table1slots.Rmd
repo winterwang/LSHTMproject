@@ -351,7 +351,7 @@ LCGA_3class <- LCGA_3class %>%
 
 write_dta(LCGA_3class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_7slots3class.dta")
 # write_dta(LCGA_2class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta")
-write_dta(CW3CB3_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta")
+write_dta(CW3CB3_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_7regss.dta")
 # write_dta(CW2CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta")
 ```
 
@@ -399,8 +399,15 @@ CW3idday$DayofWeek[CW3idday$ID_DAY == 709082410000] <- "Wednesday"
 CW3idday$DayofWeek[CW3idday$ID_DAY == 807021910000] <- "Monday"
 CW3idday$DayofWeek[CW3idday$ID_DAY == 812101310000] <- "Sunday"
 
+
+CW3idday <- CW3idday %>% 
+  mutate(DayofWeek = factor(DayofWeek, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")))
+
+
 with(CW3idday, tabpct(DayofWeek, CW))
 with(CW3idday, chisq.test(DayofWeek, CW))
+
+
 
 CW3idday$Weekend <- ifelse((CW3idday$DayofWeek == "Sunday" | CW3idday$DayofWeek == "Saturday"), TRUE, FALSE)
 
