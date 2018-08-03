@@ -206,7 +206,7 @@ names(dt) <- c("Variables", "Individual class 1 (n = 1730)", "Individual class (
 
 # 
 dt[9, 1] <- c("Hypertension[note] (%)")
-dt[12, 1] <- c("Carbohydrate percent[note] (%)")
+dt[13, 1] <- c("Carbohydrate percent[note] (%)")
 
 dt[21, 1] <- c("Physical\nactivity (hours/day) [note]")
 dt[20, 1] <- c("DM [note]")

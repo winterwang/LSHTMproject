@@ -550,8 +550,9 @@ chart.data <- ddply(chart.data, .(CB),
 chart.data$CW_new <- factor(chart.data$CW_new, levels = c("3", "2", "1"), 
                             labels = c("Regular\nmeals day", "Low carbo-\nhydrate day", "High carbo-\nhydrate day"))
 chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), 
-                        labels = c("Individual\nclass 1\n(28.1%)",  
-                                   "Individual\nclass 2\n(28.8%)", "Individual\nclass 3\n(43.1%)"))
+                        labels = c("Low carbo-\nhydrate eaters\n(28.1%)",  
+                                   "Moderate carbo-\nhydrate eaters\n(28.8%)", 
+                                   "High carbo-\nhydrate eaters\n(43.1%)"))
 
 
 

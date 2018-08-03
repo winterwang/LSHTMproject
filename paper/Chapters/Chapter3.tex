@@ -212,7 +212,7 @@ As expected, consumption of total energy (7539.98 kJ), total carbohydrate (222.7
 
 In the random effect models we utilized the non-parametric approach, in which we added a level 2 (individual level) latent classes based on the random means from the level 1 (day level) latent class solution. The results of the individual level LCA solution for 3 classes are presented in \textbf{Figure \ref{fig:CB2level2}}, and \textbf{\ref{fig:level2}}. 
 
-With two individual level latent classes \textbf{(Figure \ref{fig:CB2level2})}, one individual class is comprised of individuals with a relatively slightly higher proportion of having "low carbohydrate day" (22.1\%) compared to the other (17.4\%). This class represents nearly 65\% of the individuals. 
+With two individual level latent classes \textbf{(Figure \ref{fig:CB2level2})}, one individual class is comprised of individuals with a relatively slightly higher proportion of having "low carbohydrate day" (22.1\%) compared to the other (17.4\%). This class represents nearly 65\% of the individuals. However, we believe these individual classes are not very distinguishable to each other.
 
 
 \begin{figure}[H]
@@ -225,7 +225,7 @@ With two individual level latent classes \textbf{(Figure \ref{fig:CB2level2})}, 
 \end{figure}
 
 
-With three individual level latent classes \textbf{(Figure \ref{fig:level2})}, a low-carbohydrate eaters class, moderate-carbohydrate eaters class, and high-carbohydrate eaters class emerges. 43.1\% participants were identified as high-carbohydrate eaters, in these individuals, about 50\% of the days (2 out of 4 days) of their dietary diary were classified as having high carbohydrate days. Nearly 1 out of 4 days of their dietary diary were either "regular meals day" or "low carbohydrate day". 
+With three individual level latent classes \textbf{(Figure \ref{fig:level2})}, a low-carbohydrate eaters class, a moderate-carbohydrate eaters class, and a high-carbohydrate eaters class emerges. 43.1\% participants were identified as high-carbohydrate eaters, in these individuals, about 50\% of the days (2 out of 4 days) of their dietary diary were classified as having high carbohydrate days. Nearly 1 out of 4 days of their dietary diary were either "regular meals day" or "low carbohydrate day". 28.1\% participants fell into the low carbohydrate eaters class in the left hand side of \textbf{Figure \ref{fig:level2}}, their recordings of food intake showed that in more than 60\% of their days, they were having "regular meals" which was characterised as with highest amount of fat and alcohol consumptions as already described in \textbf{Table \ref{tab:day-level-features}}.
 
 \begin{figure}[H]
 	%\vspace*{13cm}
@@ -238,19 +238,24 @@ With three individual level latent classes \textbf{(Figure \ref{fig:level2})}, a
 \vspace{-0.6cm}
 
 
+
+The social-economic characteristics of the 
+
+
+
 \rowcolors{2}{gray!6}{white} 
 
 \begin{table}[H]
 
 \caption{\label{tab:Level2tab1}Weighted means, percentages, and
-95\% CIs of the social, economical characteristics by latent class memberships in the UK
+95\% CIs of the social-economic characteristics by latent class memberships in the UK
 adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
 \fontsize{9}{11}\selectfont
 
 \begin{tabular}[t]{lcccc}
 	\hiderowcolors
 	\toprule
-	\textbf{Variables} & \textbf{\Centerstack{Individual class 1\\(n = 1730)}} & \textbf{\Centerstack{Individual class 2\\(n = 1772)}} & \textbf{\Centerstack{Individual class 3\\(n = 2653)}} & \textbf{\textit{P} value} \textsuperscript{*}\\
+	\textbf{Variables} & \textbf{\Centerstack{Low carbo-\\hydrate eaters\\(n = 1730)}} & \textbf{\Centerstack{Moderate carbo-\\hydrate eaters\\(n = 1772)}} & \textbf{\Centerstack{High carbo\\hydrate eaters\\(n = 2653)}} & \textbf{\textit{P} value} \textsuperscript{*}\\
 	\midrule
 	\showrowcolors
 	Total (\%) & 28.4 (26.9, 29.9) & 28.7 (27.1, 30.3) & 43.0 (41.3, 44.7) & \\
@@ -278,7 +283,7 @@ adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
 	Live with partner\textsuperscript{\ddag} (\%) &  &  &  & < 0.001\\
 	\hspace{1em}Yes & 56.9 (53.6, 60.1) & 38.4 (35.2, 41.8) & 61.3 (58.7, 63.7) & \\
 	\hspace{1em}No & 43.1 (39.9, 46.4) & 61.6 (58.2, 64.8)) & 38.7 (36.3, 41,3) & \\
-	Household Income, \textsterling/year & \Centerstack{36558.53\\(34800.21, 38316.84)} & \Centerstack{27180.80\\(25597.95, 28763.65)} & \Centerstack{32171.58\\(31024.96, 33318.2)} & < 0.001\\
+	Household Income, \textsterling/year & \Centerstack{36558.5\\(34800.2, 38316.8)} & \Centerstack{27180.8\\(25597.9, 28763.7)} & \Centerstack{32171.6\\(31024.9, 33318.2)} & < 0.001\\
 	Ethnicity (\%) &  &  &  & \\
 	\hspace{1em}White & 94.2 (92.4, 95.6) & 79.5 (76.4, 82.3) & 91.9 (90.1, 93.4) & < 0.001\\
 	\hspace{1em}Non-White & 5.8 (4.4, 7.6) & 20.5 (17.7, 23.6) & 8.1 (6.6, 9.9) & \\
@@ -287,14 +292,16 @@ adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
 	\hspace{1em}Lower than degree & 71.0 (67.9, 73.9) & 76.7 (73.7, 79.5) & 73.8 (71.5, 75.9) & \\
 	\bottomrule
 	\multicolumn{5}{l}{\textit{Note: }}\\
-	\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme.}\\
+	\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling}\\
+	\multicolumn{5}{l}{programme} \\
 	\multicolumn{5}{l}{Variables were weighted by individual weights.}\\
 	\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the \textit{F} test was used to determine differences between latent classes with}\\ 
 	\multicolumn{5}{l}{Bonferroni correction to account for multiple testing across $>$ 2 classes. For categorical variables,}\\
 	\multicolumn{5}{l}{ differences between latent classes were assessed using the adjusted Pearson $\chi^2$ test for survey data.} \\
-	\multicolumn{5}{l}{\textsuperscript{\dag} Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey.}\\
-	\multicolumn{5}{l}{\textsuperscript{\ddag} Live with partner was defined as either living with a married husband/wife or a legally recognised civil} \\
-	\multicolumn{5}{l}{partnership.}\\
+	\multicolumn{5}{l}{\textsuperscript{\dag} Paid employment was defined as being in paid employment during the last 4 weeks prior to }\\
+	\multicolumn{5}{l}{the survey.}\\
+	\multicolumn{5}{l}{\textsuperscript{\ddag} Live with partner was defined as either living with a married husband/wife or a legally  } \\
+	\multicolumn{5}{l}{recognised civil partnership.}\\
 \end{tabular}
 
 \end{table} 
@@ -313,7 +320,7 @@ adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
 	\begin{tabular}[t]{lcccc}
 		\hiderowcolors
 		\toprule
-		\textbf{Variables} & \textbf{\Centerstack{Individual class 1\\(n = 1730)}} & \textbf{\Centerstack{Individual class 2\\(n = 1772)}} & \textbf{\Centerstack{Individual class 3\\(n = 2653)}} & \textbf{\textit{P} value} \textsuperscript{*}\\
+	\textbf{Variables} & \textbf{\Centerstack{Low carbo-\\hydrate eaters\\(n = 1730)}} & \textbf{\Centerstack{Moderate carbo-\\hydrate eaters\\(n = 1772)}} & \textbf{\Centerstack{High carbo\\hydrate eaters\\(n = 2653)}} & \textbf{\textit{P} value} \textsuperscript{*}\\
 		\midrule
 		\showrowcolors
 		BMI (kg/m\textsuperscript{2}) & 27.8 (27.4, 28.2) & 27.2 (26.7, 27.7) & 27.3 (26.9, 27.6) & 0.006\\
@@ -326,9 +333,9 @@ adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
 		\hspace{1em}Yes & 11.8 (10.0, 13.8) & 24.0 (21.2, 27.1) & 20.6 (18.7, 22.8) & < 0.001\\
 		Hypertension\textsuperscript{\dag} (\%) &  &  &  & \\
 		\hspace{1em}Yes & 33.4 (29.9, 37.1) & 21.1 (17.7, 24.9) & 31.2 (28.3, 34.2) & < 0.001\\
-		Total energy intake (kJ) & \Centerstack{7985.8\\(7823.3, 8146.295)} & \Centerstack{7341.8\\(7825.3, 8146.3)} & \Centerstack{7677.0\\(7555.8, 7799,8)} & < 0.001\\
-		Carbohydrate percent\textsuperscript{\ddag} (\%) & 203.8 (199.8, 207.8) & 218.3 (212.9, 223.7) & 233.4 (229.6, 237.2) & < 0.001\\
-		Carbohydrate percent (\%) & 40.6 (40.2, 41.0) & 47.3 (46.8, 47.8) & 48.3 (47.9, 48.6) & < 0.001\\
+		Total energy intake (kJ) & \Centerstack{7985.8\\(7823.3, 8146.3)} & \Centerstack{7341.8\\(7825.3, 8146.3)} & \Centerstack{7677.0\\(7555.8, 7799.8)} & < 0.001\\
+		Carbohydrate intake (g) & \Centerstack{203.8\\(199.8, 207.8)} & \Centerstack{218.3\\(212.9, 223.7)} & \Centerstack{233.4\\(229.6, 237.2)} & < 0.001\\
+		Carbohydrate percent\textsuperscript{\ddag} (\%) & 40.6 (40.2, 41.0) & 47.3 (46.8, 47.8) & 48.3 (47.9, 48.6) & < 0.001\\
 		Protein intake (g) & 79.9 (77.9, 81.8) & 69.3 (67.6, 71.0) & 73.7 (72.5, 74.8) & < 0.001\\
 		Protein percent (\%) & 17.2 (16.9, 17.5) & 16.3 (16.0, 16.6) & 16.5 (16.3, 16.6) & < 0.001\\
 		Fat intake (g) & 74.7 (73.1, 76.4) & 63.8 (62.1, 65.5) & 65.7 (64.4, 67.0) & < 0.001\\
@@ -340,12 +347,13 @@ adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
 		activity (hours/day) \textsuperscript{\P} & 1.63 (1.43, 1.83) & 1.32 (1.15, 1.49) & 1.65 (1.49, 1.81) & 0.016\\
 		\bottomrule
 		\multicolumn{5}{l}{\textit{Note: }}\\
-		\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;}\\
-		\multicolumn{5}{l}{ BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.}\\
-		\multicolumn{5}{l}{Variables from the blood tests (glucose and A1C) were weighted by blood sample weights, the others were}\\ 
-		\multicolumn{5}{l}{weighted by nurse visiting weights.}\\
+		\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling }\\
+		\multicolumn{5}{l}{programme; BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, }\\
+		\multicolumn{5}{l}{diabetes mellitus.} \\
+		\multicolumn{5}{l}{Variables from the blood tests (glucose and A1C) were weighted by blood sample weights,}\\ 
+		\multicolumn{5}{l}{ the other variables were weighted by nurse visiting weights.}\\
 		\multicolumn{5}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
-		\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the F test was used to determine differences between latent classes}\\ 
+		\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the \textit{F} test was used to determine differences between latent classes}\\ 
 		\multicolumn{5}{l}{with Bonferroni correction to accountfor multiple testing across $>$ 2 classes. For categorical variables, }\\
 		\multicolumn{5}{l}{differences between latent classes were assessed using the adjusted Pearson $\chi^2$ test for survey data.}\\ 
 		\multicolumn{5}{l}{\textsuperscript{\dag} Hypertension was defined as either systolic blood pressure $\geqslant$ 140 mmHg or diastolic blood pressure }\\
