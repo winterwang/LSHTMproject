@@ -111,3 +111,10 @@ svy: tabulate hibp CB, col se ci format(%7.3f)
 //                                                     //
 *********************************************************
 
+svyset area [pweight = wtn1to8], strata(gor)
+svy: mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy: mean bmi, over(CB)
+
+test [bmival]1 = [bmival]2 = [bmival]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison

@@ -19,17 +19,20 @@
 \contentsline {subsection}{Parametric approach}{7}{section*.25}
 \contentsline {subsection}{Non-Parametric approach}{9}{section*.29}
 \contentsline {section}{Strategy of conducting MLCA in the current analysis}{10}{section*.31}
-\contentsline {section}{Association between day-level and individual-level latent classes and other variables}{11}{section*.32}
+\contentsline {section}{Day level latent classes and their characteristics}{11}{section*.32}
 \contentsline {chapter}{\numberline {3}Results}{12}{chapter.33}
-\contentsline {section}{Model selection, comparison, and interpretation}{12}{section*.34}
-\contentsline {subsection}{Subsection 2}{15}{section*.38}
-\contentsline {section}{Main Section 2}{15}{section*.39}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{16}{chapter.41}
-\contentsline {section}{Main Section 1}{16}{section*.42}
-\contentsline {subsection}{Subsection 1}{16}{section*.43}
-\contentsline {subsection}{Subsection 2}{16}{section*.44}
-\contentsline {section}{Main Section 2}{16}{section*.45}
-\contentsline {chapter}{Bibliography}{17}{chapter*.46}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{21}{appendix.47}
-\contentsline {chapter}{\numberline {B}Mplus code for Multilevel LCA models}{26}{appendix.48}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{27}{appendix.49}
+\contentsline {section}{Model selection, and interpretation}{12}{section*.34}
+\contentsline {subsection}{Features of the three carbohydrate eating time patterns}{16}{section*.38}
+\contentsline {subsection}{Individual level LCA solution}{17}{section*.40}
+\contentsline {section}{Association between individual level latent classes and hypertension}{21}{section*.45}
+\contentsline {section}{Association between individual level latent classes and obesity}{21}{section*.46}
+\contentsline {section}{Association between individual level latent classes and diabetes}{21}{section*.47}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{22}{chapter.48}
+\contentsline {section}{Main Section 1}{22}{section*.49}
+\contentsline {subsection}{Subsection 1}{22}{section*.50}
+\contentsline {subsection}{Subsection 2}{22}{section*.51}
+\contentsline {section}{Main Section 2}{22}{section*.52}
+\contentsline {chapter}{Bibliography}{23}{chapter*.53}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{27}{appendix.54}
+\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{32}{appendix.55}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{49}{appendix.56}

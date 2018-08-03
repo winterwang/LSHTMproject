@@ -66,8 +66,8 @@ names(CW3CB3) <- c("Breakfast", "Morning.snack", "Lunch",
 dta_NDNS <- read_csv("/home/wangcc-me/Documents/LSHTMproject/Rcode/dta_NDNS.csv") # extract the day of week data
 
 CW3idday <- CW3CB3 %>% 
-  select(ID.x, ID_DAY, CW, CB, MLCJOINT, AGE, SEX) %>% 
-  rename(ID = ID.x)
+  select(ID, ID_DAY, CW, CB, MLCJOINT, AGE, SEX)
+  
 
 CW3idday$DayNo <- ave(CW3idday$ID_DAY, CW3idday$ID, FUN = seq_along) # adding the day no 
 
@@ -105,7 +105,8 @@ CW3idday <- CW3idday %>%
 
 write.csv(CW3idday, file = "/home/wangcc-me/Documents/LSHTMproject/Tablecsv/CW3idday.csv")
 
-CW3idday$Weekend <- ifelse((CW3idday$DayofWeek == "Sunday" | CW3idday$DayofWeek == "Saturday"), TRUE, FALSE)
+CW3idday$Weekend <- ifelse((CW3idday$DayofWeek == "Sunday" | 
+                              CW3idday$DayofWeek == "Saturday"), TRUE, FALSE)
 # association of day level nutrients and CW3 ------------------------------
 
 # 

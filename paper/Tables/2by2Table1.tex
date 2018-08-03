@@ -100,6 +100,8 @@
 \begin{document}
 \maketitle
 
+\section{Multilevel 2by2 table 1}\label{multilevel-2by2-table-1}
+
 \rowcolors{2}{gray!6}{white}
 
 \begin{table}
@@ -173,6 +175,8 @@ activity (hours/day) \textsuperscript{\P} & 1.51 (1.39, 1.63) & 1.64 (1.45, 1.82
 
 \rowcolors{2}{white}{white}
 
+\section{Day level only models}\label{day-level-only-models}
+
 \rowcolors{2}{gray!6}{white}
 
 \begin{table}
@@ -203,6 +207,8 @@ N of classes & N of free parameters & log-likelihood & AIC & BIC & aBIC & Entrop
 \end{table}
 
 \rowcolors{2}{white}{white}
+
+\section{LCGA models table 1}\label{lcga-models-table-1}
 
 \rowcolors{2}{gray!6}{white}
 
@@ -276,6 +282,8 @@ activity (hours/day) \textsuperscript{\P} & 1.31 (1.14, 1.49) & 1.82 (1.44, 2.19
 
 \rowcolors{2}{white}{white}
 
+\section{Model fit criteria}\label{model-fit-criteria}
+
 \rowcolors{2}{gray!6}{white}
 
 \begin{table}
@@ -322,6 +330,8 @@ Model & 1 class & 2 classes & 3 classes & 4 classes & 5 classes\\
 \end{table}
 
 \rowcolors{2}{white}{white}
+
+\section{Day level solution 1}\label{day-level-solution-1}
 
 \rowcolors{2}{gray!6}{white}
 
@@ -372,45 +382,169 @@ Time slots of the day & Responses of carbohydrate intake & Frequency & Precentag
 
 \rowcolors{2}{white}{white}
 
+\section{Day level solution
+characteristics}\label{day-level-solution-characteristics}
+
 \rowcolors{2}{gray!6}{white}
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-6}Characteristics of different types of days according to carbohydrate intake}
+\caption{\label{tab:unnamed-chunk-6}Means (sd), and counts  of the characteristics of different types of days according to carbohydrate intake.}
 \centering
 \fontsize{9}{11}\selectfont
 \begin{tabular}[t]{lllll}
 \hiderowcolors
 \toprule
-  & High carbohydrate day & Low carbohydrate day & Regular meals day & P value [note]\\
+  & High carbohydrate day & Low carbohydrate day & Regular meals day & P value\textsuperscript{*}\\
 \midrule
 \showrowcolors
-n & 9667 & 5002 & 9814 & \\
-Country (\%) &  &  &  & <0.001\\
-England & 5627 (58.2) & 2972 (59.4) & 5291 (53.9) & \\
-NI & 1194 (12.4) & 527 (10.5) & 1400 (14.3) & \\
-Scotland & 1527 (15.8) & 813 (16.3) & 1774 (18.1) & \\
-Wales & 1318 (13.6) & 690 (13.8) & 1349 (13.7) & \\
-Day of Week (\%) &  &  &  & <0.001\\
-Monday & 1303 (13.5) & 715 (14.3) & 1370 (14.0) & \\
-Tuesday & 1266 (13.1) & 674 (13.5) & 1290 (13.1) & \\
-Wednesday & 1225 (12.7) & 740 (14.8) & 1233 (12.6) & \\
-Thursday & 1272 (13.2) & 752 (15.0) & 1425 (14.5) & \\
-Friday & 1458 (15.1) & 797 (15.9) & 1479 (15.1) & \\
-Saturday & 1537 (15.9) & 703 (14.1) & 1495 (15.2) & \\
-Sunday & 1605 (16.6) & 621 (12.4) & 1522 (15.5) & \\
-Weekend, Yes (\%) & 3142 (32.5) & 1324 (26.5) & 3017 (30.7) & <0.001\\
-Total energy (kJ) & 7539.98 (2875.87) & 7160.22 (2922.15) & 7439.68 (2978.91) & <0.001\\
-Carbohydrate (g) & 222.79 (89.84) & 209.70 (86.17) & 206.59 (84.42) & <0.001\\
-Protein (g) & 71.36 (29.79) & 69.55 (30.20) & 73.29 (32.94) & <0.001\\
-Fat (g) & 65.44 (33.27) & 63.94 (33.76) & 67.24 (34.73) & <0.001\\
-Alcohol (g) & 11.76 (27.31) & 8.85 (24.25) & 13.80 (33.00) & <0.001\\
-Total sugars (g) & 98.63 (56.03) & 88.03 (50.50) & 86.39 (50.96) & <0.001\\
-Starch (g) & 124.07 (55.84) & 121.59 (56.13) & 120.11 (54.62) & <0.001\\
-Non-Milk Extrinsic Sugar (g) & 59.45 (49.31) & 50.07 (43.41) & 50.41 (44.84) & <0.001\\
-Fruit (g) & 107.40 (137.97) & 103.15 (129.08) & 92.76 (126.02) & <0.001\\
+Counts & 9667 (39.5) & 5002 (20.4\%) & 9814 (40.1\%) & \\
+Country (\%) &  &  &  & < 0.001\\
+\hspace{1em}England & 5627 (58.2) & 2972 (59.4) & 5291 (53.9) & \\
+\hspace{1em}NI & 1194 (12.4) & 527 (10.5) & 1400 (14.3) & \\
+\hspace{1em}Scotland & 1527 (15.8) & 813 (16.3) & 1774 (18.1) & \\
+\hspace{1em}Wales & 1318 (13.6) & 690 (13.8) & 1349 (13.7) & \\
+Day of Week (\%) &  &  &  & < 0.001\\
+\hspace{1em}Monday & 1303 (13.5) & 715 (14.3) & 1370 (14.0) & \\
+\hspace{1em}Tuesday & 1266 (13.1) & 674 (13.5) & 1290 (13.1) & \\
+\hspace{1em}Wednesday & 1225 (12.7) & 740 (14.8) & 1233 (12.6) & \\
+\hspace{1em}Thursday & 1272 (13.2) & 752 (15.0) & 1425 (14.5) & \\
+\hspace{1em}Friday & 1458 (15.1) & 797 (15.9) & 1479 (15.1) & \\
+\hspace{1em}Saturday & 1537 (15.9) & 703 (14.1) & 1495 (15.2) & \\
+\hspace{1em}Sunday & 1605 (16.6) & 621 (12.4) & 1522 (15.5) & \\
+\hspace{1em}Weekend, Yes (\%) & 3142 (32.5) & 1324 (26.5) & 3017 (30.7) & < 0.001\\
+Total energy (kJ) & 7539.98 (2875.87) & 7160.22 (2922.15) & 7439.68 (2978.91) & < 0.001\\
+Carbohydrate (g) & 222.79 (89.84) & 209.70 (86.17) & 206.59 (84.42) & < 0.001\\
+Protein (g) & 71.36 (29.79) & 69.55 (30.20) & 73.29 (32.94) & < 0.001\\
+Fat (g) & 65.44 (33.27) & 63.94 (33.76) & 67.24 (34.73) & < 0.001\\
+Alcohol (g) & 11.76 (27.31) & 8.85 (24.25) & 13.80 (33.00) & < 0.001\\
+Total sugars (g) & 98.63 (56.03) & 88.03 (50.50) & 86.39 (50.96) & < 0.001\\
+Starch (g) & 124.07 (55.84) & 121.59 (56.13) & 120.11 (54.62) & < 0.001\\
+Non-milk extrinsic sugar\textsuperscript{\dag} & 59.45 (49.31) & 50.07 (43.41) & 50.41 (44.84) & < 0.001\\
+Fruit (g) & 107.40 (137.97) & 103.15 (129.08) & 92.76 (126.02) & < 0.001\\
 Yellow Red Green Vegetables (g) & 26.52 (46.44) & 26.84 (47.99) & 26.16 (45.99) & 0.681\\
 \bottomrule
+\multicolumn{5}{l}{\textsuperscript{*} P values were obtained from chi-square test for categorical variables, and one-way ANOVA comparing the}\\
+\multicolumn{5}{l}{means in multiple groups for continuous variables;}\\
+\multicolumn{5}{l}{\textsuperscript{\dag} Non-milk extrinsic sugar is defined as:}\\
+\end{tabular}
+\end{table}
+
+\rowcolors{2}{white}{white}
+
+\section{Social economic}\label{social-economic}
+
+\rowcolors{2}{gray!6}{white}
+
+\begin{table}
+
+\caption{\label{tab:tab1}Means, row percentages, and 95 CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{lllll}
+\hiderowcolors
+\toprule
+Variables & Individual class 1 (n = 1730) & Individual class = 2 (n = 1772) & Individual class = 3 (n = 2653) & P value \textsuperscript{*}\\
+\midrule
+\showrowcolors
+Total (\%) & 28.4 (26.9, 29.9) & 28.7 (27.1, 30.3) & 43.0 (41.3, 44.7) & \\
+Countries (\%) &  &  &  & 0.007\\
+\hspace{1em}England & 84.5 (81.7, 86.9) & 82.0 (79.3, 84.5) & 84.7 (82.3, 86.8) & \\
+\hspace{1em}Northern Ireland & 2.1 (1.6, 2.8) & 4.2 (3.2, 5.6) & 2.2 (1.7, 3.0) & \\
+\hspace{1em}Scotland & 9.1 (7.0, 11.8) & 8.6 (6.7, 11.1) & 8.0 (6.3, 10.2) & \\
+\hspace{1em}Wales & 4.3 (3.3, 5.6) & 5.1 (4.0, 6.4) & 5.1 (4.0, 6.4) & \\
+Age (years) & 51.0 (49.9, 52.1) & 40.3 (39.1, 41.6) & 51.7 (50.7, 52.7) & < 0.001\\
+Sex (\%) &  &  &  & 0.119\\
+\hspace{1em}Men & 50.0 (46.9, 53.1) & 50.2 (47.0, 53.5) & 46.6 (44.0, 49.1) & \\
+\hspace{1em}Women & 50.0 (46.9, 53.1) & 49.8 (46.5, 53.0) & 53.4 (50.9, 56.0) & \\
+Survey years (\% in rows) &  &  &  & 0.015\\
+\hspace{1em}1 & 32.5 (28.4, 36.9) & 26.3 (21.9, 31.2) & 41.2 (36.6, 46.0) & \\
+\hspace{1em}2 & 26.8 (22.6, 31.3) & 22.6 (18.6, 27.3) & 50.6 (45.8, 55.4) & \\
+\hspace{1em}3 & 22.6 (18.8, 26.9) & 33.7 (28.6, 39.2) & 43.6 (38.7, 48.7) & \\
+\hspace{1em}4 & 27.9 (24.1, 32.2) & 27.6 (23.8, 31.8) & 44.4 (40.2, 48.7) & \\
+\hspace{1em}5 & 27.9 (24.2, 32.0) & 28.7 (24.4, 33.5) & 43.3 (38.2, 48.6) & \\
+\hspace{1em}6 & 28.0 (24.0, 32.4) & 31.5 (26.9, 36.6) & 40.5 (35.8, 45.3) & \\
+\hspace{1em}7 & 29.1 (25.2, 33.4) & 29.0 (24.5, 34.0) & 41.8 (37.1, 46.7) & \\
+\hspace{1em}8 & 31.1 (27.3, 35.3) & 30.5 (25.9, 35.5) & 38.4 (34.1, 42.8) & \\
+Paid employment\textsuperscript{\dag} (\%) &  &  &  & 0.907\\
+\hspace{1em}Yes & 40.3 (37.0, 43.6) & 40.8 (37.1, 44.5) & 39.8 (37.1, 42.6) & \\
+\hspace{1em}No & 59.7 (56.4, 63.0) & 59.2 (55.5, 62.9) & 60.2 (57.4, 62.9) & \\
+Live with partner\textsuperscript{\ddag} (\%) &  &  &  & < 0.001\\
+\hspace{1em}Yes & 56.9 (53.6, 60.1) & 38.4 (35.2, 41.8) & 61.3 (58.7, 63.7) & \\
+\hspace{1em}No & 43.1 (39.9, 46.4) & 61.6 (58.2, 64.8)) & 38.7 (36.3, 41,3) & \\
+Household Income, GBP/year & 36558.53 (34800.21, 38316.84) & 27180.80 (25597.95, 28763.65) & 32171.58 (31024.96, 33318.2) & < 0.001\\
+Ethnicity (\%) &  &  &  & \\
+\hspace{1em}White & 94.2 (92.4, 95.6) & 79.5 (76.4, 82.3) & 91.9 (90.1, 93.4) & < 0.001\\
+\hspace{1em}Non-White & 5.8 (4.4, 7.6) & 20.5 (17.7, 23.6) & 8.1 (6.6, 9.9) & \\
+Education (\%) &  &  &  & \\
+\hspace{1em}Degree or higher & 29.0 (26.1, 32.1) & 23.3 (20.5, 26.3) & 26.2 (24.1, 28.5) & 0.019\\
+\hspace{1em}Lower than degree & 71.0 (67.9, 73.9) & 76.7 (73.7, 79.5) & 73.8 (71.5, 75.9) & \\
+\bottomrule
+\multicolumn{5}{l}{\textit{Note: }}\\
+\multicolumn{5}{l}{Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;}\\
+\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the F test was used to determine differences between latent classes with Bonferroni correction to account for multiple}\\
+\multicolumn{5}{l}{testing across >2 classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson Chi-2 test for}\\
+\multicolumn{5}{l}{survey data.}\\
+\multicolumn{5}{l}{\textsuperscript{\dag} Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey.}\\
+\multicolumn{5}{l}{\textsuperscript{\ddag} Live with partner was defined as either living with a married husband/wife or a legally recognised civil partnership.}\\
+\end{tabular}
+\end{table}
+
+\rowcolors{2}{white}{white}
+
+\subsection{Anthropometric measurements and biochemical
+analysis}\label{anthropometric-measurements-and-biochemical-analysis}
+
+\rowcolors{2}{gray!6}{white}
+
+\begin{table}
+
+\caption{\label{tab:tab2}Means, percentages, and 95 CIs of the characteristics by latent class memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{lllll}
+\hiderowcolors
+\toprule
+Variables & Individual class 1 (n = 1730) & Individual class (n = 1772) & Individual class 3 (n = 2653) & P value\textsuperscript{*}\\
+\midrule
+\showrowcolors
+BMI (kg/m2) & 27.8 (27.4, 28.2) & 27.2 (26.7, 27.7) & 27.3 (26.9, 27.6) & 0.006\\
+WC (cm) & 94.6 (93.5, 95.6) & 92.3 (91.0, 93.5) & 92.2 (91.4, 93.1) & 0.001\\
+Smoking status (\%) &  &  &  & \\
+\hspace{1em}Current & 20.4 (18.0, 23.0) & 27.8 (25.0, 30.9) & 17.1 (15.4, 19.0) & < 0.001\\
+\hspace{1em}Ex-smoker & 29.3 (26.5, 32.2) & 16.8 (14.6, 19.2) & 26.1 (24.9, 28.3) & \\
+\hspace{1em}Never & 50.3 (47.2, 32.2) & 55.4 (52.2, 58.6) & 56.8 (54.3, 59.3) & \\
+Current drinking status (\%) &  &  &  & \\
+\hspace{1em}Yes & 11.8 (10.0, 13.8) & 24.0 (21.2, 27.1) & 20.6 (18.7, 22.8) & < 0.001\\
+Hypertension\textsuperscript{\dag} (\%) &  &  &  & \\
+\hspace{1em}Yes & 33.4 (29.9, 37.1) & 21.1 (17.7, 24.9) & 31.2 (28.3, 34.2) & < 0.001\\
+Total energy intake (kJ) & 7985.8 (7823.3, 8146.295) & 7341.8 (7825.3, 8146.3) & 7677 (7555.8, 7799,8) & < 0.001\\
+Carbohydrate percent\textsuperscript{\ddag} (\%) & 203.8 (199.8, 207.8) & 218.3 (212.9, 223.7) & 233.4 (229.6, 237.2) & < 0.001\\
+Carbohydrate percent (\%) & 40.6 (40.2, 41.0) & 47.3 (46.8, 47.8) & 48.3 (47.9, 48.6) & < 0.001\\
+Protein intake (g) & 79.9 (77.9, 81.8) & 69.3 (67.6, 71.0) & 73.7 (72.5, 74.8) & < 0.001\\
+Protein percent (\%) & 17.2 (16.9, 17.5) & 16.3 (16.0, 16.6) & 16.5 (16.3, 16.6) & < 0.001\\
+Fat intake (g) & 74.7 (73.1, 76.4) & 63.8 (62.1, 65.5) & 65.7 (64.4, 67.0) & < 0.001\\
+Fat percent (\%) & 35.4 (34.9, 35.8) & 32.5 (32.1, 32.9) & 32.0 (31.7, 32.3) & < 0.001\\
+Glucose (mmol/l) & 5.20 (5.15, 5.26) & 5.09 (5.02, 5.17) & 5.13 (5.09, 5.12) & 0.051\\
+A1C (\%) & 5.49 (5.45, 5.52) & 5.44 (5.40, 5.48) & 5.52 (5.49, 5.55) & 0.012\\
+DM \textsuperscript{\S} & 6.9 (5.0, 9.3) & 3.5 (2.3, 5.3) & 4.1 (2.9, 5.6) & 0.011\\
+Physical
+activity (hours/day) \textsuperscript{\P} & 1.63 (1.43, 1.83) & 1.32 (1.15, 1.49) & 1.65 (1.49, 1.81) & 0.016\\
+\bottomrule
+\multicolumn{5}{l}{\textit{Note: }}\\
+\multicolumn{5}{l}{Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;}\\
+\multicolumn{5}{l}{ BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.}\\
+\multicolumn{5}{l}{Variables from the blood tests (glucose and A1C) are weighted by blood sample weights, the others are weighted by individual weights.}\\
+\multicolumn{5}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
+\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the F test was used to determine differences between latent classes with Bonferroni correction to account}\\
+\multicolumn{5}{l}{for multiple testing across >2 classes. For categorical variables, differences between latent classes were assessed using the adjusted}\\
+\multicolumn{5}{l}{Pearson Chi-2 test for survey data.}\\
+\multicolumn{5}{l}{\textsuperscript{\dag} Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for}\\
+\multicolumn{5}{l}{hypertension.}\\
+\multicolumn{5}{l}{\textsuperscript{\ddag} Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake}\\
+\multicolumn{5}{l}{\textsuperscript{\S} DM was defined by A1C > 6.5\%.}\\
+\multicolumn{5}{l}{\textsuperscript{\P} Physical activity was calculated as mean time spent at moderate or vigorous physical activity including both work-related and}\\
+\multicolumn{5}{l}{recreational activities during the survey.}\\
 \end{tabular}
 \end{table}
 

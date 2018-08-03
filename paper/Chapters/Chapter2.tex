@@ -115,11 +115,11 @@ Equation \ref{LCA} indicates that responses for an observation to the measuring 
 
 
 Multilevel latent class analysis accounts for the nested structure of the data by allowing latent class intercepts to vary across level 2 units and thereby examining if and how level 2 units influence the level 1 latent classes. These random intercepts allow the probability of membership in a particular level 1 (observation days) latent class to vary across level 2 units (e.g., here in the current context are the individuals). Essentially this allows the probability that an observation day will belong to a
-particular day-level latent class to vary across individual levels.\vspace{-0.5cm}
+particular day level latent class to vary across individual levels.\vspace{-0.5cm}
 
 \subsection{Parametric approach}\vspace{-0.3cm}
 
-Proposed by Vermunt \parencite{Vermunt, vermunt2008latent} and Asparouhov and Muth\'en \parencite{muthen2009multilevel},  a traditional, parametric approach can be applied using a logistic regression model. For example, let's assume that there are two types of observation days in the dietary survey--high and low carbohydrate eating days. In an unconditional logistic regression model, the probability of the outcome (i.e. an observed high carbohydrate eating day vs. a low carbohydrate eating day) is constant within individual-level which means for each person throughout his/her survey there is some probability of following a high carbohydrate eating day. A random effect model considers the individuals (level 2) to be drawn from the adult population in the UK, and the probability of the outcome (i.e. high carbohydrate eating days) across individuals is considered to be a random variable \parencite{snijders2011multilevel}. 
+Proposed by Vermunt \parencite{Vermunt, vermunt2008latent} and Asparouhov and Muth\'en \parencite{muthen2009multilevel},  a traditional, parametric approach can be applied using a logistic regression model. For example, let's assume that there are two types of observation days in the dietary survey--high and low carbohydrate eating days. In an unconditional logistic regression model, the probability of the outcome (i.e. an observed high carbohydrate eating day vs. a low carbohydrate eating day) is constant within individual level which means for each person throughout his/her survey there is some probability of following a high carbohydrate eating day. A random effect model considers the individuals (level 2) to be drawn from the adult population in the UK, and the probability of the outcome (i.e. high carbohydrate eating days) across individuals is considered to be a random variable \parencite{snijders2011multilevel}. 
 
 Thus, for a binary outcome $C_{ij} = 0, 1$ (low $=0$ or high $=1$ carbohydrate eating days), where $i$ denotes the observation days $(i = 1, 2, 3, 4)$, and $j$ denotes the individual $(j = 1, 2, \cdots, 6155)$. The 2-level random intercept logistic regression model can be expressed as:\vspace{-0.4cm}
 
@@ -145,9 +145,9 @@ Where we define:
 
 
 
-Same framework can be used to consider random effects in an LCA model, but instead of saying that $C_{ij}$ is either low or high carbohydrate eating days as if we already know, it is now replaced by a latent variable $G_{ij}$ which indicates the typologies of carbohydrate eating patterns. Then we can use the day-level data to assess the log-odds of belonging to $k$th type of carbohydrate eating pattern on a specific day of survey, and we allow the log-odds to vary across individuals. Therefore, for some persons the log-odds of having a $k$th type of carbohydrate eating pattern during the survey can be high, but for the other persons, the log-odds of following the $k$th type of carbohydrate eating pattern can be low. 
+Same framework can be used to consider random effects in an LCA model, but instead of saying that $C_{ij}$ is either low or high carbohydrate eating days as if we already know, it is now replaced by a latent variable $G_{ij}$ which indicates the typologies of carbohydrate eating patterns. Then we can use the day level data to assess the log-odds of belonging to $k$th type of carbohydrate eating pattern on a specific day of survey, and we allow the log-odds to vary across individuals. Therefore, for some persons the log-odds of having a $k$th type of carbohydrate eating pattern during the survey can be high, but for the other persons, the log-odds of following the $k$th type of carbohydrate eating pattern can be low. 
 
-If the day-level LCA model (carbohydrate eating pattern typologies) is best defined by $T (T \geqslant 2)$ latent classes, then $T-1$ random intercept will be specified by a two-level multinomial logistic regression model. Similar to the typical LCA models, the latent class variable in a MLCA is defined by multiple observed indicators (here is defined by the responses of eating carbohydrate within each time slots, throughout 4 consecutive days of survey period). Considering the latent class indicators are indicator variables ($U_{ijk}$), the MLCA model can be written as follows:\vspace{-1cm}
+If the day level LCA model (carbohydrate eating pattern typologies) is best defined by $T (T \geqslant 2)$ latent classes, then $T-1$ random intercept will be specified by a two-level multinomial logistic regression model. Similar to the typical LCA models, the latent class variable in a MLCA is defined by multiple observed indicators (here is defined by the responses of eating carbohydrate within each time slots, throughout 4 consecutive days of survey period). Considering the latent class indicators are indicator variables ($U_{ijk}$), the MLCA model can be written as follows:\vspace{-1cm}
 
 \begin{equation}
 %\begin{aligned}
@@ -162,7 +162,7 @@ Where,
 
 \begin{itemize}
 	\item $ U_{ijk} $ represents the response of eating carbohydrate (one of the following: not eating any food, $< 50\%$ of the energy, or $\geqslant 50\%$ of the energy) on $i$th day of the survey ($i \in (1,2,3,4)$) in $j$th individual at the $k$th time slot of the day ($k \in (1, 2, 3, \cdots, 7)$);
-	\item $G_{ij}$ denotes the latent class membership for $j$th individuals on $i$th day of the survey, the total number of day-level latent class is $T$;
+	\item $G_{ij}$ denotes the latent class membership for $j$th individuals on $i$th day of the survey, the total number of day level latent class is $T$;
 %	\item A specific latent class is referred to as $t$, and the total number of level 1 latent classes is denoted by $T$;
 	\item $P(U_{ijk} = s_k|C_{ij} = t)$ is the probability of a specific response pattern, conditional on membership in latent class $t$.
 \end{itemize}
@@ -178,7 +178,7 @@ P(G_{ij} = t) = \frac{\exp{(\gamma_0 + \beta_{1}x_{ij} + \gamma_1 w_j + u_{0j})}
 \subsection{Non-Parametric approach}\vspace{-0.3cm}
 
 
-Since the parametric approach discussed above can be extremely computationally demanding \parencite{van2008using, vermunt2008latent}, an alternative approach is using a non-parametric MLCA \parencite{davidian2008growth}. In this approach, separate latent class models are specified for level 1 (observation days) and level 2 (individuals). Similar with the parametric MLCA approach, there are $T-1$ random intercepts, where $T$ is the number of level 1 latent classes. However, rather than assuming the random intercepts following a normal distribution, the non-parametric MLCA assumes a multinomial (discrete) distribution of the level 2 latent classes. This approach is less computationally demanding compared with the parametric approach. These level 2 (individual) latent classes reflect differences in the probability of belonging to a specific day-level latent class, so that individuals that contain observation days with similar probabilities for the level 1 latent classes will be grouped together. The non-parametric MLCA model can be defined as follows: \vspace{-0.7cm}
+Since the parametric approach discussed above can be extremely computationally demanding \parencite{van2008using, vermunt2008latent}, an alternative approach is using a non-parametric MLCA \parencite{davidian2008growth}. In this approach, separate latent class models are specified for level 1 (observation days) and level 2 (individuals). Similar with the parametric MLCA approach, there are $T-1$ random intercepts, where $T$ is the number of level 1 latent classes. However, rather than assuming the random intercepts following a normal distribution, the non-parametric MLCA assumes a multinomial (discrete) distribution of the level 2 latent classes. This approach is less computationally demanding compared with the parametric approach. These level 2 (individual) latent classes reflect differences in the probability of belonging to a specific day level latent class, so that individuals that contain observation days with similar probabilities for the level 1 latent classes will be grouped together. The non-parametric MLCA model can be defined as follows: \vspace{-0.7cm}
 
 \begin{equation}
 P(C_{ij} = t | CB_j = m)  = \frac{\exp(\gamma_{tm})}{\sum_{r=1}^{T}\exp(\gamma_{tm})}
@@ -187,8 +187,8 @@ P(C_{ij} = t | CB_j = m)  = \frac{\exp(\gamma_{tm})}{\sum_{r=1}^{T}\exp(\gamma_{
 Where, 
 
 \begin{itemize}
-	\item $CB_j$ is individual-level latent class membership for $j$th individual;
-	\item $\gamma_{tm}$ is day-level and individual-level indicators. 
+	\item $CB_j$ is individual level latent class membership for $j$th individual;
+	\item $\gamma_{tm}$ is day level and individual level indicators. 
 \end{itemize}
 
 According to Finch and French's simulation study \parencite{finch2014multilevel}, non-parametric approach generally resulted in more accurate recovery of the underlying latent structure of the data at both levels and provided better latent class model. Specifically, we are interested in exploring both meaningful individual (level 2) latent classes and the daily carbohydrate consumption classification. Therefore, non-parametric MLCA was employed 1) to identify latent classes of observation days (level 1) based on the subjects' responses to the 4-day food and drink diary and 2) to form distinct latent classes of individuals (level 2) based on the distribution of observation-level latent classes within individuals.\vspace{-0.3cm}
@@ -200,11 +200,11 @@ To identify the best-fitting model, we used the following sequential modelling s
 
 \begin{itemize}
 	\item Firstly, we ignored the multilevel structure of the data and estimated a series of traditional LC models to determine the number of classes at the observational-level;
-	\item Next, a series of MLCA models were fitted to account for the multi-level structrure of the data. In these models, the number of observational-level classes was based on the best fitting LCA model from the first step, and the LCA model at the individual-level was estimated to identify the number of individual-level latent classes;
-	\item Thirdly, when number of individual-level latent classes is defined based on the previous stage, observational-level classes was modified (one class lower and one class higher than in the second step), to see the effect of changing level 1 classes and confirm the best fitting model.
+	\item Next, a series of MLCA models were fitted to account for the multi-level structrure of the data. In these models, the number of observational-level classes was based on the best fitting LCA model from the first step, and the LCA model at the individual level was estimated to identify the number of individual level latent classes;
+	\item Thirdly, when number of individual level latent classes is defined based on the previous stage, observational-level classes was modified (one class lower and one class higher than in the second step), to see the effect of changing level 1 classes and confirm the best fitting model.
 \end{itemize}
 
-The number of classes in either level 1 were determined by 1) the evaluation of model fit indices, including the Akaike information criterion (AIC), Bayesian information criterion (BIC), adjusted Bayesian information criterion (aBIC) where smaller values indicate better, and entropy which is a statistic that summarizes latent class probabilities where values near 1 indicate better latent class separation; 2) the Lo-Mendell-Rubin Likelihood Ratio Test (LMR-LRT) \parencite{lo2001testing, nylund2007deciding} which compare $q$ vs. $q-1$ class models, where $q$ is the number of latent classes and 3) pattern interpretability. In the step of performing multilevel LCA, where LMR-LRT is available, same rules of model fit indices and pattern interpretability were used to determine the optimal combination of latent classes in observation day-level and individual-level. MLCA models were fitted in Mplus 7.4 \parencite{muthen2005mplus}, the Mplus codes are shown in the Appendix xxx. \vspace{-0.3cm}
+The number of classes in either level 1 were determined by 1) the evaluation of model fit indices, including the Akaike information criterion (AIC), Bayesian information criterion (BIC), adjusted Bayesian information criterion (aBIC) where smaller values indicate better, and entropy which is a statistic that summarizes latent class probabilities where values near 1 indicate better latent class separation; 2) the Lo-Mendell-Rubin Likelihood Ratio Test (LMR-LRT) \parencite{lo2001testing, nylund2007deciding} which compare $q$ vs. $q-1$ class models, where $q$ is the number of latent classes and 3) pattern interpretability. In the step of performing multilevel LCA, where LMR-LRT is available, same rules of model fit indices and pattern interpretability were used to determine the optimal combination of latent classes in observation day level and individual level. MLCA models were fitted in Mplus 7.4 \parencite{muthen2005mplus}, the Mplus codes are shown in \textbf{Appendix \ref{AppendixB}}. \vspace{-0.3cm}
 
 
 
@@ -249,8 +249,8 @@ The number of classes in either level 1 were determined by 1) the evaluation of 
 
 
 
-\section{Association between day-level and individual-level latent classes and other variables}\vspace{-0.3cm}
+\section{Day level latent classes and their characteristics}\vspace{-0.3cm}
 
 
-Day-level latent classes identified by MLCA steps were tabulated according to whether the diary was recorded during weekdays or not. A contingency table giving the frequency of responses across the 7 time slots of the survey days was produced.
+Day level latent classes identified by MLCA steps were tabulated according to whether the diary was recorded during weekdays or not. A contingency table giving the frequency of responses across the 7 time slots of the survey days was produced. 
 

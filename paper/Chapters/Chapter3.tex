@@ -11,26 +11,27 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Model selection, comparison, and interpretation}
+\section{Model selection, and interpretation}\vspace{-0.4cm}
 
-%
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-%\subsection{Subsection 1}
+A series of traditional LCA of the responses to carbohydrate intake within 7 time slots of day was first examined. These initial analyses ignored the clustering of observation days within participants of the survey. \textbf{Table \ref{tab:mixmodels}} shows the latent class solutions for one to five classes (see rows under the Fixed effects model section). The BIC declines with the number of day level classes increases. However, the improvement of BIC dropped to less than 1000 from 3 classes to 4 classes solutions (658.9) and from 4 classes to 5 classses solutions (361.7). Entropy index indicates that the 4 classes model could explain about 51\% percent of the data, while \textit{p} values of Lo-Mendell-Rubun LRT suggest that the more classes we fit, the better model we will have until up to 6 classes (\textit{p} = 0.06 and is not shown in the table). However, from the parsimony point of view, we extend the model with random effects building on 2 classes, 3 classes and 4 classes solutions. 
+
+The results of the random effect included models are presented in \textbf{Table \ref{tab:mixmodels}} under the Random effects model section. It is obvious that the BIC improves with the addition of the random effects which account for the nested structure of the data. Entropy indicates that 4 classes in individual level and 2 classes in the day level may be the best solution mathematically. However, after these solutions were checked in more details, the potentially most substantively interpretable model was found to be the 3$\times$3 random effect model, which is the model with 3 latent classes in the day level, and 3 latent classes in the individual level. We must emphasize that different researchers may have made decision slightly different from ours, we provided the descriptions and figures for other solutions in the \textbf{Appendix xxx} for reference. 
+
+In this 3 classes solution we have chosen in the day level, there were 39.5\%, 20.4\%, and 40.1\% classified into 3 latent groups. The overall counts and percentages for each responses within every time slot and the distributions of the solution are presented in \textbf{Table \ref{tab:daylevel}}. The trajectories illustrating the change of the probabilities of each response to carbohydrate eating during the hours of the day are shown separately by the three types of days in \textbf{Figure \ref{fig:level1}}.
+
 
 
 \rowcolors{2}{gray!6}{white}
 
 \begin{table}[H]
 	
-	\caption{\label{tab:mixmodels}Fit Criteria for Each Model Specification}\vspace{-0.3cm}
+	\caption{\label{tab:mixmodels}Fit criteria for each model specification.}\vspace{-0.3cm}
 	\centering
 	\fontsize{9}{11}\selectfont
 	\begin{tabular}[t]{lccccc}
 		\hiderowcolors
 		\toprule
-		\multicolumn{1}{c}{ } & \multicolumn{5}{c}{\textbf{Number of day-level classes}} \\
+		\multicolumn{1}{c}{ } & \multicolumn{5}{c}{\textbf{Number of day level classes}} \\
 		\cmidrule(l{2pt}r{2pt}){2-6}
 		\textbf{Model} & \textbf{1 class} & \textbf{2 classes} & \textbf{3 classes} & \textbf{4 classes} & \textbf{5 classes}\\
 		\midrule
@@ -39,30 +40,30 @@
 		\multicolumn{6}{l}{\textbf{Fixed effects model}}\\
 		\hspace{1em}No. of free parameters & 14 & 29 & 44 & 59 & 74\\
 		\hspace{1em}\hspace{1em}Log-likelihood & -173793.306 & -172669.771 & -172039.204 & -171633.941 & -171377.292\\
-		\hspace{1em}\hspace{1em}BIC & 347728.092 & 345632.608 & 344523.06 & 343864.121 & 343502.409\\
-		\hspace{1em}\hspace{1em}Lo-Mendell-Rubun LRT & -- & $<$ 0.0001 & 1e-04 & $<$ 0.0001 & $<$ 0.0001\\
-		\hspace{1em}\hspace{1em}Entropy & 1 & 0.31 & 0.392 & 0.51 & 0.481\\
+		\hspace{1em}\hspace{1em}BIC & 347728.092 & 345632.608 & 344523.060 & 343864.121 & 343502.409\\
+		\hspace{1em}\hspace{1em}Lo-Mendell-Rubun LRT & -- & $<$ 0.0001 & $<$ 0.0001 & $<$ 0.0001 & $<$ 0.0001\\
+		\hspace{1em}\hspace{1em}Entropy & 1 & 0.310 & 0.392 & 0.510 & 0.481\\
 		\addlinespace[0.3em]
 		\multicolumn{6}{l}{\textbf{Random effects model}}\\
-		\hspace{1em}2 individual-level classes &  &  &  &  & \\
+		\hspace{1em}2 individual level classes &  &  &  &  & \\
 		\hspace{1em}\hspace{1em}No. of free parameters &  & 59 & 89 & 119 & \\
 		\hspace{1em}\hspace{1em}Log-likelihood &  & -169331.132 & -168700.96 & -168366.193 & \\
 		\hspace{1em}\hspace{1em}BIC &  & 339258.502 & 338301.338 & 337934.968 & \\
 		\hspace{1em}\hspace{1em}Entropy &  & 0.581 & 0.569 & 0.555 & \\
-		\hspace{1em}3 individual-level classes &  &  &  &  & \\
+		\hspace{1em}3 individual level classes &  &  &  &  & \\
 		\hspace{1em}\hspace{1em}No. of free parameters &  & 89 & 134 & 179 & \\
 		\hspace{1em}\hspace{1em}Log-likelihood &  & -166936.279 & -166348.815 & -166062.761 & \\
 		\hspace{1em}\hspace{1em}BIC &  & 334771.968 & 334051.799 & 333934.448 & \\
-		\hspace{1em}\hspace{1em}Entropy &  & 0.677 & 0.63 & 0.644 & \\
-		\hspace{1em}4 individual-level classes &  &  &  &  & \\
+		\hspace{1em}\hspace{1em}Entropy &  & 0.677 & 0.630 & 0.644 & \\
+		\hspace{1em}4 individual level classes &  &  &  &  & \\
 		\hspace{1em}\hspace{1em}No. of free parameters &  & 119 & 179 &  & \\
 		\hspace{1em}\hspace{1em}Log-likelihood &  & -165441.731 & -164845.696 &  & \\
 		\hspace{1em}\hspace{1em}BIC &  & 332086.045 & 331500.318 &  & \\
 		\hspace{1em}\hspace{1em}Entropy &  & 0.729 & 0.659 &  & \\
 		\bottomrule
 		\multicolumn{6}{l}{\textit{Note: }}\\
-		\multicolumn{6}{l}{Abbreviation: No, number; BIC, Bayesian information criterion; Entropy, a pseudo-r-squared index;}\\ 
-		\multicolumn{6}{l}{Lo-Mendel-Rubin LRT, likelihood ratio test comparing q classes models with q-1 classes models.}\\
+		\multicolumn{6}{l}{\textbf{Abbreviation}: No, number; BIC, Bayesian information criterion; Entropy, a pseudo-r-squared index;}\\ 
+		\multicolumn{6}{l}{Lo-Mendel-Rubin LRT, likelihood ratio test comparing $q$ classes models with $q-1$ classes models.}\\
 	\end{tabular}
 \end{table}
 
@@ -70,49 +71,51 @@
 
 
 
+Class 1 days \textbf{(Figure \ref{fig:level1}-A)} were given the name of "high carbohydrate day" since in these days of survey, the probabilities of carbohydrate contributed higher or equal to 50\% of the energy consumed were always higher than that in the other two types of days. Specifically, these days were characterised with probabilities of over 0.6 in time slots between 6 am to 9 am, 9 am to 12 am, and also 2 pm to 5 pm, during which the time slots may be interpreted as breakfast, morning snack, and afternoon snack time periods for many participants. Moreover, even during late night time period, such as 8 pm to 10 pm, and 10 pm to 6 am time slots, the probabilities of having higher carbohydrate contained food were still as high as 0.412, and 0.246, respectively.
+
 
 
 \rowcolors{2}{gray!6}{white}
 
-\begin{table}
+\begin{table}[H]
 	
-	\caption{\label{tab:daylevel}Day Level Latent Class Solution for Three-Class Model (No Individual level Model)}\vspace{-0.3cm}
+	\caption{\label{tab:daylevel}Day level latent class solution for three classes solution. (No Individual level Model)}\vspace{-0.3cm}
 	\centering
 	\fontsize{9}{11}\selectfont
 	\begin{tabular}[t]{llccccc}
 		\hiderowcolors
 		\toprule
-		\textbf{Time slots of} & \textbf{Responses of} & \multicolumn{1}{c}{ } & \multicolumn{1}{c}{ } & \textbf{\Centerstack{Class 1\\(39.5\%)}} & \textbf{\Centerstack{Class 2\\(20.4\%)}} & \textbf{\Centerstack{Class 3\\(40.1\%)}} \\
+		\textbf{Time slots of} & \textbf{Responses to} & \multicolumn{1}{c}{ } & \multicolumn{1}{c}{ } & \textbf{\Centerstack{Class 1\\(39.5\%)}} & \textbf{\Centerstack{Class 2\\(20.4\%)}} & \textbf{\Centerstack{Class 3\\(40.1\%)}} \\
 		\cmidrule(l{2pt}r{2pt}){5-5} \cmidrule(l{2pt}r{2pt}){6-6} \cmidrule(l{2pt}r{2pt}){7-7}
 		 \textbf{the day} &  \textbf{carbohydrate intake} & $n$ & (\%) & \textbf{\Centerstack{High carbo- \\ hydrate day}} & \textbf{\Centerstack{Low carbo-\\hydrate day}} & \textbf{\Centerstack{Regular\\meals day}}\\
 		\midrule
 		\showrowcolors
 		6 am – 9 am &  &  &  &  &  & \\
-		& Not eating & 7655 & 31.2 & 0.129 & 0.450 & 0.320\\
+		& Not eating any food & 7655 & 31.2 & 0.129 & 0.450 & 0.320\\
 		& Carbohydrate $<$ 50\%\textsuperscript{*} & 4500 & 18.4 & 0.130 & 0.267 & 0.128\\
 		& Carbohydrate $\geqslant$ 50\%\textsuperscript{\dag} & 12328 & 50.4 & 0.741 & 0.283 & 0.552\\
 		9 am – 12 am &  &  &  &  &  & \\
-		& Not eating & 5447 & 22.2 & 0.237 & 0.079 & 0.401\\
+		& Not eating any food & 5447 & 22.2 & 0.237 & 0.079 & 0.401\\
 		& Carbohydrate $<$ 50\% & 7227 & 29.5 & 0.158 & 0.492 & 0.173\\
 		& Carbohydrate $\geqslant$ 50\% & 11809 & 48.2 & 0.605 & 0.429 & 0.426\\
 		12 noon – 2 pm &  &  &  &  &  & \\
-		& Not eating & 4783 & 19.5 & 0.156 & 0.356 & 0.019\\
+		& Not eating any food & 4783 & 19.5 & 0.156 & 0.356 & 0.019\\
 		& Carbohydrate $<$ 50\% & 11112 & 45.4 & 0.405 & 0.413 & 0.560\\
 		& Carbohydrate $\geqslant$ 50\% & 8588 & 35.1 & 0.439 & 0.231 & 0.421\\
 		2 pm – 5 pm &  &  &  &  &  & \\
-		& Not eating & 6926 & 28.3 & 0.130 & 0.123 & 0.659\\
+		& Not eating any food & 6926 & 28.3 & 0.130 & 0.123 & 0.659\\
 		& Carbohydrate $<$ 50\% & 8277 & 33.8 & 0.249 & 0.602 & 0.076\\
 		& Carbohydrate $\geqslant$ 50\% & 9280 & 37.9 & 0.621 & 0.276 & 0.266\\
 		5 pm – 8 pm &  &  &  &  &  & \\
-		& Not eating & 3043 & 12.4 & 0.114 & 0.199 & 0.034\\
+		& Not eating any food & 3043 & 12.4 & 0.114 & 0.199 & 0.034\\
 		& Carbohydrate $<$ 50\% & 14240 & 58.2 & 0.516 & 0.590 & 0.639\\
 		& Carbohydrate $\geqslant$ 50\% & 7200 & 29.4 & 0.370 & 0.211 & 0.328\\
 		8 pm – 10 pm &  &  &  &  &  & \\
-		& Not eating & 8722 & 35.6 & 0.322 & 0.291 & 0.480\\
+		& Not eating any food & 8722 & 35.6 & 0.322 & 0.291 & 0.480\\
 		& Carbohydrate $<$ 50\% & 8898 & 36.3 & 0.266 & 0.551 & 0.212\\
 		& Carbohydrate $\geqslant$ 50\% & 6863 & 28.0 & 0.412 & 0.158 & 0.308\\
 		10 pm – 6 am &  &  &  &  &  & \\
-		& Not eating & 16295 & 66.6 & 0.680 & 0.590 & 0.751\\
+		& Not eating any food & 16295 & 66.6 & 0.680 & 0.590 & 0.751\\
 		& Carbohydrate $<$ 50\% & 4144 & 16.9 & 0.074 & 0.294 & 0.101\\
 		& Carbohydrate $\geqslant$ 50\% & 4044 & 16.5 & 0.246 & 0.115 & 0.148\\
 		\bottomrule
@@ -125,123 +128,249 @@
 \end{table}
 
 \rowcolors{2}{white}{white}
+\vspace{-0.3cm}
+
+Class 2 days \textbf{(Figure \ref{fig:level1}-B)} were named as "low carbohydrate day" because first of all, in these days the possibility of participants skipping breakfast was 0.45. And after 9 am, within class 2 days, the probability of having food with lower carbohydrate (contributed less than 50\% of total energy intake), was always higher than having higher carbohydrate contained food. In these days, participants also turned to have morning snacks (with only 0.079 possibility of Not eating any food and similar probabilities of having either high or low carbohydrate contained food). This phenomenon may also be interpreted as having a long and late breakfast in these mornings. The probability of Not eating any food was lowest for class 2 days during the midnights time slot (10 pm to 6 am), with about 0.590 compared with 0.680 and 0.751 during the class 1 and class 3 days. 
 
 
 
 
 
-\begin{figure}
+\begin{figure}[H]
 	%\vspace*{13cm}
 	\centering
-	\includegraphics{Figures/level1.png}
+	\includegraphics[width=14cm]{Figures/level1.png}
 	\decoRule
-	\caption[Day Level Latent Classes.]{Day Level Latent Classes.}
+	\caption[Day Level Latent Class Solution.]{Day Level Latent Classes Solution.}
 	\label{fig:level1}
 \end{figure}
 \vspace{-0.6cm}
 
+Class 3 days \textbf{(Figure \ref{fig:level1}-C)} were called "regular meals day" due to the following reasons: 1) participants recordings showed that in these days there was almost 0 possibility of not eating any food at lunch (0.019 between 12 noon and 2 pm) or dinner (0.034 between 5 pm and 8 pm); 2) the probabilities of not having morning snack (9 am to 12 am) and afternoon snack (2 pm to 5 pm) were also the highest among the three types of days (0.401 and 0.659). 3) during these days, participants may have some high carbohydrate contained food between 8 pm and 10 pm (0.308), but the probability of not eating any food during 10 pm to 6 am next morning was 0.751, the highest among the three types of days. \vspace{-0.5cm}
+
+
+\subsection{Features of the three carbohydrate eating time patterns}
+
+The details of the characteristics of the three types of carbohydrate eating time pattern were listed in\textbf{ Table \ref{tab:day-level-features}}. Specifically, regular meals day turned to be recorded slightly more often in Northern Ireland, and Scotland. In terms of day of week distribution in the three types of days, there is strong evidence (\textit{p} < 0.001) that high carbohydrate days appeared more frequently in weekends (32.5\%) compared with low carbohydrate day (26.5\%) and regular meals day (30.7\%).
+
+\rowcolors{2}{gray!6}{white}
+
+\begin{table}
+	
+	\caption{\label{tab:day-level-features}Means (standard deviations), and counts (\%) of the characteristics of different types of days according to carbohydrate intake.}
+	\centering
+	\fontsize{9}{11}\selectfont
+	\begin{tabular}[t]{lcccc}
+		\hiderowcolors
+		\toprule
+		& \textbf{\Centerstack{High carbo-\\hydrate day}} & \textbf{\Centerstack{Low carbo-\\hydrate day}} & \textbf{\Centerstack{Regular\\meals day}} & \textbf{\textit{P} value}\textsuperscript{*}\\
+		\midrule
+		\showrowcolors
+		Counts (\%) & 9667 (39.5) & 5002 (20.4\%) & 9814 (40.1\%) & \\
+		Country (\%) &  &  &  & < 0.001\\
+		\hspace{1em}England & 5627 (58.2) & 2972 (59.4) & 5291 (53.9) & \\
+		\hspace{1em}Northern Ireland & 1194 (12.4) & 527 (10.5) & 1400 (14.3) & \\
+		\hspace{1em}Scotland & 1527 (15.8) & 813 (16.3) & 1774 (18.1) & \\
+		\hspace{1em}Wales & 1318 (13.6) & 690 (13.8) & 1349 (13.7) & \\
+		Day of Week (\%) &  &  &  & < 0.001\\
+		\hspace{1em}Monday & 1303 (13.5) & 715 (14.3) & 1370 (14.0) & \\
+		\hspace{1em}Tuesday & 1266 (13.1) & 674 (13.5) & 1290 (13.1) & \\
+		\hspace{1em}Wednesday & 1225 (12.7) & 740 (14.8) & 1233 (12.6) & \\
+		\hspace{1em}Thursday & 1272 (13.2) & 752 (15.0) & 1425 (14.5) & \\
+		\hspace{1em}Friday & 1458 (15.1) & 797 (15.9) & 1479 (15.1) & \\
+		\hspace{1em}Saturday & 1537 (15.9) & 703 (14.1) & 1495 (15.2) & \\
+		\hspace{1em}Sunday & 1605 (16.6) & 621 (12.4) & 1522 (15.5) & \\
+		\hspace{1em}Weekend, Yes (\%) & 3142 (32.5) & 1324 (26.5) & 3017 (30.7) & < 0.001\\
+		Total energy (kJ) & 7539.98 (2875.87) & 7160.22 (2922.15) & 7439.68 (2978.91) & < 0.001\\
+		Carbohydrate (g) & 222.79 (89.84) & 209.70 (86.17) & 206.59 (84.42) & < 0.001\\
+		Protein (g) & 71.36 (29.79) & 69.55 (30.20) & 73.29 (32.94) & < 0.001\\
+		Fat (g) & 65.44 (33.27) & 63.94 (33.76) & 67.24 (34.73) & < 0.001\\
+		Alcohol (g) & 11.76 (27.31) & 8.85 (24.25) & 13.80 (33.00) & < 0.001\\
+		Total sugars (g) & 98.63 (56.03) & 88.03 (50.50) & 86.39 (50.96) & < 0.001\\
+		Starch (g) & 124.07 (55.84) & 121.59 (56.13) & 120.11 (54.62) & < 0.001\\
+		Non-milk extrinsic sugar\textsuperscript{\dag} & 59.45 (49.31) & 50.07 (43.41) & 50.41 (44.84) & < 0.001\\
+		Fruit (g) & 107.40 (137.97) & 103.15 (129.08) & 92.76 (126.02) & < 0.001\\
+		Yellow Red Green Vegetables (g) & 26.52 (46.44) & 26.84 (47.99) & 26.16 (45.99) & 0.681\\
+		\bottomrule
+		\multicolumn{5}{l}{\textit{Note: }}\\
+		\multicolumn{5}{l}{\textsuperscript{*} \textit{P} values were obtained from Pearson $\chi^2$ test for categorical variables, and one-way ANOVA }\\
+		\multicolumn{5}{l}{comparing the means in multiple groups for continuous variables;}\\
+		\multicolumn{5}{l}{\textsuperscript{\dag} Non-milk extrinsic sugar is defined as: additionally added free sugar, such as table sugar, honey,}\\ 
+		\multicolumn{5}{l}{ glucose, fructose and glucose syrups, sugars added to food and sugars in fruit juices.}\\
+	\end{tabular}
+\end{table}
+
+\rowcolors{2}{white}{white}
+
+As expected, consumption of total energy (7539.98 kJ), total carbohydrate (222.79 g), total sugar (98.63 g), starch (124.07 g), and non-milk extrinsic sugar (59.45 g) were highest among high carbohydrate days (all \textit{p} < 0.0001). On the other hand, the consumption of protein (73.29 g), total fat (67.24 g), and alcohol (13.80 g) were the highest in the so-called regular meals days. Moreover, in high carbohydrate days, participants turned to also consume the highest amount of fruit (107.40 g). There is no evidence of any difference for the consumption of yellow, red, or green vegetables across the three types of days (\textit{p} = 0.681).
 
 %---------------------------------
-
---
 %	SUBSECTION 2
 %-----------------------------------
 
-\subsection{Subsection 2}
+\subsection{Individual level LCA solution}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
+In the random effect models we utilized the non-parametric approach, in which we added a level 2 (individual level) latent classes based on the random means from the level 1 (day level) latent class solution. The results of the individual level LCA solution for 3 classes are presented in \textbf{Figure \ref{fig:CB2level2}}, and \textbf{\ref{fig:level2}}. 
 
-\section{Main Section 2}
+With two individual level latent classes \textbf{(Figure \ref{fig:CB2level2})}, one individual class is comprised of individuals with a relatively slightly higher proportion of having "low carbohydrate day" (22.1\%) compared to the other (17.4\%). This class represents nearly 65\% of the individuals. 
 
 
+\begin{figure}[H]
+	%\vspace*{13cm}
+	\centering
+	\includegraphics[width=13cm]{Figures/CB2level2.png}
+	\decoRule
+	\caption[Multilevel Latent Class Solution ($3\times2$).]{Multilevel Latent Class Solution, 3 classes in day level, 2 classes in individual level.}
+	\label{fig:CB2level2}
+\end{figure}
 
 
+With three individual level latent classes \textbf{(Figure \ref{fig:level2})}, a low-carbohydrate eaters class, moderate-carbohydrate eaters class, and high-carbohydrate eaters class emerges. 43.1\% participants were identified as high-carbohydrate eaters, in these individuals, about 50\% of the days (2 out of 4 days) of their dietary diary were classified as having high carbohydrate days. Nearly 1 out of 4 days of their dietary diary were either "regular meals day" or "low carbohydrate day". 
 
-\begin{figure}
+\begin{figure}[H]
 	%\vspace*{13cm}
 	\centering
 	\includegraphics[width=13cm]{Figures/level2.png}
 	\decoRule
-	\caption[Individual Level Latent Classes.]{individual Level Latent Classes.}
+	\caption[Multilevel Latent Class Solution ($3\times3$).]{Multilevel Latent Class Solution, 3 classes in day level, 3 classes in individual level.}
 	\label{fig:level2}
 \end{figure}
 \vspace{-0.6cm}
 
 
+\rowcolors{2}{gray!6}{white} 
 
-%
-%\rowcolors{2}{gray!6}{white}
-%
-%\begin{table}
-%	
-%	\caption{\label{tab:LCGAtab1}Means, percentages, and 95\% CIs of the characteristics of carbohydrate temporal eating patterns by LCGA memberships in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).}\vspace{-0.3cm}
-%	\centering
-%	\fontsize{9}{11}\selectfont
-%	\begin{tabular}[t]{lcccc}
-%		\hiderowcolors
-%		\toprule
-%		 & Latent class = 1 & Latent class = 2 & Latent class = 3 & P value \textsuperscript{*}\\
-%		\midrule
-%		\showrowcolors
-%		Total (\%) & 28.4 (26.8, 30.1) & 7.0 (6.2, 7.9) & 64.6 (62.9, 66.2) & \\
-%		Countries (\%) &  &  &  & \\
-%		\hspace{1em}England & 81.4 (78.5, 84.0) & 87.5 (82.9, 91.0) & 84.6 (82.5, 86.4) & 0.004\\
-%		\hspace{1em}Northern Ireland & 3.9 (2.9, 5.1) & 0.6 (0.3, 1.2) & 2.5 (2.0, 3.2) & \\
-%		\hspace{1em}Scotland & 9.5 (7.4, 12.3) & 6.2 (3.5, 10.6) & 8.3 (6.7, 10.3) & \\
-%		\hspace{1em}Wales & 5.2 (4.1, 6.6) & 5.7 (3.8, 8.5) & 4.6 (3.8, 5.6) & \\
-%		Age (years) & 43.8 (42.4, 45.1) & 49.1 (47.2, 50.9) & 50.1 (49.3, 50.9) & $<$ 0.001\\
-%		Sex (\%) &  &  &  & \\
-%		\hspace{1em}Men & 50.6 (47.3, 53.9) & 49.6 (43.7, 55.4) & 47.6 (45.4, 49.7) & 0.273\\
-%		\hspace{1em}Women & 49.4 (46.1, 52.7) & 50.4 (44.6, 56.3) & 52.4 (50.3, 54.6) & \\
-%		Survey years (\%) &  &  &  & \\
-%		\hspace{1em}1 & 11.4 (8.8, 14.7) & 17.1 (12.4, 23.3) & 14.4 (11.9, 17.4) & 0.002\\
-%		\hspace{1em}2 & 10.1 (7.8, 13.1) & 18.3 (13.3, 24.7) & 12.4 (10.2, 15.0) & \\
-%		\hspace{1em}3 & 13.9 (10.8, 17.7) & 9.1 (5.7, 14.1) & 10.7 (8.6, 13.1) & \\
-%		\hspace{1em}4 & 10.9 (8.5, 13.9) & 13.8 (9.7, 19.4) & 13.2 (10.9, 16.0) & \\
-%		\hspace{1em}5 & 13.5 (10.6, 17.0) & 12.8 (8.4, 19.1) & 13.3 (11.0, 16.1) & \\
-%		\hspace{1em}6 & 12.8 (10.1, 16.1) & 8.7 (5.7, 12.9) & 11.5 (9.5, 13.9) & \\
-%		\hspace{1em}7 & 14.3 (11.5, 17.6) & 9.5 (6.5, 13.8) & 12.4 (10.2, 15.0) & \\
-%		\hspace{1em}8 & 13.2 (10.5, 16.4) & 10.5 (7.4, 14.8) & 12.1 (9.9, 14.6) & \\
-%		BMI (kg/m\textasciicircum{}2) & 27.5 (27.1, 27.9) & 27.0 (26.4, 27.6) & 27.4 (27.2, 27.6) & 0.433\\
-%		WC (cm) & 93.3 (92.1, 94.5) & 92.9 (90.9, 95.0) & 93.1 (92.3, 93.8) & 0.928\\
-%		Smoking status (\%) &  &  &  & \\
-%		\hspace{1em}Current & 24.1 (21.5, 27.0) & 30.0 (24.8, 35.8) & 18.8 (17.2, 20.6) & $<$ 0.001\\
-%		\hspace{1em}Ex-smoker & 20.0 (17.6, 22.6) & 27.5 (22.4, 33.2) & 25.9 (24.1, 27.7) & \\
-%		\hspace{1em}Never & 55.9 (52.7, 59.0) & 42.5 (36.6, 48.7) & 55.3 (53.2, 57.4) & \\
-%		Current drinking status (\%) &  &  &  & \\
-%		\hspace{1em}Yes & 24.6 (21.7, 27.7) & 18.3 (14.0, 23.6) & 16.8 (15.3, 18.4) & $<$ 0.001\\
-%		Hypertension (\%) \textsuperscript{\dag} &  &  &  & \\
-%		\hspace{1em}Yes & 25.9 (22.3, 29.9) & 31.8 (25.3, 39.1) & 30.4 (27.9 32.8) & 0.111\\
-%		Total energy intake (KJ) &  \Centerstack{ 6713.8 \\ (6575.7, 6851.8)}   &  \Centerstack{ 9256.0 \\ (8850.8, 9661.2)}   &  \Centerstack{7916.9 \\ (7814.0, 8019.9)}     & $<$ 0.001\\
-%		Carbohydrate intake (g) & 192.9 (188.5, 197.3) & 275.6 (263.4, 287.8) & 226.9 (223.9, 229.9) & $<$ 0.001\\
-%		Carbohydrate
-%		percent (\%) \textsuperscript{\ddag} & 45.8 (45.3, 46.4) & 47.4 (46.5, 48.3) & 45.6 (45.3, 45.9) & 0.001\\
-%		Glucose (mmol/l) & 5.16 (5.08, 5.23) & 5.09 (5.00, 5.18) & 5.14 (5.10, 5.19) & 0.537\\
-%		A1C (\%) & 5.47 (5.42, 5.51) & 5.48 (5.42, 5.54) & 5.49 (5.47. 5.52) & 0.403\\
-%		DM \textsuperscript{\S} & 5.9 (4.2, 8.2) & 1.1 (0.2, 5.2) & 4.7 (3.6, 6.0) & 0.053\\
-%        Physical activity (hs/day) \textsuperscript{\P}& 1.31 (1.14, 1.49) & 1.82 (1.44, 2.19) & 1.62 (1.49, 1.76) & 0.018\\
-%		\bottomrule
-%		\multicolumn{5}{l}{\textit{Note: }}\\
-%		\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; LCGA, latent class growth analysis; NDNS RP, national}\\ 
-%		\multicolumn{5}{l}{dietary and nutrition survey rolling programme; BMI body mass index; WC, waist circumference; }\\
-%		\multicolumn{5}{l}{A1C, haemoglobin A1c;DM, diabetes mellitus; h, hour.}\\
-%		\multicolumn{5}{l}{Variables from the blood tests (glucose and A1C) are weighted by blood sample weights,}\\
-%		\multicolumn{5}{l}{the others are weighted by individual weights.}\\
-%		\multicolumn{5}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
-%		\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the F test was used to determine differences between latent classes}\\   
-%		\multicolumn{5}{l}{with Bonferroni correction to account for multiple testing across >2 classes.}\\
-%		\multicolumn{5}{l}{For categorical variables, differences between latent classes were assessed}\\
-%		\multicolumn{5}{l}{using the adjusted Pearson Chi-2 test for survey data.}\\
-%		\multicolumn{5}{l}{\textsuperscript{\dag} Hypertension was defined as either systolic blood pressure $\geqslant$ 140 mmHg or diastolic}\\ 
-%		\multicolumn{5}{l}{blood pressure $\geqslant$ 90 mmHg, or under}\\
-%		\multicolumn{5}{l}{treatment for hypertension.}\\
-%		\multicolumn{5}{l}{\textsuperscript{\ddag} Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake}\\
-%		\multicolumn{5}{l}{\textsuperscript{\S} DM was defined by A1C > 6.5\%.}\\
-%		\multicolumn{5}{l}{\textsuperscript{\P} Physical activity was calculated as mean time spent at moderate or vigorous physical activity}\\ 
-%		\multicolumn{5}{l}{during the survey.}\\
-%	\end{tabular}
-%\end{table}
+\begin{table}[H]
+
+\caption{\label{tab:Level2tab1}Weighted means, percentages, and
+95\% CIs of the social, economical characteristics by latent class memberships in the UK
+adults. (NDNS RP 2008/09-2015/16, sample size = 6155)} \centering
+\fontsize{9}{11}\selectfont
+
+\begin{tabular}[t]{lcccc}
+	\hiderowcolors
+	\toprule
+	\textbf{Variables} & \textbf{\Centerstack{Individual class 1\\(n = 1730)}} & \textbf{\Centerstack{Individual class 2\\(n = 1772)}} & \textbf{\Centerstack{Individual class 3\\(n = 2653)}} & \textbf{\textit{P} value} \textsuperscript{*}\\
+	\midrule
+	\showrowcolors
+	Total (\%) & 28.4 (26.9, 29.9) & 28.7 (27.1, 30.3) & 43.0 (41.3, 44.7) & \\
+	Countries (\%) &  &  &  & 0.007\\
+	\hspace{1em}England & 84.5 (81.7, 86.9) & 82.0 (79.3, 84.5) & 84.7 (82.3, 86.8) & \\
+	\hspace{1em}Northern Ireland & 2.1 (1.6, 2.8) & 4.2 (3.2, 5.6) & 2.2 (1.7, 3.0) & \\
+	\hspace{1em}Scotland & 9.1 (7.0, 11.8) & 8.6 (6.7, 11.1) & 8.0 (6.3, 10.2) & \\
+	\hspace{1em}Wales & 4.3 (3.3, 5.6) & 5.1 (4.0, 6.4) & 5.1 (4.0, 6.4) & \\
+	Age (years) & 51.0 (49.9, 52.1) & 40.3 (39.1, 41.6) & 51.7 (50.7, 52.7) & < 0.001\\
+	Sex (\%) &  &  &  & 0.119\\
+	\hspace{1em}Men & 50.0 (46.9, 53.1) & 50.2 (47.0, 53.5) & 46.6 (44.0, 49.1) & \\
+	\hspace{1em}Women & 50.0 (46.9, 53.1) & 49.8 (46.5, 53.0) & 53.4 (50.9, 56.0) & \\
+	Survey years (\% in rows) &  &  &  & 0.015\\
+	\hspace{1em}1 & 32.5 (28.4, 36.9) & 26.3 (21.9, 31.2) & 41.2 (36.6, 46.0) & \\
+	\hspace{1em}2 & 26.8 (22.6, 31.3) & 22.6 (18.6, 27.3) & 50.6 (45.8, 55.4) & \\
+	\hspace{1em}3 & 22.6 (18.8, 26.9) & 33.7 (28.6, 39.2) & 43.6 (38.7, 48.7) & \\
+	\hspace{1em}4 & 27.9 (24.1, 32.2) & 27.6 (23.8, 31.8) & 44.4 (40.2, 48.7) & \\
+	\hspace{1em}5 & 27.9 (24.2, 32.0) & 28.7 (24.4, 33.5) & 43.3 (38.2, 48.6) & \\
+	\hspace{1em}6 & 28.0 (24.0, 32.4) & 31.5 (26.9, 36.6) & 40.5 (35.8, 45.3) & \\
+	\hspace{1em}7 & 29.1 (25.2, 33.4) & 29.0 (24.5, 34.0) & 41.8 (37.1, 46.7) & \\
+	\hspace{1em}8 & 31.1 (27.3, 35.3) & 30.5 (25.9, 35.5) & 38.4 (34.1, 42.8) & \\
+	Paid employment\textsuperscript{\dag} (\%) &  &  &  & 0.907\\
+	\hspace{1em}Yes & 40.3 (37.0, 43.6) & 40.8 (37.1, 44.5) & 39.8 (37.1, 42.6) & \\
+	\hspace{1em}No & 59.7 (56.4, 63.0) & 59.2 (55.5, 62.9) & 60.2 (57.4, 62.9) & \\
+	Live with partner\textsuperscript{\ddag} (\%) &  &  &  & < 0.001\\
+	\hspace{1em}Yes & 56.9 (53.6, 60.1) & 38.4 (35.2, 41.8) & 61.3 (58.7, 63.7) & \\
+	\hspace{1em}No & 43.1 (39.9, 46.4) & 61.6 (58.2, 64.8)) & 38.7 (36.3, 41,3) & \\
+	Household Income, \textsterling/year & \Centerstack{36558.53\\(34800.21, 38316.84)} & \Centerstack{27180.80\\(25597.95, 28763.65)} & \Centerstack{32171.58\\(31024.96, 33318.2)} & < 0.001\\
+	Ethnicity (\%) &  &  &  & \\
+	\hspace{1em}White & 94.2 (92.4, 95.6) & 79.5 (76.4, 82.3) & 91.9 (90.1, 93.4) & < 0.001\\
+	\hspace{1em}Non-White & 5.8 (4.4, 7.6) & 20.5 (17.7, 23.6) & 8.1 (6.6, 9.9) & \\
+	Education (\%) &  &  &  & \\
+	\hspace{1em}Degree or higher & 29.0 (26.1, 32.1) & 23.3 (20.5, 26.3) & 26.2 (24.1, 28.5) & 0.019\\
+	\hspace{1em}Lower than degree & 71.0 (67.9, 73.9) & 76.7 (73.7, 79.5) & 73.8 (71.5, 75.9) & \\
+	\bottomrule
+	\multicolumn{5}{l}{\textit{Note: }}\\
+	\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme.}\\
+	\multicolumn{5}{l}{Variables were weighted by individual weights.}\\
+	\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the \textit{F} test was used to determine differences between latent classes with}\\ 
+	\multicolumn{5}{l}{Bonferroni correction to account for multiple testing across $>$ 2 classes. For categorical variables,}\\
+	\multicolumn{5}{l}{ differences between latent classes were assessed using the adjusted Pearson $\chi^2$ test for survey data.} \\
+	\multicolumn{5}{l}{\textsuperscript{\dag} Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey.}\\
+	\multicolumn{5}{l}{\textsuperscript{\ddag} Live with partner was defined as either living with a married husband/wife or a legally recognised civil} \\
+	\multicolumn{5}{l}{partnership.}\\
+\end{tabular}
+
+\end{table} 
+\rowcolors{2}{white}{white}
+
+
+
+
+\rowcolors{2}{gray!6}{white}
+
+\begin{table}[H]
+	
+	\caption{\label{tab:tab2}Weighted means, percentages, and 95\% CIs of the anthropometric measurements, average main nutrients intake and biochemical characteristics by latent class memberships in the UK adults. \\(NDNS RP 2008/09-2015/16, sample size = 6155).}
+	\centering
+	\fontsize{9}{11}\selectfont
+	\begin{tabular}[t]{lcccc}
+		\hiderowcolors
+		\toprule
+		\textbf{Variables} & \textbf{\Centerstack{Individual class 1\\(n = 1730)}} & \textbf{\Centerstack{Individual class 2\\(n = 1772)}} & \textbf{\Centerstack{Individual class 3\\(n = 2653)}} & \textbf{\textit{P} value} \textsuperscript{*}\\
+		\midrule
+		\showrowcolors
+		BMI (kg/m\textsuperscript{2}) & 27.8 (27.4, 28.2) & 27.2 (26.7, 27.7) & 27.3 (26.9, 27.6) & 0.006\\
+		WC (cm) & 94.6 (93.5, 95.6) & 92.3 (91.0, 93.5) & 92.2 (91.4, 93.1) & 0.001\\
+		Smoking status (\%) &  &  &  & \\
+		\hspace{1em}Current & 20.4 (18.0, 23.0) & 27.8 (25.0, 30.9) & 17.1 (15.4, 19.0) & < 0.001\\
+		\hspace{1em}Ex-smoker & 29.3 (26.5, 32.2) & 16.8 (14.6, 19.2) & 26.1 (24.9, 28.3) & \\
+		\hspace{1em}Never & 50.3 (47.2, 32.2) & 55.4 (52.2, 58.6) & 56.8 (54.3, 59.3) & \\
+		Current drinking status (\%) &  &  &  & \\
+		\hspace{1em}Yes & 11.8 (10.0, 13.8) & 24.0 (21.2, 27.1) & 20.6 (18.7, 22.8) & < 0.001\\
+		Hypertension\textsuperscript{\dag} (\%) &  &  &  & \\
+		\hspace{1em}Yes & 33.4 (29.9, 37.1) & 21.1 (17.7, 24.9) & 31.2 (28.3, 34.2) & < 0.001\\
+		Total energy intake (kJ) & \Centerstack{7985.8\\(7823.3, 8146.295)} & \Centerstack{7341.8\\(7825.3, 8146.3)} & \Centerstack{7677.0\\(7555.8, 7799,8)} & < 0.001\\
+		Carbohydrate percent\textsuperscript{\ddag} (\%) & 203.8 (199.8, 207.8) & 218.3 (212.9, 223.7) & 233.4 (229.6, 237.2) & < 0.001\\
+		Carbohydrate percent (\%) & 40.6 (40.2, 41.0) & 47.3 (46.8, 47.8) & 48.3 (47.9, 48.6) & < 0.001\\
+		Protein intake (g) & 79.9 (77.9, 81.8) & 69.3 (67.6, 71.0) & 73.7 (72.5, 74.8) & < 0.001\\
+		Protein percent (\%) & 17.2 (16.9, 17.5) & 16.3 (16.0, 16.6) & 16.5 (16.3, 16.6) & < 0.001\\
+		Fat intake (g) & 74.7 (73.1, 76.4) & 63.8 (62.1, 65.5) & 65.7 (64.4, 67.0) & < 0.001\\
+		Fat percent (\%) & 35.4 (34.9, 35.8) & 32.5 (32.1, 32.9) & 32.0 (31.7, 32.3) & < 0.001\\
+		Glucose (mmol/l) & 5.20 (5.15, 5.26) & 5.09 (5.02, 5.17) & 5.13 (5.09, 5.12) & 0.051\\
+		A1C (\%) & 5.49 (5.45, 5.52) & 5.44 (5.40, 5.48) & 5.52 (5.49, 5.55) & 0.012\\
+		DM \textsuperscript{\S} & 6.9 (5.0, 9.3) & 3.5 (2.3, 5.3) & 4.1 (2.9, 5.6) & 0.011\\
+		Physical
+		activity (hours/day) \textsuperscript{\P} & 1.63 (1.43, 1.83) & 1.32 (1.15, 1.49) & 1.65 (1.49, 1.81) & 0.016\\
+		\bottomrule
+		\multicolumn{5}{l}{\textit{Note: }}\\
+		\multicolumn{5}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;}\\
+		\multicolumn{5}{l}{ BMI body mass index; WC, waist circumference; A1C, haemoglobin A1c; DM, diabetes mellitus.}\\
+		\multicolumn{5}{l}{Variables from the blood tests (glucose and A1C) were weighted by blood sample weights, the others were}\\ 
+		\multicolumn{5}{l}{weighted by nurse visiting weights.}\\
+		\multicolumn{5}{l}{Glucose and A1C levels are estimated in subgroups of people without diabetes.}\\
+		\multicolumn{5}{l}{\textsuperscript{*} For continuous variables, the F test was used to determine differences between latent classes}\\ 
+		\multicolumn{5}{l}{with Bonferroni correction to accountfor multiple testing across $>$ 2 classes. For categorical variables, }\\
+		\multicolumn{5}{l}{differences between latent classes were assessed using the adjusted Pearson $\chi^2$ test for survey data.}\\ 
+		\multicolumn{5}{l}{\textsuperscript{\dag} Hypertension was defined as either systolic blood pressure $\geqslant$ 140 mmHg or diastolic blood pressure }\\
+		\multicolumn{5}{l}{$\geqslant$ 90 mmHg, or under treatment for hypertension.}\\
+		\multicolumn{5}{l}{\textsuperscript{\ddag} Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake}\\  
+		\multicolumn{5}{l}{\textsuperscript{\S} DM was defined by A1C $>$ 6.5\%.}\\
+		\multicolumn{5}{l}{\textsuperscript{\P} Physical activity was calculated as mean time spent at moderate or vigorous physical activity}\\
+		\multicolumn{5}{l}{including both work-related and recreational activities during the survey.}\\
+	\end{tabular}
+\end{table}
 
 \rowcolors{2}{white}{white}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Association between individual level latent classes and hypertension}
+
+
+
+
+
+\section{Association between individual level latent classes and obesity}
+
+
+
+\section{Association between individual level latent classes and diabetes}

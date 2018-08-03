@@ -380,7 +380,7 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotdash", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days - High carbohydrate days (39.5%)", x = "", y = "Probability",
+  labs(title = "Class 1 days - High carbohydrate day (39.5%)", x = "", y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) #+ 
@@ -423,7 +423,7 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotdash", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days - Low carbohydrate days (20.4%)", x = "", y = "Probability",
+  labs(title = "Class 2 days - Low carbohydrate day (20.4%)", x = "", y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) #+ 
@@ -467,11 +467,11 @@ cls3 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
         legend.direction = "horizontal"
   ) + 
   scale_shape_manual(values=c(21,23,24), 
-                     labels =  c("Not eating\nanyfood", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
+                     labels =  c("Not eating\nany food", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
       scale_linetype_manual(values=c("dotdash", "dashed", "solid"),
-                            labels =  c("Not eating\nanyfood", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
+                            labels =  c("Not eating\nany food", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 3 days - Regular meal days (40.1%)", y = "Probability") + 
+  labs(title = "Class 3 days - Regular meal day (40.1%)", y = "Probability") + 
   labs(shape="Responses to\ncarbohydrate intake", 
        linetype = "Responses to\ncarbohydrate intake")+
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +
@@ -495,7 +495,7 @@ plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1
 
 
 
-# Level 2 person classes distribution -------------------------------------
+# Level 2 (CB=3) person classes distribution -------------------------------------
 
 
 CW3CB3 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB3.txt",
@@ -548,9 +548,10 @@ chart.data <- ddply(chart.data, .(CB),
 
 
 chart.data$CW_new <- factor(chart.data$CW_new, levels = c("3", "2", "1"), 
-                            labels = c("Regular\nmeals day", "low carbo-\nhydrate day", "High carbo-\nhydrate day"))
+                            labels = c("Regular\nmeals day", "Low carbo-\nhydrate day", "High carbo-\nhydrate day"))
 chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), 
-                        labels = c("Individual\nclass 1\n(28.0%)",  "Individual\nclass 2\n(28.6%)", "Individual\nclass 3\n(43.4%)"))
+                        labels = c("Individual\nclass 1\n(28.1%)",  
+                                   "Individual\nclass 2\n(28.8%)", "Individual\nclass 3\n(43.1%)"))
 
 
 
@@ -558,15 +559,97 @@ library(ggthemr)
 ggthemr("greyscale", layout = "scientific")
 ggplot() + 
   geom_bar(aes(y = pct, x = CB, fill = CW_new), data = chart.data, width = 0.6,
-           stat="identity") + 
+           stat="identity") +
   geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
-            size=4, colour="white", family="Atlas Grotesk Medium") + 
-  theme(legend.position="bottom", legend.direction="horizontal",
-        legend.title = element_blank(), 
-        axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 15), 
-        axis.line = element_line(colour = "black"), 
+            size=4, colour="white", family="Atlas Grotesk Medium") +
+  theme(legend.position="right", #legend.direction="horizontal",
+        legend.title = element_blank(),
+        axis.text = element_text(size = 15),
+        legend.text = element_text(size = 13), 
+        axis.title = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
         plot.title=element_text(family="Atlas Grotesk Medium"),
-        text=element_text(family="Atlas Grotesk Light")) + 
-  labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") +
+        text=element_text(family="Atlas Grotesk Light")) +
+  labs(title = " ", x = "Between Individual classes", y = "Percentage") +
+  scale_y_continuous(labels=percent)
+
+
+
+# Level 2 (CB=2) classes solution  ----------------------------------------
+
+
+CW3CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB2.txt",
+                      col_names = FALSE)
+
+names(CW3CB2) <- c("Breakfast", "Morning.snack", "Lunch",
+                   "Afternoon.snack", "Dinner", "Before.bedtime.snack",
+                   "Midnight.food", "ID_DAY", "AGE", "SEX",
+                   "CPROB1", "CPROB2", "CPROB3", "CPROB4",
+                   "CPROB5", "CPROB6",
+                   # "CPROB7",
+                   # "CPROB8",
+                   # "CPROB9",
+                   "CB", "CW", "MLCJOINT", "ID")
+
+
+CW3CB3 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB3.txt",
+                      col_names = FALSE)
+
+names(CW3CB3) <- c("Breakfast",  "Morning.snack", "Lunch",
+                   "Afternoon.snack", "Dinner", "Before.bedtime.snack",
+                   "Midnight.food", "ID_DAY", "AGE", "SEX",
+                   "CPROB1", "CPROB2", "CPROB3", "CPROB4",
+                   "CPROB5", "CPROB6", "CPROB7", "CPROB8",
+                   "CPROB9", "CB", "CW", "MLCJOINT", "ID")
+
+# tab1(CW3CB2$CW)
+# tab1(CW3CB3$CW)
+
+CW3CB3$CW_new <- 0
+CW3CB3$CW_new[CW3CB3$CW == 1] <- 3
+CW3CB3$CW_new[CW3CB3$CW == 2] <- 1
+CW3CB3$CW_new[CW3CB3$CW == 3] <- 2
+
+CB2_in_CW3CB2 <- CW3CB2 %>% 
+  select(ID, ID_DAY, CW, CB) %>% 
+  rename(CW3_in_2 = CW, CB2_in_2 = CB)
+CW3CB3 <- CW3CB3 %>% 
+  left_join(CB2_in_CW3CB2, by = "ID_DAY")
+
+
+chart.data <- CW3CB3 %>%
+  group_by(CB2_in_2, CW_new) %>%
+  tally %>%
+  group_by(CB2_in_2) %>%
+  mutate(pct = n/sum(n))
+
+chart.data <- chart.data[order(chart.data$CB2_in_2, chart.data$CW_new),]
+
+
+chart.data <- ddply(chart.data, .(CB2_in_2),
+                    transform, pos = cumsum(pct) - (0.5 * pct))
+
+chart.data$CW_new <- factor(chart.data$CW_new, levels = c("3", "2", "1"),
+                            labels = c("Regular\nmeals day", "Low carbo-\nhydrate day", "High carbo-\nhydrate day"))
+chart.data$CB2_in_2 <- factor(chart.data$CB2_in_2, levels = c("1", "2"),
+                              labels = c("Individual Class 1\n(35.3%)",  "Individual class 2\n(64.7%)"))
+
+
+
+library(ggthemr)
+ggthemr("greyscale", layout = "scientific")
+ggplot() +
+  geom_bar(aes(y = pct, x = CB2_in_2, fill = CW_new), data = chart.data, width = 0.6,
+           stat="identity") +
+  geom_text(data=chart.data, aes(x = CB2_in_2, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+            size=4, colour="white", family="Atlas Grotesk Medium") +
+  theme(legend.position="right", #legend.direction="horizontal",
+        legend.title = element_blank(),
+        axis.text = element_text(size = 15),
+        legend.text = element_text(size = 13), 
+        axis.title = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light")) +
+  labs(title = " ", x = "Between Individual classes", y = "Percentage") +
   scale_y_continuous(labels=percent)
