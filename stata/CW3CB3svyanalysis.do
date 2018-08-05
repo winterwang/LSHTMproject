@@ -11,7 +11,7 @@ use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta
 
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
 label values cigsta3 smoking
-label define drinking 1 "no" 2 "yes"
+label define drinking 1 "yes" 2 "no"
 label values dnnow drinking
 label define gender 1 "Men" 2 "Women"
 label values Sex gender
@@ -40,6 +40,30 @@ replace Education = . if qual7 >100
 tab Educ
 
 
+egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+
+
+**********************************************************
+// variables need to be log transfomred                 //
+**********************************************************
+
+gen logalc = ln(Alcoholg+1)
+summ logalc, detail
+gen logMVP = ln(MVPAtime+1)
+summ logMVP, detail
+gen logGlu = ln(Glucose)
+summ logGlu, detail
+gen logA1C = ln(A1C)
+summ logA1C, detail
+gen logChol = ln(Chol)
+summ logChol, detail
+gen logLDL = ln(LDL)
+gen logHDL = ln(HDL)
+gen logTG = ln(Trig)
+
+
+
+
 *********************************************************
 //  weighting use wti to see the individual results    //
 //                                                     //
@@ -64,12 +88,14 @@ svy: tabulate paid CB, col se ci format(%7.3f)
 svy: tabulate MarSt2 CB
 svy: tabulate MarStat CB
 svy: tabulate Married CB, row se ci format(%7.3f)
-
+svy: tabulate Married CB, col se ci format(%7.3f)
 svy: mean eqvinc, over(CB)
 test [eqvinc]1 = [eqvinc]2 = [eqvinc]3, mtest(b)
 
 svy: tabulate ethgrp2 CB, row se ci format(%7.3f)
+svy: tabulate ethgrp2 CB, col se ci format(%7.3f)
 svy: tabulate Education CB, row se ci format(%7.3f)
+svy: tabulate Education CB, col se ci format(%7.3f)
 
 
 
@@ -99,10 +125,46 @@ test [Fatg]1 = [Fatg]2 = [Fatg]3, mtest(b) // bonferroni-adjusted p-values for m
 svy: mean Fatp, over(CB)
 test [FatpctotE]1 = [FatpctotE]2 = [FatpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
 
+svy: mean Alcoholg, over(CB)
+test [Alcoholg]1 = [Alcoholg]2 = [Alcoholg]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
+
+svy: mean Alcoholp, over(CB)
+test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
+
 
 svy: tabulate cigsta3 CB, col se ci format(%7.3f)
 svy: tabulate dnnow CB, col se ci format(%7.3f)
 svy: tabulate hibp CB, col se ci format(%7.3f)
+
+
+sum MVP [weight=wti1to8] if CB ==1 , det
+sum MVP [weight=wti1to8] if CB ==2 , det
+sum MVP [weight=wti1to8] if CB ==3 , det
+svy: mean MVP, over(CB)
+
+svy: mean logMVP, over(CB) eform
+test [logMVP]1 = [logMVP]2 = [logMVP]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
+
+
+disp exp(.731059) - 1    
+dis exp(.6768489) -1 
+dis exp(.7852691) -1
+
+disp exp(.6239265) - 1    
+dis exp(.571165) -1 
+dis exp( .6766879) -1
+
+disp exp(.7273621) - 1    
+dis exp(.684545) -1 
+dis exp(.7701791) -1
+
+svy: mean logalc, over(CB)
+
+
+disp exp( 2.035795) - 1    
+dis exp(1.933326) -1 
+dis exp(2.138264) -1
+
 
 
 
@@ -115,6 +177,177 @@ svyset area [pweight = wtn1to8], strata(gor)
 svy: mean wst, over(CB)
 test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
+gen Men = Sex == 1 
+svy, subpop(Men): mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+gen Women = Sex == 2
+svy, subpop(Women): mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
+
 svy: mean bmi, over(CB)
 
 test [bmival]1 = [bmival]2 = [bmival]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
+
+*********************************************************
+//  re-weighting use wtb to see the blood test results //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtb1to8], strata(gor)
+
+
+svy: mean HDL, over(CB)
+test [HDL]1 = [HDL]2 = [HDL]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy: mean Chol, over(CB)
+test [Chol]1 = [Chol]2 = [Chol]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy: mean LDL, over(CB)
+test [LDL]1 = [LDL]2 = [LDL]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy: mean Trig, over(CB)
+test [Trig]1 = [Trig]2 = [Trig]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
+gen DM = A1C <= 6.5 if !missing(A1C)
+
+
+svy, subpop(DM): mean Glucose, over(CB)
+test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
+
+svy, subpop(DM): mean A1C, over(CB)
+test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
+
+svy: tabulate DM CB, col se ci format(%7.3f)
+
+
+
+
+svy, subpop(DM): mean Glucose, over(CB)
+test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
+svy, subpop(DM): mean A1C, over(C)
+test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
+
+svy: tabulate DM C, col se ci format(%7.3f)
+
+
+
+svy, subpop(DM): mean logGlu, over(CB)
+test [logGlu]1 = [logGlu]2 = [logGlu]3, mtest(b)
+
+
+dis exp(1.642848)
+dis exp(1.632226)
+dis exp(1.653471)
+
+dis exp(1.620347)
+dis exp(1.606447)
+dis exp(1.634246)
+
+
+dis exp(1.629356)
+dis exp(1.620271)
+dis exp(1.63844)
+
+
+svy, subpop(DM): mean logA1C, over(CB)
+test [logA1C]1 = [logA1C]2 = [logA1C]3, mtest(b)
+
+dis exp(1.699581)
+dis exp(1.69296)
+dis exp(1.706203)
+
+
+dis exp(1.691608)
+dis exp(1.683897)
+dis exp(1.699318)
+
+
+dis exp(1.705623)
+dis exp(1.700665)
+dis exp(1.710581)
+
+
+svy: mean logChol, over(CB)
+dis exp(1.598818)
+dis exp(1.577698)
+dis exp(1.619939)
+
+
+dis exp(1.55251)  
+dis exp(1.530408)
+dis exp(1.574613)
+
+dis exp(1.599389)
+dis exp(1.583391)
+dis exp(1.615388)
+
+
+test [logChol]1 = [logChol]2 = [logChol]3, mtest(b)
+
+
+
+
+svy: mean logHDL, over(CB)
+dis exp(.3293169)
+dis exp(.3026793)
+dis exp(.3559545)
+
+
+dis exp(.2749379)  
+dis exp(.2476816)
+dis exp(.3021941)
+
+dis exp(.3269002)
+dis exp(.3062623)
+dis exp(.3475381)
+
+
+test [logHDL]1 = [logHDL]2 = [logHDL]3, mtest(b)
+
+
+
+svy: mean logLDL, over(CB)
+dis exp(1.058635)
+dis exp(1.028391)
+dis exp(1.08888)
+
+
+dis exp(1.018181)  
+dis exp(.984431)
+dis exp(1.051931)
+
+dis exp(1.075229)
+dis exp(1.051369)
+dis exp(1.09909)
+
+
+test [logLDL]1 = [logLDL]2 = [logLDL]3, mtest(b)
+
+
+svy: mean logTG, over(CB)
+dis exp(.1273876)
+dis exp(.0777152)
+dis exp(.17706)
+
+
+dis exp(.1012169)  
+dis exp(.0460972)
+dis exp(.1563366)
+
+dis exp(.0983298)
+dis exp(.0607423)
+dis exp(.1359172)
+
+
+test [logTG]1 = [logTG]2 = [logTG]3, mtest(b)
+

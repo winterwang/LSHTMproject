@@ -44,7 +44,7 @@ Time across a typical survey day was divided into 7 time slots in the dietary di
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\subsection{Survey Selection Method}\vspace{-0.3cm}
+\subsection{Survey selection method}\vspace{-0.3cm}
 
 The NDNS RP participants were drawn from the UK Postcode Address File, a list of all the addresses in the UK. The addresses were clustered into Primary Sampling Units (PSUs), small geographical areas, based on postcode sectors, randomly selected from across the UK. A list of 27 or 28 addresses was then randomly selected from each PSU.
 
@@ -62,7 +62,7 @@ Overall, for years 1 to 8 combined, a sample of 39,300 addresses was selected fr
 %-----------------------------------
 \subsection{Response rates}\vspace{-0.3cm}
 
-The response rates for completion of the food diary (three or four days) were 56\%, 53\%, 53\%, for years 1 to 4, 5 to 6, and 7 to 8, respectively. A total of 6,155 adults aged 19 years and over were kept in our analysis. 
+The response rates for completion of the dietary diary (three or four days) were 56\%, 53\%, 53\%, for years 1 to 4, 5 to 6, and 7 to 8, respectively. A total of 6,155 adults aged 19 years and over were kept in our analyses. 
 \vspace{-0.6cm}
 
 \subsection{Strata and weightings}\vspace{-0.3cm}
@@ -79,14 +79,33 @@ Two steps of weighting system are designed in the NDNS RP to assure that the com
 \end{enumerate}
 
 
-Another set of weights were generated to correct for differential non-response (either due to refusal or inability) to giving a blood sample. Response to the blood sample in adults were 51\%, 57\%, and 50\% for years 1 to 4, 5 to 6, and 7 to 8, respectively. In creating the blood sample weight, a logistic regression was used by the NDNS RP study team to model the relationship between response to giving blood sample and a set of predictor variables (socio-demographic, participant and catering/household unit characteristics). The model generated a predicted probability for each participant, which is the probability would provide blood sample, given the characteristics of the individual and the household unit. Participants with characteristics associated with non-response were under-represented in the blood sample and therefore receive a low predicted probability. The inverse of these predicted probablities were used as a set of non-response weights so that participants with a low predicted probability got a larger weight, increasing their representation in the sample. Then the blood sample weights were re-scaled so that the sum of the weights equalled the number of participants who had a nurse visit. The final blood weights should therefore make the blood sample participants representative of all eligible persons in the population. 
+Another two sets of weights were generated to correct for differential non-response (either due to refusal or inability) to 1) nurse visit, and 2) giving a blood sample. Response rates to the nurse visit among those completed a dietary diary was approximately 75\%, to blood sample in adults were 51\%, 57\%, and 50\% for years 1 to 4, 5 to 6, and 7 to 8, respectively. In creating the nurse/blood sample weight, a logistic regression model was used by the NDNS RP study team to model the relationship between response to nurse visit/giving blood sample and a set of predictor variables (socio-demographic, participant and catering/household unit characteristics). The model generated a predicted probability for each participant, which is the probability would agree to a nurse visit/provide blood sample, given the characteristics of the individual and the household unit. Participants with characteristics associated with non-response were under-represented in the sample and therefore receive a low predicted probability. The inverse of these predicted probabilities were used as a set of non-response weights so that participants with a low predicted probability got a larger weight, increasing their representation in the sample. Then the nurse/blood sample weights were re-scaled so that the sum of the weights equalled the number of participants who had a nurse visit/who provided a blood sample. The final nurse/blood weights should therefore make the sample participants representative of all eligible persons in the population. 
 
-Further details of the weighting system developed by the NDNS RP are described in the Appendix B of the reports published by Public Health England (PHE) \parencite{bates2014national,roberts2018national}.
+Further details of the weighting system developed by the NDNS RP are described in the Appendix B of the reports published by Public Health England (PHE) \parencite{bates2014national,roberts2018national,NDNSofficial}.\vspace{-0.6cm}
+
+\subsection{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analysis}\vspace{-0.3cm}
+
+Computer assisted personal interviews were conducted for the selected individuals by trained interviewers to collect background information on smoking habits (current, past, never smokers), ethnicity (white, non-white), education level, living with a partner or not and other socio-demographic related variables. Participants also had their height, weight, blood pressure, waist circumferences (WC) measured by the nurse. 
+
+Specifically, blood pressure was measured in a sitting position using an automated, validated machine, the Omron HEM907, after a five minute rest. The means of second and third readings, taken at one minute intervals, were used in the current report. Hypertension was defined as a systolic blood pressure of 140 mmHg or above, and/or diastolic blood pressure of 90 mmHg or above, and/or taking any medication specifically to reduce blood pressure. 
+
+A self-completion questionnaire - the Recent Physical Activity Questionnaire  \parencite{besson2009estimating} (RPAQ, developed by the MRC Epidemiology Unit Cambridge) was used to estimate physical activity from year 2 of the survey. The RPAQ was designed to assess usual physical activity in the last month in four domains: home, work, commuting to work, and leisure activities. Detailed descriptions of the assessment of adult physical activity in the NDNS RP and the processing of data are available in Appendices G and V of the published reports \parencite{bates2014national,roberts2018national,NDNSofficial}. 
+
+Blood samples were stored at 4 $^\circ$C, and sent directly by post to the Department of Haematology and Department of Clinical Biochemistry and Immunology, Addenbrooke's Hospital, Cambridge within tow hours of their collection. Serum samples were obtained by centrifugation of the coagulated blood sample. Serum total, High Density Lipoprotein (HDL) and Low Density Lipoprotein (LDL) cholesterol, triglycerides, blood glucose, haemoglobin A1C were measured. A1C value of 6.5\% was used as the cut off point for diagnosing diabetes.
+
+Body mass index (BMI) was calculated as weight in kilograms and weight in kilograms divided by height in square meters. BMI was then categorised into less than 25 kg/m\textsuperscript{2} (normal weight), 25 to 30 kg/m\textsuperscript{2} (overweight), and higher or equal to 30 kg/m\textsuperscript{2} (obese). 
+
+\subsection{Ethics approval}\vspace{-0.3cm}
+
+Ethics approval for the survey was obtained form the Oxfordshire A Research Ethics Committee. The letters of approval for the original submission and subsequent substantial amendments, together with approved documents, were sent to all Local Research Ethics Committees covering areas where fieldwork was being conducted. Research governance approval was sought for all participating NHS laboratories and obtained where required by the Research and Development Committee for each laboratory. Ethics approval for the current project was obtained from the MSc Research Ethics Committee of London School of Hygiene \& Tropical Medicine (LSHTM MSc Ethics Ref: 15624). 
+
 
 %-----------------------------------
 %	SECTION 2
 %-----------------------------------
-\section{Latent Class Analysis (LCA)}\vspace{-0.3cm}
+\section[Statistical methods]{Statistical methods}
+
+\subsection{Latent Class Analysis (LCA)}\vspace{-0.3cm}
 
 Latent class analysis is a statistical technique that identifies categorical latent (unobserved) class variables on the basis of observed categorical variables \parencite{collins2010latent}. It belongs to the family of latent variable models, and is directly analogous to the factor analysis model. The major difference is that the latent variable in LCA is categorical, not continuous as in factor analysis. The basic assumptions in LCA are independent observations, and local independence, as shown in the fundamental expression of a typical LCA model: \vspace{-0.8cm}
 
@@ -111,13 +130,13 @@ Equation \ref{LCA} indicates that responses for an observation to the measuring 
 %	SUBSECTION 2
 %-----------------------------------
 
-\section{Multilevel Latent Class Analysis (MLCA)}\vspace{-0.3cm}
+\subsection{Multilevel Latent Class Analysis (MLCA)}\vspace{-0.3cm}
 
 
 Multilevel latent class analysis accounts for the nested structure of the data by allowing latent class intercepts to vary across level 2 units and thereby examining if and how level 2 units influence the level 1 latent classes. These random intercepts allow the probability of membership in a particular level 1 (observation days) latent class to vary across level 2 units (e.g., here in the current context are the individuals). Essentially this allows the probability that an observation day will belong to a
 particular day level latent class to vary across individual levels.\vspace{-0.5cm}
 
-\subsection{Parametric approach}\vspace{-0.3cm}
+\subsubsection{Parametric approach}\vspace{-0.3cm}
 
 Proposed by Vermunt \parencite{Vermunt, vermunt2008latent} and Asparouhov and Muth\'en \parencite{muthen2009multilevel},  a traditional, parametric approach can be applied using a logistic regression model. For example, let's assume that there are two types of observation days in the dietary survey--high and low carbohydrate eating days. In an unconditional logistic regression model, the probability of the outcome (i.e. an observed high carbohydrate eating day vs. a low carbohydrate eating day) is constant within individual level which means for each person throughout his/her survey there is some probability of following a high carbohydrate eating day. A random effect model considers the individuals (level 2) to be drawn from the adult population in the UK, and the probability of the outcome (i.e. high carbohydrate eating days) across individuals is considered to be a random variable \parencite{snijders2011multilevel}. 
 
@@ -194,7 +213,7 @@ Where,
 According to Finch and French's simulation study \parencite{finch2014multilevel}, non-parametric approach generally resulted in more accurate recovery of the underlying latent structure of the data at both levels and provided better latent class model. Specifically, we are interested in exploring both meaningful individual (level 2) latent classes and the daily carbohydrate consumption classification. Therefore, non-parametric MLCA was employed 1) to identify latent classes of observation days (level 1) based on the subjects' responses to the 4-day food and drink diary and 2) to form distinct latent classes of individuals (level 2) based on the distribution of observation-level latent classes within individuals.\vspace{-0.3cm}
  
 
-\section{Strategy of conducting MLCA in the current analysis}\vspace{-0.3cm}
+\subsection{Strategy of conducting MLCA in the current analysis}\vspace{-0.3cm}
 
 To identify the best-fitting model, we used the following sequential modelling strategy \parencite{henry2010multilevel}: 
 
@@ -249,9 +268,15 @@ The number of classes in either level 1 were determined by 1) the evaluation of 
 
 
 
-\section{Characteristics of dietary diary and population}\vspace{-0.3cm}
+\subsection{Characteristics of day level latent classes and individual level latent classes}\vspace{-0.3cm}
 
 
-Day level latent classes identified by MLCA steps were tabulated according to whether the diary was recorded during weekdays or not. A contingency table giving the frequency of responses across the 7 time slots of the survey days was produced. Descriptive statistics for the dietary day level recordings according to the latent classes were presented. 
+Day level latent classes identified by the first step of MLCA were tabulated according to day of week and also whether the diary was recorded during weekdays or not. A contingency table giving the frequency of responses across the 7 time slots of the survey days was produced. Descriptive statistics for the dietary day level recordings according to the latent class memberships were presented. Pearson $\chi^2$ test was used ot compare the distribution of categorical variables. One-way Analysis of Variance (ANOVA) was used to compare the means across the multiple groups for continuous variables.
 
-\section{Association between individual level latent classes and the prevalence of hypertension, obesity, and diabetes}
+Person level point estimates and 95\% confidence intervals (CIs) were determined by applying individual, nurse visiting, and blood sample weights accordingly which accounted for the probability of participant selection and the clustered survey design. Descriptive statistics for sample characteristics are presented as weighted means (95\% CI) or weighted percentages (95\%CI). After examining the distribution of the data, the following variables were log-transformed to improve normality: blood glucose, A1C, TC, LDL, HDL, TG, and average physical activity duration per day. Weighted geometric means (95\% CI) were used for all log-transformed variables. For continuous variables, the \textit{F} test was used to determine differences between latent classes with Bonferroni correction to account for multiple testing across $>$ 2 classes. For categorical variables, differences between latent classes were assessed using the adjusted Pearson $\chi^2$ test for survey data.\vspace{-0.5cm}
+
+
+\subsection{Association between individual level latent classes and the prevalence of hypertension, obesity, and diabetes}\vspace{-0.3cm}
+
+Multiple linear regression model (for WC), multinomial logistic regression model (for BMI categories), logistic regression models (for hypertension, and diabetes) were used to test for associations between individual level carbohydrate eating latent classes and WC, obesity, hypertension, and diabetes, separately.
+

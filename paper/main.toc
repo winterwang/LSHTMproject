@@ -11,29 +11,30 @@
 \contentsline {section}{Dietary diary collected in the NDNS RP}{3}{section*.14}
 \contentsline {subsection}{Definition of carbohydrate intake}{3}{section*.15}
 \contentsline {section}{Survey Data}{4}{section*.16}
-\contentsline {subsection}{Survey Selection Method}{4}{section*.17}
+\contentsline {subsection}{Survey selection method}{4}{section*.17}
 \contentsline {subsection}{Response rates}{5}{section*.18}
 \contentsline {subsection}{Strata and weightings}{5}{section*.19}
-\contentsline {section}{Latent Class Analysis (LCA)}{6}{section*.22}
-\contentsline {section}{Multilevel Latent Class Analysis (MLCA)}{7}{section*.24}
-\contentsline {subsection}{Parametric approach}{7}{section*.25}
-\contentsline {subsection}{Non-Parametric approach}{9}{section*.29}
-\contentsline {section}{Strategy of conducting MLCA in the current analysis}{10}{section*.31}
-\contentsline {section}{Characteristics of dietary diary and population}{11}{section*.32}
-\contentsline {section}{Association between individual level latent classes and the prevalence of hypertension, obesity, and diabetes}{11}{section*.33}
-\contentsline {chapter}{\numberline {3}Results}{12}{chapter.34}
-\contentsline {section}{Model selection, and interpretation}{12}{section*.35}
-\contentsline {subsection}{Features of the three carbohydrate eating time patterns}{16}{section*.39}
-\contentsline {subsection}{Individual level LCA solution}{17}{section*.41}
-\contentsline {section}{Association between individual level latent classes and hypertension}{21}{section*.46}
-\contentsline {section}{Association between individual level latent classes and obesity}{21}{section*.47}
-\contentsline {section}{Association between individual level latent classes and diabetes}{21}{section*.48}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{22}{chapter.49}
-\contentsline {section}{Main Section 1}{22}{section*.50}
-\contentsline {subsection}{Subsection 1}{22}{section*.51}
-\contentsline {subsection}{Subsection 2}{22}{section*.52}
-\contentsline {section}{Main Section 2}{22}{section*.53}
-\contentsline {chapter}{Bibliography}{23}{chapter*.54}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{27}{appendix.55}
-\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{32}{appendix.56}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{49}{appendix.57}
+\contentsline {subsection}{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analysis}{6}{section*.22}
+\contentsline {subsection}{Ethics approval}{7}{section*.23}
+\contentsline {section}{Statistical methods}{8}{section*.24}
+\contentsline {subsection}{Latent Class Analysis (LCA)}{8}{section*.25}
+\contentsline {subsection}{Multilevel Latent Class Analysis (MLCA)}{8}{section*.27}
+\contentsline {subsubsection}{Parametric approach}{9}{section*.28}
+\contentsline {subsection}{Non-Parametric approach}{10}{section*.32}
+\contentsline {subsection}{Strategy of conducting MLCA in the current analysis}{11}{section*.34}
+\contentsline {subsection}{Characteristics of day level latent classes and individual level latent classes}{12}{section*.35}
+\contentsline {subsection}{Association between individual level latent classes and the prevalence of hypertension, obesity, and diabetes}{13}{section*.36}
+\contentsline {chapter}{\numberline {3}Results}{14}{chapter.37}
+\contentsline {subsection}{Model selection, and interpretation}{14}{section*.38}
+\contentsline {subsection}{Features of the three carbohydrate eating time patterns}{18}{section*.42}
+\contentsline {subsection}{Individual level LCA solution}{19}{section*.44}
+\contentsline {subsection}{Association between individual level latent classes and hypertension, obesity, and diabetes.}{24}{section*.49}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{25}{chapter.50}
+\contentsline {section}{Main Section 1}{25}{section*.51}
+\contentsline {subsection}{Subsection 1}{25}{section*.52}
+\contentsline {subsection}{Subsection 2}{25}{section*.53}
+\contentsline {section}{Main Section 2}{25}{section*.54}
+\contentsline {chapter}{Bibliography}{26}{chapter*.55}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{29}{appendix.56}
+\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{34}{appendix.57}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{51}{appendix.58}

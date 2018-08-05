@@ -62,7 +62,7 @@ BMI78 <- blood78 %>%
   select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2,  
          Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y78, wtn_Y78, wtb_Y78, ethgrp5, ethgrp2,
          cluster1, cluster2, cluster3, nssec8, paidemployment, qual7, eqvinc, MarSt2,
-         cluster4, cluster5, area, gor) %>% 
+         cluster4, cluster5, area, gor, LDL, HDL, Chol, Trig) %>% 
   rename(wti = wti_Y78, wtn = wtn_Y78, wtb = wtb_Y78, drink = dnoft3) %>% 
   mutate(Years = "7-8", MVPAtime = NA, MarStat = NA) %>% 
   replace_with_na(replace = list(bmival = -1, qual7 = -8,
@@ -75,6 +75,7 @@ BMI78 <- blood78 %>%
                                  # hibp140_2 = -1, 
                                  Glucose = -1, 
                                  A1C  = -1, 
+                                 LDL = -1, HDL = -1, Chol = -1, Trig = -1,
                                  dnnow = -1,
                                  drink = -1,
                                  ethgrp5 = -4,
@@ -95,7 +96,7 @@ BMI56 <- blood56 %>%
   select(ID, Sex, age, area, bmival, wstval, Diabetes, bpmedc2, bpmedd2, hyper140_2, hibp140_2, MVPAtime,
          Glucose, A1C, cigsta3, dnoft3, dnnow, wti_Y56, wtn_Y56, wtb_Y56, ethgrp5, ethgrp2, qual7,
          cluster1, cluster2, cluster3, nssec8, paidemployment, eqvinc, MarSt2,
-         cluster4, cluster5, area, gor) %>% 
+         cluster4, cluster5, area, gor, LDL, HDL, Chol, Trig) %>% 
   mutate(Years = "5-6", MarStat = NA) %>% 
   rename(wti = wti_Y56, wtn = wtn_Y56, wtb = wtb_Y56, drink = dnoft3) %>% 
   replace_with_na(replace = list(bmival = -1, paidemployment = -9,
@@ -112,6 +113,7 @@ BMI56 <- blood56 %>%
                                  drink = -1,
                                  ethgrp5 = -4,
                                  ethgrp2 = -4,
+                                 LDL = -1, HDL = -1, Chol = -1, Trig = -1,
                                  cigsta3 = -1,
                                  MVPAtime = -1, 
                                  nssec8 = -9)) %>% 
@@ -123,7 +125,7 @@ BMI56 <- blood56 %>%
 BMI14 <- blood14 %>% 
   select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc, bpmedd, hyper140, hibp140, MVPAtime,
          Glucose, A1C, cigsta3, dnoft3, dnnow, wti_CY1234, wtn_CY1234, wtb_CY1234, ethgr5, ethgr2,
-         cluster, area, gor, nssec8, paidemployment, qual7, eqvinc, MarSt2, MarStat) %>%
+         cluster, area, gor, nssec8, paidemployment, qual7, eqvinc, MarSt2, MarStat, LDL, HDL, Chol, Trig) %>%
   rename(hyper140_2 = hyper140, hibp140_2 = hibp140, bpmedd2 = bpmedd, 
          bpmedc2 = bpmedc, cluster1 = cluster, ethgrp5 = ethgr5, ethgrp2 = ethgr2, 
          wti = wti_CY1234, wtn = wtn_CY1234, wtb =  wtb_CY1234, drink = dnoft3) %>% 
@@ -139,6 +141,7 @@ BMI14 <- blood14 %>%
                                  Glucose = -1, 
                                  A1C  = -1, 
                                  dnnow = -1,
+                                 LDL = -1, HDL = -1, Chol = -1, Trig = -1,
                                  drink = -1,
                                  ethgrp5 = -4,
                                  ethgrp2 = -4,
@@ -157,17 +160,20 @@ BMI <- bind_rows(BMI14, BMI56, BMI78)
 
 
 Energy14 <- food14 %>% 
-  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE, Proteing, ProteinpctotE, 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, 
+         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,
          Fatg, FatpctotE)
 Energy14$Country[Energy14$Country == "Northern Ireland"] <- "NI"
 
 Energy56 <- food56 %>% 
-  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, CHOpctotE, Proteing, ProteinpctotE, 
+  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, 
+         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,
          Fatg, FatpctotE) %>% 
   rename(SurveyYear = Surveyyear)
 
 Energy78 <- food78 %>% 
-  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, CHOpctotE, Proteing, ProteinpctotE, 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, 
+         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,
          Fatg, FatpctotE)
 
 Energy <- bind_rows(Energy14, Energy56, Energy78)
@@ -180,13 +186,14 @@ Energy <- bind_rows(Energy14, Energy56, Energy78)
 ```{r combinedata, echo=FALSE, eval=FALSE, warning=FALSE}
 # ready to combine with the classification data
 
-CW3CB3 <- read_table2("~/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB2.txt",  
+CW3CB3 <- read_table2("~/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB3.txt",  
                               col_names = FALSE)# change the path to your own path
 
 names(CW3CB3) <- c("Breakfast", "Morning.snack", "Lunch",
                    "Afternoon.snack", "Dinner", "Before.bedtime.snack",
                    "Midnight.food", "ID_DAY", "AGE", "SEX", "CPROB1",
                       "CPROB2", "CPROB3", "CPROB4", "CPROB5", "CPROB6", 
+                      "CPROB7", "CPROB8", "CPROB9", 
                       "CB", "CW", "MLCJOINT", "ID")
 
 
@@ -351,7 +358,7 @@ LCGA_3class <- LCGA_3class %>%
 
 write_dta(LCGA_3class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_7slots3class.dta")
 # write_dta(LCGA_2class, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/LCGA_2class.dta")
-write_dta(CW3CB3_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB2_7regss.dta")
+write_dta(CW3CB3_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta")
 # write_dta(CW2CB2_regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW2CB2_regss.dta")
 ```
 
