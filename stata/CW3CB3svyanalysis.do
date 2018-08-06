@@ -41,7 +41,7 @@ tab Educ
 
 
 egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
-
+tab BMIcat
 
 **********************************************************
 // variables need to be log transfomred                 //
@@ -191,6 +191,8 @@ svy: mean bmi, over(CB)
 
 test [bmival]1 = [bmival]2 = [bmival]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
+
+svy: tabulate 
 
 
 *********************************************************
