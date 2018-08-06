@@ -1,6 +1,6 @@
 // Analysing NDNS survey data in stata
-// for CW3CB3 survey data analysis 
-// date created: 2018-08-01
+// for CW3CB3 survey data analysis on hypertension
+// date created: 2018-08-06
 // manipulation of the data was done in R
 
 // import data from CW3CB3_7sregss.dta
@@ -89,6 +89,9 @@ svyset area [pweight = wtn1to8], strata(gor)
 
 gen Men = Sex == 1  //  n of men = 2537
 gen Women = Sex == 2 // n of women = 3618
+
+svy, subpop(Men): tab hibp, se ci format(%7.3f)
+svy, subpop(Women): tab hibp, se ci format(%7.3f)
 
 svy, subpop(Men): mean age, over(hibp)
 test [age]1 = [age]0
@@ -186,8 +189,8 @@ svy, subpop(Women): mean Carbohydrateg, over(hibp)
 test [Carbohydrateg]1 = [Carbohydrateg]0
 
 
-svy, subpop(Men): mean Carbo, over(hibp)
-test [Carbohydrateg]1 = [Carbohydrateg]0
+svy, subpop(Men): mean Proteing, over(hibp)
+test [Proteing]1 = [Proteing]0
 
 svy, subpop(Women): mean Carbohydrateg, over(hibp)
 test [Carbohydrateg]1 = [Carbohydrateg]0

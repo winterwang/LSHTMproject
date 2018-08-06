@@ -79,7 +79,7 @@ Class 1 days \textbf{(Figure \ref{fig:level1}-A)} were given the name of "high c
 
 \begin{table}[H]
 	
-	\caption{\label{tab:daylevel}Day level latent class solution for three classes LCA model. (No Individual level Model)}\vspace{-0.3cm}
+	\caption{\label{tab:daylevel}Day level latent class solution for three classes LCA model. (No individual level model)}\vspace{-0.3cm}
 	\centering
 	\fontsize{9}{11}\selectfont
 	\begin{tabular}[t]{llccccc}
@@ -386,6 +386,120 @@ From the results of blood tests, 6.9\% of low carbohydrate eaters were found to 
 %----------------------------------------------------------------------------------------
 
 \subsection{Association between individual level latent classes and hypertension, obesity, and diabetes.}
+
+
+
+\begin{sidewaystable}
+\rowcolors{2}{gray!6}{white}
+%\begin{table}
+	\caption{\label{tab:tab1hypetension}Weighted means, percentages, and 95 \% CIs of the characteristics by hypertension status in the UK adults. \\(NDNS RP 2008/09-2015/16, sample size = 6155)}
+	\centering
+	\fontsize{9}{11}\selectfont
+	\begin{tabular}[t]{lcccccc}
+		\hiderowcolors
+		\toprule
+		\multicolumn{1}{c}{ } & \multicolumn{3}{c}{\textbf{Men (n = 2537)}} & \multicolumn{3}{c}{\textbf{Women (n = 3618)}} \\
+		\cmidrule(l{2pt}r{2pt}){2-4} \cmidrule(l{2pt}r{2pt}){5-7}
+		& \textbf{Non-hypertensive} & \textbf{Hypertensive} & \textbf{\textit{P} value\textsuperscript{*}} & \textbf{Non-hypertensive} & \textbf{Hypertensive} & \textbf{\textit{P} value\textsuperscript{*}}\\
+		\midrule
+		\showrowcolors
+		Weighted prevalence (\%) & 69.6 (66.6, 72.5)  & 30.4 (27.5, 33.4) &  & 72.5 (69.8, 75.0) & 27.5 (25.0, 30.2) & \\
+		Age (years) & 43.2 (41.7, 44.7) & 59.9 (58.0, 61.7) & < 0.001 & 43.9 (42.7, 45.1) & 64.9 (63.4, 66.5) & < 0.001\\
+		Country (\%) &  &  & 0.109 &  &  & 0.631\\
+		\hspace{1em}England & 84.7 (80.9, 87.2) & 85.4 (81.2, 88.8) &  & 84.0 (81.0, 86.6) & 83.5 (79.1, 87.0) & \\
+		\hspace{1em}Northern Ireland & 3.3 (2.2, 4.8) & 1.6 (0.8, 3.1) &  & 2.5 (1.9, 3.5) & 2.6 (1.5, 4.3) & \\
+		\hspace{1em}Scotland & 8.6 (6.3, 11.7) & 7.1 (4.6, 10.9) &  & 8.7 (6.5, 11.7) & 7.9 (5.1, 11.8) & \\
+		\hspace{1em}Wales & 3.9 (2.7, 5.6) & 5.9 (4.0, 8.5) &  & 4.7 (3.7, 6.0) & 6.1 (4.3, 8.6) & \\
+		Ethnicity (\%) &  &  & 0.534 &  &  & 0.126\\
+		\hspace{1em}White & 89.6 (86.5, 92.0) & 91.1 (86.2, 94.4) &  & 85.7 (82.7, 88.3) & 90.2 (85.0, 93.7) & \\
+		\hspace{1em}Non-white & 10.4 (8.0, 13.5) & 8.9 (5.6, 13.8) &  & 14.3 (11.7, 17.3) & 9.8 (6.3, 15.0) & \\
+		Education (\%) &  &  & 0.006 &  &  & < 0.001\\
+		\hspace{1em}Degree or higher & 30.3 (26.6, 34.2) & 21.5 (17.3, 26.5) &  & 33.0 (29.9, 36.3) & 19.7 (15.8, 24.3) & \\
+		\hspace{1em}Lower than Degree & 69.7 (65.8, 73.4) & 78.5 (73.5, 82.7) &  & 67.0 (63.7, 70.1) & 80.3 (75.7, 84.2) & \\
+		Smoking status &  &  & < 0.001 &  &  & < 0.001\\
+		\hspace{1em}Current & 19.7 (16.6, 23.1) & 12.9 (9.5, 17.2) &  & 15.2 (13.1, 17.6) & 8.5 (6.2, 11.6) & \\
+		\hspace{1em}Ex-smoker & 24.2 (21.1, 27.6) & 38.8 (33.4, 44.5) &  & 21.6 (19.1, 24.4) & 32.2 (27.3, 37.4) & \\
+		\hspace{1em}Never & 56.2 (52.1, 60.1) & 48.3 (42.7, 54.0) &  & 63.2 (60.1, 66.2) & 59.3 (54.0, 64.4) & \\
+		Physical
+		activity (hours/day) \textsuperscript{\dag} & 1.52 (1.33, 1.72) & 1.29 (1.08, 1.53) & 0.134 & 0.81 (0.73, 0.89) & 0.53 (0.42, 0.64) & < 0.001\\
+		BMI (kg/m\textsuperscript{2}) & 26.8 (26.4, 27.2) & 29.5 (28.9, 29.9) & < 0.001 & 26.4 (26.1, 26.8) & 29.8 (29.2, 30.5) & < 0.001\\
+		WC (cm) & 95.0 (93.9, 96.2) & 104.6 (103.2, 106.1) & < 0.001 & 85.7 (84.8, 86.6) & 95.7 (94.2, 97.2) & < 0.001\\
+		Carbohydrate eating patterns (\%) &  &  & < 0.001 &  &  & < 0.001\\
+		\hspace{1em}Low & 28.3 (24.8, 32.2) & 37.1 (32.0, 42.5) &  & 26.9 (24.1, 29.9) & 32.0 (27.2, 37.2) & \\
+		\hspace{1em}Moderate & 30.8 (26.9, 35.0) & 19.3 (15.3, 24.1) &  & 29.6 (26.4, 33.0) & 18.4 (14.5, 22.9) & \\
+		\hspace{1em}High & 40.8 (36.9, 44.9) & 43.6 (38.2, 49.2) &  & 43.5 (40.3, 46.8) & 49.7 (44.1, 55.2) & \\
+		Total energy intake (kJ) & 9021.4 (8791.9, 9251.0) & 8366.2 (8094.9, 8637.4) & < 0.001 & 6802.6 (6681.1, 6924.0) & 6396.7 (6217.1, 6576.2) & < 0.001\\
+		Carbohydrate intake (g) & 259.2 (252.9, 265.3) & 235.3 (227.8, 242.8) & < 0.001 & 198.0 (194.2, 201.8) & 184.5 (178.8, 190.1) & < 0.001\\
+		\bottomrule
+		\multicolumn{7}{l}{\textit{Note: }}\\
+		\multicolumn{7}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;}\\
+		\multicolumn{7}{l}{ BMI body mass index; WC, waist circumference.}\\
+		\multicolumn{7}{l}{Variables are weighted by nurse visiting weights.}\\
+		\multicolumn{7}{l}{\textsuperscript{*} Significant sex-specific differences by hypertension status assessed using an \textit{F} test for continuous variables or design-adjusted Pearson $\chi^2$ test.}\\
+		\multicolumn{7}{l}{\textsuperscript{\dag} Physical activity was calculated as mean time spent at moderate or vigorous physical activity including both work-related and recreational activities.}\\
+	\end{tabular}
+\rowcolors{2}{white}{white}
+\end{sidewaystable}
+
+
+
+
+\begin{sidewaystable}
+	\rowcolors{2}{gray!6}{white}
+	
+%	\begin{table}
+		
+		\caption{\label{tab:tab1BMI}Weighted means, percentages, and 95 \% CIs of the characteristics by BMI categories in the UK adults. \\ (NDNS RP 2008/09-2015/16, sample size = 6155)}
+		\centering
+		\fontsize{9}{11}\selectfont
+		\begin{tabular}[t]{lcccccccc}
+			\hiderowcolors
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{\textbf{Men (n = 2537)}} & \multicolumn{4}{c}{\textbf{Women (n = 3618)}} \\
+			\cmidrule(l{2pt}r{2pt}){2-5} \cmidrule(l{2pt}r{2pt}){6-9}
+			& \textbf{Normal weight} & \textbf{Overweight} & \textbf{Obese} & \textbf{\textit{P} value\textsuperscript{*}} & \textbf{Normal weight} & \textbf{Overweight} & \textbf{Obese} & \textbf{\textit{P} value\textsuperscript{*}}\\
+			\midrule
+			\showrowcolors
+			Weighted prevalence (\%) & 30.9 (28.0, 33.9) & 43.4 (40.4, 46.4) & 25.7 (23.2, 28.4) &  & 41.7 (39.0, 44.4) & 30.9 (28.4, 33.5) & 27.4 (25.1, 29.9) & \\
+			BMI (kg/m\textsuperscript{2}) & 22.6 (22.3, 22.8) & 27.3 (27.2, 27.5) & 33.7 (33.3, 34.2) & < 0.001 & 22.2 (22.0, 22.4) & 27.3 (27.2, 27.5) & 35.0 (34.6, 35.4) & < 0.001\\
+			WC (cm) & 84.5 (83.6, 85.4) & 97.1 (96.4, 97.8) & 112.7 (111.6, 113.9) & < 0.001 & 76.9 (76.2, 77.5) & 89.0 (88.3, 89.7) & 103.7 (102.6, 104.7) & < 0.001\\
+			Age (years) & 40.3 (38.2, 42.4) & 49.6 (47.9, 51.2) & 50.4 (48.5, 52.3) & < 0.001 & 45.0 (43.4, 46.7) & 50.4 (48.6, 52.3) & 50.9 (49.1, 52.7) & < 0.001\\
+			Country (\%) &  &  &  & 0.236 &  &  &  & 0.589\\
+			\hspace{1em}England & 83.9 (79.2, 87.7) & 86.9 (83.6, 89.7) & 81.6 (76.7, 85.7) &  & 84.3 (80.4, 87.5) & 83.7 (79.7, 87.0) & 82.4 (78.2, 85.9) & \\
+			\hspace{1em}Northern Ireland & 3.3 (1.9, 5.8) & 2.3 (1.4, 3.6) & 3.2 (2.0, 4.9) &  & 3.0 (2.1, 4.2) & 2.2 (1.5, 3.2) & 3.4 (2.3, 5.0) & \\
+			\hspace{1em}Scotland & 9.1 (6.1, 13.5) & 6.5 (4.4, 9.7) & 9.0 (5.9, 13.3) &  & 9.0 (6.1, 13.0) & 9.0 (6.3, 12.8) & 8.5 (5.7, 12.6) & \\
+			\hspace{1em}Wales & 3.7 (2.3, 5.8) & 4.3 (3.1, 5.9) & 6.3 (4.0, 9.7) &  & 3.8 (2.9, 5.1) & 5.1 (3.6, 7.2) & 5.7 (4.2, 7.7) & \\
+			Ethnicity (\%) &  &  &  & 0.466 &  &  &  & 0.879\\
+			\hspace{1em}White & 88.7 (83.9, 92.2) & 89.1 (85.6, 91.9) & 91.9 (87.3, 94.9) &  & 88.4 (84.9, 91.19 & 88.6 (84.5, 91.7) & 87.3 (82.5, 90.9) & \\
+			\hspace{1em}Non-white & 11.3 (7.8, 16.1) & 10.9 (8.1, 14.4) & 8.1 (5.1, 12.7) &  & 11.6 (8.9, 15.1) & 11.4 (8.3, 15.5) & 12.7 (9.1, 17.5) & \\
+			Education (\%) &  &  &  & 0.022 &  &  &  & < 0.001\\
+			\hspace{1em}Degree or higher & 29.5 (24.5, 35.0) & 28.3 (24.3, 32.7) & 20.1 (16.0, 25.0) &  & 35.7 (31.8, 39.8) & 24.2 (20.4, 28.4) & 19.4 (16.1, 23.2) & \\
+			\hspace{1em}Lower than Degree & 70.5 (65.0, 75.5) & 71.7 (67.3, 75.7) & 79.9 (75.0, 84.0) &  & 64.3 (60.2, 68.2) & 75.8 (71.6, 79.6) & 80.6 (76.8, 83.9) & \\
+			Smoking status &  &  &  & < 0.001 &  &  &  & 0.042\\
+			\hspace{1em}Current  & 32.0  (26.8, 37.7) & 18.7 (15.5, 22.4) & 19.2 (15.0, 24.3) &  & 19.5 (16.4, 22.9) & 17.8 (14.8, 21.4) & 16.4 (13.1, 20.3) & \\
+			\hspace{1em}Ex-smoker & 17.3 (13.5, 22.0) & 28.6 (24.8, 32.7) & 32.9 (27.9, 38.4) &  & 19.0 (15.9, 22.5) & 24.4 (20.8, 28.3) & 26.9 (22.8, 31.6) & \\
+			\hspace{1em}Never & 50.6 (44.8, 56.4) & 52.7 (48.2, 57.1) & 47.9 (42.1, 53.7) &  & 61.6 (57.4, 65.5) & 57.8 (53.3, 62.2) & 56.7 (51.8, 61.4) & \\
+			Physical activity\textsuperscript{\dag} (hours/day) & 1.58 (1.33, 1.85) & 1.42 (1.24, 1.62) & 1.41 (1.15, 1.70) & 0.547 & 0.84 (0.74, 0.94) & 0.71 (0.62, 0.79) & 0.65 (0.53, 0.78) & 0.038\\
+			Carbohydrate eating patterns (\%) &  &  &  & 0.072 &  &  &  & 0.253\\
+			\hspace{1em}Low & 25.9 (21.0, 31.5) & 30.6 (26.6, 35.0) & 31.4 (26.6, 36.6) &  & 24.8 (21.5, 28.5) & 26.8 (22.8, 31.2) & 29.5 (25.3, 34.1) & \\
+			\hspace{1em}Moderate & 34.2 (28.6, 40.4) & 25.5 (21.9, 29.6) & 25.5 (20.6, 31.0) &  & 27.6 (23.8, 31.8) & 26.3 (22.3, 30.8) & 29.8 (25.4, 34.6) & \\
+			\hspace{1em}High & 39.9 (34.2, 45.8) & 43.8 (39.6, 48.2) & 43.1 (37.7, 48.7) &  & 47.6 (43.3, 51.9) & 46.9 (42.4, 51.4) & 40.7 (36.0, 45.6) & \\
+			Total energy intake (kJ) & \Centerstack{9351.2 \\ (8961.7, 9740.7)} & \Centerstack{8786.9 \\ (8595.1, 8978.7)} & \Centerstack{8465.3 \\ (8196.4, 8734.1)} & 0.001 & \Centerstack{7048.9 \\ (6894.4, 7203.4)} & \Centerstack{6570.1 \\(6406.2, 6734.0)} & \Centerstack{6566.4 \\ (6360.7, 6772.1)} & < 0.001\\
+			Carbohydrate intake (g) & \Centerstack{268.7 \\ (258.3, 279.2)} & \Centerstack{250.1\\ (244.1, 256.1)} & \Centerstack{239.1 \\ (231.3, 246.8)} & < 0.001 & \Centerstack{205.8 \\(200.2, 211.3)} & \Centerstack{190.1 \\ (185.3, 194.9)} & \Centerstack{189.8 \\ (183.7, 195.9)} & < 0.001\\
+			\bottomrule
+			\multicolumn{9}{l}{\textit{Note: }}\\
+			\multicolumn{9}{l}{\textbf{Abbreviations}: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;}\\
+			\multicolumn{9}{l}{ BMI body mass index; WC, waist circumference.}\\
+			\multicolumn{9}{l}{Variables are weighted by nurse visiting weights.}\\
+			\multicolumn{9}{l}{\textsuperscript{*} Significant sex-specific differences by BMI categories assessed using an F test (with Bonferroni correction to account for multiple testing across $>$ 2 groups)} \\ 
+			\multicolumn{9}{l}{for continuous variables or design-adjusted Pearson $\chi^2$ test}\\
+			\multicolumn{9}{l}{\textsuperscript{\dag} Physical activity was calculated as mean time spent at moderate or vigorous physical activity including both work-related and recreational activities.}\\
+		\end{tabular}
+%	\end{table}
+	
+	\rowcolors{2}{white}{white}
+\end{sidewaystable}
+
 
 
 

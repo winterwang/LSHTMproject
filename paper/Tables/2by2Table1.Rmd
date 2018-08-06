@@ -231,3 +231,113 @@ kable(dt,  align = "l", row.names = FALSE,
                  ), 
                notation = "symbol")
 ```
+
+
+## Hypertension table 1
+
+
+
+```{r tab1hypetension, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/hypertensiontab1.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c(" ", "Non-hypertensive", "Hypertensive", "P value[note]", 
+               "Non-hypertensive", "Hypertensive", "P value")
+
+# 
+# dt[9, 1] <- c("Hypertension[note] (%)")
+# dt[13, 1] <- c("Carbohydrate percent[note] (%)")
+
+dt[17, 1] <- c("Physical\nactivity (hours/day) [note]")
+# dt[20, 1] <- c("DM [note]")
+# dt[20, 1] <- c("Paid employment[note] (%)")
+# dt[23, 1] <- c("Live with partner[note] (%)")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by hypertension status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  add_indent(c(3:6,8,9,11,12,14,15,16,21:23)) %>% 
+   add_header_above(c(" ", "Men (n = 2537)" = 3, "Women (n = 3618)" = 3)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;",
+                        " BMI body mass index; WC, waist circumference.", 
+                        "Variables are weighted by nurse visiting weights.")) %>% 
+  add_footnote(c("Significant sex-specific differences by hypertension status assessed using an F test for continuous variables or design-adjusted Pearson chi-square test",
+                 # "Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey." , 
+                 # # "Live with partner was defined as either living with a married husband/wife or a legally recognised civil partnership."
+                 # "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.",
+                 # "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 # "DM was defined by A1C > 6.5%.",
+                 "Physical activity was calculated as mean time spent at moderate or vigorous physical activity including both work-related and recreational activities during the survey."
+                 ), 
+               notation = "symbol")
+```
+
+
+
+## BMI 
+
+```{r tab1BMI, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/BMItab1.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c(" ", "Normal weight", "Overweight", "Obese", "P value[note]", "Normal weight", "Overweight", "Obese", "P value")
+
+# 
+# dt[9, 1] <- c("Hypertension[note] (%)")
+# dt[13, 1] <- c("Carbohydrate percent[note] (%)")
+
+dt[17, 1] <- c("Physical\nactivity (hours/day) [note]")
+# dt[20, 1] <- c("DM [note]")
+# dt[20, 1] <- c("Paid employment[note] (%)")
+# dt[23, 1] <- c("Live with partner[note] (%)")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by hypertension status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  add_indent(c(6:9, 11,12, 14,15, 17:19, 22:24)) %>% 
+   add_header_above(c(" ", "Men (n = 2537)" = 4, "Women (n = 3618)" = 4)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;",  
+                       " BMI body mass index; WC, waist circumference.", 
+                       "Variables are weighted by nurse visiting weights.")) %>% 
+  add_footnote(c("Significant sex-specific differences by BMI categories assessed using an F test (with Bonferroni correction to account for multiple testing across $>$ 2 groups) for continuous variables or design-adjusted Pearson chi-square test",
+                 # "Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey." , 
+                 # # "Live with partner was defined as either living with a married husband/wife or a legally recognised civil partnership."
+                 # "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.",
+                 # "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 # "DM was defined by A1C > 6.5%.",
+                 "Physical activity was calculated as mean time spent at moderate or vigorous physical activity including both work-related and recreational activities during the survey."
+                 ), 
+               notation = "symbol")
+```
+
+
+## DM 
+
+
+```{r tab1BMI, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/BMItab1.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c(" ", "Normal weight", "Overweight", "Obese", "P value[note]", "Normal weight", "Overweight", "Obese", "P value")
+
+# 
+# dt[9, 1] <- c("Hypertension[note] (%)")
+# dt[13, 1] <- c("Carbohydrate percent[note] (%)")
+
+dt[17, 1] <- c("Physical\nactivity (hours/day) [note]")
+# dt[20, 1] <- c("DM [note]")
+# dt[20, 1] <- c("Paid employment[note] (%)")
+# dt[23, 1] <- c("Live with partner[note] (%)")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by hypertension status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  add_indent(c(6:9, 11,12, 14,15, 17:19, 22:24)) %>% 
+   add_header_above(c(" ", "Men (n = 2537)" = 4, "Women (n = 3618)" = 4)) %>% 
+  footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;",  
+                       " BMI body mass index; WC, waist circumference.", 
+                       "Variables are weighted by nurse visiting weights.")) %>% 
+  add_footnote(c("Significant sex-specific differences by BMI categories assessed using an F test (with Bonferroni correction to account for multiple testing across $>$ 2 groups) for continuous variables or design-adjusted Pearson chi-square test",
+                 # "Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey." , 
+                 # # "Live with partner was defined as either living with a married husband/wife or a legally recognised civil partnership."
+                 # "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.",
+                 # "Carbohydrate percent indicates the percentage of energy from carbohydrate in total energy intake",
+                 # "DM was defined by A1C > 6.5%.",
+                 "Physical activity was calculated as mean time spent at moderate or vigorous physical activity including both work-related and recreational activities during the survey."
+                 ), 
+               notation = "symbol")
+```
