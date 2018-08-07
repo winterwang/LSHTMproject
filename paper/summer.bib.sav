@@ -535,4 +535,32 @@
   publisher = {Oxford University Press},
 }
 
+@Software{stata15,
+  author  = {{StataCorp LLC}},
+  title   = {Stata Statistical Software: Release 15},
+  date    = {2017},
+  url     = {https://www.stata.com/},
+  version = {15.1},
+}
+
+@Manual{R3.5.1,
+  title        = {R: A Language and Environment for Statistical Computing},
+  author       = {{\firstsecond{R core Team}{R Core Team}}},
+  organization = {R Foundation for Statistical Computing},
+  address      = {Vienna, Austria},
+  year         = {2018},
+  url          = {https://www.R-project.org/},
+}
+
+@Article{archer2006goodness,
+  author    = {Archer, Kellie J and Lemeshow, Stanley and others},
+  title     = {Goodness-of-fit test for a logistic regression model fitted using survey sample data},
+  journal   = {Stata Journal},
+  year      = {2006},
+  volume    = {6},
+  number    = {1},
+  pages     = {97--105},
+  publisher = {StataCorp LP},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

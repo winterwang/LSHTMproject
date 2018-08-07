@@ -524,4 +524,32 @@
   publisher = {JSTOR},
 }
 
+@Article{besson2009estimating,
+  author    = {Besson, Herve and Brage, S{\o}ren and Jakes, Rupert W and Ekelund, Ulf and Wareham, Nicholas J},
+  title     = {Estimating physical activity energy expenditure, sedentary time, and physical activity intensity by self-report in adults--},
+  journal   = {The American journal of clinical nutrition},
+  year      = {2009},
+  volume    = {91},
+  number    = {1},
+  pages     = {106--114},
+  publisher = {Oxford University Press},
+}
+
+@Software{stata15,
+  author  = {{StataCorp LLC}},
+  title   = {Stata Statistical Software: Release 15},
+  date    = {2017},
+  url     = {https://www.stata.com/},
+  version = {15.1},
+}
+
+@Manual{R3.5.1,
+  title        = {R: A Language and Environment for Statistical Computing},
+  author       = {{\firstsecond{R core Team}{R Core Team}}},
+  organization = {R Foundation for Statistical Computing},
+  address      = {Vienna, Austria},
+  year         = {2018},
+  url          = {https://www.R-project.org/},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

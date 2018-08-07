@@ -83,7 +83,7 @@ Another two sets of weights were generated to correct for differential non-respo
 
 Further details of the weighting system developed by the NDNS RP are described in the Appendix B of the reports published by Public Health England (PHE) \parencite{bates2014national,roberts2018national,NDNSofficial}.\vspace{-0.6cm}
 
-\subsection{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analysis}\vspace{-0.3cm}
+\subsection{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analyses}\vspace{-0.3cm}
 
 Computer assisted personal interviews were conducted for the selected individuals by trained interviewers to collect background information on smoking habits (current, past, never smokers), ethnicity (white, non-white), education level, living with a partner or not and other socio-demographic related variables. Participants also had their height, weight, blood pressure, waist circumferences (WC) measured by the nurses. 
 
@@ -194,7 +194,7 @@ P(G_{ij} = t) = \frac{\exp{(\gamma_0 + \beta_{1}x_{ij} + \gamma_1 w_j + u_{0j})}
 \end{equation}
 
 \vspace{-0.5cm}
-\subsection{Non-Parametric approach}\vspace{-0.3cm}
+\subsubsection{Non-Parametric approach}\vspace{-0.3cm}
 
 
 Since the parametric approach discussed above can be extremely computationally demanding \parencite{van2008using, vermunt2008latent}, an alternative approach is using a non-parametric MLCA \parencite{davidian2008growth}. In this approach, separate latent class models are specified for level 1 (observation days) and level 2 (individuals). Similar with the parametric MLCA approach, there are $T-1$ random intercepts, where $T$ is the number of level 1 latent classes. However, rather than assuming the random intercepts following a normal distribution, the non-parametric MLCA assumes a multinomial (discrete) distribution of the level 2 latent classes. This approach is less computationally demanding compared with the parametric approach. These level 2 (individual) latent classes reflect differences in the probability of belonging to a specific day level latent class, so that individuals that contain observation days with similar probabilities for the level 1 latent classes will be grouped together. The non-parametric MLCA model can be defined as follows: \vspace{-0.7cm}
@@ -279,8 +279,22 @@ Person level point estimates and 95\% confidence intervals (CIs) were determined
 \subsection{Association between individual level latent classes and the prevalence of hypertension, obesity, and diabetes}\vspace{-0.3cm}
 
 
+Associations between individual level carbohydrate eating classes and the prevalence of hypertension, obesity as well as diabetes were explored in men and women separately. Point estimates of weighted means and proportions and 95\%CI of the characteristics were determined by applying either nurse visiting weights (for outcomes of hypertension, BMI, and WC) or blood sample weights (for outcomes of DM) accordingly. Similarly, the \textit{F} test (for continuous variables) and adjusted Pearson $\chi^2$ test (for categorical variables) were used to determine sex-specific differences by hypertension status, BMI categories, and DM diagnosis. 
 
+Logistic regression models (for hypertension, and diabetes), multinomial logistic regression model (for BMI categories), and linear regression model (for WC), were used to test for associations between individual level carbohydrate eating classes and hypertension, obesity, WC, and diabetes, separately.
 
-Multiple linear regression model (for WC), multinomial logistic regression model (for BMI categories), logistic regression models (for hypertension, and diabetes) were used to test for associations between individual level carbohydrate eating latent classes and WC, obesity, hypertension, and diabetes, separately.
+For the multiple regression models, model fitting strategies are as follows: 
 
-Model fitting strategies 
+\begin{enumerate}
+	\item The crude association between the carbohydrate eating groups and the outcomes was first examined. 
+	\item Potential confounders of the association between carbohydrate eater groups (exposure) and the outcomes were selected depending on the descriptive statisitics conducted above, ie. those are associated with both the exposure and the outcome and not on the causal pathway were selected as potential factors. 
+	\item Confounding and/or interaction effect from each of the potential factors were checked one by one. 
+	\item A preliminary model that includes all of the variables suggested to be confounders in the previous step was established. 
+	\item The remaining variables were added to the preliminary model one by one to see if any of them may be a confounder in condition of the presence of the other covariates. 
+	\item For logistic regression models, Goodness-of-fit (calibration) was assessed using the adapted \code{svylogitgof} command in Stata \parencite{archer2006goodness}. Other diagnostics (residual check,  Quadratic and cubic polynomial functions of continuous variables (such as age) were also tested to allow for nonlinear effects of these covariates on the binary outcomes. 
+	
+	\item For linear regression model (WC), assumptions were checked visually by QQ plots of the residuals (normality), plotting the residuals against fitted values (constant variance). Outliers, leverage, and Cook's distance were checked visually to see if there may be 1) any extreme values of the dependent variable; 2) any points that have extreme values of the predictor variables; and 3) points which exert particular influence on the parameters of the fitted regression model. 
+	\item Since likelihood ratio test is not appropriate under survey designed regression models, adjusted Wald test with $p < 0.05$ were used as criteria for variable inclusion in the final model. 
+\end{enumerate}
+
+Data manipulation and preparation \textbf{(Appendix \ref{AppendixA})} were done in R version 3.5.1 \parencite{R3.5.1}. All statistical analyses, except for MLCA models, were performed with "svyset" command as implemented in Stata software version 15.1 \parencite{stata15}. All \textit{P} values were two-sided.

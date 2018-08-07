@@ -71,6 +71,42 @@
     \field{year}{2016}
   \endentry
 
+  \entry{archer2006goodness}{article}{}
+    \true{moreauthor}
+    \name{author}{2}{}{%
+      {{hash=AKJ}{%
+         family={Archer},
+         familyi={A\bibinitperiod},
+         given={Kellie\bibnamedelima J},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lemeshow},
+         familyi={L\bibinitperiod},
+         given={Stanley},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {StataCorp LP}%
+    }
+    \strng{namehash}{AKJLS+1}
+    \strng{fullhash}{AKJLS+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2006}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{1}
+    \field{pages}{97\bibrangedash 105}
+    \field{title}{Goodness-of-fit test for a logistic regression model fitted
+  using survey sample data}
+    \field{volume}{6}
+    \field{journaltitle}{Stata Journal}
+    \field{year}{2006}
+  \endentry
+
   \entry{asher2015time}{article}{}
     \name{author}{2}{}{%
       {{hash=AG}{%
@@ -823,6 +859,34 @@
     \field{year}{2011}
   \endentry
 
+  \entry{R3.5.1}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=RcoreTeamRCoreTeam}{%
+         family={{\firstsecond{R core Team}{R Core Team}}},
+         familyi={{\firstsecond{R core Team}{R Core Team}}},
+      }}%
+    }
+    \list{organization}{1}{%
+      {R Foundation for Statistical Computing}%
+    }
+    \strng{namehash}{RcoreTeamRCoreTeam1}
+    \strng{fullhash}{RcoreTeamRCoreTeam1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{R: A Language and Environment for Statistical Computing}
+    \verb{url}
+    \verb https://www.R-project.org/
+    \endverb
+    \list{location}{1}{%
+      {Vienna, Austria}%
+    }
+    \field{year}{2018}
+  \endentry
+
   \entry{roberts2018national}{article}{}
     \name{author}{8}{}{%
       {{hash=RC}{%
@@ -947,6 +1011,29 @@
     \field{title}{Multilevel Analysis: An Introduction to Basic and Advanced
   Multilevel Modeling}
     \field{year}{2011}
+  \endentry
+
+  \entry{stata15}{software}{}
+    \name{author}{1}{}{%
+      {{hash=S}{%
+         family={{StataCorp LLC}},
+         familyi={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{S1}
+    \strng{fullhash}{S1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{year}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Stata Statistical Software: Release 15}
+    \verb{url}
+    \verb https://www.stata.com/
+    \endverb
+    \field{version}{15.1}
+    \field{year}{2017}
   \endentry
 
   \entry{uemura2015breakfast}{article}{}
