@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 2.9 $
+% $ biblatex bbl format version 2.8 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,7 +16,7 @@
   {}
 \endgroup
 
-\datalist[entry]{nyt/global//global/global}
+\sortlist[entry]{nyt/global/}
   \entry{almoosawi2016chrono}{article}{}
     \name{author}{4}{}{%
       {{hash=AS}{%
@@ -52,7 +52,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2016}
-    \field{labeldatesource}{year}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{number}{4}
@@ -95,7 +94,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2006}
-    \field{labeldatesource}{year}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{number}{1}
@@ -130,7 +128,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2015}
-    \field{labeldatesource}{year}
     \field{sortinit}{A}
     \field{sortinithash}{A}
     \field{number}{1}
@@ -199,7 +196,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2014}
-    \field{labeldatesource}{year}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{title}{National Diet and Nutrition Survey: Results from Years 1, 2,
@@ -249,7 +245,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2009}
-    \field{labeldatesource}{year}
     \field{sortinit}{B}
     \field{sortinithash}{B}
     \field{number}{1}
@@ -284,7 +279,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2010}
-    \field{labeldatesource}{year}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{series}{Wiley Series in Probability and Statistics}
@@ -334,7 +328,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2008}
-    \field{labeldatesource}{year}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \field{booktitle}{Longitudinal Data Analysis}
@@ -391,7 +384,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2009}
-    \field{labeldatesource}{year}
     \field{sortinit}{D}
     \field{sortinithash}{D}
     \field{number}{3}
@@ -415,7 +407,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2018}
-    \field{labeldatesource}{year}
     \field{sortinit}{D}
     \field{sortinithash}{D}
   \field{note}{\url{https://www.gov.uk/government/collections/national-diet-and-nutrition-survey}}
@@ -446,7 +437,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2014}
-    \field{labeldatesource}{year}
     \field{sortinit}{F}
     \field{sortinithash}{F}
     \field{number}{3}
@@ -484,7 +474,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2010}
-    \field{labeldatesource}{year}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \field{number}{2}
@@ -516,7 +505,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2014}
-    \field{labeldatesource}{year}
     \field{sortinit}{J}
     \field{sortinithash}{J}
     \field{number}{1}
@@ -566,7 +554,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2017}
-    \field{labeldatesource}{year}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{number}{1}
@@ -611,7 +598,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2001}
-    \field{labeldatesource}{year}
     \field{sortinit}{L}
     \field{sortinithash}{L}
     \field{number}{3}
@@ -642,7 +628,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2018}
-    \field{labeldatesource}{year}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{booktitle}{Proceedings of the Nutrition Society}
@@ -676,7 +661,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2009}
-    \field{labeldatesource}{year}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{number}{3}
@@ -714,7 +698,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2017}
-    \field{labeldatesource}{year}
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{title}{Mplus: Statistical analysis with latent variables: User's
@@ -738,7 +721,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2018}
-    \field{labeldatesource}{year}
     \field{sortinit}{N}
     \field{sortinithash}{N}
     \field{edition}{9th Edition}
@@ -777,7 +759,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2007}
-    \field{labeldatesource}{year}
     \field{sortinit}{N}
     \field{sortinithash}{N}
     \field{number}{4}
@@ -803,7 +784,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2018}
-    \field{labeldatesource}{year}
     \field{sortinit}{O}
     \field{sortinithash}{O}
   \field{note}{\url{https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates}}
@@ -847,7 +827,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2011}
-    \field{labeldatesource}{year}
     \field{sortinit}{P}
     \field{sortinithash}{P}
     \field{number}{12}
@@ -874,7 +853,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2018}
-    \field{labeldatesource}{year}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \field{title}{R: A Language and Environment for Statistical Computing}
@@ -946,7 +924,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2018}
-    \field{labeldatesource}{year}
     \field{sortinit}{R}
     \field{sortinithash}{R}
     \field{title}{National Diet and Nutrition Survey: results from years 7 and
@@ -971,7 +948,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{1993}
-    \field{labeldatesource}{year}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{number}{2}
@@ -1005,7 +981,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2011}
-    \field{labeldatesource}{year}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{title}{Multilevel Analysis: An Introduction to Basic and Advanced
@@ -1025,7 +1000,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2017}
-    \field{labeldatesource}{year}
     \field{sortinit}{S}
     \field{sortinithash}{S}
     \field{title}{Stata Statistical Software: Release 15}
@@ -1107,7 +1081,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2015}
-    \field{labeldatesource}{year}
     \field{sortinit}{U}
     \field{sortinithash}{U}
     \field{number}{5}
@@ -1178,7 +1151,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2008}
-    \field{labeldatesource}{year}
     \field{sortinit}{V}
     \field{sortinithash}{V}
     \field{number}{2}
@@ -1204,7 +1176,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2003}
-    \field{labeldatesource}{year}
     \field{sortinit}{V}
     \field{sortinithash}{V}
     \field{abstract}{%
@@ -1246,7 +1217,6 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2008}
-    \field{labeldatesource}{year}
     \field{sortinit}{V}
     \field{sortinithash}{V}
     \field{number}{1}
@@ -1261,5 +1231,5 @@
     \field{journaltitle}{Statistical Methods in Medical Research}
     \field{year}{2008}
   \endentry
-\enddatalist
+\endsortlist
 \endinput

@@ -1,5 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\select@language {english}
 \contentsline {chapter}{Declaration of Authorship}{iii}{section*.1}
 \contentsline {chapter}{Acknowledgements}{v}{section*.2}
 \contentsline {chapter}{Abstract}{ix}{section*.3}

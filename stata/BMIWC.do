@@ -5,9 +5,9 @@
 
 // import data from CW3CB3_7sregss.dta
 
-use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+//use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
 
-
+use "../Rcode/CW3CB3_7regss.dta", clear
 
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
 label values cigsta3 smoking
@@ -69,6 +69,8 @@ gen logTG = ln(Trig)
 
 svyset area [pweight = wtn1to8], strata(gor)
 
+
+gen DM = A1C > 6.5 if !missing(A1C)
 
 gen Men = Sex == 1  //  n of men = 2537
 gen Women = Sex == 2 // n of women = 3618
@@ -163,7 +165,15 @@ svy, subpop(Men): tabulate CB BMIcat, col se ci format(%7.3f)
 
 svy, subpop(Women): tabulate CB BMIcat, col se ci format(%7.3f)
 
+svy, subpop(Men): tabulate Married BMIcat, col se ci format(%7.3f)
 
+svy, subpop(Women): tabulate Married BMIcat, col se ci format(%7.3f)
+
+
+svy, subpop(Men): mean eqvinc, over(BMIcat)
+test [eqvinc]10 = [eqvinc]25 = [eqvinc]30, mtest(b)
+svy, subpop(Women): mean eqvinc, over(BMIcat)
+test [eqvinc]10 = [eqvinc]25 = [eqvinc]30, mtest(b)
 
 svy, subpop(Men): mean Energy, over(BMIcat)
 test [EnergykJ]10 = [EnergykJ]25 = [EnergykJ]30, mtest(b)
@@ -177,4 +187,221 @@ test [Carbohydrateg]10 = [Carbohydrateg]25 = [Carbohydrateg]30, mtest(b)
 
 svy, subpop(Women): mean Carbohydrateg, over(BMIcat)
 test [Carbohydrateg]10 = [Carbohydrateg]25 = [Carbohydrateg]30, mtest(b)
+
+
+
+
+********************************************************
+********************************************************
+**   Building the linear regression model 
+**   date: 08/08/2018
+**
+**
+********************************************************
+********************************************************
+svyset area [pweight = wtn1to8], strata(gor)
+
+
+// crude association between CB and bmi
+
+svy, subpop(Men): regress bmival i.CB
+
+svy, subpop(Women): regress bmival i.CB 
+
+// crude association between CB and bmicat
+svy, subpop(Men): ologit BMIcat i.CB, eform
+svy, subpop(Women): ologit BMIcat i.CB
+
+svy, subpop(Men): ologit BMIcat i.CB age
+svy, subpop(Women): ologit BMIcat i.CB age, eform
+
+
+// looking for confounder one by one
+// Age: -> confounder
+svy, subpop(Men): regress bmival i.CB age
+test age
+svy, subpop(Women): regress bmival i.CB age
+test age
+
+// Partner -> confounder for men
+svy, subpop(Men): regress bmival i.CB i.Married
+test 1.Married
+
+svy, subpop(Women): regress bmival i.CB i.Married
+test 1.Married
+
+
+
+
+// Income -> not confounder for men but confounder for women
+svy, subpop(Men):  regress bmival i.CB eqvinc 
+test eqvinc
+
+svy, subpop(Women): regress bmival i.CB eqvinc
+test eqvin
+
+
+
+
+// Education -> confounder
+svy, subpop(Men): regress bmival i.CB i.Edu 
+
+test 1.Edu
+
+svy, subpop(Women): regress bmival i.CB i.Edu
+test 1.Edu
+
+// hypertension -> confounder
+
+svy, subpop(Men): regress bmival i.CB i.hibp
+
+test 1.hibp
+
+svy, subpop(Women): regress bmival i.CB i.hibp
+test 1.hibp
+
+
+
+// Smoking -> confounder
+
+
+svy, subpop(Men):  regress bmival i.CB i.cigsta3
+
+test 2.cig 3.cig
+
+svy, subpop(Women):  regress bmival i.CB i.cigsta3
+
+test 2.cig 3.cig
+
+// Total energy intake -> confounder
+
+svy, subpop(Men):  regress bmival i.CB Energy
+
+test Energy
+
+svy, subpop(Women):  regress bmival i.CB Energy
+
+test Energy
+
+// diabetes -> confounder
+
+svy, subpop(Men): regress bmival i.CB i.DM
+test 1.DM
+
+svy, subpop(Women):  regress bmival i.CB i.DM
+
+test 1.DM
+
+
+//  Preliminary model includes all possible confounders in Men
+svy, subpop(if Men & DM != 1): regress bmival i.CB age i.Married i.Edu i.hibp i.cig Energy
+svylogitgof
+svy, subpop(if Women & DM != 1 ): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy
+svylogitgof
+
+
+
+********************************************************
+********************************************************
+**   Building the linear regression model  wst
+**   date: 08/08/2018
+**
+**
+********************************************************
+********************************************************
+svyset area [pweight = wtn1to8], strata(gor)
+
+
+// crude association between CB and wst
+
+svy, subpop(Men): regress wst i.CB
+
+svy, subpop(Women): regress wst i.CB 
+
+
+// looking for confounder one by one
+// Age: -> confounder
+svy, subpop(Men): regress wst i.CB age
+test age
+svy, subpop(Women): regress wst i.CB age
+test age
+
+
+// Partner -> confounder for both
+svy, subpop(Men): regress wst i.CB i.Married
+test 1.Married
+
+svy, subpop(Women): regress wst i.CB i.Married
+test 1.Married
+
+
+// Income -> not confounder for women but confounder for men
+svy, subpop(Men):  regress wst i.CB eqvinc 
+test eqvinc
+
+svy, subpop(Women): regress wst i.CB eqvinc
+test eqvin
+
+
+
+// Education -> confounder
+svy, subpop(Men): regress wst i.CB i.Edu 
+
+test 1.Edu
+
+svy, subpop(Women): regress wst i.CB i.Edu
+test 1.Edu
+
+
+
+// hypertension -> confounder
+
+svy, subpop(Men): regress wst i.CB i.hibp
+
+test 1.hibp
+
+svy, subpop(Women): regress wst i.CB i.hibp
+test 1.hibp
+
+
+// Smoking -> confounder
+
+
+svy, subpop(Men):  regress wst i.CB i.cigsta3
+
+test 2.cig 3.cig
+
+svy, subpop(Women):  regress wst i.CB i.cigsta3
+
+test 2.cig 3.cig
+
+
+// Total energy intake -> confounder
+
+svy, subpop(Men):  regress wst i.CB Energy
+
+test Energy
+
+svy, subpop(Women):  regress wst i.CB Energy
+
+test Energy
+
+
+// diabetes -> confounder
+
+svy, subpop(Men): regress wst i.CB i.DM
+test 1.DM
+
+svy, subpop(Women):  regress wst i.CB i.DM
+
+test 1.DM
+
+
+//  Preliminary model includes all possible confounders in Men
+svy, subpop(if Men & DM !=1): regress wst i.CB age i.Married eqvinc i.Edu i.hibp i.cig Energy
+
+svylogitgof
+svy, subpop(if Women & DM !=1): regress wst i.CB age i.Married eqvinc i.Edu i.hibp i.cig Energy
+svylogitgof
+
 
