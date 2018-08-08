@@ -281,20 +281,22 @@ Person level point estimates and 95\% confidence intervals (CIs) were determined
 
 Associations between individual level carbohydrate eating classes and the prevalence of hypertension, obesity as well as diabetes were explored in men and women separately. Point estimates of weighted means and proportions and 95\%CI of the characteristics were determined by applying either nurse visiting weights (for outcomes of hypertension, BMI, and WC) or blood sample weights (for outcomes of DM) accordingly. Similarly, the \textit{F} test (for continuous variables) and adjusted Pearson $\chi^2$ test (for categorical variables) were used to determine sex-specific differences by hypertension status, BMI categories, and DM diagnosis. 
 
-Logistic regression models (for hypertension, and diabetes), multinomial logistic regression model (for BMI categories), and linear regression model (for WC), were used to test for associations between individual level carbohydrate eating classes and hypertension, obesity, WC, and diabetes, separately.
+%multinomial logistic regression model (for BMI categories),
+
+
+Logistic regression models (for hypertension, and diabetes), and linear regression model (for WC, BMI), were used to test for associations between individual level carbohydrate eating classes and hypertension, diabetes, obesity, and WC, separately.
 
 For the multiple regression models, model fitting strategies are as follows: 
 
 \begin{enumerate}
 	\item The crude association between the carbohydrate eating groups and the outcomes was first examined. 
-	\item Potential confounders of the association between carbohydrate eater groups (exposure) and the outcomes were selected depending on the descriptive statisitics conducted above, ie. those are associated with both the exposure and the outcome and not on the causal pathway were selected as potential factors. 
+	\item Potential confounders of the association between carbohydrate eater groups (exposure) and the outcomes were selected depending on the descriptive statisitics conducted above, ie. those are associated with both the exposure and the outcome and not on the causal pathway were selected as potential confounders. Those are strongly related with the outcomes but may not associated with carbohydrate eating groups may reduce the standard errors and so improve the precisions are also considered. 
 	\item Confounding and/or interaction effect from each of the potential factors were checked one by one. 
 	\item A preliminary model that includes all of the variables suggested to be confounders in the previous step was established. 
 	\item The remaining variables were added to the preliminary model one by one to see if any of them may be a confounder in condition of the presence of the other covariates. 
-	\item For logistic regression models, Goodness-of-fit (calibration) was assessed using the adapted \code{svylogitgof} command in Stata \parencite{archer2006goodness}. Other diagnostics (residual check,  Quadratic and cubic polynomial functions of continuous variables (such as age) were also tested to allow for nonlinear effects of these covariates on the binary outcomes. 
-	
-	\item For linear regression model (WC), assumptions were checked visually by QQ plots of the residuals (normality), plotting the residuals against fitted values (constant variance). Outliers, leverage, and Cook's distance were checked visually to see if there may be 1) any extreme values of the dependent variable; 2) any points that have extreme values of the predictor variables; and 3) points which exert particular influence on the parameters of the fitted regression model. 
-	\item Since likelihood ratio test is not appropriate under survey designed regression models, adjusted Wald test with $p < 0.05$ were used as criteria for variable inclusion in the final model. 
+	\item For logistic regression models under survey data, goodness-of-fit (calibration) was assessed using the adapted \code{svylogitgof} command in Stata \parencite{archer2006goodness}. Other diagnostics for regular logistic regression models, such as estimating the pseudo-R\textsuperscript{2},  AIC or BIC, checking the standardized Pearson residuals, or covariate pattern residuals are currently not available for weighted survey data. 
+	\item For linear regression models (WC, BMI), assumption of independent observations is violated as soon as we weighted the sample. General checking such as QQ plots of the residuals (normality), plotting the residuals against fitted values (constant variance) are not available as well. Outliers, leverage, and Cook's distance cannot be check either, however, samples with extreme weightings (if exist) are checked by removing them and refit the models as a sensitivity analysis.
+	\item Since under survey design data, the sampling-weighted least squares are not maximum likelihood, it would not be possible to compare models using likelihood ratio test. Instead, adjusted Wald tests with $p < 0.05$ were used as criteria for variable inclusion in the final model, and a useful tool to decide whether quadratic and cubic terms of continuous variables are necessary in improving the fitting of model. 
 \end{enumerate}
 
-Data manipulation and preparation \textbf{(Appendix \ref{AppendixA})} were done in R version 3.5.1 \parencite{R3.5.1}. All statistical analyses, except for MLCA models, were performed with "svyset" command as implemented in Stata software version 15.1 \parencite{stata15}. All \textit{P} values were two-sided.
+Data manipulation and preparation \textbf{(Appendix \ref{AppendixA})} were done in R version 3.5.1 \parencite{R3.5.1}. All statistical analyses, except for MLCA models, were performed with \code{svyset} command as implemented in Stata software version 15.1 \parencite{stata15}. All \textit{p} values were two-sided.

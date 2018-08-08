@@ -649,7 +649,7 @@ svy, subpop(Men): logistic hibp i.CB Alcoholg
 test Alcoholg
 
 
-//  Preliminary model includes all possible confounders
+//  Preliminary model includes all possible confounders in Men
 
 gen age2 = age^2
 

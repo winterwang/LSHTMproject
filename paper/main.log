@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.2)  7 AUG 2018 21:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.2)  8 AUG 2018 16:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2410,7 +2410,7 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
 
 
 ] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 294.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 297.
 
 
 (d:/software/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -2482,10 +2482,10 @@ Overfull \vbox (30.15916pt too high) has occurred while \output is active []
 
 
 [24]
-Overfull \hbox (12.11221pt too wide) in paragraph at lines 459--503
- [][] 
- []
-
+LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <8> not available
+(Font)              Font shape `T1/ppl/b/it' tried instead on input line 463.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <6> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 463.
 ) [25] [26] [27]
 \openout2 = `Chapters/Chapter4.aux'.
 
@@ -2748,11 +2748,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38191 strings out of 492990
- 753938 string characters out of 6132150
- 1085647 words of memory out of 5000000
- 40795 multiletter control sequences out of 15000+600000
- 616899 words of font info for 342 fonts, out of 8000000 for 9000
+ 38202 strings out of 492990
+ 754072 string characters out of 6132150
+ 1088661 words of memory out of 5000000
+ 40801 multiletter control sequences out of 15000+600000
+ 620093 words of font info for 348 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,20n,85p,10379b,2848s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/software/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/software
@@ -2769,7 +2769,7 @@ ive/2017/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><d:/software/texlive/20
 xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><d:/software/texlive/2017/texmf-di
 st/fonts/type1/urw/palatino/uplr8a.pfb><d:/software/texlive/2017/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (72 pages, 870355 bytes).
+Output written on main.pdf (72 pages, 871296 bytes).
 PDF statistics:
  765 PDF objects out of 1000 (max. 8388607)
  662 compressed objects within 7 object streams
