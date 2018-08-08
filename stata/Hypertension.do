@@ -5,7 +5,9 @@
 
 // import data from CW3CB3_7sregss.dta
 
-use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+//use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+
+use "../Rcode/CW3CB3_7regss.dta", clear
 
 
 
