@@ -552,4 +552,24 @@
   url          = {https://www.R-project.org/},
 }
 
+@Article{archer2006goodness,
+  author    = {Archer, Kellie J and Lemeshow, Stanley and others},
+  title     = {Goodness-of-fit test for a logistic regression model fitted using survey sample data},
+  journal   = {Stata Journal},
+  year      = {2006},
+  volume    = {6},
+  number    = {1},
+  pages     = {97--105},
+  publisher = {StataCorp LP},
+}
+
+@Article{leech2018eating,
+  author    = {Leech, Rebecca M and Timperio, Anna and Worsley, Anthony and McNaughton, Sarah A},
+  title     = {Eating patterns of Australian adults: associations with blood pressure and hypertension prevalence},
+  journal   = {European journal of nutrition},
+  year      = {2018},
+  pages     = {1--11},
+  publisher = {Springer},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

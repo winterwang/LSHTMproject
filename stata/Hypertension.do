@@ -651,6 +651,7 @@ test Alcoholg
 
 gen age2 = age^2
 
+
 svy, subpop(Men): logistic hibp i.CB age age2 i.Married i.Education bmival i.cigsta3 EnergykJ i.DM
 
 svylogitgof
