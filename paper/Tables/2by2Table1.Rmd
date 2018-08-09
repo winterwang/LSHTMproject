@@ -382,3 +382,35 @@ kable(dt,  align = "l", row.names = FALSE,
                notation = "symbol")
 ```
 
+
+## Table 2 regressions for hypertension 
+
+```{r tab2HYT, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/hypertensionReg.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Model", "Low", "Moderate", "P value[note]", "High", "P value")
+dt[2, 1] <- c("Model 1[note]")
+# dt[3, 1] <- c("Model 2[note]")
+dt[8, 1] <- c("Model 1[note]")
+# dt[9, 1] <- c("Model 2[note]")
+
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "ORs (95CI) of carbohydrate eating patterns with hypertension with or without diabetes in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  group_rows("Men (n = 2537)", 1, 6) %>%
+  group_rows("Hypertension", 1, 3) %>% 
+  group_rows("Hypertension in non-diabetics", 4, 6) %>% 
+  group_rows("Women (n = 3618)", 7, 12) %>% 
+  group_rows("Hypertension", 7, 9) %>% 
+  group_rows("Hypertension in non-diabetics", 10, 12) %>% 
+  add_header_above(c(" ", "Carbohydrate eating patterns" = 5)) %>% 
+  footnote(general = c("Abbreviations: BMI body mass index; WC, waist circumference; NDNS RP, national", 
+                       "dietary and nutrition survey rolling programme.",
+                       "Diabetes was defined by A1C > 6.5%. BMI was replaced with WC in Model 2s, other", 
+                       "covariates remained the same with the corresponding Model 1s.")) %>% 
+  add_footnote(c("P values were obtained from wald tests from either linear regression models or logistic regression models.",
+                "Adjusted for age (continuous), live with partner or not (binary), education level (higher or equal to degree level or not), BMI, smoking status (current, ex-smoker, never), total energy intake (kJ);", 
+                "Adjusted for age, live with partner or not, average household income (continuous), education level, BMI, smoking status, total energy intake (kJ), alcohol consumption (g/day);"),
+                notation = "symbol")
+```
+
