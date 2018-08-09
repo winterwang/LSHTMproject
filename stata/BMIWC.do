@@ -5,9 +5,9 @@
 
 // import data from CW3CB3_7sregss.dta
 
-//use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
 
-use "../Rcode/CW3CB3_7regss.dta", clear
+//use "../Rcode/CW3CB3_7regss.dta", clear
 
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
 label values cigsta3 smoking
@@ -169,6 +169,14 @@ svy, subpop(Men): tabulate Married BMIcat, col se ci format(%7.3f)
 
 svy, subpop(Women): tabulate Married BMIcat, col se ci format(%7.3f)
 
+svy, subpop(Men): tabulate hibp BMIcat, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate hibp BMIcat, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate DM BMIcat, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate DM BMIcat, col se ci format(%7.3f)
+
 
 svy, subpop(Men): mean eqvinc, over(BMIcat)
 test [eqvinc]10 = [eqvinc]25 = [eqvinc]30, mtest(b)
@@ -205,15 +213,11 @@ svyset area [pweight = wtn1to8], strata(gor)
 // crude association between CB and bmi
 
 svy, subpop(Men): regress bmival i.CB
+svy, subpop(if Men & DM != 1): regress bmival i.CB
 
 svy, subpop(Women): regress bmival i.CB 
+svy, subpop(if Women & DM != 1): regress bmival i.CB
 
-// crude association between CB and bmicat
-svy, subpop(Men): ologit BMIcat i.CB, eform
-svy, subpop(Women): ologit BMIcat i.CB
-
-svy, subpop(Men): ologit BMIcat i.CB age
-svy, subpop(Women): ologit BMIcat i.CB age, eform
 
 
 // looking for confounder one by one
@@ -223,12 +227,23 @@ test age
 svy, subpop(Women): regress bmival i.CB age
 test age
 
+svy, subpop(Men): regress bmival i.CB##c.age
+svy, subpop(Women): regress bmival i.CB##c.age
+test 2.CB#c.age 3.CB#c.age // no interaction
+
+
+
 // Partner -> confounder for men
 svy, subpop(Men): regress bmival i.CB i.Married
 test 1.Married
 
 svy, subpop(Women): regress bmival i.CB i.Married
 test 1.Married
+
+svy, subpop(Men): regress bmival i.CB##i.Married
+svy, subpop(Women): regress bmival i.CB##i.Married
+
+test 2.CB#1.Married 3.CB#1.Married // -> no interaction in men interaction in women
 
 
 
@@ -240,7 +255,10 @@ test eqvinc
 svy, subpop(Women): regress bmival i.CB eqvinc
 test eqvin
 
+svy, subpop(Men): regress bmival i.CB##c.eqvinc 
+svy, subpop(Women): regress bmival i.CB##c.eqvinc 
 
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // no interaction
 
 
 // Education -> confounder
@@ -251,6 +269,11 @@ test 1.Edu
 svy, subpop(Women): regress bmival i.CB i.Edu
 test 1.Edu
 
+svy, subpop(Men): regress bmival i.CB##i.Edu 
+svy, subpop(Women): regress bmival i.CB##i.Edu 
+
+test 2.CB#1.Edu 3.CB#1.Edu // no interaction
+
 // hypertension -> confounder
 
 svy, subpop(Men): regress bmival i.CB i.hibp
@@ -260,6 +283,11 @@ test 1.hibp
 svy, subpop(Women): regress bmival i.CB i.hibp
 test 1.hibp
 
+
+svy, subpop(Men): regress bmival i.CB##i.hibp
+svy, subpop(Women): regress bmival i.CB##i.hibp 
+
+test 2.CB#1.hibp 3.CB#1.hibp // maybe some interaction in men; no interaction in women
 
 
 // Smoking -> confounder
@@ -273,6 +301,17 @@ svy, subpop(Women):  regress bmival i.CB i.cigsta3
 
 test 2.cig 3.cig
 
+
+svy, subpop(Men): regress bmival i.CB##i.cigsta3
+svy, subpop(Women): regress bmival i.CB##i.cigsta3
+
+test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction in men
+// interaction in women
+ 
+// logMVP
+
+
+
 // Total energy intake -> confounder
 
 svy, subpop(Men):  regress bmival i.CB Energy
@@ -283,21 +322,69 @@ svy, subpop(Women):  regress bmival i.CB Energy
 
 test Energy
 
-// diabetes -> confounder
 
-svy, subpop(Men): regress bmival i.CB i.DM
-test 1.DM
+svy, subpop(Men): regress bmival i.CB##c.Energy
+svy, subpop(Women): regress bmival i.CB##c.Energy
 
-svy, subpop(Women):  regress bmival i.CB i.DM
+test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
 
-test 1.DM
+
+// ethnicity -> not confounder
+
+svy, subpop(Men): regress bmival i.CB i.ethgrp2
+svy, subpop(Women): regress bmival i.CB i.ethgrp2
+
+svy, subpop(Men): regress bmival i.CB##i.ethgrp2
+svy, subpop(Women): regress bmival i.CB##i.ethgrp2
+test 2.CB#2.ethgrp2 // no interaction
+
+
+// Alcohol -> confounder for both men and women 
+
+
+svy, subpop(Men): regress bmival i.CB Alcoholg
+test Alcoholg
+svy, subpop(Women): regress bmival i.CB Alcoholg
+test Alcoholg
+
+
+svy, subpop(Men): regress bmival i.CB##c.Alcoholg
+svy, subpop(Women): regress bmival i.CB##c.Alcoholg
+test 2.CB#c.Alcoholg 3.CB#c.Alcoholg //  interaction in men  no interaction in women
 
 
 //  Preliminary model includes all possible confounders in Men
-svy, subpop(if Men & DM != 1): regress bmival i.CB age i.Married i.Edu i.hibp i.cig Energy
-svylogitgof
-svy, subpop(if Women & DM != 1 ): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy
-svylogitgof
+svy, subpop(Men): regress bmival i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg
+
+svy, subpop(if Men & DM != 1): regress bmival i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg
+
+svy, subpop(Women): regress bmival i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+
+test 2.CB#1.Married 3.CB#1.Married 
+
+svy, subpop(if Women & Married == 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 0): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+
+// strong interaction of married or not in women 
+linktest
+
+svy, subpop(if Women & DM != 1 ): regress bmival i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy
+linktest
+
+svy, subpop(if Women & Married == 1 & DM != 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 0 & DM != 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+
+
+// crude association between CB and bmicat
+svy, subpop(Men): ologit BMIcat i.CB, eform
+svy, subpop(Women): ologit BMIcat i.CB
+svy, subpop(Men): ologit BMIcat i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg, eform
+svy, subpop(if Men & DM !=1): ologit BMIcat i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg, eform
+
+svy, subpop(Women): ologit BMIcat i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy, eform
+test 2.CB#1.Married 3.CB#1.Married // interaction
+
+svy, subpop(Women): ologit BMIcat i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy, eform
 
 
 
@@ -316,7 +403,12 @@ svyset area [pweight = wtn1to8], strata(gor)
 
 svy, subpop(Men): regress wst i.CB
 
+svy, subpop(if Men & DM != 1): regress wst i.CB
+
+
 svy, subpop(Women): regress wst i.CB 
+
+svy, subpop(if Women & DM != 1): regress wst i.CB 
 
 
 // looking for confounder one by one
@@ -327,12 +419,25 @@ svy, subpop(Women): regress wst i.CB age
 test age
 
 
+svy, subpop(Men): regress wst i.CB##c.age
+svy, subpop(Women): regress wst i.CB##c.age
+test 2.CB#c.age 3.CB#c.age // no interaction
+
+
+
+
 // Partner -> confounder for both
 svy, subpop(Men): regress wst i.CB i.Married
 test 1.Married
 
 svy, subpop(Women): regress wst i.CB i.Married
 test 1.Married
+
+svy, subpop(Men): regress wst i.CB##i.Married
+svy, subpop(Women): regress wst i.CB##i.Married
+
+test 2.CB#1.Married 3.CB#1.Married // -> no interaction in men interaction in women
+
 
 
 // Income -> not confounder for women but confounder for men
@@ -341,6 +446,11 @@ test eqvinc
 
 svy, subpop(Women): regress wst i.CB eqvinc
 test eqvin
+
+svy, subpop(Men): regress wst i.CB##c.eqvinc 
+svy, subpop(Women): regress wst i.CB##c.eqvinc 
+
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // no interaction
 
 
 
@@ -352,6 +462,10 @@ test 1.Edu
 svy, subpop(Women): regress wst i.CB i.Edu
 test 1.Edu
 
+svy, subpop(Men): regress wst i.CB##i.Edu 
+svy, subpop(Women): regress wst i.CB##i.Edu 
+
+test 2.CB#1.Edu 3.CB#1.Edu // no interaction
 
 
 // hypertension -> confounder
@@ -363,6 +477,10 @@ test 1.hibp
 svy, subpop(Women): regress wst i.CB i.hibp
 test 1.hibp
 
+svy, subpop(Men): regress wst i.CB##i.hibp
+svy, subpop(Women): regress wst i.CB##i.hibp 
+
+test 2.CB#1.hibp 3.CB#1.hibp // maybe some interaction in men; no interaction in women
 
 // Smoking -> confounder
 
@@ -375,6 +493,12 @@ svy, subpop(Women):  regress wst i.CB i.cigsta3
 
 test 2.cig 3.cig
 
+svy, subpop(Men): regress wst i.CB##i.cigsta3
+svy, subpop(Women): regress wst i.CB##i.cigsta3
+
+test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction in men
+// no interaction in women
+ 
 
 // Total energy intake -> confounder
 
@@ -387,21 +511,55 @@ svy, subpop(Women):  regress wst i.CB Energy
 test Energy
 
 
-// diabetes -> confounder
+svy, subpop(Men): regress wst i.CB##c.Energy
+svy, subpop(Women): regress wst i.CB##c.Energy
 
-svy, subpop(Men): regress wst i.CB i.DM
-test 1.DM
-
-svy, subpop(Women):  regress wst i.CB i.DM
-
-test 1.DM
+test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
 
 
-//  Preliminary model includes all possible confounders in Men
-svy, subpop(if Men & DM !=1): regress wst i.CB age i.Married eqvinc i.Edu i.hibp i.cig Energy
 
-svylogitgof
-svy, subpop(if Women & DM !=1): regress wst i.CB age i.Married eqvinc i.Edu i.hibp i.cig Energy
-svylogitgof
+// Alcohol -> confounder for both men and women 
 
+
+svy, subpop(Men): regress wst i.CB Alcoholg
+test Alcoholg
+svy, subpop(Women): regress wst i.CB Alcoholg
+test Alcoholg
+
+
+svy, subpop(Men): regress wst i.CB##c.Alcoholg
+svy, subpop(Women): regress wst i.CB##c.Alcoholg
+test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction in men  no interaction in women
+
+
+
+
+//  Preliminary model includes all possible confounders 
+gen age2 = age^2
+
+svy, subpop(Men): regress wst i.CB  age age2 i.Married eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+linktest
+
+svy, subpop(if Men & DM != 1): regress wst i.CB  age age2 i.Married eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+linktest
+
+
+svy, subpop(Women): regress wst i.CB  age i.Married i.Edu i.hibp i.cig Energy Alcoholg
+linktest
+
+
+svy, subpop(Women): regress wst i.CB##i.Married age i.Edu i.hibp i.cig Energy Alcoholg
+
+test 2.CB#1.Married 3.CB#1.Married 
+
+svy, subpop(if Women & Married == 1): regress wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
+linktest
+svy, subpop(if Women & Married == 0): regress wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
+linktest
+
+
+// strong interaction of married or not in women 
+
+svy, subpop(if Women & Married == 1 & DM != 1): regress  wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 0 & DM != 1): regress  wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
 

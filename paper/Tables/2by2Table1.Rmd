@@ -288,7 +288,7 @@ dt[17, 1] <- c("Physical\nactivity (hours/day) [note]")
 # dt[23, 1] <- c("Live with partner[note] (%)")
 
 kable(dt,  align = "l", row.names = FALSE,
-              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by hypertension status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by BMI status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
  kable_styling(latex_options = c("striped"), font_size = 9) %>% 
   add_indent(c(6:9, 11,12, 14,15, 17:19, 22:24)) %>% 
    add_header_above(c(" ", "Men (n = 2537)" = 4, "Women (n = 3618)" = 4)) %>% 
@@ -310,28 +310,29 @@ kable(dt,  align = "l", row.names = FALSE,
 ## DM 
 
 
-```{r tab1BMI, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/BMItab1.csv", header = T, row.names = NULL, colClasses = "character")
-names(dt) <- c(" ", "Normal weight", "Overweight", "Obese", "P value[note]", "Normal weight", "Overweight", "Obese", "P value")
+```{r tab1DM, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/DMtab1.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c(" ", "Non-diabetes", "Diabetes", "P value[note]", 
+               "Non-diabetes", "Diabetes", "P value")
 
 # 
 # dt[9, 1] <- c("Hypertension[note] (%)")
 # dt[13, 1] <- c("Carbohydrate percent[note] (%)")
 
-dt[17, 1] <- c("Physical\nactivity (hours/day) [note]")
+dt[18, 1] <- c("Physical\nactivity (hours/day) [note]")
 # dt[20, 1] <- c("DM [note]")
 # dt[20, 1] <- c("Paid employment[note] (%)")
 # dt[23, 1] <- c("Live with partner[note] (%)")
 
 kable(dt,  align = "l", row.names = FALSE,
-              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by hypertension status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+              format = "latex", caption = "Weighted means, percentages, and 95 CIs of the characteristics by diabetic status in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
  kable_styling(latex_options = c("striped"), font_size = 9) %>% 
-  add_indent(c(6:9, 11,12, 14,15, 17:19, 22:24)) %>% 
-   add_header_above(c(" ", "Men (n = 2537)" = 4, "Women (n = 3618)" = 4)) %>% 
+  add_indent(c(6:7, 9, 10, 12, 13, 15:17, 22:24)) %>% 
+   add_header_above(c(" ", "Men (n = 2537)" = 3, "Women (n = 3618)" = 3)) %>% 
   footnote(general = c("Abbreviations: CI, confidence intervals; NDNS RP, national dietary and nutrition survey rolling programme;",  
                        " BMI body mass index; WC, waist circumference.", 
                        "Variables are weighted by nurse visiting weights.")) %>% 
-  add_footnote(c("Significant sex-specific differences by BMI categories assessed using an F test (with Bonferroni correction to account for multiple testing across $>$ 2 groups) for continuous variables or design-adjusted Pearson chi-square test",
+  add_footnote(c("Significant sex-specific differences by diabetic status assessed using an F test (with Bonferroni correction to account for multiple testing across $>$ 2 groups) for continuous variables or design-adjusted Pearson chi-square test",
                  # "Paid employment was defined as being in paid employment during the last 4 weeks prior to the survey." , 
                  # # "Live with partner was defined as either living with a married husband/wife or a legally recognised civil partnership."
                  # "Hypertension was defined as either systolic blood pressure >= 140 mmHg or diastolic blood pressure >= 90 mmHg, or under treatment for hypertension.",
@@ -341,3 +342,43 @@ kable(dt,  align = "l", row.names = FALSE,
                  ), 
                notation = "symbol")
 ```
+
+
+## Table 2 regressions in survey 
+
+```{r survgression, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/SurveyReg.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Models", "Low", "Moderate", "P value[note]", "High", "P value", "Models", "Low", "Moderate", "P value", "High", "P value")
+dt[2, 1] <- c("Model 1[note]")
+dt[2, 7] <- c("Model 1[note]")
+dt[8, 1] <- c("Model 1[note]")
+dt[8, 7] <- c("Live with partner[note]")
+dt[14, 1] <- c("Model 1[note]")
+dt[14, 7] <- c("Live with partner[note]")
+dt[20, 1] <- c("Model 1[note]")
+dt[20, 7] <- c("Model 1[note]")
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Associations of carbohydrate eating patterns with hypertension, BMI, WC, and DM in the UK adults (NDNS RP 2008/09-2015/16, sample size = 6155).", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>%
+  group_rows("Hypertension", 1, 3) %>%
+  group_rows("Hypertension in non-diabetics", 4, 6) %>% 
+  group_rows("BMI", 7, 9) %>%
+  group_rows("BMI in non-diabetics", 10, 12) %>%
+    group_rows("WC", 13, 15) %>%
+  group_rows("WC in non-diabetics", 16, 18) %>%
+  group_rows("DM", 19, 21) %>%
+   add_header_above(c(" ", "Men (n = 2537)" = 5, "Women (n = 3618)" = 6)) %>% 
+  footnote(general = c("Abbreviations: BMI body mass index; WC, waist circumference; NDNS RP, national dietary and nutrition survey rolling programme.",
+                       "DM was defined by A1C > 6.5%. BMI was replaced with WC in Model 2s, other covariates remained the same with the corresponding Model 1s.")) %>% 
+  add_footnote(c("P values were obtained from wald tests from either linear regression models or logistic regression models.",
+                "Adjusted for age (continuous), live with partner or not (binary), education level (higher or equal to degree level or not, BMI, smoking status (current, ex-smoker, never), total energy intake (kJ);", 
+                "Adjusted for age, live with partner or not, average household income (continuous), education level, BMI, smoking status, total energy intake (kJ), alcohol consumption (g/day);", 
+                "Adjusted for age, live with partner or not, education level, hypertension (yes or no), smoking status, total energy intake, alcohol consumption;", 
+                "Adjusted for age, average household income, education level, smoking status, total energy intake, alcohol consumption;", 
+                "Adjusted for age, live with partner or not, average household income, education level, hypertension, smoking, total energy intake, alcohol consumption;", 
+                "Adjusted for age, live with partner or not, education level, hypertension, total energy intake, alcoho consumpiont;", 
+                "Adjusted for age, average household income, education level, BMI, hypertension, smoking status, total energy intake, ethnicity (white or non-white), alcohol consumption, TC (mmol/l), LDL (mmol/l), HDL (mmol/l), TG (mmol/l);", 
+                "Adjusted for age, education level, BMI, hypertension, smoking status, total energy intake, alcohol consumption, TC, LDL, HDL, TG."), 
+               notation = "symbol")
+```
+

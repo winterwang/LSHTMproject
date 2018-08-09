@@ -320,3 +320,239 @@ dis exp(1.096054)
 dis exp(.908265)
 dis exp(.7496328)
 dis exp(1.066897)
+
+********************************************************
+********************************************************
+**   Building the GLM model 
+**   date: 08/08/2018
+**
+**
+********************************************************
+********************************************************
+
+svyset area [pweight = wtb1to8], strata(gor)
+
+
+// crude association between CB and DM 
+
+svy, subpop(Men): logistic DM i.CB
+
+svy, subpop(Women): logistic DM i.CB
+
+
+// looking for confounder one by one
+// Age: -> confounder
+svy, subpop(Men): logistic DM i.CB age
+svy, subpop(Women): logistic DM i.CB age
+test age
+
+
+svy, subpop(Men): logistic DM i.CB##c.age
+svy, subpop(Women): logistic DM i.CB##c.age
+test 2.CB#c.age 3.CB#c.age // no interaction
+
+
+// Partner -> not confounder
+svy, subpop(Men): logistic DM i.CB i.Married
+svy, subpop(Women): logistic DM i.CB i.Married
+
+test 1.Married
+
+svy, subpop(Men): logistic DM i.CB##i.Married
+svy, subpop(Women): logistic DM i.CB##i.Married
+
+test 2.CB#1.Married 3.CB#1.Married // -> no interaction in men interaction in women 
+
+
+// Income -> confounder for men but not confounder for women
+svy, subpop(Men): logistic DM i.CB eqvinc 
+svy, subpop(Women): logistic DM i.CB eqvinc 
+
+
+test eqvinc
+
+
+
+svy, subpop(Men): logistic DM i.CB##c.eqvinc 
+svy, subpop(Women): logistic DM i.CB##c.eqvinc 
+
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // no interaction
+
+
+
+// Education -> confounder
+svy, subpop(Men): logistic DM i.CB i.Edu 
+svy, subpop(Women): logistic DM i.CB i.Edu 
+
+
+test 1.Edu
+svy, subpop(Men): logistic DM i.CB##i.Edu 
+svy, subpop(Women): logistic DM i.CB##i.Edu 
+
+test 2.CB#1.Edu 3.CB#1.Edu // no interaction
+
+
+
+// BMI -> confounder
+
+svy, subpop(Men): logistic DM i.CB bmi
+svy, subpop(Women): logistic DM i.CB bmi
+
+test bmi
+
+
+svy, subpop(Men): logistic DM i.CB##c.bmi
+svy, subpop(Women): logistic DM i.CB##c.bmi
+
+test 2.CB#c.bmival 3.CB#c.bmival // no interaction
+
+
+// Hypertension -> confounder
+svy, subpop(Men): logistic DM i.CB i.hibp
+svy, subpop(Women): logistic DM i.CB i.hibp
+
+test 1.hibp
+
+
+svy, subpop(Men): logistic DM i.CB##i.hibp
+svy, subpop(Women): logistic DM i.CB##i.hibp
+
+test 2.CB#1.hibp 3.CB#1.hibp // no interaction
+
+
+
+
+// Smoking -> not confounder
+
+
+svy, subpop(Men): logistic DM i.CB i.cigsta3
+svy, subpop(Women): logistic DM i.CB i.cigsta3
+
+
+test 2.cigsta3 3.cigsta3
+
+
+svy, subpop(Men): logistic DM i.CB##i.cigsta3
+svy, subpop(Women): logistic DM i.CB##i.cigsta3
+
+test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction
+ 
+ 
+ 
+
+// Total energy intake -> confounder
+
+svy, subpop(Men): logistic DM i.CB Energy
+svy, subpop(Women): logistic DM i.CB Energy
+
+
+test Energy
+
+
+// ethnicity -> maybe confounder for men not confounder for women
+
+svy, subpop(Men): logistic DM i.CB i.ethgrp2
+svy, subpop(Women): logistic DM i.CB i.ethgrp2
+
+
+test 2.eth 
+svy, subpop(Men): logistic DM i.CB##i.ethgrp2
+svy, subpop(Women): logistic DM i.CB##i.ethgrp2
+test 2.CB#2.ethgrp2 // no interaction
+
+
+// Alcohol -> confounder for both
+
+
+svy, subpop(Men): logistic DM i.CB Alcoholg
+svy, subpop(Women): logistic DM i.CB Alcoholg
+
+test Alcoholg
+
+svy, subpop(Men): logistic DM i.CB##c.Alcoholg
+svy, subpop(Women): logistic DM i.CB##c.Alcoholg
+test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction
+
+// logMVP physical activity -> not confounder
+
+svy, subpop(Men): logistic DM i.CB logMVP
+
+svy, subpop(Women): logistic DM i.CB logMVP
+
+// logChol -> confounder for both men and women 
+
+svy, subpop(Men): logistic DM i.CB logChol
+
+test logChol
+
+svy, subpop(Women): logistic DM i.CB logChol
+
+test logChol
+
+svy, subpop(Men): logistic DM i.CB##c.logChol
+svy, subpop(Women): logistic DM i.CB##c.logChol
+test 2.CB#c.logChol 3.CB#c.logChol // no interaction
+
+// logLDL -> confounder for both men and women 
+
+svy, subpop(Men): logistic DM i.CB logLDL
+
+test logLDL
+
+svy, subpop(Women): logistic DM i.CB logLDL
+
+test logLDL
+
+svy, subpop(Men): logistic DM i.CB##c.logLDL
+svy, subpop(Women): logistic DM i.CB##c.logLDL
+test 2.CB#c.logLDL 3.CB#c.logLDL // no interaction
+
+// logHDL -> confounder for both men and women 
+
+
+svy, subpop(Men): logistic DM i.CB logHDL
+
+test logHDL
+
+svy, subpop(Women): logistic DM i.CB logHDL
+
+test logHDL
+
+svy, subpop(Men): logistic DM i.CB##c.logHDL
+svy, subpop(Women): logistic DM i.CB##c.logHDL
+test 2.CB#c.logHDL 3.CB#c.logHDL // no interaction for men but interaction in women 
+
+// logTG -> confounder for both men and women
+
+svy, subpop(Men): logistic DM i.CB logTG
+
+test logTG
+
+svy, subpop(Women): logistic DM i.CB logTG
+
+test logTG
+
+svy, subpop(Men): logistic DM i.CB##c.logTG
+svy, subpop(Women): logistic DM i.CB##c.logTG
+test 2.CB#c.logTG 3.CB#c.logTG // no interaction 
+
+
+
+
+//  Preliminary model includes all possible confounders in Men
+
+svy, subpop(Men): logistic DM i.CB  age eqvinc  i.Edu bmival i.hibp i.cig ///
+            EnergykJ i.ethgrp2 Alcoholg logChol logLDL logHDL logTG
+svy, subpop(Men): logistic DM i.CB  age eqvinc  i.Edu wst i.hibp i.cig /// 
+            EnergykJ i.ethgrp2 Alcoholg logChol logLDL logHDL logTG
+
+linktest
+
+//  Preliminary model includes all possible confounders in Women
+
+svy, subpop(Women): logistic DM i.CB age i.Edu bmival i.hibp i.cig Energy Alcoholg  ///
+			logChol logLDL logHDL logTG
+svy, subpop(Women): logistic DM i.CB age i.Edu wst i.hibp i.cig Energy Alcoholg /// 
+			logChol logLDL logHDL logTG
+linktest
+

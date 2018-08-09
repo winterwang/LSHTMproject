@@ -5,9 +5,9 @@
 
 // import data from CW3CB3_7sregss.dta
 
-//use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
 
-use "../Rcode/CW3CB3_7regss.dta", clear
+//use "../Rcode/CW3CB3_7regss.dta", clear
 
 
 
@@ -206,6 +206,7 @@ svy: logistic hibp i.CB#i.Sex
 
 test 2.CB#2.Sex
 
+svy: tabulate paid hibp, col se ci format(%7.3f)
 
 
 
@@ -241,6 +242,8 @@ svyset area [pweight = wtn1to8], strata(gor)
 
 svy, subpop(Men): logistic hibp i.CB
 
+svy, subpop(Women): logistic hibp i.CB
+
 
 //Number of strata   =        12                  Number of obs     =      5,849
 //Number of PSUs     =     1,411                  Population size   = 5,562.7226
@@ -264,6 +267,7 @@ svy, subpop(Men): logistic hibp i.CB
 
 // in non DM 
 svy, subpop(Men if DM != 1): logistic hibp i.CB
+svy, subpop(Women if DM != 1): logistic hibp i.CB
 
 //Number of strata   =        12                  Number of obs     =      5,858
 //Number of PSUs     =     1,412                  Population size   = 5,577.8467
@@ -288,7 +292,7 @@ svy, subpop(Men if DM != 1): logistic hibp i.CB
 // looking for confounder one by one
 // Age: -> confounder
 svy, subpop(Men): logistic hibp i.CB age
-
+svy, subpop(Women): logistic hibp i.CB age
 //Number of strata   =        12                  Number of obs     =      5,849
 //Number of PSUs     =     1,411                  Population size   = 5,562.7226
 //                                                Subpop. no. obs   =      1,190
@@ -313,7 +317,7 @@ test age
 
 
 svy, subpop(Men): logistic hibp i.CB##c.age
-
+svy, subpop(Women): logistic hibp i.CB##c.age
 test 2.CB#c.age 3.CB#c.age // no interaction
 
 
@@ -344,6 +348,7 @@ svy, subpop(Men if DM != 1): logistic hibp i.CB age
 
 // Partner -> confounder
 svy, subpop(Men): logistic hibp i.CB i.Married
+svy, subpop(Women): logistic hibp i.CB i.Married
 
 //Number of strata   =        12                  Number of obs     =      5,849
 //Number of PSUs     =     1,411                  Population size   = 5,562.7226
@@ -369,6 +374,7 @@ svy, subpop(Men): logistic hibp i.CB i.Married
 test 1.Married
 
 svy, subpop(Men): logistic hibp i.CB##i.Married
+svy, subpop(Women): logistic hibp i.CB##i.Married
 
 test 2.CB#1.Married 3.CB#1.Married // -> no interaction
 
@@ -378,8 +384,9 @@ test 2.CB#1.Married 3.CB#1.Married // -> no interaction
 svy, subpop(Men if DM != 1): logistic hibp i.CB i.Married
 
 
-// Income -> not confounder
+// Income -> not confounder for men but confounder for women
 svy, subpop(Men): logistic hibp i.CB eqvinc 
+svy, subpop(Women): logistic hibp i.CB eqvinc 
 
 //Number of strata   =        12                  Number of obs     =      5,711
 //Number of PSUs     =     1,408                  Population size   = 5,271.3875
@@ -404,8 +411,9 @@ svy, subpop(Men): logistic hibp i.CB eqvinc
 test eqvinc
 
 svy, subpop(Men): logistic hibp i.CB##c.eqvinc 
+svy, subpop(Women): logistic hibp i.CB##c.eqvinc 
 
-test 2.CB#c.eqvinc 3.CB#c.eqvinc // 0.0437 maybe some interaction
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // 0.0437 maybe some interaction but ignore
 
 
 svy, subpop(Men if DM != 1): logistic hibp i.CB eqvinc 
@@ -414,6 +422,7 @@ svy, subpop(Men if DM != 1): logistic hibp i.CB eqvinc
 
 // Education -> confounder
 svy, subpop(Men): logistic hibp i.CB i.Edu 
+svy, subpop(Women): logistic hibp i.CB i.Edu 
 
 //Number of strata   =        12                  Number of obs     =      5,836
 //Number of PSUs     =     1,411                  Population size   = 5,539.4682
@@ -439,6 +448,7 @@ svy, subpop(Men): logistic hibp i.CB i.Edu
 test 1.Edu
 
 svy, subpop(Men): logistic hibp i.CB##i.Edu 
+svy, subpop(Women): logistic hibp i.CB##i.Edu 
 
 test 2.CB#1.Edu 3.CB#1.Edu // no interaction
 
@@ -472,6 +482,7 @@ svy, subpop(Men if DM != 1): logistic hibp i.CB i.Edu
 // BMI -> confounder
 
 svy, subpop(Men): logistic hibp i.CB bmi
+svy, subpop(Women): logistic hibp i.CB bmi
 
 //Number of strata   =        12                  Number of obs     =      5,783
 //Number of PSUs     =     1,410                  Population size   = 5,465.6161
@@ -496,6 +507,7 @@ svy, subpop(Men): logistic hibp i.CB bmi
 test bmi
 
 svy, subpop(Men): logistic hibp i.CB##c.bmi
+svy, subpop(Women): logistic hibp i.CB##c.bmi
 
 test 2.CB#c.bmival 3.CB#c.bmival // no ineraction
 
@@ -503,13 +515,22 @@ test 2.CB#c.bmival 3.CB#c.bmival // no ineraction
 
 svy, subpop(Men  if DM != 1): logistic hibp i.CB bmi
 
+// paid employment
+
+svy, subpop(Men): logistic hibp i.CB i.paid
+svy, subpop(Women): logistic hibp i.CB i.paid
 
 
+svy, subpop(Men): logistic hibp i.CB##i.paid
+svy, subpop(Women): logistic hibp i.CB##i.paid
+
+test 2.CB#2.paid 3.CB#2.paid
 
 // Smoking -> confounder
 
 
 svy, subpop(Men): logistic hibp i.CB i.cigsta3
+svy, subpop(Women): logistic hibp i.CB i.cigsta3
 
 
 //Number of strata   =        12                  Number of obs     =      5,848
@@ -538,6 +559,7 @@ svy, subpop(Men): logistic hibp i.CB i.cigsta3
 test 2.cigsta3 3.cigsta3
 
 svy, subpop(Men): logistic hibp i.CB##i.cigsta3
+svy, subpop(Women): logistic hibp i.CB##i.cigsta3
 
 test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction
  
@@ -549,6 +571,7 @@ svy, subpop(Men  if DM != 1): logistic hibp i.CB i.cigsta3
 // Total energy intake -> confounder
 
 svy, subpop(Men): logistic hibp i.CB Energy
+svy, subpop(Women): logistic hibp i.CB Energy
 
 
 //Number of strata   =        12                  Number of obs     =      5,849
@@ -576,45 +599,16 @@ svy, subpop(Men): logistic hibp i.CB Energy
 test Energy
 
 svy, subpop(Men): logistic hibp i.CB##c.Energy
+svy, subpop(Women): logistic hibp i.CB##c.Energy
 
 test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
 
 
 
-// diabetes -> confounder
-
-svy, subpop(Men): logistic hibp i.CB i.DM
-//Number of strata   =        12                  Number of obs     =      5,461
-//Number of PSUs     =     1,404                  Population size   = 4,799.9536
-//                                                Subpop. no. obs   =        802
-//                                                Subpop. size      = 1,629.9113
-//                                                Design df         =      1,392
-//                                                F(   3,   1390)   =       7.97
-//                                                Prob > F          =     0.0000
-//
-//------------------------------------------------------------------------------
-//             |             Linearized
-//   hibp140_2 | Odds Ratio   Std. Err.      t    P>|t|     [95% Conf. Interval]
-//-------------+----------------------------------------------------------------
-//          CB |
-//          2  |   .5984272   .1412554    -2.18   0.030     .3766302    .9508402
-//          3  |   .9574349   .1900153    -0.22   0.827     .6486797     1.41315
-//             |
-//        1.DM |   3.546014   1.086723     4.13   0.000     1.943799    6.468886
-//       _cons |   .4709413   .0699303    -5.07   0.000     .3519341     .630191
-//------------------------------------------------------------------------------
-
-test 1.DM
-
-svy, subpop(Men): logistic hibp i.CB##i.DM
-
-test 2.CB#1.DM 3.CB#1.DM // no interaction
-
-
 // ethnicity -> not confounder
 
 svy, subpop(Men): logistic hibp i.CB i.ethgrp2
-
+svy, subpop(Women): logistic hibp i.CB i.ethgrp2
 //Number of strata   =        12                  Number of obs     =      5,848
 //Number of PSUs     =     1,411                  Population size   = 5,560.2736
 //                                                Subpop. no. obs   =      1,189
@@ -638,15 +632,33 @@ svy, subpop(Men): logistic hibp i.CB i.ethgrp2
 
 test 2.eth
 svy, subpop(Men): logistic hibp i.CB##i.ethgrp2
-
+svy, subpop(Women): logistic hibp i.CB##i.ethgrp2
 test 2.CB#2.ethgrp2 // no interaction
 
-// Alcohol -> not confounder
+// Alcohol -> not confounder for men but confounder for women
 
 
 svy, subpop(Men): logistic hibp i.CB Alcoholg
+svy, subpop(Women): logistic hibp i.CB Alcoholg
 
 test Alcoholg
+
+svy, subpop(Men): logistic hibp i.CB##c.Alcoholg
+svy, subpop(Women): logistic hibp i.CB##c.Alcoholg
+test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction
+
+// logMVP -> not confounder for men but confounder for women
+
+
+svy, subpop(Men): logistic hibp i.CB logMVP
+svy, subpop(Women): logistic hibp i.CB logMVP
+
+test logMVP
+
+svy, subpop(Men): logistic hibp i.CB##c.logMVP
+svy, subpop(Women): logistic hibp i.CB##c.logMVP
+test 2.CB#c.logMVP 3.CB#c.logMVP // no interaction
+
 
 
 //  Preliminary model includes all possible confounders in Men
@@ -654,9 +666,37 @@ test Alcoholg
 gen age2 = age^2
 
 
-svy, subpop(Men): logistic hibp i.CB age age2 i.Married i.Education bmival i.cigsta3 EnergykJ i.DM
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig Energy 
+linktest
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst i.cig Energy 
+linktest
 
-svylogitgof
+
+
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu bmi i.cig Energy 
+linktest
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu wst i.cig Energy 
+linktest
+
+
+
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig Energy Alcoholg 
+linktest
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig Energy Alcoholg 
+linktest
+
+
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig Energy Alcoholg
+linktest
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig Energy Alcoholg
+linktest
+
+
+
+
+// svylogitgof
 
 
 

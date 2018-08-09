@@ -1,6 +1,5 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\defcounter {refsection}{0}\relax 
-\select@language {english}
+\babel@toc {english}{}
 \contentsline {chapter}{Declaration of Authorship}{iii}{section*.1}
 \contentsline {chapter}{Acknowledgements}{v}{section*.2}
 \contentsline {chapter}{Abstract}{ix}{section*.3}
@@ -30,12 +29,12 @@
 \contentsline {subsection}{Features of the three carbohydrate eating time patterns}{19}{section*.50}
 \contentsline {subsection}{Individual level LCA solution}{20}{section*.52}
 \contentsline {subsection}{Association between individual level latent classes and hypertension, obesity, and diabetes.}{25}{section*.57}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{28}{chapter.60}
-\contentsline {section}{Main Section 1}{28}{section*.61}
-\contentsline {subsection}{Subsection 1}{28}{section*.62}
-\contentsline {subsection}{Subsection 2}{28}{section*.63}
-\contentsline {section}{Main Section 2}{28}{section*.64}
-\contentsline {chapter}{Bibliography}{29}{chapter*.65}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{33}{appendix.66}
-\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{38}{appendix.67}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{55}{appendix.68}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{29}{chapter.61}
+\contentsline {section}{Main Section 1}{29}{section*.62}
+\contentsline {subsection}{Subsection 1}{29}{section*.63}
+\contentsline {subsection}{Subsection 2}{29}{section*.64}
+\contentsline {section}{Main Section 2}{29}{section*.65}
+\contentsline {chapter}{Bibliography}{30}{chapter*.66}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{33}{appendix.67}
+\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{38}{appendix.68}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{55}{appendix.69}
