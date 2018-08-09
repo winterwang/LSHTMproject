@@ -414,3 +414,35 @@ kable(dt,  align = "l", row.names = FALSE,
                 notation = "symbol")
 ```
 
+
+## Table 2 regressions for BMI
+
+```{r tab2BMI, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/BMItab2.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c("Model", "Low", "Moderate", "P value[note]", "High", "P value")
+
+dt[2, 1] <- c("Model 1[note]")
+# dt[3, 1] <- c("Model 2[note]")
+dt[6, 1] <- c("Live with partner[note]")
+# dt[9, 1] <- c("Model 2[note]")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Associations of carbohydrate eating patterns with BMI in the UK adults , with or without diabetes. (NDNS RP 2008/09-2015/16, sample size = 6155)", booktabs = T,linesep = "") %>%
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  group_rows("Men (n = 2537)", 1, 5) %>%
+  group_rows("BMI", 1, 2) %>% 
+  group_rows("BMI in non-diabetics", 3, 4) %>% 
+  group_rows("Women (n = 3618)", 5, 10) %>% 
+  group_rows("BMI", 5, 8) %>% 
+  group_rows("BMI in non-diabetics", 8, 10) %>% 
+  add_header_above(c(" ", "Carbohydrate eating patterns" = 5)) %>% 
+  footnote(general = c("Abbreviations: BMI body mass index; WC, waist circumference; NDNS RP, national", 
+                       "dietary and nutrition survey rolling programme.",
+                       "Diabetes was defined by A1C > 6.5%. BMI was replaced with WC in Model 2s, other", 
+                       "covariates remained the same with the corresponding Model 1s.")) %>% 
+  add_footnote(c("P values were obtained from wald tests from linear regression models.",
+                "Adjusted for age, live with partner or not, education level, hypertension (yes or no), smoking status, total energy intake, alcohol consumption;", 
+                "Adjusted for age, average household income, education level, smoking status, total energy intake, alcohol consumption;"),
+                notation = "symbol")
+```
+
