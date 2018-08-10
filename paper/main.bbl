@@ -859,6 +859,32 @@
     \field{year}{2011}
   \endentry
 
+  \entry{pregibon1980goodness}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PD}{%
+         family={Pregibon},
+         familyi={P\bibinitperiod},
+         given={Daryl},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {JSTOR}%
+    }
+    \strng{namehash}{PD1}
+    \strng{fullhash}{PD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1980}
+    \field{labeldatesource}{year}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{pages}{15\bibrangedash 14}
+    \field{title}{Goodness of link tests for generalized linear models}
+    \field{journaltitle}{Applied Statistics}
+    \field{year}{1980}
+  \endentry
+
   \entry{R3.5.1}{manual}{}
     \name{author}{1}{}{%
       {{hash=RcoreTeamRCoreTeam}{%
