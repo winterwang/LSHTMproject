@@ -31,12 +31,12 @@
 \contentsline {subsection}{Association between individual level latent classes and hypertension, and obesity.}{25}{section*.57}
 \contentsline {subsubsection}{Hypertension}{25}{section*.58}
 \contentsline {subsubsection}{Obesity (BMI and WC)}{25}{section*.59}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{30}{chapter.64}
-\contentsline {section}{Main Section 1}{30}{section*.65}
-\contentsline {subsection}{Subsection 1}{30}{section*.66}
-\contentsline {subsection}{Subsection 2}{30}{section*.67}
-\contentsline {section}{Main Section 2}{30}{section*.68}
-\contentsline {chapter}{Bibliography}{31}{chapter*.69}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{31}{chapter.64}
+\contentsline {section}{Main Section 1}{31}{section*.65}
+\contentsline {subsection}{Subsection 1}{31}{section*.66}
+\contentsline {subsection}{Subsection 2}{31}{section*.67}
+\contentsline {section}{Main Section 2}{31}{section*.68}
+\contentsline {chapter}{Bibliography}{32}{chapter*.69}
 \contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{35}{appendix.70}
 \contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{40}{appendix.71}
 \contentsline {chapter}{\numberline {C}Example of a food diary for one day}{57}{appendix.72}
