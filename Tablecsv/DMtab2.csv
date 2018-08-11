@@ -1,0 +1,13 @@
+,Low carb eaters,moderate carb eaters,p value,high carb eaters,p vaues
+Men,,,,,
+Crude model,1,"0.39 (0.18, 0.83)",0.016,"0.78 (0.43, 1.42)",0.416
+Model 1,1,"0.27 (0.10, 0.73)",0.012,"0.78 (0.36, 1.68)",0.529
+Model 2,1,"0.27 (0.10, 0.76)",0.013,"0.76 (0.35, 1.65)",0.493
+Women,,,,,
+Crude model,1,"0.65 (0.28, 1.47)",0.296,"0.38 (0.18, 0.81)",0.013
+Model 1,1,"1.05 (0.33, 3.35)",0.928,"0.52 (0.17, 1.59)",0.255
+Model 2,1,"0.79 (0.25, 2.46)",0.686,"0.48 (0.18, 1.32)",0.155
+"Model 1 in men adjusted for age, average household income, education level, BMI, hypertension, smoking status, total energy intake, ethnicity, alcohol intake, total cholesterol, LDL, HDL, TG.",,,,,
+Model 2 in men adjusted for the same covariates except for BMI was replaced with waist circumferences,,,,,
+"Model 1 in women adjusted for age, education level, BMI, hypertension, smoking status, total energy intake, alcohol consumption, total cholesterol, LDL, HDL, and TG.",,,,,
+Model 2 in women adjusted for the same covariates except for BMI was replaced with waist circumferences.,,,,,
