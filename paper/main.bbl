@@ -17,6 +17,101 @@
 \endgroup
 
 \datalist[entry]{nyt/global//global/global}
+  \entry{alhazmi2012macronutrient}{article}{}
+    \name{author}{4}{}{%
+      {{hash=AA}{%
+         family={Alhazmi},
+         familyi={A\bibinitperiod},
+         given={Amani},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SE}{%
+         family={Stojanovski},
+         familyi={S\bibinitperiod},
+         given={Elizabeth},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={McEvoy},
+         familyi={M\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GML}{%
+         family={Garg},
+         familyi={G\bibinitperiod},
+         given={Manohar\bibnamedelima L},
+         giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Taylor \& Francis}%
+    }
+    \strng{namehash}{AA+1}
+    \strng{fullhash}{AASEMMGML1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{4}
+    \field{pages}{243\bibrangedash 258}
+    \field{title}{Macronutrient intakes and development of type 2 diabetes: a
+  systematic review and meta-analysis of cohort studies}
+    \field{volume}{31}
+    \field{journaltitle}{Journal of the American College of Nutrition}
+    \field{year}{2012}
+  \endentry
+
+  \entry{almoosawi2013time}{article}{}
+    \name{author}{4}{}{%
+      {{hash=AS}{%
+         family={Almoosawi},
+         familyi={A\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=PC}{%
+         family={Prynne},
+         familyi={P\bibinitperiod},
+         given={CJ},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Hardy},
+         familyi={H\bibinitperiod},
+         given={R},
+         giveni={R},
+      }}%
+      {{hash=SA}{%
+         family={Stephen},
+         familyi={S\bibinitperiod},
+         given={AM},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nature Publishing Group}%
+    }
+    \strng{namehash}{AS+1}
+    \strng{fullhash}{ASPCHRSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{5}
+    \field{pages}{725}
+    \field{title}{Time-of-day and nutrient composition of eating occasions:
+  prospective association with the metabolic syndrome in the 1946 British birth
+  cohort}
+    \field{volume}{37}
+    \field{journaltitle}{International Journal of Obesity}
+    \field{year}{2013}
+  \endentry
+
   \entry{almoosawi2016chrono}{article}{}
     \name{author}{4}{}{%
       {{hash=AS}{%
@@ -458,6 +553,39 @@
     \verb :/home/wangcc-me/Documents/LSHTMproject/references/finch2013.pdf:PDF
     \endverb
     \field{journaltitle}{The Journal of Experimental Education}
+    \field{year}{2014}
+  \endentry
+
+  \entry{garaulet2014timing}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GM}{%
+         family={Garaulet},
+         familyi={G\bibinitperiod},
+         given={Marta},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GAP}{%
+         family={G{\'o}mez-Abell{\'a}n},
+         familyi={G\bibinitperiod-A\bibinitperiod},
+         given={Purificaci{\'o}n},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{GMGAP1}
+    \strng{fullhash}{GMGAP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{year}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{pages}{44\bibrangedash 50}
+    \field{title}{Timing of food intake and obesity: a novel association}
+    \field{volume}{134}
+    \field{journaltitle}{Physiology \& Behavior}
     \field{year}{2014}
   \endentry
 
@@ -1286,6 +1414,33 @@
     \endverb
     \field{journaltitle}{Statistical Methods in Medical Research}
     \field{year}{2008}
+  \endentry
+
+  \entry{willett2012nutritional}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=WW}{%
+         family={Willett},
+         familyi={W\bibinitperiod},
+         given={Walter},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{WW1}
+    \strng{fullhash}{WW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{year}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{Nutritional Epidemiology}
+    \field{chapter}{3}
+    \field{pages}{34\bibrangedash 48}
+    \field{title}{Nature of variation in diet}
+    \field{year}{2012}
   \endentry
 \enddatalist
 \endinput

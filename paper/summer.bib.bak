@@ -573,4 +573,55 @@
   publisher = {Springer},
 }
 
+@Article{pregibon1980goodness,
+  author    = {Pregibon, Daryl},
+  title     = {Goodness of link tests for generalized linear models},
+  journal   = {Applied Statistics},
+  year      = {1980},
+  pages     = {15--14},
+  publisher = {JSTOR},
+}
+
+@InCollection{willett2012nutritional,
+  author    = {Willett, Walter},
+  title     = {Nature of variation in diet},
+  booktitle = {Nutritional Epidemiology},
+  publisher = {Oxford University Press},
+  year      = {2012},
+  chapter   = {3},
+  pages     = {34-48},
+}
+
+@Article{alhazmi2012macronutrient,
+  author    = {Alhazmi, Amani and Stojanovski, Elizabeth and McEvoy, Mark and Garg, Manohar L},
+  title     = {Macronutrient intakes and development of type 2 diabetes: a systematic review and meta-analysis of cohort studies},
+  journal   = {Journal of the American College of Nutrition},
+  year      = {2012},
+  volume    = {31},
+  number    = {4},
+  pages     = {243--258},
+  publisher = {Taylor \& Francis},
+}
+
+@Article{almoosawi2013time,
+  author    = {Almoosawi, S and Prynne, CJ and Hardy, R and Stephen, AM},
+  title     = {Time-of-day and nutrient composition of eating occasions: prospective association with the metabolic syndrome in the 1946 British birth cohort},
+  journal   = {International Journal of Obesity},
+  year      = {2013},
+  volume    = {37},
+  number    = {5},
+  pages     = {725},
+  publisher = {Nature Publishing Group},
+}
+
+@Article{garaulet2014timing,
+  author    = {Garaulet, Marta and G{\'o}mez-Abell{\'a}n, Purificaci{\'o}n},
+  title     = {Timing of food intake and obesity: a novel association},
+  journal   = {Physiology \& behavior},
+  year      = {2014},
+  volume    = {134},
+  pages     = {44--50},
+  publisher = {Elsevier},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

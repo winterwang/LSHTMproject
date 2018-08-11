@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  11 AUG 2018 12:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  11 AUG 2018 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2372,11 +2372,7 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <17.28> not available
 [1
 
 
-]
-
-LaTeX Warning: Citation 'y' on page 2 undefined on input line 38.
-
-) [2]
+] [2]) [3]
 \openout2 = `Chapters/Chapter2.aux'.
 
  (./Chapters/Chapter2.tex
@@ -2384,11 +2380,11 @@ Chapter 2.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 17.
 1: section
-[3
+[4
 
 
 
-] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
+] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 297.
 
 
@@ -2400,7 +2396,7 @@ Underfull \hbox (badness 1331) in paragraph at lines 297--298
 -der the sur-vey data,
  []
 
-) [14]
+) [15]
 \openout2 = `Chapters/Chapter3.aux'.
 
  (./Chapters/Chapter3.tex
@@ -2410,7 +2406,7 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 (hyperref)                than one, level fixed on input line 14.
 
 1: section
-[15
+[16
 
 
 
@@ -2429,54 +2425,54 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 66.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 66.
- [16] [17]
-<Figures/level1.png, id=513, 752.8125pt x 903.375pt>
+ [17] [18]
+<Figures/level1.png, id=525, 752.8125pt x 903.375pt>
 File: Figures/level1.png Graphic file (type png)
 <use Figures/level1.png>
 Package pdftex.def Info: Figures/level1.png  used on input line 142.
 (pdftex.def)             Requested size: 398.34544pt x 478.01456pt.
- [18 <./Figures/level1.png>]
+ [19 <./Figures/level1.png>]
 LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <9> not available
 (Font)              Font shape `T1/ppl/b/it' tried instead on input line 164.
- [19]
-<Figures/CB2level2.png, id=529, 578.91281pt x 373.395pt>
+ [20]
+<Figures/CB2level2.png, id=541, 578.91281pt x 373.395pt>
 File: Figures/CB2level2.png Graphic file (type png)
 <use Figures/CB2level2.png>
 Package pdftex.def Info: Figures/CB2level2.png  used on input line 221.
 (pdftex.def)             Requested size: 312.97926pt x 201.86958pt.
- [20]
-<Figures/level2.png, id=537, 578.91281pt x 414.04688pt>
+ [21]
+<Figures/level2.png, id=550, 578.91281pt x 414.04688pt>
 File: Figures/level2.png Graphic file (type png)
 <use Figures/level2.png>
 Package pdftex.def Info: Figures/level2.png  used on input line 233.
 (pdftex.def)             Requested size: 312.97926pt x 223.84732pt.
- [21 <./Figures/CB2level2.png>] [22 <./Figures/level2.png>]
+ [22 <./Figures/CB2level2.png>] [23 <./Figures/level2.png>]
 Overfull \vbox (7.31357pt too high) has occurred while \output is active []
 
 
-[23]
+[24]
 Overfull \vbox (34.81355pt too high) has occurred while \output is active []
 
 
-[24]
+[25]
 LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <8> not available
 (Font)              Font shape `T1/ppl/b/it' tried instead on input line 408.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <6> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 408.
- [25] [26] [27] [28] [29] [30]) [31]
+ [26] [27] [28] [29] [30] [31]) [32]
 \openout2 = `Chapters/Chapter4.aux'.
 
  (./Chapters/Chapter4.tex
 Chapter 4.
 )
 1: section
-[32
+[33
 
 
 
 ]
 1: section
-[33
+[34
 
 
 ]
@@ -2497,14 +2493,12 @@ Underfull \hbox (badness 2990) in paragraph at lines 423--423
 ration /
  []
 
-[34]
+[35]
 
 Package biblatex Warning: No driver for entry type 'software'.
 (biblatex)                Using fallback driver on input line 423.
 
-[35] [36
-
-]
+[36]
 \openout2 = `Appendices/AppendixA.aux'.
 
  (./Appendices/AppendixA.tex
@@ -2513,6 +2507,7 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 20.
 1: section
 [37
+
 
 
 ]
@@ -2682,12 +2677,12 @@ Overfull \hbox (68.70898pt too wide) in paragraph at lines 641--641
 
  (./Appendices/AppendixC.tex
 Appendix C.
-<Figures/Diary1.png, id=723, 1349.04pt x 934.49126pt>
+<Figures/Diary1.png, id=731, 1349.04pt x 934.49126pt>
 File: Figures/Diary1.png Graphic file (type png)
 <use Figures/Diary1.png>
 Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.3311pt x 298.78665pt.
-<Figures/Diary2.png, id=724, 1380.15625pt x 923.45pt>
+<Figures/Diary2.png, id=732, 1380.15625pt x 923.45pt>
 File: Figures/Diary2.png Graphic file (type png)
 <use Figures/Diary2.png>
 Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
@@ -2698,7 +2693,7 @@ Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
 
 
  <./Figures/Diary1.png>]
-<Figures/Diary3.png, id=729, 1340.00626pt x 720.6925pt>
+<Figures/Diary3.png, id=737, 1340.00626pt x 720.6925pt>
 File: Figures/Diary3.png Graphic file (type png)
 <use Figures/Diary3.png>
 Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
@@ -2713,27 +2708,18 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 442.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 442.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 54A518E12B643C5B4B7BCB7716FAD2C6;8800.
-
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38873 strings out of 492982
- 766543 string characters out of 6134896
- 1102187 words of memory out of 5000000
- 41440 multiletter control sequences out of 15000+600000
+ 38893 strings out of 492982
+ 767162 string characters out of 6134896
+ 1105102 words of memory out of 5000000
+ 41456 multiletter control sequences out of 15000+600000
  621841 words of font info for 370 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,20n,87p,10377b,2917s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,20n,87p,10377b,2914s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
@@ -2747,10 +2733,10 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (77 pages, 887514 bytes).
+Output written on main.pdf (77 pages, 889960 bytes).
 PDF statistics:
- 820 PDF objects out of 1000 (max. 8388607)
- 711 compressed objects within 8 object streams
- 185 named destinations out of 1000 (max. 500000)
+ 829 PDF objects out of 1000 (max. 8388607)
+ 720 compressed objects within 8 object streams
+ 189 named destinations out of 1000 (max. 500000)
  37220 words of extra memory for PDF output out of 42996 (max. 10000000)
 
