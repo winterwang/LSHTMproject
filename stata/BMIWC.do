@@ -310,6 +310,15 @@ test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interacti
  
 // logMVP
 
+svy, subpop(Men):  regress bmival i.CB logMVP
+
+test logMVP
+
+svy, subpop(Women):  regress bmival i.CB logMVP
+
+test logMVP
+
+
 
 
 // Total energy intake -> confounder

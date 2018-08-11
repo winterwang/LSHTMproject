@@ -172,7 +172,7 @@ table]{MastersDoctoralThesis} % The class file specifying the document structure
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
 }{% else
-\setlength{\parindent}{0pt}
+{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 }
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -409,7 +409,7 @@ The National Dietary and Nutrition Survey (NDNS) database of detailed four-day f
 
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
-
+\linespread{1.25}
 \include{Chapters/Chapter1}
 \include{Chapters/Chapter2}
 \include{Chapters/Chapter3}
