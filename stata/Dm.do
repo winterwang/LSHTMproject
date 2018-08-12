@@ -556,3 +556,15 @@ svy, subpop(Women): logistic DM i.CB age i.Edu wst i.hibp i.cig Energy Alcoholg 
 			logChol logLDL logHDL logTG
 linktest
 
+// explore the weightings 
+
+summarize wti, detail
+hist wti
+
+
+summarize wtn, detail
+hist wtn
+
+summarize wtb, detail
+
+hist wtb

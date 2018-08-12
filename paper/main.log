@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  11 AUG 2018 17:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  11 AUG 2018 18:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2236,7 +2236,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 \c__siunitx_mathtt_int=\count447
 
 1: section
-<Figures/logos.jpg, id=164, 752.8125pt x 361.35pt>
+<Figures/logos.jpg, id=168, 752.8125pt x 361.35pt>
 File: Figures/logos.jpg Graphic file (type jpg)
 <use Figures/logos.jpg>
 Package pdftex.def Info: Figures/logos.jpg  used on input line 211.
@@ -2269,8 +2269,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 266--267
 
  []
 
+<Figures/signature.png, id=184, 248.93pt x 63.23625pt>
+File: Figures/signature.png Graphic file (type png)
+<use Figures/signature.png>
+Package pdftex.def Info: Figures/signature.png  used on input line 269.
+(pdftex.def)             Requested size: 177.09097pt x 44.9868pt.
 1: section
-[3] [4
+[3 <./Figures/signature.png>] [4
 
 ]
 --------------------
@@ -2297,7 +2302,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 289--290
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
+Underfull \hbox (badness 10000) in paragraph at lines 293--294
 
  []
 
@@ -2426,7 +2431,7 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 66.
  [17] [18]
-<Figures/level1.png, id=525, 752.8125pt x 903.375pt>
+<Figures/level1.png, id=532, 752.8125pt x 903.375pt>
 File: Figures/level1.png Graphic file (type png)
 <use Figures/level1.png>
 Package pdftex.def Info: Figures/level1.png  used on input line 142.
@@ -2435,13 +2440,13 @@ Package pdftex.def Info: Figures/level1.png  used on input line 142.
 LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <9> not available
 (Font)              Font shape `T1/ppl/b/it' tried instead on input line 164.
  [20]
-<Figures/CB2level2.png, id=541, 578.91281pt x 373.395pt>
+<Figures/CB2level2.png, id=548, 578.91281pt x 373.395pt>
 File: Figures/CB2level2.png Graphic file (type png)
 <use Figures/CB2level2.png>
 Package pdftex.def Info: Figures/CB2level2.png  used on input line 221.
 (pdftex.def)             Requested size: 312.97926pt x 201.86958pt.
  [21]
-<Figures/level2.png, id=550, 578.91281pt x 414.04688pt>
+<Figures/level2.png, id=557, 578.91281pt x 414.04688pt>
 File: Figures/level2.png Graphic file (type png)
 <use Figures/level2.png>
 Package pdftex.def Info: Figures/level2.png  used on input line 233.
@@ -2476,19 +2481,19 @@ Chapter 4.
 
 
 ]
-Underfull \hbox (badness 4859) in paragraph at lines 423--423
+Underfull \hbox (badness 4859) in paragraph at lines 424--424
 [][]\T1/ppl/m/n/12 (+20) Office for Na-tional Statis-tics (2018). \T1/ppl/m/it/
 12 (+20) Mid 2008, 2009, 2010, 2011, 2012,
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 423--423
+Underfull \hbox (badness 1371) in paragraph at lines 424--424
 \T1/ppl/m/it/12 (+20) 2013, 2014, 2015, and 2016 Pop-u-la-tion Es-ti-mates\T1/p
 pl/m/n/12 (+20) . []$https : / / www . ons .
  []
 
 
-Underfull \hbox (badness 2990) in paragraph at lines 423--423
+Underfull \hbox (badness 2990) in paragraph at lines 424--424
 \T1/ppl/m/n/12 (+20) gov . uk / peoplepopulationandcommunity / populationandmig
 ration /
  []
@@ -2496,7 +2501,7 @@ ration /
 [35]
 
 Package biblatex Warning: No driver for entry type 'software'.
-(biblatex)                Using fallback driver on input line 423.
+(biblatex)                Using fallback driver on input line 424.
 
 [36]
 \openout2 = `Appendices/AppendixA.aux'.
@@ -2677,12 +2682,12 @@ Overfull \hbox (68.70898pt too wide) in paragraph at lines 641--641
 
  (./Appendices/AppendixC.tex
 Appendix C.
-<Figures/Diary1.png, id=731, 1349.04pt x 934.49126pt>
+<Figures/Diary1.png, id=738, 1349.04pt x 934.49126pt>
 File: Figures/Diary1.png Graphic file (type png)
 <use Figures/Diary1.png>
 Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.3311pt x 298.78665pt.
-<Figures/Diary2.png, id=732, 1380.15625pt x 923.45pt>
+<Figures/Diary2.png, id=739, 1380.15625pt x 923.45pt>
 File: Figures/Diary2.png Graphic file (type png)
 <use Figures/Diary2.png>
 Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
@@ -2693,31 +2698,31 @@ Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
 
 
  <./Figures/Diary1.png>]
-<Figures/Diary3.png, id=737, 1340.00626pt x 720.6925pt>
+<Figures/Diary3.png, id=744, 1340.00626pt x 720.6925pt>
 File: Figures/Diary3.png Graphic file (type png)
 <use Figures/Diary3.png>
 Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
 (pdftex.def)             Requested size: 431.32573pt x 231.97893pt.
 ) [61 <./Figures/Diary2.png> <./Figures/Diary3.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 442.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 442.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 443.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
 (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
 (./Chapters/Chapter3.aux) (./Chapters/Chapter4.aux) (./Appendices/AppendixA.aux
 ) (./Appendices/AppendixB.aux) (./Appendices/AppendixC.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 442.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 442.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 443.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 443.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 54A518E12B643C5B4B7BCB7716FAD2C6;8800.
+(rerunfilecheck)             Checksum: 73C3518D61D38DC7BF68743984CC4DD3;9387.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38893 strings out of 492982
- 767162 string characters out of 6134896
- 1105102 words of memory out of 5000000
- 41456 multiletter control sequences out of 15000+600000
- 621841 words of font info for 370 fonts, out of 8000000 for 9000
+ 38902 strings out of 492982
+ 767323 string characters out of 6134896
+ 1105154 words of memory out of 5000000
+ 41461 multiletter control sequences out of 15000+600000
+ 621996 words of font info for 372 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,20n,87p,10377b,2914s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
@@ -2733,10 +2738,10 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (77 pages, 889960 bytes).
+Output written on main.pdf (77 pages, 892903 bytes).
 PDF statistics:
- 829 PDF objects out of 1000 (max. 8388607)
- 720 compressed objects within 8 object streams
- 189 named destinations out of 1000 (max. 500000)
- 37220 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 836 PDF objects out of 1000 (max. 8388607)
+ 725 compressed objects within 8 object streams
+ 190 named destinations out of 1000 (max. 500000)
+ 37233 words of extra memory for PDF output out of 42996 (max. 10000000)
 
