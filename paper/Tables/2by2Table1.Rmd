@@ -153,7 +153,7 @@ kable(dt,  align = "l", row.names = FALSE,
     add_indent(c(3:6, 8:15)) %>% 
  kable_styling(latex_options = c("striped"), font_size = 9) %>% 
   add_footnote(c("P values were obtained from chi-square test for categorical variables, and one-way ANOVA comparing the means in multiple groups for continuous variables;", 
-                       "Non-milk extrinsic sugar is defined as:"),  notation = "symbol")
+                       "Non-milk extrinsic sugar is defined as: additionally added free sugar, such as table sugar, honey, glucose, fructose and glucose syrups, sugars added to food and sugars in fruit juices."),  notation = "symbol")
 
 ```
 
@@ -195,6 +195,22 @@ kable(dt,  align = "l", row.names = FALSE,
                notation = "symbol")
 ```
 
+
+# personal level classes nutrional table
+
+```{r tab-nutri-indi, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Carbslotcompo.csv", header = T, row.names = NULL, colClasses = "character")
+names(dt) <- c(" ", "Low carbohydrate eaters (n = 1730)", "Moderate carbohydrate eaters (n = 1772)", "High carbohydrate eaters (n = 2653)", "P value[note]")
+
+dt[6, 1] <- c("Non-milk extrinsic sugar[note]")
+
+kable(dt,  align = "l", row.names = FALSE,
+              format = "latex", caption = "Weighted means and percentages (95CI) of the nutrients intake according to individual level carbohydrate eating latent classes.", booktabs = T,linesep = "") %>%
+    add_indent(c(3:37)) %>% 
+ kable_styling(latex_options = c("striped"), font_size = 9) %>% 
+  add_footnote(c("P values were obtained from chi-square test for categorical variables, and one-way ANOVA comparing the means in multiple groups for continuous variables;", 
+                       "Non-milk extrinsic sugar is defined as: additionally added free sugar, such as table sugar, honey, glucose, fructose and glucose syrups, sugars added to food and sugars in fruit juices."),  notation = "symbol")
+```
 
 
 ## Anthropometric measurements and biochemical analysis

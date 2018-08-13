@@ -155,58 +155,92 @@ svy: mean Carb22, over(CB)
 test [Carb22_6]1 = [Carb22_6]2 = [Carb22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar6, over(CB)
+test [Sugar6_9]1 = [Sugar6_9]2 = [Sugar6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
 
 svy: mean Sugar9, over(CB)
+test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar12, over(CB)
+test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar14, over(CB)
+test [Sugar14_17]1 = [Sugar14_17]2 = [Sugar14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar17, over(CB)
+test [Sugar17_20]1 = [Sugar17_20]2 = [Sugar17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar20, over(CB)
+test [Sugar20_22]1 = [Sugar20_22]2 = [Sugar20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar22, over(CB)
+test [Sugar22_6]1 = [Sugar22_6]2 = [Sugar22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch6, over(CB)
+test [Starch6_9]1 = [Starch6_9]2 = [Starch6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch9, over(CB)
+test [Sugar12_14]1 = [Sugar12_14]2 = [Sugar12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch12, over(CB)
+test [Starch12_14]1 = [Starch12_14]2 = [Starch12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch14, over(CB)
+test [Starch14_17]1 = [Starch14_17]2 = [Starch14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch17, over(CB)
+test [Starch17_20]1 = [Starch17_20]2 = [Starch17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
 
 svy: mean Starch20, over(CB)
+test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch22, over(CB)
 
 svy: mean Fibre6, over(CB)
+test [Fibre6_9]1 = [Fibre6_9]2 = [Fibre6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
 
 svy: mean Fibre9, over(CB)
+test [Fibre9_12]1 = [Fibre9_12]2 = [Fibre9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
 
 svy: mean Fibre12, over(CB)
+test [Fibre12_14]1 = [Fibre12_14]2 = [Fibre12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre14, over(CB)
+test [Fibre14_17]1 = [Fibre14_17]2 = [Fibre14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre17, over(CB)
+test [Fibre17_20]1 = [Fibre17_20]2 = [Fibre17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre20, over(CB)
+test [Fibre20_22]1 = [Fibre20_22]2 = [Fibre20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre22, over(CB)
+test [Fibre22_6]1 = [Fibre22_6]2 = [Fibre22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES6, over(CB)
+test [NMES6_9]1 = [NMES6_9]2 = [NMES6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES9, over(CB)
+test [NMES9_12]1 = [NMES9_12]2 = [NMES9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
 
 svy: mean NMES12, over(CB)
+test [NMES12_14]1 = [NMES12_14]2 = [NMES12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES14, over(CB)
+test [NMES14_17]1 = [NMES14_17]2 = [NMES14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES17, over(CB)
+test [NMES17_20]1 = [NMES17_20]2 = [NMES17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
 
 svy: mean NMES20, over(CB)
+test [NMES20_22]1 = [NMES20_22]2 = [NMES20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES22, over(CB)
 

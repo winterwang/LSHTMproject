@@ -259,6 +259,8 @@ grViz("
 #       ")
 
 # Time slots level 1 classes ----------------------------------------------
+library(readr)
+library(tidyverse)
 
 
 CW3CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB2.txt",
@@ -654,3 +656,212 @@ ggplot() +
         text=element_text(family="Atlas Grotesk Light")) +
   labs(title = " ", x = "Between Individual classes", y = "Percentage") +
   scale_y_continuous(labels=percent)
+
+
+
+
+# Sources energy by slot --------------------------------------------------
+library(plyr)
+library(readr)
+CB1sources <- read_csv("Tablecsv/CB1sources.csv")
+library(ggthemr)
+ggthemr("dust", layout = "scientific")
+library(scales)
+CB1sources$Slot <- factor(CB1sources$Slot, levels = c("6 am – 9 am", 
+                                                  "9 am – 12 am",
+                                                  "12 noon – 2 pm",
+                                                  "2 pm – 5 pm",
+                                                  "5 pm – 8 pm",
+                                                  "8 pm – 10 pm",
+                                                  "10 pm – 6 am"))
+
+CB1sources$Sources <- factor(CB1sources$Sources, levels = c("Alc", 
+                                                            "Protein",
+                                                            "Fat", 
+                                                            "Carbohydrate"), 
+                             labels = c( "Alcohol", "Protein",  "Fat", "Carbo"))
+
+
+
+CB1sources <- CB1sources[order(CB1sources$Slot, CB1sources$Sources),]
+CB1sources <- ddply(CB1sources, .(Slot), 
+                    transform, pos = cumsum(pct) - (0.5 * pct)) 
+CB1sources$pos[1] <- -0.03
+CB1sources$pos[5] <- -0.03
+CB1sources$pos[9] <- -0.03
+# CB1sources$pos[13] <- -0.03
+
+CB1sources$Sources <- factor(CB1sources$Sources,
+                             levels = c("Carbo", "Fat", "Protein",  "Alcohol"))
+
+Text <- data.frame(levels(CB1sources$Slot))
+names(Text)[1] <- "Slot"
+Text$TotalEner <-  c("753.1 kJ", "854.6 kJ", "1622.1 kJ", "950.8 kJ", 
+                     "2328.6 kJ","1063.5 kJ", "422.4 kJ")
+Text$pos <- rep(1.03, 7)
+CB1 <- ggplot() +
+  geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB1sources, width = 0.6,
+           stat="identity") +
+  geom_text(data=CB1sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+  size=4, colour="black", family="Atlas Grotesk Medium") +
+  geom_text(data= Text, aes(x = Slot, y = pos, label = TotalEner), 
+            size = 4, colour = "black", family="Atlas Grotesk Medium") +
+  theme(#legend.position="right", #legend.direction="horizontal",
+        legend.title = element_blank(),
+        axis.text = element_text(size = 15),
+        legend.text = element_text(size = 13), 
+        axis.title = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light"),
+        legend.position = "none", 
+        axis.text.x=element_blank()) + 
+        # legend.position = "bottom", 
+        # legend.direction = "horizontal") +
+  labs(title = "Low carbohydrate eaters (28.1%)", x = " ", y = "Percentage") +
+  # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  scale_y_continuous(labels=percent)
+
+
+
+
+CB2sources <- read_csv("Tablecsv/CB2sources.csv")
+
+
+CB2sources$Slot <- factor(CB2sources$Slot, levels = c("6 am – 9 am", 
+                                                      "9 am – 12 am",
+                                                      "12 noon – 2 pm",
+                                                      "2 pm – 5 pm",
+                                                      "5 pm – 8 pm",
+                                                      "8 pm – 10 pm",
+                                                      "10 pm – 6 am"))
+
+CB2sources$Sources <- factor(CB2sources$Sources, levels = c("Alc", 
+                                                            "Protein",
+                                                            "Fat", 
+                                                            "Carbohydrate"), 
+                             labels = c( "Alcohol", "Protein",  "Fat", "Carbo"))
+
+
+
+CB2sources <- CB2sources[order(CB2sources$Slot, CB2sources$Sources),]
+CB2sources <- ddply(CB2sources, .(Slot), 
+                    transform, pos = cumsum(pct) - (0.5 * pct)) 
+
+CB2sources$Sources <- factor(CB2sources$Sources,
+                             levels = c("Carbo", "Fat", "Protein",  "Alcohol"))
+
+Text <- data.frame(levels(CB2sources$Slot))
+names(Text)[1] <- "Slot"
+Text$TotalEner <-  c("296.9 kJ", "967.9 kJ", 
+                     "1310.9 kJ", "1106.1 kJ", "1977.2 kJ", 
+                     "1086.9 kJ",  "599.7 kJ")
+Text$pos <- rep(1.03, 7)
+CB2sources$pos[1] <- -0.03
+CB2sources$pos[5] <- -0.03
+CB2sources$pos[9] <- -0.03
+CB2sources$pos[13] <- -0.03
+
+CB2 <- ggplot() +
+  geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB2sources, width = 0.6,
+           stat="identity") +
+  geom_text(data=CB2sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+            size=4, colour="black", family="Atlas Grotesk Medium") +
+  geom_text(data= Text, aes(x = Slot, y = pos, label = TotalEner), 
+            size = 4, colour = "black", family="Atlas Grotesk Medium") +
+  theme(#legend.position="right", #legend.direction="horizontal",
+        legend.title = element_blank(),
+        axis.text = element_text(size = 15),
+        legend.text = element_text(size = 13), 
+        axis.title = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light"),
+        legend.position = "none", 
+        axis.text.x=element_blank()) +
+# legend.position = "bottom", 
+# legend.direction = "horizontal") +
+labs(title = "Moderate carbohydrate eaters (28.8%)", x = " ", y = "Percentage") +
+  # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  scale_y_continuous(labels=percent)
+
+
+
+
+CB3sources <- read_csv("Tablecsv/CB3sources.csv")
+
+
+CB3sources$Slot <- factor(CB3sources$Slot, levels = c("6 am – 9 am", 
+                                                      "9 am – 12 am",
+                                                      "12 noon – 2 pm",
+                                                      "2 pm – 5 pm",
+                                                      "5 pm – 8 pm",
+                                                      "8 pm – 10 pm",
+                                                      "10 pm – 6 am"))
+
+CB3sources$Sources <- factor(CB3sources$Sources, levels = c("Alc", 
+                                                            "Protein",
+                                                            "Fat", 
+                                                            "Carbohydrate"), 
+                             labels = c( "Alcohol", "Protein",  "Fat", "Carbohydrate"))
+
+
+
+CB3sources <- CB3sources[order(CB3sources$Slot, CB3sources$Sources),]
+CB3sources <- ddply(CB3sources, .(Slot), 
+                    transform, pos = cumsum(pct) - (0.5 * pct)) 
+
+CB3sources$Sources <- factor(CB3sources$Sources,
+                             levels = c("Carbohydrate", "Fat", "Protein",  "Alcohol"))
+
+Text <- data.frame(levels(CB3sources$Slot))
+names(Text)[1] <- "Slot"
+Text$TotalEner <-  c("929.0 kJ", "746.4 kJ",  "1788.8 kJ",  "785.0 kJ", 
+                     "2368.9 kJ", "860.2 kJ", "205.5 kJ")
+Text$pos <- rep(1.03, 7)
+CB3sources$pos[1] <- -0.03
+CB3sources$pos[5] <- -0.03
+CB3sources$pos[9] <- -0.03
+CB3sources$pos[13] <- -0.03
+
+CB3 <- ggplot() +
+  geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB3sources, width = 0.6,
+           stat="identity") +
+  geom_text(data=CB3sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+            size=4, colour="black", family="Atlas Grotesk Medium") +
+  geom_text(data= Text, aes(x = Slot, y = pos, label = TotalEner), 
+            size = 4, colour = "black", family="Atlas Grotesk Medium") +
+  theme(legend.direction="horizontal",
+        legend.position = "bottom",
+        legend.title = element_blank(),
+        axis.text = element_text(size = 14),
+        legend.text = element_text(size = 13), 
+        axis.title = element_text(size = 18),
+        axis.line = element_line(colour = "black"),
+        plot.title=element_text(family="Atlas Grotesk Medium"),
+        text=element_text(family="Atlas Grotesk Light")) +
+  scale_fill_manual(values = c("#db735c", "#EFA86E", "#9A8A76", "#F3C57B"),
+    labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
+  labs(title = "High carbohydrate eaters (43.1%)", x = "Hours of the day", y = "Percentage") +
+  theme(axis.text.x = element_text(angle = 14, hjust = 1)) +
+  scale_y_continuous(labels=percent)
+
+
+library(cowplot)
+
+
+plot_grid(CB1, CB2, CB3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1,1,1.38))
+
+
+
+# prow <- plot_grid( CB1, CB2, 
+#   CB3 + theme(legend.position="none"),
+#   labels = c("A", "B", "C"),
+#   hjust = -1,
+#   nrow = 3, rel_heights=c(1,1,1.6))
+# 
+# legend <- get_legend(CB3 + theme(legend.position="bottom"))
+# p <- plot_grid(prow, legend, ncol = 1)
+# p
+# prow
+
