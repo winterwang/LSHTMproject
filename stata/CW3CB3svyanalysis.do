@@ -197,10 +197,12 @@ svy: mean Starch20, over(CB)
 test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch22, over(CB)
+test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre6, over(CB)
-test [Fibre6_9]1 = [Fibre6_9]2 = [Fibre6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+test [Starch22_6]1 = [Starch22_6]2 = [Starch22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
+gen Fibreg = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
 
 
 svy: mean Fibre9, over(CB)
@@ -556,4 +558,5 @@ dis exp(.1359172)
 
 
 test [logTG]1 = [logTG]2 = [logTG]3, mtest(b)
+
 
