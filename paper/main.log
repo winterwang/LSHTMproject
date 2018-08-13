@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  11 AUG 2018 18:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  12 AUG 2018 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2389,19 +2389,19 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
 
 
 
-] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 297.
+] [5] [6] [7] [8] [9] [10] [11] [12] [13]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 298.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 1331) in paragraph at lines 297--298
+Underfull \hbox (badness 1331) in paragraph at lines 298--299
 []\T1/ppl/m/n/12 (+20) For lo-gis-tic re-gres-sion mod-els (hy-per-ten-sion) un
 -der the sur-vey data,
  []
 
-) [15]
+[14]) [15]
 \openout2 = `Chapters/Chapter3.aux'.
 
  (./Chapters/Chapter3.tex
@@ -2469,15 +2469,14 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <6> not available
 
  (./Chapters/Chapter4.tex
 Chapter 4.
-)
 1: section
 [33
 
 
 
-]
+]) [34]
 1: section
-[34
+[35
 
 
 ]
@@ -2498,12 +2497,14 @@ Underfull \hbox (badness 2990) in paragraph at lines 424--424
 ration /
  []
 
-[35]
+[36]
 
 Package biblatex Warning: No driver for entry type 'software'.
 (biblatex)                Using fallback driver on input line 424.
 
-[36]
+[37] [38
+
+]
 \openout2 = `Appendices/AppendixA.aux'.
 
  (./Appendices/AppendixA.tex
@@ -2511,27 +2512,10 @@ Appendix A.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 20.
 1: section
-[37
-
+[39
 
 
 ]
-Underfull \vbox (badness 10000) detected at line 195
- []
-
-
-Underfull \vbox (badness 10000) detected at line 195
- []
-
-[38]
-Underfull \vbox (badness 10000) detected at line 195
- []
-
-
-Underfull \vbox (badness 10000) detected at line 195
- []
-
-[39]
 Underfull \vbox (badness 10000) detected at line 195
  []
 
@@ -2547,7 +2531,23 @@ Underfull \vbox (badness 10000) detected at line 195
 Underfull \vbox (badness 10000) detected at line 195
  []
 
-[41]) [42]
+[41]
+Underfull \vbox (badness 10000) detected at line 195
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 195
+ []
+
+[42]
+Underfull \vbox (badness 10000) detected at line 195
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 195
+ []
+
+[43]) [44]
 \openout2 = `Appendices/AppendixB.aux'.
 
  (./Appendices/AppendixB.tex
@@ -2565,7 +2565,7 @@ t over four[]
  []
 
 1: section
-[43
+[45
 
 
 
@@ -2575,7 +2575,7 @@ Overfull \hbox (19.32104pt too wide) in paragraph at lines 641--641
 _CW3CB3.txt;[] 
  []
 
-[44]
+[46]
 Overfull \hbox (6.97406pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 3-class at level 1 (CW), 3-classes at level 2 (CB) random eff
 ects model[] 
@@ -2587,7 +2587,7 @@ Overfull \hbox (13.14755pt too wide) in paragraph at lines 641--641
 t over four[] 
  []
 
-[45] [46] [47]
+[47] [48] [49]
 Overfull \hbox (37.84152pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLI
 KELIHOOD VALUES[] 
@@ -2599,7 +2599,7 @@ Overfull \hbox (25.49454pt too wide) in paragraph at lines 641--641
 initial stage[] 
  []
 
-[48]
+[50]
 Overfull \hbox (62.53549pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH
  AT LEAST TWICE THE[] 
@@ -2611,7 +2611,7 @@ Overfull \hbox (87.22946pt too wide) in paragraph at lines 641--641
 BTAINED AND REPLICATED.[] 
  []
 
-[49] [50] [51]
+[51] [52] [53]
 Overfull \hbox (44.01501pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 Average Latent Class Probabilities for Most Likely Latent Cla
 ss Pattern (Row)[] 
@@ -2671,39 +2671,39 @@ Overfull \hbox (68.70898pt too wide) in paragraph at lines 641--641
 15    0.675    0.123[] 
  []
 
-[52]
+[54]
 Overfull \hbox (68.70898pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 9   0.046    0.024    0.004    0.003    0.010    0.018    0.0
 79    0.174    0.642[] 
  []
 
-[53] [54] [55] [56] [57] [58]) [59]
+[55] [56] [57] [58] [59] [60]) [61]
 \openout2 = `Appendices/AppendixC.aux'.
 
  (./Appendices/AppendixC.tex
 Appendix C.
-<Figures/Diary1.png, id=738, 1349.04pt x 934.49126pt>
+<Figures/Diary1.png, id=746, 1349.04pt x 934.49126pt>
 File: Figures/Diary1.png Graphic file (type png)
 <use Figures/Diary1.png>
 Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.3311pt x 298.78665pt.
-<Figures/Diary2.png, id=739, 1380.15625pt x 923.45pt>
+<Figures/Diary2.png, id=747, 1380.15625pt x 923.45pt>
 File: Figures/Diary2.png Graphic file (type png)
 <use Figures/Diary2.png>
 Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
 (pdftex.def)             Requested size: 431.33989pt x 288.60559pt.
 1: section
-[60
+[62
 
 
 
  <./Figures/Diary1.png>]
-<Figures/Diary3.png, id=744, 1340.00626pt x 720.6925pt>
+<Figures/Diary3.png, id=752, 1340.00626pt x 720.6925pt>
 File: Figures/Diary3.png Graphic file (type png)
 <use Figures/Diary3.png>
 Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
 (pdftex.def)             Requested size: 431.32573pt x 231.97893pt.
-) [61 <./Figures/Diary2.png> <./Figures/Diary3.png>]
+) [63 <./Figures/Diary2.png> <./Figures/Diary3.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 443.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
 (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
@@ -2712,19 +2712,19 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 443.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 443.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 73C3518D61D38DC7BF68743984CC4DD3;9387.
+(rerunfilecheck)             Checksum: 1B50F74BF7EE9EEEE396FA7C4822B8B8;9207.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38902 strings out of 492982
- 767323 string characters out of 6134896
- 1105154 words of memory out of 5000000
+ 38907 strings out of 492982
+ 767364 string characters out of 6134896
+ 1105125 words of memory out of 5000000
  41461 multiletter control sequences out of 15000+600000
- 621996 words of font info for 372 fonts, out of 8000000 for 9000
+ 622145 words of font info for 374 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,20n,87p,10377b,2914s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,20n,87p,10377b,2920s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
@@ -2738,10 +2738,10 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (77 pages, 892903 bytes).
+Output written on main.pdf (79 pages, 894833 bytes).
 PDF statistics:
- 836 PDF objects out of 1000 (max. 8388607)
- 725 compressed objects within 8 object streams
- 190 named destinations out of 1000 (max. 500000)
+ 845 PDF objects out of 1000 (max. 8388607)
+ 732 compressed objects within 8 object streams
+ 192 named destinations out of 1000 (max. 500000)
  37233 words of extra memory for PDF output out of 42996 (max. 10000000)
 

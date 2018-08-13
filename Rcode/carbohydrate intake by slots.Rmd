@@ -1,0 +1,154 @@
+---
+title: "Carbohydrate intake in each time slot"
+author: "Chaochen Wang"
+# date: "12 August 2018"
+date: "12 August 2018created, `r Sys.Date()` updated"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    nature:
+      highlightLines: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(epiDisplay)
+library(plyr)
+library(tidyverse)
+library(haven)
+```
+
+
+```{r}
+
+# Change the data path accordingly ----------------------------------------
+
+setwd("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/") # on Ubuntu
+data <- read_dta("ndns_rp_yr1-4a_foodleveldietarydata_uk.dta")
+
+data56 <- read_dta("ndns_rp_yr5-6a_foodleveldietarydata.dta")
+
+data78 <- read_dta("ndns_rp_yr7-8a_foodleveldietarydata.dta")
+
+
+names(data)[names(data)=="seriali"] <- "id"
+names(data56)[names(data56)=="seriali"] <- "id"
+names(data78)[names(data78)=="seriali"] <- "id"
+
+df14d <- data[,c(113,1,2,3,5,6,7,8,9,21, 22, 23, 24,53, 55,57,58,59,60,61,62,63,64,65)]
+# extract variables needed
+var <- names(df14d)
+
+df56d <- data56 %>% 
+  select(var)
+
+df78d <- data78 %>% 
+  select(var)
+
+dfs1 <- rbind(df14d, df56d, df78d)
+
+
+dfs2 <- dfs1[dfs1$Age>=19,] # keep adults only
+rm(data, data56, data78)
+
+
+# Calculate the time (minute and hour) when they eat ----------------------
+
+dfs2$MealTime_chr <- as.character(dfs2$MealTime)
+dfs2$MealTime_hm <- unlist(strsplit(dfs2$MealTime_chr," "))[c(FALSE, TRUE)]
+
+
+dfs2$MealHourN <- as.numeric(unlist(strsplit(dfs2$MealTime_hm,":"))[c(TRUE, FALSE, FALSE)])
+dfs2$MealMinN <- as.numeric(unlist(strsplit(dfs2$MealTime_hm,":"))[c(FALSE, TRUE, FALSE)])
+dfs2$MealMinN0 <- (60*dfs2$MealHourN)+dfs2$MealMinN
+
+
+dfs3 <- dfs2[order(dfs2$id,dfs2$DayNo,dfs2$MealMinN0),]
+
+
+length(unique(dfs3$id)) ## number of participants = 6155
+
+
+# create a variable combine id and day No ---------------------------------
+
+dfs3 <- dfs3 %>% 
+  mutate(id_dy = paste(id, DayNo, sep = "D"))
+
+
+
+# For each subject, the total energy/carbohydrate intake for each eating time can be calculated --------
+
+old<-Sys.time()
+Energy <- ddply(dfs3, .(id_dy, id, SurveyYear, DayNo, Age, Sex, DiaryDaysCompleted, MealHourN, DayofWeek),  
+                summarise, Tot_Energ = sum(EnergykJ), 
+                Tot_Carb = sum(Carbohydrateg), 
+                Tot_Sugar = sum(Totalsugarsg), 
+                Tot_Starch = sum(Starchg), 
+                Tot_Fibre = sum(Englystfibreg),
+                Tot_Fat   = sum(Fatg), 
+                Tot_Prot  = sum(Proteing), 
+                Tot_Alc   = sum(Alcoholg), 
+                Tot_NMES  = sum(Nonmilkextrinsicsugarsg))
+new<-Sys.time()-old
+print(new)
+
+
+Energy <- Energy %>% 
+  mutate(TimeSlot = cut(MealHourN, breaks = c(6, 9, 12, 14, 17, 20, 22), right = FALSE))
+
+levels(Energy$TimeSlot) <- c(levels(Energy$TimeSlot), "[22, 6)")
+
+Energy$TimeSlot[is.na(Energy$TimeSlot)] <- "[22, 6)"
+
+tab1(Energy$TimeSlot)
+
+
+old<-Sys.time()
+Energy <- ddply(Energy, .(id_dy, id, SurveyYear, DayNo, Age, Sex, DiaryDaysCompleted, TimeSlot, DayofWeek),  
+                summarise, Tot_Energ = sum(Tot_Energ), Tot_Carb = sum(Tot_Carb), Tot_Sugar = sum(Tot_Sugar),
+                Tot_Starch = sum(Tot_Starch), Tot_Fibre = sum(Tot_Fibre), Tot_Fat   = sum(Tot_Fat), 
+                Tot_Prot  = sum(Tot_Prot), 
+                Tot_Alc   = sum(Tot_Alc), 
+                Tot_NMES  = sum(Tot_NMES))
+new<-Sys.time()-old
+print(new)
+
+Energy0 <- Energy[!(Energy$Tot_Energ == 0), ]
+write.csv(Energy0, file = "Energy_slots.csv")
+Energy_slots <- Energy0 %>% 
+  rename(ID = id)
+
+
+
+CW3idday <- read_csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/CW3idday.csv")
+CW3idday$DayofWeek[CW3idday$ID_DAY == 31012251000] <- "Tuesday"
+
+CW3idday$CW_new <- 0
+CW3idday$CW_new[CW3idday$CW == 1] <- 3
+CW3idday$CW_new[CW3idday$CW == 2] <- 1
+CW3idday$CW_new[CW3idday$CW == 3] <- 2
+
+Energy <- Energy_slots %>% 
+  left_join(CW3idday, by = c("ID", "DayofWeek"))
+
+Energy$Slot3g <- as.character(Energy$TimeSlot)
+Energy$Slot3g[Energy$TimeSlot == "[6,9)" | Energy$TimeSlot == "[9,12)"] <- "Before 12 noon"
+Energy$Slot3g[Energy$TimeSlot == "[12,14)" | Energy$TimeSlot == "[14,17)" | 
+                Energy$TimeSlot == "[17,20)"] <- "Between 12 noon to 8 pm"
+Energy$Slot3g[Energy$TimeSlot == "[22, 6)" | Energy$TimeSlot == "[20,22)"] <- "After 8 pm"
+
+Energy$Slot3g <- factor(Energy$Slot3g, levels = c("Before 12 noon", 
+                                                  "Between 12 noon to 8 pm", 
+                                                  "After 8 pm"))
+
+
+
+Energy$TimeSlot <- factor(Energy$TimeSlot, levels = c("[6,9)", "[9,12)", "[12,14)", "[14,17)",
+                                                      "[17,20)", "[20,22)", "[22, 6)"))
+
+```
+
