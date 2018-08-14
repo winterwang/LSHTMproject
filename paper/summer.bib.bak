@@ -621,7 +621,73 @@
   year      = {2014},
   volume    = {134},
   pages     = {44--50},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/1-s2.0-S0031938414000031-main.pdf:PDF},
   publisher = {Elsevier},
+}
+
+@Article{kupek2016dietary,
+  author    = {Kupek, Emil and Lobo, Adriana S and Leal, Danielle B and Bellisle, France and De Assis, Maria Alice A},
+  title     = {Dietary patterns associated with overweight and obesity among Brazilian schoolchildren: an approach based on the time-of-day of eating events},
+  journal   = {British Journal of Nutrition},
+  year      = {2016},
+  volume    = {116},
+  number    = {11},
+  pages     = {1954--1965},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/div-class-title-dietary-patterns-associated-with-overweight-and-obesity-among-brazilian-schoolchildren-an-approach-based-on-the-time-of-day-of-eating-events-div.pdf:PDF},
+  publisher = {Cambridge University Press},
+}
+
+@Article{ducrot2018adherence,
+  author    = {Ducrot, Pauline and M{\'e}jean, Caroline and Bellisle, France and All{\`e}s, Benjamin and Hercberg, Serge and P{\'e}neau, Sandrine},
+  title     = {Adherence to the French Eating Model is inversely associated with overweight and obesity: results from a large sample of French adults},
+  journal   = {British Journal of Nutrition},
+  year      = {2018},
+  pages     = {1--9},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/adherence_to_the_french_eating_model_is_inversely_associated_with_overweight_and_obesity_results_from_a_large_sample_of_french_adults.pdf:PDF},
+  publisher = {Cambridge University Press},
+}
+
+@Article{froy2018circadian,
+  author    = {Froy, Oren and Garaulet, Marta},
+  title     = {The Circadian Clock in White and Brown Adipose Tissue: Mechanistic, Endocrine, and Clinical Aspects},
+  journal   = {Endocrine reviews},
+  year      = {2018},
+  volume    = {39},
+  number    = {3},
+  pages     = {261--273},
+  publisher = {Endocrine Society Washington, DC},
+}
+
+@Article{raynor2018daily,
+  author    = {Raynor, Hollie A and Li, Fan and Cardoso, Chelsi},
+  title     = {Daily pattern of energy distribution and weight loss},
+  journal   = {Physiology \& behavior},
+  year      = {2018},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/1-s2.0-S0031938418300970-main.pdf:PDF},
+  publisher = {Elsevier},
+}
+
+@Article{arble2009circadian,
+  author    = {Arble, Deanna M and Bass, Joseph and Laposky, Aaron D and Vitaterna, Martha H and Turek, Fred W},
+  title     = {Circadian timing of food intake contributes to weight gain},
+  journal   = {Obesity},
+  year      = {2009},
+  volume    = {17},
+  number    = {11},
+  pages     = {2100--2102},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/Arble_et_al-2009-Obesity.pdf:PDF},
+  publisher = {Wiley Online Library},
+}
+
+@Article{bandin2015meal,
+  author    = {Bandin, C and Scheer, FAJL and Luque, AJ and {\'A}vila-Gand{\'\i}a, V and Zamora, S and Madrid, JA and G{\'o}mez-Abell{\'a}n, P and Garaulet, M},
+  title     = {Meal timing affects glucose tolerance, substrate oxidation and circadian-related variables: a randomized, crossover trial},
+  journal   = {International Journal of Obesity},
+  year      = {2015},
+  volume    = {39},
+  number    = {5},
+  pages     = {828},
+  publisher = {Nature Publishing Group},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
