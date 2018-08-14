@@ -203,6 +203,8 @@ svy: mean Fibre6, over(CB)
 test [Starch22_6]1 = [Starch22_6]2 = [Starch22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 gen Fibreg = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
+svy: mean Fibreg, over(CB)
+test [Fibreg]1 = [Fibreg]2 = [Fibreg]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean Fibre9, over(CB)
