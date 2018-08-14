@@ -351,8 +351,6 @@ pp_long$Time <- as.numeric(pp_long$Time)
 cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, 
                                                linetype = Carbo))  + 
   geom_line(size = 1.2) +
-  scale_x_continuous(limits = c(6, 29),
-                     breaks = seq(6, 29, by = 1)) +
   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
            alpha = 0.3, fill = "grey") + 
   annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, 
@@ -361,12 +359,11 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
            alpha = 0.3, fill = "grey") + 
   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
            alpha = 0.3, fill = "grey") +
-  geom_point(aes(shape = Carbo), size = 4,
+  geom_point(aes(shape = Carbo), size = 5,
              fill = "white") + 
   # scale_shape_discrete(solid=F) +
   scale_shape_manual(values=c(21,23,24)) + 
-    theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
+    theme(axis.text = element_text(size = 15), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -380,21 +377,18 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-  scale_linetype_manual(values=c("dotdash", "dashed", "solid")) + 
+  scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days - High carbohydrate day (39.5%)", x = "", y = "Probability",
+  labs(title = "Class 1 days - High percentage carbohydrate day (39.5%)", x = "", y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
-  ylim(c(0,1)) #+ 
-# scale_x_discrete(labels = c("6","7","8","9","10","11","12","13","14",
-#                             "15","16","17","18","19", "20","21","22",
-#                             "23","0","1","2","3","4","5"))
-
+  ylim(c(0,1)) + 
+  scale_x_continuous(breaks = c(6, 9, 12, 14, 17, 20, 22, 29), 
+                     labels = c("6\nam", "9\nam", "12\nnoon", "2\npm",
+                                "5\npm", "8\npm", "10\npm", "6\nam"))
 
 cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
                                                linetype = Carbo)) + 
-  scale_x_continuous(limits = c(6, 29),
-                     breaks = seq(6, 29, by = 1)) + 
   geom_line(size = 1.2) +
   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
            alpha = 0.3, fill = "grey") + 
@@ -404,12 +398,12 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
            alpha = 0.3, fill = "grey") + 
   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
            alpha = 0.3, fill = "grey") +
-  geom_point(aes(shape = Carbo), size = 4,
+  geom_point(aes(shape = Carbo), size = 5,
              fill = "white") + 
   # scale_shape_discrete(solid=F) +
   scale_shape_manual(values=c(21,23,24)) + 
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
+  theme(axis.title = element_text(size = 15), 
+        axis.text = element_text(size = 15), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -423,15 +417,15 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
         # legend.position = "bottom", 
         # legend.direction = "horizontal"
   ) + 
-  scale_linetype_manual(values=c("dotdash", "dashed", "solid")) + 
+  scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days - Low carbohydrate day (20.4%)", x = "", y = "Probability",
+  labs(title = "Class 2 days - Low percentage carbohydrate day (20.4%)", x = "", y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
-  ylim(c(0,1)) #+ 
-# scale_x_discrete(labels = c("6","7","8","9","10","11","12","13","14",
-#                             "15","16","17","18","19", "20","21","22",
-#                             "23","0","1","2","3","4","5"))
+  ylim(c(0,1)) + 
+  scale_x_continuous(breaks = c(6, 9, 12, 14, 17, 20, 22, 29), 
+                     labels = c("6\nam", "9\nam", "12\nnoon", "2\npm",
+                                "5\npm", "8\npm", "10\npm", "6\nam"))
 
 
 
@@ -439,8 +433,6 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
 
 cls3 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo, 
                                                linetype = Carbo)) + 
-  scale_x_continuous(limits = c(6, 29),
-                     breaks = seq(6, 29, by = 1)) + 
   geom_line(size = 1.2) +
   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
            alpha = 0.3, fill = "grey") + 
@@ -450,11 +442,11 @@ cls3 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
            alpha = 0.3, fill = "grey") + 
   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, 
            alpha = 0.3, fill = "grey") +
-  geom_point(aes(shape = Carbo), size = 4,
+  geom_point(aes(shape = Carbo), size = 5,
              fill = "white") + 
   # scale_shape_discrete(solid=F) +
-  theme(axis.title = element_text(size = 18), 
-        axis.text = element_text(size = 18), 
+  theme(axis.title = element_text(size = 15), 
+        axis.text = element_text(size = 15), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
@@ -470,22 +462,22 @@ cls3 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_shape_manual(values=c(21,23,24), 
                      labels =  c("Not eating\nany food", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
-      scale_linetype_manual(values=c("dotdash", "dashed", "solid"),
+      scale_linetype_manual(values=c("dotted", "dashed", "solid"),
                             labels =  c("Not eating\nany food", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 3 days - Regular meal day (40.1%)", y = "Probability") + 
+  labs(title = "Class 3 days - Regular meals day (40.1%)", y = "Probability") + 
   labs(shape="Responses to\ncarbohydrate intake", 
        linetype = "Responses to\ncarbohydrate intake")+
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +
   ylim(c(0,1)) + 
-# scale_x_discrete(labels = c("6","7","8","9","10","11","12","13","14",
-#                             "15","16","17","18","19", "20","21","22",
-#                             "23","0","1","2","3","4","5"))
+  scale_x_continuous(breaks = c(6, 9, 12, 14, 17, 20, 22, 29), 
+                     labels = c("6\nam", "9\nam", "12\nnoon", "2\npm",
+                                "5\npm", "8\npm", "10\npm", "6\nam")) +
 theme(plot.subtitle = element_text(vjust = 1), 
     plot.caption = element_text(family = "Atlas Grotesk Medium", 
         size = 10, face = "bold", colour = "gray24", 
         hjust = 0, vjust = 1)) +
- labs(x = "Hours of the day (next day from hour 24)", caption = "Note: 
+ labs(x = "Hours of the day", caption = "Note: 
 Grey, and white shades indicate the 7 time slots;
 Carbohydrate < 50% indicates that within the time slot, carbohydrate contributed less than 50% total energy intake; 
 Carbohydrate >= 50% indicates that within the time slot, carbohydrate contributed higher or equal to 50% total 

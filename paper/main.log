@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  14 AUG 2018 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  14 AUG 2018 22:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2723,17 +2723,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 443.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 443.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 76963F58D2113F901B38157D2FD4B099;9207.
+(rerunfilecheck)             Checksum: 8E093D4B134BC2488E4E8FB6540B36A3;9212.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38916 strings out of 492982
- 767579 string characters out of 6134896
+ 38919 strings out of 492982
+ 767606 string characters out of 6134896
  1105708 words of memory out of 5000000
  41467 multiletter control sequences out of 15000+600000
- 622132 words of font info for 374 fonts, out of 8000000 for 9000
+ 622287 words of font info for 376 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,20n,87p,10377b,2914s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
@@ -2749,7 +2749,7 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (81 pages, 1076425 bytes).
+Output written on main.pdf (81 pages, 1058679 bytes).
 PDF statistics:
  870 PDF objects out of 1000 (max. 8388607)
  754 compressed objects within 8 object streams

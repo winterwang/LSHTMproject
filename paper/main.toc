@@ -15,7 +15,7 @@
 \contentsline {subsection}{Response rates}{6}{section*.18}
 \contentsline {subsection}{Strata and weightings}{6}{section*.19}
 \contentsline {subsection}{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analyses}{7}{section*.22}
-\contentsline {subsection}{Ethics approval}{8}{section*.23}
+\contentsline {subsection}{Ethical approval}{8}{section*.23}
 \contentsline {section}{Statistical methods}{8}{section*.24}
 \contentsline {subsection}{Latent Class Analysis (LCA)}{8}{section*.25}
 \contentsline {subsection}{Multilevel Latent Class Analysis (MLCA)}{9}{section*.27}
