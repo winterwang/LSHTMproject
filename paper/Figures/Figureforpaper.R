@@ -710,7 +710,7 @@ CB1 <- ggplot() +
         axis.text.x=element_blank()) + 
         # legend.position = "bottom", 
         # legend.direction = "horizontal") +
-  labs(title = "Low carbohydrate eaters (28.1%)", x = " ", y = "Percentage") +
+  labs(title = "Low carbohydrate eaters (28.1%) [high fat and drinking at night]", x = " ", y = "Percentage") +
   # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   scale_y_continuous(labels=percent)
 
@@ -773,7 +773,7 @@ CB2 <- ggplot() +
         axis.text.x=element_blank()) +
 # legend.position = "bottom", 
 # legend.direction = "horizontal") +
-labs(title = "Moderate carbohydrate eaters (28.8%)", x = " ", y = "Percentage") +
+labs(title = "Moderate carbohydrate eaters (28.8%) [eating late]", x = " ", y = "Percentage") +
   # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   scale_y_continuous(labels=percent)
 
@@ -834,7 +834,7 @@ CB3 <- ggplot() +
         text=element_text(family="Atlas Grotesk Light")) +
   scale_fill_manual(values = c("#db735c", "#EFA86E", "#9A8A76", "#F3C57B"),
     labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
-  labs(title = "High carbohydrate eaters (43.1%)", x = "Hours of the day", y = "Percentage") +
+  labs(title = "High carbohydrate eaters (43.1%) [eating early]", x = "Hours of the day", y = "Percentage") +
   theme(axis.text.x = element_text(angle = 14, hjust = 1)) +
   scale_y_continuous(labels=percent)
 
