@@ -36,8 +36,8 @@
 \contentsline {subsection}{Carbohydrate eating patterns}{36}{section*.69}
 \contentsline {subsection}{Association between carbohydrate eating patterns and health outcomes}{37}{section*.70}
 \contentsline {section}{Strengths and limitations}{37}{section*.71}
-\contentsline {section}{Conclusions}{37}{section*.72}
-\contentsline {chapter}{Bibliography}{38}{chapter*.73}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{41}{appendix.74}
-\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{47}{appendix.75}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{64}{appendix.76}
+\contentsline {section}{Conclusions}{38}{section*.72}
+\contentsline {chapter}{Bibliography}{39}{chapter*.73}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{43}{appendix.74}
+\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{49}{appendix.75}
+\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{66}{appendix.76}
