@@ -178,10 +178,10 @@ svy, subpop(Women): mean bmi, over(hibp)
 test [bmival]1 = [bmival]0
 
 
-svy, subpop(Men): mean Energy, over(hibp)
-test [EnergykJ]1 = [EnergykJ]0
-svy, subpop(Women): mean Energy, over(hibp)
-test [EnergykJ]1 = [EnergykJ]0
+svy, subpop(Men): mean EnergykJ, over(hibp)
+test [EnergykJkJ]1 = [EnergykJkJ]0
+svy, subpop(Women): mean EnergykJ, over(hibp)
+test [EnergykJkJ]1 = [EnergykJkJ]0
 
 	
 svy, subpop(Men): mean Carbo, over(hibp)
@@ -570,8 +570,8 @@ svy, subpop(Men  if DM != 1): logistic hibp i.CB i.cigsta3
 
 // Total energy intake -> confounder
 
-svy, subpop(Men): logistic hibp i.CB Energy
-svy, subpop(Women): logistic hibp i.CB Energy
+svy, subpop(Men): logistic hibp i.CB EnergykJ
+svy, subpop(Women): logistic hibp i.CB EnergykJ
 
 
 //Number of strata   =        12                  Number of obs     =      5,849
@@ -590,18 +590,18 @@ svy, subpop(Women): logistic hibp i.CB Energy
 //          2  |   .4019295   .0800105    -4.58   0.000     .2719931    .5939391
 //          3  |   .7619188    .125625    -1.65   0.099     .5513676    1.052873
 //             |
-//    EnergykJ |   .9998584   .0000334    -4.23   0.000     .9997928     .999924
+//    EnergykJkJ |   .9998584   .0000334    -4.23   0.000     .9997928     .999924
 //       _cons |   2.097569   .6653538     2.34   0.020     1.125847    3.907988
 //------------------------------------------------------------------------------
 
 
 
-test Energy
+test EnergykJ
 
-svy, subpop(Men): logistic hibp i.CB##c.Energy
-svy, subpop(Women): logistic hibp i.CB##c.Energy
+svy, subpop(Men): logistic hibp i.CB##c.EnergykJ
+svy, subpop(Women): logistic hibp i.CB##c.EnergykJ
 
-test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
+test 2.CB#c.EnergykJkJ 3.CB#c.EnergykJkJ // no interaction
 
 
 
@@ -666,31 +666,31 @@ test 2.CB#c.logMVP 3.CB#c.logMVP // no interaction
 gen age2 = age^2
 
 
-svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig Energy 
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
 linktest
-svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst i.cig Energy 
-linktest
-
-
-
-svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu bmi i.cig Energy 
-linktest
-svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu wst i.cig Energy 
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
 linktest
 
 
 
-svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig Energy Alcoholg 
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
 linktest
-svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig Energy Alcoholg 
-linktest
-
-
-
-svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig Energy Alcoholg
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
 linktest
 
-svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig Energy Alcoholg
+
+
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg 
+linktest
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg 
+linktest
+
+
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg
+linktest
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg
 linktest
 
 

@@ -612,6 +612,7 @@
   volume    = {37},
   number    = {5},
   pages     = {725},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/almoosawi2012.pdf:PDF},
   publisher = {Nature Publishing Group},
 }
 
@@ -690,6 +691,18 @@
   pages     = {828},
   file      = {:/home/wangcc-me/Documents/LSHTMproject/references/Band2014IntJObes_MealTiming_PROOFS2copy.pdf:PDF},
   publisher = {Nature Publishing Group},
+}
+
+@Article{hanna2015relationship,
+  author    = {Hanna, Katherine L and Collins, Peter F},
+  title     = {Relationship between living alone and food and nutrient intake},
+  journal   = {Nutrition Reviews},
+  year      = {2015},
+  volume    = {73},
+  number    = {9},
+  pages     = {594--611},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/hanna2015.pdf:PDF},
+  publisher = {Oxford University Press},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

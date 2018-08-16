@@ -401,13 +401,14 @@
   publisher = {Public Library of Science},
 }
 
-@Article{Mansukhani2018,
-  author  = {Mansukhani, Raoul and Palla, Luigi},
-  title   = {Investigating eating time patterns in UK adults from The 2008–2012 National Diet and Nutrition Survey},
-  journal = {Proceedings of the Nutrition Society},
-  year    = {2018},
-  volume  = {77},
-  month   = {01},
+@Article{mansukhani2018investigating,
+  author    = {Mansukhani, R and Palla, L},
+  title     = {Investigating eating time patterns in UK adults from The 2008--2012 National Diet and Nutrition Survey},
+  journal   = {Proceedings of the Nutrition Society},
+  year      = {2018},
+  volume    = {77},
+  number    = {OCE1},
+  publisher = {Cambridge University Press},
 }
 
 @Book{lumley2011complex,
@@ -611,6 +612,7 @@
   volume    = {37},
   number    = {5},
   pages     = {725},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/almoosawi2012.pdf:PDF},
   publisher = {Nature Publishing Group},
 }
 
@@ -689,6 +691,17 @@
   pages     = {828},
   file      = {:/home/wangcc-me/Documents/LSHTMproject/references/Band2014IntJObes_MealTiming_PROOFS2copy.pdf:PDF},
   publisher = {Nature Publishing Group},
+}
+
+@Article{hanna2015relationship,
+  author    = {Hanna, Katherine L and Collins, Peter F},
+  title     = {Relationship between living alone and food and nutrient intake},
+  journal   = {Nutrition Reviews},
+  year      = {2015},
+  volume    = {73},
+  number    = {9},
+  pages     = {594--611},
+  publisher = {Oxford University Press},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

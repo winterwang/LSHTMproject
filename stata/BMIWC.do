@@ -183,9 +183,9 @@ test [eqvinc]10 = [eqvinc]25 = [eqvinc]30, mtest(b)
 svy, subpop(Women): mean eqvinc, over(BMIcat)
 test [eqvinc]10 = [eqvinc]25 = [eqvinc]30, mtest(b)
 
-svy, subpop(Men): mean Energy, over(BMIcat)
+svy, subpop(Men): mean EnergykJ, over(BMIcat)
 test [EnergykJ]10 = [EnergykJ]25 = [EnergykJ]30, mtest(b)
-svy, subpop(Women): mean Energy, over(BMIcat)
+svy, subpop(Women): mean EnergykJ, over(BMIcat)
 test [EnergykJ]10 = [EnergykJ]25 = [EnergykJ]30, mtest(b)
 
 
@@ -321,19 +321,19 @@ test logMVP
 
 
 
-// Total energy intake -> confounder
+// Total EnergykJ intake -> confounder
 
-svy, subpop(Men):  regress bmival i.CB Energy
+svy, subpop(Men):  regress bmival i.CB EnergykJ
 
-test Energy
+test EnergykJ
 
-svy, subpop(Women):  regress bmival i.CB Energy
+svy, subpop(Women):  regress bmival i.CB EnergykJ
 
-test Energy
+test EnergykJ
 
 
-svy, subpop(Men): regress bmival i.CB##c.Energy
-svy, subpop(Women): regress bmival i.CB##c.Energy
+svy, subpop(Men): regress bmival i.CB##c.EnergykJ
+svy, subpop(Women): regress bmival i.CB##c.EnergykJ
 
 test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
 
@@ -363,37 +363,37 @@ test 2.CB#c.Alcoholg 3.CB#c.Alcoholg //  interaction in men  no interaction in w
 
 
 //  Preliminary model includes all possible confounders in Men
-svy, subpop(Men): regress bmival i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(Men): regress bmival i.CB age i.Married i.Edu i.hibp i.cig EnergykJ Alcoholg
 
-svy, subpop(if Men & DM != 1): regress bmival i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Men & DM != 1): regress bmival i.CB age i.Married i.Edu i.hibp i.cig EnergykJ Alcoholg
 
-svy, subpop(Women): regress bmival i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(Women): regress bmival i.CB##i.Married age eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
 
 test 2.CB#1.Married 3.CB#1.Married 
 
-svy, subpop(if Women & Married == 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
-svy, subpop(if Women & Married == 0): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
+svy, subpop(if Women & Married == 0): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
 
 // strong interaction of married or not in women 
 linktest
 
-svy, subpop(if Women & DM != 1 ): regress bmival i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy
+svy, subpop(if Women & DM != 1 ): regress bmival i.CB##i.Married age eqvinc i.Edu i.hibp i.cig EnergykJ
 linktest
 
-svy, subpop(if Women & Married == 1 & DM != 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
-svy, subpop(if Women & Married == 0 & DM != 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 1 & DM != 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
+svy, subpop(if Women & Married == 0 & DM != 1): regress bmival i.CB age eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
 
 
 // crude association between CB and bmicat
 svy, subpop(Men): ologit BMIcat i.CB, eform
 svy, subpop(Women): ologit BMIcat i.CB
-svy, subpop(Men): ologit BMIcat i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg, eform
-svy, subpop(if Men & DM !=1): ologit BMIcat i.CB age i.Married i.Edu i.hibp i.cig Energy Alcoholg, eform
+svy, subpop(Men): ologit BMIcat i.CB age i.Married i.Edu i.hibp i.cig EnergykJ Alcoholg, eform
+svy, subpop(if Men & DM !=1): ologit BMIcat i.CB age i.Married i.Edu i.hibp i.cig EnergykJ Alcoholg, eform
 
-svy, subpop(Women): ologit BMIcat i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy, eform
+svy, subpop(Women): ologit BMIcat i.CB##i.Married age eqvinc i.Edu i.hibp i.cig EnergykJ, eform
 test 2.CB#1.Married 3.CB#1.Married // interaction
 
-svy, subpop(Women): ologit BMIcat i.CB##i.Married age eqvinc i.Edu i.hibp i.cig Energy, eform
+svy, subpop(Women): ologit BMIcat i.CB##i.Married age eqvinc i.Edu i.hibp i.cig EnergykJ, eform
 
 
 
@@ -509,19 +509,19 @@ test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interacti
 // no interaction in women
  
 
-// Total energy intake -> confounder
+// Total EnergykJ intake -> confounder
 
-svy, subpop(Men):  regress wst i.CB Energy
+svy, subpop(Men):  regress wst i.CB EnergykJ
 
-test Energy
+test EnergykJ
 
-svy, subpop(Women):  regress wst i.CB Energy
+svy, subpop(Women):  regress wst i.CB EnergykJ
 
-test Energy
+test EnergykJ
 
 
-svy, subpop(Men): regress wst i.CB##c.Energy
-svy, subpop(Women): regress wst i.CB##c.Energy
+svy, subpop(Men): regress wst i.CB##c.EnergykJ
+svy, subpop(Women): regress wst i.CB##c.EnergykJ
 
 test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
 
@@ -546,29 +546,84 @@ test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction in men  no interaction in
 //  Preliminary model includes all possible confounders 
 gen age2 = age^2
 
-svy, subpop(Men): regress wst i.CB  age age2 i.Married eqvinc i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(Men): regress wst i.CB  age age2 i.Married eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
 linktest
 
-svy, subpop(if Men & DM != 1): regress wst i.CB  age age2 i.Married eqvinc i.Edu i.hibp i.cig Energy Alcoholg
-linktest
-
-
-svy, subpop(Women): regress wst i.CB  age i.Married i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Men & DM != 1): regress wst i.CB  age age2 i.Married eqvinc i.Edu i.hibp i.cig EnergykJ Alcoholg
 linktest
 
 
-svy, subpop(Women): regress wst i.CB##i.Married age i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(Women): regress wst i.CB  age i.Married i.Edu i.hibp i.cig EnergykJ Alcoholg
+svy, subpop(Women): regress wst i.CB  age age2 i.Married i.Edu i.hibp i.cig EnergykJ Alcoholg
+
+linktest
+
+
+svy, subpop(Women): regress wst i.CB##i.Married age i.Edu i.hibp i.cig EnergykJ Alcoholg
+linktest
+
+svy, subpop(Women): regress wst i.CB##i.Married age age2 i.Edu i.hibp i.cig EnergykJ Alcoholg
+linktest
 
 test 2.CB#1.Married 3.CB#1.Married 
 
-svy, subpop(if Women & Married == 1): regress wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 1): regress wst i.CB age age2 i.Edu i.hibp i.cig EnergykJ Alcoholg
 linktest
-svy, subpop(if Women & Married == 0): regress wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 0): regress wst i.CB age age2 i.Edu i.hibp i.cig EnergykJ Alcoholg
 linktest
 
+svy, subpop(if Women & DM != 1): regress wst i.CB##i.Married age age2 i.Edu i.hibp i.cig EnergykJ Alcoholg
+linktest
+test 2.CB#1.Married 3.CB#1.Married 
 
 // strong interaction of married or not in women 
 
-svy, subpop(if Women & Married == 1 & DM != 1): regress  wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
-svy, subpop(if Women & Married == 0 & DM != 1): regress  wst i.CB age age2 i.Edu i.hibp i.cig Energy Alcoholg
+svy, subpop(if Women & Married == 1 & DM != 1): regress  wst i.CB age age2 i.Edu i.hibp i.cig EnergykJ Alcoholg
+linktest
+svy, subpop(if Women & Married == 0 & DM != 1): regress  wst i.CB age age2 i.Edu i.hibp i.cig EnergykJ Alcoholg
+linktest
 
+// see the percentages of three types of carbohydrate eaters in women 
+// separately by married 
+
+svy, subpop(if Women): tabulate Married CB, col se ci format(%7.3f)
+
+svy, subpop(if Women & Married == 1): mean wst, over(CB)
+test [wstval]1 == [wstval]2 == [wstval]3
+svy, subpop(if Women & Married == 0): mean wst, over(CB)
+test [wstval]1 == [wstval]2 == [wstval]3
+
+svy, subpop(if Men & Married == 1): mean wst, over(CB)
+test [wstval]1 == [wstval]2 == [wstval]3
+svy, subpop(if Men & Married == 0): mean wst, over(CB)
+test [wstval]1 == [wstval]2 == [wstval]3
+
+
+svy, subpop(if Women & Married == 1):  mean EnergykJ, over(CB)
+
+test [EnergykJ]1 = [EnergykJ]2 = [EnergykJ]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy6, over(CB)
+test [Energy6_9]1 = [Energy6_9]2 = [Energy6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy9, over(CB) 
+test [Energy9_12]1 = [Energy9_12]2 = [Energy9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy12, over(CB)
+test [Energy12_14]1 = [Energy12_14]2 = [Energy12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy14, over(CB)
+test [Energy14_17]1 = [Energy14_17]2 = [Energy14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy17, over(CB)
+test [Energy17_20]1 = [Energy17_20]2 = [Energy17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy20, over(CB)
+test [Energy20_22]1 = [Energy20_22]2 = [Energy20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+svy, subpop(if Women & Married == 1): mean Energy22, over(CB)
+test [Energy22_6]1 = [Energy22_6]2 = [Energy22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
+svy, subpop(if Women & Married == 1): mean Alcoholg, over(CB)
+svy, subpop(if Women & Married == 0): mean age, over(CB)

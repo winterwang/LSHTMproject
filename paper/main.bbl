@@ -108,6 +108,10 @@
   prospective association with the metabolic syndrome in the 1946 British birth
   cohort}
     \field{volume}{37}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/almoosawi2012.pdf:
+    \verb PDF
+    \endverb
     \field{journaltitle}{International Journal of Obesity}
     \field{year}{2013}
   \endentry
@@ -591,6 +595,44 @@
     \endverb
     \field{journaltitle}{Physiology \& Behavior}
     \field{year}{2014}
+  \endentry
+
+  \entry{hanna2015relationship}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HKL}{%
+         family={Hanna},
+         familyi={H\bibinitperiod},
+         given={Katherine\bibnamedelima L},
+         giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=CPF}{%
+         family={Collins},
+         familyi={C\bibinitperiod},
+         given={Peter\bibnamedelima F},
+         giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{HKLCPF1}
+    \strng{fullhash}{HKLCPF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{9}
+    \field{pages}{594\bibrangedash 611}
+    \field{title}{Relationship between living alone and food and nutrient
+  intake}
+    \field{volume}{73}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/hanna2015.pdf:PDF
+    \endverb
+    \field{journaltitle}{Nutrition Reviews}
+    \field{year}{2015}
   \endentry
 
   \entry{henry2010multilevel}{article}{}
