@@ -401,13 +401,14 @@
   publisher = {Public Library of Science},
 }
 
-@Article{Mansukhani2018,
-  author    = {Mansukhani, Raoul and Palla, Luigi},
-  title     = {Investigating eating time patterns in UK adults from The 2008–2012 National Diet and Nutrition Survey},
+@Article{mansukhani2018investigating,
+  author    = {Mansukhani, R and Palla, L},
+  title     = {Investigating eating time patterns in UK adults from The 2008--2012 National Diet and Nutrition Survey},
+  journal   = {Proceedings of the Nutrition Society},
   year      = {2018},
   volume    = {77},
-  month     = {01},
-  booktitle = {Proceedings of the Nutrition Society},
+  number    = {OCE1},
+  publisher = {Cambridge University Press},
 }
 
 @Book{lumley2011complex,

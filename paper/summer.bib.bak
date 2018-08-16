@@ -402,12 +402,12 @@
 }
 
 @Article{Mansukhani2018,
-  author    = {Mansukhani, Raoul and Palla, Luigi},
-  title     = {Investigating eating time patterns in UK adults from The 2008–2012 National Diet and Nutrition Survey},
-  year      = {2018},
-  volume    = {77},
-  month     = {01},
-  booktitle = {Proceedings of the Nutrition Society},
+  author  = {Mansukhani, Raoul and Palla, Luigi},
+  title   = {Investigating eating time patterns in UK adults from The 2008–2012 National Diet and Nutrition Survey},
+  journal = {Proceedings of the Nutrition Society},
+  year    = {2018},
+  volume  = {77},
+  month   = {01},
 }
 
 @Book{lumley2011complex,
@@ -687,6 +687,7 @@
   volume    = {39},
   number    = {5},
   pages     = {828},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/Band2014IntJObes_MealTiming_PROOFS2copy.pdf:PDF},
   publisher = {Nature Publishing Group},
 }
 

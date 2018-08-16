@@ -754,20 +754,23 @@
     \field{year}{2001}
   \endentry
 
-  \entry{Mansukhani2018}{article}{}
+  \entry{mansukhani2018investigating}{article}{}
     \name{author}{2}{}{%
       {{hash=MR}{%
          family={Mansukhani},
          familyi={M\bibinitperiod},
-         given={Raoul},
-         giveni={R\bibinitperiod},
+         given={R},
+         giveni={R},
       }}%
       {{hash=PL}{%
          family={Palla},
          familyi={P\bibinitperiod},
-         given={Luigi},
-         giveni={L\bibinitperiod},
+         given={L},
+         giveni={L},
       }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
     }
     \strng{namehash}{MRPL1}
     \strng{fullhash}{MRPL1}
@@ -777,11 +780,11 @@
     \field{labeldatesource}{year}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{booktitle}{Proceedings of the Nutrition Society}
+    \field{number}{OCE1}
     \field{title}{Investigating eating time patterns in UK adults from The
-  2008–2012 National Diet and Nutrition Survey}
+  2008--2012 National Diet and Nutrition Survey}
     \field{volume}{77}
-    \field{month}{01}
+    \field{journaltitle}{Proceedings of the Nutrition Society}
     \field{year}{2018}
   \endentry
 
