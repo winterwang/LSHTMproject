@@ -353,14 +353,14 @@ names(dta_d4_wide)
 
 for (i in 6:ncol(dta_d1_wide)) 
   if(is.factor(dta_d1_wide[,i])) 
-    levels(dta_d1_wide[,i]) <- c("1", "2", "3", "0")
+    levels(dta_d1_wide[,i]) <- c("1", "2", "0")
 
 dta_d1_wide[is.na(dta_d1_wide)] <- "0"
 
 
 for (i in 6:ncol(dta_d2_wide)) 
   if(is.factor(dta_d2_wide[,i])) 
-    levels(dta_d2_wide[,i]) <- c("1", "2", "3", "0")
+    levels(dta_d2_wide[,i]) <- c("1", "2",  "0")
 
 
 dta_d2_wide[is.na(dta_d2_wide)] <- "0"
@@ -368,36 +368,23 @@ dta_d2_wide[is.na(dta_d2_wide)] <- "0"
 
 for (i in 6:ncol(dta_d3_wide)) 
   if(is.factor(dta_d3_wide[,i])) 
-    levels(dta_d3_wide[,i]) <-  c("1", "2", "3", "0")
+    levels(dta_d3_wide[,i]) <-  c("1", "2", "0")
 
 dta_d3_wide[is.na(dta_d3_wide)] <- "0"
 
 
 for (i in 6:ncol(dta_d4_wide)) 
   if(is.factor(dta_d4_wide[,i])) 
-    levels(dta_d4_wide[,i]) <-  c("1", "2", "3", "0")
+    levels(dta_d4_wide[,i]) <-  c("1", "2", "0")
 
 dta_d4_wide[is.na(dta_d4_wide)] <- "0"
 
-# setwd("H:/summer project/Rcodes")
-
-# dta_d1_sas <- dta_d1_wide
-# 
-# write_csv(dta_d1_wide, path = "dta_d1.csv")
-# 
-# write_csv(dta_d2_wide, path = "dta_d2.csv")
-# write_csv(dta_d3_wide, path = "dta_d3.csv")
-# write_csv(dta_d4_wide, path = "dta_d4.csv")
 
 dta_all <- rbind(dta_d1_wide, dta_d2_wide, dta_d3_wide, dta_d4_wide)
 
 dta_all <- dta_all[order(dta_all$id,dta_all$id_dy),]
 
-# write_csv(dta_all, path = "dta_NDNS.csv")
-# write_csv(dta_all, path = "dta_NDNS_Tslots.csv")
-write_csv(dta_all, path = "dta_NDNS_cbfb.csv")
-
-write_delim(dta_all, "dta_NDNS_cbfb.dat", na = ".", delim = " ")
+write_csv(dta_all, path = "dta_NDNS_Tslots.csv")
 
 # Use data according to the day of the week -------------------------------
 

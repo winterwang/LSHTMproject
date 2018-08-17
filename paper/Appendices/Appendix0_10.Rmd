@@ -7,58 +7,80 @@ output:
 ---
 
 
+
 ```{r eval=FALSE}
+
 # NDNS analysis, data management ------------------------------------------
 
+
 # Change the data path accordingly ----------------------------------------
-setwd("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/") # on Ubuntu
+
+setwd(".../UKDA-6533-stata11_se/stata11_se/") 
+setwd("~/Downloads/UKDA-6533-stata11_se/stata11_se/")
+
 library(epiDisplay)
 library(plyr)
 library(tidyverse)
 
+
 # Read the data into memory -----------------------------------------------
+
 library(haven)
 data <- read_dta("ndns_rp_yr1-4a_foodleveldietarydata_uk.dta")
 data56 <- read_dta("ndns_rp_yr5-6a_foodleveldietarydata.dta")
 data78 <- read_dta("ndns_rp_yr7-8a_foodleveldietarydata.dta")
+
 names(data)
 names(data56)
 names(data78)
-names(data)[names(data) == "seriali"] <- "id"
-names(data56)[names(data56) == "seriali"] <- "id"
-names(data78)[names(data78) == "seriali"] <- "id"
+names(data)[names(data)=="seriali"] <- "id"
+names(data56)[names(data56)=="seriali"] <- "id"
+names(data78)[names(data78)=="seriali"] <- "id"
 
-# Extract the data we needed ----------------------------------------------
-df14d <- data[, c(113, 1, 2, 3, 5, 6, 7, 8, 9, 21, 24, 55, 57, 58, 
-    59, 60, 61, 62, 63, 64)]
+
+# Extract the variables needed -------------------------------------------
+
+df14d <- data[,c(113,1,2,3,5,6,7,8,9,21, 22, 23, 24, 53, 55,
+                 57,58,59,60,61,62,63,64,65)]
 var <- names(df14d)
-df56d <- data56 %>% select(var)
-df78d <- data78 %>% select(var)
+df56d <- data56 %>% 
+  select(var)
+df78d <- data78 %>% 
+  select(var)
 dfs1 <- rbind(df14d, df56d, df78d)
-dfs2 <- dfs1[dfs1$Age >= 19, ]
-rm(data, data56, data78)
+
+dfs2 <- dfs1[dfs1$Age>=19,] # keep participants who aged 19 or older
+rm(data, data56, data78) # remove the unneeded big dataset
+
 dfs2
+
 
 # Calculate the time (minute and hour) when they eat ----------------------
 
 dfs2$MealTime_chr <- as.character(dfs2$MealTime)
-dfs2$MealTime_hm <- unlist(strsplit(dfs2$MealTime_chr, " "))[c(FALSE, 
-    TRUE)]
-dfs2$MealHourN <- as.numeric(unlist(strsplit(dfs2$MealTime_hm, ":"))[c(TRUE, 
-    FALSE, FALSE)])
-dfs2$MealMinN <- as.numeric(unlist(strsplit(dfs2$MealTime_hm, ":"))[c(FALSE, 
-    TRUE, FALSE)])
-dfs2$MealMinN0 <- (60 * dfs2$MealHourN) + dfs2$MealMinN
-dfs3 <- dfs2[order(dfs2$id, dfs2$DayNo, dfs2$MealMinN0), ]
-length(unique(dfs3$id))  ## number of participants = 6155
+dfs2$MealTime_hm <- unlist(strsplit(dfs2$MealTime_chr," "))[c(FALSE, 
+                                                              TRUE)]
+dfs2$MealHourN <- as.numeric(unlist(strsplit(dfs2$MealTime_hm,
+                                             ":"))[c(TRUE, FALSE, FALSE)])
+dfs2$MealMinN <- as.numeric(unlist(strsplit(dfs2$MealTime_hm,
+                                            ":"))[c(FALSE, TRUE, FALSE)])
 
-# Create a subset data with only the first observation of each
-# participant --------
+dfs2$MealMinN0 <- (60*dfs2$MealHourN)+dfs2$MealMinN
+
+dfs3 <- dfs2[order(dfs2$id,dfs2$DayNo,dfs2$MealMinN0),]
+
+length(unique(dfs3$id)) ## number of participants = 6155
+
+
+# Create a subset data with only the first observation of each participant --------
+
 NDNS <- dfs3[!duplicated(dfs3$id), ]
 with(NDNS, tab1(SurveyYear, graph = FALSE, decimal = 2))
+```
 
-# #SurveyYear :
-            # Frequency Percent Cum. percent
+```
+# #SurveyYear : 
+#             Frequency Percent Cum. percent
 # NDNS Year 1       801   13.01        13.01
 # NDNS Year 2       812   13.19        26.21
 # NDNS Year 3       782   12.71        38.91
@@ -67,126 +89,249 @@ with(NDNS, tab1(SurveyYear, graph = FALSE, decimal = 2))
 # NDNS Year 6       663   10.77        76.98
 # NDNS Year 7       703   11.42        88.40
 # NDNS Year 8       714   11.60       100.00
-  # Total          6155  100.00       100.00
+#   Total          6155  100.00       100.00
+```
+
+```{r eval=FALSE}
+# how many men and women --------------------------------------------------
+
+with(NDNS, tab1(Sex, graph = FALSE, decimal = 2))
+```
+
+```
+# Sex : 
+#          Frequency Percent Cum. percent
+# 1            2537   41.22        41.22 Men
+# 2            3618   58.78       100.00 Women
+#   Total      6155  100.00       100.00
+```
 
 
+```{r eval=FALSE}
 # create a variable combine id and day No ---------------------------------
-dfs3 <- dfs3 %>%
-mutate(id_dy = paste(id, DayNo, sep = "D"))
 
-# For each subject, the total energy/carbohydrate intake for each eating 
-# time can be calculated --------
-old <- Sys.time()
+
+dfs3 <- dfs3 %>% 
+  mutate(id_dy = paste(id, DayNo, sep = "D"))
+
+# For each subject, the total energy/carbohydrate intake for each 
+# eating time can be calculated --------
+
+old<-Sys.time()
 Energy <- ddply(dfs3, .(id_dy, id, SurveyYear, DayNo, Age, Sex, 
-                        DiaryDaysCompleted, MealHourN, DayofWeek), 
-                summarise, 
-                Tot_Energ = sum(EnergykJ), 
+                        DiaryDaysCompleted, MealHourN, DayofWeek),  
+                summarise, Tot_Energ = sum(EnergykJ), 
                 Tot_Carb = sum(Carbohydrateg), 
                 Tot_Sugar = sum(Totalsugarsg), 
-                Tot_Starch = sum(Starchg))
-new <- Sys.time() - old
+                Tot_Starch = sum(Starchg), 
+                Tot_Fibre = sum(Englystfibreg),
+                Tot_Fat   = sum(Fatg), 
+                Tot_Prot  = sum(Proteing), 
+                Tot_Alc   = sum(Alcoholg), 
+                Tot_NMES  = sum(Nonmilkextrinsicsugarsg))
+new<-Sys.time()-old
 print(new)
-# Time difference of 3.876385 mins
+# Time difference of 6.429822 min
 
-rm(df14d, df56d, df78d, dfs2)
+
+# reset the time intervals into time slots --------------------------------
+
+### Breakfast:       6am to 9am
+### morning snack:   9am to 12noon
+### lunch:           12noon to 2pm
+### afternoon snack: 2pm to 5pm
+### dinner:          5pm to 8pm
+### night snack:     8pm to 10pm
+### midnight:        10pm to 6am
+
+
+Energy <- Energy %>% 
+  mutate(TimeSlot = cut(MealHourN, breaks = c(6, 9, 12, 14, 17, 20, 22), 
+                        right = FALSE))
+
+
+levels(Energy$TimeSlot) <- c(levels(Energy$TimeSlot), "[22, 6)")
+
+Energy$TimeSlot[is.na(Energy$TimeSlot)] <- "[22, 6)"
+
+tab1(Energy$TimeSlot)
+
+
+# For each subject, the total energy/carbohydrate intake for each 
+# time slot can be calculated --------
+old<-Sys.time()
+Energy <- ddply(Energy, .(id_dy, id, SurveyYear, DayNo, Age, Sex, 
+                          DiaryDaysCompleted, TimeSlot, DayofWeek),  
+                summarise, 
+                Tot_Energ = sum(Tot_Energ), 
+                Tot_Carb = sum(Tot_Carb), 
+                Tot_Sugar = sum(Tot_Sugar),
+                Tot_Starch = sum(Tot_Starch), 
+                Tot_Fibre = sum(Tot_Fibre), 
+                Tot_Fat   = sum(Tot_Fat), 
+                Tot_Prot  = sum(Tot_Prot), 
+                Tot_Alc   = sum(Tot_Alc), 
+                Tot_NMES  = sum(Tot_NMES))
+new<-Sys.time()-old
+print(new)
+# Time difference of 3.74195 mins 
+
 
 # Calculate the energy from total carbohydrates ---------------------------
-Energy <- Energy %>% 
-  mutate(KJcarbo = Tot_Carb * 16) %>% 
-  mutate(CarKJpercentage = KJcarbo/Tot_Energ) %>% 
-  mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.26, 0.75, 2), 
-        right = FALSE)) %>% mutate(Carbo2 = cut(CarKJpercentage, breaks = c(0, 
-    0.26, 2), right = FALSE))
-Energy0 <- Energy[!(Energy$Tot_Energ == 0), ]  
-          # some food consumption does not contain any carbohydrates
-Energy0$Carbo <- factor(Energy0$Carbo, labels = c("Low_carb", "Med_carb", 
-    "High_carb"))
-Energy0$Carbo2 <- factor(Energy0$Carbo2, labels = c("Low_carb", "Med_or_high_carb"))
 
-# Generate data sets for each day ----------------------------------------------------------
+Energy <- Energy %>% 
+  mutate(KJcarbo = Tot_Carb*16) %>% 
+  mutate(CarKJpercentage = KJcarbo/Tot_Energ) %>% 
+  mutate(Carbo = cut(CarKJpercentage, breaks = c(0, 0.50, 2), right = FALSE))
+
+Energy0 <- Energy[!(Energy$Tot_Energ == 0), ] # discard those eating occassion 
+# with 0 energy intake 
+write.csv(Energy0, file = "Energy_slots.csv") # for later analysis
+
+
+Energy0$Carbo <- factor(Energy0$Carbo, labels = c("< 50%", ">= 50%"))
+
+vecid<-unique(Energy0$id)
+
+# Filter the data by observation day--------------------------------------------
+
 dta_day1 <- Energy0 %>% 
   filter(DayNo == 1) %>% 
-  select(c("id", "Age", 
-    "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  select(c("id", "id_dy", "Age", "Sex", 
+           "DayofWeek",  "TimeSlot", "Carbo")) %>%  
   mutate(DayofWeek = factor(DayofWeek, 
-    levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
-        "Saturday", "Sunday")))
+                            levels = c("Monday", "Tuesday", 
+                                       "Wednesday", "Thursday", 
+                                       "Friday", "Saturday", "Sunday")))
 
 dta_day2 <- Energy0 %>% 
   filter(DayNo == 2) %>% 
-  select(c("id", "Age", 
-    "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  select(c("id", "id_dy", "Age", "Sex", 
+           "DayofWeek",  "TimeSlot", "Carbo")) %>%  
   mutate(DayofWeek = factor(DayofWeek, 
-    levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
-        "Saturday", "Sunday")))
+                            levels = c("Monday", "Tuesday", 
+                                       "Wednesday", "Thursday", 
+                                       "Friday", "Saturday", "Sunday")))
 
 dta_day3 <- Energy0 %>% 
   filter(DayNo == 3) %>% 
-  select(c("id", "Age", 
-    "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  select(c("id", "id_dy", "Age", "Sex", 
+           "DayofWeek",  "TimeSlot", "Carbo")) %>%  
   mutate(DayofWeek = factor(DayofWeek, 
-    levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
-        "Saturday", "Sunday")))
+                            levels = c("Monday", "Tuesday", 
+                                       "Wednesday", "Thursday", 
+                                       "Friday", "Saturday", "Sunday")))
 
 dta_day4 <- Energy0 %>% 
   filter(DayNo == 4) %>% 
-  select(c("id", "Age", 
-    "Sex", "DayofWeek", "MealHourN", "Carbo", "Carbo2")) %>% 
+  select(c("id", "id_dy", "Age", "Sex", 
+           "DayofWeek",  "TimeSlot", "Carbo")) %>%  
   mutate(DayofWeek = factor(DayofWeek, 
-    levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
-        "Saturday", "Sunday")))
-vecid1 <- unique(dta_day1$id) # n = 6153
-vecid2 <- unique(dta_day2$id) # n = 6153
-vecid3 <- unique(dta_day3$id) # n = 6151
-vecid4 <- unique(dta_day4$id) # n = 6026
+                            levels = c("Monday", "Tuesday", 
+                                       "Wednesday", "Thursday", 
+                                       "Friday", "Saturday", "Sunday")))
 
-Noday1 <- setdiff(vecid, vecid1)  # two subjects did not have day 1 data
-Noday2 <- setdiff(vecid, vecid2)  # two subjects did not have day 2 data
-Noday3 <- setdiff(vecid, vecid3)  # four subjects did not have day 3 data
-Noday4 <- setdiff(vecid, vecid4)  # 129 subjects did not have day 4 data
+vecid1<-unique(dta_day1$id) # n = 6153
+vecid2<-unique(dta_day2$id) # n = 6153
+vecid3<-unique(dta_day3$id) # n = 6151
+vecid4<-unique(dta_day4$id) # n = 6026
 
-# Transform the data shape from long to wide ---------------------------------
-dta_d1_wide <- dta_day1[, -7] %>% 
-  spread(key = MealHourN, value = Carbo)
-names(dta_d1_wide)[5:28] <- paste(rep("H", 24), 0:23, sep = "")
 
-dta_d2_wide <- dta_day2[, -7] %>% 
-  spread(key = MealHourN, value = Carbo)
-names(dta_d2_wide)[5:28] <- paste(rep("H", 24), 0:23, sep = "")
+Noday1 <- setdiff(vecid, vecid1) # two subjects did not have day 1 data
 
-dta_d3_wide <- dta_day3[, -7] %>% 
-  spread(key = MealHourN, value = Carbo)
-names(dta_d3_wide)[5:28] <- paste(rep("H", 24), 0:23, sep = "")
+Noday2 <- setdiff(vecid, vecid2) # two subjects did not have day 2 data 
 
-dta_d4_wide <- dta_day4[, -7] %>% 
-  spread(key = MealHourN, value = Carbo)
-names(dta_d4_wide)[5:28] <- paste(rep("H", 24), 0:23, sep = "")
+Noday3 <- setdiff(vecid, vecid3) # four subjects did not have day 3 data 
+
+Noday4 <- setdiff(vecid, vecid4) # 129 subjects did not have day 4 data
+
+# Long to wide data -------------------------------------------------------
+
+dta_d1_wide <- dta_day1 %>% 
+  spread(key = TimeSlot, 
+         value = Carbo)
+
+head(dta_d1_wide)
+names(dta_d1_wide)[6:12] <- c("H6_9", "H9_12", "H12_14", "H14_17", 
+                              "H17_20", "H20_22", "H22_6")
+names(dta_d1_wide)
+
+
+dta_d2_wide <- dta_day2 %>% 
+  spread(key = TimeSlot, 
+         value = Carbo)
+
+head(dta_d2_wide)
+names(dta_d2_wide)[6:12] <- c("H6_9", "H9_12", "H12_14", "H14_17", 
+                              "H17_20", "H20_22", "H22_6")
+names(dta_d2_wide)
+
+
+dta_d3_wide <- dta_day3 %>% 
+  spread(key = TimeSlot, 
+         value = Carbo)
+
+head(dta_d3_wide)
+names(dta_d3_wide)[6:12] <- c("H6_9", "H9_12", "H12_14", "H14_17", 
+                              "H17_20", "H20_22", "H22_6")
+names(dta_d3_wide)
+
+
+dta_d4_wide <- dta_day4 %>% 
+  spread(key = TimeSlot, 
+         value = Carbo)
+
+head(dta_d4_wide)
+names(dta_d4_wide)[6:12] <- c("H6_9", "H9_12", "H12_14", "H14_17", 
+                              "H17_20", "H20_22", "H22_6")
+names(dta_d4_wide)
+
+
 
 # recode NA to not eating -------------------------------------------------
-for (i in 5:ncol(dta_d1_wide)) 
-  if (is.factor(dta_d1_wide[, i])) levels(dta_d1_wide[, 
-    i]) <- c(levels(dta_d1_wide[, i]), "Not_eating")
 
-dta_d1_wide[is.na(dta_d1_wide)] <- "Not_eating"
+for (i in 6:ncol(dta_d1_wide)) 
+  if(is.factor(dta_d1_wide[,i])) 
+    levels(dta_d1_wide[,i]) <- c("1", "2", "0")
 
-for (i in 5:ncol(dta_d2_wide)) 
-  if (is.factor(dta_d2_wide[, i])) levels(dta_d2_wide[, 
-    i]) <- c(levels(dta_d2_wide[, i]), "Not_eating")
+dta_d1_wide[is.na(dta_d1_wide)] <- "0"
 
-dta_d2_wide[is.na(dta_d2_wide)] <- "Not_eating"
 
-for (i in 5:ncol(dta_d3_wide)) 
-  if (is.factor(dta_d3_wide[, i])) levels(dta_d3_wide[, 
-    i]) <- c(levels(dta_d3_wide[, i]), "Not_eating")
+for (i in 6:ncol(dta_d2_wide)) 
+  if(is.factor(dta_d2_wide[,i])) 
+    levels(dta_d2_wide[,i]) <- c("1", "2",  "0")
 
-dta_d3_wide[is.na(dta_d3_wide)] <- "Not_eating"
 
-for (i in 5:ncol(dta_d4_wide)) 
-  if (is.factor(dta_d4_wide[, i])) levels(dta_d4_wide[, 
-    i]) <- c(levels(dta_d4_wide[, i]), "Not_eating")
+dta_d2_wide[is.na(dta_d2_wide)] <- "0"
 
-dta_d4_wide[is.na(dta_d4_wide)] <- "Not_eating"
+
+for (i in 6:ncol(dta_d3_wide)) 
+  if(is.factor(dta_d3_wide[,i])) 
+    levels(dta_d3_wide[,i]) <-  c("1", "2", "0")
+
+dta_d3_wide[is.na(dta_d3_wide)] <- "0"
+
+
+for (i in 6:ncol(dta_d4_wide)) 
+  if(is.factor(dta_d4_wide[,i])) 
+    levels(dta_d4_wide[,i]) <-  c("1", "2", "0")
+
+dta_d4_wide[is.na(dta_d4_wide)] <- "0"
+
+
+dta_all <- rbind(dta_d1_wide, dta_d2_wide, dta_d3_wide, dta_d4_wide)
+
+dta_all <- dta_all[order(dta_all$id,dta_all$id_dy),]
+
+# Export the data for Mplus -------------------------------------------------
+
+write_csv(dta_all, path = "dta_NDNS_Tslots.csv")
+write_delim(dta_all, "dta_NDNS_Tslots.dat", na = ".", delim = " ")
 ```
+
+
+
+
 
 
 
@@ -823,3 +968,1410 @@ Support: Support@StatModel.com
 Copyright (c) 1998-2015 Muthen & Muthen
 ```
 
+
+
+```{r  eval=FALSE}
+library(plyr)
+library(epiDisplay)
+library(tidyverse)
+library(dplyr)
+library(readr)
+library(haven)
+library(naniar)
+
+
+
+# read the individual level data sets ----------------------------------------
+
+blood78 <- read_dta("ndns_rp_yr7-8a_indiv.dta")
+blood56 <- read_dta("ndns_rp_yr5-6a_indiv.dta")
+blood14 <- read_dta("ndns_rp_yr1-4a_indiv_uk.dta")
+
+food14 <- read_dta("ndns_rp_yr1-4a_personleveldietarydata_uk.dta")
+
+food56 <- read_dta("ndns_rp_yr5-6a_personleveldietarydata.dta")
+
+food78 <- read_dta("ndns_rp_yr7-8a_personleveldietarydata.dta")
+
+names(blood78)[names(blood78)=="seriali"] <- "ID"
+names(blood56)[names(blood56)=="seriali"] <- "ID"
+names(blood14)[names(blood14)=="seriali"] <- "ID"
+names(food78)[names(food78)=="seriali"] <- "ID"
+names(food56)[names(food56)=="seriali"] <- "ID"
+names(food14)[names(food14)=="seriali"] <- "ID"
+
+
+# Loading the data from Mplus output
+CW3CB3 <- read_table2("../NDNSslot_CW3CB3.txt",  # change the path accordingly
+                      col_names = FALSE)
+
+names(CW3CB3) <- c("Breakfast", "Morning.snack", "Lunch",
+                   "Afternoon.snack", "Dinner", "Before.bedtime.snack",
+                   "Midnight.food", "ID_DAY", "AGE", "SEX", "CPROB1",
+                   "CPROB2", "CPROB3", "CPROB4", "CPROB5", "CPROB6", 
+                   "CPROB7", "CPROB8", "CPROB9", 
+                   "CB", "CW", "MLCJOINT", "ID")
+
+CW3idday <- CW3CB3 %>% 
+  select(ID, ID_DAY, CW, CB, MLCJOINT, AGE, SEX)
+
+Energy_slots <- read_csv("../Energy_slots.csv") # change the path accordingly
+Energy_slots <- Energy_slots %>% 
+  rename(ID = id)
+
+# Recode day level classification to keep consistency
+CW3idday$CW_new <- 0
+CW3idday$CW_new[CW3idday$CW == 1] <- 3
+CW3idday$CW_new[CW3idday$CW == 2] <- 1
+CW3idday$CW_new[CW3idday$CW == 3] <- 2
+
+Energy_slots <- Energy_slots %>% 
+  left_join(CW3idday, by = c("ID", "DayofWeek"))
+
+
+Energy_slots$TimeSlot <- factor(Energy_slots$TimeSlot, 
+                                levels = c("[6,9)", "[9,12)", 
+                                           "[12,14)", "[14,17)",
+                                           "[17,20)", "[20,22)", "[22, 6)"))
+
+FoodbyCB_7slots <- Energy_slots %>% 
+  group_by(ID, TimeSlot) %>% 
+  summarise(sumEnergy = sum(Tot_Energ),
+            sumCarb = sum(Tot_Carb), 
+            sumSugar = sum(Tot_Sugar), 
+            sumStarch = sum(Tot_Starch),
+            sumFibre = sum(Tot_Fibre), 
+            sumNMES = sum(Tot_NMES),
+            sumFat = sum(Tot_Fat),
+            sumProt = sum(Tot_Prot), 
+            sumAlc = sum(Tot_Alc))
+
+# Calculate the sum of each nutrients for each time slots
+Carbsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumCarb) %>% 
+  spread(key = TimeSlot, 
+         value = sumCarb)
+
+Carbsum[is.na(Carbsum)] <- 0
+
+names(Carbsum) <- c("ID", "Carb6_9", "Carb9_12", "Carb12_14", "Carb14_17",
+                     "Carb17_20", "Carb20_22", "Carb22_6")
+
+
+Energysum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumEnergy) %>% 
+  spread(key = TimeSlot, 
+         value = sumEnergy)
+Energysum[is.na(Energysum)] <- 0
+
+
+names(Energysum) <- c("ID", "Energy6_9", "Energy9_12", "Energy12_14", "Energy14_17",
+                     "Energy17_20", "Energy20_22", "Energy22_6")
+
+Starchsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumStarch) %>% 
+  spread(key = TimeSlot, 
+         value = sumStarch)
+Starchsum[is.na(Starchsum)] <- 0
+
+
+names(Starchsum) <- c("ID", "Starch6_9", "Starch9_12", "Starch12_14", "Starch14_17",
+                       "Starch17_20", "Starch20_22", "Starch22_6")
+
+
+Sugarsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumSugar) %>% 
+  spread(key = TimeSlot, 
+         value = sumSugar)
+Sugarsum[is.na(Sugarsum)] <- 0
+
+
+names(Sugarsum) <- c("ID", "Sugar6_9", "Sugar9_12", "Sugar12_14", "Sugar14_17",
+                      "Sugar17_20", "Sugar20_22", "Sugar22_6")
+
+
+Fibresum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumFibre) %>% 
+  spread(key = TimeSlot, 
+         value = sumFibre)
+Fibresum[is.na(Fibresum)] <- 0
+
+
+names(Fibresum) <- c("ID", "Fibre6_9", "Fibre9_12", "Fibre12_14", "Fibre14_17",
+                      "Fibre17_20", "Fibre20_22", "Fibre22_6")
+
+
+NMESsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumNMES) %>% 
+  spread(key = TimeSlot, 
+         value = sumNMES)
+NMESsum[is.na(NMESsum)] <- 0
+
+
+names(NMESsum) <- c("ID", "NMES6_9", "NMES9_12", "NMES12_14", "NMES14_17",
+                      "NMES17_20", "NMES20_22", "NMES22_6")
+
+Fatsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumFat) %>% 
+  spread(key = TimeSlot, 
+         value = sumFat)
+Fatsum[is.na(Fatsum)] <- 0
+
+
+names(Fatsum) <- c("ID", "Fat6_9", "Fat9_12", "Fat12_14", "Fat14_17",
+                     "Fat17_20", "Fat20_22", "Fat22_6")
+
+
+Protsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumProt) %>% 
+  spread(key = TimeSlot, 
+         value = sumProt)
+Protsum[is.na(Protsum)] <- 0
+
+
+names(Protsum) <- c("ID", "Prot6_9", "Prot9_12", "Prot12_14", "Prot14_17",
+                    "Prot17_20", "Prot20_22", "Prot22_6")
+
+
+Alcsum <- FoodbyCB_7slots %>% 
+  select(ID, TimeSlot, sumAlc) %>% 
+  spread(key = TimeSlot, 
+         value = sumAlc)
+Alcsum[is.na(Alcsum)] <- 0
+
+
+names(Alcsum) <- c("ID", "Alc6_9", "Alc9_12", "Alc12_14", "Alc14_17",
+                     "Alc17_20", "Alc20_22", "Alc22_6")
+
+# Extract number of days of diary completed
+
+blood14 <- blood14 %>% 
+  select(ID, Ndays)
+
+blood56 <- blood56 %>% 
+  select(ID, Ndays)
+
+blood78 <- blood78 %>% 
+  select(ID, NDays) %>% 
+  rename(Ndays = NDays)
+
+NDAYS <- rbind(blood14, blood56, blood78)
+NDAYS$ID <- as.numeric(NDAYS$ID)
+
+
+IntakeSlots <- Energysum %>% 
+  left_join(Carbsum, by = "ID") %>% 
+  left_join(Sugarsum, by = "ID") %>% 
+  left_join(Starchsum, by = "ID") %>% 
+  left_join(Fibresum, by = "ID") %>% 
+  left_join(Fatsum, by = "ID") %>% 
+  left_join(Protsum, by = "ID") %>% 
+  left_join(NMESsum, by = "ID") %>% 
+  left_join(Alcsum, by = "ID") %>% 
+  left_join(NDAYS, by = "ID")
+
+
+IntakeSlots$ID <- as.numeric(IntakeSlots$ID)
+
+IntakeSlots$Energy6_9 <- IntakeSlots$Energy6_9/(IntakeSlots$Ndays)
+
+for (i in 3:57){
+  IntakeSlots[, i] <- IntakeSlots[, i]/(IntakeSlots$Ndays)
+}
+
+
+
+# select the variables needed, recoding 
+# NAs, renaming to the same ----------------------------------------
+
+BMI78 <- blood78 %>% 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, 
+         hyper140_2, hibp140_2,  Glucose, A1C, cigsta3, dnoft3, 
+         dnnow, wti_Y78, wtn_Y78, wtb_Y78, ethgrp5, ethgrp2,
+         cluster1, cluster2, cluster3, nssec8, paidemployment, 
+         qual7, eqvinc, MarSt2, cluster4, cluster5, area, gor, 
+         LDL, HDL, Chol, Trig) %>% 
+  rename(wti = wti_Y78, wtn = wtn_Y78, wtb = wtb_Y78, 
+         drink = dnoft3) %>% 
+  mutate(Years = "7-8", MVPAtime = NA, MarStat = NA) %>% 
+  replace_with_na(replace = list(bmival = -1, qual7 = -8,
+                                 wstval = -1, eqvinc = -1,
+                                 bpmedd2 = -1, MarSt2 = -1,
+                                 bpmedc2 = -1, hyper140_2 = -7, 
+                                 hibp140_2 = -7, Glucose = -1, 
+                                 A1C  = -1,  LDL = -1, HDL = -1, 
+                                 Chol = -1, Trig = -1, dnnow = -1,
+                                 drink = -1, ethgrp5 = -4, 
+                                 ethgrp2 = -4, cigsta3 = -1, 
+                                 nssec8 = -9,  paidemployment = -1)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, 
+                                 nssec8 = 99, qual7 = -1, drink = -8, 
+                                 ethgrp2 = -9, ethgrp5 = -9)) %>% 
+  replace_with_na(replace = list(drink = -9, ethgrp2 = -8, ethgrp5 = -8,
+                                 cigsta3 = -8)) %>% 
+  replace_with_na(replace = list(ethgrp2 = -1, ethgrp5 = -1))
+
+
+
+
+BMI56 <- blood56 %>% 
+  select(ID, Sex, age, area, bmival, wstval, Diabetes, bpmedc2, bpmedd2, 
+         hyper140_2, hibp140_2, MVPAtime, Glucose, A1C, cigsta3, dnoft3, 
+         dnnow, wti_Y56, wtn_Y56, wtb_Y56, ethgrp5, ethgrp2, qual7,
+         cluster1, cluster2, cluster3, nssec8, paidemployment, eqvinc, 
+         MarSt2, cluster4, cluster5, area, gor, LDL, HDL, Chol, Trig) %>% 
+  mutate(Years = "5-6", MarStat = NA) %>% 
+  rename(wti = wti_Y56, wtn = wtn_Y56, wtb = wtb_Y56, drink = dnoft3) %>% 
+  replace_with_na(replace = list(bmival = -1, paidemployment = -9,
+                                 wstval = -1, qual7 = -8,
+                                 bpmedd2 = -1, eqvinc = -1,
+                                 bpmedc2 = -1, MarSt2 = -1,
+                                 hyper140_2 = -7, hibp140_2 = -7, 
+                                 Glucose = -1,  A1C  = -1, 
+                                 dnnow = -1, drink = -1, ethgrp5 = -4,
+                                 ethgrp2 = -4, LDL = -1, HDL = -1, 
+                                 Chol = -1, Trig = -1, cigsta3 = -1,
+                                 MVPAtime = -1, nssec8 = -9)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, 
+                                 paidemployment = -8, 
+                                 drink = -8, nssec8 = 99)) %>% 
+    replace_with_na(replace = list(drink = -9, paidemployment = -1, 
+                                   qual7 = -1, cigsta3 = -8))
+
+BMI14 <- blood14 %>% 
+  select(ID, Sex, age, bmival, wstval, Diabetes, bpmedc, bpmedd, hyper140, 
+         hibp140, MVPAtime, Glucose, A1C, cigsta3, dnoft3, dnnow, 
+         wti_CY1234, wtn_CY1234, wtb_CY1234, ethgr5, ethgr2, cluster, 
+         area, gor, nssec8, paidemployment, qual7, eqvinc, MarSt2, 
+         MarStat, LDL, HDL, Chol, Trig) %>%
+  rename(hyper140_2 = hyper140, hibp140_2 = hibp140, bpmedd2 = bpmedd, 
+         bpmedc2 = bpmedc, cluster1 = cluster, ethgrp5 = ethgr5, 
+         ethgrp2 = ethgr2, wti = wti_CY1234, wtn = wtn_CY1234, 
+         wtb =  wtb_CY1234, drink = dnoft3) %>% 
+  mutate(cluster2 = NA, cluster3 = NA, cluster4 = NA, cluster5 = NA, 
+         Years = "1-4") %>% 
+  replace_with_na(replace = list(bmival = -1, paidemployment = -9, 
+                                 wstval = -1, qual7 = -8,
+                                 bpmedd2 = -1, eqvinc = -1,
+                                 bpmedc2 = -1, MarSt2 = -4, 
+                                 hyper140_2 = -7, MarStat = -4,
+                                 hibp140_2 = -7,  Glucose = -1, 
+                                 A1C  = -1,  dnnow = -1, LDL = -1, 
+                                 HDL = -1, Chol = -1, Trig = -1,
+                                 drink = -1, ethgrp5 = -4, ethgrp2 = -4,
+                                 cigsta3 = -1, MVPAtime = -4,  
+                                 nssec8 = -8)) %>% 
+  replace_with_na(replace = list(hyper140_2 = -1, hibp140_2 = -1, 
+                                 MVPAtime = -1, paidemployment = -8,
+                                 drink = -8, nssec8 = -1, qual7 = -1, 
+                                 MarSt2 = -1)) %>% 
+  replace_with_na(replace = list(drink = -9, paidemployment = -4,
+                                 cigsta3 = -8, nssec8 = 99)) %>% 
+  replace_with_na(replace = list(paidemployment = -1))
+
+
+BMI <- bind_rows(BMI14, BMI56, BMI78)
+
+
+
+Energy14 <- food14 %>% 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, 
+         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,
+         Fatg, FatpctotE)
+Energy14$Country[Energy14$Country == "Northern Ireland"] <- "NI"
+
+Energy56 <- food56 %>% 
+  select(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, 
+         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,
+         Fatg, FatpctotE) %>% 
+  rename(SurveyYear = Surveyyear)
+
+Energy78 <- food78 %>% 
+  select(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, 
+         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,
+         Fatg, FatpctotE)
+
+Energy <- bind_rows(Energy14, Energy56, Energy78)
+
+
+
+dta_NDNS <- read_csv("dta_NDNS_Tslots.csv") # extract the day of week data
+
+
+CW3idday$DayNo <- ave(CW3idday$ID_DAY, CW3idday$ID, 
+                      FUN = seq_along) # adding the day no 
+
+dta_DayofWeek <- dta_NDNS %>% 
+  select(id, id_dy, DayofWeek)
+
+dta_DayofWeek$DayNo <- unlist(strsplit(dta_DayofWeek$id_dy,
+                                       "D"))[c(FALSE, TRUE)] # creating a day No
+names(dta_DayofWeek)[1] <- "ID"
+dta_DayofWeek$DayNo <- as.numeric(dta_DayofWeek$DayNo)
+
+
+CW3idday <-   CW3idday %>%  
+  left_join(dta_DayofWeek, by= c("ID", "DayNo"))
+
+## Manually check the day of week
+CW3idday$DayofWeek[CW3idday$ID_DAY == 40714261000] <- "Saturday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 112050710000] <- "Tuesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 310122510000] <- "Wednesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 5050616100] <- "Monday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 50506161000] <- "Tuesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 505061610000] <- "Wednesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 7090824100] <- "Monday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 70908241000] <- "Tuesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 709082410000] <- "Wednesday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 807021910000] <- "Monday"
+CW3idday$DayofWeek[CW3idday$ID_DAY == 812101310000] <- "Sunday"
+
+
+CW3CB3_reg <- CW3CB3[!duplicated(CW3CB3$ID), ]
+
+# extract only the CB variable (Between individual classes == 1 or 2)
+CW3CB3_reg <- CW3CB3_reg %>% 
+  select(ID, AGE, SEX, CB) 
+
+tab1(CW3CB3_reg$CB, graph = FALSE)
+
+
+## dataset for 3by3 multilevel latent classes 
+CW3CB3_regss <- CW3CB3_reg %>% 
+  left_join(BMI, by = "ID") %>% 
+  left_join(Energy, by = "ID") 
+
+# Rescale the weighting values
+# individual weighting
+
+a <- sum(CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wti)
+b <- sum(CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wti)
+c <- sum(CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wti)
+
+CW3CB3_regss$wti1to8 <- CW3CB3_regss$wti
+
+CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wti1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wti*(a+b+c)*(1/2)/a
+CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wti1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wti*(a+b+c)*(1/4)/b
+CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wti1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wti*(a+b+c)*(1/4)/c
+mean(CW3CB3_regss$wti1to8)
+
+CW3CB3_regss$wti1to8 <- CW3CB3_regss$wti1to8/1.209816814
+summ(CW3CB3_regss$wti1to8, graph = FALSE)
+#Check if the weighting sum up to the sample size we have
+sum(CW3CB3_regss$wti1to8, graph = FALSE) 
+
+# Nurse weights
+
+a <- sum(CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtn)
+b <- sum(CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtn)
+c <- sum(CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtn)
+
+CW3CB3_regss$wtn1to8 <- CW3CB3_regss$wtn
+
+CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtn1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtn*(a+b+c)*(1/2)/a
+CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtn1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtn*(a+b+c)*(1/4)/b
+CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtn1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtn*(a+b+c)*(1/4)/c
+mean(CW3CB3_regss$wtn1to8)
+
+CW3CB3_regss$wtn1to8 <- CW3CB3_regss$wtn1to8/0.907003577
+summ(CW3CB3_regss$wtn1to8, graph = FALSE)
+#Check if the weighting sum up to the sample size we have
+sum(CW3CB3_regss$wtn1to8, graph = FALSE) 
+
+# Blood weights
+a <- sum(CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtb)
+b <- sum(CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtb)
+c <- sum(CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtb)
+
+CW3CB3_regss$wtb1to8 <- CW3CB3_regss$wtb
+
+CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtb1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "1-4",]$wtb*(a+b+c)*(1/2)/a
+CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtb1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "5-6",]$wtb*(a+b+c)*(1/4)/b
+CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtb1to8 <- 
+  CW3CB3_regss[CW3CB3_regss$Years == "7-8",]$wtb*(a+b+c)*(1/4)/c
+mean(CW3CB3_regss$wtb1to8)
+
+CW3CB3_regss$wtb1to8 <- CW3CB3_regss$wtb1to8/0.4817444505
+summ(CW3CB3_regss$wtb1to8, graph = FALSE)
+#Check if the weighting sum up to the sample size we have
+sum(CW3CB3_regss$wtb1to8, graph = FALSE)
+
+
+weightings <- CW3CB3_regss %>% select(ID, wti1to8, wtn1to8, wtb1to8)
+
+
+# Combine the data from nutrient intake at each time slot
+CW3CB3_7regss <- CW3CB3_7regss %>% 
+  left_join(IntakeSlots, by = "ID")
+
+## dta ready to be analysed in STATA
+ # change the path accordingly
+write_dta(CW3CB3_regss, "../CW3CB3_7regss.dta")
+```
+
+
+
+```
+************************************************
+// Analysing NDNS survey data in stata
+// for CW3CB3 survey data analysis 
+// date created: 2018-08-01
+// manipulation of the data was done in R
+// import data from CW3CB3_7sregss.dta
+// change the path accordingly
+************************************************
+
+
+use "../CW3CB3_7regss.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+label define paid 1 "No" 2 "Yes"
+label values paidemployment paid
+label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+label values ethgrp5 ethnicity5
+label define ethnicity2 1 "White" 2 "non-White"
+label values ethgrp2 ethnicity2
+
+gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+replace Married = 1 if MarSt2 == 3
+replace Married = 0 if Married !=1
+tab Married
+tab MarSt2
+tab MarStat
+
+label define Partner 0 "No" 1 "Yes"
+label values Married Partner
+
+gen Education = qual7 == 1
+label define Ed 0 "lower than Degree" 1 "Degree or higher"
+label values Education Ed
+
+replace Education = . if qual7 >100
+tab Educ
+
+
+egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+tab BMIcat
+
+**********************************************************
+// variables need to be log transfomred                 //
+**********************************************************
+
+gen logalc = ln(Alcoholg+1)
+summ logalc, detail
+gen logMVP = ln(MVPAtime+1)
+summ logMVP, detail
+gen logGlu = ln(Glucose)
+summ logGlu, detail
+gen logA1C = ln(A1C)
+summ logA1C, detail
+gen logChol = ln(Chol)
+summ logChol, detail
+gen logLDL = ln(LDL)
+gen logHDL = ln(HDL)
+gen logTG = ln(Trig)
+
+
+
+*********************************************************
+//  weighting use wti to see the individual results    //
+//                                                     //
+*********************************************************
+
+
+// weighting with individual weights, area is primary sampling unit, 
+// gor is the cluster variable
+
+svyset area [pweight = wti1to8], strata(gor)
+
+svydescribe wti // describe the weighted data set
+
+
+
+svy: tabulate Sex CB, row se ci format(%7.3f)
+svy: tabulate Sex CB, col se ci format(%7.3f)
+svy: tabulate Country CB, col se ci format(%7.3f)
+svy: tabulate Country CB, row se ci format(%7.3f)
+svy: tabulate SurveyYear CB, col se ci format(%7.3f)
+svy: tabulate SurveyYear CB, row se ci format(%7.3f)
+svy: tabulate paid CB, col se ci format(%7.3f)
+	
+svy: tabulate MarSt2 CB
+svy: tabulate MarStat CB
+svy: tabulate Married CB, row se ci format(%7.3f)
+svy: tabulate Married CB, col se ci format(%7.3f)
+svy: mean eqvinc, over(CB)
+test [eqvinc]1 = [eqvinc]2 = [eqvinc]3, mtest(b) 
+// bonferroni-adjusted p-values for multiple groups using the mtest(b) option
+
+svy: tabulate ethgrp2 CB, row se ci format(%7.3f)
+svy: tabulate ethgrp2 CB, col se ci format(%7.3f)
+svy: tabulate Education CB, row se ci format(%7.3f)
+svy: tabulate Education CB, col se ci format(%7.3f)
+
+*********************************************************
+//  nutritional distribution                           //
+//                                                     //
+*********************************************************
+
+
+svy: mean EnergykJ, over(CB)
+test [EnergykJ]1 = [EnergykJ]2 = [EnergykJ]3, mtest(b) 
+
+svy: mean Energy6, over(CB)
+test [Energy6_9]1 = [Energy6_9]2 = [Energy6_9]3, mtest(b) 
+
+svy: mean Energy9, over(CB) 
+test [Energy9_12]1 = [Energy9_12]2 = [Energy9_12]3, mtest(b) 
+
+svy: mean Energy12, over(CB)
+test [Energy12_14]1 = [Energy12_14]2 = [Energy12_14]3, mtest(b) 
+
+svy: mean Energy14, over(CB)
+test [Energy14_17]1 = [Energy14_17]2 = [Energy14_17]3, mtest(b) 
+
+svy: mean Energy17, over(CB)
+test [Energy17_20]1 = [Energy17_20]2 = [Energy17_20]3, mtest(b) 
+
+svy: mean Energy20, over(CB)
+test [Energy20_22]1 = [Energy20_22]2 = [Energy20_22]3, mtest(b) 
+
+svy: mean Energy22, over(CB)
+test [Energy22_6]1 = [Energy22_6]2 = [Energy22_6]3, mtest(b) 
+
+
+svy: mean Carbohydrateg, over(CB)
+test [Carbohydrateg]1 = [Carbohydrateg]2 = [Carbohydrateg]3, mtest(b) 
+
+svy: mean Carb6, over(CB)
+test [Carb6_9]1 = [Carb6_9]2 = [Carb6_9]3, mtest(b) 
+
+svy: mean Carb9, over(CB)
+test [Carb9_12]1 = [Carb9_12]2 = [Carb9_12]3, mtest(b) 
+
+svy: mean Carb12, over(CB)
+test [Carb12_14]1 = [Carb12_14]2 = [Carb12_14]3, mtest(b) 
+
+svy: mean Carb14, over(CB)
+test [Carb14_17]1 = [Carb14_17]2 = [Carb14_17]3, mtest(b) 
+
+svy: mean Carb17, over(CB)
+test [Carb17_20]1 = [Carb17_20]2 = [Carb17_20]3, mtest(b) 
+
+
+svy: mean Carb20, over(CB)
+test [Carb20_22]1 = [Carb20_22]2 = [Carb20_22]3, mtest(b) 
+
+svy: mean Carb22, over(CB)
+test [Carb22_6]1 = [Carb22_6]2 = [Carb22_6]3, mtest(b) 
+
+svy: mean Sugar6, over(CB)
+test [Sugar6_9]1 = [Sugar6_9]2 = [Sugar6_9]3, mtest(b) 
+
+
+
+svy: mean Sugar9, over(CB)
+test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) 
+
+svy: mean Sugar12, over(CB)
+test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) 
+
+svy: mean Sugar14, over(CB)
+test [Sugar14_17]1 = [Sugar14_17]2 = [Sugar14_17]3, mtest(b) 
+
+svy: mean Sugar17, over(CB)
+test [Sugar17_20]1 = [Sugar17_20]2 = [Sugar17_20]3, mtest(b) 
+
+svy: mean Sugar20, over(CB)
+test [Sugar20_22]1 = [Sugar20_22]2 = [Sugar20_22]3, mtest(b) 
+
+svy: mean Sugar22, over(CB)
+test [Sugar22_6]1 = [Sugar22_6]2 = [Sugar22_6]3, mtest(b) 
+
+svy: mean Starch6, over(CB)
+test [Starch6_9]1 = [Starch6_9]2 = [Starch6_9]3, mtest(b) 
+
+svy: mean Starch9, over(CB)
+test [Sugar12_14]1 = [Sugar12_14]2 = [Sugar12_14]3, mtest(b) 
+
+svy: mean Starch12, over(CB)
+test [Starch12_14]1 = [Starch12_14]2 = [Starch12_14]3, mtest(b) 
+
+svy: mean Starch14, over(CB)
+test [Starch14_17]1 = [Starch14_17]2 = [Starch14_17]3, mtest(b) 
+
+svy: mean Starch17, over(CB)
+test [Starch17_20]1 = [Starch17_20]2 = [Starch17_20]3, mtest(b) 
+
+
+svy: mean Starch20, over(CB)
+test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) 
+
+svy: mean Starch22, over(CB)
+test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) 
+
+svy: mean Fibre6, over(CB)
+test [Starch22_6]1 = [Starch22_6]2 = [Starch22_6]3, mtest(b) 
+
+gen Fibreg = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
+svy: mean Fibreg, over(CB)
+test [Fibreg]1 = [Fibreg]2 = [Fibreg]3, mtest(b) 
+
+
+svy: mean Fibre9, over(CB)
+test [Fibre9_12]1 = [Fibre9_12]2 = [Fibre9_12]3, mtest(b) 
+
+
+svy: mean Fibre12, over(CB)
+test [Fibre12_14]1 = [Fibre12_14]2 = [Fibre12_14]3, mtest(b) 
+
+svy: mean Fibre14, over(CB)
+test [Fibre14_17]1 = [Fibre14_17]2 = [Fibre14_17]3, mtest(b) 
+
+svy: mean Fibre17, over(CB)
+test [Fibre17_20]1 = [Fibre17_20]2 = [Fibre17_20]3, mtest(b) 
+
+svy: mean Fibre20, over(CB)
+test [Fibre20_22]1 = [Fibre20_22]2 = [Fibre20_22]3, mtest(b) 
+
+svy: mean Fibre22, over(CB)
+test [Fibre22_6]1 = [Fibre22_6]2 = [Fibre22_6]3, mtest(b) 
+
+svy: mean NMES6, over(CB)
+test [NMES6_9]1 = [NMES6_9]2 = [NMES6_9]3, mtest(b) 
+
+svy: mean NMES9, over(CB)
+test [NMES9_12]1 = [NMES9_12]2 = [NMES9_12]3, mtest(b) 
+
+
+svy: mean NMES12, over(CB)
+test [NMES12_14]1 = [NMES12_14]2 = [NMES12_14]3, mtest(b) 
+
+svy: mean NMES14, over(CB)
+test [NMES14_17]1 = [NMES14_17]2 = [NMES14_17]3, mtest(b) 
+
+svy: mean NMES17, over(CB)
+test [NMES17_20]1 = [NMES17_20]2 = [NMES17_20]3, mtest(b) 
+
+
+svy: mean NMES20, over(CB)
+test [NMES20_22]1 = [NMES20_22]2 = [NMES20_22]3, mtest(b) 
+
+svy: mean NMES22, over(CB)
+
+
+svy: mean CHO, over(CB)
+test [CHOpctotE]1 = [CHOpctotE]2 = [CHOpctotE]3, mtest(b) 
+
+
+svy: mean Proteing, over(CB)
+test [Proteing]1 = [Proteing]2 = [Proteing]3, mtest(b) 
+
+svy: mean Prot6, over(CB)
+test [Prot6_9]1 = [Prot6_9]2 = [Prot6_9]3, mtest(b) 
+
+svy: mean Prot9, over(CB)
+test [Prot9_12]1 = [Prot9_12]2 = [Prot9_12]3, mtest(b) 
+
+svy: mean Prot12, over(CB)
+test [Prot12_14]1 = [Prot12_14]2 = [Prot12_14]3, mtest(b) 
+
+svy: mean Prot14, over(CB)
+test [Prot14_17]1 = [Prot14_17]2 = [Prot14_17]3, mtest(b) 
+
+svy: mean Prot17, over(CB)
+test [Prot17_20]1 = [Prot17_20]2 = [Prot17_20]3, mtest(b) 
+
+svy: mean Prot20, over(CB)
+test [Prot20_22]1 = [Prot20_22]2 = [Prot20_22]3, mtest(b) 
+
+svy: mean Prot22, over(CB)
+test [Prot22_6]1 = [Prot22_6]2 = [Prot22_6]3, mtest(b) 
+
+
+svy: mean Proteinp, over(CB)
+test [ProteinpctotE]1 = [ProteinpctotE]2 = [ProteinpctotE]3, mtest(b) 
+
+svy: mean Fatg, over(CB)
+test [Fatg]1 = [Fatg]2 = [Fatg]3, mtest(b) 
+
+
+svy: mean Fat6, over(CB)
+test [Fat6_9]1 = [Fat6_9]2 = [Fat6_9]3, mtest(b) 
+
+svy: mean Fat9, over(CB)
+test [Fat9_12]1 = [Fat9_12]2 = [Fat9_12]3, mtest(b) 
+
+
+svy: mean Fat12, over(CB)
+test [Fat12_14]1 = [Fat12_14]2 = [Fat12_14]3, mtest(b) 
+
+svy: mean Fat14, over(CB)
+test [Fat14_17]1 = [Fat14_17]2 = [Fat14_17]3, mtest(b) 
+
+svy: mean Fat17, over(CB)
+test [Fat17_20]1 = [Fat17_20]2 = [Fat17_20]3, mtest(b) 
+
+svy: mean Fat20, over(CB)
+test [Fat20_22]1 = [Fat20_22]2 = [Fat20_22]3, mtest(b) 
+
+svy: mean Fat22, over(CB)
+test [Fat22_6]1 = [Fat22_6]2 = [Fat22_6]3, mtest(b) 
+
+
+
+svy: mean Fatp, over(CB)
+test [FatpctotE]1 = [FatpctotE]2 = [FatpctotE]3, mtest(b) 
+
+svy: mean Alcoholg, over(CB)
+test [Alcoholg]1 = [Alcoholg]2 = [Alcoholg]3, mtest(b) 
+
+
+svy: mean Alc6, over(CB)
+test [Alc6_9]1 = [Alc6_9]2 = [Alc6_9]3, mtest(b) 
+
+
+svy: mean Alc9, over(CB)
+test [Alc9_12]1 = [Alc9_12]2 = [Alc9_12]3, mtest(b) 
+
+svy: mean Alc12, over(CB)
+test [Alc12_14]1 = [Alc12_14]2 = [Alc12_14]3, mtest(b) 
+
+svy: mean Alc14, over(CB)
+test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) 
+
+svy: mean Alc17, over(CB)
+test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) 
+
+svy: mean Alc20, over(CB)
+test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) 
+
+
+svy: mean Alcoholp, over(CB)
+test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) 
+
+
+svy: tabulate cigsta3 CB, col se ci format(%7.3f)
+svy: tabulate dnnow CB, col se ci format(%7.3f)
+svy: tabulate hibp CB, col se ci format(%7.3f)
+
+
+sum MVP [weight=wti1to8] if CB ==1 , det
+sum MVP [weight=wti1to8] if CB ==2 , det
+sum MVP [weight=wti1to8] if CB ==3 , det
+svy: mean MVP, over(CB)
+
+svy: mean logMVP, over(CB) eform
+test [logMVP]1 = [logMVP]2 = [logMVP]3, mtest(b) 
+
+
+disp exp(.731059) - 1    
+dis exp(.6768489) -1 
+dis exp(.7852691) -1
+
+disp exp(.6239265) - 1    
+dis exp(.571165) -1 
+dis exp( .6766879) -1
+
+disp exp(.7273621) - 1    
+dis exp(.684545) -1 
+dis exp(.7701791) -1
+
+svy: mean logalc, over(CB)
+
+
+disp exp( 2.035795) - 1    
+dis exp(1.933326) -1 
+dis exp(2.138264) -1
+
+
+
+*********************************************************
+//  re-weighting use wtn to see the BMI,wc measurements //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtn1to8], strata(gor)
+svy: mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) 
+
+gen Men = Sex == 1 
+svy, subpop(Men): mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) 
+
+gen Women = Sex == 2
+svy, subpop(Women): mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) 
+
+
+
+svy: mean bmi, over(CB)
+
+test [bmival]1 = [bmival]2 = [bmival]3, mtest(b) 
+
+
+*********************************************************
+//  re-weighting use wtb to see the blood test results //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtb1to8], strata(gor)
+
+
+svy: mean HDL, over(CB)
+test [HDL]1 = [HDL]2 = [HDL]3, mtest(b) 
+
+svy: mean Chol, over(CB)
+test [Chol]1 = [Chol]2 = [Chol]3, mtest(b) 
+
+svy: mean LDL, over(CB)
+test [LDL]1 = [LDL]2 = [LDL]3, mtest(b) 
+
+svy: mean Trig, over(CB)
+test [Trig]1 = [Trig]2 = [Trig]3, mtest(b) 
+
+
+gen DM = A1C <= 6.5 if !missing(A1C)
+
+
+svy, subpop(DM): mean Glucose, over(CB)
+test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
+
+svy, subpop(DM): mean A1C, over(CB)
+test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
+
+svy: tabulate DM CB, col se ci format(%7.3f)
+
+
+
+
+svy, subpop(DM): mean Glucose, over(CB)
+test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
+svy, subpop(DM): mean A1C, over(C)
+test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
+
+svy: tabulate DM C, col se ci format(%7.3f)
+
+
+
+svy, subpop(DM): mean logGlu, over(CB)
+test [logGlu]1 = [logGlu]2 = [logGlu]3, mtest(b)
+
+
+dis exp(1.642848)
+dis exp(1.632226)
+dis exp(1.653471)
+
+dis exp(1.620347)
+dis exp(1.606447)
+dis exp(1.634246)
+
+
+dis exp(1.629356)
+dis exp(1.620271)
+dis exp(1.63844)
+
+
+svy, subpop(DM): mean logA1C, over(CB)
+test [logA1C]1 = [logA1C]2 = [logA1C]3, mtest(b)
+
+dis exp(1.699581)
+dis exp(1.69296)
+dis exp(1.706203)
+
+
+dis exp(1.691608)
+dis exp(1.683897)
+dis exp(1.699318)
+
+
+dis exp(1.705623)
+dis exp(1.700665)
+dis exp(1.710581)
+
+
+svy: mean logChol, over(CB)
+dis exp(1.598818)
+dis exp(1.577698)
+dis exp(1.619939)
+
+
+dis exp(1.55251)  
+dis exp(1.530408)
+dis exp(1.574613)
+
+dis exp(1.599389)
+dis exp(1.583391)
+dis exp(1.615388)
+
+
+test [logChol]1 = [logChol]2 = [logChol]3, mtest(b)
+
+
+
+
+svy: mean logHDL, over(CB)
+dis exp(.3293169)
+dis exp(.3026793)
+dis exp(.3559545)
+
+
+dis exp(.2749379)  
+dis exp(.2476816)
+dis exp(.3021941)
+
+dis exp(.3269002)
+dis exp(.3062623)
+dis exp(.3475381)
+
+
+test [logHDL]1 = [logHDL]2 = [logHDL]3, mtest(b)
+
+
+
+svy: mean logLDL, over(CB)
+dis exp(1.058635)
+dis exp(1.028391)
+dis exp(1.08888)
+
+
+dis exp(1.018181)  
+dis exp(.984431)
+dis exp(1.051931)
+
+dis exp(1.075229)
+dis exp(1.051369)
+dis exp(1.09909)
+
+
+test [logLDL]1 = [logLDL]2 = [logLDL]3, mtest(b)
+
+
+svy: mean logTG, over(CB)
+dis exp(.1273876)
+dis exp(.0777152)
+dis exp(.17706)
+
+
+dis exp(.1012169)  
+dis exp(.0460972)
+dis exp(.1563366)
+
+dis exp(.0983298)
+dis exp(.0607423)
+dis exp(.1359172)
+
+
+test [logTG]1 = [logTG]2 = [logTG]3, mtest(b)
+
+***************************************************
+// Analysing NDNS survey data in stata
+// for CW3CB3 survey data analysis on hypertension
+// date created: 2018-08-06
+// manipulation of the data was done in R
+// import data from CW3CB3_7sregss.dta
+// change the path accordingly
+**************************************************
+
+
+use "../CW3CB3_7regss.dta", clear
+
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+label define paid 1 "No" 2 "Yes"
+label values paidemployment paid
+label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+label values ethgrp5 ethnicity5
+label define ethnicity2 1 "White" 2 "non-White"
+label values ethgrp2 ethnicity2
+
+gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+replace Married = 1 if MarSt2 == 3
+replace Married = 0 if Married !=1
+tab Married
+tab MarSt2
+tab MarStat
+
+label define Partner 0 "No" 1 "Yes"
+label values Married Partner
+
+gen Education = qual7 == 1
+label define Ed 0 "lower than Degree" 1 "Degree or higher"
+label values Education Ed
+
+replace Education = . if qual7 >100
+tab Educ
+
+
+egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+tab BMIcat
+
+
+**********************************************************
+// variables need to be log transfomred                 //
+**********************************************************
+
+gen logalc = ln(Alcoholg+1)
+summ logalc, detail
+gen logMVP = ln(MVPAtime+1)
+summ logMVP, detail
+gen logGlu = ln(Glucose)
+summ logGlu, detail
+gen logA1C = ln(A1C)
+summ logA1C, detail
+gen logChol = ln(Chol)
+summ logChol, detail
+gen logLDL = ln(LDL)
+gen logHDL = ln(HDL)
+gen logTG = ln(Trig)
+
+
+
+
+*********************************************************
+//  weighting use wti to see the individual results    //
+//                                                     //
+*********************************************************
+
+
+// weighting with individual weights, area is primary sampling unit, 
+// gor is the cluster variable
+svyset area [pweight = wti1to8], strata(gor)
+
+svydescribe wti // describe the weighted data set
+
+
+*********************************************************
+//  re-weighting use wtn to see the BMI,wc measurements //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtn1to8], strata(gor)
+
+
+gen Men = Sex == 1  //  n of men = 2537
+gen Women = Sex == 2 // n of women = 3618
+
+svy, subpop(Men): tab hibp, se ci format(%7.3f)
+svy, subpop(Women): tab hibp, se ci format(%7.3f)
+
+svy, subpop(Men): mean age, over(hibp)
+test [age]1 = [age]0
+svy, subpop(Women): mean age, over(hibp)
+test [age]1 = [age]0
+
+svy, subpop(Men): mean wst, over(hibp)
+test [wstval]1 = [wstval]0
+svy, subpop(Women): mean wst, over(hibp)
+test [wstval]1 = [wstval]0
+
+svy, subpop(Men): tabulate CB hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate CB hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Country hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate Country hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate SurveyYear hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate SurveyYear hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate ethgrp2 hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate ethgrp2 hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Edu hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate Edu hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate cigsta3 hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate cigsta3 hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Married hibp, col  se ci format(%7.3f)
+
+svy, subpop(Men): mean logMVP, over(hibp)
+test [logMVP]1 = [logMVP]0
+
+
+disp exp(.9234363 ) - 1    
+dis exp(.8457101) -1 
+dis exp(1.001163) -1
+
+disp exp(.828635) - 1    
+dis exp(.730244) -1 
+dis exp( .9270261) -1
+
+
+svy, subpop(Women): mean logMVP, over(hibp) 
+test [logMVP]1 = [logMVP]0
+
+
+disp exp(.5916676) - 1    
+dis exp(.5473043) -1 
+dis exp(.6360309) -1
+
+disp exp(.4231103) - 1    
+dis exp(.3536885) -1 
+dis exp(.4925322) -1
+
+
+
+
+svy: mean logalc, over(CB)
+
+
+disp exp( 2.035795) - 1    
+dis exp(1.933326) -1 
+dis exp(2.138264) -1
+
+
+
+
+svy, subpop(Men): mean bmi, over(hibp)
+test [bmival]1 = [bmival]0
+svy, subpop(Women): mean bmi, over(hibp)
+test [bmival]1 = [bmival]0
+
+
+svy, subpop(Men): mean EnergykJ, over(hibp)
+test [EnergykJkJ]1 = [EnergykJkJ]0
+svy, subpop(Women): mean EnergykJ, over(hibp)
+test [EnergykJkJ]1 = [EnergykJkJ]0
+
+	
+svy, subpop(Men): mean Carbo, over(hibp)
+test [Carbohydrateg]1 = [Carbohydrateg]0
+
+svy, subpop(Women): mean Carbohydrateg, over(hibp)
+test [Carbohydrateg]1 = [Carbohydrateg]0
+
+
+svy, subpop(Men): mean Proteing, over(hibp)
+test [Proteing]1 = [Proteing]0
+
+svy, subpop(Women): mean Carbohydrateg, over(hibp)
+test [Carbohydrateg]1 = [Carbohydrateg]0
+
+
+
+svy: tabulate Sex hibp, col se ci format(%7.3f)
+
+svy: logistic hibp i.CB
+svy: logistic hibp i.CB#i.Sex
+
+test 2.CB#2.Sex
+
+svy: tabulate paid hibp, col se ci format(%7.3f)
+
+
+
+gen DM = A1C > 6.5 if !missing(A1C)
+svyset area [pweight = wtb1to8], strata(gor)
+
+svy, subpop(Men): tabulate DM hibp, col se ci format(%7.3f)
+svy, subpop(Women): tabulate DM hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Married hibp, col se ci format(%7.3f)
+svy, subpop(Women): tabulate Married hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): mean eqvinc, over(hibp)
+test [eqvinc]1 = [eqvinc]0
+
+svy, subpop(Women): mean eqvinc, over(hibp)
+test [eqvinc]1 = [eqvinc]0
+
+
+********************************************************
+**   Building the GLM model 
+**   date: 07/08/2018
+**
+**
+********************************************************
+
+svyset area [pweight = wtn1to8], strata(gor)
+
+
+// crude association between CB and hypertension 
+
+svy, subpop(Men): logistic hibp i.CB
+
+svy, subpop(Women): logistic hibp i.CB
+
+// in non DM 
+svy, subpop(Men if DM != 1): logistic hibp i.CB
+svy, subpop(Women if DM != 1): logistic hibp i.CB
+
+
+// looking for confounders one by one
+// Age: -> confounder
+svy, subpop(Men): logistic hibp i.CB age
+test age
+svy, subpop(Women): logistic hibp i.CB age
+test age
+
+svy, subpop(Men): logistic hibp i.CB##c.age
+svy, subpop(Women): logistic hibp i.CB##c.age
+test 2.CB#c.age 3.CB#c.age // no interaction
+
+// Partner -> confounder
+svy, subpop(Men): logistic hibp i.CB i.Married
+test 1.Married
+svy, subpop(Women): logistic hibp i.CB i.Married
+test 1.Married
+
+svy, subpop(Men): logistic hibp i.CB##i.Married
+svy, subpop(Women): logistic hibp i.CB##i.Married
+
+test 2.CB#1.Married 3.CB#1.Married // -> no interaction
+
+
+// Income -> not confounder for men but confounder for women
+svy, subpop(Men): logistic hibp i.CB eqvinc 
+test eqvinc
+svy, subpop(Women): logistic hibp i.CB eqvinc 
+test eqvinc
+
+svy, subpop(Men): logistic hibp i.CB##c.eqvinc 
+svy, subpop(Women): logistic hibp i.CB##c.eqvinc 
+
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // -> (probably) no interaction
+
+
+// Education -> confounder
+svy, subpop(Men): logistic hibp i.CB i.Edu 
+test 1.Edu
+svy, subpop(Women): logistic hibp i.CB i.Edu 
+test 1.Edu
+
+svy, subpop(Men): logistic hibp i.CB##i.Edu 
+svy, subpop(Women): logistic hibp i.CB##i.Edu 
+
+test 2.CB#1.Edu 3.CB#1.Edu // no interaction
+
+// BMI -> confounder
+svy, subpop(Men): logistic hibp i.CB bmi
+test bmi
+svy, subpop(Women): logistic hibp i.CB bmi
+test bmi
+
+svy, subpop(Men): logistic hibp i.CB##c.bmi
+svy, subpop(Women): logistic hibp i.CB##c.bmi
+
+test 2.CB#c.bmival 3.CB#c.bmival // no ineraction
+
+// paid employment -> not confounder
+svy, subpop(Men): logistic hibp i.CB i.paid
+test 2.paid
+svy, subpop(Women): logistic hibp i.CB i.paid
+test 2.paid
+
+svy, subpop(Men): logistic hibp i.CB##i.paid
+svy, subpop(Women): logistic hibp i.CB##i.paid
+
+test 2.CB#2.paid 3.CB#2.paid
+
+
+// Smoking -> confounder
+svy, subpop(Men): logistic hibp i.CB i.cigsta3
+test 2.cigsta3 3.cigsta3
+svy, subpop(Women): logistic hibp i.CB i.cigsta3
+test 2.cigsta3 3.cigsta3
+
+svy, subpop(Men): logistic hibp i.CB##i.cigsta3
+svy, subpop(Women): logistic hibp i.CB##i.cigsta3
+
+test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction
+ 
+
+// Total energy intake -> confounder
+svy, subpop(Men): logistic hibp i.CB EnergykJ
+test EnergykJ
+svy, subpop(Women): logistic hibp i.CB EnergykJ
+test EnergykJ
+
+svy, subpop(Men): logistic hibp i.CB##c.EnergykJ
+svy, subpop(Women): logistic hibp i.CB##c.EnergykJ
+test 2.CB#c.EnergykJkJ 3.CB#c.EnergykJkJ // no interaction
+
+
+// ethnicity -> not confounder
+svy, subpop(Men): logistic hibp i.CB i.ethgrp2
+test 2.eth
+svy, subpop(Women): logistic hibp i.CB i.ethgrp2
+test 2.eth
+
+svy, subpop(Men): logistic hibp i.CB##i.ethgrp2
+svy, subpop(Women): logistic hibp i.CB##i.ethgrp2
+test 2.CB#2.ethgrp2 // no interaction
+
+
+// Alcohol -> not confounder for men but confounder for women
+svy, subpop(Men): logistic hibp i.CB Alcoholg
+test Alcoholg
+svy, subpop(Women): logistic hibp i.CB Alcoholg
+test Alcoholg
+
+svy, subpop(Men): logistic hibp i.CB##c.Alcoholg
+svy, subpop(Women): logistic hibp i.CB##c.Alcoholg
+test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction
+
+// logMVP -> not confounder 
+svy, subpop(Men): logistic hibp i.CB logMVP
+test logMVP
+svy, subpop(Women): logistic hibp i.CB logMVP
+test logMVP
+
+svy, subpop(Men): logistic hibp i.CB##c.logMVP
+svy, subpop(Women): logistic hibp i.CB##c.logMVP
+test 2.CB#c.logMVP 3.CB#c.logMVP // no interaction
+
+//  Preliminary model includes all possible confounders in Men
+
+gen age2 = age^2
+
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
+linktest
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
+linktest
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
+linktest
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
+linktest
+
+//  Preliminary model includes all possible confounders in Women
+
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg 
+linktest
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg 
+linktest
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg
+linktest
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg
+linktest
+```

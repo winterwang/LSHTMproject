@@ -38,5 +38,10 @@
 \contentsline {section}{Conclusions}{40}{section*.71}
 \contentsline {chapter}{Bibliography}{41}{chapter*.72}
 \contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{45}{appendix.73}
-\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{51}{appendix.74}
-\contentsline {chapter}{\numberline {C}Example of a food diary for one day}{68}{appendix.75}
+\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{50}{appendix.74}
+\contentsline {chapter}{\numberline {C}Other Solutions for MLCA}{61}{appendix.75}
+\contentsline {section}{2 classes in day level}{61}{section*.76}
+\contentsline {section}{3 classes in day level, 4 classes in individual level}{63}{section*.81}
+\contentsline {section}{4 classes in day level}{64}{section*.83}
+\contentsline {chapter}{\numberline {D}R \& Stata codes for processing individual level data analysis}{65}{appendix.85}
+\contentsline {chapter}{\numberline {E}Example of a food diary for one day}{88}{appendix.86}

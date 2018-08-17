@@ -9,19 +9,18 @@
 \chapter{R code for importing and manipulating the data} % Main appendix title
 
 \label{AppendixA} % For referencing this appendix elsewhere, use \ref{AppendixA}
-
+\linespread{0.8}
 
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# NDNS analysis, data management ------------------------------------------}
-
 \CommentTok{# Change the data path accordingly ----------------------------------------}
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/"}\NormalTok{) }\CommentTok{# in Ubuntu}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{".../UKDA-6533-stata11_se/stata11_se/"}\NormalTok{) }
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/Downloads/UKDA-6533-stata11_se/stata11_se/"}\NormalTok{)}
 \KeywordTok{library}\NormalTok{(epiDisplay)}
 \KeywordTok{library}\NormalTok{(plyr)}
 \KeywordTok{library}\NormalTok{(tidyverse)}
-
 \CommentTok{# Read the data into memory -----------------------------------------------}
 \KeywordTok{library}\NormalTok{(haven)}
 \NormalTok{data <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr1-4a_foodleveldietarydata_uk.dta"}\NormalTok{)}
@@ -30,186 +29,251 @@
 \KeywordTok{names}\NormalTok{(data)}
 \KeywordTok{names}\NormalTok{(data56)}
 \KeywordTok{names}\NormalTok{(data78)}
-\KeywordTok{names}\NormalTok{(data)[}\KeywordTok{names}\NormalTok{(data) }\OperatorTok{==}\StringTok{ "seriali"}\NormalTok{] <-}\StringTok{ "id"}
-\KeywordTok{names}\NormalTok{(data56)[}\KeywordTok{names}\NormalTok{(data56) }\OperatorTok{==}\StringTok{ "seriali"}\NormalTok{] <-}\StringTok{ "id"}
-\KeywordTok{names}\NormalTok{(data78)[}\KeywordTok{names}\NormalTok{(data78) }\OperatorTok{==}\StringTok{ "seriali"}\NormalTok{] <-}\StringTok{ "id"}
-
-\CommentTok{# Extract the data we needed ----------------------------------------------}
-\NormalTok{df14d <-}\StringTok{ }\NormalTok{data[, }\KeywordTok{c}\NormalTok{(}\DecValTok{113}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{57}\NormalTok{, }\DecValTok{58}\NormalTok{, }
-    \DecValTok{59}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{61}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{63}\NormalTok{, }\DecValTok{64}\NormalTok{)]}
+\KeywordTok{names}\NormalTok{(data)[}\KeywordTok{names}\NormalTok{(data)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "id"}
+\KeywordTok{names}\NormalTok{(data56)[}\KeywordTok{names}\NormalTok{(data56)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "id"}
+\KeywordTok{names}\NormalTok{(data78)[}\KeywordTok{names}\NormalTok{(data78)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "id"}
+		
+		
+\CommentTok{# Extract the variables needed -------------------------------------------}
+\NormalTok{df14d <-}\StringTok{ }\NormalTok{data[,}\KeywordTok{c}\NormalTok{(}\DecValTok{113}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{53}\NormalTok{, }\DecValTok{55}\NormalTok{,}
+\DecValTok{57}\NormalTok{,}\DecValTok{58}\NormalTok{,}\DecValTok{59}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{61}\NormalTok{,}\DecValTok{62}\NormalTok{,}\DecValTok{63}\NormalTok{,}\DecValTok{64}\NormalTok{,}\DecValTok{65}\NormalTok{)]}
 \NormalTok{var <-}\StringTok{ }\KeywordTok{names}\NormalTok{(df14d)}
-\NormalTok{df56d <-}\StringTok{ }\NormalTok{data56 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(var)}
-\NormalTok{df78d <-}\StringTok{ }\NormalTok{data78 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(var)}
+\NormalTok{df56d <-}\StringTok{ }\NormalTok{data56 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(var)}
+\NormalTok{df78d <-}\StringTok{ }\NormalTok{data78 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(var)}
 \NormalTok{dfs1 <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df14d, df56d, df78d)}
-\NormalTok{dfs2 <-}\StringTok{ }\NormalTok{dfs1[dfs1}\OperatorTok{$}\NormalTok{Age }\OperatorTok{>=}\StringTok{ }\DecValTok{19}\NormalTok{, ]}
-\KeywordTok{rm}\NormalTok{(data, data56, data78)}
+				
+\NormalTok{dfs2 <-}\StringTok{ }\NormalTok{dfs1[dfs1}\OperatorTok{$}\NormalTok{Age}\OperatorTok{>=}\DecValTok{19}\NormalTok{,] }\CommentTok{# keep participants who aged 19 or older}
+\KeywordTok{rm}\NormalTok{(data, data56, data78) }\CommentTok{# remove the unneeded big dataset}
+				
 \NormalTok{dfs2}
 
 \CommentTok{# Calculate the time (minute and hour) when they eat ----------------------}
-
+				
 \NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealTime_chr <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime)}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealTime_hm <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_chr, }\StringTok{" "}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }
-    \OtherTok{TRUE}\NormalTok{)]}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm, }\StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }
-    \OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm, }\StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }
-    \OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN0 <-}\StringTok{ }\NormalTok{(}\DecValTok{60} \OperatorTok{*}\StringTok{ }\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN) }\OperatorTok{+}\StringTok{ }\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN}
-\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs2[}\KeywordTok{order}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{id, dfs2}\OperatorTok{$}\NormalTok{DayNo, dfs2}\OperatorTok{$}\NormalTok{MealMinN0), ]}
-\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(dfs3}\OperatorTok{$}\NormalTok{id))  ## number of participants = 6155}
-
-\CommentTok{# Create a subset data with only the first observation of each}
-\CommentTok{# participant --------}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealTime_hm <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_chr,}\StringTok{" "}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }
+            \OtherTok{TRUE}\NormalTok{)]}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm,}
+			\StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm,}
+				\StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
+				
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN0 <-}\StringTok{ }\NormalTok{(}\DecValTok{60}\OperatorTok{*}\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN)}\OperatorTok{+}\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN}
+				
+\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs2[}\KeywordTok{order}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{id,dfs2}\OperatorTok{$}\NormalTok{DayNo,dfs2}\OperatorTok{$}\NormalTok{MealMinN0),]}
+				
+\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(dfs3}\OperatorTok{$}\NormalTok{id)) ## number of participants = 6155}
+				
+				
+\CommentTok{# Create a subset data with only the first observation of each participant --------}
+				
 \NormalTok{NDNS <-}\StringTok{ }\NormalTok{dfs3[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(dfs3}\OperatorTok{$}\NormalTok{id), ]}
 \KeywordTok{with}\NormalTok{(NDNS, }\KeywordTok{tab1}\NormalTok{(SurveyYear, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{decimal =} \DecValTok{2}\NormalTok{))}
-
-\CommentTok{# #SurveyYear :}
-            \CommentTok{# Frequency Percent Cum. percent}
-\CommentTok{# NDNS Year 1       801   13.01        13.01}
-\CommentTok{# NDNS Year 2       812   13.19        26.21}
-\CommentTok{# NDNS Year 3       782   12.71        38.91}
-\CommentTok{# NDNS Year 4      1055   17.14        56.05}
-\CommentTok{# NDNS Year 5       625   10.15        66.21}
-\CommentTok{# NDNS Year 6       663   10.77        76.98}
-\CommentTok{# NDNS Year 7       703   11.42        88.40}
-\CommentTok{# NDNS Year 8       714   11.60       100.00}
-  \CommentTok{# Total          6155  100.00       100.00}
-
-
+\end{Highlighting}
+\end{Shaded}
+				
+				\begin{verbatim}
+				# #SurveyYear : 
+				#             Frequency Percent Cum. percent
+				# NDNS Year 1       801   13.01        13.01
+				# NDNS Year 2       812   13.19        26.21
+				# NDNS Year 3       782   12.71        38.91
+				# NDNS Year 4      1055   17.14        56.05
+				# NDNS Year 5       625   10.15        66.21
+				# NDNS Year 6       663   10.77        76.98
+				# NDNS Year 7       703   11.42        88.40
+				# NDNS Year 8       714   11.60       100.00
+				#   Total          6155  100.00       100.00
+				\end{verbatim}
+				
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# how many men and women --------------------------------------------------}
+						
+\KeywordTok{with}\NormalTok{(NDNS, }\KeywordTok{tab1}\NormalTok{(Sex, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{decimal =} \DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+				
+				\begin{verbatim}
+				# Sex : 
+				#          Frequency Percent Cum. percent
+				# 1            2537   41.22        41.22 Men
+				# 2            3618   58.78       100.00 Women
+				#   Total      6155  100.00       100.00
+				\end{verbatim}
+				
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{# create a variable combine id and day No ---------------------------------}
-\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs3 }\OperatorTok{%>%}
-\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{id_dy =} \KeywordTok{paste}\NormalTok{(id, DayNo, }\DataTypeTok{sep =} \StringTok{"D"}\NormalTok{))}
-
-\CommentTok{# For each subject, the total energy/carbohydrate intake for each eating }
-\CommentTok{# time can be calculated --------}
-\NormalTok{old <-}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{()}
+						
+						
+\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{id_dy =} \KeywordTok{paste}\NormalTok{(id, DayNo, }\DataTypeTok{sep =} \StringTok{"D"}\NormalTok{))}
+							
+\CommentTok{# For each subject, the total energy/carbohydrate intake for each }
+\CommentTok{# eating time can be calculated --------}
+							
+\NormalTok{old<-}\KeywordTok{Sys.time}\NormalTok{()}
 \NormalTok{Energy <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(dfs3, .(id_dy, id, SurveyYear, DayNo, Age, Sex, }
-\NormalTok{                        DiaryDaysCompleted, MealHourN, DayofWeek), }
-\NormalTok{                summarise, }
-                \DataTypeTok{Tot_Energ =} \KeywordTok{sum}\NormalTok{(EnergykJ), }
-                \DataTypeTok{Tot_Carb =} \KeywordTok{sum}\NormalTok{(Carbohydrateg), }
-                \DataTypeTok{Tot_Sugar =} \KeywordTok{sum}\NormalTok{(Totalsugarsg), }
-                \DataTypeTok{Tot_Starch =} \KeywordTok{sum}\NormalTok{(Starchg))}
-\NormalTok{new <-}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{() }\OperatorTok{-}\StringTok{ }\NormalTok{old}
+\NormalTok{                        DiaryDaysCompleted, MealHourN, DayofWeek),  }
+\NormalTok{                summarise, }\DataTypeTok{Tot_Energ =}\KeywordTok{sum}\NormalTok{(EnergykJ), }
+                    \DataTypeTok{Tot_Carb =} \KeywordTok{sum}\NormalTok{(Carbohydrateg), }
+                    \DataTypeTok{Tot_Sugar =} \KeywordTok{sum}\NormalTok{(Totalsugarsg), }
+                    \DataTypeTok{Tot_Starch =} \KeywordTok{sum}\NormalTok{(Starchg), }
+                    \DataTypeTok{Tot_Fibre =} \KeywordTok{sum}\NormalTok{(Englystfibreg),}
+                    \DataTypeTok{Tot_Fat   =} \KeywordTok{sum}\NormalTok{(Fatg), }
+                    \DataTypeTok{Tot_Prot  =} \KeywordTok{sum}\NormalTok{(Proteing), }
+                    \DataTypeTok{Tot_Alc   =} \KeywordTok{sum}\NormalTok{(Alcoholg), }
+                    \DataTypeTok{Tot_NMES  =} \KeywordTok{sum}\NormalTok{(Nonmilkextrinsicsugarsg))}
+\NormalTok{new<-}\KeywordTok{Sys.time}\NormalTok{()}\OperatorTok{-}\NormalTok{old}
 \KeywordTok{print}\NormalTok{(new)}
-\CommentTok{# Time difference of 3.876385 mins}
+\CommentTok{# Time difference of 6.429822 min}
 
-\KeywordTok{rm}\NormalTok{(df14d, df56d, df78d, dfs2)}
+\CommentTok{# reset the time intervals into time slots --------------------------------}
+							
+\NormalTok{### Breakfast:       6am to 9am}
+\NormalTok{### morning snack:   9am to 12noon}
+\NormalTok{### lunch:           12noon to 2pm}
+\NormalTok{### afternoon snack: 2pm to 5pm}
+\NormalTok{### dinner:          5pm to 8pm}
+\NormalTok{### night snack:     8pm to 10pm}
+\NormalTok{### midnight:        10pm to 6am}
+\NormalTok{Energy <-}\StringTok{ }\NormalTok{Energy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TimeSlot =} \KeywordTok{cut}\NormalTok{(MealHourN, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{22}\NormalTok{), }
+				\DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{))}
+\KeywordTok{levels}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot), }\StringTok{"[22, 6)"}\NormalTok{)}
+\NormalTok{Energy}\OperatorTok{$}\NormalTok{TimeSlot[}\KeywordTok{is.na}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot)] <-}\StringTok{ "[22, 6)"}
+\KeywordTok{tab1}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot)}
+\CommentTok{# For each subject, the total energy/carbohydrate intake for each }
+\CommentTok{# time slot can be calculated --------}
+\NormalTok{old<-}\KeywordTok{Sys.time}\NormalTok{()}
+\NormalTok{Energy <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(Energy, .(id_dy, id, SurveyYear, DayNo, Age, Sex, }
+\NormalTok{                          DiaryDaysCompleted, TimeSlot, DayofWeek),  }
+\NormalTok{                summarise, }
+              \DataTypeTok{Tot_Energ =} \KeywordTok{sum}\NormalTok{(Tot_Energ), }
+              \DataTypeTok{Tot_Carb =} \KeywordTok{sum}\NormalTok{(Tot_Carb), }
+              \DataTypeTok{Tot_Sugar =} \KeywordTok{sum}\NormalTok{(Tot_Sugar),}
+              \DataTypeTok{Tot_Starch =} \KeywordTok{sum}\NormalTok{(Tot_Starch), }
+              \DataTypeTok{Tot_Fibre =} \KeywordTok{sum}\NormalTok{(Tot_Fibre), }
+              \DataTypeTok{Tot_Fat   =} \KeywordTok{sum}\NormalTok{(Tot_Fat), }
+              \DataTypeTok{Tot_Prot  =} \KeywordTok{sum}\NormalTok{(Tot_Prot), }
+              \DataTypeTok{Tot_Alc   =} \KeywordTok{sum}\NormalTok{(Tot_Alc), }
+              \DataTypeTok{Tot_NMES  =} \KeywordTok{sum}\NormalTok{(Tot_NMES))}
+\NormalTok{new<-}\KeywordTok{Sys.time}\NormalTok{()}\OperatorTok{-}\NormalTok{old}
+\KeywordTok{print}\NormalTok{(new)}
+\CommentTok{# Time difference of 3.74195 mins }
 
 \CommentTok{# Calculate the energy from total carbohydrates ---------------------------}
 \NormalTok{Energy <-}\StringTok{ }\NormalTok{Energy }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{KJcarbo =}\NormalTok{ Tot_Carb }\OperatorTok{*}\StringTok{ }\DecValTok{16}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{KJcarbo =}\NormalTok{ Tot_Carb}\OperatorTok{*}\DecValTok{16}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{CarKJpercentage =}\NormalTok{ KJcarbo}\OperatorTok{/}\NormalTok{Tot_Energ) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Carbo =} \KeywordTok{cut}\NormalTok{(CarKJpercentage, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.26}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\DecValTok{2}\NormalTok{), }
-        \DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Carbo2 =} \KeywordTok{cut}\NormalTok{(CarKJpercentage, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }
-    \FloatTok{0.26}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{))}
-\NormalTok{Energy0 <-}\StringTok{ }\NormalTok{Energy[}\OperatorTok{!}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{Tot_Energ }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{), ]  }
-          \CommentTok{# some food consumption does not contain any carbohydrates}
-\NormalTok{Energy0}\OperatorTok{$}\NormalTok{Carbo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{Carbo, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Low_carb"}\NormalTok{, }\StringTok{"Med_carb"}\NormalTok{, }
-    \StringTok{"High_carb"}\NormalTok{))}
-\NormalTok{Energy0}\OperatorTok{$}\NormalTok{Carbo2 <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{Carbo2, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Low_carb"}\NormalTok{, }\StringTok{"Med_or_high_carb"}\NormalTok{))}
-
-\CommentTok{# Generate data sets for each day ----------------------------------------------------------}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Carbo =} \KeywordTok{cut}\NormalTok{(CarKJpercentage, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.50}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{))}
+											
+\NormalTok{Energy0 <-}\StringTok{ }\NormalTok{Energy[}\OperatorTok{!}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{Tot_Energ }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{), ] }\CommentTok{# discard those eating occassion }
+\CommentTok{# with 0 energy intake }
+\KeywordTok{write.csv}\NormalTok{(Energy0, }\DataTypeTok{file =} \StringTok{"Energy_slots.csv"}\NormalTok{) }\CommentTok{# for later analysis}	
+\NormalTok{Energy0}\OperatorTok{$}\NormalTok{Carbo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{Carbo, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"< 50%"}\NormalTok{, }\StringTok{">= 50%"}\NormalTok{))}
+												
+\NormalTok{vecid<-}\KeywordTok{unique}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{id)}
+												
+\CommentTok{# Filter the data by observation day--------------------------------------------}
+										
 \NormalTok{dta_day1 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+\StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
-
+\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+															
 \NormalTok{dta_day2 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+\StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
-
+\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+																		
 \NormalTok{dta_day3 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+\StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
-
+\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+																
 \NormalTok{dta_day4 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
-\NormalTok{vecid1 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day1}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
-\NormalTok{vecid2 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day2}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
-\NormalTok{vecid3 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day3}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6151}
-\NormalTok{vecid4 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day4}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6026}
-
-\NormalTok{Noday1 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid1)  }\CommentTok{# two subjects did not have day 1 data}
-\NormalTok{Noday2 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid2)  }\CommentTok{# two subjects did not have day 2 data}
-\NormalTok{Noday3 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid3)  }\CommentTok{# four subjects did not have day 3 data}
-\NormalTok{Noday4 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid4)  }\CommentTok{# 129 subjects did not have day 4 data}
-
-\CommentTok{# Transform the data shape from long to wide ---------------------------------}
-\NormalTok{dta_d1_wide <-}\StringTok{ }\NormalTok{dta_day1[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d1_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
-
-\NormalTok{dta_d2_wide <-}\StringTok{ }\NormalTok{dta_day2[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d2_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
-
-\NormalTok{dta_d3_wide <-}\StringTok{ }\NormalTok{dta_day3[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d3_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
-
-\NormalTok{dta_d4_wide <-}\StringTok{ }\NormalTok{dta_day4[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d4_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+\StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
+StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
+\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+																	
+\NormalTok{vecid1<-}\KeywordTok{unique}\NormalTok{(dta_day1}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
+\NormalTok{vecid2<-}\KeywordTok{unique}\NormalTok{(dta_day2}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
+\NormalTok{vecid3<-}\KeywordTok{unique}\NormalTok{(dta_day3}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6151}
+\NormalTok{vecid4<-}\KeywordTok{unique}\NormalTok{(dta_day4}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6026}
+\NormalTok{Noday1 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid1) }\CommentTok{# two subjects did not have day 1 data}
+\NormalTok{Noday2 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid2) }\CommentTok{# two subjects did not have day 2 data }
+\NormalTok{Noday3 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid3) }\CommentTok{# four subjects did not have day 3 data }
+\NormalTok{Noday4 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid4) }\CommentTok{# 129 subjects did not have day 4 data}
+																								
+\CommentTok{# Long to wide data -------------------------------------------------------}
+\NormalTok{dta_d1_wide <-}\StringTok{ }\NormalTok{dta_day1 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+\DataTypeTok{value =}\NormalTok{ Carbo)}
+\KeywordTok{head}\NormalTok{(dta_d1_wide)}
+\KeywordTok{names}\NormalTok{(dta_d1_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+\StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d1_wide)}
+\NormalTok{dta_d2_wide <-}\StringTok{ }\NormalTok{dta_day2 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+\DataTypeTok{value =}\NormalTok{ Carbo)}
+\KeywordTok{head}\NormalTok{(dta_d2_wide)}
+\KeywordTok{names}\NormalTok{(dta_d2_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+\StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d2_wide)}
+\NormalTok{dta_d3_wide <-}\StringTok{ }\NormalTok{dta_day3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+\DataTypeTok{value =}\NormalTok{ Carbo)}
+\KeywordTok{head}\NormalTok{(dta_d3_wide)}
+\KeywordTok{names}\NormalTok{(dta_d3_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+\StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d3_wide)}
+\NormalTok{dta_d4_wide <-}\StringTok{ }\NormalTok{dta_day4 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+\DataTypeTok{value =}\NormalTok{ Carbo)}
+\KeywordTok{head}\NormalTok{(dta_d4_wide)}
+\KeywordTok{names}\NormalTok{(dta_d4_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+\StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d4_wide)}
 \CommentTok{# recode NA to not eating -------------------------------------------------}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d1_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d1_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d1_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d1_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
-
-\NormalTok{dta_d1_wide[}\KeywordTok{is.na}\NormalTok{(dta_d1_wide)] <-}\StringTok{ "Not_eating"}
-
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d2_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d2_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d2_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d2_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
-
-\NormalTok{dta_d2_wide[}\KeywordTok{is.na}\NormalTok{(dta_d2_wide)] <-}\StringTok{ "Not_eating"}
-
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d3_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d3_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d3_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d3_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
-
-\NormalTok{dta_d3_wide[}\KeywordTok{is.na}\NormalTok{(dta_d3_wide)] <-}\StringTok{ "Not_eating"}
-
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d4_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d4_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d4_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d4_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
-
-\NormalTok{dta_d4_wide[}\KeywordTok{is.na}\NormalTok{(dta_d4_wide)] <-}\StringTok{ "Not_eating"}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d1_wide)) }
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d1_wide[,i])) }
+\KeywordTok{levels}\NormalTok{(dta_d1_wide[,i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
+\NormalTok{dta_d1_wide[}\KeywordTok{is.na}\NormalTok{(dta_d1_wide)] <-}\StringTok{ "0"}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d2_wide)) }
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d2_wide[,i])) }
+\KeywordTok{levels}\NormalTok{(dta_d2_wide[,i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{,  }\StringTok{"0"}\NormalTok{)}
+\NormalTok{dta_d2_wide[}\KeywordTok{is.na}\NormalTok{(dta_d2_wide)] <-}\StringTok{ "0"}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d3_wide)) }
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d3_wide[,i])) }
+\KeywordTok{levels}\NormalTok{(dta_d3_wide[,i]) <-}\StringTok{  }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
+\NormalTok{dta_d3_wide[}\KeywordTok{is.na}\NormalTok{(dta_d3_wide)] <-}\StringTok{ "0"}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d4_wide)) }
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d4_wide[,i])) }
+\KeywordTok{levels}\NormalTok{(dta_d4_wide[,i]) <-}\StringTok{  }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
+\NormalTok{dta_d4_wide[}\KeywordTok{is.na}\NormalTok{(dta_d4_wide)] <-}\StringTok{ "0"}
+\NormalTok{dta_all <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(dta_d1_wide, dta_d2_wide, dta_d3_wide, dta_d4_wide)}
+\NormalTok{dta_all <-}\StringTok{ }\NormalTok{dta_all[}\KeywordTok{order}\NormalTok{(dta_all}\OperatorTok{$}\NormalTok{id,dta_all}\OperatorTok{$}\NormalTok{id_dy),]}
+\CommentTok{# Export the data for Mplus -------------------------------------------------}
+\KeywordTok{write_csv}\NormalTok{(dta_all, }\DataTypeTok{path =} \StringTok{"NDNS_Tslots.csv"}\NormalTok{)}
+\KeywordTok{write_delim}\NormalTok{(dta_all, }\StringTok{"NDNS_Tslots.dat"}\NormalTok{, }\DataTypeTok{na =} \StringTok{"."}\NormalTok{, }\DataTypeTok{delim =} \StringTok{" "}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-%\section{How do I change the colors of links?}
-%
-%The color of links can be changed to your liking using:
-%
-%{\small\verb!\hypersetup{urlcolor=red}!}, or
-%
-%{\small\verb!\hypersetup{citecolor=green}!}, or
-%
-%{\small\verb!\hypersetup{allcolor=blue}!}.
-%
-%\noindent If you want to completely hide the links, you can use:
-%
-%{\small\verb!\hypersetup{allcolors=.}!}, or even better:
-%
-%{\small\verb!\hypersetup{hidelinks}!}.
-%
-%\noindent If you want to have obvious links in the PDF but not %the printed text, use:
-%
-%{\small\verb!\hypersetup{colorlinks=false}!}.

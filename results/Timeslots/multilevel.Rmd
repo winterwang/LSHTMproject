@@ -98,16 +98,16 @@ dt %>%
 
 
 
-<!-- # (CW = 2) Level 1 latent classes  -->
+<!-- # (CW = 2) Level 1 latent classes -->
 
-<!-- ## Visualisation of level 1 latent classes  -->
+<!-- ## Visualisation of level 1 latent classes -->
 
 <!-- ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE} -->
 
 <!-- CW2CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW2CB2.txt", -->
 <!--                          col_names = FALSE) -->
 
-<!-- names(CW2CB2) <- c("Breakfast",  -->
+<!-- names(CW2CB2) <- c("Breakfast", -->
 <!--                    "Morning.snack", -->
 <!--                    "Lunch", -->
 <!--                    "Afternoon.snack", -->
@@ -128,40 +128,40 @@ dt %>%
 <!--                       "MLCJOINT", -->
 <!--                       "ID") -->
 
-<!-- pp <- CW2CB2 %>%  -->
-<!--   group_by(CW) %>%  -->
-<!--   summarise(Breakfast_0 = sum(Breakfast == 0)/length(Breakfast),  -->
-<!--             Breakfast_1 = sum(Breakfast == 1)/length(Breakfast),  -->
+<!-- pp <- CW2CB2 %>% -->
+<!--   group_by(CW) %>% -->
+<!--   summarise(Breakfast_0 = sum(Breakfast == 0)/length(Breakfast), -->
+<!--             Breakfast_1 = sum(Breakfast == 1)/length(Breakfast), -->
 <!--             Breakfast_2 = sum(Breakfast == 2)/length(Breakfast), -->
 <!--             Morning.snack_0 = sum(Morning.snack == 0)/length(Morning.snack), -->
-<!--             Morning.snack_1 = sum(Morning.snack == 1)/length(Morning.snack),  -->
+<!--             Morning.snack_1 = sum(Morning.snack == 1)/length(Morning.snack), -->
 <!--             Morning.snack_2 = sum(Morning.snack == 2)/length(Morning.snack), -->
 <!--             Lunch_0 = sum(Lunch == 0)/length(Lunch), -->
-<!--             Lunch_1 = sum(Lunch == 1)/length(Lunch),  -->
+<!--             Lunch_1 = sum(Lunch == 1)/length(Lunch), -->
 <!--             Lunch_2 = sum(Lunch == 2)/length(Lunch), -->
 <!--             Afternoon.snack_0 = sum(Afternoon.snack == 0)/length(Afternoon.snack), -->
-<!--             Afternoon.snack_1 = sum(Afternoon.snack == 1)/length(Afternoon.snack),  -->
+<!--             Afternoon.snack_1 = sum(Afternoon.snack == 1)/length(Afternoon.snack), -->
 <!--             Afternoon.snack_2 = sum(Afternoon.snack == 2)/length(Afternoon.snack), -->
 <!--             Dinner_0 = sum(Dinner == 0)/length(Dinner), -->
-<!--             Dinner_1 = sum(Dinner == 1)/length(Dinner),  -->
+<!--             Dinner_1 = sum(Dinner == 1)/length(Dinner), -->
 <!--             Dinner_2 = sum(Dinner == 2)/length(Dinner), -->
 <!--             Before.bedtime.snack_0 = sum(Before.bedtime.snack == 0)/length(Before.bedtime.snack), -->
-<!--             Before.bedtime.snack_1 = sum(Before.bedtime.snack == 1)/length(Before.bedtime.snack),  -->
+<!--             Before.bedtime.snack_1 = sum(Before.bedtime.snack == 1)/length(Before.bedtime.snack), -->
 <!--             Before.bedtime.snack_2 = sum(Before.bedtime.snack == 2)/length(Before.bedtime.snack), -->
 <!--             Midnight.food_0 = sum(Midnight.food == 0)/length(Midnight.food), -->
-<!--             Midnight.food_1 = sum(Midnight.food == 1)/length(Midnight.food),  -->
+<!--             Midnight.food_1 = sum(Midnight.food == 1)/length(Midnight.food), -->
 <!--             Midnight.food_2 = sum(Midnight.food == 2)/length(Midnight.food)) -->
 
 
 
-<!-- pp_long <- pp %>%  -->
-<!--   gather(Hour, Prob, -CW) %>%  -->
-<!--   separate(Hour, into = c("Slots", "Carbo"), sep = "_")  -->
+<!-- pp_long <- pp %>% -->
+<!--   gather(Hour, Prob, -CW) %>% -->
+<!--   separate(Hour, into = c("Slots", "Carbo"), sep = "_") -->
 
 
 
 
-<!-- pp_long$Slots <- factor(pp_long$Slots, levels = c("Breakfast",  -->
+<!-- pp_long$Slots <- factor(pp_long$Slots, levels = c("Breakfast", -->
 <!--                    "Morning.snack", -->
 <!--                    "Lunch", -->
 <!--                    "Afternoon.snack", -->
@@ -188,66 +188,66 @@ dt %>%
 <!-- pp_long$Time <- as.numeric(pp_long$Time) -->
 
 
-<!-- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo))  +  -->
+<!-- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo))  + -->
 <!--   scale_x_continuous(limits = c(6, 29), -->
 <!--   breaks = seq(6, 29, by = 1)) + -->
-<!--   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00,  -->
-<!--             alpha = 0.5, fill = "grey") +  -->
-<!--   annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00,  -->
-<!--              alpha = 0.5, fill = "grey") +  -->
-<!--   annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00,  -->
-<!--             alpha = 0.5, fill = "grey") +  -->
-<!--   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00,  -->
+<!--   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, -->
+<!--             alpha = 0.5, fill = "grey") + -->
+<!--   annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, -->
 <!--              alpha = 0.5, fill = "grey") + -->
-<!--   geom_point(size = 3) +  -->
-<!--   geom_line(size = 1.5) +  -->
-<!--   theme(axis.title = element_text(size = 18),  -->
-<!--         axis.text = element_text(size = 18),  -->
-<!--         axis.line = element_line(colour = "black"),  -->
-<!--         panel.border = element_blank(),  -->
-<!--         panel.background = element_blank(),  -->
-<!--         legend.text = element_text(size = 15),  -->
-<!--         legend.title = element_text(size = 15)  -->
-<!--         # legend.position = "bottom",  -->
+<!--   annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, -->
+<!--             alpha = 0.5, fill = "grey") + -->
+<!--   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, -->
+<!--              alpha = 0.5, fill = "grey") + -->
+<!--   geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
 <!--         # legend.direction = "horizontal" -->
-<!--   ) +  -->
-<!--     # theme(axis.text.x = element_text(angle = 60, hjust = 1)) +  -->
+<!--   ) + -->
+<!--     # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + -->
 <!--   labs(title = "Class 1 days", x = "Hours of the day (next day from hour 24)", y = "Probability", -->
-<!--        color = "Carbohydrate\nintake") +  -->
-<!--   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +  -->
-<!--   ylim(c(0,1)) #+  -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + -->
+<!--   ylim(c(0,1)) #+ -->
 <!--   # scale_x_discrete(labels = c("6","7","8","9","10","11","12","13","14", -->
 <!--   #                             "15","16","17","18","19", "20","21","22", -->
 <!--   #                             "23","0","1","2","3","4","5")) -->
 
 
-<!-- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) +  -->
+<!-- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo, color = Carbo)) + -->
 <!--   scale_x_continuous(limits = c(6, 29), -->
 <!--   breaks = seq(6, 29, by = 1)) + -->
-<!--   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00,  -->
-<!--             alpha = 0.5, fill = "grey") +  -->
-<!--   annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00,  -->
-<!--              alpha = 0.5, fill = "grey") +  -->
-<!--   annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00,  -->
-<!--             alpha = 0.5, fill = "grey") +  -->
-<!--   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00,  -->
+<!--   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, -->
+<!--             alpha = 0.5, fill = "grey") + -->
+<!--   annotate("rect", xmin = 12, xmax = 14, ymin = 0, ymax = 1.00, -->
 <!--              alpha = 0.5, fill = "grey") + -->
-<!--   geom_point(size = 3) +  -->
-<!--   geom_line(size = 1.5) +  -->
-<!--   theme(axis.title = element_text(size = 18),  -->
-<!--         axis.text = element_text(size = 18),  -->
-<!--         axis.line = element_line(colour = "black"),  -->
-<!--         panel.border = element_blank(),  -->
-<!--         panel.background = element_blank(),  -->
-<!--         legend.text = element_text(size = 15),  -->
-<!--         legend.title = element_text(size = 15)  -->
-<!--         # legend.position = "bottom",  -->
+<!--   annotate("rect", xmin = 17, xmax = 20, ymin = 0, ymax = 1.00, -->
+<!--             alpha = 0.5, fill = "grey") + -->
+<!--   annotate("rect", xmin = 22, xmax = 29, ymin = 0, ymax = 1.00, -->
+<!--              alpha = 0.5, fill = "grey") + -->
+<!--   geom_point(size = 3) + -->
+<!--   geom_line(size = 1.5) + -->
+<!--   theme(axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 18), -->
+<!--         axis.line = element_line(colour = "black"), -->
+<!--         panel.border = element_blank(), -->
+<!--         panel.background = element_blank(), -->
+<!--         legend.text = element_text(size = 15), -->
+<!--         legend.title = element_text(size = 15) -->
+<!--         # legend.position = "bottom", -->
 <!--         # legend.direction = "horizontal" -->
-<!--   ) +  -->
-<!--     # theme(axis.text.x = element_text(angle = 60, hjust = 1)) +  -->
+<!--   ) + -->
+<!--     # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + -->
 <!--   labs(title = "Class 2 days", x = "Hours of the day (next day from hour 24)", y = "Probability", -->
-<!--        color = "Carbohydrate\nintake") +  -->
-<!--   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +  -->
+<!--        color = "Carbohydrate\nintake") + -->
+<!--   scale_color_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + -->
 <!--   ylim(c(0,1)) -->
 
 
@@ -264,42 +264,42 @@ dt %>%
 <!-- # ndnsNNN <- read_csv("results/ndnsNNN.dat") -->
 <!-- # dt <- ndnsNNN[, c(2,5)] -->
 <!-- # names(dt) <- c("ID_DAY", "DayofWeek") -->
-<!-- #  -->
-<!-- #  -->
-<!-- # CW2CB2 <- CW2CB2 %>%  -->
+<!-- # -->
+<!-- # -->
+<!-- # CW2CB2 <- CW2CB2 %>% -->
 <!-- #   left_join(dt, by = "ID_DAY") -->
-<!-- #  -->
+<!-- # -->
 
-<!-- chart.data <- CW2CB2 %>%  -->
-<!--   group_by(CB, CW) %>%  -->
-<!--   tally %>%  -->
-<!--   group_by(CB) %>%  -->
+<!-- chart.data <- CW2CB2 %>% -->
+<!--   group_by(CB, CW) %>% -->
+<!--   tally %>% -->
+<!--   group_by(CB) %>% -->
 <!--   mutate(pct = n/sum(n)) -->
 
 <!-- chart.data <- ddply(chart.data, .(CB), -->
 <!--                      transform, pos = cumsum(pct) - (0.5 * pct)) -->
 
-<!-- chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"),  -->
+<!-- chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"), -->
 <!--                         labels = c("Class 2 days", "Class 1 days")) -->
-<!-- chart.data$CB <- factor(chart.data$CB, levels = c("1", "2"),  -->
+<!-- chart.data$CB <- factor(chart.data$CB, levels = c("1", "2"), -->
 <!--                         labels = c("Individual Class 1\n(56.3%)",  "Individual class 2\n(43.7%)")) -->
 
 
 
 <!-- library(ggthemr) -->
 <!-- ggthemr("dust", layout = "scientific") -->
-<!-- ggplot() +  -->
+<!-- ggplot() + -->
 <!--   geom_bar(aes(y = pct, x = CB, fill = CW), data = chart.data, width = 0.6, -->
-<!--            stat="identity") +  -->
+<!--            stat="identity") + -->
 <!--   geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")), -->
-<!--             size=4, colour="white", family="Atlas Grotesk Medium") +  -->
+<!--             size=4, colour="white", family="Atlas Grotesk Medium") + -->
 <!--   theme(legend.position="bottom", legend.direction="horizontal", -->
-<!--         legend.title = element_blank(),  -->
-<!--         axis.title = element_text(size = 18),  -->
-<!--         axis.text = element_text(size = 15),  -->
-<!--         axis.line = element_line(colour = "black"),  -->
+<!--         legend.title = element_blank(), -->
+<!--         axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 15), -->
+<!--         axis.line = element_line(colour = "black"), -->
 <!--         plot.title=element_text(family="Atlas Grotesk Medium"), -->
-<!--         text=element_text(family="Atlas Grotesk Light")) +  -->
+<!--         text=element_text(family="Atlas Grotesk Light")) + -->
 <!--   labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") + -->
 <!--   scale_y_continuous(labels=percent) -->
 <!-- ``` -->
@@ -315,7 +315,7 @@ dt %>%
 <!-- CW2CB3 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW2CB3.txt", -->
 <!--                          col_names = FALSE) -->
 
-<!-- names(CW2CB3) <- c("Breakfast",  -->
+<!-- names(CW2CB3) <- c("Breakfast", -->
 <!--                    "Morning.snack", -->
 <!--                    "Lunch", -->
 <!--                    "Afternoon.snack", -->
@@ -339,45 +339,45 @@ dt %>%
 
 
 
-<!-- chart.data <- CW2CB3 %>%  -->
-<!--   group_by(CB, CW) %>%  -->
-<!--   tally %>%  -->
-<!--   group_by(CB) %>%  -->
+<!-- chart.data <- CW2CB3 %>% -->
+<!--   group_by(CB, CW) %>% -->
+<!--   tally %>% -->
+<!--   group_by(CB) %>% -->
 <!--   mutate(pct = n/sum(n)) -->
 
 
-<!-- # chart.data$CW[chart.data$CW == 1] <- 0  -->
-<!-- # chart.data$CW[chart.data$CW == 3] <- 1  -->
-<!-- # chart.data$CW[chart.data$CW == 0] <- 3  -->
+<!-- # chart.data$CW[chart.data$CW == 1] <- 0 -->
+<!-- # chart.data$CW[chart.data$CW == 3] <- 1 -->
+<!-- # chart.data$CW[chart.data$CW == 0] <- 3 -->
 
 <!-- chart.data <- chart.data[order(chart.data$CB, chart.data$CW),] -->
-<!-- chart.data <- ddply(chart.data, .(CB),  -->
-<!--                     transform, pos = cumsum(pct) - (0.5 * pct))  -->
+<!-- chart.data <- ddply(chart.data, .(CB), -->
+<!--                     transform, pos = cumsum(pct) - (0.5 * pct)) -->
 
 
 
-<!-- chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"),  -->
+<!-- chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"), -->
 <!--                         labels = c("Class 2 days", "Class 1 days")) -->
-<!-- chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"),  -->
-<!--                         labels = c("Individual\nclass 1\n(42.4%)",  "Individual\nclass 2\n(29.5%)",  -->
+<!-- chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), -->
+<!--                         labels = c("Individual\nclass 1\n(42.4%)",  "Individual\nclass 2\n(29.5%)", -->
 <!--                                    "Individual\nclass 3\n(28.1%)")) -->
 
 
 
 <!-- library(ggthemr) -->
 <!-- ggthemr("dust", layout = "scientific") -->
-<!-- ggplot() +  -->
+<!-- ggplot() + -->
 <!--   geom_bar(aes(y = pct, x = CB, fill = CW), data = chart.data, width = 0.6, -->
-<!--            stat="identity") +  -->
+<!--            stat="identity") + -->
 <!--   geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")), -->
-<!--             size=4, colour="white", family="Atlas Grotesk Medium") +  -->
+<!--             size=4, colour="white", family="Atlas Grotesk Medium") + -->
 <!--   theme(legend.position="bottom", legend.direction="horizontal", -->
-<!--         legend.title = element_blank(),  -->
-<!--         axis.title = element_text(size = 18),  -->
-<!--         axis.text = element_text(size = 15),  -->
-<!--         axis.line = element_line(colour = "black"),  -->
+<!--         legend.title = element_blank(), -->
+<!--         axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 15), -->
+<!--         axis.line = element_line(colour = "black"), -->
 <!--         plot.title=element_text(family="Atlas Grotesk Medium"), -->
-<!--         text=element_text(family="Atlas Grotesk Light")) +  -->
+<!--         text=element_text(family="Atlas Grotesk Light")) + -->
 <!--   labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") + -->
 <!--   scale_y_continuous(labels=percent) -->
 <!-- ``` -->
@@ -392,7 +392,7 @@ dt %>%
 <!-- CW2CB4 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW2CB4.txt", -->
 <!--                          col_names = FALSE) -->
 
-<!-- names(CW2CB4) <- c("Breakfast",  -->
+<!-- names(CW2CB4) <- c("Breakfast", -->
 <!--                    "Morning.snack", -->
 <!--                    "Lunch", -->
 <!--                    "Afternoon.snack", -->
@@ -418,45 +418,45 @@ dt %>%
 
 
 
-<!-- chart.data <- CW2CB4 %>%  -->
-<!--   group_by(CB, CW) %>%  -->
-<!--   tally %>%  -->
-<!--   group_by(CB) %>%  -->
+<!-- chart.data <- CW2CB4 %>% -->
+<!--   group_by(CB, CW) %>% -->
+<!--   tally %>% -->
+<!--   group_by(CB) %>% -->
 <!--   mutate(pct = n/sum(n)) -->
 
 
-<!-- # chart.data$CW[chart.data$CW == 1] <- 0  -->
-<!-- # chart.data$CW[chart.data$CW == 3] <- 1  -->
-<!-- # chart.data$CW[chart.data$CW == 0] <- 3  -->
+<!-- # chart.data$CW[chart.data$CW == 1] <- 0 -->
+<!-- # chart.data$CW[chart.data$CW == 3] <- 1 -->
+<!-- # chart.data$CW[chart.data$CW == 0] <- 3 -->
 
 <!-- chart.data <- chart.data[order(chart.data$CB, chart.data$CW),] -->
-<!-- chart.data <- ddply(chart.data, .(CB),  -->
-<!--                     transform, pos = cumsum(pct) - (0.5 * pct))  -->
+<!-- chart.data <- ddply(chart.data, .(CB), -->
+<!--                     transform, pos = cumsum(pct) - (0.5 * pct)) -->
 
 
 
-<!-- chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"),  -->
+<!-- chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"), -->
 <!--                         labels = c("Class 2 days", "Class 1 days")) -->
-<!-- chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3", "4"),  -->
-<!--                         labels = c("Individual\nclass 1\n(23.4%)",  "Individual\nclass 2\n(23.7%)",  -->
+<!-- chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3", "4"), -->
+<!--                         labels = c("Individual\nclass 1\n(23.4%)",  "Individual\nclass 2\n(23.7%)", -->
 <!--                                    "Individual\nclass 3\n(28.9%)", "Individual\nclass 4\n(23.9%)")) -->
 
 
 
 <!-- library(ggthemr) -->
 <!-- ggthemr("dust", layout = "scientific") -->
-<!-- ggplot() +  -->
+<!-- ggplot() + -->
 <!--   geom_bar(aes(y = pct, x = CB, fill = CW), data = chart.data, width = 0.6, -->
-<!--            stat="identity") +  -->
+<!--            stat="identity") + -->
 <!--   geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")), -->
-<!--             size=4, colour="white", family="Atlas Grotesk Medium") +  -->
+<!--             size=4, colour="white", family="Atlas Grotesk Medium") + -->
 <!--   theme(legend.position="bottom", legend.direction="horizontal", -->
-<!--         legend.title = element_blank(),  -->
-<!--         axis.title = element_text(size = 18),  -->
-<!--         axis.text = element_text(size = 15),  -->
-<!--         axis.line = element_line(colour = "black"),  -->
+<!--         legend.title = element_blank(), -->
+<!--         axis.title = element_text(size = 18), -->
+<!--         axis.text = element_text(size = 15), -->
+<!--         axis.line = element_line(colour = "black"), -->
 <!--         plot.title=element_text(family="Atlas Grotesk Medium"), -->
-<!--         text=element_text(family="Atlas Grotesk Light")) +  -->
+<!--         text=element_text(family="Atlas Grotesk Light")) + -->
 <!--   labs(title = "Multilevel latent class solution", x = "Between Individual classes", y = "Percentage") + -->
 <!--   scale_y_continuous(labels=percent) -->
 <!-- ``` -->

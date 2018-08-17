@@ -647,7 +647,7 @@ svy, subpop(Men): logistic hibp i.CB##c.Alcoholg
 svy, subpop(Women): logistic hibp i.CB##c.Alcoholg
 test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction
 
-// logMVP -> not confounder for men but confounder for women
+// logMVP -> not confounder n
 
 
 svy, subpop(Men): logistic hibp i.CB logMVP
@@ -667,8 +667,22 @@ gen age2 = age^2
 
 
 svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
+
+
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ eqvinc
+test eqvinc
+
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ i.ethgrp2
+test 2.ethgrp2
+
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ Alcoholg
+test Alcoholg
+
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ Alcoholg MVP
+test MVP
+
 linktest
-svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst  i.cig EnergykJ Alcoholg
 linktest
 
 
@@ -681,6 +695,13 @@ linktest
 
 
 svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg 
+
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg i.ethgrp2
+test 2.ethgrp2
+
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg 
+
+
 linktest
 svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg 
 linktest

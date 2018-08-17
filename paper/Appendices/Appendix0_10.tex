@@ -129,182 +129,324 @@
 \begin{Highlighting}[]
 \CommentTok{# NDNS analysis, data management ------------------------------------------}
 
+
 \CommentTok{# Change the data path accordingly ----------------------------------------}
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/"}\NormalTok{) }\CommentTok{# on Ubuntu}
+
+\KeywordTok{setwd}\NormalTok{(}\StringTok{".../UKDA-6533-stata11_se/stata11_se/"}\NormalTok{) }
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/Downloads/UKDA-6533-stata11_se/stata11_se/"}\NormalTok{)}
+
 \KeywordTok{library}\NormalTok{(epiDisplay)}
 \KeywordTok{library}\NormalTok{(plyr)}
 \KeywordTok{library}\NormalTok{(tidyverse)}
 
+
 \CommentTok{# Read the data into memory -----------------------------------------------}
+
 \KeywordTok{library}\NormalTok{(haven)}
 \NormalTok{data <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr1-4a_foodleveldietarydata_uk.dta"}\NormalTok{)}
 \NormalTok{data56 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr5-6a_foodleveldietarydata.dta"}\NormalTok{)}
 \NormalTok{data78 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr7-8a_foodleveldietarydata.dta"}\NormalTok{)}
+
 \KeywordTok{names}\NormalTok{(data)}
 \KeywordTok{names}\NormalTok{(data56)}
 \KeywordTok{names}\NormalTok{(data78)}
-\KeywordTok{names}\NormalTok{(data)[}\KeywordTok{names}\NormalTok{(data) }\OperatorTok{==}\StringTok{ "seriali"}\NormalTok{] <-}\StringTok{ "id"}
-\KeywordTok{names}\NormalTok{(data56)[}\KeywordTok{names}\NormalTok{(data56) }\OperatorTok{==}\StringTok{ "seriali"}\NormalTok{] <-}\StringTok{ "id"}
-\KeywordTok{names}\NormalTok{(data78)[}\KeywordTok{names}\NormalTok{(data78) }\OperatorTok{==}\StringTok{ "seriali"}\NormalTok{] <-}\StringTok{ "id"}
+\KeywordTok{names}\NormalTok{(data)[}\KeywordTok{names}\NormalTok{(data)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "id"}
+\KeywordTok{names}\NormalTok{(data56)[}\KeywordTok{names}\NormalTok{(data56)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "id"}
+\KeywordTok{names}\NormalTok{(data78)[}\KeywordTok{names}\NormalTok{(data78)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "id"}
 
-\CommentTok{# Extract the data we needed ----------------------------------------------}
-\NormalTok{df14d <-}\StringTok{ }\NormalTok{data[, }\KeywordTok{c}\NormalTok{(}\DecValTok{113}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{57}\NormalTok{, }\DecValTok{58}\NormalTok{, }
-    \DecValTok{59}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{61}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{63}\NormalTok{, }\DecValTok{64}\NormalTok{)]}
+
+\CommentTok{# Extract the variables needed -------------------------------------------}
+
+\NormalTok{df14d <-}\StringTok{ }\NormalTok{data[,}\KeywordTok{c}\NormalTok{(}\DecValTok{113}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{53}\NormalTok{, }\DecValTok{55}\NormalTok{,}
+                 \DecValTok{57}\NormalTok{,}\DecValTok{58}\NormalTok{,}\DecValTok{59}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{61}\NormalTok{,}\DecValTok{62}\NormalTok{,}\DecValTok{63}\NormalTok{,}\DecValTok{64}\NormalTok{,}\DecValTok{65}\NormalTok{)]}
 \NormalTok{var <-}\StringTok{ }\KeywordTok{names}\NormalTok{(df14d)}
-\NormalTok{df56d <-}\StringTok{ }\NormalTok{data56 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(var)}
-\NormalTok{df78d <-}\StringTok{ }\NormalTok{data78 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(var)}
+\NormalTok{df56d <-}\StringTok{ }\NormalTok{data56 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(var)}
+\NormalTok{df78d <-}\StringTok{ }\NormalTok{data78 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(var)}
 \NormalTok{dfs1 <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df14d, df56d, df78d)}
-\NormalTok{dfs2 <-}\StringTok{ }\NormalTok{dfs1[dfs1}\OperatorTok{$}\NormalTok{Age }\OperatorTok{>=}\StringTok{ }\DecValTok{19}\NormalTok{, ]}
-\KeywordTok{rm}\NormalTok{(data, data56, data78)}
+
+\NormalTok{dfs2 <-}\StringTok{ }\NormalTok{dfs1[dfs1}\OperatorTok{$}\NormalTok{Age}\OperatorTok{>=}\DecValTok{19}\NormalTok{,] }\CommentTok{# keep participants who aged 19 or older}
+\KeywordTok{rm}\NormalTok{(data, data56, data78) }\CommentTok{# remove the unneeded big dataset}
+
 \NormalTok{dfs2}
+
 
 \CommentTok{# Calculate the time (minute and hour) when they eat ----------------------}
 
 \NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealTime_chr <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime)}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealTime_hm <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_chr, }\StringTok{" "}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }
-    \OtherTok{TRUE}\NormalTok{)]}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm, }\StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }
-    \OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm, }\StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }
-    \OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
-\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN0 <-}\StringTok{ }\NormalTok{(}\DecValTok{60} \OperatorTok{*}\StringTok{ }\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN) }\OperatorTok{+}\StringTok{ }\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN}
-\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs2[}\KeywordTok{order}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{id, dfs2}\OperatorTok{$}\NormalTok{DayNo, dfs2}\OperatorTok{$}\NormalTok{MealMinN0), ]}
-\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(dfs3}\OperatorTok{$}\NormalTok{id))  ## number of participants = 6155}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealTime_hm <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_chr,}\StringTok{" "}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }
+                                                              \OtherTok{TRUE}\NormalTok{)]}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm,}
+                                             \StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{MealTime_hm,}
+                                            \StringTok{":"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)])}
 
-\CommentTok{# Create a subset data with only the first observation of each}
-\CommentTok{# participant --------}
+\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN0 <-}\StringTok{ }\NormalTok{(}\DecValTok{60}\OperatorTok{*}\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealHourN)}\OperatorTok{+}\NormalTok{dfs2}\OperatorTok{$}\NormalTok{MealMinN}
+
+\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs2[}\KeywordTok{order}\NormalTok{(dfs2}\OperatorTok{$}\NormalTok{id,dfs2}\OperatorTok{$}\NormalTok{DayNo,dfs2}\OperatorTok{$}\NormalTok{MealMinN0),]}
+
+\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(dfs3}\OperatorTok{$}\NormalTok{id)) ## number of participants = 6155}
+
+
+\CommentTok{# Create a subset data with only the first observation of each participant --------}
+
 \NormalTok{NDNS <-}\StringTok{ }\NormalTok{dfs3[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(dfs3}\OperatorTok{$}\NormalTok{id), ]}
 \KeywordTok{with}\NormalTok{(NDNS, }\KeywordTok{tab1}\NormalTok{(SurveyYear, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{decimal =} \DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{# #SurveyYear :}
-            \CommentTok{# Frequency Percent Cum. percent}
-\CommentTok{# NDNS Year 1       801   13.01        13.01}
-\CommentTok{# NDNS Year 2       812   13.19        26.21}
-\CommentTok{# NDNS Year 3       782   12.71        38.91}
-\CommentTok{# NDNS Year 4      1055   17.14        56.05}
-\CommentTok{# NDNS Year 5       625   10.15        66.21}
-\CommentTok{# NDNS Year 6       663   10.77        76.98}
-\CommentTok{# NDNS Year 7       703   11.42        88.40}
-\CommentTok{# NDNS Year 8       714   11.60       100.00}
-  \CommentTok{# Total          6155  100.00       100.00}
+\begin{verbatim}
+# #SurveyYear : 
+#             Frequency Percent Cum. percent
+# NDNS Year 1       801   13.01        13.01
+# NDNS Year 2       812   13.19        26.21
+# NDNS Year 3       782   12.71        38.91
+# NDNS Year 4      1055   17.14        56.05
+# NDNS Year 5       625   10.15        66.21
+# NDNS Year 6       663   10.77        76.98
+# NDNS Year 7       703   11.42        88.40
+# NDNS Year 8       714   11.60       100.00
+#   Total          6155  100.00       100.00
+\end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# how many men and women --------------------------------------------------}
 
+\KeywordTok{with}\NormalTok{(NDNS, }\KeywordTok{tab1}\NormalTok{(Sex, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{decimal =} \DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# Sex : 
+#          Frequency Percent Cum. percent
+# 1            2537   41.22        41.22 Men
+# 2            3618   58.78       100.00 Women
+#   Total      6155  100.00       100.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{# create a variable combine id and day No ---------------------------------}
-\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs3 }\OperatorTok{%>%}
-\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{id_dy =} \KeywordTok{paste}\NormalTok{(id, DayNo, }\DataTypeTok{sep =} \StringTok{"D"}\NormalTok{))}
 
-\CommentTok{# For each subject, the total energy/carbohydrate intake for each eating }
-\CommentTok{# time can be calculated --------}
-\NormalTok{old <-}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{()}
+
+\NormalTok{dfs3 <-}\StringTok{ }\NormalTok{dfs3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{id_dy =} \KeywordTok{paste}\NormalTok{(id, DayNo, }\DataTypeTok{sep =} \StringTok{"D"}\NormalTok{))}
+
+\CommentTok{# For each subject, the total energy/carbohydrate intake for each }
+\CommentTok{# eating time can be calculated --------}
+
+\NormalTok{old<-}\KeywordTok{Sys.time}\NormalTok{()}
 \NormalTok{Energy <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(dfs3, .(id_dy, id, SurveyYear, DayNo, Age, Sex, }
-\NormalTok{                        DiaryDaysCompleted, MealHourN, DayofWeek), }
-\NormalTok{                summarise, }
-                \DataTypeTok{Tot_Energ =} \KeywordTok{sum}\NormalTok{(EnergykJ), }
+\NormalTok{                        DiaryDaysCompleted, MealHourN, DayofWeek),  }
+\NormalTok{                summarise, }\DataTypeTok{Tot_Energ =} \KeywordTok{sum}\NormalTok{(EnergykJ), }
                 \DataTypeTok{Tot_Carb =} \KeywordTok{sum}\NormalTok{(Carbohydrateg), }
                 \DataTypeTok{Tot_Sugar =} \KeywordTok{sum}\NormalTok{(Totalsugarsg), }
-                \DataTypeTok{Tot_Starch =} \KeywordTok{sum}\NormalTok{(Starchg))}
-\NormalTok{new <-}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{() }\OperatorTok{-}\StringTok{ }\NormalTok{old}
+                \DataTypeTok{Tot_Starch =} \KeywordTok{sum}\NormalTok{(Starchg), }
+                \DataTypeTok{Tot_Fibre =} \KeywordTok{sum}\NormalTok{(Englystfibreg),}
+                \DataTypeTok{Tot_Fat   =} \KeywordTok{sum}\NormalTok{(Fatg), }
+                \DataTypeTok{Tot_Prot  =} \KeywordTok{sum}\NormalTok{(Proteing), }
+                \DataTypeTok{Tot_Alc   =} \KeywordTok{sum}\NormalTok{(Alcoholg), }
+                \DataTypeTok{Tot_NMES  =} \KeywordTok{sum}\NormalTok{(Nonmilkextrinsicsugarsg))}
+\NormalTok{new<-}\KeywordTok{Sys.time}\NormalTok{()}\OperatorTok{-}\NormalTok{old}
 \KeywordTok{print}\NormalTok{(new)}
-\CommentTok{# Time difference of 3.876385 mins}
+\CommentTok{# Time difference of 6.429822 min}
 
-\KeywordTok{rm}\NormalTok{(df14d, df56d, df78d, dfs2)}
+
+\CommentTok{# reset the time intervals into time slots --------------------------------}
+
+\NormalTok{### Breakfast:       6am to 9am}
+\NormalTok{### morning snack:   9am to 12noon}
+\NormalTok{### lunch:           12noon to 2pm}
+\NormalTok{### afternoon snack: 2pm to 5pm}
+\NormalTok{### dinner:          5pm to 8pm}
+\NormalTok{### night snack:     8pm to 10pm}
+\NormalTok{### midnight:        10pm to 6am}
+
+
+\NormalTok{Energy <-}\StringTok{ }\NormalTok{Energy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TimeSlot =} \KeywordTok{cut}\NormalTok{(MealHourN, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{22}\NormalTok{), }
+                        \DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{))}
+
+
+\KeywordTok{levels}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot), }\StringTok{"[22, 6)"}\NormalTok{)}
+
+\NormalTok{Energy}\OperatorTok{$}\NormalTok{TimeSlot[}\KeywordTok{is.na}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot)] <-}\StringTok{ "[22, 6)"}
+
+\KeywordTok{tab1}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{TimeSlot)}
+
+
+\CommentTok{# For each subject, the total energy/carbohydrate intake for each }
+\CommentTok{# time slot can be calculated --------}
+\NormalTok{old<-}\KeywordTok{Sys.time}\NormalTok{()}
+\NormalTok{Energy <-}\StringTok{ }\KeywordTok{ddply}\NormalTok{(Energy, .(id_dy, id, SurveyYear, DayNo, Age, Sex, }
+\NormalTok{                          DiaryDaysCompleted, TimeSlot, DayofWeek),  }
+\NormalTok{                summarise, }
+                \DataTypeTok{Tot_Energ =} \KeywordTok{sum}\NormalTok{(Tot_Energ), }
+                \DataTypeTok{Tot_Carb =} \KeywordTok{sum}\NormalTok{(Tot_Carb), }
+                \DataTypeTok{Tot_Sugar =} \KeywordTok{sum}\NormalTok{(Tot_Sugar),}
+                \DataTypeTok{Tot_Starch =} \KeywordTok{sum}\NormalTok{(Tot_Starch), }
+                \DataTypeTok{Tot_Fibre =} \KeywordTok{sum}\NormalTok{(Tot_Fibre), }
+                \DataTypeTok{Tot_Fat   =} \KeywordTok{sum}\NormalTok{(Tot_Fat), }
+                \DataTypeTok{Tot_Prot  =} \KeywordTok{sum}\NormalTok{(Tot_Prot), }
+                \DataTypeTok{Tot_Alc   =} \KeywordTok{sum}\NormalTok{(Tot_Alc), }
+                \DataTypeTok{Tot_NMES  =} \KeywordTok{sum}\NormalTok{(Tot_NMES))}
+\NormalTok{new<-}\KeywordTok{Sys.time}\NormalTok{()}\OperatorTok{-}\NormalTok{old}
+\KeywordTok{print}\NormalTok{(new)}
+\CommentTok{# Time difference of 3.74195 mins }
+
 
 \CommentTok{# Calculate the energy from total carbohydrates ---------------------------}
-\NormalTok{Energy <-}\StringTok{ }\NormalTok{Energy }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{KJcarbo =}\NormalTok{ Tot_Carb }\OperatorTok{*}\StringTok{ }\DecValTok{16}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{CarKJpercentage =}\NormalTok{ KJcarbo}\OperatorTok{/}\NormalTok{Tot_Energ) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Carbo =} \KeywordTok{cut}\NormalTok{(CarKJpercentage, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.26}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\DecValTok{2}\NormalTok{), }
-        \DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Carbo2 =} \KeywordTok{cut}\NormalTok{(CarKJpercentage, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }
-    \FloatTok{0.26}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{))}
-\NormalTok{Energy0 <-}\StringTok{ }\NormalTok{Energy[}\OperatorTok{!}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{Tot_Energ }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{), ]  }
-          \CommentTok{# some food consumption does not contain any carbohydrates}
-\NormalTok{Energy0}\OperatorTok{$}\NormalTok{Carbo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{Carbo, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Low_carb"}\NormalTok{, }\StringTok{"Med_carb"}\NormalTok{, }
-    \StringTok{"High_carb"}\NormalTok{))}
-\NormalTok{Energy0}\OperatorTok{$}\NormalTok{Carbo2 <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{Carbo2, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Low_carb"}\NormalTok{, }\StringTok{"Med_or_high_carb"}\NormalTok{))}
 
-\CommentTok{# Generate data sets for each day ----------------------------------------------------------}
+\NormalTok{Energy <-}\StringTok{ }\NormalTok{Energy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{KJcarbo =}\NormalTok{ Tot_Carb}\OperatorTok{*}\DecValTok{16}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{CarKJpercentage =}\NormalTok{ KJcarbo}\OperatorTok{/}\NormalTok{Tot_Energ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Carbo =} \KeywordTok{cut}\NormalTok{(CarKJpercentage, }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.50}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{))}
+
+\NormalTok{Energy0 <-}\StringTok{ }\NormalTok{Energy[}\OperatorTok{!}\NormalTok{(Energy}\OperatorTok{$}\NormalTok{Tot_Energ }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{), ] }\CommentTok{# discard those eating occassion }
+\CommentTok{# with 0 energy intake }
+\KeywordTok{write.csv}\NormalTok{(Energy0, }\DataTypeTok{file =} \StringTok{"Energy_slots.csv"}\NormalTok{) }\CommentTok{# for later analysis}
+
+
+\NormalTok{Energy0}\OperatorTok{$}\NormalTok{Carbo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{Carbo, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"< 50%"}\NormalTok{, }\StringTok{">= 50%"}\NormalTok{))}
+
+\NormalTok{vecid<-}\KeywordTok{unique}\NormalTok{(Energy0}\OperatorTok{$}\NormalTok{id)}
+
+\CommentTok{# Filter the data by observation day--------------------------------------------}
+
 \NormalTok{dta_day1 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+           \StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+                            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+                                       \StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+                                       \StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
 
 \NormalTok{dta_day2 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+           \StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+                            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+                                       \StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+                                       \StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
 
 \NormalTok{dta_day3 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+           \StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
+                            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+                                       \StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+                                       \StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
 
 \NormalTok{dta_day4 <-}\StringTok{ }\NormalTok{Energy0 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(DayNo }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }
-    \StringTok{"Sex"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{, }\StringTok{"MealHourN"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{, }\StringTok{"Carbo2"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"id_dy"}\NormalTok{, }\StringTok{"Age"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{, }
+           \StringTok{"DayofWeek"}\NormalTok{,  }\StringTok{"TimeSlot"}\NormalTok{, }\StringTok{"Carbo"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{DayofWeek =} \KeywordTok{factor}\NormalTok{(DayofWeek, }
-    \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }
-        \StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
-\NormalTok{vecid1 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day1}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
-\NormalTok{vecid2 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day2}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
-\NormalTok{vecid3 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day3}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6151}
-\NormalTok{vecid4 <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(dta_day4}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6026}
+                            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }
+                                       \StringTok{"Wednesday"}\NormalTok{, }\StringTok{"Thursday"}\NormalTok{, }
+                                       \StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{)))}
 
-\NormalTok{Noday1 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid1)  }\CommentTok{# two subjects did not have day 1 data}
-\NormalTok{Noday2 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid2)  }\CommentTok{# two subjects did not have day 2 data}
-\NormalTok{Noday3 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid3)  }\CommentTok{# four subjects did not have day 3 data}
-\NormalTok{Noday4 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid4)  }\CommentTok{# 129 subjects did not have day 4 data}
+\NormalTok{vecid1<-}\KeywordTok{unique}\NormalTok{(dta_day1}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
+\NormalTok{vecid2<-}\KeywordTok{unique}\NormalTok{(dta_day2}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6153}
+\NormalTok{vecid3<-}\KeywordTok{unique}\NormalTok{(dta_day3}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6151}
+\NormalTok{vecid4<-}\KeywordTok{unique}\NormalTok{(dta_day4}\OperatorTok{$}\NormalTok{id) }\CommentTok{# n = 6026}
 
-\CommentTok{# Transform the data shape from long to wide ---------------------------------}
-\NormalTok{dta_d1_wide <-}\StringTok{ }\NormalTok{dta_day1[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d1_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
 
-\NormalTok{dta_d2_wide <-}\StringTok{ }\NormalTok{dta_day2[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d2_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{Noday1 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid1) }\CommentTok{# two subjects did not have day 1 data}
 
-\NormalTok{dta_d3_wide <-}\StringTok{ }\NormalTok{dta_day3[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d3_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{Noday2 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid2) }\CommentTok{# two subjects did not have day 2 data }
 
-\NormalTok{dta_d4_wide <-}\StringTok{ }\NormalTok{dta_day4[, }\OperatorTok{-}\DecValTok{7}\NormalTok{] }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ MealHourN, }\DataTypeTok{value =}\NormalTok{ Carbo)}
-\KeywordTok{names}\NormalTok{(dta_d4_wide)[}\DecValTok{5}\OperatorTok{:}\DecValTok{28}\NormalTok{] <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\DecValTok{24}\NormalTok{), }\DecValTok{0}\OperatorTok{:}\DecValTok{23}\NormalTok{, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{Noday3 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid3) }\CommentTok{# four subjects did not have day 3 data }
+
+\NormalTok{Noday4 <-}\StringTok{ }\KeywordTok{setdiff}\NormalTok{(vecid, vecid4) }\CommentTok{# 129 subjects did not have day 4 data}
+
+\CommentTok{# Long to wide data -------------------------------------------------------}
+
+\NormalTok{dta_d1_wide <-}\StringTok{ }\NormalTok{dta_day1 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ Carbo)}
+
+\KeywordTok{head}\NormalTok{(dta_d1_wide)}
+\KeywordTok{names}\NormalTok{(dta_d1_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+                              \StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d1_wide)}
+
+
+\NormalTok{dta_d2_wide <-}\StringTok{ }\NormalTok{dta_day2 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ Carbo)}
+
+\KeywordTok{head}\NormalTok{(dta_d2_wide)}
+\KeywordTok{names}\NormalTok{(dta_d2_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+                              \StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d2_wide)}
+
+
+\NormalTok{dta_d3_wide <-}\StringTok{ }\NormalTok{dta_day3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ Carbo)}
+
+\KeywordTok{head}\NormalTok{(dta_d3_wide)}
+\KeywordTok{names}\NormalTok{(dta_d3_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+                              \StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d3_wide)}
+
+
+\NormalTok{dta_d4_wide <-}\StringTok{ }\NormalTok{dta_day4 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ Carbo)}
+
+\KeywordTok{head}\NormalTok{(dta_d4_wide)}
+\KeywordTok{names}\NormalTok{(dta_d4_wide)[}\DecValTok{6}\OperatorTok{:}\DecValTok{12}\NormalTok{] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"H6_9"}\NormalTok{, }\StringTok{"H9_12"}\NormalTok{, }\StringTok{"H12_14"}\NormalTok{, }\StringTok{"H14_17"}\NormalTok{, }
+                              \StringTok{"H17_20"}\NormalTok{, }\StringTok{"H20_22"}\NormalTok{, }\StringTok{"H22_6"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(dta_d4_wide)}
+
+
 
 \CommentTok{# recode NA to not eating -------------------------------------------------}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d1_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d1_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d1_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d1_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
 
-\NormalTok{dta_d1_wide[}\KeywordTok{is.na}\NormalTok{(dta_d1_wide)] <-}\StringTok{ "Not_eating"}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d1_wide)) }
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d1_wide[,i])) }
+    \KeywordTok{levels}\NormalTok{(dta_d1_wide[,i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
 
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d2_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d2_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d2_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d2_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
+\NormalTok{dta_d1_wide[}\KeywordTok{is.na}\NormalTok{(dta_d1_wide)] <-}\StringTok{ "0"}
 
-\NormalTok{dta_d2_wide[}\KeywordTok{is.na}\NormalTok{(dta_d2_wide)] <-}\StringTok{ "Not_eating"}
 
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d3_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d3_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d3_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d3_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d2_wide)) }
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d2_wide[,i])) }
+    \KeywordTok{levels}\NormalTok{(dta_d2_wide[,i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{,  }\StringTok{"0"}\NormalTok{)}
 
-\NormalTok{dta_d3_wide[}\KeywordTok{is.na}\NormalTok{(dta_d3_wide)] <-}\StringTok{ "Not_eating"}
 
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d4_wide)) }
-  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(dta_d4_wide[, i])) }\KeywordTok{levels}\NormalTok{(dta_d4_wide[, }
-\NormalTok{    i]) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{levels}\NormalTok{(dta_d4_wide[, i]), }\StringTok{"Not_eating"}\NormalTok{)}
+\NormalTok{dta_d2_wide[}\KeywordTok{is.na}\NormalTok{(dta_d2_wide)] <-}\StringTok{ "0"}
 
-\NormalTok{dta_d4_wide[}\KeywordTok{is.na}\NormalTok{(dta_d4_wide)] <-}\StringTok{ "Not_eating"}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d3_wide)) }
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d3_wide[,i])) }
+    \KeywordTok{levels}\NormalTok{(dta_d3_wide[,i]) <-}\StringTok{  }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
+
+\NormalTok{dta_d3_wide[}\KeywordTok{is.na}\NormalTok{(dta_d3_wide)] <-}\StringTok{ "0"}
+
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{6}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(dta_d4_wide)) }
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.factor}\NormalTok{(dta_d4_wide[,i])) }
+    \KeywordTok{levels}\NormalTok{(dta_d4_wide[,i]) <-}\StringTok{  }\KeywordTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"0"}\NormalTok{)}
+
+\NormalTok{dta_d4_wide[}\KeywordTok{is.na}\NormalTok{(dta_d4_wide)] <-}\StringTok{ "0"}
+
+
+\NormalTok{dta_all <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(dta_d1_wide, dta_d2_wide, dta_d3_wide, dta_d4_wide)}
+
+\NormalTok{dta_all <-}\StringTok{ }\NormalTok{dta_all[}\KeywordTok{order}\NormalTok{(dta_all}\OperatorTok{$}\NormalTok{id,dta_all}\OperatorTok{$}\NormalTok{id_dy),]}
+
+\CommentTok{# Export the data for Mplus -------------------------------------------------}
+
+\KeywordTok{write_csv}\NormalTok{(dta_all, }\DataTypeTok{path =} \StringTok{"dta_NDNS_Tslots.csv"}\NormalTok{)}
+\KeywordTok{write_delim}\NormalTok{(dta_all, }\StringTok{"dta_NDNS_Tslots.dat"}\NormalTok{, }\DataTypeTok{na =} \StringTok{"."}\NormalTok{, }\DataTypeTok{delim =} \StringTok{" "}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -939,6 +1081,1413 @@ Web: www.StatModel.com
 Support: Support@StatModel.com
 
 Copyright (c) 1998-2015 Muthen & Muthen
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(plyr)}
+\KeywordTok{library}\NormalTok{(epiDisplay)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(readr)}
+\KeywordTok{library}\NormalTok{(haven)}
+\KeywordTok{library}\NormalTok{(naniar)}
+
+
+
+\CommentTok{# read the individual level data sets ----------------------------------------}
+
+\NormalTok{blood78 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr7-8a_indiv.dta"}\NormalTok{)}
+\NormalTok{blood56 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr5-6a_indiv.dta"}\NormalTok{)}
+\NormalTok{blood14 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr1-4a_indiv_uk.dta"}\NormalTok{)}
+
+\NormalTok{food14 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr1-4a_personleveldietarydata_uk.dta"}\NormalTok{)}
+
+\NormalTok{food56 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr5-6a_personleveldietarydata.dta"}\NormalTok{)}
+
+\NormalTok{food78 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr7-8a_personleveldietarydata.dta"}\NormalTok{)}
+
+\KeywordTok{names}\NormalTok{(blood78)[}\KeywordTok{names}\NormalTok{(blood78)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "ID"}
+\KeywordTok{names}\NormalTok{(blood56)[}\KeywordTok{names}\NormalTok{(blood56)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "ID"}
+\KeywordTok{names}\NormalTok{(blood14)[}\KeywordTok{names}\NormalTok{(blood14)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "ID"}
+\KeywordTok{names}\NormalTok{(food78)[}\KeywordTok{names}\NormalTok{(food78)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "ID"}
+\KeywordTok{names}\NormalTok{(food56)[}\KeywordTok{names}\NormalTok{(food56)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "ID"}
+\KeywordTok{names}\NormalTok{(food14)[}\KeywordTok{names}\NormalTok{(food14)}\OperatorTok{==}\StringTok{"seriali"}\NormalTok{] <-}\StringTok{ "ID"}
+
+
+\CommentTok{# Loading the data from Mplus output}
+\NormalTok{CW3CB3 <-}\StringTok{ }\KeywordTok{read_table2}\NormalTok{(}\StringTok{"../NDNSslot_CW3CB3.txt"}\NormalTok{,  }\CommentTok{# change the path accordingly}
+                      \DataTypeTok{col_names =} \OtherTok{FALSE}\NormalTok{)}
+
+\KeywordTok{names}\NormalTok{(CW3CB3) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Breakfast"}\NormalTok{, }\StringTok{"Morning.snack"}\NormalTok{, }\StringTok{"Lunch"}\NormalTok{,}
+                   \StringTok{"Afternoon.snack"}\NormalTok{, }\StringTok{"Dinner"}\NormalTok{, }\StringTok{"Before.bedtime.snack"}\NormalTok{,}
+                   \StringTok{"Midnight.food"}\NormalTok{, }\StringTok{"ID_DAY"}\NormalTok{, }\StringTok{"AGE"}\NormalTok{, }\StringTok{"SEX"}\NormalTok{, }\StringTok{"CPROB1"}\NormalTok{,}
+                   \StringTok{"CPROB2"}\NormalTok{, }\StringTok{"CPROB3"}\NormalTok{, }\StringTok{"CPROB4"}\NormalTok{, }\StringTok{"CPROB5"}\NormalTok{, }\StringTok{"CPROB6"}\NormalTok{, }
+                   \StringTok{"CPROB7"}\NormalTok{, }\StringTok{"CPROB8"}\NormalTok{, }\StringTok{"CPROB9"}\NormalTok{, }
+                   \StringTok{"CB"}\NormalTok{, }\StringTok{"CW"}\NormalTok{, }\StringTok{"MLCJOINT"}\NormalTok{, }\StringTok{"ID"}\NormalTok{)}
+
+\NormalTok{CW3idday <-}\StringTok{ }\NormalTok{CW3CB3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, ID_DAY, CW, CB, MLCJOINT, AGE, SEX)}
+
+\NormalTok{Energy_slots <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"../Energy_slots.csv"}\NormalTok{) }\CommentTok{# change the path accordingly}
+\NormalTok{Energy_slots <-}\StringTok{ }\NormalTok{Energy_slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{ID =}\NormalTok{ id)}
+
+\CommentTok{# Recode day level classification to keep consistency}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{CW_new <-}\StringTok{ }\DecValTok{0}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{CW_new[CW3idday}\OperatorTok{$}\NormalTok{CW }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\DecValTok{3}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{CW_new[CW3idday}\OperatorTok{$}\NormalTok{CW }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{CW_new[CW3idday}\OperatorTok{$}\NormalTok{CW }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{] <-}\StringTok{ }\DecValTok{2}
+
+\NormalTok{Energy_slots <-}\StringTok{ }\NormalTok{Energy_slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(CW3idday, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"DayofWeek"}\NormalTok{))}
+
+
+\NormalTok{Energy_slots}\OperatorTok{$}\NormalTok{TimeSlot <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Energy_slots}\OperatorTok{$}\NormalTok{TimeSlot, }
+                                \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"[6,9)"}\NormalTok{, }\StringTok{"[9,12)"}\NormalTok{, }
+                                           \StringTok{"[12,14)"}\NormalTok{, }\StringTok{"[14,17)"}\NormalTok{,}
+                                           \StringTok{"[17,20)"}\NormalTok{, }\StringTok{"[20,22)"}\NormalTok{, }\StringTok{"[22, 6)"}\NormalTok{))}
+
+\NormalTok{FoodbyCB_7slots <-}\StringTok{ }\NormalTok{Energy_slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(ID, TimeSlot) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{sumEnergy =} \KeywordTok{sum}\NormalTok{(Tot_Energ),}
+            \DataTypeTok{sumCarb =} \KeywordTok{sum}\NormalTok{(Tot_Carb), }
+            \DataTypeTok{sumSugar =} \KeywordTok{sum}\NormalTok{(Tot_Sugar), }
+            \DataTypeTok{sumStarch =} \KeywordTok{sum}\NormalTok{(Tot_Starch),}
+            \DataTypeTok{sumFibre =} \KeywordTok{sum}\NormalTok{(Tot_Fibre), }
+            \DataTypeTok{sumNMES =} \KeywordTok{sum}\NormalTok{(Tot_NMES),}
+            \DataTypeTok{sumFat =} \KeywordTok{sum}\NormalTok{(Tot_Fat),}
+            \DataTypeTok{sumProt =} \KeywordTok{sum}\NormalTok{(Tot_Prot), }
+            \DataTypeTok{sumAlc =} \KeywordTok{sum}\NormalTok{(Tot_Alc))}
+
+\CommentTok{# Calculate the sum of each nutrients for each time slots}
+\NormalTok{Carbsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumCarb) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumCarb)}
+
+\NormalTok{Carbsum[}\KeywordTok{is.na}\NormalTok{(Carbsum)] <-}\StringTok{ }\DecValTok{0}
+
+\KeywordTok{names}\NormalTok{(Carbsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Carb6_9"}\NormalTok{, }\StringTok{"Carb9_12"}\NormalTok{, }\StringTok{"Carb12_14"}\NormalTok{, }\StringTok{"Carb14_17"}\NormalTok{,}
+                     \StringTok{"Carb17_20"}\NormalTok{, }\StringTok{"Carb20_22"}\NormalTok{, }\StringTok{"Carb22_6"}\NormalTok{)}
+
+
+\NormalTok{Energysum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumEnergy) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumEnergy)}
+\NormalTok{Energysum[}\KeywordTok{is.na}\NormalTok{(Energysum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Energysum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Energy6_9"}\NormalTok{, }\StringTok{"Energy9_12"}\NormalTok{, }\StringTok{"Energy12_14"}\NormalTok{, }\StringTok{"Energy14_17"}\NormalTok{,}
+                     \StringTok{"Energy17_20"}\NormalTok{, }\StringTok{"Energy20_22"}\NormalTok{, }\StringTok{"Energy22_6"}\NormalTok{)}
+
+\NormalTok{Starchsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumStarch) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumStarch)}
+\NormalTok{Starchsum[}\KeywordTok{is.na}\NormalTok{(Starchsum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Starchsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Starch6_9"}\NormalTok{, }\StringTok{"Starch9_12"}\NormalTok{, }\StringTok{"Starch12_14"}\NormalTok{, }\StringTok{"Starch14_17"}\NormalTok{,}
+                       \StringTok{"Starch17_20"}\NormalTok{, }\StringTok{"Starch20_22"}\NormalTok{, }\StringTok{"Starch22_6"}\NormalTok{)}
+
+
+\NormalTok{Sugarsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumSugar) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumSugar)}
+\NormalTok{Sugarsum[}\KeywordTok{is.na}\NormalTok{(Sugarsum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Sugarsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Sugar6_9"}\NormalTok{, }\StringTok{"Sugar9_12"}\NormalTok{, }\StringTok{"Sugar12_14"}\NormalTok{, }\StringTok{"Sugar14_17"}\NormalTok{,}
+                      \StringTok{"Sugar17_20"}\NormalTok{, }\StringTok{"Sugar20_22"}\NormalTok{, }\StringTok{"Sugar22_6"}\NormalTok{)}
+
+
+\NormalTok{Fibresum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumFibre) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumFibre)}
+\NormalTok{Fibresum[}\KeywordTok{is.na}\NormalTok{(Fibresum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Fibresum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Fibre6_9"}\NormalTok{, }\StringTok{"Fibre9_12"}\NormalTok{, }\StringTok{"Fibre12_14"}\NormalTok{, }\StringTok{"Fibre14_17"}\NormalTok{,}
+                      \StringTok{"Fibre17_20"}\NormalTok{, }\StringTok{"Fibre20_22"}\NormalTok{, }\StringTok{"Fibre22_6"}\NormalTok{)}
+
+
+\NormalTok{NMESsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumNMES) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumNMES)}
+\NormalTok{NMESsum[}\KeywordTok{is.na}\NormalTok{(NMESsum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(NMESsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"NMES6_9"}\NormalTok{, }\StringTok{"NMES9_12"}\NormalTok{, }\StringTok{"NMES12_14"}\NormalTok{, }\StringTok{"NMES14_17"}\NormalTok{,}
+                      \StringTok{"NMES17_20"}\NormalTok{, }\StringTok{"NMES20_22"}\NormalTok{, }\StringTok{"NMES22_6"}\NormalTok{)}
+
+\NormalTok{Fatsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumFat) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumFat)}
+\NormalTok{Fatsum[}\KeywordTok{is.na}\NormalTok{(Fatsum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Fatsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Fat6_9"}\NormalTok{, }\StringTok{"Fat9_12"}\NormalTok{, }\StringTok{"Fat12_14"}\NormalTok{, }\StringTok{"Fat14_17"}\NormalTok{,}
+                     \StringTok{"Fat17_20"}\NormalTok{, }\StringTok{"Fat20_22"}\NormalTok{, }\StringTok{"Fat22_6"}\NormalTok{)}
+
+
+\NormalTok{Protsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumProt) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumProt)}
+\NormalTok{Protsum[}\KeywordTok{is.na}\NormalTok{(Protsum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Protsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Prot6_9"}\NormalTok{, }\StringTok{"Prot9_12"}\NormalTok{, }\StringTok{"Prot12_14"}\NormalTok{, }\StringTok{"Prot14_17"}\NormalTok{,}
+                    \StringTok{"Prot17_20"}\NormalTok{, }\StringTok{"Prot20_22"}\NormalTok{, }\StringTok{"Prot22_6"}\NormalTok{)}
+
+
+\NormalTok{Alcsum <-}\StringTok{ }\NormalTok{FoodbyCB_7slots }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, TimeSlot, sumAlc) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ TimeSlot, }
+         \DataTypeTok{value =}\NormalTok{ sumAlc)}
+\NormalTok{Alcsum[}\KeywordTok{is.na}\NormalTok{(Alcsum)] <-}\StringTok{ }\DecValTok{0}
+
+
+\KeywordTok{names}\NormalTok{(Alcsum) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"Alc6_9"}\NormalTok{, }\StringTok{"Alc9_12"}\NormalTok{, }\StringTok{"Alc12_14"}\NormalTok{, }\StringTok{"Alc14_17"}\NormalTok{,}
+                     \StringTok{"Alc17_20"}\NormalTok{, }\StringTok{"Alc20_22"}\NormalTok{, }\StringTok{"Alc22_6"}\NormalTok{)}
+
+\CommentTok{# Extract number of days of diary completed}
+
+\NormalTok{blood14 <-}\StringTok{ }\NormalTok{blood14 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Ndays)}
+
+\NormalTok{blood56 <-}\StringTok{ }\NormalTok{blood56 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Ndays)}
+
+\NormalTok{blood78 <-}\StringTok{ }\NormalTok{blood78 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, NDays) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{Ndays =}\NormalTok{ NDays)}
+
+\NormalTok{NDAYS <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(blood14, blood56, blood78)}
+\NormalTok{NDAYS}\OperatorTok{$}\NormalTok{ID <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(NDAYS}\OperatorTok{$}\NormalTok{ID)}
+
+
+\NormalTok{IntakeSlots <-}\StringTok{ }\NormalTok{Energysum }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Carbsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Sugarsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Starchsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Fibresum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Fatsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Protsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(NMESsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Alcsum, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(NDAYS, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{)}
+
+
+\NormalTok{IntakeSlots}\OperatorTok{$}\NormalTok{ID <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(IntakeSlots}\OperatorTok{$}\NormalTok{ID)}
+
+\NormalTok{IntakeSlots}\OperatorTok{$}\NormalTok{Energy6_}\DecValTok{9}\NormalTok{ <-}\StringTok{ }\NormalTok{IntakeSlots}\OperatorTok{$}\NormalTok{Energy6_}\DecValTok{9}\OperatorTok{/}\NormalTok{(IntakeSlots}\OperatorTok{$}\NormalTok{Ndays)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{3}\OperatorTok{:}\DecValTok{57}\NormalTok{)\{}
+\NormalTok{  IntakeSlots[, i] <-}\StringTok{ }\NormalTok{IntakeSlots[, i]}\OperatorTok{/}\NormalTok{(IntakeSlots}\OperatorTok{$}\NormalTok{Ndays)}
+\NormalTok{\}}
+
+
+
+\CommentTok{# select the variables needed, recoding }
+\CommentTok{# NAs, renaming to the same ----------------------------------------}
+
+\NormalTok{BMI78 <-}\StringTok{ }\NormalTok{blood78 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Sex, age, bmival, wstval, Diabetes, bpmedc2, bpmedd2, }
+\NormalTok{         hyper140_}\DecValTok{2}\NormalTok{, hibp140_}\DecValTok{2}\NormalTok{,  Glucose, A1C, cigsta3, dnoft3, }
+\NormalTok{         dnnow, wti_Y78, wtn_Y78, wtb_Y78, ethgrp5, ethgrp2,}
+\NormalTok{         cluster1, cluster2, cluster3, nssec8, paidemployment, }
+\NormalTok{         qual7, eqvinc, MarSt2, cluster4, cluster5, area, gor, }
+\NormalTok{         LDL, HDL, Chol, Trig) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{wti =}\NormalTok{ wti_Y78, }\DataTypeTok{wtn =}\NormalTok{ wtn_Y78, }\DataTypeTok{wtb =}\NormalTok{ wtb_Y78, }
+         \DataTypeTok{drink =}\NormalTok{ dnoft3) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Years =} \StringTok{"7-8"}\NormalTok{, }\DataTypeTok{MVPAtime =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{MarStat =} \OtherTok{NA}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{bmival =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{qual7 =} \OperatorTok{-}\DecValTok{8}\NormalTok{,}
+                                 \DataTypeTok{wstval =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{eqvinc =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{bpmedd2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{MarSt2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{bpmedc2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{hyper140_2 =} \OperatorTok{-}\DecValTok{7}\NormalTok{, }
+                                 \DataTypeTok{hibp140_2 =} \OperatorTok{-}\DecValTok{7}\NormalTok{, }\DataTypeTok{Glucose =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{A1C  =} \OperatorTok{-}\DecValTok{1}\NormalTok{,  }\DataTypeTok{LDL =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{HDL =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{Chol =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{Trig =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{dnnow =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{drink =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{ethgrp5 =} \OperatorTok{-}\DecValTok{4}\NormalTok{, }
+                                 \DataTypeTok{ethgrp2 =} \OperatorTok{-}\DecValTok{4}\NormalTok{, }\DataTypeTok{cigsta3 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{nssec8 =} \OperatorTok{-}\DecValTok{9}\NormalTok{,  }\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{hyper140_2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{hibp140_2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{nssec8 =} \DecValTok{99}\NormalTok{, }\DataTypeTok{qual7 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{drink =} \OperatorTok{-}\DecValTok{8}\NormalTok{, }
+                                 \DataTypeTok{ethgrp2 =} \OperatorTok{-}\DecValTok{9}\NormalTok{, }\DataTypeTok{ethgrp5 =} \OperatorTok{-}\DecValTok{9}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{drink =} \OperatorTok{-}\DecValTok{9}\NormalTok{, }\DataTypeTok{ethgrp2 =} \OperatorTok{-}\DecValTok{8}\NormalTok{, }\DataTypeTok{ethgrp5 =} \OperatorTok{-}\DecValTok{8}\NormalTok{,}
+                                 \DataTypeTok{cigsta3 =} \OperatorTok{-}\DecValTok{8}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{ethgrp2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{ethgrp5 =} \OperatorTok{-}\DecValTok{1}\NormalTok{))}
+
+
+
+
+\NormalTok{BMI56 <-}\StringTok{ }\NormalTok{blood56 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Sex, age, area, bmival, wstval, Diabetes, bpmedc2, bpmedd2, }
+\NormalTok{         hyper140_}\DecValTok{2}\NormalTok{, hibp140_}\DecValTok{2}\NormalTok{, MVPAtime, Glucose, A1C, cigsta3, dnoft3, }
+\NormalTok{         dnnow, wti_Y56, wtn_Y56, wtb_Y56, ethgrp5, ethgrp2, qual7,}
+\NormalTok{         cluster1, cluster2, cluster3, nssec8, paidemployment, eqvinc, }
+\NormalTok{         MarSt2, cluster4, cluster5, area, gor, LDL, HDL, Chol, Trig) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Years =} \StringTok{"5-6"}\NormalTok{, }\DataTypeTok{MarStat =} \OtherTok{NA}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{wti =}\NormalTok{ wti_Y56, }\DataTypeTok{wtn =}\NormalTok{ wtn_Y56, }\DataTypeTok{wtb =}\NormalTok{ wtb_Y56, }\DataTypeTok{drink =}\NormalTok{ dnoft3) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{bmival =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{9}\NormalTok{,}
+                                 \DataTypeTok{wstval =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{qual7 =} \OperatorTok{-}\DecValTok{8}\NormalTok{,}
+                                 \DataTypeTok{bpmedd2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{eqvinc =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{bpmedc2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{MarSt2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{hyper140_2 =} \OperatorTok{-}\DecValTok{7}\NormalTok{, }\DataTypeTok{hibp140_2 =} \OperatorTok{-}\DecValTok{7}\NormalTok{, }
+                                 \DataTypeTok{Glucose =} \OperatorTok{-}\DecValTok{1}\NormalTok{,  }\DataTypeTok{A1C  =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{dnnow =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{drink =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{ethgrp5 =} \OperatorTok{-}\DecValTok{4}\NormalTok{,}
+                                 \DataTypeTok{ethgrp2 =} \OperatorTok{-}\DecValTok{4}\NormalTok{, }\DataTypeTok{LDL =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{HDL =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{Chol =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{Trig =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{cigsta3 =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{MVPAtime =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{nssec8 =} \OperatorTok{-}\DecValTok{9}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{hyper140_2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{hibp140_2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{8}\NormalTok{, }
+                                 \DataTypeTok{drink =} \OperatorTok{-}\DecValTok{8}\NormalTok{, }\DataTypeTok{nssec8 =} \DecValTok{99}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{drink =} \OperatorTok{-}\DecValTok{9}\NormalTok{, }\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                   \DataTypeTok{qual7 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{cigsta3 =} \OperatorTok{-}\DecValTok{8}\NormalTok{))}
+
+\NormalTok{BMI14 <-}\StringTok{ }\NormalTok{blood14 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Sex, age, bmival, wstval, Diabetes, bpmedc, bpmedd, hyper140, }
+\NormalTok{         hibp140, MVPAtime, Glucose, A1C, cigsta3, dnoft3, dnnow, }
+\NormalTok{         wti_CY1234, wtn_CY1234, wtb_CY1234, ethgr5, ethgr2, cluster, }
+\NormalTok{         area, gor, nssec8, paidemployment, qual7, eqvinc, MarSt2, }
+\NormalTok{         MarStat, LDL, HDL, Chol, Trig) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{hyper140_2 =}\NormalTok{ hyper140, }\DataTypeTok{hibp140_2 =}\NormalTok{ hibp140, }\DataTypeTok{bpmedd2 =}\NormalTok{ bpmedd, }
+         \DataTypeTok{bpmedc2 =}\NormalTok{ bpmedc, }\DataTypeTok{cluster1 =}\NormalTok{ cluster, }\DataTypeTok{ethgrp5 =}\NormalTok{ ethgr5, }
+         \DataTypeTok{ethgrp2 =}\NormalTok{ ethgr2, }\DataTypeTok{wti =}\NormalTok{ wti_CY1234, }\DataTypeTok{wtn =}\NormalTok{ wtn_CY1234, }
+         \DataTypeTok{wtb =}\NormalTok{  wtb_CY1234, }\DataTypeTok{drink =}\NormalTok{ dnoft3) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cluster2 =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{cluster3 =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{cluster4 =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{cluster5 =} \OtherTok{NA}\NormalTok{, }
+         \DataTypeTok{Years =} \StringTok{"1-4"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{bmival =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{9}\NormalTok{, }
+                                 \DataTypeTok{wstval =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{qual7 =} \OperatorTok{-}\DecValTok{8}\NormalTok{,}
+                                 \DataTypeTok{bpmedd2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{eqvinc =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{bpmedc2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{MarSt2 =} \OperatorTok{-}\DecValTok{4}\NormalTok{, }
+                                 \DataTypeTok{hyper140_2 =} \OperatorTok{-}\DecValTok{7}\NormalTok{, }\DataTypeTok{MarStat =} \OperatorTok{-}\DecValTok{4}\NormalTok{,}
+                                 \DataTypeTok{hibp140_2 =} \OperatorTok{-}\DecValTok{7}\NormalTok{,  }\DataTypeTok{Glucose =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{A1C  =} \OperatorTok{-}\DecValTok{1}\NormalTok{,  }\DataTypeTok{dnnow =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{LDL =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{HDL =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{Chol =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{Trig =} \OperatorTok{-}\DecValTok{1}\NormalTok{,}
+                                 \DataTypeTok{drink =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{ethgrp5 =} \OperatorTok{-}\DecValTok{4}\NormalTok{, }\DataTypeTok{ethgrp2 =} \OperatorTok{-}\DecValTok{4}\NormalTok{,}
+                                 \DataTypeTok{cigsta3 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{MVPAtime =} \OperatorTok{-}\DecValTok{4}\NormalTok{,  }
+                                 \DataTypeTok{nssec8 =} \OperatorTok{-}\DecValTok{8}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{hyper140_2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{hibp140_2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{MVPAtime =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{8}\NormalTok{,}
+                                 \DataTypeTok{drink =} \OperatorTok{-}\DecValTok{8}\NormalTok{, }\DataTypeTok{nssec8 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }\DataTypeTok{qual7 =} \OperatorTok{-}\DecValTok{1}\NormalTok{, }
+                                 \DataTypeTok{MarSt2 =} \OperatorTok{-}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{drink =} \OperatorTok{-}\DecValTok{9}\NormalTok{, }\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{4}\NormalTok{,}
+                                 \DataTypeTok{cigsta3 =} \OperatorTok{-}\DecValTok{8}\NormalTok{, }\DataTypeTok{nssec8 =} \DecValTok{99}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{replace_with_na}\NormalTok{(}\DataTypeTok{replace =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{paidemployment =} \OperatorTok{-}\DecValTok{1}\NormalTok{))}
+
+
+\NormalTok{BMI <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(BMI14, BMI56, BMI78)}
+
+
+
+\NormalTok{Energy14 <-}\StringTok{ }\NormalTok{food14 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, }
+\NormalTok{         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,}
+\NormalTok{         Fatg, FatpctotE)}
+\NormalTok{Energy14}\OperatorTok{$}\NormalTok{Country[Energy14}\OperatorTok{$}\NormalTok{Country }\OperatorTok{==}\StringTok{ "Northern Ireland"}\NormalTok{] <-}\StringTok{ "NI"}
+
+\NormalTok{Energy56 <-}\StringTok{ }\NormalTok{food56 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Country, Surveyyear, EnergykJ, Carbohydrateg, }
+\NormalTok{         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,}
+\NormalTok{         Fatg, FatpctotE) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{SurveyYear =}\NormalTok{ Surveyyear)}
+
+\NormalTok{Energy78 <-}\StringTok{ }\NormalTok{food78 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, Country, SurveyYear, EnergykJ, Carbohydrateg, }
+\NormalTok{         CHOpctotE, Proteing, ProteinpctotE, Alcoholg, AlcoholpctotE,}
+\NormalTok{         Fatg, FatpctotE)}
+
+\NormalTok{Energy <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(Energy14, Energy56, Energy78)}
+
+
+
+\NormalTok{dta_NDNS <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"dta_NDNS_Tslots.csv"}\NormalTok{) }\CommentTok{# extract the day of week data}
+
+
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayNo <-}\StringTok{ }\KeywordTok{ave}\NormalTok{(CW3idday}\OperatorTok{$}\NormalTok{ID_DAY, CW3idday}\OperatorTok{$}\NormalTok{ID, }
+                      \DataTypeTok{FUN =}\NormalTok{ seq_along) }\CommentTok{# adding the day no }
+
+\NormalTok{dta_DayofWeek <-}\StringTok{ }\NormalTok{dta_NDNS }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id, id_dy, DayofWeek)}
+
+\NormalTok{dta_DayofWeek}\OperatorTok{$}\NormalTok{DayNo <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(dta_DayofWeek}\OperatorTok{$}\NormalTok{id_dy,}
+                                       \StringTok{"D"}\NormalTok{))[}\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)] }\CommentTok{# creating a day No}
+\KeywordTok{names}\NormalTok{(dta_DayofWeek)[}\DecValTok{1}\NormalTok{] <-}\StringTok{ "ID"}
+\NormalTok{dta_DayofWeek}\OperatorTok{$}\NormalTok{DayNo <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(dta_DayofWeek}\OperatorTok{$}\NormalTok{DayNo)}
+
+
+\NormalTok{CW3idday <-}\StringTok{   }\NormalTok{CW3idday }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(dta_DayofWeek, }\DataTypeTok{by=} \KeywordTok{c}\NormalTok{(}\StringTok{"ID"}\NormalTok{, }\StringTok{"DayNo"}\NormalTok{))}
+
+\NormalTok{## Manually check the day of week}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{40714261000}\NormalTok{] <-}\StringTok{ "Saturday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{112050710000}\NormalTok{] <-}\StringTok{ "Tuesday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{310122510000}\NormalTok{] <-}\StringTok{ "Wednesday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{5050616100}\NormalTok{] <-}\StringTok{ "Monday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{50506161000}\NormalTok{] <-}\StringTok{ "Tuesday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{505061610000}\NormalTok{] <-}\StringTok{ "Wednesday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{7090824100}\NormalTok{] <-}\StringTok{ "Monday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{70908241000}\NormalTok{] <-}\StringTok{ "Tuesday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{709082410000}\NormalTok{] <-}\StringTok{ "Wednesday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{807021910000}\NormalTok{] <-}\StringTok{ "Monday"}
+\NormalTok{CW3idday}\OperatorTok{$}\NormalTok{DayofWeek[CW3idday}\OperatorTok{$}\NormalTok{ID_DAY }\OperatorTok{==}\StringTok{ }\DecValTok{812101310000}\NormalTok{] <-}\StringTok{ "Sunday"}
+
+
+\NormalTok{CW3CB3_reg <-}\StringTok{ }\NormalTok{CW3CB3[}\OperatorTok{!}\KeywordTok{duplicated}\NormalTok{(CW3CB3}\OperatorTok{$}\NormalTok{ID), ]}
+
+\CommentTok{# extract only the CB variable (Between individual classes == 1 or 2)}
+\NormalTok{CW3CB3_reg <-}\StringTok{ }\NormalTok{CW3CB3_reg }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(ID, AGE, SEX, CB) }
+
+\KeywordTok{tab1}\NormalTok{(CW3CB3_reg}\OperatorTok{$}\NormalTok{CB, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{)}
+
+
+\NormalTok{## dataset for 3by3 multilevel latent classes }
+\NormalTok{CW3CB3_regss <-}\StringTok{ }\NormalTok{CW3CB3_reg }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(BMI, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(Energy, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{) }
+
+\CommentTok{# Rescale the weighting values}
+\CommentTok{# individual weighting}
+
+\NormalTok{a <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti)}
+\NormalTok{c <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti)}
+
+\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wti1to8 <-}\StringTok{ }\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wti}
+
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{a}
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{/}\NormalTok{b}
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wti}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{/}\NormalTok{c}
+\KeywordTok{mean}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wti1to8)}
+
+\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wti1to8 <-}\StringTok{ }\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wti1to8}\OperatorTok{/}\FloatTok{1.209816814}
+\KeywordTok{summ}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wti1to8, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{)}
+\CommentTok{#Check if the weighting sum up to the sample size we have}
+\KeywordTok{sum}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wti1to8, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{) }
+
+\CommentTok{# Nurse weights}
+
+\NormalTok{a <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn)}
+\NormalTok{c <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn)}
+
+\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn1to8 <-}\StringTok{ }\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn}
+
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{a}
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{/}\NormalTok{b}
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtn}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{/}\NormalTok{c}
+\KeywordTok{mean}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn1to8)}
+
+\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn1to8 <-}\StringTok{ }\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn1to8}\OperatorTok{/}\FloatTok{0.907003577}
+\KeywordTok{summ}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn1to8, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{)}
+\CommentTok{#Check if the weighting sum up to the sample size we have}
+\KeywordTok{sum}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wtn1to8, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{) }
+
+\CommentTok{# Blood weights}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb)}
+\NormalTok{c <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb)}
+
+\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb1to8 <-}\StringTok{ }\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb}
+
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "1-4"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{a}
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "5-6"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{/}\NormalTok{b}
+\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb1to8 <-}\StringTok{ }
+\StringTok{  }\NormalTok{CW3CB3_regss[CW3CB3_regss}\OperatorTok{$}\NormalTok{Years }\OperatorTok{==}\StringTok{ "7-8"}\NormalTok{,]}\OperatorTok{$}\NormalTok{wtb}\OperatorTok{*}\NormalTok{(a}\OperatorTok{+}\NormalTok{b}\OperatorTok{+}\NormalTok{c)}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{/}\NormalTok{c}
+\KeywordTok{mean}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb1to8)}
+
+\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb1to8 <-}\StringTok{ }\NormalTok{CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb1to8}\OperatorTok{/}\FloatTok{0.4817444505}
+\KeywordTok{summ}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb1to8, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{)}
+\CommentTok{#Check if the weighting sum up to the sample size we have}
+\KeywordTok{sum}\NormalTok{(CW3CB3_regss}\OperatorTok{$}\NormalTok{wtb1to8, }\DataTypeTok{graph =} \OtherTok{FALSE}\NormalTok{)}
+
+
+\NormalTok{weightings <-}\StringTok{ }\NormalTok{CW3CB3_regss }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(ID, wti1to8, wtn1to8, wtb1to8)}
+
+
+\CommentTok{# Combine the data from nutrient intake at each time slot}
+\NormalTok{CW3CB3_7regss <-}\StringTok{ }\NormalTok{CW3CB3_7regss }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(IntakeSlots, }\DataTypeTok{by =} \StringTok{"ID"}\NormalTok{)}
+
+\NormalTok{## dta ready to be analysed in STATA}
+ \CommentTok{# change the path accordingly}
+\KeywordTok{write_dta}\NormalTok{(CW3CB3_regss, }\StringTok{"../CW3CB3_7regss.dta"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\begin{verbatim}
+************************************************
+// Analysing NDNS survey data in stata
+// for CW3CB3 survey data analysis 
+// date created: 2018-08-01
+// manipulation of the data was done in R
+// import data from CW3CB3_7sregss.dta
+// change the path accordingly
+************************************************
+
+
+use "../CW3CB3_7regss.dta", clear
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+label define paid 1 "No" 2 "Yes"
+label values paidemployment paid
+label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+label values ethgrp5 ethnicity5
+label define ethnicity2 1 "White" 2 "non-White"
+label values ethgrp2 ethnicity2
+
+gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+replace Married = 1 if MarSt2 == 3
+replace Married = 0 if Married !=1
+tab Married
+tab MarSt2
+tab MarStat
+
+label define Partner 0 "No" 1 "Yes"
+label values Married Partner
+
+gen Education = qual7 == 1
+label define Ed 0 "lower than Degree" 1 "Degree or higher"
+label values Education Ed
+
+replace Education = . if qual7 >100
+tab Educ
+
+
+egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+tab BMIcat
+
+**********************************************************
+// variables need to be log transfomred                 //
+**********************************************************
+
+gen logalc = ln(Alcoholg+1)
+summ logalc, detail
+gen logMVP = ln(MVPAtime+1)
+summ logMVP, detail
+gen logGlu = ln(Glucose)
+summ logGlu, detail
+gen logA1C = ln(A1C)
+summ logA1C, detail
+gen logChol = ln(Chol)
+summ logChol, detail
+gen logLDL = ln(LDL)
+gen logHDL = ln(HDL)
+gen logTG = ln(Trig)
+
+
+
+*********************************************************
+//  weighting use wti to see the individual results    //
+//                                                     //
+*********************************************************
+
+
+// weighting with individual weights, area is primary sampling unit, 
+// gor is the cluster variable
+
+svyset area [pweight = wti1to8], strata(gor)
+
+svydescribe wti // describe the weighted data set
+
+
+
+svy: tabulate Sex CB, row se ci format(%7.3f)
+svy: tabulate Sex CB, col se ci format(%7.3f)
+svy: tabulate Country CB, col se ci format(%7.3f)
+svy: tabulate Country CB, row se ci format(%7.3f)
+svy: tabulate SurveyYear CB, col se ci format(%7.3f)
+svy: tabulate SurveyYear CB, row se ci format(%7.3f)
+svy: tabulate paid CB, col se ci format(%7.3f)
+    
+svy: tabulate MarSt2 CB
+svy: tabulate MarStat CB
+svy: tabulate Married CB, row se ci format(%7.3f)
+svy: tabulate Married CB, col se ci format(%7.3f)
+svy: mean eqvinc, over(CB)
+test [eqvinc]1 = [eqvinc]2 = [eqvinc]3, mtest(b) 
+// bonferroni-adjusted p-values for multiple groups using the mtest(b) option
+
+svy: tabulate ethgrp2 CB, row se ci format(%7.3f)
+svy: tabulate ethgrp2 CB, col se ci format(%7.3f)
+svy: tabulate Education CB, row se ci format(%7.3f)
+svy: tabulate Education CB, col se ci format(%7.3f)
+
+*********************************************************
+//  nutritional distribution                           //
+//                                                     //
+*********************************************************
+
+
+svy: mean EnergykJ, over(CB)
+test [EnergykJ]1 = [EnergykJ]2 = [EnergykJ]3, mtest(b) 
+
+svy: mean Energy6, over(CB)
+test [Energy6_9]1 = [Energy6_9]2 = [Energy6_9]3, mtest(b) 
+
+svy: mean Energy9, over(CB) 
+test [Energy9_12]1 = [Energy9_12]2 = [Energy9_12]3, mtest(b) 
+
+svy: mean Energy12, over(CB)
+test [Energy12_14]1 = [Energy12_14]2 = [Energy12_14]3, mtest(b) 
+
+svy: mean Energy14, over(CB)
+test [Energy14_17]1 = [Energy14_17]2 = [Energy14_17]3, mtest(b) 
+
+svy: mean Energy17, over(CB)
+test [Energy17_20]1 = [Energy17_20]2 = [Energy17_20]3, mtest(b) 
+
+svy: mean Energy20, over(CB)
+test [Energy20_22]1 = [Energy20_22]2 = [Energy20_22]3, mtest(b) 
+
+svy: mean Energy22, over(CB)
+test [Energy22_6]1 = [Energy22_6]2 = [Energy22_6]3, mtest(b) 
+
+
+svy: mean Carbohydrateg, over(CB)
+test [Carbohydrateg]1 = [Carbohydrateg]2 = [Carbohydrateg]3, mtest(b) 
+
+svy: mean Carb6, over(CB)
+test [Carb6_9]1 = [Carb6_9]2 = [Carb6_9]3, mtest(b) 
+
+svy: mean Carb9, over(CB)
+test [Carb9_12]1 = [Carb9_12]2 = [Carb9_12]3, mtest(b) 
+
+svy: mean Carb12, over(CB)
+test [Carb12_14]1 = [Carb12_14]2 = [Carb12_14]3, mtest(b) 
+
+svy: mean Carb14, over(CB)
+test [Carb14_17]1 = [Carb14_17]2 = [Carb14_17]3, mtest(b) 
+
+svy: mean Carb17, over(CB)
+test [Carb17_20]1 = [Carb17_20]2 = [Carb17_20]3, mtest(b) 
+
+
+svy: mean Carb20, over(CB)
+test [Carb20_22]1 = [Carb20_22]2 = [Carb20_22]3, mtest(b) 
+
+svy: mean Carb22, over(CB)
+test [Carb22_6]1 = [Carb22_6]2 = [Carb22_6]3, mtest(b) 
+
+svy: mean Sugar6, over(CB)
+test [Sugar6_9]1 = [Sugar6_9]2 = [Sugar6_9]3, mtest(b) 
+
+
+
+svy: mean Sugar9, over(CB)
+test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) 
+
+svy: mean Sugar12, over(CB)
+test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) 
+
+svy: mean Sugar14, over(CB)
+test [Sugar14_17]1 = [Sugar14_17]2 = [Sugar14_17]3, mtest(b) 
+
+svy: mean Sugar17, over(CB)
+test [Sugar17_20]1 = [Sugar17_20]2 = [Sugar17_20]3, mtest(b) 
+
+svy: mean Sugar20, over(CB)
+test [Sugar20_22]1 = [Sugar20_22]2 = [Sugar20_22]3, mtest(b) 
+
+svy: mean Sugar22, over(CB)
+test [Sugar22_6]1 = [Sugar22_6]2 = [Sugar22_6]3, mtest(b) 
+
+svy: mean Starch6, over(CB)
+test [Starch6_9]1 = [Starch6_9]2 = [Starch6_9]3, mtest(b) 
+
+svy: mean Starch9, over(CB)
+test [Sugar12_14]1 = [Sugar12_14]2 = [Sugar12_14]3, mtest(b) 
+
+svy: mean Starch12, over(CB)
+test [Starch12_14]1 = [Starch12_14]2 = [Starch12_14]3, mtest(b) 
+
+svy: mean Starch14, over(CB)
+test [Starch14_17]1 = [Starch14_17]2 = [Starch14_17]3, mtest(b) 
+
+svy: mean Starch17, over(CB)
+test [Starch17_20]1 = [Starch17_20]2 = [Starch17_20]3, mtest(b) 
+
+
+svy: mean Starch20, over(CB)
+test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) 
+
+svy: mean Starch22, over(CB)
+test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) 
+
+svy: mean Fibre6, over(CB)
+test [Starch22_6]1 = [Starch22_6]2 = [Starch22_6]3, mtest(b) 
+
+gen Fibreg = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
+svy: mean Fibreg, over(CB)
+test [Fibreg]1 = [Fibreg]2 = [Fibreg]3, mtest(b) 
+
+
+svy: mean Fibre9, over(CB)
+test [Fibre9_12]1 = [Fibre9_12]2 = [Fibre9_12]3, mtest(b) 
+
+
+svy: mean Fibre12, over(CB)
+test [Fibre12_14]1 = [Fibre12_14]2 = [Fibre12_14]3, mtest(b) 
+
+svy: mean Fibre14, over(CB)
+test [Fibre14_17]1 = [Fibre14_17]2 = [Fibre14_17]3, mtest(b) 
+
+svy: mean Fibre17, over(CB)
+test [Fibre17_20]1 = [Fibre17_20]2 = [Fibre17_20]3, mtest(b) 
+
+svy: mean Fibre20, over(CB)
+test [Fibre20_22]1 = [Fibre20_22]2 = [Fibre20_22]3, mtest(b) 
+
+svy: mean Fibre22, over(CB)
+test [Fibre22_6]1 = [Fibre22_6]2 = [Fibre22_6]3, mtest(b) 
+
+svy: mean NMES6, over(CB)
+test [NMES6_9]1 = [NMES6_9]2 = [NMES6_9]3, mtest(b) 
+
+svy: mean NMES9, over(CB)
+test [NMES9_12]1 = [NMES9_12]2 = [NMES9_12]3, mtest(b) 
+
+
+svy: mean NMES12, over(CB)
+test [NMES12_14]1 = [NMES12_14]2 = [NMES12_14]3, mtest(b) 
+
+svy: mean NMES14, over(CB)
+test [NMES14_17]1 = [NMES14_17]2 = [NMES14_17]3, mtest(b) 
+
+svy: mean NMES17, over(CB)
+test [NMES17_20]1 = [NMES17_20]2 = [NMES17_20]3, mtest(b) 
+
+
+svy: mean NMES20, over(CB)
+test [NMES20_22]1 = [NMES20_22]2 = [NMES20_22]3, mtest(b) 
+
+svy: mean NMES22, over(CB)
+
+
+svy: mean CHO, over(CB)
+test [CHOpctotE]1 = [CHOpctotE]2 = [CHOpctotE]3, mtest(b) 
+
+
+svy: mean Proteing, over(CB)
+test [Proteing]1 = [Proteing]2 = [Proteing]3, mtest(b) 
+
+svy: mean Prot6, over(CB)
+test [Prot6_9]1 = [Prot6_9]2 = [Prot6_9]3, mtest(b) 
+
+svy: mean Prot9, over(CB)
+test [Prot9_12]1 = [Prot9_12]2 = [Prot9_12]3, mtest(b) 
+
+svy: mean Prot12, over(CB)
+test [Prot12_14]1 = [Prot12_14]2 = [Prot12_14]3, mtest(b) 
+
+svy: mean Prot14, over(CB)
+test [Prot14_17]1 = [Prot14_17]2 = [Prot14_17]3, mtest(b) 
+
+svy: mean Prot17, over(CB)
+test [Prot17_20]1 = [Prot17_20]2 = [Prot17_20]3, mtest(b) 
+
+svy: mean Prot20, over(CB)
+test [Prot20_22]1 = [Prot20_22]2 = [Prot20_22]3, mtest(b) 
+
+svy: mean Prot22, over(CB)
+test [Prot22_6]1 = [Prot22_6]2 = [Prot22_6]3, mtest(b) 
+
+
+svy: mean Proteinp, over(CB)
+test [ProteinpctotE]1 = [ProteinpctotE]2 = [ProteinpctotE]3, mtest(b) 
+
+svy: mean Fatg, over(CB)
+test [Fatg]1 = [Fatg]2 = [Fatg]3, mtest(b) 
+
+
+svy: mean Fat6, over(CB)
+test [Fat6_9]1 = [Fat6_9]2 = [Fat6_9]3, mtest(b) 
+
+svy: mean Fat9, over(CB)
+test [Fat9_12]1 = [Fat9_12]2 = [Fat9_12]3, mtest(b) 
+
+
+svy: mean Fat12, over(CB)
+test [Fat12_14]1 = [Fat12_14]2 = [Fat12_14]3, mtest(b) 
+
+svy: mean Fat14, over(CB)
+test [Fat14_17]1 = [Fat14_17]2 = [Fat14_17]3, mtest(b) 
+
+svy: mean Fat17, over(CB)
+test [Fat17_20]1 = [Fat17_20]2 = [Fat17_20]3, mtest(b) 
+
+svy: mean Fat20, over(CB)
+test [Fat20_22]1 = [Fat20_22]2 = [Fat20_22]3, mtest(b) 
+
+svy: mean Fat22, over(CB)
+test [Fat22_6]1 = [Fat22_6]2 = [Fat22_6]3, mtest(b) 
+
+
+
+svy: mean Fatp, over(CB)
+test [FatpctotE]1 = [FatpctotE]2 = [FatpctotE]3, mtest(b) 
+
+svy: mean Alcoholg, over(CB)
+test [Alcoholg]1 = [Alcoholg]2 = [Alcoholg]3, mtest(b) 
+
+
+svy: mean Alc6, over(CB)
+test [Alc6_9]1 = [Alc6_9]2 = [Alc6_9]3, mtest(b) 
+
+
+svy: mean Alc9, over(CB)
+test [Alc9_12]1 = [Alc9_12]2 = [Alc9_12]3, mtest(b) 
+
+svy: mean Alc12, over(CB)
+test [Alc12_14]1 = [Alc12_14]2 = [Alc12_14]3, mtest(b) 
+
+svy: mean Alc14, over(CB)
+test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) 
+
+svy: mean Alc17, over(CB)
+test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) 
+
+svy: mean Alc20, over(CB)
+test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) 
+
+
+svy: mean Alcoholp, over(CB)
+test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) 
+
+
+svy: tabulate cigsta3 CB, col se ci format(%7.3f)
+svy: tabulate dnnow CB, col se ci format(%7.3f)
+svy: tabulate hibp CB, col se ci format(%7.3f)
+
+
+sum MVP [weight=wti1to8] if CB ==1 , det
+sum MVP [weight=wti1to8] if CB ==2 , det
+sum MVP [weight=wti1to8] if CB ==3 , det
+svy: mean MVP, over(CB)
+
+svy: mean logMVP, over(CB) eform
+test [logMVP]1 = [logMVP]2 = [logMVP]3, mtest(b) 
+
+
+disp exp(.731059) - 1    
+dis exp(.6768489) -1 
+dis exp(.7852691) -1
+
+disp exp(.6239265) - 1    
+dis exp(.571165) -1 
+dis exp( .6766879) -1
+
+disp exp(.7273621) - 1    
+dis exp(.684545) -1 
+dis exp(.7701791) -1
+
+svy: mean logalc, over(CB)
+
+
+disp exp( 2.035795) - 1    
+dis exp(1.933326) -1 
+dis exp(2.138264) -1
+
+
+
+*********************************************************
+//  re-weighting use wtn to see the BMI,wc measurements //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtn1to8], strata(gor)
+svy: mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) 
+
+gen Men = Sex == 1 
+svy, subpop(Men): mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) 
+
+gen Women = Sex == 2
+svy, subpop(Women): mean wst, over(CB)
+test [wstval]1 = [wstval]2 = [wstval]3, mtest(b) 
+
+
+
+svy: mean bmi, over(CB)
+
+test [bmival]1 = [bmival]2 = [bmival]3, mtest(b) 
+
+
+*********************************************************
+//  re-weighting use wtb to see the blood test results //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtb1to8], strata(gor)
+
+
+svy: mean HDL, over(CB)
+test [HDL]1 = [HDL]2 = [HDL]3, mtest(b) 
+
+svy: mean Chol, over(CB)
+test [Chol]1 = [Chol]2 = [Chol]3, mtest(b) 
+
+svy: mean LDL, over(CB)
+test [LDL]1 = [LDL]2 = [LDL]3, mtest(b) 
+
+svy: mean Trig, over(CB)
+test [Trig]1 = [Trig]2 = [Trig]3, mtest(b) 
+
+
+gen DM = A1C <= 6.5 if !missing(A1C)
+
+
+svy, subpop(DM): mean Glucose, over(CB)
+test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
+
+svy, subpop(DM): mean A1C, over(CB)
+test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
+
+svy: tabulate DM CB, col se ci format(%7.3f)
+
+
+
+
+svy, subpop(DM): mean Glucose, over(CB)
+test [Glucose]1 = [Glucose]2
+test [Glucose]1 = [Glucose]2 = [Glucose]3, mtest(b)
+svy, subpop(DM): mean A1C, over(C)
+test [A1C]1 = [A1C]2
+test [A1C]1 = [A1C]2 = [A1C]3, mtest(b)
+
+svy: tabulate DM C, col se ci format(%7.3f)
+
+
+
+svy, subpop(DM): mean logGlu, over(CB)
+test [logGlu]1 = [logGlu]2 = [logGlu]3, mtest(b)
+
+
+dis exp(1.642848)
+dis exp(1.632226)
+dis exp(1.653471)
+
+dis exp(1.620347)
+dis exp(1.606447)
+dis exp(1.634246)
+
+
+dis exp(1.629356)
+dis exp(1.620271)
+dis exp(1.63844)
+
+
+svy, subpop(DM): mean logA1C, over(CB)
+test [logA1C]1 = [logA1C]2 = [logA1C]3, mtest(b)
+
+dis exp(1.699581)
+dis exp(1.69296)
+dis exp(1.706203)
+
+
+dis exp(1.691608)
+dis exp(1.683897)
+dis exp(1.699318)
+
+
+dis exp(1.705623)
+dis exp(1.700665)
+dis exp(1.710581)
+
+
+svy: mean logChol, over(CB)
+dis exp(1.598818)
+dis exp(1.577698)
+dis exp(1.619939)
+
+
+dis exp(1.55251)  
+dis exp(1.530408)
+dis exp(1.574613)
+
+dis exp(1.599389)
+dis exp(1.583391)
+dis exp(1.615388)
+
+
+test [logChol]1 = [logChol]2 = [logChol]3, mtest(b)
+
+
+
+
+svy: mean logHDL, over(CB)
+dis exp(.3293169)
+dis exp(.3026793)
+dis exp(.3559545)
+
+
+dis exp(.2749379)  
+dis exp(.2476816)
+dis exp(.3021941)
+
+dis exp(.3269002)
+dis exp(.3062623)
+dis exp(.3475381)
+
+
+test [logHDL]1 = [logHDL]2 = [logHDL]3, mtest(b)
+
+
+
+svy: mean logLDL, over(CB)
+dis exp(1.058635)
+dis exp(1.028391)
+dis exp(1.08888)
+
+
+dis exp(1.018181)  
+dis exp(.984431)
+dis exp(1.051931)
+
+dis exp(1.075229)
+dis exp(1.051369)
+dis exp(1.09909)
+
+
+test [logLDL]1 = [logLDL]2 = [logLDL]3, mtest(b)
+
+
+svy: mean logTG, over(CB)
+dis exp(.1273876)
+dis exp(.0777152)
+dis exp(.17706)
+
+
+dis exp(.1012169)  
+dis exp(.0460972)
+dis exp(.1563366)
+
+dis exp(.0983298)
+dis exp(.0607423)
+dis exp(.1359172)
+
+
+test [logTG]1 = [logTG]2 = [logTG]3, mtest(b)
+
+***************************************************
+// Analysing NDNS survey data in stata
+// for CW3CB3 survey data analysis on hypertension
+// date created: 2018-08-06
+// manipulation of the data was done in R
+// import data from CW3CB3_7sregss.dta
+// change the path accordingly
+**************************************************
+
+
+use "../CW3CB3_7regss.dta", clear
+
+
+label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+label values cigsta3 smoking
+label define gender 1 "Men" 2 "Women"
+label values Sex gender
+label define paid 1 "No" 2 "Yes"
+label values paidemployment paid
+label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+label values ethgrp5 ethnicity5
+label define ethnicity2 1 "White" 2 "non-White"
+label values ethgrp2 ethnicity2
+
+gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+replace Married = 1 if MarSt2 == 3
+replace Married = 0 if Married !=1
+tab Married
+tab MarSt2
+tab MarStat
+
+label define Partner 0 "No" 1 "Yes"
+label values Married Partner
+
+gen Education = qual7 == 1
+label define Ed 0 "lower than Degree" 1 "Degree or higher"
+label values Education Ed
+
+replace Education = . if qual7 >100
+tab Educ
+
+
+egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+tab BMIcat
+
+
+**********************************************************
+// variables need to be log transfomred                 //
+**********************************************************
+
+gen logalc = ln(Alcoholg+1)
+summ logalc, detail
+gen logMVP = ln(MVPAtime+1)
+summ logMVP, detail
+gen logGlu = ln(Glucose)
+summ logGlu, detail
+gen logA1C = ln(A1C)
+summ logA1C, detail
+gen logChol = ln(Chol)
+summ logChol, detail
+gen logLDL = ln(LDL)
+gen logHDL = ln(HDL)
+gen logTG = ln(Trig)
+
+
+
+
+*********************************************************
+//  weighting use wti to see the individual results    //
+//                                                     //
+*********************************************************
+
+
+// weighting with individual weights, area is primary sampling unit, 
+// gor is the cluster variable
+svyset area [pweight = wti1to8], strata(gor)
+
+svydescribe wti // describe the weighted data set
+
+
+*********************************************************
+//  re-weighting use wtn to see the BMI,wc measurements //
+//                                                     //
+*********************************************************
+
+svyset area [pweight = wtn1to8], strata(gor)
+
+
+gen Men = Sex == 1  //  n of men = 2537
+gen Women = Sex == 2 // n of women = 3618
+
+svy, subpop(Men): tab hibp, se ci format(%7.3f)
+svy, subpop(Women): tab hibp, se ci format(%7.3f)
+
+svy, subpop(Men): mean age, over(hibp)
+test [age]1 = [age]0
+svy, subpop(Women): mean age, over(hibp)
+test [age]1 = [age]0
+
+svy, subpop(Men): mean wst, over(hibp)
+test [wstval]1 = [wstval]0
+svy, subpop(Women): mean wst, over(hibp)
+test [wstval]1 = [wstval]0
+
+svy, subpop(Men): tabulate CB hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate CB hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Country hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate Country hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate SurveyYear hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate SurveyYear hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate ethgrp2 hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate ethgrp2 hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Edu hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate Edu hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): tabulate cigsta3 hibp, col se ci format(%7.3f)
+
+svy, subpop(Women): tabulate cigsta3 hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Married hibp, col  se ci format(%7.3f)
+
+svy, subpop(Men): mean logMVP, over(hibp)
+test [logMVP]1 = [logMVP]0
+
+
+disp exp(.9234363 ) - 1    
+dis exp(.8457101) -1 
+dis exp(1.001163) -1
+
+disp exp(.828635) - 1    
+dis exp(.730244) -1 
+dis exp( .9270261) -1
+
+
+svy, subpop(Women): mean logMVP, over(hibp) 
+test [logMVP]1 = [logMVP]0
+
+
+disp exp(.5916676) - 1    
+dis exp(.5473043) -1 
+dis exp(.6360309) -1
+
+disp exp(.4231103) - 1    
+dis exp(.3536885) -1 
+dis exp(.4925322) -1
+
+
+
+
+svy: mean logalc, over(CB)
+
+
+disp exp( 2.035795) - 1    
+dis exp(1.933326) -1 
+dis exp(2.138264) -1
+
+
+
+
+svy, subpop(Men): mean bmi, over(hibp)
+test [bmival]1 = [bmival]0
+svy, subpop(Women): mean bmi, over(hibp)
+test [bmival]1 = [bmival]0
+
+
+svy, subpop(Men): mean EnergykJ, over(hibp)
+test [EnergykJkJ]1 = [EnergykJkJ]0
+svy, subpop(Women): mean EnergykJ, over(hibp)
+test [EnergykJkJ]1 = [EnergykJkJ]0
+
+    
+svy, subpop(Men): mean Carbo, over(hibp)
+test [Carbohydrateg]1 = [Carbohydrateg]0
+
+svy, subpop(Women): mean Carbohydrateg, over(hibp)
+test [Carbohydrateg]1 = [Carbohydrateg]0
+
+
+svy, subpop(Men): mean Proteing, over(hibp)
+test [Proteing]1 = [Proteing]0
+
+svy, subpop(Women): mean Carbohydrateg, over(hibp)
+test [Carbohydrateg]1 = [Carbohydrateg]0
+
+
+
+svy: tabulate Sex hibp, col se ci format(%7.3f)
+
+svy: logistic hibp i.CB
+svy: logistic hibp i.CB#i.Sex
+
+test 2.CB#2.Sex
+
+svy: tabulate paid hibp, col se ci format(%7.3f)
+
+
+
+gen DM = A1C > 6.5 if !missing(A1C)
+svyset area [pweight = wtb1to8], strata(gor)
+
+svy, subpop(Men): tabulate DM hibp, col se ci format(%7.3f)
+svy, subpop(Women): tabulate DM hibp, col se ci format(%7.3f)
+
+
+svy, subpop(Men): tabulate Married hibp, col se ci format(%7.3f)
+svy, subpop(Women): tabulate Married hibp, col se ci format(%7.3f)
+
+svy, subpop(Men): mean eqvinc, over(hibp)
+test [eqvinc]1 = [eqvinc]0
+
+svy, subpop(Women): mean eqvinc, over(hibp)
+test [eqvinc]1 = [eqvinc]0
+
+
+********************************************************
+**   Building the GLM model 
+**   date: 07/08/2018
+**
+**
+********************************************************
+
+svyset area [pweight = wtn1to8], strata(gor)
+
+
+// crude association between CB and hypertension 
+
+svy, subpop(Men): logistic hibp i.CB
+
+svy, subpop(Women): logistic hibp i.CB
+
+// in non DM 
+svy, subpop(Men if DM != 1): logistic hibp i.CB
+svy, subpop(Women if DM != 1): logistic hibp i.CB
+
+
+// looking for confounders one by one
+// Age: -> confounder
+svy, subpop(Men): logistic hibp i.CB age
+test age
+svy, subpop(Women): logistic hibp i.CB age
+test age
+
+svy, subpop(Men): logistic hibp i.CB##c.age
+svy, subpop(Women): logistic hibp i.CB##c.age
+test 2.CB#c.age 3.CB#c.age // no interaction
+
+// Partner -> confounder
+svy, subpop(Men): logistic hibp i.CB i.Married
+test 1.Married
+svy, subpop(Women): logistic hibp i.CB i.Married
+test 1.Married
+
+svy, subpop(Men): logistic hibp i.CB##i.Married
+svy, subpop(Women): logistic hibp i.CB##i.Married
+
+test 2.CB#1.Married 3.CB#1.Married // -> no interaction
+
+
+// Income -> not confounder for men but confounder for women
+svy, subpop(Men): logistic hibp i.CB eqvinc 
+test eqvinc
+svy, subpop(Women): logistic hibp i.CB eqvinc 
+test eqvinc
+
+svy, subpop(Men): logistic hibp i.CB##c.eqvinc 
+svy, subpop(Women): logistic hibp i.CB##c.eqvinc 
+
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // -> (probably) no interaction
+
+
+// Education -> confounder
+svy, subpop(Men): logistic hibp i.CB i.Edu 
+test 1.Edu
+svy, subpop(Women): logistic hibp i.CB i.Edu 
+test 1.Edu
+
+svy, subpop(Men): logistic hibp i.CB##i.Edu 
+svy, subpop(Women): logistic hibp i.CB##i.Edu 
+
+test 2.CB#1.Edu 3.CB#1.Edu // no interaction
+
+// BMI -> confounder
+svy, subpop(Men): logistic hibp i.CB bmi
+test bmi
+svy, subpop(Women): logistic hibp i.CB bmi
+test bmi
+
+svy, subpop(Men): logistic hibp i.CB##c.bmi
+svy, subpop(Women): logistic hibp i.CB##c.bmi
+
+test 2.CB#c.bmival 3.CB#c.bmival // no ineraction
+
+// paid employment -> not confounder
+svy, subpop(Men): logistic hibp i.CB i.paid
+test 2.paid
+svy, subpop(Women): logistic hibp i.CB i.paid
+test 2.paid
+
+svy, subpop(Men): logistic hibp i.CB##i.paid
+svy, subpop(Women): logistic hibp i.CB##i.paid
+
+test 2.CB#2.paid 3.CB#2.paid
+
+
+// Smoking -> confounder
+svy, subpop(Men): logistic hibp i.CB i.cigsta3
+test 2.cigsta3 3.cigsta3
+svy, subpop(Women): logistic hibp i.CB i.cigsta3
+test 2.cigsta3 3.cigsta3
+
+svy, subpop(Men): logistic hibp i.CB##i.cigsta3
+svy, subpop(Women): logistic hibp i.CB##i.cigsta3
+
+test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction
+ 
+
+// Total energy intake -> confounder
+svy, subpop(Men): logistic hibp i.CB EnergykJ
+test EnergykJ
+svy, subpop(Women): logistic hibp i.CB EnergykJ
+test EnergykJ
+
+svy, subpop(Men): logistic hibp i.CB##c.EnergykJ
+svy, subpop(Women): logistic hibp i.CB##c.EnergykJ
+test 2.CB#c.EnergykJkJ 3.CB#c.EnergykJkJ // no interaction
+
+
+// ethnicity -> not confounder
+svy, subpop(Men): logistic hibp i.CB i.ethgrp2
+test 2.eth
+svy, subpop(Women): logistic hibp i.CB i.ethgrp2
+test 2.eth
+
+svy, subpop(Men): logistic hibp i.CB##i.ethgrp2
+svy, subpop(Women): logistic hibp i.CB##i.ethgrp2
+test 2.CB#2.ethgrp2 // no interaction
+
+
+// Alcohol -> not confounder for men but confounder for women
+svy, subpop(Men): logistic hibp i.CB Alcoholg
+test Alcoholg
+svy, subpop(Women): logistic hibp i.CB Alcoholg
+test Alcoholg
+
+svy, subpop(Men): logistic hibp i.CB##c.Alcoholg
+svy, subpop(Women): logistic hibp i.CB##c.Alcoholg
+test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction
+
+// logMVP -> not confounder 
+svy, subpop(Men): logistic hibp i.CB logMVP
+test logMVP
+svy, subpop(Women): logistic hibp i.CB logMVP
+test logMVP
+
+svy, subpop(Men): logistic hibp i.CB##c.logMVP
+svy, subpop(Women): logistic hibp i.CB##c.logMVP
+test 2.CB#c.logMVP 3.CB#c.logMVP // no interaction
+
+//  Preliminary model includes all possible confounders in Men
+
+gen age2 = age^2
+
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
+linktest
+svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
+linktest
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu bmi i.cig EnergykJ 
+linktest
+svy, subpop(if Men & DM != 1): logistic hibp i.CB age i.Married i.Edu wst i.cig EnergykJ 
+linktest
+
+//  Preliminary model includes all possible confounders in Women
+
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg 
+linktest
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg 
+linktest
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg
+linktest
+
+svy, subpop(if Women & DM != 1): logistic hibp i.CB age i.Married eqvinc i.Edu wst i.cig EnergykJ Alcoholg
+linktest
 \end{verbatim}
 
 
