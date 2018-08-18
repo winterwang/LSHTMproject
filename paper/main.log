@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  18 AUG 2018 14:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  18 AUG 2018 18:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2246,6 +2246,8 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/sc' in size <20.74> not available
 (Font)              Font shape `T1/ppl/b/sc' tried instead on input line 217.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 221.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 239.
 
 Package hyperref Warning: Suppressing link with empty target on input line 241.
 
@@ -2383,8 +2385,6 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <17.28> not available
 
  (./Chapters/Chapter2.tex
 Chapter 2.
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 17.
 1: section
 [4
 
@@ -2524,12 +2524,12 @@ Chapter 4.
 
 
 
-] [37] [38] [39]) [40]
+] [37] [38] [39] [40]) [41]
 1: section
-[41
+[42
 
 
-] [42]
+] [43]
 Underfull \hbox (badness 4859) in paragraph at lines 425--425
 [][]\T1/ppl/m/n/12 (+20) Office for Na-tional Statis-tics (2018). \T1/ppl/m/it/
 12 (+20) Mid 2008, 2009, 2010, 2011, 2012,
@@ -2551,7 +2551,7 @@ ration /
 Package biblatex Warning: No driver for entry type 'software'.
 (biblatex)                Using fallback driver on input line 425.
 
-[43] [44
+[44] [45] [46
 
 ]
 \openout2 = `Appendices/AppendixA.aux'.
@@ -2561,10 +2561,10 @@ Appendix A.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 19.
 1: section
-[45
+[47
 
 
-] [46]
+] [48]
 Underfull \vbox (badness 10000) detected at line 278
  []
 
@@ -2572,7 +2572,7 @@ Underfull \vbox (badness 10000) detected at line 278
 Underfull \vbox (badness 10000) detected at line 278
  []
 
-[47]
+[49]
 Underfull \vbox (badness 10000) detected at line 278
  []
 
@@ -2580,7 +2580,7 @@ Underfull \vbox (badness 10000) detected at line 278
 Underfull \vbox (badness 10000) detected at line 278
  []
 
-[48]) [49]
+[50]) [51]
 \openout2 = `Appendices/AppendixB.aux'.
 
  (./Appendices/AppendixB.tex
@@ -2598,7 +2598,7 @@ t over four[]
  []
 
 1: section
-[50
+[52
 
 
 
@@ -2620,7 +2620,7 @@ Overfull \hbox (13.14755pt too wide) in paragraph at lines 641--641
 t over four[] 
  []
 
-[51] [52]
+[53] [54]
 Overfull \hbox (37.84152pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLI
 KELIHOOD VALUES[] 
@@ -2632,7 +2632,7 @@ Overfull \hbox (25.49454pt too wide) in paragraph at lines 641--641
 initial stage[] 
  []
 
-[53]
+[55]
 Overfull \hbox (62.53549pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH
  AT LEAST TWICE THE[] 
@@ -2644,7 +2644,7 @@ Overfull \hbox (87.22946pt too wide) in paragraph at lines 641--641
 BTAINED AND REPLICATED.[] 
  []
 
-[54] [55]
+[56] [57]
 Overfull \hbox (44.01501pt too wide) in paragraph at lines 641--641
 []\T1/cmtt/m/n/12 Average Latent Class Probabilities for Most Likely Latent Cla
 ss Pattern (Row)[] 
@@ -2710,90 +2710,74 @@ Overfull \hbox (68.70898pt too wide) in paragraph at lines 641--641
 79    0.174    0.642[] 
  []
 
-[56] [57] [58] [59]) [60]
+[58] [59] [60] [61]) [62]
 \openout2 = `Appendices/AppendixC.aux'.
 
  (./Appendices/AppendixC.tex
 Appendix C.
-<Figures/CW2level1.png, id=809, 752.8125pt x 752.8125pt>
+<Figures/CW2level1.png, id=826, 752.8125pt x 752.8125pt>
 File: Figures/CW2level1.png Graphic file (type png)
 <use Figures/CW2level1.png>
 Package pdftex.def Info: Figures/CW2level1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.35902pt x 431.35902pt.
-<Figures/CW2CB2.png, id=810, 578.91281pt x 373.395pt>
+<Figures/CW2CB2.png, id=827, 578.91281pt x 373.395pt>
 File: Figures/CW2CB2.png Graphic file (type png)
 <use Figures/CW2CB2.png>
 Package pdftex.def Info: Figures/CW2CB2.png  used on input line 23.
 (pdftex.def)             Requested size: 369.88458pt x 238.57315pt.
 1: section
-[61
+[63
 
 
 
  <./Figures/CW2level1.png>]
-<Figures/CW2CB3.png, id=816, 578.91281pt x 414.04688pt>
+<Figures/CW2CB3.png, id=834, 578.91281pt x 414.04688pt>
 File: Figures/CW2CB3.png Graphic file (type png)
 <use Figures/CW2CB3.png>
 Package pdftex.def Info: Figures/CW2CB3.png  used on input line 35.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
-<Figures/CW2CB4.png, id=817, 578.91281pt x 414.04688pt>
+<Figures/CW2CB4.png, id=835, 578.91281pt x 414.04688pt>
 File: Figures/CW2CB4.png Graphic file (type png)
 <use Figures/CW2CB4.png>
 Package pdftex.def Info: Figures/CW2CB4.png  used on input line 45.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
- [62 <./Figures/CW2CB2.png> <./Figures/CW2CB3.png>]
-<Figures/CW3CB4.png, id=824, 578.91281pt x 414.04688pt>
+ [64 <./Figures/CW2CB2.png> <./Figures/CW2CB3.png>]
+<Figures/CW3CB4.png, id=842, 578.91281pt x 414.04688pt>
 File: Figures/CW3CB4.png Graphic file (type png)
 <use Figures/CW3CB4.png>
 Package pdftex.def Info: Figures/CW3CB4.png  used on input line 56.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
-<Figures/CW4level1.png, id=825, 752.8125pt x 1204.5pt>
+<Figures/CW4level1.png, id=843, 752.8125pt x 1204.5pt>
 File: Figures/CW4level1.png Graphic file (type png)
 <use Figures/CW4level1.png>
 Package pdftex.def Info: Figures/CW4level1.png  used on input line 68.
 (pdftex.def)             Requested size: 426.79869pt x 682.87793pt.
- [63 <./Figures/CW2CB4.png> <./Figures/CW3CB4.png>]
+ [65 <./Figures/CW2CB4.png> <./Figures/CW3CB4.png>]
 Overfull \vbox (69.77734pt too high) has occurred while \output is active []
 
 
-[64 <./Figures/CW4level1.png>]
-<Figures/CW4CB2.png, id=838, 578.91281pt x 373.395pt>
+[66 <./Figures/CW4level1.png>]
+<Figures/CW4CB2.png, id=855, 578.91281pt x 373.395pt>
 File: Figures/CW4CB2.png Graphic file (type png)
 <use Figures/CW4CB2.png>
 Package pdftex.def Info: Figures/CW4CB2.png  used on input line 77.
 (pdftex.def)             Requested size: 369.88458pt x 238.57315pt.
-<Figures/CW4CB3.png, id=839, 578.91281pt x 414.04688pt>
+<Figures/CW4CB3.png, id=856, 578.91281pt x 414.04688pt>
 File: Figures/CW4CB3.png Graphic file (type png)
 <use Figures/CW4CB3.png>
 Package pdftex.def Info: Figures/CW4CB3.png  used on input line 87.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
-) [65 <./Figures/CW4CB2.png> <./Figures/CW4CB3.png>]
+) [67 <./Figures/CW4CB2.png> <./Figures/CW4CB3.png>]
 \openout2 = `Appendices/AppendixD.aux'.
 
  (./Appendices/AppendixD.tex
 Appendix D.
 1: section
-[66
+[68
 
 
 
 ]
-Underfull \vbox (badness 10000) detected at line 423
- []
-
-
-Underfull \vbox (badness 10000) detected at line 423
- []
-
-[67]
-Underfull \vbox (badness 10000) detected at line 423
- []
-
-
-Underfull \vbox (badness 10000) detected at line 423
- []
-
-[68]
 Underfull \vbox (badness 10000) detected at line 423
  []
 
@@ -2826,36 +2810,52 @@ Underfull \vbox (badness 10000) detected at line 423
  []
 
 [72]
+Underfull \vbox (badness 10000) detected at line 423
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 423
+ []
+
+[73]
+Underfull \vbox (badness 10000) detected at line 423
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 423
+ []
+
+[74]
 Overfull \hbox (19.32104pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asia
 n" 5 "Other"[] 
  []
 
-[73]
+[75]
 Overfull \hbox (44.01501pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 // bonferroni-adjusted p-values for multiple groups using the
  mtest(b) option[] 
  []
 
-[74] [75]
+[76] [77]
 Overfull \hbox (50.1885pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 gen Fibreg = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + 
 Fibre20 + Fibre22[] 
  []
 
-[76] [77] [78] [79] [80] [81]
+[78] [79] [80] [81] [82] [83]
 Overfull \hbox (19.32104pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asia
 n" 5 "Other"[] 
  []
 
-[82] [83] [84] [85]
+[84] [85] [86] [87]
 Overfull \hbox (74.88248pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigs
 ta3 // no interaction[] 
  []
 
-[86]
+[88]
 Overfull \hbox (31.66803pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi 
 i.cig EnergykJ[] 
@@ -2891,7 +2891,7 @@ Overfull \hbox (0.80057pt too wide) in paragraph at lines 1331--1331
 i.cig ///[] 
  []
 
-[87]
+[89]
 Overfull \hbox (0.80057pt too wide) in paragraph at lines 1331--1331
 []\T1/cmtt/m/n/12 svy, subpop(Men): logistic hibp i.CB age i.Married i.Edu bmi 
 i.cig ///[] 
@@ -2903,33 +2903,33 @@ Overfull \hbox (6.97406pt too wide) in paragraph at lines 1331--1331
 onfounders[] 
  []
 
-) [88]
+) [90]
 \openout2 = `Appendices/AppendixE.aux'.
 
  (./Appendices/AppendixE.tex
 Appendix E.
-<Figures/Diary1.png, id=943, 1349.04pt x 934.49126pt>
+<Figures/Diary1.png, id=960, 1349.04pt x 934.49126pt>
 File: Figures/Diary1.png Graphic file (type png)
 <use Figures/Diary1.png>
 Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.3311pt x 298.78665pt.
-<Figures/Diary2.png, id=944, 1380.15625pt x 923.45pt>
+<Figures/Diary2.png, id=961, 1380.15625pt x 923.45pt>
 File: Figures/Diary2.png Graphic file (type png)
 <use Figures/Diary2.png>
 Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
 (pdftex.def)             Requested size: 431.33989pt x 288.60559pt.
 1: section
-[89
+[91
 
 
 
  <./Figures/Diary1.png>]
-<Figures/Diary3.png, id=949, 1340.00626pt x 720.6925pt>
+<Figures/Diary3.png, id=966, 1340.00626pt x 720.6925pt>
 File: Figures/Diary3.png Graphic file (type png)
 <use Figures/Diary3.png>
 Package pdftex.def Info: Figures/Diary3.png  used on input line 32.
 (pdftex.def)             Requested size: 431.32573pt x 231.97893pt.
-) [90 <./Figures/Diary2.png> <./Figures/Diary3.png>]
+) [92 <./Figures/Diary2.png> <./Figures/Diary3.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 445.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 445.
 (./main.aux (./Chapters/Chapter1.aux) (./Chapters/Chapter2.aux)
@@ -2950,13 +2950,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39112 strings out of 492982
- 771575 string characters out of 6134896
- 1171041 words of memory out of 5000000
- 41605 multiletter control sequences out of 15000+600000
- 634270 words of font info for 403 fonts, out of 8000000 for 9000
+ 39121 strings out of 492982
+ 771919 string characters out of 6134896
+ 1173235 words of memory out of 5000000
+ 41618 multiletter control sequences out of 15000+600000
+ 632407 words of font info for 397 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,20n,91p,10377b,2918s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,20n,91p,10377b,2923s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
@@ -2970,10 +2970,10 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (106 pages, 1321127 bytes).
+Output written on main.pdf (108 pages, 1324659 bytes).
 PDF statistics:
- 1051 PDF objects out of 1200 (max. 8388607)
- 893 compressed objects within 9 object streams
- 237 named destinations out of 1000 (max. 500000)
- 37310 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1070 PDF objects out of 1200 (max. 8388607)
+ 909 compressed objects within 10 object streams
+ 242 named destinations out of 1000 (max. 500000)
+ 33214 words of extra memory for PDF output out of 35830 (max. 10000000)
 

@@ -35,13 +35,13 @@
 \contentsline {section}{Carbohydrate eating patterns}{36}{section*.68}
 \contentsline {section}{Association between carbohydrate eating patterns and health outcomes}{38}{section*.69}
 \contentsline {section}{Limitations and strengths}{39}{section*.70}
-\contentsline {section}{Conclusions}{40}{section*.71}
-\contentsline {chapter}{Bibliography}{41}{chapter*.72}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{45}{appendix.73}
-\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{50}{appendix.74}
-\contentsline {chapter}{\numberline {C}Other Solutions for MLCA}{61}{appendix.75}
-\contentsline {section}{2 classes in day level}{61}{section*.76}
-\contentsline {section}{3 classes in day level, 4 classes in individual level}{63}{section*.81}
-\contentsline {section}{4 classes in day level}{64}{section*.83}
-\contentsline {chapter}{\numberline {D}R and STATA codes for processing individual level data analysis}{66}{appendix.87}
-\contentsline {chapter}{\numberline {E}Example of a food diary for one day}{89}{appendix.88}
+\contentsline {section}{Conclusions}{41}{section*.71}
+\contentsline {chapter}{Bibliography}{42}{chapter*.72}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{47}{appendix.73}
+\contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{52}{appendix.74}
+\contentsline {chapter}{\numberline {C}Other Solutions for MLCA}{63}{appendix.75}
+\contentsline {section}{2 classes in day level}{63}{section*.76}
+\contentsline {section}{3 classes in day level, 4 classes in individual level}{65}{section*.81}
+\contentsline {section}{4 classes in day level}{66}{section*.83}
+\contentsline {chapter}{\numberline {D}R and STATA codes for processing individual level data analysis}{68}{appendix.87}
+\contentsline {chapter}{\numberline {E}Example of a food diary for one day}{91}{appendix.88}

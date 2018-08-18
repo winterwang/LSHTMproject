@@ -412,6 +412,50 @@
     \field{year}{2009}
   \endentry
 
+  \entry{bray2015eliminating}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BBC}{%
+         family={Bray},
+         familyi={B\bibinitperiod},
+         given={Bethany\bibnamedelima C},
+         giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=LST}{%
+         family={Lanza},
+         familyi={L\bibinitperiod},
+         given={Stephanie\bibnamedelima T},
+         giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=TX}{%
+         family={Tan},
+         familyi={T\bibinitperiod},
+         given={Xianming},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Taylor \& Francis}%
+    }
+    \strng{namehash}{BBCLSTTX1}
+    \strng{fullhash}{BBCLSTTX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 11}
+    \field{title}{Eliminating bias in classify-analyze approaches for latent
+  class analysis}
+    \field{volume}{22}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/bray2014.pdf:PDF
+    \endverb
+    \field{journaltitle}{Structural Equation Modeling}
+    \field{year}{2015}
+  \endentry
+
   \entry{collins2010latent}{book}{}
     \name{author}{2}{}{%
       {{hash=CL}{%
@@ -647,6 +691,34 @@
     \endverb
     \field{journaltitle}{Physiology \& Behavior}
     \field{year}{2014}
+  \endentry
+
+  \entry{goodman20071}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GLA}{%
+         family={Goodman},
+         familyi={G\bibinitperiod},
+         given={Leo\bibnamedelima A},
+         giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {SAGE Publications Sage CA: Los Angeles, CA}%
+    }
+    \strng{namehash}{GLA1}
+    \strng{fullhash}{GLA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 22}
+    \field{title}{On the Assignment of Individuals to Latent Classes}
+    \field{volume}{37}
+    \field{journaltitle}{Sociological Methodology}
+    \field{year}{2007}
   \endentry
 
   \entry{hanna2015relationship}{article}{}
@@ -1577,6 +1649,47 @@
     \endverb
     \field{journaltitle}{Statistical Methods in Medical Research}
     \field{year}{2008}
+  \endentry
+
+  \entry{wang2005residual}{article}{}
+    \name{author}{3}{}{%
+      {{hash=WCP}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Chen-Pin},
+         giveni={C\bibinitperiod-P\bibinitperiod},
+      }}%
+      {{hash=HBC}{%
+         family={Hendricks\bibnamedelima Brown},
+         familyi={H\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+      {{hash=BRK}{%
+         family={Bandeen-Roche},
+         familyi={B\bibinitperiod-R\bibinitperiod},
+         given={Karen},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Statistical Association}%
+    }
+    \strng{namehash}{WCPHBCBRK1}
+    \strng{fullhash}{WCPHBCBRK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{year}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{pages}{1054\bibrangedash 1076}
+    \field{title}{Residual Diagnostics for Growth Mixture Models: Examining the
+  Impact of a Preventive Intervention on Multiple Trajectories of Aggressive
+  Behavior}
+    \field{volume}{100}
+    \field{journaltitle}{Journal of the American Statistical Association}
+    \field{year}{2005}
   \endentry
 
   \entry{willett2012nutritional}{incollection}{}
