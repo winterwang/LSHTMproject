@@ -17,7 +17,8 @@
 \KeywordTok{library}\NormalTok{(naniar)}
 
 \CommentTok{# read the individual level data sets ----------------------------------------}
-
+\CommentTok{# Change the data path accordingly ----------------------------------------}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{".../UKDA-6533-stata11_se/stata11_se/"}\NormalTok{) }
 \NormalTok{blood78 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr7-8a_indiv.dta"}\NormalTok{)}
 \NormalTok{blood56 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr5-6a_indiv.dta"}\NormalTok{)}
 \NormalTok{blood14 <-}\StringTok{ }\KeywordTok{read_dta}\NormalTok{(}\StringTok{"ndns_rp_yr1-4a_indiv_uk.dta"}\NormalTok{)}
@@ -164,17 +165,17 @@
 
 \CommentTok{# Extract number of days of diary completed}
 
-\NormalTok{blood14 <-}\StringTok{ }\NormalTok{blood14 }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{NDAYS14 <-}\StringTok{ }\NormalTok{blood14 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{select}\NormalTok{(ID, Ndays)}
 
-\NormalTok{blood56 <-}\StringTok{ }\NormalTok{blood56 }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{NDAYS56 <-}\StringTok{ }\NormalTok{blood56 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{select}\NormalTok{(ID, Ndays)}
 
-\NormalTok{blood78 <-}\StringTok{ }\NormalTok{blood78 }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{NDAYS78 <-}\StringTok{ }\NormalTok{blood78 }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{select}\NormalTok{(ID, NDays) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{Ndays =}\NormalTok{ NDays)}
 
-\NormalTok{NDAYS <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(blood14, blood56, blood78)}
+\NormalTok{NDAYS <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(NDAYS14, NDAYS56, NDAYS78)}
 \NormalTok{NDAYS}\OperatorTok{$}\NormalTok{ID <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(NDAYS}\OperatorTok{$}\NormalTok{ID)}
 
 \NormalTok{IntakeSlots <-}\StringTok{ }\NormalTok{Energysum }\OperatorTok{%>%}\StringTok{ }
@@ -417,7 +418,7 @@
 
 \NormalTok{## dta ready to be analysed in STATA}
  \CommentTok{# change the path accordingly}
-\KeywordTok{write_dta}\NormalTok{(CW3CB3_regss, }\StringTok{"../CW3CB3_7regss.dta"}\NormalTok{)}
+\KeywordTok{write_dta}\NormalTok{(CW3CB3_7regss, }\StringTok{"../CW3CB3_7regss.dta"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -470,7 +471,7 @@ egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
 tab BMIcat
 
 **********************************************************
-// variables need to be log transfomred                 //
+// variables need to be log transformed                 //
 **********************************************************
 
 gen logalc = ln(Alcoholg+1)
@@ -985,7 +986,7 @@ egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
 tab BMIcat
 
 **********************************************************
-// variables need to be log transfomred                 //
+// variables need to be log transformed                 //
 **********************************************************
 
 gen logalc = ln(Alcoholg+1)

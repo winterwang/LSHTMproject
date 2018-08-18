@@ -170,6 +170,58 @@
     \field{year}{2016}
   \endentry
 
+  \entry{andruff2009latent}{article}{}
+    \name{author}{5}{}{%
+      {{hash=AH}{%
+         family={Andruff},
+         familyi={A\bibinitperiod},
+         given={Heather},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=CN}{%
+         family={Carraro},
+         familyi={C\bibinitperiod},
+         given={Natasha},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=TA}{%
+         family={Thompson},
+         familyi={T\bibinitperiod},
+         given={Amanda},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GP}{%
+         family={Gaudreau},
+         familyi={G\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=LB}{%
+         family={Louvet},
+         familyi={L\bibinitperiod},
+         given={Beno{\^\i}t},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AH+1}
+    \strng{fullhash}{AHCNTAGPLB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{1}
+    \field{pages}{11\bibrangedash 24}
+    \field{title}{Latent Class Growth Modelling: A Tutorial}
+    \field{volume}{5}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/p011.pdf:PDF
+    \endverb
+    \field{journaltitle}{Tutorials in Quantitative Methods for Psychology}
+    \field{year}{2009}
+  \endentry
+
   \entry{archer2006goodness}{article}{}
     \true{moreauthor}
     \name{author}{2}{}{%
@@ -705,6 +757,44 @@
     \field{year}{2014}
   \endentry
 
+  \entry{jung2008introduction}{article}{}
+    \name{author}{2}{}{%
+      {{hash=JT}{%
+         family={Jung},
+         familyi={J\bibinitperiod},
+         given={Tony},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=WK}{%
+         family={Wickrama},
+         familyi={W\bibinitperiod},
+         given={KAS},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{JTWK1}
+    \strng{fullhash}{JTWK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{year}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{number}{1}
+    \field{pages}{302\bibrangedash 317}
+    \field{title}{An introduction to latent class growth analysis and growth
+  mixture modeling}
+    \field{volume}{2}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/jung2008.pdf:PDF
+    \endverb
+    \field{journaltitle}{Social and personality psychology compass}
+    \field{year}{2008}
+  \endentry
+
   \entry{leech2017temporal}{article}{}
     \name{author}{4}{}{%
       {{hash=LRM}{%
@@ -897,6 +987,30 @@
     \field{title}{Mplus: Statistical analysis with latent variables: User's
   guide}
     \field{year}{2017}
+  \endentry
+
+  \entry{nagin2005group}{book}{}
+    \name{author}{1}{}{%
+      {{hash=NDS}{%
+         family={Nagin},
+         familyi={N\bibinitperiod},
+         given={Daniel\bibnamedelima S},
+         giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Harvard University Press}%
+    }
+    \strng{namehash}{NDS1}
+    \strng{fullhash}{NDS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{year}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{title}{Group-based modeling of development}
+    \field{year}{2005}
   \endentry
 
   \entry{NDNSdatabase2018}{misc}{}

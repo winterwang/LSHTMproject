@@ -701,7 +701,15 @@
   volume    = {73},
   number    = {9},
   pages     = {594--611},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/hanna2015.pdf:PDF},
   publisher = {Oxford University Press},
+}
+
+@Book{nagin2005group,
+  title     = {Group-based modeling of development},
+  publisher = {Harvard University Press},
+  year      = {2005},
+  author    = {Nagin, Daniel S and others},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
