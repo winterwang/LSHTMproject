@@ -35,7 +35,7 @@
 \contentsline {section}{Carbohydrate eating patterns}{36}{section*.68}
 \contentsline {section}{Association between carbohydrate eating patterns and health outcomes}{38}{section*.69}
 \contentsline {section}{Limitations and strengths}{39}{section*.70}
-\contentsline {section}{Conclusions}{41}{section*.71}
+\contentsline {section}{Conclusions}{42}{section*.71}
 \contentsline {chapter}{Bibliography}{43}{chapter*.72}
 \contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{47}{appendix.73}
 \contentsline {chapter}{\numberline {B}Mplus code and output for Multilevel LCA models}{52}{appendix.74}
