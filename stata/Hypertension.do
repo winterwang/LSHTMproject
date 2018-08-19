@@ -699,7 +699,8 @@ svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig Ener
 svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg i.ethgrp2
 test 2.ethgrp2
 
-svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg 
+svy, subpop(Women): logistic hibp i.CB age i.Married eqvinc i.Edu bmi i.cig EnergykJ Alcoholg logMVP
+test logMVP
 
 
 linktest
