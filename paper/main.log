@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  20 AUG 2018 16:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  20 AUG 2018 19:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -924,33 +924,33 @@ Package scrlayer-scrpage Info: auto-selection of `pagestyleset=standard'.
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'abstract' with sig. ' O{\null \vfill } ' on line 380.
+. Defining environment 'abstract' with sig. ' O{\null \vfill } ' on line 381.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'extraAbstract' with sig. ' O{\null \vfill } ' on line
-. 405.
+. 406.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'acknowledgements' with sig. '' on line 433.
+. Defining environment 'acknowledgements' with sig. '' on line 434.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'declaration' with sig. '' on line 455.
+. Defining environment 'declaration' with sig. '' on line 456.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'constants' with sig. ' m ' on line 497.
+. Defining environment 'constants' with sig. ' m ' on line 498.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'symbols' with sig. ' m ' on line 515.
+. Defining environment 'symbols' with sig. ' m ' on line 516.
 .................................................
 ) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
@@ -1997,12 +1997,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 199.
-Package hyperref Info: Option `hypertexnames' set `false' on input line 199.
-Package hyperref Info: Option `colorlinks' set `true' on input line 199.
-Package hyperref Info: Option `unicode' set `true' on input line 199.
-Package hyperref Info: Option `breaklinks' set `true' on input line 199.
-Package hyperref Info: Option `colorlinks' set `false' on input line 199.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 212.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 212.
+Package hyperref Info: Option `colorlinks' set `true' on input line 212.
+Package hyperref Info: Option `unicode' set `true' on input line 212.
+Package hyperref Info: Option `breaklinks' set `true' on input line 212.
+Package hyperref Info: Option `colorlinks' set `false' on input line 212.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -2022,30 +2022,30 @@ LaTeX Warning: Label `fig:diary2' multiply defined.
 ))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 199.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 199.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 212.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 212.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 199.
-LaTeX Font Info:    ... okay on input line 199.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 199.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 212.
+LaTeX Font Info:    ... okay on input line 212.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 212.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
@@ -2129,14 +2129,14 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package scrlayer Info: Setting magic \footheight to \baselineskip while
-(scrlayer)             \begin{document} on input line 199.
-Package scrbase Info: activating english \abbrevname on input line 199.
-Package scrbase Info: activating english \byname on input line 199.
-Package scrbase Info: activating english \acknowledgementname on input line 199
+(scrlayer)             \begin{document} on input line 212.
+Package scrbase Info: activating english \abbrevname on input line 212.
+Package scrbase Info: activating english \byname on input line 212.
+Package scrbase Info: activating english \acknowledgementname on input line 212
 .
-Package scrbase Info: activating english \authorshipname on input line 199.
-Package scrbase Info: activating english \constantsname on input line 199.
-Package scrbase Info: activating english \symbolsname on input line 199.
+Package scrbase Info: activating english \authorshipname on input line 212.
+Package scrbase Info: activating english \constantsname on input line 212.
+Package scrbase Info: activating english \symbolsname on input line 212.
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -2148,9 +2148,9 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
 (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 199.
-Package biblatex Info: Reference segment=0 on input line 199.
-LaTeX Info: Redefining \microtypecontext on input line 199.
+Package biblatex Info: Reference section=0 on input line 212.
+Package biblatex Info: Reference segment=0 on input line 212.
+LaTeX Info: Redefining \microtypecontext on input line 212.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -2164,7 +2164,7 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 \AtBeginShipoutBox=\box65
-Package hyperref Info: Link coloring OFF on input line 199.
+Package hyperref Info: Link coloring OFF on input line 212.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -2174,65 +2174,65 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count445
 )
-LaTeX Info: Redefining \ref on input line 199.
-LaTeX Info: Redefining \pageref on input line 199.
-LaTeX Info: Redefining \nameref on input line 199.
+LaTeX Info: Redefining \ref on input line 212.
+LaTeX Info: Redefining \pageref on input line 212.
+LaTeX Info: Redefining \nameref on input line 212.
 
 (./main.out) (./main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
 \c__siunitx_mathsf_int=\count446
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 199.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 212.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 199
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 212
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 199
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 212
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 199
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 212
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 199
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 212
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 199.
+(Font)              scaled to size 12.50409pt on input line 212.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 199.
+(Font)              scaled to size 9.37807pt on input line 212.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 199.
+(Font)              scaled to size 7.29405pt on input line 212.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 199.
+(Font)              scaled to size 12.50409pt on input line 212.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 199.
+(Font)              scaled to size 9.37807pt on input line 212.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 199.
+(Font)              scaled to size 7.29405pt on input line 212.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -2243,16 +2243,16 @@ Package microtype Info: Loading generic protrusion settings for font family
 <Figures/logos.jpg, id=184, 752.8125pt x 361.35pt>
 File: Figures/logos.jpg Graphic file (type jpg)
 <use Figures/logos.jpg>
-Package pdftex.def Info: Figures/logos.jpg  used on input line 211.
+Package pdftex.def Info: Figures/logos.jpg  used on input line 224.
 (pdftex.def)             Requested size: 128.03386pt x 61.45625pt.
 LaTeX Font Info:    Font shape `T1/ppl/bx/sc' in size <20.74> not available
-(Font)              Font shape `T1/ppl/b/sc' tried instead on input line 217.
+(Font)              Font shape `T1/ppl/b/sc' tried instead on input line 230.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 221.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 234.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 239.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 252.
 
-Package hyperref Warning: Suppressing link with empty target on input line 241.
+Package hyperref Warning: Suppressing link with empty target on input line 254.
 
 
 [1
@@ -2266,12 +2266,12 @@ Package hyperref Warning: Suppressing link with empty target on input line 241.
 --------------------
  Declaration of Authorship
 --------------------
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 261.
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 274.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
  []
 
@@ -2283,27 +2283,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 266--267
  Acknowledgements
 --------------------
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--286
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 289--290
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
 
  []
 
@@ -2317,7 +2317,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 293--294
  Abstract
 --------------------
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 316.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 331.
 1: section
 [9] [10
 
@@ -2519,26 +2519,26 @@ Chapter 4.
 
 
 ] [45]
-Underfull \hbox (badness 4859) in paragraph at lines 436--436
+Underfull \hbox (badness 4859) in paragraph at lines 451--451
 [][]\T1/ppl/m/n/12 (+20) Office for Na-tional Statis-tics (2018). \T1/ppl/m/it/
 12 (+20) Mid 2008, 2009, 2010, 2011, 2012,
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 436--436
+Underfull \hbox (badness 1371) in paragraph at lines 451--451
 \T1/ppl/m/it/12 (+20) 2013, 2014, 2015, and 2016 Pop-u-la-tion Es-ti-mates\T1/p
 pl/m/n/12 (+20) . []$https : / / www . ons .
  []
 
 
-Underfull \hbox (badness 2990) in paragraph at lines 436--436
+Underfull \hbox (badness 2990) in paragraph at lines 451--451
 \T1/ppl/m/n/12 (+20) gov . uk / peoplepopulationandcommunity / populationandmig
 ration /
  []
 
 
 Package biblatex Warning: No driver for entry type 'software'.
-(biblatex)                Using fallback driver on input line 436.
+(biblatex)                Using fallback driver on input line 451.
 
 [46] [47] [48
 
@@ -2925,15 +2925,15 @@ Package pdftex.def Info: Figures/Diary3.png  used on input line 43.
 
  <./Figures/Diary1.png>] [94 <./Figures/Diary2.png> <./Figures/Diary03.png>] [9
 5 <./Figures/Diary3.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 456.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 456.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 471.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 471.
  (./main.aux (./Chapters/Chapter1.aux)
 (./Chapters/Chapter2.aux) (./Chapters/Chapter3.aux) (./Chapters/Chapter4.aux)
 (./Appendices/AppendixA.aux) (./Appendices/AppendixB.aux)
 (./Appendices/AppendixC.aux) (./Appendices/AppendixD.aux)
 (./Appendices/AppendixE.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 456.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 456.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 471.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 471.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: C41D8FC0FD217EEFF8A1836D6FD357B0;10341.
 
@@ -2949,11 +2949,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39153 strings out of 492982
- 772381 string characters out of 6134896
- 1173275 words of memory out of 5000000
+ 39152 strings out of 492982
+ 772358 string characters out of 6134896
+ 1173352 words of memory out of 5000000
  41635 multiletter control sequences out of 15000+600000
- 637269 words of font info for 414 fonts, out of 8000000 for 9000
+ 635716 words of font info for 412 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,20n,91p,10377b,2923s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
@@ -2969,7 +2969,7 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (111 pages, 1514333 bytes).
+Output written on main.pdf (111 pages, 1515588 bytes).
 PDF statistics:
  1085 PDF objects out of 1200 (max. 8388607)
  922 compressed objects within 10 object streams

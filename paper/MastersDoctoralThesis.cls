@@ -361,7 +361,8 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\begin{center}
 		%	{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
 		%	\bigskip
-			{\huge\textit{\abstractname} \par}
+		\thispagestyle{plain}
+			{\huge\textbf{\abstractname} \par}
 		%	\bigskip
 		%	{\normalsize \facname \par}% Faculty name
 		%	{\normalsize \deptname \par}% Department name
@@ -371,7 +372,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 		%	{\normalsize\bfseries \@title \par}% Thesis title
 		%	\medskip
 		%	{\normalsize \byname{} \authorname \par}% Author name
-			\bigskip
+		%	\bigskip
 		\end{center}
 	}
 	{
@@ -425,7 +426,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 		\checktoopen
 		\tttypeout{\acknowledgementname}
 		\thispagestyle{plain}
-		\begin{center}{\huge\textit{\acknowledgementname}\par}\end{center}
+		\begin{center}{\huge\textbf{\acknowledgementname}\par}\end{center}
 	}
 	{
 		\vfil\vfil\null

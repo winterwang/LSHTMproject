@@ -196,6 +196,19 @@ table]{MastersDoctoralThesis} % The class file specifying the document structure
 %\definecolor{light-gray}{gray}{0.95}
 %\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
 
+% change the margins for one page
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\rightmargin}{#2}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+	\item[]}{\end{list}}
+
+
 \begin{document}
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
@@ -311,22 +324,24 @@ Last but not the least, I want to express my gratitude to my family for their un
 %	ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
 
+\begin{changemargin}{-0.6cm}{-0.3cm}
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+
 \textbf{Background:}
-Recent evidence suggested that there are 3 types of eaters (grazers, early eaters, and late eaters) in the general population according to the timing of their energy consumption occurred throughout the day. This project aimed at investigating the relationship between the timing of eating and carbohydrate intake. Additionally, associations between carbohydrate eating patterns defined previously and hypertension, obesity were explored.
+Recent evidence suggested that there are 3 types of eaters (grazers, early eaters, and late eaters) according to the timing of energy consumption. This project aimed at finding both timing and quantity eating patterns specifically for carbohydrate (carb) intake, and exploring their potential associations with hypertension and obesity.
 
 \textbf{Methods:}
-The National Diet and Nutrition Survey (NDNS) Rolling Programme (2008/09-15/16) database of detailed four-day food diaries was used in exploration of both timing and quantity eating patterns of carbohydrates in the general adults living in the UK. 6155 participants aged 19 or older were kept in the analysis. Multilevel latent class analysis (MLCA) models were applied in finding the latent classes of carbohydrate consumption accounting for the hierarchical data structure that the observed daily food diaries nested within individuals. Survey-designed multivariable regression models assessed the associations of carbohydrate eating patterns with hypertension, body mass index (BMI), and waist circumferences.
+Data are from the National Diet and Nutrition Survey (NDNS) Rolling Programme (2008/09-15/16) which included 6155 adults aged 19 or older in the UK. Time of the day was defined as: 6-9 am, 9-12 noon, 12-2 pm, 2-5 pm, 5-8 pm, 8-10 pm and 10 pm-6 am. Responses for carb intake within each time slot were categorised into: not eating any food, carb contributed $<$ 50\% or $\geqslant$ 50\% of total energy. Multilevel latent class analysis (MLCA) models were applied in finding the latent classes of carb consumption accounting for the hierarchical data structure. Survey-designed multivariable regression models were used to assess the associations between carb eating patterns and hypertension, body mass index (BMI), and waist circumferences (WC).
 
 \textbf{Results:}
-Three types of carbohydrate eating days (low/high percentage carbohydrate days, and regular meal days) were found in the elementary level, depending on which, three types of carbohydrate eaters (low/moderate/high carbohydrate eaters) emerged in the NDNS RP participants. 
+Three carb eating day patterns (low/high percentage, and regular meal days) were found in 24483 observation days, based on which, three types of carb eaters: low (28.1\%), moderate (28.8\%), and high (43.1\%) carb eaters emerged. On average, low-carb eaters consumed the highest amount of total energy intake (7985.8 kJ), and they had higher percentages of energy contributed by fat and alcohol, especially after 8 pm. Moderate-carb eaters consumed the lowest amount of total energy (7341.8 kJ) while they had the tendency of eating carb later in time-of-day. High-carb eaters consumed most of their carb and energy within time slots of 6-9 am, 12-2 pm and 5-8 pm. In men, moderate-carb eaters may had lower odds of having hypertension compared with low-carb eaters (adjusted OR: 0.64, 95\%CI: 0.41, 1.01). In women, high-carb eaters lived with partners had both lower BMI (-1.76 kg/m\textsuperscript{2}, -2.87, -0.73) and WC (-4.71 cm, -7.00, -2.43) compared with low-carb eaters, although these inverse associations were not observed in women who lived alone (\textit{p} for interaction 0.014, and 0.009).
 
-\textbf{Conclusion:}
-
+\textbf{Conclusions:}
+Contrary to the expectation, profiles of high-carb eaters seemed to be healthier among three types of carb eaters. Low-carb eaters probably followed the diet out of health purposes but they may have chosen fat or alcohol as replacements of carb, which could probably be a concern from public health point of view. Whether these circadian carb-eating patterns are associated with change of blood pressure and/or obesity longitudinally should be further investigated.
  
 \end{abstract}
-
+\end{changemargin}
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
