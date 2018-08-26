@@ -1,0 +1,3 @@
+# use pandoc to transform the main text into docx
+
+pandoc -s main.tex -f latex -t docx --bibliography=summer.bib  --csl=3d-printing-in-medicine.csl -o main.docx 
