@@ -182,7 +182,7 @@ Where,
 
 \begin{itemize}
 	\item $ U_{ijk} $ represents the response of carbohydrate eating (one of the following: not eating any food, $< 50\%$ of the energy, or $\geqslant 50\%$ of the energy) on the $i$th day of the survey ($i \in (1,2,3,4)$) in $j$th individual at the $k$th time slot of the day ($k \in (1, 2, 3, \cdots, 7)$);
-	\item $G_{ij}$ denotes the latent class membership for $j$th individuals on $i$th day of the survey, the total number of day-level latent class is $T$;
+	\item $G_{ij}$ denotes the latent class membership for $j$th individuals on the $i$th day of the survey, the total number of day-level latent class is $T$;
 %	\item A specific latent class is referred to as $t$, and the total number of level 1 latent classes is denoted by $T$;
 	\item $P(U_{ijk} = s_k|C_{ij} = t)$ is the probability of a specific response pattern, conditional on membership in latent class $t$.
 \end{itemize}
@@ -208,7 +208,7 @@ Where,
 
 \begin{itemize}
 	\item $CB_j$ is the individual-level latent class membership for the $j$th individual;
-	\item $\gamma_{tm}$ is day-level and individual-level indicators. 
+	\item $\gamma_{tm}$ is the day-level and individual-level indicators. 
 \end{itemize}
 
 According to Finch and French's simulation study \parencite{finch2014multilevel}, non-parametric approach generally resulted in more accurate recovery of the underlying latent structure of the data at both levels and provided better latent class model compared with parametric approach. In the current project, we are interested in exploring both meaningful individual (level 2) latent classes and the daily (level 1) carbohydrate consumption classification. Therefore, non-parametric MLCA was employed 1) to identify latent classes of observation days (level 1) based on the subjects' responses to the 4-day food and drink diary and 2) to form distinct latent classes of individuals (level 2) based on the distribution of day-level carbohydrate eating temporal latent classes within individuals.\vspace{-0.3cm}
