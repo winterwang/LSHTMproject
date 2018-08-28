@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  26 AUG 2018 15:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  28 AUG 2018 15:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2399,7 +2399,7 @@ Underfull \hbox (badness 1331) in paragraph at lines 302--303
 -der the sur-vey data,
  []
 
-) [15] [16]
+[15]) [16]
 \openout2 = `Chapters/Chapter3.aux'.
 
  (./Chapters/Chapter3.tex
@@ -2950,8 +2950,8 @@ Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  39161 strings out of 492982
- 772433 string characters out of 6134896
- 1173360 words of memory out of 5000000
+ 772432 string characters out of 6134896
+ 1173415 words of memory out of 5000000
  41635 multiletter control sequences out of 15000+600000
  636175 words of font info for 418 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2969,7 +2969,7 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (111 pages, 1515673 bytes).
+Output written on main.pdf (111 pages, 1515464 bytes).
 PDF statistics:
  1085 PDF objects out of 1200 (max. 8388607)
  922 compressed objects within 10 object streams

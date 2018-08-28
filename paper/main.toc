@@ -16,11 +16,11 @@
 \contentsline {subsection}{Strata and weightings}{6}{section*.19}
 \contentsline {subsection}{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analyses}{7}{section*.22}
 \contentsline {subsection}{Ethical approval}{8}{section*.23}
-\contentsline {section}{Statistical methods}{8}{section*.24}
-\contentsline {subsection}{Latent Class Analysis (LCA)}{8}{section*.25}
+\contentsline {section}{Statistical methods}{9}{section*.24}
+\contentsline {subsection}{Latent Class Analysis (LCA)}{9}{section*.25}
 \contentsline {subsection}{Multilevel Latent Class Analysis (MLCA)}{9}{section*.27}
 \contentsline {subsubsection}{Parametric approach}{10}{section*.28}
-\contentsline {subsubsection}{Non-Parametric approach}{11}{section*.32}
+\contentsline {subsubsection}{Non-Parametric approach}{12}{section*.32}
 \contentsline {subsection}{Strategy of conducting MLCA}{12}{section*.34}
 \contentsline {subsection}{Characteristics of day-level latent classes and individual-level latent classes}{13}{section*.35}
 \contentsline {subsection}{Association between individual-level latent classes and the prevalence of hypertension, and measurements of obesity}{14}{section*.36}
