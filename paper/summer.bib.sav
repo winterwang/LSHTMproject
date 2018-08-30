@@ -467,13 +467,14 @@
 @Article{jung2008introduction,
   author    = {Jung, Tony and Wickrama, KAS},
   title     = {An introduction to latent class growth analysis and growth mixture modeling},
-  journal   = {Social and personality psychology compass},
+  journal   = {Social and Personality Psychology Compass},
   year      = {2008},
   volume    = {2},
   number    = {1},
   pages     = {302--317},
   file      = {:/home/wangcc-me/Documents/LSHTMproject/references/jung2008.pdf:PDF},
   publisher = {Wiley Online Library},
+  timestamp = {2018-08-30},
 }
 
 @Article{andruff2009latent,
