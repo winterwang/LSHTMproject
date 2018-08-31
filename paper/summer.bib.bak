@@ -467,13 +467,14 @@
 @Article{jung2008introduction,
   author    = {Jung, Tony and Wickrama, KAS},
   title     = {An introduction to latent class growth analysis and growth mixture modeling},
-  journal   = {Social and personality psychology compass},
+  journal   = {Social and Personality Psychology Compass},
   year      = {2008},
   volume    = {2},
   number    = {1},
   pages     = {302--317},
   file      = {:/home/wangcc-me/Documents/LSHTMproject/references/jung2008.pdf:PDF},
   publisher = {Wiley Online Library},
+  timestamp = {2018-08-30},
 }
 
 @Article{andruff2009latent,
@@ -561,7 +562,9 @@
   volume    = {6},
   number    = {1},
   pages     = {97--105},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/st0099.pdf:PDF},
   publisher = {StataCorp LP},
+  timestamp = {2018-08-31},
 }
 
 @Article{leech2018eating,
@@ -742,6 +745,54 @@
   owner     = {wangcc-me},
   publisher = {JSTOR},
   timestamp = {2018-08-26},
+}
+
+@Article{archer2001goodness,
+  author    = {Archer, KJ},
+  title     = {Goodness-of-fit tests for logistic regression models developed using data collected from a complex sampling design},
+  journal   = {Unpubl Ph Diss Ohio State Univ Columb OH},
+  year      = {2001},
+  owner     = {wangcc-me},
+  timestamp = {2018-08-31},
+}
+
+@Article{archer2007goodness,
+  author    = {Archer, Kellie J and Lemeshow, Stanley and Hosmer, David W},
+  title     = {Goodness-of-fit tests for logistic regression models when data are collected using a complex sampling design},
+  journal   = {Computational Statistics \& Data Analysis},
+  year      = {2007},
+  volume    = {51},
+  number    = {9},
+  pages     = {4450--4464},
+  owner     = {wangcc-me},
+  publisher = {Elsevier},
+  timestamp = {2018-08-31},
+}
+
+@Article{schulze2018food,
+  author    = {Schulze, Matthias B and Mart{\'\i}nez-Gonz{\'a}lez, Miguel A and Fung, Teresa T and Lichtenstein, Alice H and Forouhi, Nita G},
+  title     = {Food based dietary patterns and chronic disease prevention},
+  journal   = {BMJ},
+  year      = {2018},
+  volume    = {361},
+  pages     = {k2396},
+  owner     = {wangcc-me},
+  publisher = {British Medical Journal Publishing Group},
+  timestamp = {2018-08-31},
+}
+
+@Article{kosinski2017effects,
+  author    = {Kosinski, Christophe and Jornayvaz, Fran{\c{c}}ois R},
+  title     = {Effects of ketogenic diets on cardiovascular risk factors: evidence from animal and human studies},
+  journal   = {Nutrients},
+  year      = {2017},
+  volume    = {9},
+  number    = {5},
+  pages     = {517},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/nutrients-09-00517.pdf:PDF},
+  owner     = {wangcc-me},
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  timestamp = {2018-08-31},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

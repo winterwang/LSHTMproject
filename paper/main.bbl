@@ -222,6 +222,47 @@
     \field{year}{2009}
   \endentry
 
+  \entry{archer2007goodness}{article}{}
+    \name{author}{3}{}{%
+      {{hash=AKJ}{%
+         family={Archer},
+         familyi={A\bibinitperiod},
+         given={Kellie\bibnamedelima J},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lemeshow},
+         familyi={L\bibinitperiod},
+         given={Stanley},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HDW}{%
+         family={Hosmer},
+         familyi={H\bibinitperiod},
+         given={David\bibnamedelima W},
+         giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{AKJLSHDW1}
+    \strng{fullhash}{AKJLSHDW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{9}
+    \field{pages}{4450\bibrangedash 4464}
+    \field{title}{Goodness-of-fit tests for logistic regression models when
+  data are collected using a complex sampling design}
+    \field{volume}{51}
+    \field{journaltitle}{Computational Statistics \& Data Analysis}
+    \field{year}{2007}
+  \endentry
+
   \entry{archer2006goodness}{article}{}
     \true{moreauthor}
     \name{author}{2}{}{%
@@ -254,8 +295,34 @@
     \field{title}{Goodness-of-fit test for a logistic regression model fitted
   using survey sample data}
     \field{volume}{6}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/st0099.pdf:PDF
+    \endverb
     \field{journaltitle}{Stata Journal}
     \field{year}{2006}
+  \endentry
+
+  \entry{archer2001goodness}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AK}{%
+         family={Archer},
+         familyi={A\bibinitperiod},
+         given={KJ},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AK1}
+    \strng{fullhash}{AK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{Goodness-of-fit tests for logistic regression models
+  developed using data collected from a complex sampling design}
+    \field{journaltitle}{Unpubl Ph Diss Ohio State Univ Columb OH}
+    \field{year}{2001}
   \endentry
 
   \entry{asher2015time}{article}{}
@@ -863,8 +930,47 @@
     \verb{file}
     \verb :/home/wangcc-me/Documents/LSHTMproject/references/jung2008.pdf:PDF
     \endverb
-    \field{journaltitle}{Social and personality psychology compass}
+    \field{journaltitle}{Social and Personality Psychology Compass}
     \field{year}{2008}
+  \endentry
+
+  \entry{kosinski2017effects}{article}{}
+    \name{author}{2}{}{%
+      {{hash=KC}{%
+         family={Kosinski},
+         familyi={K\bibinitperiod},
+         given={Christophe},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=JFR}{%
+         family={Jornayvaz},
+         familyi={J\bibinitperiod},
+         given={Fran{\c{c}}ois\bibnamedelima R},
+         giveni={F\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Multidisciplinary Digital Publishing Institute}%
+    }
+    \strng{namehash}{KCJFR1}
+    \strng{fullhash}{KCJFR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{5}
+    \field{pages}{517}
+    \field{title}{Effects of ketogenic diets on cardiovascular risk factors:
+  evidence from animal and human studies}
+    \field{volume}{9}
+    \verb{file}
+    \verb :/home/wangcc-me/Documents/LSHTMproject/references/nutrients-09-00517
+    \verb .pdf:PDF
+    \endverb
+    \field{journaltitle}{Nutrients}
+    \field{year}{2017}
   \endentry
 
   \entry{leech2017temporal}{article}{}
@@ -1340,6 +1446,57 @@
     \field{sortinithash}{R}
     \field{title}{National Diet and Nutrition Survey: results from years 7 and
   8 (combined) of the Rolling Programme (2014/2015--2015/2016)}
+    \field{year}{2018}
+  \endentry
+
+  \entry{schulze2018food}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SMB}{%
+         family={Schulze},
+         familyi={S\bibinitperiod},
+         given={Matthias\bibnamedelima B},
+         giveni={M\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=MGMA}{%
+         family={Mart{\'\i}nez-Gonz{\'a}lez},
+         familyi={M\bibinitperiod-G\bibinitperiod},
+         given={Miguel\bibnamedelima A},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=FTT}{%
+         family={Fung},
+         familyi={F\bibinitperiod},
+         given={Teresa\bibnamedelima T},
+         giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=LAH}{%
+         family={Lichtenstein},
+         familyi={L\bibinitperiod},
+         given={Alice\bibnamedelima H},
+         giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=FNG}{%
+         family={Forouhi},
+         familyi={F\bibinitperiod},
+         given={Nita\bibnamedelima G},
+         giveni={N\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {British Medical Journal Publishing Group}%
+    }
+    \strng{namehash}{SMB+1}
+    \strng{fullhash}{SMBMGMAFTTLAHFNG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{year}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{pages}{k2396}
+    \field{title}{Food based dietary patterns and chronic disease prevention}
+    \field{volume}{361}
+    \field{journaltitle}{BMJ}
     \field{year}{2018}
   \endentry
 
