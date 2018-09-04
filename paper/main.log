@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  3 SEP 2018 16:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  4 SEP 2018 12:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2462,7 +2462,7 @@ Overfull \vbox (40.17758pt too high) has occurred while \output is active []
 
 
 [26] [27]
-Overfull \hbox (18.96385pt too wide) in paragraph at lines 409--461
+Overfull \hbox (1.08296pt too wide) in paragraph at lines 409--461
  [][] 
  []
 
@@ -2974,7 +2974,7 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (111 pages, 1518068 bytes).
+Output written on main.pdf (111 pages, 1518097 bytes).
 PDF statistics:
  1097 PDF objects out of 1200 (max. 8388607)
  934 compressed objects within 10 object streams

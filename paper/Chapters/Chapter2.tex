@@ -10,9 +10,9 @@
 %-----------------------------------
 \section{Dietary diary collected in the NDNS RP}\vspace{-0.3cm}
 
-Participants were required to keep a diary that record everything eaten or drunk over four consecutive days. Interviewers undertook three visits with each participant. At the first visit, the interviewer explained the method followed a protocol, taking participants through the sections in the diary including how to describe details of food and drink and portion size and an example day. The second visit was a brief one to check for compliance, and answer potential questions from the participants. Interviewers also reviewed the diary to identify and edited possible omissions and missing detail in the food diary. The third visit was to collect the diary and again review and edit possible omissions. 
+Participants were required to keep a diary that record everything eaten or drunk over four consecutive days. Interviewers undertook three visits with each participant. At the first visit, the interviewer explained the method followed a protocol, taking participants through the sections in the diary including how to describe details of food and drink and portion size and an example day. The second visit was a brief one to check for compliance, and answer potential questions from the participants. Interviewers also reviewed the diary to identify and edited possible omissions and missing details in the food diary. The third visit was to collect the diary and again review and edit possible omissions. 
 
-In the diary, portion sizes of food or drink eaten were asked to be recorded in household measures (e.g. one tablespoon of beans, one Kit Kat finger-size), or for packaged foods to note the weight indicated on the packet. Homemade dishes were also described in the diary about their ingredients, quantities, along with a brief description of the cooking procedure and how much of the dish were consumed. For each eating occasion, in addition to the details of what and how much was eaten, participants were also asked to record: when was it, where they were, and who they were eating with. An example, used as guidance for participants, of a food diary for one day is shown in \textbf{Appendix \ref{AppendixE}}.\vspace{-0.3cm}
+In the diary, portion sizes of food or drink consumed were asked to be recorded in household measures (e.g. one tablespoon of beans, one Kit Kat finger-size), or for packaged foods to note the weight indicated on the packet. Homemade dishes were also described in the diary about their ingredients, quantities, along with a brief description of the cooking procedure and how much of the dish were consumed. For each eating occasion, in addition to the details of what and how much was eaten, participants were also asked to record: when was it, where they were, and who they were eating with. An example, used as guidance for participants, of a food diary for one day is shown in \textbf{Appendix \ref{AppendixE}}.\vspace{-0.3cm}
 
 \subsection{Definition of carbohydrate intake}\vspace{-0.3cm}
 
@@ -53,7 +53,7 @@ Overall, for years 1 to 8 combined, a sample of 39,300 addresses was selected fr
 \begin{itemize}
 	\item Randomly select PSUs from the Postcode Address File; 
 	\item Randomly select 27 or 28 addresses in that postcode area; 
-	\item Randomly select one household at that address for interviews; 
+	\item Randomly select one household at that address for interview; 
 	\item Selected addresses where children resided were randomly allocated to one of two groups to determine whether an adult (aged 19 years or older) and a child (aged 1.5 to 18 years) or a child only, were selected for interviews.
 \end{itemize}
 \vspace{-0.6cm}
@@ -91,7 +91,7 @@ Specifically, blood pressure was measured in a sitting position using an automat
 
 A self-completion questionnaire - the Recent Physical Activity Questionnaire  \parencite{besson2009estimating} (RPAQ, developed by the MRC Epidemiology Unit Cambridge) was used to estimate physical activity from year 2 of the survey. The RPAQ was designed to assess usual physical activity in the last month in four domains: home, work, commuting to work, and leisure activities. Detailed descriptions of the assessment of adult physical activity in the NDNS RP and the processing of data are available in Appendices G and V of the published reports \parencite{bates2014national,roberts2018national,NDNSofficial}. 
 
-Blood samples were stored at 4 $^\circ$C, and sent directly by post to the Department of Haematology and Department of Clinical Biochemistry and Immunology, Addenbrooke's Hospital, Cambridge within two hours of their collection. Serum samples were collected by centrifugation of the coagulated blood sample. Serum total, High-Density Lipoprotein (HDL) and Low-Density Lipoprotein (LDL) cholesterol, triglycerides (TG), fasting blood glucose, haemoglobin HbHbA1C were measured. HbA1C value of 6.5\% was used as the cut off point for diagnosing diabetes.
+Blood samples were stored at 4 $^\circ$C, and sent directly by post to the Department of Haematology and Department of Clinical Biochemistry and Immunology, Addenbrooke's Hospital, Cambridge within two hours of their collection. Serum samples were collected by centrifugation of the coagulated blood sample. Serum total, High-Density Lipoprotein (HDL) and Low-Density Lipoprotein (LDL) cholesterol, triglycerides (TG), fasting blood glucose, haemoglobin(Hb) A1C were measured. HbA1C value of 6.5\% was used as the cut off point for diagnosing diabetes.
 
 Body mass index (BMI) was calculated as weight in kilograms divided by height in square meters. BMI was then categorised into less than 25 kg/m\textsuperscript{2} (normal weight), 25 to 30 kg/m\textsuperscript{2} (overweight), and higher or equal to 30 kg/m\textsuperscript{2} (obese). 
 
@@ -184,7 +184,7 @@ Where,
 	\item $ U_{ijk} $ represents the response of carbohydrate eating (one of the following: not eating any food, $< 50\%$ of the energy, or $\geqslant 50\%$ of the energy) on the $i$th day of the survey ($i \in (1,2,3,4)$) in $j$th individual at the $k$th time slot of the day ($k \in (1, 2, 3, \cdots, 7)$);
 	\item $G_{ij}$ denotes the latent class membership for $j$th individuals on the $i$th day of the survey, the total number of day-level latent class is $T$;
 %	\item A specific latent class is referred to as $t$, and the total number of level 1 latent classes is denoted by $T$;
-	\item $P(\mathbf{U_{ijk} = s_k}|C_{ij} = t)$ is the probability of a specific response pattern, conditional on membership in latent class $t$.
+	\item $P(\mathbf{U_{ijk} = s_k}|G_{ij} = t)$ is the probability of a specific response pattern, conditional on membership in latent class $t$.
 \end{itemize}
 
 
@@ -219,7 +219,7 @@ According to Finch and French's simulation study \parencite{finch2014multilevel}
 To identify the best-fitting model, we used the following sequential modelling strategy \parencite{henry2010multilevel}: 
 
 \begin{itemize}
-	\item First, we ignored the multilevel structure of the data and estimated a series of traditional LC models to determine the number of classes at the observational day-level;
+	\item First, we ignored the multilevel structure of the data and estimated a series of traditional LCA models to determine the number of classes at the observational day-level;
 	\item Next, a series of MLCA models were fitted to account for the multilevel structure of the data. In these models, the number of day-level classes was based on the best fitting LCA model from the first step, and the LCA model at the individual-level was estimated to identify the number of individual-level latent classes;
 	\item Last, once the number of individual-level latent classes was defined based on the previous stage, the number of day-level classes was modified (one class lower and one class higher than in the second step) to investigate the effect of changing level 1 classes and to confirm the best fitting model.
 \end{itemize}
@@ -272,7 +272,7 @@ The number of classes in level 1 was determined by 1) the evaluation of model fi
 \subsection{Characteristics of day-level latent classes and individual-level latent classes}\vspace{-0.3cm}
 
 
-Day-level latent classes identified by the first step of MLCA were tabulated according to the day of the week and also whether the diary was recorded during weekends or not. A contingency table giving the frequency of responses across the 7-time slots of the survey days was produced. Descriptive statistics for the dietary day-level recordings according to the latent class memberships were presented. Pearson $\chi^2$ test was used to assess evidence fora difference in the distribution of categorical variables. One-way Analysis of Variance (ANOVA) was used to compare the means across the multiple groups for continuous variables.
+Day-level latent classes identified by the first step of MLCA were tabulated according to the day of the week and also whether the diary was recorded during weekends or not. A contingency table giving the frequency of responses across the 7-time slots of the survey days was produced. Descriptive statistics for the dietary day-level recordings according to the latent class memberships were presented. Pearson $\chi^2$ test was used to assess evidence for a difference in the distribution of categorical variables. One-way Analysis of Variance (ANOVA) was used to compare the means across the multiple groups for continuous variables.
 
 Person-level point estimates and 95\% confidence intervals (CIs) were determined by applying individual, nurse visiting, and blood sample weights and the clustered survey design. Descriptive statistics for sample characteristics were presented as weighted means (95\% CI) or weighted percentages (95\%CI). After examining the distribution of the data, the following variables were log-transformed to improve normality: fasting blood glucose, HbA1C, TC, LDL, HDL, TG, and average physical activity duration per day. Weighted geometric means (95\% CI) were used for all log-transformed variables. 
 
@@ -289,13 +289,13 @@ Associations between individual-level carbohydrate eating classes and hypertensi
 %multinomial logistic regression model (for BMI categories),
 
 
-Survey-designed logistic regression models (for hypertension), and linear regression models (for WC, BMI), were used to test for associations between latent classes of carbohydrate eating patterns and hypertension, BMI, and WC, in the NDNS RP sample, separately. Since diabetic participants might or might not modify their carbohydrate eating habits, we also fitted all the above-mentioned regression models restricted to those without diabetes.
+Survey-designed logistic regression models (for hypertension), and survey-designed linear regression models (for WC, BMI), were used to test for associations between latent classes of carbohydrate eating patterns and hypertension, BMI, and WC, in the NDNS RP sample, separately. Since diabetic participants might or might not modify their carbohydrate eating habits, we also fitted all the above-mentioned regression models restricted to those without diabetes.
 
 For the multiple regression models, model fitting strategies are as follows: 
 
 \begin{enumerate}
 	\item The crude association between the carbohydrate eating groups and the outcomes was first examined. 
-	\item Potential confounders of the association between carbohydrate eating groups (exposure) and the outcomes were selected depending on the descriptive statistical analyses conducted above, i.e. those associated with both the exposure and the outcome and also not on the causal pathway were selected as potential confounders. Covariates that are strongly related with the outcomes but not associate with carbohydrate eating groups may reduce the standard errors and improve the precisions, so they were also considered in the linear regression models. 
+	\item Potential confounders of the association between carbohydrate eating groups (exposure) and the outcomes were selected depending on the descriptive statistical analyses conducted above, i.e. those associated with both the exposure and the outcome and also not on the causal pathway were selected as potential confounders. Covariates that are strongly related with the outcomes but not associate with carbohydrate eating groups may reduce the standard errors and improve the precisions, so they were also considered in the survey-designed linear regression models. 
 	\item Confounding or interaction effects from each of the potential factors were checked one by one. Interaction effects were tested using the adjusted Wald test for whether the regression coefficients of the interaction terms are simultaneously equal to zero.  
 	\item A preliminary model that includes all of the variables suggested to be confounders in the previous step was established. 
 	\item The remaining variables were added to the preliminary model one by one to see if any of them may be a confounder in the presence of the other covariates. 
