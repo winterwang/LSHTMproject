@@ -962,7 +962,7 @@ Text$pos <- rep(1.06, 7)
 CB1 <- ggplot() +
   geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB1sources, width = 0.6,
            stat="identity") +
-  geom_text(data=CB1sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+  geom_text(data=CB1sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100))),
             size = 3.5, colour="black", family="Atlas Grotesk Medium") +
   geom_text(data= Text, aes(x = Slot, y = pos, label = TotalEner), 
             size = 3.5, colour = "black", family="Atlas Grotesk Medium") +
@@ -1003,7 +1003,7 @@ Text$TotalEner <-  c("1310.9", "296.9",  "1086.9", "1977.2", "1106.1", "967.9", 
 CB2 <- ggplot() +
   geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB2sources, width = 0.6,
            stat="identity") +
-  geom_text(data=CB2sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+  geom_text(data=CB2sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100))),
             size = 3.5, colour="black", family="Atlas Grotesk Medium") +
   geom_text(data= Text, aes(x = Slot, y = pos, label = TotalEner), 
             size = 3.5, colour = "black", family="Atlas Grotesk Medium") +
@@ -1048,7 +1048,7 @@ Text$TotalEner <-  c("1788.8",  "929.0", "860.2", "2368.9", "785.0",  "746.4",
 CB3 <- ggplot() +
   geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB3sources, width = 0.6,
            stat="identity") +
-  geom_text(data=CB3sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+  geom_text(data=CB3sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100))),
             size = 3.5, colour="black", family="Atlas Grotesk Medium") +
   geom_text(data = Text, aes(x = Slot, y = pos, label = TotalEner), 
             size = 3.5, colour = "black", family="Atlas Grotesk Medium") +
