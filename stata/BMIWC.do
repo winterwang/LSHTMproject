@@ -5,9 +5,9 @@
 
 // import data from CW3CB3_7sregss.dta
 
-use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+// use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
 
-//use "../Rcode/CW3CB3_7regss.dta", clear
+use "../Rcode/CW3CB3_7regss.dta", clear
 
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
 label values cigsta3 smoking
@@ -42,6 +42,11 @@ tab Educ
 
 egen BMIcat = cut(bmival), at(10, 25, 30, 60)
 tab BMIcat
+
+gen Obesity = BMI >=  30
+tab Obesity
+
+
 **********************************************************
 // variables need to be log transfomred                 //
 **********************************************************
@@ -69,6 +74,7 @@ gen logTG = ln(Trig)
 
 svyset area [pweight = wtn1to8], strata(gor)
 
+svy: logistic Obesity b3.CB
 
 gen DM = A1C > 6.5 if !missing(A1C)
 
