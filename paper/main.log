@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  4 SEP 2018 12:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.6.23)  24 SEP 2018 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2275,8 +2275,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
  []
 
+<Figures/signature.png, id=201, 248.93pt x 63.23625pt>
+File: Figures/signature.png Graphic file (type png)
+<use Figures/signature.png>
+Package pdftex.def Info: Figures/signature.png  used on input line 282.
+(pdftex.def)             Requested size: 177.09097pt x 44.9868pt.
 1: section
-[3] [4
+[3 <./Figures/signature.png>] [4
 
 ]
 --------------------
@@ -2299,6 +2304,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 300--301
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 302--303
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
 
  []
 
@@ -2429,7 +2439,7 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 66.
  [18] [19]
-<Figures/level1.png, id=590, 752.8125pt x 1053.9375pt>
+<Figures/level1.png, id=592, 752.8125pt x 1053.9375pt>
 File: Figures/level1.png Graphic file (type png)
 <use Figures/level1.png>
 Package pdftex.def Info: Figures/level1.png  used on input line 142.
@@ -2438,20 +2448,20 @@ Package pdftex.def Info: Figures/level1.png  used on input line 142.
 LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <9> not available
 (Font)              Font shape `T1/ppl/b/it' tried instead on input line 164.
  [21]
-<Figures/CB2level2.png, id=606, 578.91281pt x 373.395pt>
+<Figures/CB2level2.png, id=608, 578.91281pt x 373.395pt>
 File: Figures/CB2level2.png Graphic file (type png)
 <use Figures/CB2level2.png>
 Package pdftex.def Info: Figures/CB2level2.png  used on input line 220.
 (pdftex.def)             Requested size: 312.97926pt x 201.86958pt.
  [22 <./Figures/CB2level2.png>]
-<Figures/level2.png, id=616, 578.91281pt x 414.04688pt>
+<Figures/level2.png, id=618, 578.91281pt x 414.04688pt>
 File: Figures/level2.png Graphic file (type png)
 <use Figures/level2.png>
 Package pdftex.def Info: Figures/level2.png  used on input line 233.
 (pdftex.def)             Requested size: 312.97926pt x 223.84732pt.
 
 [23 <./Figures/level2.png>]
-<Figures/CBenergysources.png, id=624, 752.8125pt x 1053.9375pt>
+<Figures/CBenergysources.png, id=626, 752.8125pt x 1053.9375pt>
 File: Figures/CBenergysources.png Graphic file (type png)
 <use Figures/CBenergysources.png>
 Package pdftex.def Info: Figures/CBenergysources.png  used on input line 244.
@@ -2709,12 +2719,12 @@ Overfull \hbox (68.70898pt too wide) in paragraph at lines 641--641
 
  (./Appendices/AppendixC.tex
 Appendix C.
-<Figures/CW2level1.png, id=846, 752.8125pt x 752.8125pt>
+<Figures/CW2level1.png, id=848, 752.8125pt x 752.8125pt>
 File: Figures/CW2level1.png Graphic file (type png)
 <use Figures/CW2level1.png>
 Package pdftex.def Info: Figures/CW2level1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.35902pt x 431.35902pt.
-<Figures/CW2CB2.png, id=847, 578.91281pt x 373.395pt>
+<Figures/CW2CB2.png, id=849, 578.91281pt x 373.395pt>
 File: Figures/CW2CB2.png Graphic file (type png)
 <use Figures/CW2CB2.png>
 Package pdftex.def Info: Figures/CW2CB2.png  used on input line 23.
@@ -2725,23 +2735,23 @@ Package pdftex.def Info: Figures/CW2CB2.png  used on input line 23.
 
 
  <./Figures/CW2level1.png>]
-<Figures/CW2CB3.png, id=853, 578.91281pt x 414.04688pt>
+<Figures/CW2CB3.png, id=855, 578.91281pt x 414.04688pt>
 File: Figures/CW2CB3.png Graphic file (type png)
 <use Figures/CW2CB3.png>
 Package pdftex.def Info: Figures/CW2CB3.png  used on input line 35.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
-<Figures/CW2CB4.png, id=854, 578.91281pt x 414.04688pt>
+<Figures/CW2CB4.png, id=856, 578.91281pt x 414.04688pt>
 File: Figures/CW2CB4.png Graphic file (type png)
 <use Figures/CW2CB4.png>
 Package pdftex.def Info: Figures/CW2CB4.png  used on input line 45.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
  [66 <./Figures/CW2CB2.png> <./Figures/CW2CB3.png>]
-<Figures/CW3CB4.png, id=861, 578.91281pt x 414.04688pt>
+<Figures/CW3CB4.png, id=863, 578.91281pt x 414.04688pt>
 File: Figures/CW3CB4.png Graphic file (type png)
 <use Figures/CW3CB4.png>
 Package pdftex.def Info: Figures/CW3CB4.png  used on input line 56.
 (pdftex.def)             Requested size: 369.88458pt x 264.54683pt.
-<Figures/CW4level1.png, id=862, 752.8125pt x 1204.5pt>
+<Figures/CW4level1.png, id=864, 752.8125pt x 1204.5pt>
 File: Figures/CW4level1.png Graphic file (type png)
 <use Figures/CW4level1.png>
 Package pdftex.def Info: Figures/CW4level1.png  used on input line 68.
@@ -2751,12 +2761,12 @@ Overfull \vbox (69.77734pt too high) has occurred while \output is active []
 
 
 [68 <./Figures/CW4level1.png>]
-<Figures/CW4CB2.png, id=874, 578.91281pt x 373.395pt>
+<Figures/CW4CB2.png, id=876, 578.91281pt x 373.395pt>
 File: Figures/CW4CB2.png Graphic file (type png)
 <use Figures/CW4CB2.png>
 Package pdftex.def Info: Figures/CW4CB2.png  used on input line 77.
 (pdftex.def)             Requested size: 369.88458pt x 238.57315pt.
-<Figures/CW4CB3.png, id=875, 578.91281pt x 414.04688pt>
+<Figures/CW4CB3.png, id=877, 578.91281pt x 414.04688pt>
 File: Figures/CW4CB3.png Graphic file (type png)
 <use Figures/CW4CB3.png>
 Package pdftex.def Info: Figures/CW4CB3.png  used on input line 87.
@@ -2902,22 +2912,22 @@ onfounders[]
 
  (./Appendices/AppendixE.tex
 Appendix E.
-<Figures/Diary1.png, id=979, 1494.58376pt x 1020.81375pt>
+<Figures/Diary1.png, id=981, 1494.58376pt x 1020.81375pt>
 File: Figures/Diary1.png Graphic file (type png)
 <use Figures/Diary1.png>
 Package pdftex.def Info: Figures/Diary1.png  used on input line 12.
 (pdftex.def)             Requested size: 431.3429pt x 294.61096pt.
-<Figures/Diary2.png, id=980, 1494.58376pt x 1020.81375pt>
+<Figures/Diary2.png, id=982, 1494.58376pt x 1020.81375pt>
 File: Figures/Diary2.png Graphic file (type png)
 <use Figures/Diary2.png>
 Package pdftex.def Info: Figures/Diary2.png  used on input line 22.
 (pdftex.def)             Requested size: 431.3429pt x 294.61096pt.
-<Figures/Diary03.png, id=981, 1495.5875pt x 963.6pt>
+<Figures/Diary03.png, id=983, 1495.5875pt x 963.6pt>
 File: Figures/Diary03.png Graphic file (type png)
 <use Figures/Diary03.png>
 Package pdftex.def Info: Figures/Diary03.png  used on input line 32.
 (pdftex.def)             Requested size: 431.3359pt x 277.9077pt.
-<Figures/Diary3.png, id=982, 1495.5875pt x 996.72375pt>
+<Figures/Diary3.png, id=984, 1495.5875pt x 996.72375pt>
 File: Figures/Diary3.png Graphic file (type png)
 <use Figures/Diary3.png>
 Package pdftex.def Info: Figures/Diary3.png  used on input line 43.
@@ -2954,10 +2964,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39193 strings out of 492982
- 773146 string characters out of 6134896
- 1176548 words of memory out of 5000000
- 41654 multiletter control sequences out of 15000+600000
+ 39197 strings out of 492982
+ 773253 string characters out of 6134896
+ 1176601 words of memory out of 5000000
+ 41658 multiletter control sequences out of 15000+600000
  636640 words of font info for 424 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,20n,91p,10377b,2923s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2974,10 +2984,10 @@ e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist
 1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palati
 no/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.p
 fb>
-Output written on main.pdf (111 pages, 1518097 bytes).
+Output written on main.pdf (111 pages, 1520907 bytes).
 PDF statistics:
- 1097 PDF objects out of 1200 (max. 8388607)
+ 1099 PDF objects out of 1200 (max. 8388607)
  934 compressed objects within 10 object streams
  250 named destinations out of 1000 (max. 500000)
- 33214 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 33219 words of extra memory for PDF output out of 35830 (max. 10000000)
 
