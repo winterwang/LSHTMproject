@@ -1,5 +1,6 @@
 
 # same bar plot flip the axis for abstract --------------------------------
+library(ggthemr)
 ggthemr("greyscale")
 
 CB1sources$Slot <- factor(CB1sources$Slot, levels = c("10 pm – 6 am",
@@ -51,8 +52,10 @@ CB1 <- ggplot() +
     legend.position = "none") + 
   # legend.position = "bottom", 
   # legend.direction = "horizontal") +
-  labs(title = "Fig.1. Low carbohydrate eaters (28.1%)\n[high fat and drinking at night]", x = " ",
-       y = "Percentage of energy sources") +
+  labs(title = "Low carbohydrate eaters (28.1%)\n[high fat and drinking at night]", x = " ",
+       y = "Percentage of energy sources") +# for producing the graph to the kakenhi file
+  #labs(title = "Fig.1. Low carbohydrate eaters (28.1%)\n[high fat and drinking at night]", x = " ",
+  #     y = "Percentage of energy sources") +
   # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   scale_y_continuous(labels=percent, limits = c(-0.03, 1.11)) + coord_flip() 
 
@@ -110,8 +113,10 @@ CB2 <- ggplot() +
     axis.text.y=element_blank()) +
   # legend.position = "bottom", 
   # legend.direction = "horizontal") +
-  labs(title = "Fig.2. Moderate carbohydrate eaters (28.8%)\n[eating late]", x = " ", 
-       y = "Percentage of energy sources") +
+  labs(title = "Moderate carbohydrate eaters (28.8%)\n[eating late]", x = " ", 
+       y = "Percentage of energy sources") +# for producing the graph to the kakenhi file
+  #labs(title = "Fig.2. Moderate carbohydrate eaters (28.8%)\n[eating late]", x = " ", 
+  #     y = "Percentage of energy sources") +
   # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   scale_y_continuous(labels=percent, limits = c(-0.03, 1.11)) + 
   coord_flip()
@@ -175,8 +180,10 @@ CB3 <- ggplot() +
     #legend.position = "none") +
   #scale_fill_manual(values = c("#db735c", "#EFA86E", "#9A8A76", "#F3C57B"),
   #                  labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
-  labs(title = "Fig.3. High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
-       y = "Percentage of energy sources") +
+  labs(title = "High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
+       y = "Percentage of energy sources") +# for producing the graph to the kakenhi file
+  #labs(title = "Fig.3. High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
+  #     y = "Percentage of energy sources") +
   #theme(axis.text.x = element_text(angle = 14, hjust = 1)) +
   scale_y_continuous(labels=percent, limits = c(-0.03, 1.11))+ 
   coord_flip()+ 
@@ -212,8 +219,10 @@ CB3noleg <- ggplot() +
         legend.position = "none") +
   #scale_fill_manual(values = c("#db735c", "#EFA86E", "#9A8A76", "#F3C57B"),
   #                  labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
-  labs(title = "Fig.3. High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
-       y = "Percentage of energy sources") +
+  labs(title = "High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
+       y = "Percentage of energy sources") + # for producing the graph to the kakenhi file
+  #labs(title = "Fig.3. High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
+  #     y = "Percentage of energy sources") +
   #theme(axis.text.x = element_text(angle = 14, hjust = 1)) +
   scale_y_continuous(labels=percent, limits = c(-0.03, 1.11))+ 
   coord_flip()+ 

@@ -268,16 +268,15 @@
 }
 
 @Article{mann2015low,
-  author        = {Mann, Kay D and Pearce, Mark S and McKevith, Brigid and Thielecke, Frank and Seal, Chris J},
-  title         = {Low whole grain intake in the UK: results from the National Diet and Nutrition Survey rolling programme 2008--11},
-  journal       = {British Journal of Nutrition},
-  year          = {2015},
-  volume        = {113},
-  number        = {10},
-  pages         = {1643--1651},
-  __markedentry = {[wangcc-me:5]},
-  file          = {:/home/wangcc-me/Documents/LSHTMproject/references/low_whole_grain_intake_in_the_uk_results_from_the_national_diet_and_nutrition_survey_rolling_programme_200811.pdf:PDF},
-  publisher     = {Cambridge University Press},
+  author    = {Mann, Kay D and Pearce, Mark S and McKevith, Brigid and Thielecke, Frank and Seal, Chris J},
+  title     = {Low whole grain intake in the UK: results from the National Diet and Nutrition Survey rolling programme 2008--11},
+  journal   = {British Journal of Nutrition},
+  year      = {2015},
+  volume    = {113},
+  number    = {10},
+  pages     = {1643--1651},
+  file      = {:/home/wangcc-me/Documents/LSHTMproject/references/low_whole_grain_intake_in_the_uk_results_from_the_national_diet_and_nutrition_survey_rolling_programme_200811.pdf:PDF},
+  publisher = {Cambridge University Press},
 }
 
 @Misc{NDNSofficial,
@@ -793,6 +792,41 @@
   owner     = {wangcc-me},
   publisher = {Multidisciplinary Digital Publishing Institute},
   timestamp = {2018-08-31},
+}
+
+@Article{Namazi2017,
+  author        = {Namazi, Nazli and Larijani, Bagher and Azadbakht, Leila},
+  title         = {Low-carbohydrate-diet score and its association with the risk of diabetes: a systematic review and meta-analysis of cohort studies},
+  journal       = {Hormone and Metabolic Research},
+  year          = {2017},
+  volume        = {49},
+  number        = {08},
+  pages         = {565--571},
+  __markedentry = {[takeshi:]},
+  file          = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/s-0043-112347.pdf:PDF},
+  publisher     = {{\copyright} Georg Thieme Verlag KG},
+}
+
+@Article{Bao2015,
+  author        = {Bao, Wei and Li, Shanshan and Chavarro, Jorge E and Tobias, Deirdre K and Zhu, Yeyi and Hu, Frank B and Zhang, Cuilin},
+  title         = {Low-carbohydrate-diet scores and long-term risk of type 2 diabetes among women with a history of gestational diabetes: a prospective cohort study},
+  journal       = {Diabetes Care},
+  year          = {2015},
+  pages         = {dc151642},
+  __markedentry = {[takeshi:6]},
+  file          = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/43.full.pdf:PDF},
+  publisher     = {Am Diabetes Assoc},
+}
+
+@Article{fong2017large,
+  author    = {Fong, Mackenzie and Caterson, Ian D and Madigan, Claire D},
+  title     = {Are large dinners associated with excess weight, and does eating a smaller dinner achieve greater weight loss? A systematic review and meta-analysis},
+  journal   = {British Journal of Nutrition},
+  year      = {2017},
+  volume    = {118},
+  number    = {8},
+  pages     = {616--628},
+  publisher = {Cambridge University Press},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
