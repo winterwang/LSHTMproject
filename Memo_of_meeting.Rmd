@@ -94,3 +94,32 @@ Ghodsian calculated the carb:fibre ratio by diving carbohyrdrates in grams by fi
         - Wtb_CY1234 if using blood data to calculate presence or absence of diabetes status
         - wti_Y56
         - wtb_Y56
+        
+----------
+
+
+**Date and time:** 2018-10-25 9:00 - 11:00 (London Time) / 17:00 - 19:00 Tokyo Time
+
+**Attendees:** Professor Luigi Palla, Chaochen Wang
+
+**Notekeeper:** Chaochen Wang
+
+**Main Topic:** Mainly about the content to include/exclude in the paper
+
+
+1. We talked about the grants and conferences: 
+    1. Conference: [Winter Conference 2018 for nutrition](https://www.nutritionsociety.org/events/winter-conference-2018-optimal-diet-and-lifestyle-strategies-management-cardio-metabolic-risk) - No response yet. 
+    2. Conference: [CHRONONUTRITION: FROM EPIDEMIOLOGY TO MOLECULAR MECHANISM SYMPOSIUM - LONDON](https://www.bna.org.uk/mediacentre/events/chrononutrition-from-epidemiology-to-molecular-mechanism-symposium-london/) - No response yet. 
+    3. Probably both will need to prepare posters.
+    4. Grants: Chao applied the JSPS-kakenhi (Japanese Government Grant), the result will be known after the New Year (probably around the end of March);
+    4. Grants: Suzana applied the Daiwa grant, the result will probably be released before December. 
+
+2. We talked where to submit the paper first - to the American Journal of Clinical Nutrition
+    1. Chao will need to confirm about the requirements for authors. 
+    2. tables decisions: 
+        1. Table 3.1 (model fitting criteria) - go to supplementary
+        2. Table 3.2 (day level model solution) - removed and use figure 3.1 instead.
+        3. Table 3.3 (characteristics of day level classes) - go to supplementary
+        4. Table 3.4 (individual level Carb eating composition by time slots) - stay in the main text
+        5. Table 3.5-3.6 (social-demographic/biomedical measurement characteristics of individual level classes) - combined and stay in the main text
+        6. Table 
