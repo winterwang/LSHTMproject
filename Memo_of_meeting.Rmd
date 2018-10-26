@@ -108,7 +108,7 @@ Ghodsian calculated the carb:fibre ratio by diving carbohyrdrates in grams by fi
 
 
 1. We talked about the grants and conferences: 
-    1. Conference: [Winter Conference 2018 for nutrition](https://www.nutritionsociety.org/events/winter-conference-2018-optimal-diet-and-lifestyle-strategies-management-cardio-metabolic-risk) - No response yet. 
+    1. Conference: [Winter Conference 2018 for nutrition](https://www.nutritionsociety.org/events/winter-conference-2018-optimal-diet-and-lifestyle-strategies-management-cardio-metabolic-risk) - No response yet **(But Chao may not be able to physically attend the meeting in London)**. 
     2. Conference: [CHRONONUTRITION: FROM EPIDEMIOLOGY TO MOLECULAR MECHANISM SYMPOSIUM - LONDON](https://www.bna.org.uk/mediacentre/events/chrononutrition-from-epidemiology-to-molecular-mechanism-symposium-london/) - No response yet. 
     3. Probably both will need to prepare posters.
     4. Grants: Chao applied the JSPS-kakenhi (Japanese Government Grant), the result will be known after the New Year (probably around the end of March);
@@ -116,10 +116,20 @@ Ghodsian calculated the carb:fibre ratio by diving carbohyrdrates in grams by fi
 
 2. We talked where to submit the paper first - to the American Journal of Clinical Nutrition
     1. Chao will need to confirm about the requirements for authors. 
-    2. tables decisions: 
+    2. Tables decisions: 
         1. Table 3.1 (model fitting criteria) - go to supplementary
         2. Table 3.2 (day level model solution) - removed and use figure 3.1 instead.
         3. Table 3.3 (characteristics of day level classes) - go to supplementary
         4. Table 3.4 (individual level Carb eating composition by time slots) - stay in the main text
         5. Table 3.5-3.6 (social-demographic/biomedical measurement characteristics of individual level classes) - combined and stay in the main text
-        6. Table 
+        6. Table 3.7-3.8 (individual level latent classes' associations with hypertension) - deleted
+        7. Table 3.9-3.11 (individual level latent classes' associations with BMI/WC) - if we decide to include the associations with outcome, probably obesity is prefered to be included. Whether to stop at table 3.6 will need to be discussed again.
+    3. Figures decisions:
+        1. Figure 3.1 (day level model solution): keep in the main text
+        2. Figure 3.2-3.3 (individual level solution): we keep them in the supplementary files, but description of the chosen model (figure 3.3) is needed in the main text in words. 
+        3. Figure 3.4 (composition of consumption in individual solutions): stay in the main text. However, the one submitted in the abstract to the nutrition winter conference is prefered (i.e. the horizontal, black and white one). 
+
+3. The last thing Chao and Luigi discussed was about run models (MLCA) stratified by gender. Especially if we decide to have the results with the health outcomes (BMI, WC) in the paper, we might consider to have individual solutions in men and women. However, we anticipate there is potentially little difference from what we already have in the individual level solution since in Table 3.5 we have seen that the gender distribution in each class is almost the same (50% to 50%). But in case the reviewers might ask about different classes solutions in men and in women, we might need to have a look at the results done stratified by this variable. Chao will do the analyses and keep all of us updated about the details of this additional analyses in the coming weeks. 
+
+4. In the meantime, we plan to start preparing the manuscript and a draft that will be suitable to be submitted to AJCN by the end of December (Let's aim at submitting before attending the winter conference, I (Chao) am afraid that during the New Year's vacation, serious delay of the decision by the Journal may happen.) 
+
