@@ -4,8 +4,8 @@
 
 # Change the data path accordingly ----------------------------------------
 
-setwd("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/") # on Ubuntu
-
+# setwd("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/") # on Ubuntu
+setwd("/home/takeshi/ドキュメント/NDNS/UKDA-6533-stata/stata/stata11_se/") # on Ubuntu 16.04 in Japan
 # setwd("C:/Users/lsh1701745/Downloads/6533STATA11_SE/UKDA-6533-stata11_se/stata11_se/")
 
 
@@ -19,18 +19,22 @@ library(tidyverse)
 library(haven)
 
 
-data <- read_dta("ndns_rp_yr1-4a_foodleveldietarydata_uk.dta")
+data <- read_dta("ndns_rp_yr1-4a_foodleveldietarydata_uk_v2.dta")
+data14v1 <- read_dta("/home/takeshi/ドキュメント/NDNS/6533STATA11/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_foodleveldietarydata_uk.dta")
 
-data56 <- read_dta("ndns_rp_yr5-6a_foodleveldietarydata.dta")
+data56 <- read_dta("ndns_rp_yr5-6a_foodleveldietarydata_v2.dta")
 
 data78 <- read_dta("ndns_rp_yr7-8a_foodleveldietarydata.dta")
 
 names(data)
+names(data14v1)
+
 
 names(data56)
 
 names(data78)
 
+names(data14v1)[names(data14v1)=="seriali"] <- "id"
 names(data)[names(data)=="seriali"] <- "id"
 names(data56)[names(data56)=="seriali"] <- "id"
 names(data78)[names(data78)=="seriali"] <- "id"
@@ -40,7 +44,7 @@ names(data78)[names(data78)=="seriali"] <- "id"
 # Extract the data we needed ----------------------------------------------
 
 
-df14d <- data[,c(113,1,2,3,5,6,7,8,9,21, 22, 23, 24,53, 55,57,58,59,60,61,62,63,64,65)]
+df14d <- data14v1[,c(113, 1,2,3,4,5,6,7,8,9,21, 22, 23, 24,53, 55,57,58,59,60,61,62,63,64,65)]
 
 var <- names(df14d)
 
@@ -147,8 +151,8 @@ print(new)
 # Time difference of 3.765663 mins  "2018-07-04 14:47:13 BST"
 # Time difference of 4.578718 mins   "2018-07-05 16:33:08 BST" on huan's PC
 # Time difference of 4.599819 mins "2018-07-06 09:50:22 BST"
-# Time difference of 6.429822 mins"2018-08-12 17:45:17 BST"
-
+# Time difference of 6.429822 mins "2018-08-12 17:45:17 BST"
+# Time difference of 3.836478 mins 2018-10-29 11:57:27 JST"
 # rm(df14d, df56d, df78d, dfs2)
 
 head(Energy)
@@ -180,6 +184,10 @@ Energy$TimeSlot[is.na(Energy$TimeSlot)] <- "[22, 6)"
 tab1(Energy$TimeSlot)
 
 
+# For each subject, the total energy/carbohydrate intake for each 
+# time slot can be calculated--------
+
+
 old<-Sys.time()
 Energy <- ddply(Energy, .(id_dy, id, SurveyYear, DayNo, Age, Sex, DiaryDaysCompleted, TimeSlot, DayofWeek),  
                 summarise, Tot_Energ = sum(Tot_Energ), Tot_Carb = sum(Tot_Carb), Tot_Sugar = sum(Tot_Sugar),
@@ -191,7 +199,7 @@ new<-Sys.time()-old
 print(new)
 #Time difference of 2.844092 mins
 # Time difference of 3.74195 mins "2018-08-12 17:51:29 BST"
-# 
+# Time difference of 2.285932 mins  "2018-10-29 12:06:32 JST"
 
 
 # Calculate the energy from total carbohydrates ---------------------------
