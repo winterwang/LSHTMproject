@@ -1,0 +1,39 @@
+Day 1 
+x=new dataset y=dataset generated in London
+
+  `as.character(H6_9.x)`     n rel.freq
+  <chr>                  <int> <chr>   
+1 0                       1826 29.68%  
+2 1                       1138 18.5%   
+3 2                       3189 51.83%
+
+  H6_9.y     n rel.freq
+   <int> <int> <chr>   
+1      0  1826 29.68%  
+2      1  1138 18.5%   
+3      2  3189 51.83%  
+
+  `as.character(H9_12.x)`     n rel.freq
+  <chr>                   <int> <chr>   
+1 0                        1349 21.92%  
+2 1                        1807 29.37%  
+3 2                        2997 48.71%  
+
+# A tibble: 3 x 3
+  H9_12.y     n rel.freq
+    <int> <int> <chr>   
+1       0  1349 21.92%  
+2       1  1807 29.37%  
+3       2  2997 48.71%  
+
+  `as.character(H12_14.x)`     n rel.freq
+  <chr>                    <int> <chr>   
+1 0                         1190 19.34%  
+2 1                         2822 45.86%  
+3 2                         2141 34.8% 
+
+  H12_14.y     n rel.freq
+     <int> <int> <chr>   
+1        0  1129 18.35%  
+2        1  2851 46.34%  
+3        2  2173 35.32% 

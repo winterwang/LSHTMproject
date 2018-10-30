@@ -795,16 +795,15 @@
 }
 
 @Article{Namazi2017,
-  author        = {Namazi, Nazli and Larijani, Bagher and Azadbakht, Leila},
-  title         = {Low-carbohydrate-diet score and its association with the risk of diabetes: a systematic review and meta-analysis of cohort studies},
-  journal       = {Hormone and Metabolic Research},
-  year          = {2017},
-  volume        = {49},
-  number        = {08},
-  pages         = {565--571},
-  __markedentry = {[takeshi:]},
-  file          = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/s-0043-112347.pdf:PDF},
-  publisher     = {{\copyright} Georg Thieme Verlag KG},
+  author    = {Namazi, Nazli and Larijani, Bagher and Azadbakht, Leila},
+  title     = {Low-carbohydrate-diet score and its association with the risk of diabetes: a systematic review and meta-analysis of cohort studies},
+  journal   = {Hormone and Metabolic Research},
+  year      = {2017},
+  volume    = {49},
+  number    = {08},
+  pages     = {565--571},
+  file      = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/s-0043-112347.pdf:PDF},
+  publisher = {{\copyright} Georg Thieme Verlag KG},
 }
 
 @Article{Bao2015,
@@ -813,7 +812,7 @@
   journal       = {Diabetes Care},
   year          = {2015},
   pages         = {dc151642},
-  __markedentry = {[takeshi:6]},
+  __markedentry = {[takeshi:]},
   file          = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/43.full.pdf:PDF},
   publisher     = {Am Diabetes Assoc},
 }
@@ -867,6 +866,18 @@
   year      = {1992},
   pages     = {763--773},
   publisher = {Oxford University Press},
+}
+
+@Article{Wehrens2017,
+  author        = {Wehrens, Sophie MT and Christou, Skevoulla and Isherwood, Cheryl and Middleton, Benita and Gibbs, Michelle A and Archer, Simon N and Skene, Debra J and Johnston, Jonathan D},
+  title         = {Meal timing regulates the human circadian system},
+  journal       = {Current Biology},
+  year          = {2017},
+  volume        = {27},
+  number        = {12},
+  pages         = {1768--1775},
+  __markedentry = {[takeshi:6]},
+  publisher     = {Elsevier},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
