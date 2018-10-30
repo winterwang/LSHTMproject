@@ -452,27 +452,16 @@ setwd("~/ドキュメント/githubprojects/LSHTMproject/Rcode")
 
 
 # export the data from R to Mplus -----------------------------------------
-write_csv(dta_all, path = "dta_NDNS_Tslots.csv")
 
 library(MplusAutomation)
 
-for (i in 6:ncol(dta_all)) 
-  if(is.factor(dta_all[,i])) 
-    levels(dta_all[,i]) <-  c( "0", "1", "2")
-
-for (i in 6:ncol(dta_all))
-  dta_all[,i] <- as.character(dta_all[,i])
-
-
-
-write_csv(dta_all, path = "dta_NDNS_Tslots.csv")
-write_delim(dta_all, path = "dta_NDNS_Tslots.dat", na = ".", delim = " ")
 
 
 CHECK <- CHECK %>% 
   mutate(id_day_n = paste(id.x, DayNo, sep = "0")) %>% 
   mutate(id_day_n = as.numeric(id_day_n)) %>% 
   mutate(Sex.x = as.numeric(Sex.x))
+
 
 
 prepareMplusData(CHECK, "Mplusdata/NDNS_Tslots.dat", 
@@ -485,11 +474,17 @@ prepareMplusData(CHECK, "Mplusdata/NDNS_Tslots.dat",
 # Filter data by gender  --------------------------------------------------
 
 
-dta_men <- dta_all %>% 
-    filter(Sex == 1)
+dta_men <- CHECK %>% 
+    filter(Sex.x == 1) %>% 
+    select(c("id.x", "DayNo", "Age.x", "H6_9.y",
+             "H9_12.y", "H12_14.y", "H14_17.y", "H17_20.y",   
+             "H20_22.y", "H22_6.y", "id_day_n"))
 
-dta_women <- dta_all %>% 
-  filter(Sex == 2)
+dta_women <- CHECK %>% 
+  filter(Sex.x == 2) %>% 
+  select(c("id.x", "DayNo", "Age.x", "H6_9.y",
+           "H9_12.y", "H12_14.y", "H14_17.y", "H17_20.y",   
+           "H20_22.y", "H22_6.y", "id_day_n"))
 
 prepareMplusData(dta_men, "Mplusdata/NDNS_Tslots_men.dat")
 prepareMplusData(dta_women, "Mplusdata/NDNS_Tslots_women.dat")
