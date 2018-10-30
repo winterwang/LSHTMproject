@@ -1,0 +1,48 @@
+TITLE:    3-class at level 1 (CW), 2-class at level 2 (CB) in Men - non-parametric approach
+          ordered polytomous variables for carb intake at each time slot over four
+          days of NDNS survey 2008/09 - 2015/16
+          variable 0 = not eating 
+                   1 = eating & carb provided < 50% calorie
+                   2 = eating & carb provided >= 50% calorie
+          code created date: 2018-10-30
+          code updated date: 2018-10-30
+          author: Chaochen Wang
+
+DATA:     
+File is "../../Mplusdata/NDNS_Tslots_men.dat"; 
+
+
+VARIABLE:  NAMES = id DayNo Age H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 
+                  H22_6 id_day; 
+
+          USEVAR = H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 H22_6; 
+          
+          auxiliary = DayNo Age;
+
+          CATEGORICAL =  H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 H22_6; 
+          
+          IDVARIABLE = id_day;
+
+          MISSING are .;
+          
+          CLASSES = CB(2) CW(3);
+      BETWEEN = CB; 
+          WITHIN = H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 H22_6;
+          CLUSTER = id;
+
+
+ANALYSIS:  TYPE = TWOLEVEL MIXTURE; 
+         STARTS = 50 25; 
+        PROCESS = 15(starts);
+
+MODEL: 
+      %WITHIN%
+      %OVERALL%
+      
+      %BETWEEN%
+      %OVERALL%
+      CW ON CB;
+
+SAVEDATA: 
+    FILE IS  "../../MplusOutput/MultilevelMen/CW3CB2m.txt";
+  save is cprob;

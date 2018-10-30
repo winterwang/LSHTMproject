@@ -1,10 +1,11 @@
-TITLE:    2-class at level 1, 2-class at level 2 in Men
+TITLE:    2-class at level 1, 2-class at level 2 in Men - non-parametric approach
           ordered polytomous variables for carb intake at each time slot over four
           days of NDNS survey 2008/09 - 2015/16
           variable 0 = not eating 
                    1 = eating & carb provided < 50% calorie
                    2 = eating & carb provided >= 50% calorie
-          code updated date: 2018-10-29
+          code created date: 2018-10-30
+          code updated date: 2018-10-30
           author: Chaochen Wang
 
 DATA:     
@@ -16,25 +17,30 @@ VARIABLE:  NAMES = id DayNo Age H6_9 H9_12 H12_14 H14_17 H17_20 H20_22
 
           USEVAR = H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 H22_6; 
           
-          auxiliary = id DayNo Age;
+          auxiliary = DayNo Age;
 
           CATEGORICAL =  H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 H22_6; 
           
           IDVARIABLE = id_day;
 
-          CLASSES = C(2); 
-
           MISSING are .;
+          
+          CLASSES = CB(2) CW(2);
+      BETWEEN = CB; 
+          WITHIN = H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 H22_6;
+          CLUSTER = id;
 
 
-ANALYSIS:  TYPE = MIXTURE; 
-   lrtbootstrap = 1000;
+ANALYSIS:  TYPE = TWOLEVEL MIXTURE; 
 
+MODEL: 
+      %WITHIN%
+      %OVERALL%
+      
+      %BETWEEN%
+      %OVERALL%
+      CW ON CB;
 
-OUTPUT: TECH1 TECH8 TECH10 TECH11 TECH14;
-
-
-Savedata:
-  file is "../MplusOutput/LCA2_m.txt";
+SAVEDATA: 
+    FILE IS  "../../MplusOutput/MultilevelMen/CW2CB2m.txt";
   save is cprob;
-  format is free;
