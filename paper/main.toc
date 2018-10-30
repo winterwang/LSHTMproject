@@ -16,32 +16,32 @@
 \contentsline {subsection}{Strata and weightings}{6}{section*.19}
 \contentsline {subsection}{Socio-demographic status, lifestyle, physical activity, anthropometric measurements and biochemical analyses}{7}{section*.22}
 \contentsline {subsection}{Ethical approval}{8}{section*.23}
-\contentsline {section}{Statistical methods}{9}{section*.24}
-\contentsline {subsection}{Latent Class Analysis (LCA)}{9}{section*.25}
+\contentsline {section}{Statistical methods}{8}{section*.24}
+\contentsline {subsection}{Latent Class Analysis (LCA)}{8}{section*.25}
 \contentsline {subsection}{Multilevel Latent Class Analysis (MLCA)}{9}{section*.27}
-\contentsline {subsubsection}{Parametric approach}{10}{section*.28}
-\contentsline {subsubsection}{Non-Parametric approach}{12}{section*.32}
+\contentsline {subsubsection}{Parametric approach}{9}{section*.28}
+\contentsline {subsubsection}{Non-Parametric approach}{11}{section*.32}
 \contentsline {subsection}{Strategy of conducting MLCA}{12}{section*.34}
 \contentsline {subsection}{Characteristics of day-level latent classes and individual-level latent classes}{13}{section*.35}
 \contentsline {subsection}{Association between individual-level latent classes and the prevalence of hypertension, and measurements of obesity}{14}{section*.36}
-\contentsline {chapter}{\numberline {3}Results}{17}{chapter.45}
-\contentsline {subsection}{Model selection, and interpretation}{17}{section*.46}
-\contentsline {subsection}{Features of the three types of carbohydrate eating temporal patterns}{21}{section*.50}
-\contentsline {subsection}{Individual-level LCA solution}{22}{section*.52}
-\contentsline {subsection}{Association between individual-level latent classes and hypertension, and obesity.}{30}{section*.59}
-\contentsline {subsubsection}{Hypertension}{30}{section*.60}
-\contentsline {subsubsection}{Obesity (BMI and WC)}{32}{section*.63}
-\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{37}{chapter.67}
-\contentsline {section}{Carbohydrate eating patterns}{37}{section*.68}
-\contentsline {section}{Associations between carbohydrate eating patterns and health outcomes}{39}{section*.69}
-\contentsline {section}{Limitations and strengths}{40}{section*.70}
-\contentsline {section}{Conclusions}{43}{section*.71}
-\contentsline {chapter}{Bibliography}{44}{chapter*.72}
-\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{49}{appendix.73}
-\contentsline {chapter}{\numberline {B}Mplus syntax and output for Multilevel LCA models}{54}{appendix.74}
-\contentsline {chapter}{\numberline {C}Other Solutions for MLCA}{65}{appendix.75}
-\contentsline {section}{2 classes in day level}{65}{section*.76}
-\contentsline {section}{3 classes in day level, 4 classes in individual level}{67}{section*.81}
-\contentsline {section}{4 classes in day level}{68}{section*.83}
-\contentsline {chapter}{\numberline {D}R and STATA codes for processing individual level data analysis}{70}{appendix.87}
-\contentsline {chapter}{\numberline {E}Example of a food diary for one day}{93}{appendix.88}
+\contentsline {chapter}{\numberline {3}Results}{16}{chapter.45}
+\contentsline {subsection}{Model selection, and interpretation}{16}{section*.46}
+\contentsline {subsection}{Features of the three types of carbohydrate eating temporal patterns}{20}{section*.50}
+\contentsline {subsection}{Individual-level LCA solution}{21}{section*.52}
+\contentsline {subsection}{Association between individual-level latent classes and hypertension, and obesity.}{29}{section*.59}
+\contentsline {subsubsection}{Hypertension}{29}{section*.60}
+\contentsline {subsubsection}{Obesity (BMI and WC)}{31}{section*.63}
+\contentsline {chapter}{\numberline {4}Discussion and Conclusion}{36}{chapter.67}
+\contentsline {section}{Carbohydrate eating patterns}{36}{section*.68}
+\contentsline {section}{Associations between carbohydrate eating patterns and health outcomes}{38}{section*.69}
+\contentsline {section}{Limitations and strengths}{39}{section*.70}
+\contentsline {section}{Conclusions}{42}{section*.71}
+\contentsline {chapter}{Bibliography}{43}{chapter*.72}
+\contentsline {chapter}{\numberline {A}R code for importing and manipulating the data}{47}{appendix.73}
+\contentsline {chapter}{\numberline {B}Mplus syntax and output for Multilevel LCA models}{52}{appendix.74}
+\contentsline {chapter}{\numberline {C}Other Solutions for MLCA}{63}{appendix.75}
+\contentsline {section}{2 classes in day level}{63}{section*.76}
+\contentsline {section}{3 classes in day level, 4 classes in individual level}{65}{section*.81}
+\contentsline {section}{4 classes in day level}{66}{section*.83}
+\contentsline {chapter}{\numberline {D}R and STATA codes for processing individual level data analysis}{68}{appendix.87}
+\contentsline {chapter}{\numberline {E}Example of a food diary for one day}{91}{appendix.88}
