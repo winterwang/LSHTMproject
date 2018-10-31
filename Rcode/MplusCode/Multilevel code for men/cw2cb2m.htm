@@ -1,8 +1,70 @@
-Mplus VERSION 8.1
-MUTHEN & MUTHEN
-10/30/2018   5:36 PM
+<html>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+a:link
+{
+    color: black;
+    text-decoration: none;
+}
+a[name]:hover
+{
+    text-decoration: none;
+}
+a:hover
+{
+    color: blue;
+    text-decoration: underline;
+}
+a:visited
+{
+    color: black;
+    text-decoration: none;
+}
+.heading
+{
+    color: black;
+    font-weight: bold;
+    font-size: 110%;
+}
+.heading:hover
+{
+    color: black;
+    font-weight: bold;
+    font-size: 110%;
+    text-decoration: none;
+}
+</style>
 
-INPUT INSTRUCTIONS
+<body style="font-family:'Courier New'; font-size:14px;">
+<p class="heading">
+Mplus VERSION 8.1<br />
+MUTHEN & MUTHEN<br />
+10/30/2018   5:29 PM<br />
+</p>
+
+<p class='heading'>OUTPUT SECTIONS</p>
+
+<ul>
+     <li><a href='#input'>Input Instructions</a></li>
+     <li><a href='#inputmessages'>Input Warnings and Errors</li>
+     <li></a></li>
+     <li><a href='#summary_analysis'>Summary Of Analysis</a></li>
+     <li><a href='#summary_data'>Summary Of Data</a></li>
+     <li><a href='#covariance_coverage'>Covariance Coverage Of Data</a></li>
+     <li><a href='#catprops'>Univariate Proportions And Counts For Categorical Variables</a></li>
+     <li><a href='#modelmessages'>Model Warnings and Errors</li>
+     <li></a></li>
+     <li><a href='#model_fit'>Model Fit Information</a></li>
+     <li><a href='#model_results'>Model Results</a></li>
+</ul>
+</p>
+<pre>
+
+<a name='input' class='heading'>INPUT INSTRUCTIONS</a>
 
   TITLE:    2-class at level 1, 2-class at level 2 in Men - non-parametric approach
             ordered polytomous variables for carb intake at each time slot over four
@@ -52,7 +114,13 @@ INPUT INSTRUCTIONS
     save is cprob;
 
 
+<a name='inputmessages' class='heading'></a>
 
+*** WARNING in SAVEDATA command
+   (Err#: 29)
+  Error opening data save file:
+  ../../MplusOutput/MultilevelMen/CW2CB2m.txt
+  Data will not be saved.
 *** WARNING
   One or more individual-level variables have no variation within a
   cluster for the following clusters.
@@ -634,7 +702,7 @@ INPUT INSTRUCTIONS
                   81205131 81206131 81206221 81208251 81211011 81212251 90202181 90204151 90205211
                   90301111 90302151 90302251 90303071 90304151 90304261 90305261
 
-   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
 
 
 
@@ -648,7 +716,7 @@ code created date: 2018-10-30
 code updated date: 2018-10-30
 author: Chaochen Wang
 
-SUMMARY OF ANALYSIS
+<a name='summary_analysis' class='heading'>SUMMARY OF ANALYSIS</a>
 
 Number of groups                                                 1
 Number of observations                                       10098
@@ -730,7 +798,7 @@ Input data file(s)
 Input data format  FREE
 
 
-SUMMARY OF DATA
+<a name='summary_data' class='heading'>SUMMARY OF DATA</a>
 
      Number of missing data patterns             1
      Number of y missing data patterns           0
@@ -739,12 +807,12 @@ SUMMARY OF DATA
 
 
 
-COVARIANCE COVERAGE OF DATA
+<a name='covariance_coverage' class='heading'>COVARIANCE COVERAGE OF DATA</a>
 
 Minimum covariance coverage value   0.100
 
 
-UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+<a name='catprops' class='heading'>UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES</a>
 
     H6_9
       Category 1    0.318         3210.000
@@ -776,6 +844,7 @@ UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
       Category 3    0.177         1791.000
 
 
+<a name='modelmessages' class='heading'></a>
 RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
@@ -795,7 +864,7 @@ THE MODEL ESTIMATION TERMINATED NORMALLY
 
 
 
-MODEL FIT INFORMATION
+<a name='model_fit' class='heading'>MODEL FIT INFORMATION</a>
 
 Number of Free Parameters                       59
 
@@ -905,7 +974,7 @@ by Latent Class Pattern (Column)
     4   0.012    0.089    0.186    0.712
 
 
-MODEL RESULTS
+<a name='model_results' class='heading'>MODEL RESULTS</a>
 
                                                     Two-Tailed
                     Estimate       S.E.  Est./S.E.    P-Value
@@ -1008,48 +1077,15 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
-SAVEDATA INFORMATION
-
-
-  Save file
-    ../../MplusOutput/MultilevelMen/CW2CB2m.txt
-
-  Order and format of variables
-
-    H6_9           F10.3
-    H9_12          F10.3
-    H12_14         F10.3
-    H14_17         F10.3
-    H17_20         F10.3
-    H20_22         F10.3
-    H22_6          F10.3
-    DAYNO          F10.3
-    AGE            F10.3
-    CPROB1         F10.3
-    CPROB2         F10.3
-    CPROB3         F10.3
-    CPROB4         F10.3
-    CB             F10.3
-    CW             F10.3
-    MLCJOINT       F10.3
-    ID_DAY         F12.0
-    ID             I9
-
-  Save file format
-    16F10.3 F12.0 I9
-
-  Save file record length    10000
-
-
 DIAGRAM INFORMATION
 
   Mplus diagrams are currently not available for Mixture analysis.
   No diagram output was produced.
 
 
-     Beginning Time:  17:36:47
-        Ending Time:  17:38:24
-       Elapsed Time:  00:01:37
+     Beginning Time:  17:29:48
+        Ending Time:  17:31:35
+       Elapsed Time:  00:01:47
 
 
 
@@ -1063,3 +1099,7 @@ Web: www.StatModel.com
 Support: Support@StatModel.com
 
 Copyright (c) 1998-2018 Muthen & Muthen
+</pre>
+</div>
+</body>
+</html>
