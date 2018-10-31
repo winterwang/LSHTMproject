@@ -846,3 +846,482 @@ code created date: 2018-10-30
 code updated date: 2018-10-30
 author: Chaochen Wang
 
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       14385
+
+Number of dependent variables                                    7
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           2
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   H6_9        H9_12       H12_14      H14_17      H17_20      H20_22
+   H22_6
+
+Observed auxiliary variables
+   DAYNO       AGE
+
+Categorical latent variables
+   CB          CW
+
+Variables with special functions
+
+  Cluster variable      ID
+  ID variable           ID_DAY
+
+  Within variables
+   H6_9        H9_12       H12_14      H14_17      H17_20      H20_22
+   H22_6
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            0
+  Adaptive quadrature                                           ON
+Random Starts Specifications
+  Number of initial stage random starts                         50
+  Number of final stage optimizations                           25
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Parameterization                                             LOGIT
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  ../../Mplusdata/NDNS_Tslots_women.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+     Number of clusters                       3618
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    H6_9
+      Category 1    0.309         4445.000
+      Category 2    0.188         2711.000
+      Category 3    0.503         7229.000
+    H9_12
+      Category 1    0.210         3016.000
+      Category 2    0.293         4209.000
+      Category 3    0.498         7160.000
+    H12_14
+      Category 1    0.187         2690.000
+      Category 2    0.451         6486.000
+      Category 3    0.362         5209.000
+    H14_17
+      Category 1    0.265         3818.000
+      Category 2    0.345         4966.000
+      Category 3    0.389         5601.000
+    H17_20
+      Category 1    0.117         1690.000
+      Category 2    0.575         8265.000
+      Category 3    0.308         4430.000
+    H20_22
+      Category 1    0.357         5135.000
+      Category 2    0.350         5039.000
+      Category 3    0.293         4211.000
+    H22_6
+      Category 1    0.695         9995.000
+      Category 2    0.149         2137.000
+      Category 3    0.157         2253.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -98307.721  608496           4
+          -98307.735  153942           31
+          -98307.742  650371           14
+          -98307.743  120506           45
+          -98307.745  253358           2
+          -98307.756  260601           36
+          -98307.765  939021           8
+          -98308.512  399671           13
+          -98308.555  341041           34
+          -98308.559  93468            3
+          -98331.354  626891           32
+          -98331.354  207896           25
+          -98331.379  887676           22
+          -98331.393  573096           20
+          -98331.397  851945           18
+          -98331.403  366706           29
+          -98466.404  364676           27
+          -98488.125  462953           7
+
+7 perturbed starting value run(s) did not converge.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       89
+
+Loglikelihood
+
+          H0 Value                      -98307.721
+          H0 Scaling Correction Factor      1.8588
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  196793.442
+          Bayesian (BIC)                197467.523
+          Sample-Size Adjusted BIC      197184.689
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   CB  CW
+
+  Latent Class Variable Patterns
+
+         CB        CW
+      Class     Class
+
+         1         1
+         1         2
+         1         3
+         2         1
+         2         2
+         2         3
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1       1870.73036          0.13005
+    1  2       2292.77590          0.15939
+    1  3       3764.03489          0.26166
+    2  1       1956.02592          0.13598
+    2  2       2526.52126          0.17564
+    2  3       1974.91167          0.13729
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    CB             1      7927.54102          0.55110
+                   2      6457.45898          0.44890
+    CW             1      3826.75635          0.26602
+                   2      4819.29736          0.33502
+                   3      5738.94678          0.39895
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1             1916          0.13319
+    1  2             2160          0.15016
+    1  3             3906          0.27153
+    2  1             2096          0.14571
+    2  2             2333          0.16218
+    2  3             1974          0.13723
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    CB             1            7982          0.55488
+                   2            6403          0.44512
+    CW             1            4012          0.27890
+                   2            4493          0.31234
+                   3            5880          0.40876
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.592
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Pattern (Row)
+by Latent Class Pattern (Column)
+
+  Latent Class Variable Patterns
+
+  Latent Class         CB        CW
+   Pattern No.      Class     Class
+
+         1             1         1
+         2             1         2
+         3             1         3
+         4             2         1
+         5             2         2
+         6             2         3
+
+           1        2        3        4        5        6
+
+    1   0.643    0.176    0.118    0.048    0.003    0.012
+    2   0.077    0.698    0.166    0.042    0.016    0.002
+    3   0.102    0.088    0.740    0.015    0.031    0.023
+    4   0.026    0.033    0.023    0.687    0.148    0.084
+    5   0.000    0.012    0.039    0.081    0.724    0.144
+    6   0.010    0.003    0.075    0.044    0.187    0.681
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Within Level
+
+Latent Class Pattern 1 1
+
+ Thresholds
+    H6_9$1            -3.572      1.115     -3.205      0.001
+    H6_9$2            -2.340      0.631     -3.710      0.000
+    H9_12$1           -0.221      0.238     -0.931      0.352
+    H9_12$2            0.398      0.410      0.969      0.333
+    H12_14$1          -4.286      1.697     -2.525      0.012
+    H12_14$2           0.289      0.127      2.277      0.023
+    H14_17$1           0.347      0.207      1.676      0.094
+    H14_17$2           0.347      0.207      1.676      0.094
+    H17_20$1          -3.171      0.629     -5.043      0.000
+    H17_20$2           0.769      0.102      7.532      0.000
+    H20_22$1          -0.289      0.114     -2.531      0.011
+    H20_22$2           0.598      0.161      3.716      0.000
+    H22_6$1            1.407      0.139     10.119      0.000
+    H22_6$2            1.887      0.154     12.285      0.000
+
+Latent Class Pattern 1 2
+
+ Thresholds
+    H6_9$1            -5.387      4.935     -1.092      0.275
+    H6_9$2            -2.525      0.474     -5.326      0.000
+    H9_12$1           -0.510      0.849     -0.601      0.548
+    H9_12$2            1.744      2.312      0.754      0.451
+    H12_14$1          -1.505      0.159     -9.479      0.000
+    H12_14$2           0.647      0.074      8.781      0.000
+    H14_17$1          -2.104      1.008     -2.087      0.037
+    H14_17$2           0.545      0.151      3.613      0.000
+    H17_20$1          -1.725      0.119    -14.537      0.000
+    H17_20$2           0.725      0.076      9.584      0.000
+    H20_22$1          -0.688      0.173     -3.971      0.000
+    H20_22$2           0.846      0.103      8.197      0.000
+    H22_6$1            1.050      0.118      8.898      0.000
+    H22_6$2            1.897      0.126     15.001      0.000
+
+Latent Class Pattern 1 3
+
+ Thresholds
+    H6_9$1            -1.062      0.417     -2.545      0.011
+    H6_9$2            -0.438      0.341     -1.286      0.199
+    H9_12$1           -4.086      1.211     -3.373      0.001
+    H9_12$2           -1.540      0.330     -4.663      0.000
+    H12_14$1          -1.588      0.171     -9.273      0.000
+    H12_14$2           0.292      0.173      1.685      0.092
+    H14_17$1          -1.915      0.331     -5.785      0.000
+    H14_17$2          -0.118      0.193     -0.610      0.542
+    H17_20$1          -2.427      0.338     -7.180      0.000
+    H17_20$2           0.586      0.123      4.754      0.000
+    H20_22$1          -0.973      0.066    -14.738      0.000
+    H20_22$2           0.413      0.202      2.045      0.041
+    H22_6$1            0.841      0.098      8.619      0.000
+    H22_6$2            1.331      0.205      6.494      0.000
+
+Latent Class Pattern 2 1
+
+ Thresholds
+    H6_9$1            -3.763      9.601     -0.392      0.695
+    H6_9$2             0.416      0.685      0.608      0.543
+    H9_12$1           -0.517      0.354     -1.459      0.145
+    H9_12$2            1.198      0.262      4.569      0.000
+    H12_14$1          -1.923      0.296     -6.493      0.000
+    H12_14$2           0.839      0.188      4.464      0.000
+    H14_17$1          -0.526      0.380     -1.381      0.167
+    H14_17$2           1.179      0.183      6.438      0.000
+    H17_20$1          -2.235      0.266     -8.413      0.000
+    H17_20$2           1.280      0.208      6.144      0.000
+    H20_22$1          -0.376      0.288     -1.307      0.191
+    H20_22$2           1.848      0.151     12.231      0.000
+    H22_6$1            0.646      0.183      3.539      0.000
+    H22_6$2            2.176      0.300      7.264      0.000
+
+Latent Class Pattern 2 2
+
+ Thresholds
+    H6_9$1             0.779      0.595      1.309      0.191
+    H6_9$2             2.393      0.442      5.419      0.000
+    H9_12$1           -2.333      0.265     -8.798      0.000
+    H9_12$2            0.005      0.251      0.020      0.984
+    H12_14$1          -0.324      0.205     -1.582      0.114
+    H12_14$2           1.171      0.130      9.012      0.000
+    H14_17$1          -2.626      1.064     -2.468      0.014
+    H14_17$2           0.599      0.151      3.966      0.000
+    H17_20$1          -1.194      0.167     -7.162      0.000
+    H17_20$2           1.079      0.159      6.789      0.000
+    H20_22$1          -0.909      0.154     -5.896      0.000
+    H20_22$2           1.183      0.144      8.237      0.000
+    H22_6$1            0.448      0.080      5.571      0.000
+    H22_6$2            1.884      0.271      6.952      0.000
+
+Latent Class Pattern 2 3
+
+ Thresholds
+    H6_9$1             1.589      1.023      1.554      0.120
+    H6_9$2             2.708      1.342      2.018      0.044
+    H9_12$1           -1.692      0.217     -7.779      0.000
+    H9_12$2           -0.553      0.307     -1.803      0.071
+    H12_14$1          -1.722      0.463     -3.723      0.000
+    H12_14$2           0.337      0.264      1.275      0.202
+    H14_17$1           0.212      0.271      0.783      0.434
+    H14_17$2           0.746      0.180      4.151      0.000
+    H17_20$1          -2.261      0.526     -4.301      0.000
+    H17_20$2           0.649      0.219      2.966      0.003
+    H20_22$1           0.050      0.207      0.241      0.809
+    H20_22$2           1.079      0.207      5.211      0.000
+    H22_6$1            0.743      0.121      6.131      0.000
+    H22_6$2            1.406      0.203      6.912      0.000
+
+Between Level
+
+Categorical Latent Variables
+
+Within Level
+
+ Intercepts
+    CW#1              -0.010      0.481     -0.020      0.984
+    CW#2               0.246      0.295      0.834      0.405
+
+Between Level
+
+ CW#1       ON
+    CB#1              -0.689      0.702     -0.982      0.326
+
+ CW#2       ON
+    CB#1              -0.742      0.694     -1.068      0.285
+
+ Means
+    CB#1               0.202      0.103      1.961      0.050
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.308E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    ../../MplusOutput/MultilevelWomen/CW3CB2f.txt
+
+  Order and format of variables
+
+    H6_9           F10.3
+    H9_12          F10.3
+    H12_14         F10.3
+    H14_17         F10.3
+    H17_20         F10.3
+    H20_22         F10.3
+    H22_6          F10.3
+    DAYNO          F10.3
+    AGE            F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    CPROB3         F10.3
+    CPROB4         F10.3
+    CPROB5         F10.3
+    CPROB6         F10.3
+    CB             F10.3
+    CW             F10.3
+    MLCJOINT       F10.3
+    ID_DAY         F12.0
+    ID             I9
+
+  Save file format
+    18F10.3 F12.0 I9
+
+  Save file record length    10000
+
+
+     Beginning Time:  17:23:51
+        Ending Time:  17:32:19
+       Elapsed Time:  00:08:28
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

@@ -1,6 +1,6 @@
 Mplus VERSION 8.1 (Linux)
 MUTHEN & MUTHEN
-10/30/2018   5:23 PM
+10/30/2018   6:06 PM
 
 INPUT INSTRUCTIONS
 
@@ -38,7 +38,7 @@ INPUT INSTRUCTIONS
 
 
   ANALYSIS:  TYPE = TWOLEVEL MIXTURE;
-           STARTS = 50 25;
+           STARTS = 100 50;
           PROCESS = 15(starts);
 
   MODEL:
@@ -846,3 +846,715 @@ code created date: 2018-10-30
 code updated date: 2018-10-30
 author: Chaochen Wang
 
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       14385
+
+Number of dependent variables                                    7
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           2
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   H6_9        H9_12       H12_14      H14_17      H17_20      H20_22
+   H22_6
+
+Observed auxiliary variables
+   DAYNO       AGE
+
+Categorical latent variables
+   CB          CW
+
+Variables with special functions
+
+  Cluster variable      ID
+  ID variable           ID_DAY
+
+  Within variables
+   H6_9        H9_12       H12_14      H14_17      H17_20      H20_22
+   H22_6
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            0
+  Adaptive quadrature                                           ON
+Random Starts Specifications
+  Number of initial stage random starts                        100
+  Number of final stage optimizations                           50
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Parameterization                                             LOGIT
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  ../../Mplusdata/NDNS_Tslots_women.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+     Number of clusters                       3618
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    H6_9
+      Category 1    0.309         4445.000
+      Category 2    0.188         2711.000
+      Category 3    0.503         7229.000
+    H9_12
+      Category 1    0.210         3016.000
+      Category 2    0.293         4209.000
+      Category 3    0.498         7160.000
+    H12_14
+      Category 1    0.187         2690.000
+      Category 2    0.451         6486.000
+      Category 3    0.362         5209.000
+    H14_17
+      Category 1    0.265         3818.000
+      Category 2    0.345         4966.000
+      Category 3    0.389         5601.000
+    H17_20
+      Category 1    0.117         1690.000
+      Category 2    0.575         8265.000
+      Category 3    0.308         4430.000
+    H20_22
+      Category 1    0.357         5135.000
+      Category 2    0.350         5039.000
+      Category 3    0.293         4211.000
+    H22_6
+      Category 1    0.695         9995.000
+      Category 2    0.149         2137.000
+      Category 3    0.157         2253.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -97940.659  131856           90
+
+49 perturbed starting value run(s) did not converge.
+
+
+
+     WARNING:  THE BEST LOGLIKELIHOOD VALUE WAS NOT REPLICATED.  THE
+     SOLUTION MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.  INCREASE THE
+     NUMBER OF RANDOM STARTS.
+
+     ONE OR MORE PARAMETERS WERE FIXED TO AVOID SINGULARITY OF THE
+     INFORMATION MATRIX. THE SINGULARITY IS MOST LIKELY BECAUSE THE
+     MODEL IS NOT IDENTIFIED, OR BECAUSE OF EMPTY CELLS IN THE JOINT
+     DISTRIBUTION OF THE CATEGORICAL VARIABLES IN THE MODEL.
+     THE FOLLOWING PARAMETERS WERE FIXED:
+     Parameter 75, %WITHIN% %CB#1.CW#6%: [ H12_14$1 ]
+     Parameter 100, %WITHIN% %CB#2.CW#2%: [ H6_9$2 ]
+     Parameter 103, %WITHIN% %CB#2.CW#2%: [ H12_14$1 ]
+     Parameter 104, %WITHIN% %CB#2.CW#2%: [ H12_14$2 ]
+     Parameter 105, %WITHIN% %CB#2.CW#2%: [ H14_17$1 ]
+     Parameter 106, %WITHIN% %CB#2.CW#2%: [ H14_17$2 ]
+     Parameter 107, %WITHIN% %CB#2.CW#2%: [ H17_20$1 ]
+     Parameter 108, %WITHIN% %CB#2.CW#2%: [ H17_20$2 ]
+     Parameter 109, %WITHIN% %CB#2.CW#2%: [ H20_22$1 ]
+     Parameter 110, %WITHIN% %CB#2.CW#2%: [ H20_22$2 ]
+     Parameter 111, %WITHIN% %CB#2.CW#2%: [ H22_6$1 ]
+     Parameter 113, %WITHIN% %CB#2.CW#3%: [ H6_9$1 ]
+     Parameter 114, %WITHIN% %CB#2.CW#3%: [ H6_9$2 ]
+     Parameter 115, %WITHIN% %CB#2.CW#3%: [ H9_12$1 ]
+     Parameter 117, %WITHIN% %CB#2.CW#3%: [ H12_14$1 ]
+     Parameter 119, %WITHIN% %CB#2.CW#3%: [ H14_17$1 ]
+     Parameter 121, %WITHIN% %CB#2.CW#3%: [ H17_20$1 ]
+     Parameter 122, %WITHIN% %CB#2.CW#3%: [ H17_20$2 ]
+     Parameter 123, %WITHIN% %CB#2.CW#3%: [ H20_22$1 ]
+     Parameter 124, %WITHIN% %CB#2.CW#3%: [ H20_22$2 ]
+     Parameter 125, %WITHIN% %CB#2.CW#3%: [ H22_6$1 ]
+     Parameter 126, %WITHIN% %CB#2.CW#3%: [ H22_6$2 ]
+     Parameter 127, %WITHIN% %CB#2.CW#4%: [ H6_9$1 ]
+     Parameter 129, %WITHIN% %CB#2.CW#4%: [ H9_12$1 ]
+     Parameter 131, %WITHIN% %CB#2.CW#4%: [ H12_14$1 ]
+     Parameter 133, %WITHIN% %CB#2.CW#4%: [ H14_17$1 ]
+     Parameter 134, %WITHIN% %CB#2.CW#4%: [ H14_17$2 ]
+     Parameter 135, %WITHIN% %CB#2.CW#4%: [ H17_20$1 ]
+     Parameter 136, %WITHIN% %CB#2.CW#4%: [ H17_20$2 ]
+     Parameter 137, %WITHIN% %CB#2.CW#4%: [ H20_22$1 ]
+     Parameter 138, %WITHIN% %CB#2.CW#4%: [ H20_22$2 ]
+     Parameter 139, %WITHIN% %CB#2.CW#4%: [ H22_6$1 ]
+     Parameter 140, %WITHIN% %CB#2.CW#4%: [ H22_6$2 ]
+     Parameter 145, %WITHIN% %CB#2.CW#5%: [ H12_14$1 ]
+     Parameter 147, %WITHIN% %CB#2.CW#5%: [ H14_17$1 ]
+     Parameter 148, %WITHIN% %CB#2.CW#5%: [ H14_17$2 ]
+     Parameter 149, %WITHIN% %CB#2.CW#5%: [ H17_20$1 ]
+     Parameter 150, %WITHIN% %CB#2.CW#5%: [ H17_20$2 ]
+     Parameter 151, %WITHIN% %CB#2.CW#5%: [ H20_22$1 ]
+     Parameter 152, %WITHIN% %CB#2.CW#5%: [ H20_22$2 ]
+     Parameter 153, %WITHIN% %CB#2.CW#5%: [ H22_6$1 ]
+     Parameter 154, %WITHIN% %CB#2.CW#5%: [ H22_6$2 ]
+     Parameter 155, %WITHIN% %CB#2.CW#6%: [ H6_9$1 ]
+     Parameter 157, %WITHIN% %CB#2.CW#6%: [ H9_12$1 ]
+     Parameter 158, %WITHIN% %CB#2.CW#6%: [ H9_12$2 ]
+     Parameter 159, %WITHIN% %CB#2.CW#6%: [ H12_14$1 ]
+     Parameter 160, %WITHIN% %CB#2.CW#6%: [ H12_14$2 ]
+     Parameter 161, %WITHIN% %CB#2.CW#6%: [ H14_17$1 ]
+     Parameter 162, %WITHIN% %CB#2.CW#6%: [ H14_17$2 ]
+     Parameter 163, %WITHIN% %CB#2.CW#6%: [ H17_20$1 ]
+     Parameter 164, %WITHIN% %CB#2.CW#6%: [ H17_20$2 ]
+     Parameter 165, %WITHIN% %CB#2.CW#6%: [ H20_22$1 ]
+     Parameter 166, %WITHIN% %CB#2.CW#6%: [ H20_22$2 ]
+     Parameter 167, %WITHIN% %CB#2.CW#6%: [ H22_6$1 ]
+     Parameter 168, %WITHIN% %CB#2.CW#6%: [ H22_6$2 ]
+     Parameter 169, %BETWEEN%: [ CB#1 ]
+     Parameter 170, [ CW#1 ]
+     Parameter 171, [ CW#2 ]
+     Parameter 172, [ CW#3 ]
+     Parameter 173, [ CW#4 ]
+     Parameter 174, [ CW#5 ]
+     Parameter 175, %BETWEEN%: CW#1 ON CB#1
+     Parameter 176, %BETWEEN%: CW#2 ON CB#1
+     Parameter 177, %BETWEEN%: CW#3 ON CB#1
+     Parameter 178, %BETWEEN%: CW#4 ON CB#1
+     Parameter 179, %BETWEEN%: CW#5 ON CB#1
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                      179
+
+Loglikelihood
+
+          H0 Value                      -97940.659
+          H0 Scaling Correction Factor  39271.8479
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  196239.318
+          Bayesian (BIC)                197595.053
+          Sample-Size Adjusted BIC      197026.207
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   CB  CW
+
+  Latent Class Variable Patterns
+
+         CB        CW
+      Class     Class
+
+         1         1
+         1         2
+         1         3
+         1         4
+         1         5
+         1         6
+         2         1
+         2         2
+         2         3
+         2         4
+         2         5
+         2         6
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1        642.39326          0.04466
+    1  2       1817.96853          0.12638
+    1  3       2247.65042          0.15625
+    1  4       1170.77598          0.08139
+    1  5        799.22071          0.05556
+    1  6       1294.03216          0.08996
+    2  1       1036.95029          0.07209
+    2  2       1807.25577          0.12563
+    2  3        790.24319          0.05494
+    2  4       1042.26867          0.07246
+    2  5       1335.81440          0.09286
+    2  6        400.42661          0.02784
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    CB             1      7972.04102          0.55419
+                   2      6412.95898          0.44581
+    CW             1      1679.34351          0.11674
+                   2      3625.22437          0.25201
+                   3      3037.89355          0.21118
+                   4      2213.04468          0.15384
+                   5      2135.03516          0.14842
+                   6      1694.45874          0.11779
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1              507          0.03525
+    1  2             1729          0.12019
+    1  3             2460          0.17101
+    1  4              793          0.05513
+    1  5              987          0.06861
+    1  6             1507          0.10476
+    2  1             1156          0.08036
+    2  2             1777          0.12353
+    2  3              926          0.06437
+    2  4              967          0.06722
+    2  5             1359          0.09447
+    2  6              217          0.01509
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    CB             1            7983          0.55495
+                   2            6402          0.44505
+    CW             1            1663          0.11561
+                   2            3506          0.24373
+                   3            3386          0.23538
+                   4            1760          0.12235
+                   5            2346          0.16309
+                   6            1724          0.11985
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.597
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Pattern (Row)
+by Latent Class Pattern (Column)
+
+  Latent Class Variable Patterns
+
+  Latent Class         CB        CW
+   Pattern No.      Class     Class
+
+         1             1         1
+         2             1         2
+         3             1         3
+         4             1         4
+         5             1         5
+         6             1         6
+         7             2         1
+         8             2         2
+         9             2         3
+        10             2         4
+        11             2         5
+        12             2         6
+
+           1        2        3        4        5        6        7        8        9
+
+    1   0.564    0.100    0.088    0.140    0.021    0.021    0.022    0.011    0.015
+    2   0.046    0.574    0.074    0.131    0.058    0.026    0.011    0.037    0.000
+    3   0.053    0.070    0.704    0.068    0.047    0.006    0.001    0.011    0.029
+    4   0.059    0.184    0.140    0.514    0.003    0.038    0.009    0.042    0.000
+    5   0.023    0.114    0.038    0.051    0.503    0.220    0.019    0.006    0.000
+    6   0.025    0.134    0.061    0.110    0.024    0.596    0.012    0.012    0.000
+    7   0.009    0.018    0.000    0.012    0.006    0.017    0.587    0.138    0.017
+    8   0.004    0.035    0.015    0.030    0.003    0.006    0.097    0.653    0.001
+    9   0.016    0.002    0.076    0.003    0.004    0.001    0.025    0.067    0.697
+   10   0.003    0.032    0.000    0.008    0.002    0.000    0.000    0.111    0.003
+   11   0.001    0.016    0.002    0.003    0.015    0.030    0.055    0.111    0.015
+   12   0.019    0.023    0.018    0.005    0.006    0.024    0.047    0.062    0.090
+
+          10       11       12
+
+    1   0.006    0.001    0.012
+    2   0.022    0.014    0.008
+    3   0.000    0.004    0.006
+    4   0.009    0.000    0.002
+    5   0.002    0.022    0.003
+    6   0.001    0.021    0.004
+    7   0.076    0.079    0.043
+    8   0.071    0.069    0.016
+    9   0.014    0.043    0.052
+   10   0.708    0.078    0.054
+   11   0.042    0.661    0.048
+   12   0.088    0.104    0.515
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Within Level
+
+Latent Class Pattern 1 1
+
+ Thresholds
+    H6_9$1            -2.792  *********      0.000      1.000
+    H6_9$2            -1.625  *********      0.000      1.000
+    H9_12$1           -0.440  *********      0.000      1.000
+    H9_12$2            0.439  *********      0.000      1.000
+    H12_14$1          -1.696  10226.955      0.000      1.000
+    H12_14$2           0.563  *********      0.000      1.000
+    H14_17$1          -1.897  24089.088      0.000      1.000
+    H14_17$2           0.162  56599.500      0.000      1.000
+    H17_20$1           0.040  *********      0.000      1.000
+    H17_20$2           0.317  *********      0.000      1.000
+    H20_22$1          -3.282  *********      0.000      1.000
+    H20_22$2           0.510  23313.074      0.000      1.000
+    H22_6$1            0.699  *********      0.000      1.000
+    H22_6$2            1.381  *********      0.000      1.000
+
+Latent Class Pattern 1 2
+
+ Thresholds
+    H6_9$1            -1.067  70962.375      0.000      1.000
+    H6_9$2            -0.517  51463.051      0.000      1.000
+    H9_12$1           -4.489  *********      0.000      1.000
+    H9_12$2           -0.783  19313.199      0.000      1.000
+    H12_14$1          -0.783  32265.990      0.000      1.000
+    H12_14$2           0.475  27384.867      0.000      1.000
+    H14_17$1          -3.006  *********      0.000      1.000
+    H14_17$2           0.534  69197.047      0.000      1.000
+    H17_20$1          -2.559  57424.215      0.000      1.000
+    H17_20$2           0.436    527.850      0.001      0.999
+    H20_22$1          -0.434  36175.141      0.000      1.000
+    H20_22$2           0.593  *********      0.000      1.000
+    H22_6$1            0.613  12363.147      0.000      1.000
+    H22_6$2            1.071  79553.656      0.000      1.000
+
+Latent Class Pattern 1 3
+
+ Thresholds
+    H6_9$1           -15.000      0.000    999.000    999.000
+    H6_9$2            -2.960  28999.863      0.000      1.000
+    H9_12$1            0.183  88806.656      0.000      1.000
+    H9_12$2            2.369  *********      0.000      1.000
+    H12_14$1          -2.666   1651.239     -0.002      0.999
+    H12_14$2           0.500   8452.875      0.000      1.000
+    H14_17$1          -0.535  16778.000      0.000      1.000
+    H14_17$2           0.555  23228.818      0.000      1.000
+    H17_20$1          -3.358  50800.527      0.000      1.000
+    H17_20$2           0.774   9862.696      0.000      1.000
+    H20_22$1          -0.182  51435.172      0.000      1.000
+    H20_22$2           0.866  19830.652      0.000      1.000
+    H22_6$1            1.176  73005.406      0.000      1.000
+    H22_6$2            1.874  *********      0.000      1.000
+
+Latent Class Pattern 1 4
+
+ Thresholds
+    H6_9$1            -2.020  *********      0.000      1.000
+    H6_9$2            -0.903  *********      0.000      1.000
+    H9_12$1           -3.532  *********      0.000      1.000
+    H9_12$2           -0.062  *********      0.000      1.000
+    H12_14$1          -1.739  11391.206      0.000      1.000
+    H12_14$2           0.598  36604.203      0.000      1.000
+    H14_17$1          -2.107  *********      0.000      1.000
+    H14_17$2           0.271  92207.180      0.000      1.000
+    H17_20$1          -2.166  *********      0.000      1.000
+    H17_20$2           1.405  *********      0.000      1.000
+    H20_22$1          -1.830  *********      0.000      1.000
+    H20_22$2           1.219  *********      0.000      1.000
+    H22_6$1            1.525  *********      0.000      1.000
+    H22_6$2           10.341  *********      0.000      1.000
+
+Latent Class Pattern 1 5
+
+ Thresholds
+    H6_9$1            -1.619  44264.996      0.000      1.000
+    H6_9$2            -0.806  *********      0.000      1.000
+    H9_12$1           -2.150  *********      0.000      1.000
+    H9_12$2           -1.336   3077.546      0.000      1.000
+    H12_14$1          -2.510  *********      0.000      1.000
+    H12_14$2           0.085  45781.191      0.000      1.000
+    H14_17$1          -0.961  *********      0.000      1.000
+    H14_17$2          -0.575  37138.762      0.000      1.000
+    H17_20$1          -4.038  *********      0.000      1.000
+    H17_20$2           0.582  45842.441      0.000      1.000
+    H20_22$1          -2.601  *********      0.000      1.000
+    H20_22$2          -2.564  *********      0.000      1.000
+    H22_6$1            1.672  *********      0.000      1.000
+    H22_6$2            1.672  *********      0.000      1.000
+
+Latent Class Pattern 1 6
+
+ Thresholds
+    H6_9$1            -1.464  41076.797      0.000      1.000
+    H6_9$2            -0.964  59090.508      0.000      1.000
+    H9_12$1           -4.148  *********      0.000      1.000
+    H9_12$2           -4.148  *********      0.000      1.000
+    H12_14$1          -7.887      0.000    999.000    999.000
+    H12_14$2           0.150   3425.975      0.000      1.000
+    H14_17$1          -0.614  88802.000      0.000      1.000
+    H14_17$2          -0.430  19361.264      0.000      1.000
+    H17_20$1          -4.487  *********      0.000      1.000
+    H17_20$2           0.670  13650.442      0.000      1.000
+    H20_22$1          -0.243  *********      0.000      1.000
+    H20_22$2           1.359  *********      0.000      1.000
+    H22_6$1            0.796  20489.207      0.000      1.000
+    H22_6$2            1.297   7203.237      0.000      1.000
+
+Latent Class Pattern 2 1
+
+ Thresholds
+    H6_9$1             1.202  28731.266      0.000      1.000
+    H6_9$2             3.062  *********      0.000      1.000
+    H9_12$1           -2.153  31735.875      0.000      1.000
+    H9_12$2           -0.813  10883.106      0.000      1.000
+    H12_14$1         -11.644  *********      0.000      1.000
+    H12_14$2           0.154   9996.792      0.000      1.000
+    H14_17$1          -0.927   2554.890      0.000      1.000
+    H14_17$2           0.220   3260.789      0.000      1.000
+    H17_20$1          -1.235  14698.509      0.000      1.000
+    H17_20$2           0.903  14150.116      0.000      1.000
+    H20_22$1          -6.761  *********      0.000      1.000
+    H20_22$2           0.519   2461.568      0.000      1.000
+    H22_6$1            0.674  20975.543      0.000      1.000
+    H22_6$2            1.822  31851.598      0.000      1.000
+
+Latent Class Pattern 2 2
+
+ Thresholds
+    H6_9$1            -0.874  29137.248      0.000      1.000
+    H6_9$2             1.511      0.000    999.000    999.000
+    H9_12$1           -2.908   8338.922      0.000      1.000
+    H9_12$2            0.715  17563.055      0.000      1.000
+    H12_14$1          -1.479      0.000    999.000    999.000
+    H12_14$2           1.092      0.000    999.000    999.000
+    H14_17$1          -1.104      0.000    999.000    999.000
+    H14_17$2           1.268      0.000    999.000    999.000
+    H17_20$1          -2.539      0.000    999.000    999.000
+    H17_20$2           1.462      0.000    999.000    999.000
+    H20_22$1          -0.691      0.000    999.000    999.000
+    H20_22$2           1.881      0.000    999.000    999.000
+    H22_6$1            0.323      0.000    999.000    999.000
+    H22_6$2            2.191   1055.325      0.002      0.998
+
+Latent Class Pattern 2 3
+
+ Thresholds
+    H6_9$1            -2.610      0.000    999.000    999.000
+    H6_9$2             0.170      0.000    999.000    999.000
+    H9_12$1            6.878      0.000    999.000    999.000
+    H9_12$2           15.000      0.000    999.000    999.000
+    H12_14$1          -1.629      0.000    999.000    999.000
+    H12_14$2           0.807    172.391      0.005      0.996
+    H14_17$1          -0.136      0.000    999.000    999.000
+    H14_17$2           1.243    107.936      0.012      0.991
+    H17_20$1          -1.342      0.000    999.000    999.000
+    H17_20$2           1.275      0.000    999.000    999.000
+    H20_22$1           0.004      0.000    999.000    999.000
+    H20_22$2           1.763      0.000    999.000    999.000
+    H22_6$1            1.096      0.000    999.000    999.000
+    H22_6$2            2.186      0.000    999.000    999.000
+
+Latent Class Pattern 2 4
+
+ Thresholds
+    H6_9$1             1.396      0.000    999.000    999.000
+    H6_9$2             2.821   3336.919      0.001      0.999
+    H9_12$1           -2.901      0.000    999.000    999.000
+    H9_12$2           -0.309     11.099     -0.028      0.978
+    H12_14$1           1.401      0.000    999.000    999.000
+    H12_14$2           2.496   4019.433      0.001      1.000
+    H14_17$1          -2.528      0.000    999.000    999.000
+    H14_17$2           0.492      0.000    999.000    999.000
+    H17_20$1          -0.791      0.000    999.000    999.000
+    H17_20$2           1.051      0.000    999.000    999.000
+    H20_22$1          -0.673      0.000    999.000    999.000
+    H20_22$2           1.015      0.000    999.000    999.000
+    H22_6$1            0.727      0.000    999.000    999.000
+    H22_6$2            1.731      0.000    999.000    999.000
+
+Latent Class Pattern 2 5
+
+ Thresholds
+    H6_9$1             1.089   1005.924      0.001      0.999
+    H6_9$2             2.386   1693.273      0.001      0.999
+    H9_12$1           -2.049   1341.580     -0.002      0.999
+    H9_12$2           -0.782    158.504     -0.005      0.996
+    H12_14$1          -1.861      0.000    999.000    999.000
+    H12_14$2           0.294     60.084      0.005      0.996
+    H14_17$1           0.094      0.000    999.000    999.000
+    H14_17$2           0.804      0.000    999.000    999.000
+    H17_20$1          -3.228      0.000    999.000    999.000
+    H17_20$2           0.587      0.000    999.000    999.000
+    H20_22$1           1.317      0.000    999.000    999.000
+    H20_22$2           1.402      0.000    999.000    999.000
+    H22_6$1            0.779      0.000    999.000    999.000
+    H22_6$2            1.366      0.000    999.000    999.000
+
+Latent Class Pattern 2 6
+
+ Thresholds
+    H6_9$1             0.119      0.000    999.000    999.000
+    H6_9$2             0.119      0.000    999.000    999.000
+    H9_12$1           -0.168      0.000    999.000    999.000
+    H9_12$2            0.747      0.000    999.000    999.000
+    H12_14$1          -0.434      0.000    999.000    999.000
+    H12_14$2          -0.070      0.000    999.000    999.000
+    H14_17$1          -0.767      0.000    999.000    999.000
+    H14_17$2           0.318      0.000    999.000    999.000
+    H17_20$1          -1.078      0.000    999.000    999.000
+    H17_20$2          -0.215      0.000    999.000    999.000
+    H20_22$1          -0.167      0.000    999.000    999.000
+    H20_22$2           1.084      0.000    999.000    999.000
+    H22_6$1           -0.028      0.000    999.000    999.000
+    H22_6$2            0.821      0.000    999.000    999.000
+
+Between Level
+
+Categorical Latent Variables
+
+Within Level
+
+ Intercepts
+    CW#1               0.951      0.000    999.000    999.000
+    CW#2               1.507      0.000    999.000    999.000
+    CW#3               0.680      0.000    999.000    999.000
+    CW#4               0.956      0.000    999.000    999.000
+    CW#5               1.205      0.000    999.000    999.000
+
+Between Level
+
+ CW#1       ON
+    CB#1              -1.651      0.000    999.000    999.000
+
+ CW#2       ON
+    CB#1              -1.167      0.000    999.000    999.000
+
+ CW#3       ON
+    CB#1              -0.127      0.000    999.000    999.000
+
+ CW#4       ON
+    CB#1              -1.056      0.000    999.000    999.000
+
+ CW#5       ON
+    CB#1              -1.686      0.000    999.000    999.000
+
+ Means
+    CB#1               0.214      0.000    999.000    999.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.280E-09
+       (ratio of smallest to largest eigenvalue)
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    ../../MplusOutput/MultilevelWomen/CW6CB2f.txt
+
+  Order and format of variables
+
+    H6_9           F10.3
+    H9_12          F10.3
+    H12_14         F10.3
+    H14_17         F10.3
+    H17_20         F10.3
+    H20_22         F10.3
+    H22_6          F10.3
+    DAYNO          F10.3
+    AGE            F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    CPROB3         F10.3
+    CPROB4         F10.3
+    CPROB5         F10.3
+    CPROB6         F10.3
+    CPROB7         F10.3
+    CPROB8         F10.3
+    CPROB9         F10.3
+    CPROB10        F10.3
+    CPROB11        F10.3
+    CPROB12        F10.3
+    CB             F10.3
+    CW             F10.3
+    MLCJOINT       F10.3
+    ID_DAY         F12.0
+    ID             I9
+
+  Save file format
+    24F10.3 F12.0 I9
+
+  Save file record length    10000
+
+
+     Beginning Time:  18:06:35
+        Ending Time:  18:50:13
+       Elapsed Time:  00:43:38
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen
