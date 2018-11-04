@@ -9,7 +9,7 @@ TITLE:    3-class at level 1 (CW), 5-class at level 2 (CB) in Women - non-parame
           author: Chaochen Wang
 
 DATA:     
-File is "../../Mplusdata/NDNS_Tslots_men.dat"; 
+File is "../../Mplusdata/NDNS_Tslots_women.dat"; 
 
 
 VARIABLE:  NAMES = id DayNo Age H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 
@@ -32,7 +32,7 @@ VARIABLE:  NAMES = id DayNo Age H6_9 H9_12 H12_14 H14_17 H17_20 H20_22
 
 
 ANALYSIS:  TYPE = TWOLEVEL MIXTURE; 
-         STARTS = 50 25; 
+         STARTS = 250 125; 
         PROCESS = 15(starts);
 
 
@@ -45,5 +45,5 @@ MODEL:
       CW ON CB;
 
 SAVEDATA: 
-    FILE IS  "../../MplusOutput/MultilevelMen/CW3CB5m.txt";
+    FILE IS  "../../MplusOutput/MultilevelWomen/CW3CB5f.txt";
   save is cprob;

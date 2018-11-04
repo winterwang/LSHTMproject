@@ -32,7 +32,7 @@ VARIABLE:  NAMES = id DayNo Age H6_9 H9_12 H12_14 H14_17 H17_20 H20_22
 
 
 ANALYSIS:  TYPE = TWOLEVEL MIXTURE; 
-         STARTS = 50 25; 
+         STARTS = 800 700; 
         PROCESS = 15(starts);
 
 

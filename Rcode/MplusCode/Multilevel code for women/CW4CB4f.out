@@ -1,6 +1,6 @@
 Mplus VERSION 8.1 (Linux)
 MUTHEN & MUTHEN
-10/30/2018   6:00 PM
+10/31/2018   9:58 AM
 
 INPUT INSTRUCTIONS
 
@@ -38,7 +38,7 @@ INPUT INSTRUCTIONS
 
 
   ANALYSIS:  TYPE = TWOLEVEL MIXTURE;
-           STARTS = 100 50;
+           STARTS = 300 150;
           PROCESS = 15(starts);
 
 
@@ -914,8 +914,8 @@ Integration Specifications
   Dimensions of numerical integration                            0
   Adaptive quadrature                                           ON
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           50
+  Number of initial stage random starts                        300
+  Number of final stage optimizations                          150
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
@@ -980,8 +980,15 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
           -95897.655  227563           63
+          -95901.723  40340            188
+          -95907.732  377504           294
+          -95916.649  960438           116
+          -95919.600  741888           138
+          -95930.416  170118           238
+          -95930.732  937588           293
+          -95936.583  972873           157
 
-49 perturbed starting value run(s) did not converge.
+142 perturbed starting value run(s) did not converge.
 
 
 
@@ -9903,9 +9910,9 @@ SAVEDATA INFORMATION
   Save file record length    10000
 
 
-     Beginning Time:  18:00:32
-        Ending Time:  18:56:07
-       Elapsed Time:  00:55:35
+     Beginning Time:  09:58:22
+        Ending Time:  13:26:46
+       Elapsed Time:  03:28:24
 
 
 

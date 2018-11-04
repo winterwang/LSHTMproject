@@ -1,6 +1,6 @@
 Mplus VERSION 8.1 (Linux)
 MUTHEN & MUTHEN
-10/30/2018   6:32 PM
+10/31/2018   9:52 AM
 
 INPUT INSTRUCTIONS
 
@@ -38,7 +38,7 @@ INPUT INSTRUCTIONS
 
 
   ANALYSIS:  TYPE = TWOLEVEL MIXTURE;
-           STARTS = 200 100;
+           STARTS = 300 150;
           PROCESS = 15(starts);
 
   MODEL:
@@ -913,8 +913,8 @@ Integration Specifications
   Dimensions of numerical integration                            0
   Adaptive quadrature                                           ON
 Random Starts Specifications
-  Number of initial stage random starts                        200
-  Number of final stage optimizations                          100
+  Number of initial stage random starts                        300
+  Number of final stage optimizations                          150
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
@@ -979,27 +979,31 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
           -97976.833  165853           105
+          -97977.789  195353           225
           -97984.726  479273           156
           -97985.670  967902           52
           -97994.842  576220           115
+          -97997.428  760878           249
           -97997.533  422103           62
           -97998.149  569833           85
+          -97998.453  387701           275
           -97999.125  695155           150
           -98006.686  259507           53
           -98024.617  636396           168
           -98038.204  354208           196
           -98038.276  468036           131
+          -98045.082  545140           278
+          -98065.015  835767           210
           -98093.273  25127            107
+          -98094.482  358488           264
           -98094.555  215353           164
-          -98094.592  903420           5
 
-86 perturbed starting value run(s) did not converge.
-
+131 perturbed starting value run(s) did not converge.
 
 
-     WARNING:  THE BEST LOGLIKELIHOOD VALUE WAS NOT REPLICATED.  THE
-     SOLUTION MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.  INCREASE THE
-     NUMBER OF RANDOM STARTS.
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
 
 
 THE MODEL ESTIMATION TERMINATED NORMALLY
@@ -1427,9 +1431,9 @@ SAVEDATA INFORMATION
   Save file record length    10000
 
 
-     Beginning Time:  18:32:49
-        Ending Time:  19:14:47
-       Elapsed Time:  00:41:58
+     Beginning Time:  09:52:43
+        Ending Time:  11:58:48
+       Elapsed Time:  02:06:05
 
 
 

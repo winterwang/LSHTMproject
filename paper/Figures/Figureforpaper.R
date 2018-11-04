@@ -1,7 +1,10 @@
 library(readr)
 library(tidyverse)
 
-CW2CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/50NDNS_CW2CB2.txt",
+# CW2CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/50NDNS_CW2CB2.txt",
+#                       col_names = FALSE)
+
+CW2CB2 <- read_table2("results/50NDNS_CW2CB2.txt",
                       col_names = FALSE)
 
 names(CW2CB2) <- c("H0",
@@ -263,7 +266,7 @@ library(readr)
 library(tidyverse)
 
 
-CW3CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB2.txt",
+CW3CB2 <- read_table2("results/Timeslots/NDNSslot_CW3CB2.txt",
                       col_names = FALSE)
 
 names(CW3CB2) <- c("Breakfast", 
@@ -363,23 +366,28 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
              fill = "white") + 
   # scale_shape_discrete(solid=F) +
   scale_shape_manual(values=c(21,23,24)) + 
-    theme(axis.text = element_text(size = 15), 
+  theme(axis.title = element_text(size = 15, face = "bold"), 
+        axis.text = element_text(size = 13, face = "bold"), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15),
+        # legend.text = element_text(size = 10, face = "bold"), 
+        # legend.title = element_text(size = 10, face = "bold"),
         panel.grid.major = element_line(colour = "gray95",
                                         linetype = "dashed"),
         panel.grid.minor = element_line(colour = "gray95",
                                         linetype = "dashed"),
-        legend.position = "none"
-        # legend.position = "bottom", 
+        legend.position = "none",
+        plot.title=element_text(size = 17, 
+                                face = "bold", hjust = 0.5),
+        axis.text.x=element_blank(),
+        # legend.position = "bottom",
         # legend.direction = "horizontal"
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days - High percentage carbohydrate day (39.5%)", x = "", y = "Probability",
+  labs(title = "Class 1 days - High percentage carbohydrate day (39.5%)", x = "", 
+       y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
@@ -402,24 +410,28 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
              fill = "white") + 
   # scale_shape_discrete(solid=F) +
   scale_shape_manual(values=c(21,23,24)) + 
-  theme(axis.title = element_text(size = 15), 
-        axis.text = element_text(size = 15), 
+  theme(axis.title = element_text(size = 15, face = "bold"), 
+        axis.text = element_text(size = 13, face = "bold"), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15),
+        # legend.text = element_text(size = 10, face = "bold"), 
+        # legend.title = element_text(size = 10, face = "bold"),
         panel.grid.major = element_line(colour = "gray95",
                                         linetype = "dashed"),
         panel.grid.minor = element_line(colour = "gray95",
                                         linetype = "dashed"),
-        legend.position = "none"
-        # legend.position = "bottom", 
+        legend.position = "none",
+        plot.title=element_text(size = 17, 
+                                face = "bold", hjust = 0.5),
+        axis.text.x=element_blank(),
+        # legend.position = "bottom",
         # legend.direction = "horizontal"
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days - Low percentage carbohydrate day (20.4%)", x = "", y = "Probability",
+  labs(title = "Class 2 days - Low percentage carbohydrate day (20.4%)", x = "", 
+       y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
   ylim(c(0,1)) + 
@@ -445,25 +457,28 @@ cls3 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
   geom_point(aes(shape = Carbo), size = 5,
              fill = "white") + 
   # scale_shape_discrete(solid=F) +
-  theme(axis.title = element_text(size = 15), 
-        axis.text = element_text(size = 15), 
+  theme(axis.title = element_text(size = 15, face = "bold"), 
+        axis.text = element_text(size = 13, face = "bold"), 
         axis.line = element_line(colour = "black"), 
         panel.border = element_blank(), 
         panel.background = element_blank(), 
-        legend.text = element_text(size = 15), 
-        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 10, face = "bold"),
+        legend.title = element_text(size = 10, face = "bold"),
         panel.grid.major = element_line(colour = "gray95",
                                         linetype = "dashed"),
         panel.grid.minor = element_line(colour = "gray95",
                                         linetype = "dashed"),
-        # legend.position = "none"
+        # legend.position = "none",
+        plot.title=element_text(size = 17, 
+                                face = "bold", hjust = 0.5),
+        # axis.text.x=element_blank(),
         legend.position = "bottom",
         legend.direction = "horizontal"
-  ) + 
+  ) +
   scale_shape_manual(values=c(21,23,24), 
-                     labels =  c("Not eating\nany food", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
+                     labels =  c("No energy intake", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
       scale_linetype_manual(values=c("dotted", "dashed", "solid"),
-                            labels =  c("Not eating\nany food", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
+                            labels =  c("No energy intake", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
   labs(title = "Class 3 days - Regular meals day (40.1%)", y = "Probability") + 
   labs(shape="Responses to\ncarbohydrate intake", 
@@ -477,22 +492,37 @@ theme(plot.subtitle = element_text(vjust = 1),
     plot.caption = element_text(family = "Atlas Grotesk Medium", 
         size = 10, face = "bold", colour = "gray24", 
         hjust = 0, vjust = 1)) +
- labs(x = "Hours of the day", caption = "Note: 
-Grey, and white shades indicate the 7 time slots;
-Carbohydrate < 50% indicates that within the time slot, carbohydrate contributed less than 50% total energy intake; 
-Carbohydrate >= 50% indicates that within the time slot, carbohydrate contributed higher or equal to 50% total 
-      energy intake.")
+ labs(x = "Hours of the day")#, 
+#       caption = "Note: 
+# Grey, and white shades indicate the 7 time slots;
+# Carbohydrate < 50% indicates CH contributed less than 50% total energy intake; 
+# Carbohydrate >= 50% indicates CH contributed higher or equal to 50% total 
+#       energy intake.")
 
 
 library(cowplot)
 plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1,1,1.44))
 
 
+# producing graph for the poster ------------------------------------------
+
+cls1 <- cls1 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
+cls2 <- cls2 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
+# plot_grid(cls1, cls2, rel_heights = c(1,1), ncol = 1)
+
+# dev.copy2pdf(file="../gemini/Fig/Fig01a.pdf",out.type="cairo", width=7.0, height=6.10)
+
+cls3 <- cls3 + theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
+# cls3
+plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('I', 'II', 'III'), rel_heights=c(1,1,1.35))
+
+dev.copy2pdf(file="../gemini/Fig/Fig01.pdf",out.type="cairo", width=7.25, height=8)
 
 # Level 2 (CB=3) person classes distribution -------------------------------------
 
+library(scales)
 
-CW3CB3 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB3.txt",
+CW3CB3 <- read_table2("results/Timeslots/NDNSslot_CW3CB3.txt",
                       col_names = FALSE)
 
 names(CW3CB3) <- c("Breakfast", 
@@ -542,32 +572,41 @@ chart.data <- ddply(chart.data, .(CB),
 
 
 chart.data$CW_new <- factor(chart.data$CW_new, levels = c("3", "2", "1"), 
-                            labels = c("Regular\nmeals day", "Low carbo-\nhydrate day", "High carbo-\nhydrate day"))
+                            labels = c("Regular\nmeals day", "Low % CH day", "High % CH day"))
 chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), 
-                        labels = c("Low carbo-\nhydrate eaters\n(28.1%)",  
-                                   "Moderate carbo-\nhydrate eaters\n(28.8%)", 
-                                   "High carbo-\nhydrate eaters\n(43.1%)"))
+                        labels = c("Low CH\n eaters\n(28.1%)",  
+                                   "Moderate CH\n eaters\n(28.8%)", 
+                                   "High CH\n eaters\n(43.1%)"))
 
 
 
 library(ggthemr)
-ggthemr("dust", layout = "scientific")
+# ggthemr("dust", layout = "scientific")
+ggthemr("fresh", layout = "scientific")
 ggplot() + 
   geom_bar(aes(y = pct, x = CB, fill = CW_new), data = chart.data, width = 0.6,
            stat="identity") +
-  geom_text(data=chart.data, aes(x = CB, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
+  geom_text(data=chart.data, 
+            aes(x = CB, y = pos, fontface = "bold",
+                label = paste0(sprintf("%1.1f", pct*100),"%")),
             size=4, colour="white", family="Atlas Grotesk Medium") +
   theme(legend.position="right", #legend.direction="horizontal",
         legend.title = element_blank(),
-        axis.text = element_text(size = 15),
-        legend.text = element_text(size = 13), 
-        axis.title = element_text(size = 18),
+        axis.text = element_text(size = 15, face = "bold"),
+        legend.text = element_text(size = 12, face = "bold"), 
+        axis.title = element_text(size = 18, face = "bold"),
         axis.line = element_line(colour = "black"),
         plot.title=element_text(family="Atlas Grotesk Medium"),
         text=element_text(family="Atlas Grotesk Light")) +
-  labs(title = " ", x = "Between Individual classes", y = "Percentage") +
+  labs(title = " ", x = "Between Individual Classes", y = "Percentage") +
   scale_y_continuous(labels=percent)
 
+
+# producing graph for the poster ------------------------------------------
+
+
+
+dev.copy2pdf(file="../gemini/Fig/level2.pdf",out.type="cairo", width=7.28, height=4.85)
 
 
 # Level 2 (CB=2) classes solution  ----------------------------------------
@@ -654,7 +693,7 @@ ggplot() +
 # Level 2 (CB=4) classes solution  ----------------------------------------
 
 
-CW3CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW3CB2.txt",
+CW3CB2 <- read_table2("results/Timeslots/NDNSslot_CW3CB2.txt",
                       col_names = FALSE)
 
 names(CW3CB2) <- c("Breakfast", "Morning.snack", "Lunch",
