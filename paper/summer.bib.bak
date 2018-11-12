@@ -807,14 +807,13 @@
 }
 
 @Article{Bao2015,
-  author        = {Bao, Wei and Li, Shanshan and Chavarro, Jorge E and Tobias, Deirdre K and Zhu, Yeyi and Hu, Frank B and Zhang, Cuilin},
-  title         = {Low-carbohydrate-diet scores and long-term risk of type 2 diabetes among women with a history of gestational diabetes: a prospective cohort study},
-  journal       = {Diabetes Care},
-  year          = {2015},
-  pages         = {dc151642},
-  __markedentry = {[takeshi:]},
-  file          = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/43.full.pdf:PDF},
-  publisher     = {Am Diabetes Assoc},
+  author    = {Bao, Wei and Li, Shanshan and Chavarro, Jorge E and Tobias, Deirdre K and Zhu, Yeyi and Hu, Frank B and Zhang, Cuilin},
+  title     = {Low-carbohydrate-diet scores and long-term risk of type 2 diabetes among women with a history of gestational diabetes: a prospective cohort study},
+  journal   = {Diabetes Care},
+  year      = {2015},
+  pages     = {dc151642},
+  file      = {:/home/takeshi/ドキュメント/githubprojects/LSHTMproject/references/43.full.pdf:PDF},
+  publisher = {Am Diabetes Assoc},
 }
 
 @Article{fong2017large,
@@ -869,15 +868,61 @@
 }
 
 @Article{Wehrens2017,
-  author        = {Wehrens, Sophie MT and Christou, Skevoulla and Isherwood, Cheryl and Middleton, Benita and Gibbs, Michelle A and Archer, Simon N and Skene, Debra J and Johnston, Jonathan D},
-  title         = {Meal timing regulates the human circadian system},
-  journal       = {Current Biology},
-  year          = {2017},
-  volume        = {27},
-  number        = {12},
-  pages         = {1768--1775},
-  __markedentry = {[takeshi:6]},
+  author    = {Wehrens, Sophie MT and Christou, Skevoulla and Isherwood, Cheryl and Middleton, Benita and Gibbs, Michelle A and Archer, Simon N and Skene, Debra J and Johnston, Jonathan D},
+  title     = {Meal timing regulates the human circadian system},
+  journal   = {Current Biology},
+  year      = {2017},
+  volume    = {27},
+  number    = {12},
+  pages     = {1768--1775},
+  publisher = {Elsevier},
+}
+
+@Article{Seidelmann2018,
+  author    = {Seidelmann, Sara B and Claggett, Brian and Cheng, Susan and Henglin, Mir and Shah, Amil and Steffen, Lyn M and Folsom, Aaron R and Rimm, Eric B and Willett, Walter C and Solomon, Scott D},
+  title     = {Dietary carbohydrate intake and mortality: a prospective cohort study and meta-analysis},
+  journal   = {The Lancet Public Health},
+  year      = {2018},
+  volume    = {3},
+  number    = {9},
+  pages     = {e419--e428},
+  publisher = {Elsevier},
+}
+
+@Article{Murakami2018,
+  author        = {Murakami, Kentaro and Livingstone, M and Fujiwara, Aya and Sasaki, Satoshi},
+  title         = {Breakfast in Japan: Findings from the 2012 National Health and Nutrition Survey},
+  journal       = {Nutrients},
+  year          = {2018},
+  volume        = {10},
+  number        = {10},
+  pages         = {1551},
+  __markedentry = {[takeshi:]},
+  publisher     = {Multidisciplinary Digital Publishing Institute},
+}
+
+@Article{Seidelmann2018,
+  author        = {Seidelmann, Sara B and Claggett, Brian and Cheng, Susan and Henglin, Mir and Shah, Amil and Steffen, Lyn M and Folsom, Aaron R and Rimm, Eric B and Willett, Walter C and Solomon, Scott D},
+  title         = {Dietary carbohydrate intake and mortality: a prospective cohort study and meta-analysis},
+  journal       = {The Lancet Public Health},
+  year          = {2018},
+  volume        = {3},
+  number        = {9},
+  pages         = {e419--e428},
+  __markedentry = {[takeshi:]},
   publisher     = {Elsevier},
+}
+
+@Article{Ziauddeen2017,
+  author        = {Ziauddeen, Nida and Almiron-Roig, Eva and Penney, Tarra L and Nicholson, Sonja and Kirk, Sara FL and Page, Polly},
+  title         = {Eating at food outlets and “on the go” is associated with less healthy food choices in adults: cross-sectional data from the UK National Diet and Nutrition Survey Rolling Programme (2008--2014)},
+  journal       = {Nutrients},
+  year          = {2017},
+  volume        = {9},
+  number        = {12},
+  pages         = {1315},
+  __markedentry = {[takeshi:6]},
+  publisher     = {Multidisciplinary Digital Publishing Institute},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
