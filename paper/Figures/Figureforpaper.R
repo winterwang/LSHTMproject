@@ -380,7 +380,7 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
         legend.position = "none",
         plot.title=element_text(size = 17, 
                                 face = "bold", hjust = 0.5),
-        axis.text.x=element_blank(),
+        axis.text.x=element_blank()#,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
   ) + 
@@ -424,7 +424,7 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
         legend.position = "none",
         plot.title=element_text(size = 17, 
                                 face = "bold", hjust = 0.5),
-        axis.text.x=element_blank(),
+        axis.text.x=element_blank()#,
         # legend.position = "bottom",
         # legend.direction = "horizontal"
   ) + 
@@ -492,16 +492,24 @@ theme(plot.subtitle = element_text(vjust = 1),
     plot.caption = element_text(family = "Atlas Grotesk Medium", 
         size = 10, face = "bold", colour = "gray24", 
         hjust = 0, vjust = 1)) +
- labs(x = "Hours of the day")#, 
-#       caption = "Note: 
-# Grey, and white shades indicate the 7 time slots;
-# Carbohydrate < 50% indicates CH contributed less than 50% total energy intake; 
-# Carbohydrate >= 50% indicates CH contributed higher or equal to 50% total 
-#       energy intake.")
+ labs(x = "Hours of the day", 
+      caption = "Note:
+Grey, and white shades indicate the 7 time slots;
+Carbohydrate (CH) < 50% indicates CH contributed less than 50% total energy intake;
+Carbohydrate >= 50% indicates CH contributed higher or equal to 50% total
+      energy intake.")
 
 
 library(cowplot)
-plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1,1,1.44))
+cls1 <- cls1 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
+cls2 <- cls2 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
+# plot_grid(cls1, cls2, rel_heights = c(1,1), ncol = 1)
+
+# dev.copy2pdf(file="../gemini/Fig/Fig01a.pdf",out.type="cairo", width=7.0, height=6.10)
+
+cls3 <- cls3 + theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
+# cls3
+plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1,1,1.8))
 
 
 # producing graph for the poster ------------------------------------------
@@ -519,6 +527,7 @@ plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('I', 'II', 'III'), rel_heights=
 dev.copy2pdf(file="../gemini/Fig/Fig01.pdf",out.type="cairo", width=7.25, height=8)
 
 # Level 2 (CB=3) person classes distribution -------------------------------------
+library(plyr)
 
 library(scales)
 
@@ -582,7 +591,9 @@ chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"),
 
 library(ggthemr)
 # ggthemr("dust", layout = "scientific")
-ggthemr("fresh", layout = "scientific")
+# ggthemr("fresh", layout = "scientific")
+ggthemr("greyscale", layout = "scientific")
+
 ggplot() + 
   geom_bar(aes(y = pct, x = CB, fill = CW_new), data = chart.data, width = 0.6,
            stat="identity") +

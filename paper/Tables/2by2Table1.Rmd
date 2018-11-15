@@ -19,7 +19,9 @@ classoption: a4paper
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(knitr)
 library(kableExtra)
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/CW2CB2results.csv", header = T, row.names = NULL, colClasses = "character")
+# dt <- read.csv("../../Tablecsv/CW2CB2results.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/CW2CB2results.csv", header = T, row.names = NULL, colClasses = "character")
+
 names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "P value [note]")
 
 dt[28, 1] <- c("Hypertension (%) [note]")
@@ -50,7 +52,7 @@ kable(dt,  align = "l", row.names = FALSE,
 # Day level only models
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # library(kableExtra)
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/ndns_level1only.csv", header = T)
+dt <- read.csv("../../Tablecsv/ndns_level1only.csv", header = T)
 names(dt) <- c("N of classes", "N of free parameters","log-likelihood",  "AIC", "BIC", "aBIC", "Entropy", "Lo-Mendel-Rubin LRT")
 dt[1,8] <- "--"
 dt[2,8] <- "< 0.0001"
@@ -68,7 +70,7 @@ kable(dt, digits = 3, row.names = FALSE, align = "c",
 
 # LCGA models table 1
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/LCGA3Cresults.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/LCGA3Cresults.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Variables", "Latent class = 1", "Latent class = 2", "Latent class = 3", "P value [note]")
 
 
@@ -103,7 +105,7 @@ kable(dt,  align = "l", row.names = FALSE,
 
 # Model fit criteria
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Mixed_7slots.csv", header = T)
+dt <- read.csv("../../Tablecsv/Mixed_7slots.csv", header = T)
 dt <- dt[,-7]
 names(dt) <- c("Model", "1 class", "2 classes",  "3 classes", "4 classes", "5 classes")
 dt[is.na(dt)] <- ""
@@ -124,7 +126,7 @@ kable(dt, digits = 3, row.names = FALSE, align = "c",
 
 # Day level solution 1
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/timeslots_cw3cb3_univariate.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/timeslots_cw3cb3_univariate.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Time slots of the day", "Responses of carbohydrate intake", "Frequency", "Precentages (%)", 
                "Class 1 (30.8%)", "Class 2 (39.8%)", "Class 3 (29.5%)")
 
@@ -138,7 +140,7 @@ kable(dt,  align = "l", row.names = FALSE,
 # Day level solution characteristics
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Daylevel.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/Daylevel.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c(" ", "High carbohydrate day", "Low carbohydrate day", "Regular meals day", "P value[note]")
 
 
@@ -164,7 +166,7 @@ kable(dt,  align = "l", row.names = FALSE,
 # Social economic 
 
 ```{r tab1, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Timeslots_CW3CB3results.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/Timeslots_CW3CB3results.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Variables", "Individual class 1 (n = 1730)", "Individual class = 2 (n = 1772)", "Individual class = 3 (n = 2653)", "P value [note]")
 
 # 
@@ -199,7 +201,7 @@ kable(dt,  align = "l", row.names = FALSE,
 # personal level classes nutrional table
 
 ```{r tab-nutri-indi, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Carbslotcompo.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/Carbslotcompo.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c(" ", "Low carbohydrate eaters (n = 1730)", "Moderate carbohydrate eaters (n = 1772)", "High carbohydrate eaters (n = 2653)", "P value[note]")
 
 dt[6, 1] <- c("Non-milk extrinsic sugar[note]")
@@ -217,7 +219,7 @@ kable(dt,  align = "l", row.names = FALSE,
 
 
 ```{r tab2, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Timeslots_CW3CB3table2_bmiDM.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/Timeslots_CW3CB3table2_bmiDM.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Variables", "Individual class 1 (n = 1730)", "Individual class (n = 1772)", "Individual class 3 (n = 2653)", "P value[note]")
 
 # 
@@ -254,7 +256,7 @@ kable(dt,  align = "l", row.names = FALSE,
 
 
 ```{r tab1hypetension, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/hypertensiontab1.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/hypertensiontab1.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c(" ", "Non-hypertensive", "Hypertensive", "P value[note]", 
                "Non-hypertensive", "Hypertensive", "P value")
 
@@ -291,7 +293,7 @@ kable(dt,  align = "l", row.names = FALSE,
 ## BMI 
 
 ```{r tab1BMI, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/BMItab1.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/BMItab1.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c(" ", "Normal weight", "Overweight", "Obese", "P value[note]", "Normal weight", "Overweight", "Obese", "P value")
 
 # 
@@ -327,7 +329,7 @@ kable(dt,  align = "l", row.names = FALSE,
 
 
 ```{r tab1DM, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/DMtab1.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/DMtab1.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c(" ", "Non-diabetes", "Diabetes", "P value[note]", 
                "Non-diabetes", "Diabetes", "P value")
 
@@ -363,7 +365,7 @@ kable(dt,  align = "l", row.names = FALSE,
 ## Table 2 regressions in survey 
 
 ```{r survgression, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/SurveyReg.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/SurveyReg.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Models", "Low", "Moderate", "P value[note]", "High", "P value", "Models", "Low", "Moderate", "P value", "High", "P value")
 dt[2, 1] <- c("Model 1[note]")
 dt[2, 7] <- c("Model 1[note]")
@@ -402,7 +404,7 @@ kable(dt,  align = "l", row.names = FALSE,
 ## Table 2 regressions for hypertension 
 
 ```{r tab2HYT, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/hypertensionReg.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/hypertensionReg.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Model", "Low", "Moderate", "P value[note]", "High", "P value")
 dt[2, 1] <- c("Model 1[note]")
 # dt[3, 1] <- c("Model 2[note]")
@@ -434,7 +436,7 @@ kable(dt,  align = "l", row.names = FALSE,
 ## Table 2 regressions for BMI
 
 ```{r tab2BMI, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/BMItab2.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/BMItab2.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Model", "Low", "Moderate", "P value[note]", "High", "P value")
 
 dt[2, 1] <- c("Model 1[note]")
@@ -465,7 +467,7 @@ kable(dt,  align = "l", row.names = FALSE,
 ## Table 2 regressions for WC
 
 ```{r tab2WC,  echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-dt <- read.csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/WCtab2.csv", header = T, row.names = NULL, colClasses = "character")
+dt <- read.csv("../../Tablecsv/WCtab2.csv", header = T, row.names = NULL, colClasses = "character")
 names(dt) <- c("Model", "Low", "Moderate", "P value[note]", "High", "P value")
 
 dt[2, 1] <- c("Model 1[note]")
