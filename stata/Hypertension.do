@@ -5,9 +5,17 @@
 
 // import data from CW3CB3_7sregss.dta
 
-use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+//use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
 
 //use "../Rcode/CW3CB3_7regss.dta", clear
+
+// date updated: 2018-11-20
+// accepting markers idea using gender as an interaction term
+
+log using "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt", append
+
+// use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+use "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
 
 
 
@@ -211,6 +219,8 @@ svy: tabulate paid hibp, col se ci format(%7.3f)
 
 
 gen DM = A1C > 6.5 if !missing(A1C)
+gen nonDM = A1C <= 6.5 if !missing(A1C)
+
 svyset area [pweight = wtb1to8], strata(gor)
 
 svy, subpop(Men): tabulate DM hibp, col se ci format(%7.3f)
@@ -237,6 +247,7 @@ test [eqvinc]1 = [eqvinc]0
 ********************************************************
 svyset area [pweight = wtn1to8], strata(gor)
 
+svyset area [pweight = wtn1to8], strata(gor) vce(linearized) singleunit(missing)
 
 // crude association between CB and hypertension 
 
@@ -265,9 +276,21 @@ svy, subpop(Women): logistic hibp i.CB
 //------------------------------------------------------------------------------
 
 
+svy: logistic hibp i.CB##i.Sex
+
+estat effects, deff
+
+test 2.CB#2.Sex 3.CB#2.Sex　 // -> there is no need to stratify or use gender as an interaction
+
+
+
 // in non DM 
 svy, subpop(Men if DM != 1): logistic hibp i.CB
 svy, subpop(Women if DM != 1): logistic hibp i.CB
+svy, subpop(nonDM): logistic hibp i.CB##i.Sex
+
+test 2.CB#2.Sex 3.CB#2.Sex // -> there is no need to stratify or use gender as an interaction
+
 
 //Number of strata   =        12                  Number of obs     =      5,858
 //Number of PSUs     =     1,412                  Population size   = 5,577.8467

@@ -1,0 +1,1077 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}20 Nov 2018, 12:14:24
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. use "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tab married
+{err}variable {bf}married{sf} not found
+{txt}{search r(111), local:r(111);}
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         No {c |}{res}      3,288       53.42       53.42
+{txt}        Yes {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,457       25.69       97.18
+{txt}         40 {c |}{res}        160        2.82      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. gen logalc = ln(Alcoholg+1)
+{txt}
+{com}. summ logalc, detail
+
+                           {txt}logalc
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}      6,155
+{txt}25%    {res}        0              0       {txt}Sum of Wgt. {res}      6,155
+
+{txt}50%    {res} .8120407                      {txt}Mean          {res} 1.418113
+                        {txt}Largest       Std. Dev.     {res} 1.541663
+{txt}75%    {res} 2.862201       5.496676
+{txt}90%    {res}  3.58957       5.636581       {txt}Variance      {res} 2.376725
+{txt}95%    {res} 3.996199       5.856217       {txt}Skewness      {res}  .456594
+{txt}99%    {res} 4.558136       5.998341       {txt}Kurtosis      {res} 1.683058
+{txt}
+{com}. gen logMVP = ln(MVPAtime+1)
+{txt}(2,345 missing values generated)
+
+{com}. summ logMVP, detail
+
+                           {txt}logMVP
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res} .0082988              0
+{txt}10%    {res} .0219789              0       {txt}Obs         {res}      3,810
+{txt}25%    {res} .1515964              0       {txt}Sum of Wgt. {res}      3,810
+
+{txt}50%    {res} .4692903                      {txt}Mean          {res} .6409135
+                        {txt}Largest       Std. Dev.     {res} .6119579
+{txt}75%    {res} .9204094       2.695431
+{txt}90%    {res} 1.649997       2.725101       {txt}Variance      {res} .3744925
+{txt}95%    {res} 2.016542       2.737698       {txt}Skewness      {res} 1.159103
+{txt}99%    {res} 2.335029       2.740097       {txt}Kurtosis      {res} 3.616459
+{txt}
+{com}. gen logGlu = ln(Glucose)
+{txt}(3,225 missing values generated)
+
+{com}. summ logGlu, detail
+
+                           {txt}logGlu
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.386294       .9321641
+{txt} 5%    {res} 1.463255       1.050822
+{txt}10%    {res} 1.501853       1.121678       {txt}Obs         {res}      2,930
+{txt}25%    {res} 1.562346       1.134623       {txt}Sum of Wgt. {res}      2,930
+
+{txt}50%    {res} 1.631199                      {txt}Mean          {res} 1.657517
+                        {txt}Largest       Std. Dev.     {res}  .176031
+{txt}75%    {res} 1.706565       2.867899
+{txt}90%    {res} 1.818888       2.938103       {txt}Variance      {res} .0309869
+{txt}95%    {res} 1.950187       2.970414       {txt}Skewness      {res} 2.456614
+{txt}99%    {res} 2.384165       3.055886       {txt}Kurtosis      {res} 14.03048
+{txt}
+{com}. gen logA1C = ln(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. summ logA1C, detail
+
+                           {txt}logA1C
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.547562       1.029619
+{txt} 5%    {res} 1.589235       1.252763
+{txt}10%    {res} 1.609438       1.308333       {txt}Obs         {res}      3,020
+{txt}25%    {res} 1.667707       1.410987       {txt}Sum of Wgt. {res}      3,020
+
+{txt}50%    {res} 1.704748                      {txt}Mean          {res} 1.721032
+                        {txt}Largest       Std. Dev.     {res} .1128544
+{txt}75%    {res} 1.757858       2.459589
+{txt}90%    {res} 1.824549       2.509599       {txt}Variance      {res} .0127361
+{txt}95%    {res}  1.88707       2.624669       {txt}Skewness      {res} 2.343269
+{txt}99%    {res} 2.208274       2.667228       {txt}Kurtosis      {res} 14.51465
+{txt}
+{com}. gen logChol = ln(Chol)
+{txt}(3,071 missing values generated)
+
+{com}. summ logChol, detail
+
+                           {txt}logChol
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.029619       .6418539
+{txt} 5%    {res} 1.223775       .7419373
+{txt}10%    {res} 1.308333       .7884573       {txt}Obs         {res}      3,084
+{txt}25%    {res} 1.458615       .8329091       {txt}Sum of Wgt. {res}      3,084
+
+{txt}50%    {res} 1.609438                      {txt}Mean          {res} 1.602148
+                        {txt}Largest       Std. Dev.     {res} .2215028
+{txt}75%    {res} 1.757858       2.251292
+{txt}90%    {res}  1.88707       2.282382       {txt}Variance      {res} .0490635
+{txt}95%    {res}  1.94591       2.322388       {txt}Skewness      {res}-.2705115
+{txt}99%    {res} 2.079442       2.341806       {txt}Kurtosis      {res} 3.205754
+{txt}
+{com}. gen logLDL = ln(LDL)
+{txt}(3,113 missing values generated)
+
+{com}. gen logHDL = ln(HDL)
+{txt}(3,071 missing values generated)
+
+{com}. gen logTG = ln(Trig)
+{txt}(3,080 missing values generated)
+
+{com}. 
+. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. // weighting with individual weights, area is primary sampling unit, gor is the cluster variable
+. svyset area [pweight = wti1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wti1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svydescribe wti // describe the weighted data set
+
+{txt}Survey: Describing stage 1 sampling units
+
+      pweight:{col 16}{res}wti1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{col 30}#Obs with  #Obs with{col 55}#Obs per included Unit
+{col 11} #Units    #Units   complete  missing   {col 51}{hline 28}
+Stratum   included  omitted     data      data      min       mean      max   
+{hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}
+{res}       1        42{txt} {res}        0       215         0         2       5.1         8
+       2       111{txt} {res}        0       480         0         1       4.3         9
+       3        83{txt} {res}        0       340         0         1       4.1         7
+       4        71{txt} {res}        0       327         0         1       4.6         8
+       5        84{txt} {res}        0       403         0         1       4.8         8
+       6        89{txt} {res}        0       424         0         2       4.8         9
+       7       111{txt} {res}        0       380         0         1       3.4         8
+       8       130{txt} {res}        0       575         0         1       4.4         8
+       9        82{txt} {res}        0       348         0         2       4.2         8
+      10       184{txt} {res}        0       846         0         1       4.6         9
+      11       255{txt} {res}        0     1,033         0         1       4.1         9
+      12       172{txt} {res}        0       784         0         1       4.6         9
+{txt}{hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}
+{res}      12     1,414         0     6,155         0         1       4.4         9
+{txt}{col 31}{hline 18}
+{res}{col 34}     6,155
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: tabulate Sex CB, row se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,414{txt}{col 49}Population size{col 67}={res}      6,155
+{txt}{col 49}Design df{col 67}= {res}     1,402
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+      Sex {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+      Men {c |}         {res}0.292          0.296          0.412          1.000
+          {txt}{c |}       {res}(0.011)        (0.012)        (0.013)               
+          {txt}{c |} {res}[0.270,0.315]  [0.273,0.321]  [0.387,0.437]               
+          {txt}{c |} 
+    Women {c |}         {res}0.276          0.278          0.447          1.000
+          {txt}{c |}       {res}(0.010)        (0.010)        (0.011)               
+          {txt}{c |} {res}[0.257,0.296]  [0.258,0.298]  [0.425,0.469]               
+          {txt}{c |} 
+    Total {c |}         {res}0.284          0.287          0.430          1.000
+          {txt}{c |}       {res}(0.007)        (0.008)        (0.009)               
+          {txt}{c |} {res}[0.269,0.299]  [0.271,0.303]  [0.413,0.447]               
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}row proportion
+{col 9}(linearized standard error of row proportion)
+{col 9}[95% confidence interval for row proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}   7.6169
+{txt}{col 5}Design-based{col 19}F({res}2.00{txt}, {res}2798.99{txt}){col 35}= {res}   2.1282{col 51}{txt}P = {res}0.1193
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: tabulate Sex CB, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,414{txt}{col 49}Population size{col 67}={res}      6,155
+{txt}{col 49}Design df{col 67}= {res}     1,402
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+      Sex {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+      Men {c |}         {res}0.500          0.502          0.466          0.486
+          {txt}{c |}       {res}(0.016)        (0.017)        (0.013)        (0.009)
+          {txt}{c |} {res}[0.469,0.531]  [0.470,0.535]  [0.440,0.491]  [0.469,0.503]
+          {txt}{c |} 
+    Women {c |}         {res}0.500          0.498          0.534          0.514
+          {txt}{c |}       {res}(0.016)        (0.017)        (0.013)        (0.009)
+          {txt}{c |} {res}[0.469,0.531]  [0.465,0.530]  [0.509,0.560]  [0.497,0.531]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}   7.6169
+{txt}{col 5}Design-based{col 19}F({res}2.00{txt}, {res}2798.99{txt}){col 35}= {res}   2.1282{col 51}{txt}P = {res}0.1193
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: mean EnergykJ, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}EnergykJ     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 7985.807{col 26}{space 2} 81.81228{col 37}{space 5} 7825.319{col 51}{space 3} 8146.295
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 7341.812{col 26}{space 2} 86.32953{col 37}{space 5} 7172.463{col 51}{space 3} 7511.161
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 7677.816{col 26}{space 2} 62.22181{col 37}{space 5} 7555.758{col 51}{space 3} 7799.874
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. test [EnergykJ]1 = [EnergykJ]2 = [EnergykJ]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+{txt}Adjusted Wald test
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}[EnergykJ]1 - [EnergykJ]2 = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} [EnergykJ]1 - [EnergykJ]3 = 0{p_end}
+
+{txt}{hline 7}{c TT}{hline 31}
+       {c |}{ralign 12:F(df,1401)}     df       p
+{hline 7}{c  +}{hline 31}
+  (1){col 8}{c |}{res}{col 12}    30.07{col 22}     1{col 33}0.0000{txt} #
+  (2){col 8}{c |}{res}{col 12}     8.90{col 22}     1{col 33}0.0058{txt} #
+{hline 7}{c +}{hline 31}
+  all  {c |}{res}{col 12}    15.03{col 22}     2{col 33}0.0000
+{txt}{hline 7}{c BT}{hline 31}
+{ralign 39:{it:# Bonferroni-adjusted p-values}}
+
+{com}. 
+{txt}end of do-file
+
+{com}. tab DM
+{err}variable {bf}DM{sf} not found
+{txt}{search r(111), local:r(111);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. 
+. gen Men = Sex == 1  //  n of men = 2537
+{txt}
+{com}. gen Women = Sex == 2 // n of women = 3618
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(Men): tab hibp, se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,097
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,402{txt}{col 49}Population size{col 67}={res} 4,973.3271
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,190
+{txt}{col 49}Subpop. size{col 67}={res} 1,808.0709
+{txt}{col 49}Design df{col 67}= {res}     1,390
+
+{txt}{hline 10}{c TT}{hline 47}
+hibp140_2 {c |} proportion          se          lb          ub
+{hline 10}{c +}{hline 47}
+        0 {c |}      {res}0.689       0.015       0.658       0.718
+        {txt}1 {c |}      {res}0.311       0.015       0.282       0.342
+          {txt}{c |} 
+    Total {c |}      {res}1.000                                    
+{txt}{hline 10}{c BT}{hline 47}
+  Key:  {col 1}proportion  =  {res}cell proportion
+{col 9}{txt}se          =  {res}linearized standard error of cell proportion
+{col 9}{txt}lb          =  {res}lower 95% confidence bound for cell proportion
+{col 9}{txt}ub          =  {res}upper 95% confidence bound for cell proportion
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(Women): tab hibp, se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     4,700
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,382{txt}{col 49}Population size{col 67}={res}  4,920.709
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,700
+{txt}{col 49}Subpop. size{col 67}={res} 1,930.9652
+{txt}{col 49}Design df{col 67}= {res}     1,370
+
+{txt}{hline 10}{c TT}{hline 47}
+hibp140_2 {c |} proportion          se          lb          ub
+{hline 10}{c +}{hline 47}
+        0 {c |}      {res}0.725       0.013       0.699       0.750
+        {txt}1 {c |}      {res}0.275       0.013       0.250       0.301
+          {txt}{c |} 
+    Total {c |}      {res}1.000                                    
+{txt}{hline 10}{c BT}{hline 47}
+  Key:  {col 1}proportion  =  {res}cell proportion
+{col 9}{txt}se          =  {res}linearized standard error of cell proportion
+{col 9}{txt}lb          =  {res}lower 95% confidence bound for cell proportion
+{col 9}{txt}ub          =  {res}upper 95% confidence bound for cell proportion
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. 
+. gen DM = A1C > 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. svyset area [pweight = wtb1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtb1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. summ A1C
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}A1C {c |}{res}      3,020    5.629636    .7471526        2.8       14.4
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(Men): tabulate DM hibp, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     4,611
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,383{txt}{col 49}Population size{col 67}={res} 5,468.3224
+{txt}{col 49}Subpop. no. obs{col 67}={res}        802
+{txt}{col 49}Subpop. size{col 67}={res} 2,267.2702
+{txt}{col 49}Design df{col 67}= {res}     1,371
+
+{txt}{hline 10}{c TT}{hline 44}
+          {c |}                  hibp140_2                 
+       DM {c |}             0              1          Total
+{hline 10}{c +}{hline 44}
+        0 {c |}         {res}0.963          0.874          0.936
+          {txt}{c |}       {res}(0.008)        (0.022)        (0.009)
+          {txt}{c |} {res}[0.943,0.976]  [0.825,0.911]  [0.916,0.951]
+          {txt}{c |} 
+        1 {c |}         {res}0.037          0.126          0.064
+          {txt}{c |}       {res}(0.008)        (0.022)        (0.009)
+          {txt}{c |} {res}[0.024,0.057]  [0.089,0.175]  [0.049,0.084]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000
+          {txt}{c |}              {res}                              
+          {txt}{c |}              {res}                              
+{txt}{hline 10}{c BT}{hline 44}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}1{txt}){col 35}= {res} 127.9339
+{txt}{col 5}Design-based{col 19}F({res}1{txt}, {res}1371{txt}){col 35}= {res}  20.8323{col 51}{txt}P = {res}0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(Women): tabulate DM hibp, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     3,990
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,341{txt}{col 49}Population size{col 67}={res} 5,433.3863
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,145
+{txt}{col 49}Subpop. size{col 67}={res} 2,479.4385
+{txt}{col 49}Design df{col 67}= {res}     1,329
+
+{txt}{hline 10}{c TT}{hline 44}
+          {c |}                  hibp140_2                 
+       DM {c |}             0              1          Total
+{hline 10}{c +}{hline 44}
+        0 {c |}         {res}0.982          0.921          0.965
+          {txt}{c |}       {res}(0.006)        (0.017)        (0.006)
+          {txt}{c |} {res}[0.967,0.990]  [0.881,0.949]  [0.951,0.976]
+          {txt}{c |} 
+        1 {c |}         {res}0.018          0.079          0.035
+          {txt}{c |}       {res}(0.006)        (0.017)        (0.006)
+          {txt}{c |} {res}[0.010,0.033]  [0.051,0.119]  [0.024,0.049]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000
+          {txt}{c |}              {res}                              
+          {txt}{c |}              {res}                              
+{txt}{hline 10}{c BT}{hline 44}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}1{txt}){col 35}= {res}  87.1560
+{txt}{col 5}Design-based{col 19}F({res}1{txt}, {res}1329{txt}){col 35}= {res}  17.2076{col 51}{txt}P = {res}0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svyset area [pweight = wtn1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(Men): logistic hibp i.CB
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,849
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,411{txt}{col 49}Population size{col 67}={res} 5,562.7226
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,190
+{txt}{col 49}Subpop. size{col 67}={res} 2,392.6803
+{txt}{col 49}Design df{col 67}= {res}     1,399
+{txt}{col 49}F({res}   2{txt},{res}   1398{txt}){col 67}= {res}      7.23
+{txt}{col 49}Prob > F{col 67}= {res}    0.0008
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .4791696{col 26}{space 2} .0938229{col 37}{space 1}   -3.76{col 46}{space 3}0.000{col 54}{space 4} .3263451{col 67}{space 3} .7035606
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .8158691{col 26}{space 2} .1345127{col 37}{space 1}   -1.23{col 46}{space 3}0.217{col 54}{space 4}   .59042{col 67}{space 3} 1.127405
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .5707395{col 26}{space 2}  .068461{col 37}{space 1}   -4.68{col 46}{space 3}0.000{col 54}{space 4}  .451073{col 67}{space 3} .7221528
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(Women): logistic hibp i.CB
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,774
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,409{txt}{col 49}Population size{col 67}={res} 5,568.4378
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,700
+{txt}{col 49}Subpop. size{col 67}={res} 2,583.4801
+{txt}{col 49}Design df{col 67}= {res}     1,397
+{txt}{col 49}F({res}   2{txt},{res}   1396{txt}){col 67}= {res}      7.57
+{txt}{col 49}Prob > F{col 67}= {res}    0.0005
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .5209777{col 26}{space 2} .0959888{col 37}{space 1}   -3.54{col 46}{space 3}0.000{col 54}{space 4} .3629539{col 67}{space 3} .7478025
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .9586877{col 26}{space 2} .1400895{col 37}{space 1}   -0.29{col 46}{space 3}0.773{col 54}{space 4} .7197578{col 67}{space 3} 1.276933
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .4519831{col 26}{space 2} .0521549{col 37}{space 1}   -6.88{col 46}{space 3}0.000{col 54}{space 4} .3604257{col 67}{space 3} .5667984
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: logsitic hibp i.CB##i.Sex
+{err}{bf:logsitic} command not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: logistic hibp i.CB##i.Sex
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,468
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,404{txt}{col 49}Population size{col 67}={res} 4,976.1604
+{txt}{col 49}Design df{col 67}= {res}     1,392
+{txt}{col 49}F({res}   5{txt},{res}   1388{txt}){col 67}= {res}      6.08
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .4791696{col 26}{space 2} .0938238{col 37}{space 1}   -3.76{col 46}{space 3}0.000{col 54}{space 4} .3263434{col 67}{space 3} .7035642
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .8158691{col 26}{space 2} .1345139{col 37}{space 1}   -1.23{col 46}{space 3}0.217{col 54}{space 4} .5904174{col 67}{space 3}  1.12741
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .7919254{col 26}{space 2} .1319805{col 37}{space 1}   -1.40{col 46}{space 3}0.162{col 54}{space 4}  .571086{col 67}{space 3} 1.098164
+{txt}{space 12} {c |}
+{space 6}CB#Sex {c |}
+{space 4}2#Women  {c |}{col 14}{res}{space 2} 1.087252{col 26}{space 2} .2863993{col 37}{space 1}    0.32{col 46}{space 3}0.751{col 54}{space 4} .6485076{col 67}{space 3} 1.822826
+{txt}{space 4}3#Women  {c |}{col 14}{res}{space 2} 1.175051{col 26}{space 2} .2619482{col 37}{space 1}    0.72{col 46}{space 3}0.469{col 54}{space 4} .7588177{col 67}{space 3}   1.8196
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .5707395{col 26}{space 2} .0684617{col 37}{space 1}   -4.68{col 46}{space 3}0.000{col 54}{space 4} .4510713{col 67}{space 3} .7221555
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. vce(linearized) singleunit(missing)
+{err}varlist not allowed
+{txt}{search r(101), local:r(101);}
+
+end of do-file
+
+{search r(101), local:r(101);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svyset area [pweight = wtn1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. vce(linearized) singleunit(missing)
+{err}varlist not allowed
+{txt}{search r(101), local:r(101);}
+
+end of do-file
+
+{search r(101), local:r(101);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svyset area [pweight = wtn1to8], strata(gor) ///
+> vce(linearized) singleunit(missing)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svyset area [pweight = wtn1to8], strata(gor) vce(linearized) singleunit(missing)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svyset area [pweight = wtn1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: logistic hibp i.CB##i.Sex
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,468
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,404{txt}{col 49}Population size{col 67}={res} 4,976.1604
+{txt}{col 49}Design df{col 67}= {res}     1,392
+{txt}{col 49}F({res}   5{txt},{res}   1388{txt}){col 67}= {res}      6.08
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .4791696{col 26}{space 2} .0938238{col 37}{space 1}   -3.76{col 46}{space 3}0.000{col 54}{space 4} .3263434{col 67}{space 3} .7035642
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .8158691{col 26}{space 2} .1345139{col 37}{space 1}   -1.23{col 46}{space 3}0.217{col 54}{space 4} .5904174{col 67}{space 3}  1.12741
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .7919254{col 26}{space 2} .1319805{col 37}{space 1}   -1.40{col 46}{space 3}0.162{col 54}{space 4}  .571086{col 67}{space 3} 1.098164
+{txt}{space 12} {c |}
+{space 6}CB#Sex {c |}
+{space 4}2#Women  {c |}{col 14}{res}{space 2} 1.087252{col 26}{space 2} .2863993{col 37}{space 1}    0.32{col 46}{space 3}0.751{col 54}{space 4} .6485076{col 67}{space 3} 1.822826
+{txt}{space 4}3#Women  {c |}{col 14}{res}{space 2} 1.175051{col 26}{space 2} .2619482{col 37}{space 1}    0.72{col 46}{space 3}0.469{col 54}{space 4} .7588177{col 67}{space 3}   1.8196
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .5707395{col 26}{space 2} .0684617{col 37}{space 1}   -4.68{col 46}{space 3}0.000{col 54}{space 4} .4510713{col 67}{space 3} .7221555
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. estat effects, deff
+
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 11}{hline 11}{hline 0}{hline 0}{hline 0}
+{col 14}{text}{c |}{col 27} Linearized
+{res}{col 1}{text}   hibp140_2{col 14}{c |}      Coef.{col 27}  Std. Err.{col 38}       DEFF
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 11}{hline 11}{hline 0}{hline 0}{hline 0}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{result}{space 2}-.7357006{col 27}{space 1} .1958049{col 38}{space 3} 2.82766
+{txt}{space 10}3  {c |}{col 14}{result}{space 2}-.2035013{col 27}{space 1} .1648719{col 38}{space 3} 2.85592
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{result}{space 2}-.2332881{col 27}{space 1} .1666577{col 38}{space 3} 2.49805
+{txt}{space 12} {c |}
+{space 6}CB#Sex {c |}
+{space 4}2#Women  {c |}{col 14}{result}{space 2} .0836533{col 27}{space 1} .2634158{col 38}{space 3}  2.4796
+{txt}{space 4}3#Women  {c |}{col 14}{result}{space 2} .1613115{col 27}{space 1}  .222925{col 38}{space 3} 2.61216
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{result}{space 2}-.5608223{col 27}{space 1} .1199527{col 38}{space 3} 2.71127
+{col 1}{text}{hline 13}{c BT}{hline 12}{hline 11}{hline 11}{hline 0}{hline 0}{hline 0}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: logistic hibp i.CB##i.Sex, nolab
+{txt}(running logistic on estimation sample)
+{err}option {bf:nolab} not allowed
+an error occurred when {bf:svy} executed {bf:logistic}
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. test 2.CB#2.Sex 3.CB#2.Sex
+{err}last estimates not found
+{txt}{search r(301), local:r(301);}
+
+end of do-file
+
+{search r(301), local:r(301);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy: logistic hibp i.CB##i.Sex
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,468
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,404{txt}{col 49}Population size{col 67}={res} 4,976.1604
+{txt}{col 49}Design df{col 67}= {res}     1,392
+{txt}{col 49}F({res}   5{txt},{res}   1388{txt}){col 67}= {res}      6.08
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .4791696{col 26}{space 2} .0938238{col 37}{space 1}   -3.76{col 46}{space 3}0.000{col 54}{space 4} .3263434{col 67}{space 3} .7035642
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .8158691{col 26}{space 2} .1345139{col 37}{space 1}   -1.23{col 46}{space 3}0.217{col 54}{space 4} .5904174{col 67}{space 3}  1.12741
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .7919254{col 26}{space 2} .1319805{col 37}{space 1}   -1.40{col 46}{space 3}0.162{col 54}{space 4}  .571086{col 67}{space 3} 1.098164
+{txt}{space 12} {c |}
+{space 6}CB#Sex {c |}
+{space 4}2#Women  {c |}{col 14}{res}{space 2} 1.087252{col 26}{space 2} .2863993{col 37}{space 1}    0.32{col 46}{space 3}0.751{col 54}{space 4} .6485076{col 67}{space 3} 1.822826
+{txt}{space 4}3#Women  {c |}{col 14}{res}{space 2} 1.175051{col 26}{space 2} .2619482{col 37}{space 1}    0.72{col 46}{space 3}0.469{col 54}{space 4} .7588177{col 67}{space 3}   1.8196
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .5707395{col 26}{space 2} .0684617{col 37}{space 1}   -4.68{col 46}{space 3}0.000{col 54}{space 4} .4510713{col 67}{space 3} .7221555
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. test 2.CB#2.Sex 3.CB#2.Sex
+
+{txt}Adjusted Wald test
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}[hibp140_2]2.CB#2.Sex = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} [hibp140_2]3.CB#2.Sex = 0{p_end}
+
+{txt}       F(  2,  1391) ={res}    0.26
+{txt}{col 13}Prob > F ={res}    0.7693
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(DM != 1): logistic hibp i.CB##i.Sex
+{err}invalid subpop() option
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(!DM): logistic hibp i.CB##i.Sex
+{err}invalid subpop() option
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(DM): logistic hibp i.CB##i.Sex
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     3,000
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,187{txt}{col 49}Population size{col 67}={res} 4,094.2344
+{txt}{col 49}Subpop. no. obs{col 67}={res}        104
+{txt}{col 49}Subpop. size{col 67}={res} 171.376691
+{txt}{col 49}Design df{col 67}= {res}     1,175
+{txt}{col 49}F({res}   5{txt},{res}   1171{txt}){col 67}= {res}      0.14
+{txt}{col 49}Prob > F{col 67}= {res}    0.9827
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}   .66616{col 26}{space 2} .5392424{col 37}{space 1}   -0.50{col 46}{space 3}0.616{col 54}{space 4} .1360938{col 67}{space 3} 3.260758
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.110924{col 26}{space 2} .7316794{col 37}{space 1}    0.16{col 46}{space 3}0.873{col 54}{space 4} .3051306{col 67}{space 3} 4.044667
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .9207872{col 26}{space 2} .7400143{col 37}{space 1}   -0.10{col 46}{space 3}0.918{col 54}{space 4} .1902672{col 67}{space 3} 4.456097
+{txt}{space 12} {c |}
+{space 6}CB#Sex {c |}
+{space 4}2#Women  {c |}{col 14}{res}{space 2} 2.460388{col 26}{space 2} 3.197275{col 37}{space 1}    0.69{col 46}{space 3}0.489{col 54}{space 4}  .192188{col 67}{space 3} 31.49785
+{txt}{space 4}3#Women  {c |}{col 14}{res}{space 2} .9917767{col 26}{space 2} 1.062448{col 37}{space 1}   -0.01{col 46}{space 3}0.994{col 54}{space 4}  .121232{col 67}{space 3}  8.11354
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 1.545178{col 26}{space 2} .6796435{col 37}{space 1}    0.99{col 46}{space 3}0.323{col 54}{space 4} .6519185{col 67}{space 3} 3.662384
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. gen nonDM = A1C <= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. svy, subpop(nonDM): logistic hibp i.CB##i.Sex
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     2,624
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,141{txt}{col 49}Population size{col 67}={res} 3,398.5517
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,843
+{txt}{col 49}Subpop. size{col 67}={res} 3,198.4663
+{txt}{col 49}Design df{col 67}= {res}     1,129
+{txt}{col 49}F({res}   5{txt},{res}   1125{txt}){col 67}= {res}      2.85
+{txt}{col 49}Prob > F{col 67}= {res}    0.0145
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   hibp140_2{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .5922852{col 26}{space 2} .1442306{col 37}{space 1}   -2.15{col 46}{space 3}0.032{col 54}{space 4} .3673056{col 67}{space 3} .9550676
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .9442995{col 26}{space 2} .1938088{col 37}{space 1}   -0.28{col 46}{space 3}0.780{col 54}{space 4} .6312784{col 67}{space 3} 1.412533
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .9983029{col 26}{space 2} .2103123{col 37}{space 1}   -0.01{col 46}{space 3}0.994{col 54}{space 4} .6603093{col 67}{space 3} 1.509306
+{txt}{space 12} {c |}
+{space 6}CB#Sex {c |}
+{space 4}2#Women  {c |}{col 14}{res}{space 2} .8341472{col 26}{space 2} .2768365{col 37}{space 1}   -0.55{col 46}{space 3}0.585{col 54}{space 4} .4349537{col 67}{space 3} 1.599714
+{txt}{space 4}3#Women  {c |}{col 14}{res}{space 2} .8524643{col 26}{space 2}   .23859{col 37}{space 1}   -0.57{col 46}{space 3}0.569{col 54}{space 4} .4922479{col 67}{space 3} 1.476279
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .4749159{col 26}{space 2} .0718716{col 37}{space 1}   -4.92{col 46}{space 3}0.000{col 54}{space 4} .3529081{col 67}{space 3} .6391046
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. 
+. test 2.CB#2.Sex 3.CB#2.Sex
+
+{txt}Adjusted Wald test
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}[hibp140_2]2.CB#2.Sex = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} [hibp140_2]3.CB#2.Sex = 0{p_end}
+
+{txt}       F(  2,  1128) ={res}    0.21
+{txt}{col 13}Prob > F ={res}    0.8105
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. 

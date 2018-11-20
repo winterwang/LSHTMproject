@@ -5,8 +5,13 @@
 
 // import data from CW3CB3_7sregss.dta
 
-use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+// date updated: 2018-11-20
+// accepting markers idea using gender as an interaction term
 
+log using "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt", append
+
+// use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+use "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
 
 
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
