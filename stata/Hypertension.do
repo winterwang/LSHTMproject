@@ -276,6 +276,8 @@ svy, subpop(Women): logistic hibp i.CB
 //------------------------------------------------------------------------------
 
 
+svy: logistic hibp i.CB
+
 svy: logistic hibp i.CB##i.Sex
 
 estat effects, deff
@@ -283,6 +285,7 @@ estat effects, deff
 test 2.CB#2.Sex 3.CB#2.Sex　 // -> there is no need to stratify or use gender as an interaction
 
 
+svy, subpop(nonDM): logistic hibp i.CB
 
 // in non DM 
 svy, subpop(Men if DM != 1): logistic hibp i.CB
@@ -313,7 +316,9 @@ test 2.CB#2.Sex 3.CB#2.Sex // -> there is no need to stratify or use gender as a
 
 
 // looking for confounder one by one
-// Age: -> confounder
+// Age: -> confounder 
+svy: logistic hibp i.CB age
+
 svy, subpop(Men): logistic hibp i.CB age
 svy, subpop(Women): logistic hibp i.CB age
 //Number of strata   =        12                  Number of obs     =      5,849
@@ -338,12 +343,15 @@ svy, subpop(Women): logistic hibp i.CB age
 
 test age
 
+svy: logistic hibp i.CB##c.age
+
 
 svy, subpop(Men): logistic hibp i.CB##c.age
 svy, subpop(Women): logistic hibp i.CB##c.age
 test 2.CB#c.age 3.CB#c.age // no interaction
 
 
+svy, subpop(nonDM): logistic hibp i.CB age
 
 svy, subpop(Men if DM != 1): logistic hibp i.CB age
 
@@ -368,8 +376,21 @@ svy, subpop(Men if DM != 1): logistic hibp i.CB age
 //       _cons |   .0281335   .0084027   -11.96   0.000     .0156593    .0505446
 //------------------------------------------------------------------------------
 
+// Sex 
+
+svy: logistic hibp i.CB i.Sex
+test 2.Sex
+
+svy: logistic hibp i.CB##i.Sex
+
+test 2.CB#2.Sex 3.CB#2.Sex // -> there is no need to stratify or use gender as an interaction
+
+svy, subpop(nonDM): logistic hibp i.CB i.Sex
 
 // Partner -> confounder
+
+svy: logistic hibp i.CB i.Married
+
 svy, subpop(Men): logistic hibp i.CB i.Married
 svy, subpop(Women): logistic hibp i.CB i.Married
 
@@ -395,6 +416,7 @@ svy, subpop(Women): logistic hibp i.CB i.Married
 //------------------------------------------------------------------------------
 
 test 1.Married
+svy: logistic hibp i.CB##i.Married
 
 svy, subpop(Men): logistic hibp i.CB##i.Married
 svy, subpop(Women): logistic hibp i.CB##i.Married
@@ -403,11 +425,14 @@ test 2.CB#1.Married 3.CB#1.Married // -> no interaction
 
 
 
+svy, subpop(nonDM): logistic hibp i.CB i.Married
 
 svy, subpop(Men if DM != 1): logistic hibp i.CB i.Married
 
 
 // Income -> not confounder for men but confounder for women
+svy: logistic hibp i.CB eqvinc 
+
 svy, subpop(Men): logistic hibp i.CB eqvinc 
 svy, subpop(Women): logistic hibp i.CB eqvinc 
 
@@ -433,17 +458,27 @@ svy, subpop(Women): logistic hibp i.CB eqvinc
 
 test eqvinc
 
+svy: logistic hibp i.CB##c.eqvinc 
+
+
 svy, subpop(Men): logistic hibp i.CB##c.eqvinc 
 svy, subpop(Women): logistic hibp i.CB##c.eqvinc 
 
-test 2.CB#c.eqvinc 3.CB#c.eqvinc // 0.0437 maybe some interaction but ignore
+test 2.CB#c.eqvinc 3.CB#c.eqvinc // 0.0113 maybe some interaction but ignore
+                                 // p = 0.3893 among nonDM so ignore again
 
+svy, subpop(nonDM): logistic hibp i.CB eqvinc 
 
 svy, subpop(Men if DM != 1): logistic hibp i.CB eqvinc 
+
+svy, subpop(nonDM): logistic hibp i.CB##c.eqvinc 
 
 
 
 // Education -> confounder
+
+svy: logistic hibp i.CB i.Edu 
+
 svy, subpop(Men): logistic hibp i.CB i.Edu 
 svy, subpop(Women): logistic hibp i.CB i.Edu 
 
@@ -470,12 +505,15 @@ svy, subpop(Women): logistic hibp i.CB i.Edu
 
 test 1.Edu
 
+svy: logistic hibp i.CB##i.Edu 
+
 svy, subpop(Men): logistic hibp i.CB##i.Edu 
 svy, subpop(Women): logistic hibp i.CB##i.Edu 
 
 test 2.CB#1.Edu 3.CB#1.Edu // no interaction
 
 
+svy, subpop(nonDM): logistic hibp i.CB i.Edu
 
 svy, subpop(Men if DM != 1): logistic hibp i.CB i.Edu
 
@@ -503,6 +541,7 @@ svy, subpop(Men if DM != 1): logistic hibp i.CB i.Edu
 
 
 // BMI -> confounder
+svy: logistic hibp i.CB bmi
 
 svy, subpop(Men): logistic hibp i.CB bmi
 svy, subpop(Women): logistic hibp i.CB bmi
@@ -528,6 +567,7 @@ svy, subpop(Women): logistic hibp i.CB bmi
 //------------------------------------------------------------------------------
 
 test bmi
+svy: logistic hibp i.CB##c.bmi
 
 svy, subpop(Men): logistic hibp i.CB##c.bmi
 svy, subpop(Women): logistic hibp i.CB##c.bmi
@@ -535,14 +575,19 @@ svy, subpop(Women): logistic hibp i.CB##c.bmi
 test 2.CB#c.bmival 3.CB#c.bmival // no ineraction
 
 
+svy, subpop(nonDM): logistic hibp i.CB bmi
 
 svy, subpop(Men  if DM != 1): logistic hibp i.CB bmi
 
-// paid employment
+// paid employment -> confounder
+svy: logistic hibp i.CB i.paid
+
+test 2.paid
 
 svy, subpop(Men): logistic hibp i.CB i.paid
 svy, subpop(Women): logistic hibp i.CB i.paid
 
+svy: logistic hibp i.CB##i.paid
 
 svy, subpop(Men): logistic hibp i.CB##i.paid
 svy, subpop(Women): logistic hibp i.CB##i.paid
@@ -551,6 +596,7 @@ test 2.CB#2.paid 3.CB#2.paid
 
 // Smoking -> confounder
 
+svy: logistic hibp i.CB i.cigsta3
 
 svy, subpop(Men): logistic hibp i.CB i.cigsta3
 svy, subpop(Women): logistic hibp i.CB i.cigsta3
@@ -580,18 +626,21 @@ svy, subpop(Women): logistic hibp i.CB i.cigsta3
 //------------------------------------------------------------------------------
 
 test 2.cigsta3 3.cigsta3
+svy: logistic hibp i.CB##i.cigsta3
 
 svy, subpop(Men): logistic hibp i.CB##i.cigsta3
 svy, subpop(Women): logistic hibp i.CB##i.cigsta3
 
 test 2.CB#2.cigsta3 2.CB#3.cigsta3 3.CB#2.cigsta3 3.CB#3.cigsta3 // no interaction
  
+svy, subpop(nonDM): logistic hibp i.CB i.cigsta3
 
 svy, subpop(Men  if DM != 1): logistic hibp i.CB i.cigsta3
 
 
 
 // Total energy intake -> confounder
+svy: logistic hibp i.CB EnergykJ
 
 svy, subpop(Men): logistic hibp i.CB EnergykJ
 svy, subpop(Women): logistic hibp i.CB EnergykJ
@@ -620,15 +669,18 @@ svy, subpop(Women): logistic hibp i.CB EnergykJ
 
 
 test EnergykJ
+svy: logistic hibp i.CB##c.EnergykJ
 
 svy, subpop(Men): logistic hibp i.CB##c.EnergykJ
 svy, subpop(Women): logistic hibp i.CB##c.EnergykJ
 
-test 2.CB#c.EnergykJkJ 3.CB#c.EnergykJkJ // no interaction
+test 2.CB#c.EnergykJ 3.CB#c.EnergykJ // no interaction
 
+svy, subpop(nonDM): logistic hibp i.CB EnergykJ
 
 
 // ethnicity -> not confounder
+svy: logistic hibp i.CB i.ethgrp2
 
 svy, subpop(Men): logistic hibp i.CB i.ethgrp2
 svy, subpop(Women): logistic hibp i.CB i.ethgrp2
@@ -654,17 +706,21 @@ svy, subpop(Women): logistic hibp i.CB i.ethgrp2
 //------------------------------------------------------------------------------
 
 test 2.eth
+svy: logistic hibp i.CB##i.ethgrp2
+
 svy, subpop(Men): logistic hibp i.CB##i.ethgrp2
 svy, subpop(Women): logistic hibp i.CB##i.ethgrp2
 test 2.CB#2.ethgrp2 // no interaction
 
 // Alcohol -> not confounder for men but confounder for women
 
+svy: logistic hibp i.CB Alcoholg
 
 svy, subpop(Men): logistic hibp i.CB Alcoholg
 svy, subpop(Women): logistic hibp i.CB Alcoholg
 
 test Alcoholg
+svy: logistic hibp i.CB##c.Alcoholg
 
 svy, subpop(Men): logistic hibp i.CB##c.Alcoholg
 svy, subpop(Women): logistic hibp i.CB##c.Alcoholg
@@ -672,15 +728,44 @@ test 2.CB#c.Alcoholg 3.CB#c.Alcoholg // no interaction
 
 // logMVP -> not confounder n
 
+svy: logistic hibp i.CB logMVP
 
 svy, subpop(Men): logistic hibp i.CB logMVP
 svy, subpop(Women): logistic hibp i.CB logMVP
 
 test logMVP
+svy: logistic hibp i.CB##c.logMVP
 
 svy, subpop(Men): logistic hibp i.CB##c.logMVP
 svy, subpop(Women): logistic hibp i.CB##c.logMVP
 test 2.CB#c.logMVP 3.CB#c.logMVP // no interaction
+
+
+////  Preliminary model includes all possible confounders in total sample
+
+svy: logistic hibp i.CB i.Sex age i.Married eqvinc i.Edu bmi i.paid i.cig EnergykJ logMVP
+
+svy: logistic hibp i.CB##i.Sex age i.Married eqvinc i.Edu bmi i.paid i.cig EnergykJ logMVP
+
+test 2.CB#2.Sex 3.CB#2.Sex
+
+lincom 2.CB 
+
+lincom 3.CB
+
+lincom 2.CB + 2.CB#2.Sex
+
+lincom 3.CB + 3.CB#2.Sex
+
+
+svy: logistic hibp i.CB i.Sex age i.Married eqvinc i.Edu wst i.paid i.cig EnergykJ logMVP
+
+estat gof
+
+svy, subpop(nonDM): logistic hibp i.CB i.Sex  age i.Married eqvinc i.Edu bmi i.paid i.cig EnergykJ logMVP
+
+svy, subpop(nonDM): logistic hibp i.CB i.Sex age i.Married eqvinc i.Edu wst i.paid i.cig EnergykJ logMVP
+
 
 
 
@@ -748,3 +833,6 @@ linktest
 test 2.CB#2.Sex 1.CB#2.Sex 2.CB#1.Sex
 test 1.CB#2.Sex
 test 2.CB#1.Sex
+
+
+log close
