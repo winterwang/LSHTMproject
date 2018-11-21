@@ -472,6 +472,9 @@ lincom 3.CB + 3.CB#1.hibp
 tab hibp CB, summarize(bmi) mean 
 bysort hibp CB: su bmi
 
+tab Sex CB, summarize(bmi) mean 
+
+
 tab hibp CB, summarize(wst) mean 
 bysort hibp CB: su wst
 
@@ -843,3 +846,5 @@ test [Energy22_6]1 = [Energy22_6]2 = [Energy22_6]3, mtest(b) // bonferroni-adjus
 
 svy, subpop(if Women & Married == 1): mean Alcoholg, over(CB)
 svy, subpop(if Women & Married == 0): mean age, over(CB)
+
+log close

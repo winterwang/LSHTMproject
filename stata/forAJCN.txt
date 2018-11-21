@@ -10454,4 +10454,13 @@ end of do-file
 {com}. 
 {txt}end of do-file
 
-{com}. 
+{com}. do "/tmp/SD16606.000000"
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}21 Nov 2018, 17:50:55
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
