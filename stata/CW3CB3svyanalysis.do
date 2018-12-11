@@ -103,6 +103,7 @@ svy: tabulate Education CB, row se ci format(%7.3f)
 svy: tabulate Education CB, col se ci format(%7.3f)
 
 
+
 *********************************************************
 //  nutritional distribution                           //
 //                                                     //
@@ -320,6 +321,7 @@ test [FatpctotE]1 = [FatpctotE]2 = [FatpctotE]3, mtest(b) // bonferroni-adjusted
 svy: mean Alcoholg, over(CB)
 test [Alcoholg]1 = [Alcoholg]2 = [Alcoholg]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
 
+svy, subpop(Men): mean Alcoholg, over(CB)
 
 svy: mean Alc6, over(CB)
 test [Alc6_9]1 = [Alc6_9]2 = [Alc6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
