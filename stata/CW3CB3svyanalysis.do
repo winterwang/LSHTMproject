@@ -47,7 +47,8 @@ tab Educ
 
 egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
 tab BMIcat
-
+gen Obesity = BMI >=  30
+tab Obesity
 **********************************************************
 // variables need to be log transfomred                 //
 **********************************************************
@@ -350,6 +351,7 @@ test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) // bonferr
 svy: tabulate cigsta3 CB, col se ci format(%7.3f)
 svy: tabulate dnnow CB, col se ci format(%7.3f)
 svy: tabulate hibp CB, col se ci format(%7.3f)
+svy: tabulate 
 
 
 sum MVP [weight=wti1to8] if CB ==1 , det
@@ -407,7 +409,7 @@ svy: mean bmi, over(CB)
 test [bmival]1 = [bmival]2 = [bmival]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
-svy: tabulate 
+svy: tabulate Obesity CB, col se ci format(%7.3f)
 
 
 *********************************************************
@@ -568,4 +570,5 @@ dis exp(.1359172)
 
 test [logTG]1 = [logTG]2 = [logTG]3, mtest(b)
 
+log close
 

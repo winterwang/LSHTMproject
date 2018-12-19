@@ -11634,4 +11634,557 @@ end of do-file
  {txt}closed on:  {res} 5 Dec 2018, 13:48:14
 {txt}{.-}
 {smcl}
+{txt}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}19 Dec 2018, 11:29:02
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. use "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,617       28.51      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. 
+. gen Obesity = BMI >=  30
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. 
+. gen logalc = ln(Alcoholg+1)
+{txt}
+{com}. summ logalc, detail
+
+                           {txt}logalc
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}      6,155
+{txt}25%    {res}        0              0       {txt}Sum of Wgt. {res}      6,155
+
+{txt}50%    {res} .8120407                      {txt}Mean          {res} 1.418113
+                        {txt}Largest       Std. Dev.     {res} 1.541663
+{txt}75%    {res} 2.862201       5.496676
+{txt}90%    {res}  3.58957       5.636581       {txt}Variance      {res} 2.376725
+{txt}95%    {res} 3.996199       5.856217       {txt}Skewness      {res}  .456594
+{txt}99%    {res} 4.558136       5.998341       {txt}Kurtosis      {res} 1.683058
+{txt}
+{com}. gen logMVP = ln(MVPAtime+1)
+{txt}(2,345 missing values generated)
+
+{com}. summ logMVP, detail
+
+                           {txt}logMVP
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res} .0082988              0
+{txt}10%    {res} .0219789              0       {txt}Obs         {res}      3,810
+{txt}25%    {res} .1515964              0       {txt}Sum of Wgt. {res}      3,810
+
+{txt}50%    {res} .4692903                      {txt}Mean          {res} .6409135
+                        {txt}Largest       Std. Dev.     {res} .6119579
+{txt}75%    {res} .9204094       2.695431
+{txt}90%    {res} 1.649997       2.725101       {txt}Variance      {res} .3744925
+{txt}95%    {res} 2.016542       2.737698       {txt}Skewness      {res} 1.159103
+{txt}99%    {res} 2.335029       2.740097       {txt}Kurtosis      {res} 3.616459
+{txt}
+{com}. gen logGlu = ln(Glucose)
+{txt}(3,225 missing values generated)
+
+{com}. summ logGlu, detail
+
+                           {txt}logGlu
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.386294       .9321641
+{txt} 5%    {res} 1.463255       1.050822
+{txt}10%    {res} 1.501853       1.121678       {txt}Obs         {res}      2,930
+{txt}25%    {res} 1.562346       1.134623       {txt}Sum of Wgt. {res}      2,930
+
+{txt}50%    {res} 1.631199                      {txt}Mean          {res} 1.657517
+                        {txt}Largest       Std. Dev.     {res}  .176031
+{txt}75%    {res} 1.706565       2.867899
+{txt}90%    {res} 1.818888       2.938103       {txt}Variance      {res} .0309869
+{txt}95%    {res} 1.950187       2.970414       {txt}Skewness      {res} 2.456614
+{txt}99%    {res} 2.384165       3.055886       {txt}Kurtosis      {res} 14.03048
+{txt}
+{com}. gen logA1C = ln(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. summ logA1C, detail
+
+                           {txt}logA1C
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.547562       1.029619
+{txt} 5%    {res} 1.589235       1.252763
+{txt}10%    {res} 1.609438       1.308333       {txt}Obs         {res}      3,020
+{txt}25%    {res} 1.667707       1.410987       {txt}Sum of Wgt. {res}      3,020
+
+{txt}50%    {res} 1.704748                      {txt}Mean          {res} 1.721032
+                        {txt}Largest       Std. Dev.     {res} .1128544
+{txt}75%    {res} 1.757858       2.459589
+{txt}90%    {res} 1.824549       2.509599       {txt}Variance      {res} .0127361
+{txt}95%    {res}  1.88707       2.624669       {txt}Skewness      {res} 2.343269
+{txt}99%    {res} 2.208274       2.667228       {txt}Kurtosis      {res} 14.51465
+{txt}
+{com}. gen logChol = ln(Chol)
+{txt}(3,071 missing values generated)
+
+{com}. summ logChol, detail
+
+                           {txt}logChol
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.029619       .6418539
+{txt} 5%    {res} 1.223775       .7419373
+{txt}10%    {res} 1.308333       .7884573       {txt}Obs         {res}      3,084
+{txt}25%    {res} 1.458615       .8329091       {txt}Sum of Wgt. {res}      3,084
+
+{txt}50%    {res} 1.609438                      {txt}Mean          {res} 1.602148
+                        {txt}Largest       Std. Dev.     {res} .2215028
+{txt}75%    {res} 1.757858       2.251292
+{txt}90%    {res}  1.88707       2.282382       {txt}Variance      {res} .0490635
+{txt}95%    {res}  1.94591       2.322388       {txt}Skewness      {res}-.2705115
+{txt}99%    {res} 2.079442       2.341806       {txt}Kurtosis      {res} 3.205754
+{txt}
+{com}. gen logLDL = ln(LDL)
+{txt}(3,113 missing values generated)
+
+{com}. gen logHDL = ln(HDL)
+{txt}(3,071 missing values generated)
+
+{com}. gen logTG = ln(Trig)
+{txt}(3,080 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. 
+. svyset area [pweight = wtn1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svy: logistic Obesity i.CB
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,414{txt}{col 49}Population size{col 67}={res}      6,155
+{txt}{col 49}Design df{col 67}= {res}     1,402
+{txt}{col 49}F({res}   2{txt},{res}   1401{txt}){col 67}= {res}      2.63
+{txt}{col 49}Prob > F{col 67}= {res}    0.0726
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}     Obesity{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .8458465{col 26}{space 2}  .096688{col 37}{space 1}   -1.46{col 46}{space 3}0.143{col 54}{space 4} .6759388{col 67}{space 3} 1.058463
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .7881911{col 26}{space 2} .0827535{col 37}{space 1}   -2.27{col 46}{space 3}0.024{col 54}{space 4}  .641483{col 67}{space 3} .9684515
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .5074231{col 26}{space 2} .0403914{col 37}{space 1}   -8.52{col 46}{space 3}0.000{col 54}{space 4} .4340653{col 67}{space 3} .5931783
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svy: tabulate hibp CB, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     3,642
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,312{txt}{col 49}Population size{col 67}={res} 4,976.1604
+{txt}{col 49}Design df{col 67}= {res}     1,300
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+hibp140_2 {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+        0 {c |}         {res}0.662          0.798          0.691          0.711
+          {txt}{c |}       {res}(0.019)        (0.018)        (0.015)        (0.010)
+          {txt}{c |} {res}[0.625,0.698]  [0.760,0.830]  [0.660,0.720]  [0.690,0.731]
+          {txt}{c |} 
+        1 {c |}         {res}0.338          0.202          0.309          0.289
+          {txt}{c |}       {res}(0.019)        (0.018)        (0.015)        (0.010)
+          {txt}{c |} {res}[0.302,0.375]  [0.170,0.240]  [0.280,0.340]  [0.269,0.310]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}  51.3363
+{txt}{col 5}Design-based{col 19}F({res}1.99{txt}, {res}2592.46{txt}){col 35}= {res}  14.7954{col 51}{txt}P = {res}0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svyset area [pweight = wti1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wti1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. // Analysing NDNS survey data in stata
+. // for CW3CB3 survey data analysis 
+. // date created: 2018-08-01
+. // manipulation of the data was done in R
+. 
+. // import data from CW3CB3_7sregss.dta
+. 
+. // date updated: 2018-11-20
+. // accepting markers idea using gender as an interaction term
+. 
+. log using "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt", append
+{err}log file already open
+{txt}{search r(604), local:r(604);}
+
+end of do-file
+
+{search r(604), local:r(604);}
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svy: tabulate hibp CB, col se ci formatd7.3f)
+{err}option {bf:)} not allowed
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svy: tabulate hibp CB, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     3,642
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,312{txt}{col 49}Population size{col 67}={res} 3,739.0361
+{txt}{col 49}Design df{col 67}= {res}     1,300
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+hibp140_2 {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+        0 {c |}         {res}0.666          0.789          0.688          0.708
+          {txt}{c |}       {res}(0.018)        (0.018)        (0.015)        (0.010)
+          {txt}{c |} {res}[0.629,0.701]  [0.751,0.823]  [0.658,0.717]  [0.687,0.728]
+          {txt}{c |} 
+        1 {c |}         {res}0.334          0.211          0.312          0.292
+          {txt}{c |}       {res}(0.018)        (0.018)        (0.015)        (0.010)
+          {txt}{c |} {res}[0.299,0.371]  [0.177,0.249]  [0.283,0.342]  [0.272,0.313]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}  42.6188
+{txt}{col 5}Design-based{col 19}F({res}1.99{txt}, {res}2591.07{txt}){col 35}= {res}  12.3707{col 51}{txt}P = {res}0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,617       28.51      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. gen Obesity = BMI >=  30
+{err}variable {bf}Obesity{sf} already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svy: tabulate Obesity CB, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,414{txt}{col 49}Population size{col 67}={res}      6,155
+{txt}{col 49}Design df{col 67}= {res}     1,402
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+  Obesity {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+        0 {c |}         {res}0.647          0.682          0.696          0.678
+          {txt}{c |}       {res}(0.015)        (0.016)        (0.012)        (0.009)
+          {txt}{c |} {res}[0.616,0.677]  [0.650,0.712]  [0.671,0.719]  [0.661,0.694]
+          {txt}{c |} 
+        1 {c |}         {res}0.353          0.318          0.304          0.322
+          {txt}{c |}       {res}(0.015)        (0.016)        (0.012)        (0.009)
+          {txt}{c |} {res}[0.323,0.384]  [0.288,0.350]  [0.281,0.329]  [0.306,0.339]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}  11.3891
+{txt}{col 5}Design-based{col 19}F({res}2.00{txt}, {res}2801.48{txt}){col 35}= {res}   3.1556{col 51}{txt}P = {res}0.0428
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svyset area [pweight = wtn1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtn1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. svy: tabulate Obesity CB, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,414{txt}{col 49}Population size{col 67}={res}      6,155
+{txt}{col 49}Design df{col 67}= {res}     1,402
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+  Obesity {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+        0 {c |}         {res}0.663          0.700          0.714          0.696
+          {txt}{c |}       {res}(0.018)        (0.018)        (0.014)        (0.009)
+          {txt}{c |} {res}[0.628,0.697]  [0.663,0.734]  [0.687,0.740]  [0.677,0.714]
+          {txt}{c |} 
+        1 {c |}         {res}0.337          0.300          0.286          0.304
+          {txt}{c |}       {res}(0.018)        (0.018)        (0.014)        (0.009)
+          {txt}{c |} {res}[0.303,0.372]  [0.266,0.337]  [0.260,0.313]  [0.286,0.323]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}  13.1661
+{txt}{col 5}Design-based{col 19}F({res}2.00{txt}, {res}2802.27{txt}){col 35}= {res}   2.6205{col 51}{txt}P = {res}0.0730
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/tmp/SD31825.000000"
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}19 Dec 2018, 11:38:14
+{txt}{.-}
+{smcl}
 {txt}{sf}{ul off}

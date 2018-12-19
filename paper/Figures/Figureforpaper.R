@@ -1009,7 +1009,7 @@ plot_grid(CB1, CB2, CB3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1,1,
 ## Visualisation of level 1 latent classes
 library(readr)
 library(tidyverse)
-CW2CB2 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW2CB2.txt",
+CW2CB2 <- read_table2("../LSHTMproject/results/Timeslots/NDNSslot_CW2CB2.txt",
                       col_names = FALSE)
 
 names(CW2CB2) <- c("Breakfast",
@@ -1333,7 +1333,7 @@ ggplot() +
 
 
 
-CW2CB4 <- read_table2("/home/wangcc-me/Documents/LSHTMproject/results/Timeslots/NDNSslot_CW2CB4.txt",
+CW2CB4 <- read_table2("../LSHTMproject/results/Timeslots/NDNSslot_CW2CB4.txt",
                       col_names = FALSE)
 
 names(CW2CB4) <- c("Breakfast",
@@ -1359,7 +1359,7 @@ names(CW2CB4) <- c("Breakfast",
                    "MLCJOINT",
                    "ID")
 
-
+epiDisplay::tabpct(CW2CB4$CB, CW2CB4$CW)
 
 
 chart.data <- CW2CB4 %>%
@@ -1383,7 +1383,7 @@ chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"),
                         labels = c("Class 2 days", "Class 1 days"))
 chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3", "4"),
                         labels = c("Individual\nclass 1\n(23.3%)",  "Individual\nclass 2\n(23.3%)",
-                                   "Individual\nclass 3\n(30.3%)", "Individual\nclass 4\n(77.0%)"))
+                                   "Individual\nclass 3\n(30.3%)", "Individual\nclass 4\n(23.1%)"))
 
 
 
