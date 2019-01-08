@@ -523,13 +523,23 @@ cls2 <- cls2 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
 cls3 <- cls3 + theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
 # cls3
 plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('I', 'II', 'III'), rel_heights=c(1,1,1.35))
-
+fig1paper <- plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1,1,2.0)) # for paper
 dev.copy2pdf(file="../gemini/Fig/Fig01.pdf",out.type="cairo", width=7.25, height=8)
 
-# Level 2 (CB=3) person classes distribution -------------------------------------
-library(plyr)
+title <- ggdraw() + draw_label("FIGURE. 1: Day level latent classes solution for carbohydrate diurnal eating patterns.", 
+                               fontface='bold', 
+                               size = 15)
+plot_grid(title, fig1paper, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+dev.copy2pdf(file="../gemini/Fig/Fig01forpaper.pdf",out.type="cairo", width=9, height=10) # for paper
 
+
+# Level 2 (CB=3) person classes distribution -------------------------------------
+# when producing this graph close the project without saving the .data and restart from 
+# next line
+library(plyr)
+library(tidyverse)
 library(scales)
+library(readr)
 
 CW3CB3 <- read_table2("results/Timeslots/NDNSslot_CW3CB3.txt",
                       col_names = FALSE)
@@ -594,7 +604,7 @@ library(ggthemr)
 # ggthemr("fresh", layout = "scientific")
 ggthemr("greyscale", layout = "scientific")
 
-ggplot() + 
+fig2paper <- ggplot() + 
   geom_bar(aes(y = pct, x = CB, fill = CW_new), data = chart.data, width = 0.6,
            stat="identity") +
   geom_text(data=chart.data, 
@@ -615,6 +625,13 @@ ggplot() +
 
 # producing graph for the poster ------------------------------------------
 
+library(cowplot)
+title <- ggdraw() + draw_label("FIGURE. 2: Multi-level latent classes solution for carbohydrate diurnal eating patterns:
+                               3 classes in day level, 3 classes in individual level.", 
+                               fontface='bold', 
+                               size = 13)
+plot_grid(title, fig2paper, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+dev.copy2pdf(file="../gemini/Fig/Fig02forpaper.pdf",out.type="cairo", width=7.5, height=5) # for paper
 
 
 dev.copy2pdf(file="../gemini/Fig/level2.pdf",out.type="cairo", width=7.28, height=4.85)

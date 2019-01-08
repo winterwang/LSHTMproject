@@ -110,6 +110,7 @@ Text$pos <- rep(1.10, 7)
 ggthemr_reset()
 
 library("ggsci")
+ggthemr("greyscale", layout = "scientific") # for paper
 
 
 CB1 <- ggplot() +
@@ -125,7 +126,7 @@ CB1 <- ggplot() +
             family="Atlas Grotesk Medium") +
   geom_text(aes(y=-0.03, x="12noon \n-2pm", label="3.1", fontface = "bold"), size = 3.5, colour = "black",
             family="Atlas Grotesk Medium") + 
-  theme_bw()  + scale_fill_nejm() +
+  theme_bw()  + #scale_fill_nejm() + # comment out for paper
   theme(#legend.position="right", #legend.direction="horizontal",
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
@@ -254,7 +255,7 @@ CB2 <- ggplot() +
             family="Atlas Grotesk Medium") + 
   geom_text(aes(y=-0.03, x="5pm \n-8pm", label="3.7", fontface = "bold"), size = 3.5, colour = "black",
             family="Atlas Grotesk Medium")  + 
-  theme_bw()  + scale_fill_nejm() +
+  theme_bw()  + # scale_fill_nejm() + # comment out for the paper
   theme(#legend.position="right", #legend.direction="horizontal",
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
@@ -339,8 +340,8 @@ CB3 <- ggplot() +
         axis.line = element_line(colour = "black"),
         plot.title=element_text(family="Atlas Grotesk Medium"),
         text=element_text(family="Atlas Grotesk Light")) +
-  scale_fill_manual(values = c("#BC3C29B2", "#0072B5B2", "#E18727B2", "#20854EB2"),
-                    labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
+  # scale_fill_manual(values = c("#BC3C29B2", "#0072B5B2", "#E18727B2", "#20854EB2"), # comment out for paper
+  #                   labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
   labs(title = "High carbohydrate eaters (43.1%) [eating early]", x = "Hours of the day", y = "Percentage") +
   theme(axis.text.x = element_text(angle = 14, hjust = 1)) +
   scale_y_continuous(labels=percent)
@@ -390,7 +391,7 @@ CB3 <- ggplot() +
             family="Atlas Grotesk Medium") + 
   geom_text(aes(y=-0.03, x="5pm \n-8pm", label="4.0", fontface = "bold"), size = 3.5, colour = "black",
             family="Atlas Grotesk Medium") + 
-  theme_bw()  + scale_fill_nejm() +
+  theme_bw()  + # scale_fill_nejm() + # comment out for the paper
   theme(legend.position="bottom", 
     legend.direction="horizontal",
     panel.grid.major = element_blank(),
@@ -435,7 +436,7 @@ CB3noleg <- ggplot() +
             family="Atlas Grotesk Medium") + 
   geom_text(aes(y=-0.03, x="5pm \n-8pm", label="4.0", fontface = "bold"), size = 3.5, colour = "black",
             family="Atlas Grotesk Medium") + 
-  theme_bw()  + scale_fill_nejm() +
+  theme_bw()  + # scale_fill_nejm() + # comment out for the paper
   theme(#legend.position="bottom", 
         #legend.direction="horizontal",
         panel.grid.major = element_blank(),
@@ -467,7 +468,7 @@ CB3noleg <- ggplot() +
 
 library(cowplot)
 leg <- get_legend(CB3 + theme(legend.direction = "horizontal",legend.justification="center" ,legend.box.just = "bottom"))
-abstract <- plot_grid(CB1, CB2, CB3noleg, ncol = 3, rel_widths =c(1.27,1.1,1.1), labels = c("A", "B", "C"))
+abstract <- plot_grid(CB1, CB2, CB3noleg, ncol = 3, rel_widths =c(1.12,1.1,1.1), labels = c("A", "B", "C"))
 
 # poster <- plot_grid(CB1, CB2, CB3noleg, ncol = 1, rel_heights = c(1,1,1), labels = c("A", "B", "C"))
 p <- plot_grid( abstract, leg, ncol = 1, rel_heights = c(1, .05))
@@ -476,6 +477,11 @@ p
 
 # producing the fig for poster --------------------------------------------
 
+title <- ggdraw() + draw_label("FIGURE. 3: The compositions of energy consumption within each time slot by individual level carbohydrate eating classes.", 
+                               fontface='bold', 
+                               size = 13)
+plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+dev.copy2pdf(file="../gemini/Fig/Fig03forpaper.pdf",out.type="cairo", width=18.5, height=5) # for paper
 
 dev.copy2pdf(file="../gemini/Fig/compo.pdf",out.type="cairo", width=16.14, height=4.56)
 
