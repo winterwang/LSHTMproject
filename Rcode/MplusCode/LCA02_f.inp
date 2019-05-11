@@ -1,14 +1,14 @@
-TITLE:    2-class at level 1 in Women
+TITLE:    2-class at level 1 in Year 1-4
           ordered polytomous variables for carb intake at each time slot over four
           days of NDNS survey 2008/09 - 2015/16
           variable 0 = not eating 
                    1 = eating & carb provided < 50% calorie
                    2 = eating & carb provided >= 50% calorie
-          code updated date: 2018-10-29
+          code updated date: 2019-05-06
           author: Chaochen Wang
 
 DATA:     
-File is "../Mplusdata/NDNS_Tslots_women.dat"; 
+File is "../Mplusdata/NDNS_Tslots_Y14.dat"; 
 
 
 VARIABLE:  NAMES = id DayNo Age H6_9 H9_12 H12_14 H14_17 H17_20 H20_22 
