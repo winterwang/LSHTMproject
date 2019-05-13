@@ -79,21 +79,23 @@ names(CW2CB4Y14) <- c("Breakfast",
                     "ID")
 
 
-names(CW2Y14) <- c("H6_9",
-                       "H9_12",
-                       "H12_14",
-                       "H14_17",
-                       "H17_20",
-                       "H20_22",
-                       "H22_6",
+names(CW2Y14) <- c("Breakfast", 
+                   "Morning.snack",
+                   "Lunch",
+                   "Afternoon.snack",
+                   "Dinner",
+                   "Before.bedtime.snack",
+                   "Midnight.food",
                        "ID",
                        "DAYNO",
                        "AGE",
                        "SEX",
                        "CPROB1",
                        "CPROB2",
-                       "C",
+                       "CW",
                        "ID_DAY")
+
+tab1(CW2Y14$CW)
 
 names(CW2CB2Y14) <- c("Breakfast", 
                       "Morning.snack",
@@ -147,7 +149,7 @@ names(CW2CB3Y14) <- c("Breakfast",
                       "ID_DAY",
                       "ID")
 
-pp <- CW2CB4Y14 %>% 
+pp <- CW2Y14 %>% 
   group_by(CW) %>% 
   summarise(Breakfast_0 = sum(Breakfast == 0)/length(Breakfast), 
             Breakfast_1 = sum(Breakfast == 1)/length(Breakfast), 
@@ -652,8 +654,87 @@ names(CW2CB4Y58) <- c("Breakfast",
                     "ID")
 
 tab1(CW2CB4Y58$CW)
+# CW2CB4Y58$CW : 
+#   Frequency Percent Cum. percent
+# 1            4808    44.7         44.7
+# 2            5945    55.3        100.0
+# Total     10753   100.0        100.0
 
-pp <- CW2CB4Y58 %>% 
+CW2CB6Y58 <- read_table2("Rcode/MplusOutput/Year58/CW2CB6.txt",
+                         col_names = FALSE)
+
+
+names(CW2CB6Y58) <- c("Breakfast", 
+                      "Morning.snack",
+                      "Lunch",
+                      "Afternoon.snack",
+                      "Dinner",
+                      "Before.bedtime.snack",
+                      "Midnight.food",
+                      "DAYNO",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CPROB7",
+                      "CPROB8",
+                      "CPROB9",
+                      "CPROB10",
+                      "CPROB11",
+                      "CPROB12",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID_DAY",
+                      "ID")
+
+tab1(CW2CB6Y58$CW)
+#CW2CB6Y58$CW : 
+        # Frequency Percent Cum. percent
+# 1            6003    55.8         55.8
+# 2            4750    44.2        100.0
+  # Total     10753   100.0        100.0
+
+
+
+CW2Y58  <- read_table2("Rcode/MplusOutput/Year58/LCA2.txt",
+                         col_names = FALSE)
+
+
+names(CW2Y58) <- c("Breakfast", 
+                      "Morning.snack",
+                      "Lunch",
+                      "Afternoon.snack",
+                      "Dinner",
+                      "Before.bedtime.snack",
+                      "Midnight.food",
+                       "ID",
+                      "DAYNO",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      #"CPROB3",
+                      #"CPROB4",
+                      #"CPROB5",
+                      #"CPROB6",
+                      #"CPROB7",
+                      #"CPROB8",
+                      #"CPROB9",
+                      #"CPROB10",
+                      #"CB",
+                      "CW",
+                      #"MLCJOINT",
+                      "ID_DAY")
+
+tab1(CW2Y58$CW)
+
+
+pp <- CW2Y58 %>% 
   group_by(CW) %>% 
   summarise(Breakfast_0 = sum(Breakfast == 0)/length(Breakfast), 
             Breakfast_1 = sum(Breakfast == 1)/length(Breakfast), 
@@ -746,7 +827,7 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days (45.8%)", x = "", 
+  labs(title = "Class 1 days (55.8%)", x = "", 
        y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
@@ -793,7 +874,7 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
   scale_linetype_manual(values=c("dotted", "dashed", "solid"),
                         labels =  c("No energy intake", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days (54.2%)", y = "Probability") + 
+  labs(title = "Class 2 days (44.2%)", y = "Probability") + 
   labs(shape="Responses to\ncarbohydrate intake", 
        linetype = "Responses to\ncarbohydrate intake")+
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +
@@ -821,73 +902,88 @@ cls2 <- cls2 + theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
 
 # cls3 <- cls3 + theme(plot.margin = unit(c(0, 0, 0, 0), "cm"))
 # cls3
-plot_grid(cls1, cls2, ncol = 1, labels = c('A', 'B'), rel_heights=c(1,1.8))
+plot_grid(cls1, cls2, ncol = 1, labels = c('A', 'B'), rel_heights=c(1,1.7))
 
-# Day level graph in Women, 3 day types, Times slots level 1 classes --------
+# Day level graph in year 5-8, 3 day types, Times slots level 1 classes --------
 
-CW3CB2f <- read_table2("Rcode/MplusOutput/MultilevelWomen/CW3CB2f.txt",
+CW3CB3Y58 <- read_table2("Rcode/MplusOutput/Year58/CW3CB3.txt",
+                         col_names = FALSE)
+
+names(CW3CB3Y58) <- c("Breakfast", 
+                      "Morning.snack",
+                      "Lunch",
+                      "Afternoon.snack",
+                      "Dinner",
+                      "Before.bedtime.snack",
+                      "Midnight.food",
+                      "DAYNO",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CPROB7",
+                      "CPROB8",
+                      "CPROB9",
+                      # "CPROB10",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID_DAY",
+                      "ID")
+tab1(CW3CB3Y58$CW)
+#CW3CB3Y58$CW : 
+        # Frequency Percent Cum. percent
+# 1            3879    36.1         36.1
+# 2            4529    42.1         78.2
+# 3            2345    21.8        100.0
+  # Total     10753   100.0        100.0
+
+
+CW3Y58  <- read_table2("Rcode/MplusOutput/Year58/LCA3.txt",
                        col_names = FALSE)
 
-names(CW3CB2f) <- c("Breakfast", 
-                    "Morning.snack",
-                    "Lunch",
-                    "Afternoon.snack",
-                    "Dinner",
-                    "Before.bedtime.snack",
-                    "Midnight.food",
-                    "DAYNO",
-                    "AGE",
-                    # "SEX",
-                    "CPROB1",
-                    "CPROB2",
-                    "CPROB3",
-                    "CPROB4",
-                    "CPROB5",
-                    "CPROB6",
-                    # "CPROB7",
-                    # "CPROB8",
-                    # "CPROB9",
-                    # "CPROB10",
-                    "CB",
-                    "CW",
-                    "MLCJOINT",
-                    "ID_DAY",
-                    "ID")
 
-tab1(CW3CB2f$CW)
+names(CW3Y58) <- c("Breakfast", 
+                   "Morning.snack",
+                   "Lunch",
+                   "Afternoon.snack",
+                   "Dinner",
+                   "Before.bedtime.snack",
+                   "Midnight.food",
+                   "ID",
+                   "DAYNO",
+                   "AGE",
+                   "SEX",
+                   "CPROB1",
+                   "CPROB2",
+                   "CPROB3",
+                   #"CPROB4",
+                   #"CPROB5",
+                   #"CPROB6",
+                   #"CPROB7",
+                   #"CPROB8",
+                   #"CPROB9",
+                   #"CPROB10",
+                   #"CB",
+                   "CW",
+                   #"MLCJOINT",
+                   "ID_DAY")
 
-CW3CB3f <- read_table2("Rcode/MplusOutput/MultilevelWomen/CW3CB3f.txt",
-                       col_names = FALSE)
+tab1(CW3Y58$CW)
 
-names(CW3CB3f) <- c("Breakfast", 
-                    "Morning.snack",
-                    "Lunch",
-                    "Afternoon.snack",
-                    "Dinner",
-                    "Before.bedtime.snack",
-                    "Midnight.food",
-                    "DAYNO",
-                    "AGE",
-                    # "SEX",
-                    "CPROB1",
-                    "CPROB2",
-                    "CPROB3",
-                    "CPROB4",
-                    "CPROB5",
-                    "CPROB6",
-                    "CPROB7",
-                    "CPROB8",
-                    "CPROB9",
-                    # "CPROB10",
-                    "CB",
-                    "CW",
-                    "MLCJOINT",
-                    "ID_DAY",
-                    "ID")
+#CW3Y58$CW : 
+        # Frequency Percent Cum. percent
+# 1            4812    44.8         44.8
+# 2            3449    32.1         76.8
+# 3            2492    23.2        100.0
+  # Total     10753   100.0        100.0
 
-tab1(CW3CB3f$CW)
 
-pp <- CW3CB2f %>% 
+pp <- CW3CB3Y58 %>% 
   group_by(CW) %>% 
   summarise(Breakfast_0 = sum(Breakfast == 0)/length(Breakfast), 
             Breakfast_1 = sum(Breakfast == 1)/length(Breakfast), 
@@ -980,7 +1076,7 @@ cls1 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days - High percentage carbohydrate day (40.8%)", x = "", 
+  labs(title = "Class 1 days - High percentage carbohydrate day (36.1%)", x = "", 
        y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
@@ -989,7 +1085,7 @@ cls1 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
                      labels = c("6\nam", "9\nam", "12\nnoon", "2\npm",
                                 "5\npm", "8\npm", "10\npm", "6\nam"))
 
-cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
+cls2 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
                                                linetype = Carbo)) + 
   geom_line(size = 1.2) +
   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
@@ -1024,7 +1120,7 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days - Low percentage carbohydrate day (19.2%)", x = "", 
+  labs(title = "Class 2 days - Low percentage carbohydrate day (21.8%)", x = "", 
        y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
@@ -1037,7 +1133,7 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
 
 
 
-cls3 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo, 
+cls3 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo, 
                                                linetype = Carbo)) + 
   geom_line(size = 1.2) +
   annotate("rect", xmin = 6, xmax = 9, ymin = 0, ymax = 1.00, 
@@ -1074,7 +1170,7 @@ cls3 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
   scale_linetype_manual(values=c("dotted", "dashed", "solid"),
                         labels =  c("No energy intake", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 3 days - Regular meals days (40.0%)", y = "Probability") + 
+  labs(title = "Class 3 days - Regular meals days (42.1%)", y = "Probability") + 
   labs(shape="Responses to\ncarbohydrate intake", 
        linetype = "Responses to\ncarbohydrate intake")+
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +
@@ -1113,44 +1209,45 @@ plot_grid(cls1, cls2, cls3, ncol = 1, labels = c('A', 'B', 'C'), rel_heights=c(1
 
 
 
-# Level 2 (CB=5) in men person classes distribution -------------------------------------
+# Level 2 (CB=4) in person classes distribution, Year 1-4-------------------------------------
 library(plyr)
 library(readr)
 library(scales)
 library(tidyverse)
-CW2CB5m <- read_table2("Rcode/MplusOutput/MultilevelMen/CW2CB5m.txt",
-                       col_names = FALSE)
 
-names(CW2CB5m) <- c("Breakfast", 
-                    "Morning.snack",
-                    "Lunch",
-                    "Afternoon.snack",
-                    "Dinner",
-                    "Before.bedtime.snack",
-                    "Midnight.food",
-                    "ID_DAYNO",
-                    "AGE",
-                    # "SEX",
-                    "CPROB1",
-                    "CPROB2",
-                    "CPROB3",
-                    "CPROB4",
-                    "CPROB5",
-                    "CPROB6",
-                    "CPROB7",
-                    "CPROB8",
-                    "CPROB9",
-                    "CPROB10",
-                    "CB",
-                    "CW",
-                    "MLCJOINT",
-                    "ID_DAY",
-                    "ID")
+CW2CB4Y14 <- read_table2("Rcode/MplusOutput/Year14/CW2CB4.txt",
+                         col_names = FALSE)
 
 
+names(CW2CB4Y14) <- c("Breakfast", 
+                      "Morning.snack",
+                      "Lunch",
+                      "Afternoon.snack",
+                      "Dinner",
+                      "Before.bedtime.snack",
+                      "Midnight.food",
+                      "DAYNO",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CPROB7",
+                      "CPROB8",
+                      #"CPROB9",
+                      #"CPROB10",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID_DAY",
+                      "ID")
 
+epiDisplay::tab1(CW2CB4Y14$CB)
 
-chart.data <- CW2CB5m %>% 
+chart.data <- CW2CB4Y14 %>% 
   group_by(CB, CW) %>% 
   tally %>% 
   group_by(CB) %>% 
@@ -1171,12 +1268,11 @@ chart.data <- ddply(chart.data, .(CB),
 
 chart.data$CW <- factor(chart.data$CW, levels = c("2", "1"),
                         labels = c("Class 2 days", "Class 1 days"))
-chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3", "4", "5"), 
-                        labels = c("Individual\n class 1\n(16.5%)",  
-                                   "Individual\n class 2\n(18.4%)",
-                                   "Individual\n class 3\n(20.8%)", 
-                                   "Individual\n class 4\n(21.5%)",
-                                   "Individual\n class 5\n(22.5%)"))
+chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3", "4"), 
+                        labels = c("Individual\n class 1\n(26.0%)",  
+                                   "Individual\n class 2\n(23.5%)",
+                                   "Individual\n class 3\n(21.5%)", 
+                                   "Individual\n class 4\n(29.0%)"))
 
 
 
@@ -1204,76 +1300,83 @@ ggplot() +
   scale_y_continuous(labels=percent)
 
 
-# Level 2 (CB=3) in men person classes distribution -------------------------------------
+# Level 2 (CB=3) in person classes distribution, Year 1-4 -------------------------------------
 
-CW3CB3m <- read_table2("Rcode/MplusOutput/MultilevelMen/CW3CB3m.txt",
-                       col_names = FALSE)
+CW3CB3Y14 <- read_table2("Rcode/MplusOutput/Year14/CW3CB3.txt",
+                         col_names = FALSE)
 
-names(CW3CB3m) <- c("Breakfast", 
-                    "Morning.snack",
-                    "Lunch",
-                    "Afternoon.snack",
-                    "Dinner",
-                    "Before.bedtime.snack",
-                    "Midnight.food",
-                    "ID_DAYNO",
-                    "AGE",
-                    # "SEX",
-                    "CPROB1",
-                    "CPROB2",
-                    "CPROB3",
-                    "CPROB4",
-                    "CPROB5",
-                    "CPROB6",
-                    "CPROB7",
-                    "CPROB8",
-                    "CPROB9",
-                    # "CPROB10",
-                    "CB",
-                    "CW",
-                    "MLCJOINT",
-                    "ID_DAY",
-                    "ID")
+names(CW3CB3Y14) <- c("Breakfast", 
+                      "Morning.snack",
+                      "Lunch",
+                      "Afternoon.snack",
+                      "Dinner",
+                      "Before.bedtime.snack",
+                      "Midnight.food",
+                      "DAYNO",
+                      "AGE",
+                      "SEX",
+                      "CPROB1",
+                      "CPROB2",
+                      "CPROB3",
+                      "CPROB4",
+                      "CPROB5",
+                      "CPROB6",
+                      "CPROB7",
+                      "CPROB8",
+                      "CPROB9",
+                      # "CPROB10",
+                      "CB",
+                      "CW",
+                      "MLCJOINT",
+                      "ID_DAY",
+                      "ID")
 
+epiDisplay::tab1(CW3CB3Y14$CB)
 
+#CW3CB3Y14$CB : 
+        # Frequency Percent Cum. percent
+# 1            6339    46.2         46.2
+# 2            3714    27.1         73.2
+# 3            3677    26.8        100.0
+  # Total     13730   100.0        100.0
 
-
-chart.data <- CW3CB3m %>% 
+chart.data <- CW3CB3Y14 %>% 
   group_by(CB, CW) %>% 
   tally %>% 
   group_by(CB) %>% 
   mutate(pct = n/sum(n))
 
-
-chart.data$CW_new <- 0
-chart.data$CW_new[chart.data$CW == 1] <- 3
-chart.data$CW_new[chart.data$CW == 2] <- 1
-chart.data$CW_new[chart.data$CW == 3] <- 2
-
-
+# chart.data$CW_new <- 0
+# chart.data$CW_new[chart.data$CW == 1] <- 3
+# chart.data$CW_new[chart.data$CW == 2] <- 1
+# chart.data$CW_new[chart.data$CW == 3] <- 2
 # chart.data <- chart.data[order(chart.data$CB, chart.data$CW),]
-# chart.data <- ddply(chart.data, .(CB), 
-#                     transform, pos = cumsum(pct) - (0.5 * pct)) 
-# 
+# chart.data <- ddply(chart.data, .(CB),
+#                    transform, pos = cumsum(pct) - (0.5 * pct))
 
 
-chart.data$CW_new <- factor(chart.data$CW_new, levels = c("1", "3", "2"),
+chart.data$CW <- factor(chart.data$CW, levels = c("1", "3", "2"),
                             labels = c("Regular\n meals days",
                                        "Low carbo-\nhydrate days",
                                        "High carbo-\nhydrate days"))
 chart.data$CB <- factor(chart.data$CB, levels = c("3", "1", "2"), 
-                        labels = c("Low CH\n eaters\n(30.6%)",  
-                                   "Moderate CH\n eaters\n(33.5%)",
-                                   "High CH\n eaters\n(35.9%)"))
+                        labels = c("Low CH\n eaters\n(27.1%)",  
+                                   "Moderate CH\n eaters\n(26.8%)",
+                                   "High CH\n eaters\n(46.2%)"))
 
-chart.data$pos[1] <- 0.3943787 + 0.2692308 - 0.5*0.3943787
-chart.data$pos[2] <- 0.3943787 + 0.2692308 + 0.3363905 - 0.5*0.3363905
-chart.data$pos[3] <- 0.2692308 - 0.5*0.2692308
-chart.data$pos[4] <- chart.data$pct[4] + chart.data$pct[6] - 0.5*chart.data$pct[4]
-chart.data$pos[5] <- chart.data$pct[4] + chart.data$pct[6] + chart.data$pct[5] - 0.5*chart.data$pct[5]
+# # chart.data <- chart.data[order(chart.data$CB, chart.data$CW),]
+# chart.data <- ddply(chart.data, .(CB), 
+#                     transform, pos = cumsum(pct) - (0.5 * pct)) 
+
+
+chart.data$pos[1] <- 0.349 + 0.358 + 0.293 - 0.5*0.349
+chart.data$pos[2] <- 0.293 + 0.358 - 0.5*0.358
+chart.data$pos[3] <- 0.293 - 0.5*0.293
+chart.data$pos[4] <- chart.data$pct[4]  + chart.data$pct[5] + chart.data$pct[6] - 0.5*chart.data$pct[4]
+chart.data$pos[5] <- chart.data$pct[5] + chart.data$pct[6] - 0.5*chart.data$pct[5]
 chart.data$pos[6] <- chart.data$pct[6] - 0.5*chart.data$pct[6]
-chart.data$pos[7] <- chart.data$pct[7] + chart.data$pct[9] - 0.5*chart.data$pct[7]
-chart.data$pos[8] <- chart.data$pct[7] + chart.data$pct[9] + chart.data$pct[8] - 0.5*chart.data$pct[8]
+chart.data$pos[7] <- chart.data$pct[7] + chart.data$pct[8] + chart.data$pct[9] - 0.5*chart.data$pct[7]
+chart.data$pos[8] <- chart.data$pct[8] + chart.data$pct[9] - 0.5*chart.data$pct[8]
 chart.data$pos[9] <- chart.data$pct[9] - 0.5*chart.data$pct[9]
 
 
@@ -1283,7 +1386,7 @@ library(ggthemr)
 ggthemr("greyscale", layout = "scientific")
 
 ggplot() + 
-  geom_bar(aes(y = pct, x = CB, fill = CW_new), data = chart.data, width = 0.6,
+  geom_bar(aes(y = pct, x = CB, fill = CW), data = chart.data, width = 0.6,
            stat="identity") +
   geom_text(data=chart.data, 
             aes(x = CB, y = pos, fontface = "bold",
