@@ -12,10 +12,10 @@
 // date updated: 2018-11-20
 // accepting markers idea using gender as an interaction term
 
-log using "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt", append
+log using "/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt", append
 
 // use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
-use "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
 
 
 

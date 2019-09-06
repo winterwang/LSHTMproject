@@ -10,20 +10,23 @@ library(kableExtra)
 library(haven)
 library(naniar)
 
+path <- c("~/pCloud Drive/LSHTM/study/project/6533stata_NDNSRP20190719/UKDA-6533-stata/stata/stata11_se/")
 
 
-personlevel <- read_dta("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr1-4a_personleveldietarydata_uk.dta")
-personlevel56 <- read_dta("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr5-6a_personleveldietarydata.dta")
-personlevel78 <- read_dta("/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/ndns_rp_yr7-8a_personleveldietarydata.dta")
-head(personlevel$Ndays)
-
+personlevel <- read_dta(paste(path, "ndns_rp_yr1-4a_indiv_uk.dta", sep = ""))
+personlevel56 <- read_dta(paste(path, "ndns_rp_yr5-6a_personleveldietarydata_v2.dta", sep = ""))
+personlevel78 <- read_dta(paste(path, "ndns_rp_yr7-8a_personleveldietarydata.dta", sep = ""))
+head(personlevel$DiaryD) # number of days completed
+head(personlevel56$Ndays)
+head(personlevel78$NDays)
 
 names(personlevel)[names(personlevel)=="seriali"] <- "ID"
 names(personlevel56)[names(personlevel56)=="seriali"] <- "ID"
 names(personlevel78)[names(personlevel78)=="seriali"] <- "ID"
 
 personlevel <- personlevel %>% 
-  select(ID, Ndays)
+  select(ID, DiaryD) %>% 
+  rename(Ndays = DiaryD)
 
 personlevel56 <- personlevel56 %>% 
   select(ID, Ndays)
@@ -38,9 +41,9 @@ NDAYS$ID <- as.numeric(NDAYS$ID)
 
 
 
-CW3idday <- read_csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/CW3idday.csv")
+CW3idday <- read_csv("../LSHTMproject/Tablecsv/CW3idday.csv")
 CW3idday$DayofWeek[CW3idday$ID_DAY == 31012251000] <- "Tuesday"
-Energy_slots <- read_csv("/home/wangcc-me/Documents/LSHTMproject/Tablecsv/Energy_slots.csv")
+Energy_slots <- read_csv("../LSHTMproject/Tablecsv/Energy_slots.csv")
 Energy_slots <- Energy_slots %>% 
   rename(ID = id)
 
@@ -270,11 +273,12 @@ IntakeSlots <- Energysum %>%
   left_join(NDAYS, by = "ID")
 
 IntakeSlots$ID <- as.numeric(IntakeSlots$ID)
+IntakeSlots$Ndays <- as.numeric(IntakeSlots$Ndays)
 
+# IntakeSlots$Energy6_9 <- IntakeSlots$Energy6_9/(IntakeSlots$Ndays)
+IntakeSlots <- as.data.frame(IntakeSlots)
 
-IntakeSlots$Energy6_9 <- IntakeSlots$Energy6_9/(IntakeSlots$Ndays)
-
-for (i in 3:57){
+for (i in 2:length(IntakeSlots)){
   IntakeSlots[, i] <- IntakeSlots[, i]/(IntakeSlots$Ndays)
 }
 
@@ -291,7 +295,7 @@ CW3CB3_7regss <- CW3CB3_7regss[order(CW3CB3_7regss$ID),]
 IntakeSlots <- IntakeSlots[order(IntakeSlots$ID),]
 
 
-write_dta(CW3CB3_7regss, "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta")
+write_dta(CW3CB3_7regss, "../LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta")
 
 
 

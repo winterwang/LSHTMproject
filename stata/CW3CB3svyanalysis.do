@@ -1,17 +1,20 @@
 // Analysing NDNS survey data in stata
 // for CW3CB3 survey data analysis 
 // date created: 2018-08-01
+// date updated: 2018-11-20
+// date updated: 2019-09-05
 // manipulation of the data was done in R
 
 // import data from CW3CB3_7sregss.dta
 
-// date updated: 2018-11-20
 // accepting markers idea using gender as an interaction term
 
-log using "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt", append
+// log using "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/stata/forAJCN.txt", append
+log using "/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt", append
 
 // use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
-use "/home/takeshi/ドキュメント/githubprojects/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear
 
 
 label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
@@ -109,6 +112,24 @@ svy: tabulate Education CB, col se ci format(%7.3f)
 //  nutritional distribution                           //
 //                                                     //
 *********************************************************
+gen Totfibre = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
+svy: mean Totfibre, over(CB)
+test [Totfibre]1 = [Totfibre]2 = [Totfibre]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+gen TotNMES = NMES6 + NMES9 + NMES12 + NMES14 + NMES17 + NMES20 + NMES22 
+svy: mean TotNMES, over(CB)
+test [TotNMES]1 = [TotNMES]2 = [TotNMES]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
+gen TotSugar = Sugar6 + Sugar9 + Sugar12 + Sugar14 + Sugar17 + Sugar20 + Sugar22 
+svy: mean TotSugar, over(CB)
+test [TotSugar]1 = [TotSugar]2 = [TotSugar]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+gen TotStarch = Starch6 + Starch9 + Starch12 + Starch14 + Starch17 + Starch20 + Starch22 
+svy: mean TotStarch, over(CB)
+test [TotSugar]1 = [TotSugar]2 = [TotSugar]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+
 
 
 svy: mean EnergykJ, over(CB)
@@ -165,7 +186,7 @@ svy: mean Sugar6, over(CB)
 test [Sugar6_9]1 = [Sugar6_9]2 = [Sugar6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
-
+svy: mean Sugar, over(
 svy: mean Sugar9, over(CB)
 test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
@@ -434,6 +455,8 @@ test [Trig]1 = [Trig]2 = [Trig]3, mtest(b) // bonferroni-adjusted p-values for m
 
 
 gen DM = A1C <= 6.5 if !missing(A1C)
+
+tab DM
 
 
 svy, subpop(DM): mean Glucose, over(CB)
