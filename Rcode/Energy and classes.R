@@ -260,6 +260,8 @@ names(Alcsum) <- c("ID", "Alc6_9", "Alc9_12", "Alc12_14", "Alc14_17",
 #             MeanProt = mean(MeanProt), 
 #             MeanAlc = mean(MeanAlc))
 
+
+
 IntakeSlots <- Energysum %>% 
   left_join(Carbsum, by = "ID") %>% 
   left_join(Sugarsum, by = "ID") %>% 
@@ -282,8 +284,12 @@ for (i in 2:length(IntakeSlots)){
   IntakeSlots[, i] <- IntakeSlots[, i]/(IntakeSlots$Ndays)
 }
 
+# import data with DM diagnosis -------------------------------------------
 
+Ind1_8DM <- read_dta("../LSHTMproject/Rcode/Ind1_9_DM.dta")
 
+IntakeSlots <- IntakeSlots %>% 
+  left_join(Ind1_8DM, by = "ID")
 
 library(haven)
 CW3CB3_7regss <- read_dta("Rcode/CW3CB3_7regss.dta")
@@ -294,7 +300,7 @@ CW3CB3_7regss <- CW3CB3_7regss %>%
 CW3CB3_7regss <- CW3CB3_7regss[order(CW3CB3_7regss$ID),]
 IntakeSlots <- IntakeSlots[order(IntakeSlots$ID),]
 
-
+names(CW3CB3_7regss)[c(9, 121)] <- c("DM_1", "DM_2")
 write_dta(CW3CB3_7regss, "../LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta")
 
 

@@ -9,6 +9,7 @@
 log using "/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt", append
 
 use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear // with CHO details
 
 
 
@@ -49,10 +50,15 @@ gen Obesity = BMI >=  30
 tab Obesity
 
 
-gen DM = A1C > 6.5 if !missing(A1C)
+gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if !missing(A1C)
+gen DM_undiag = DM4cat == 2 if !missing(DM4cat)
+gen DM_forundiag = DM4cat != 3 if !missing(DM4cat)
 gen nonDM = A1C <= 6.5 if !missing(A1C)
+gen DM_a1conly = A1C >= 6.5 if !missing(A1C)
 
 tab DM
+tab DM_a1c
+tab DM4cat
 
 
 
@@ -460,7 +466,38 @@ svy: logistic DM i.CB i.Sex age bmi i.paid EnergykJ logMVP
 svy: logistic DM i.CB i.Sex age bmi i.paid EnergykJ
 svy: logistic DM i.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
 svy: logistic DM ib3.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
+svy: logistic DM_a ib3.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
 svy: logistic DM ib3.CB i.Sex age wstval i.cigsta3 Alcoholg EnergykJ 
+svy: logistic DM_a ib3.CB i.Sex age wstval i.cigsta3 Alcoholg EnergykJ 
+
+
+
+
+// same analysis for undiagnosed DM
+
+tabulate DM4cat CB, col
+tabulate DM_undiag CB if DM_forundi, col 
+svy: tabulate DM_undiag CB , col se ci format(%7.3f)
+
+
+svy, subpop(DM_forundi): logistic DM_undiag ib3.CB
+svy, subpop(DM_forundi): logistic DM_undiag ib3.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
+svy, subpop(DM_forundi): logistic DM_undiag ib3.CB i.Sex age wstval i.cigsta3 Alcoholg EnergykJ 
+
+
+// individual weighting for Diabetes diagnosed endpoint logistic regression 
+table DM_1
+svyset area [pweight = wti1to8], strata(gor)
+svydescribe wti // describe the weighted data set
+
+gen DM_dia = DM4cat == 3 if !missing(DM4cat)
+tab DM_dia CB, col
+svy: tabulate DM_dia CB, col se ci format(%7.3f)
+
+svy: logistic DM_dia ib3.CB
+svy: logistic DM_dia ib3.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
+svy: logistic DM_dia ib3.CB i.Sex age wstval i.cigsta3 Alcoholg EnergykJ 
+
 
 
 
