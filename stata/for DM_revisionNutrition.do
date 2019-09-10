@@ -50,7 +50,7 @@ gen Obesity = BMI >=  30
 tab Obesity
 
 
-gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if !missing(A1C)
+gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
 gen DM_undiag = DM4cat == 2 if !missing(DM4cat)
 gen DM_forundiag = DM4cat != 3 if !missing(DM4cat)
 gen nonDM = A1C <= 6.5 if !missing(A1C)

@@ -386,7 +386,7 @@ cls1 <- ggplot(pp_long[pp_long$CW == 1, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 1 days - High percentage carbohydrate day (39.5%)", x = "", 
+  labs(title = "Class 1 days - High percentage CH day (39.5%)", x = "", 
        y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
@@ -430,7 +430,7 @@ cls2 <- ggplot(pp_long[pp_long$CW == 2, ], aes(y = Prob, x=Time, group = Carbo,
   ) + 
   scale_linetype_manual(values=c("dotted", "dashed", "solid")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 2 days - Low percentage carbohydrate day (20.4%)", x = "", 
+  labs(title = "Class 2 days - Low percentage CH day (20.4%)", x = "", 
        y = "Probability",
        color = "Carbohydrate\nintake") + 
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) + 
@@ -480,7 +480,7 @@ cls3 <- ggplot(pp_long[pp_long$CW == 3, ], aes(y = Prob, x=Time, group = Carbo,
       scale_linetype_manual(values=c("dotted", "dashed", "solid"),
                             labels =  c("No energy intake", "Carbohydrate < 50%", "Carbohydrate >= 50%")) + 
   # theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
-  labs(title = "Class 3 days - Regular meals day (40.1%)", y = "Probability") + 
+  labs(title = "Class 3 days - Regular CH day (40.1%)", y = "Probability") + 
   labs(shape="Responses to\ncarbohydrate intake", 
        linetype = "Responses to\ncarbohydrate intake")+
   # scale_shape_discrete(labels = c("Not eating", "< 50%", ">= 50%")) +
@@ -492,15 +492,16 @@ theme(plot.subtitle = element_text(vjust = 1),
     plot.caption = element_text(family = "Atlas Grotesk Medium", 
         size = 10, face = "bold", colour = "gray24", 
         hjust = 0, vjust = 1)) +
- labs(x = "Hours of the day", 
-      caption = "Note:
-Grey, and white shades indicate the 7 time slots;
-Carbohydrate (CH) < 50% indicates CH contributed less than 50% total energy intake;
-Carbohydrate >= 50% indicates CH contributed higher or equal to 50% total
-      energy intake.")
+ labs(x = "Hours of the day") + 
+  theme(plot.caption = element_text(family = "sans", 
+    colour = "gray0")) +
+  labs(caption = "Note:
+            Grey, and white shades indicate the 7 time slots;
+            Carbohydrate (CH) < 50% indicates CH contributed less than 50% total energy intake;
+            Carbohydrate >= 50% indicates CH contributed higher or equal to 50% total energy intake.")
 
 
-library(cowplot)
+library(cowplot); theme_set(theme_cowplot())
 cls1 <- cls1 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
 cls2 <- cls2 + theme(plot.margin = unit(c(0, 0, -0.5, 0), "cm"))
 # plot_grid(cls1, cls2, rel_heights = c(1,1), ncol = 1)
@@ -591,7 +592,7 @@ chart.data <- ddply(chart.data, .(CB),
 
 
 chart.data$CW_new <- factor(chart.data$CW_new, levels = c("3", "2", "1"), 
-                            labels = c("Regular\nmeals day", "Low % CH day", "High % CH day"))
+                            labels = c("Class 3", "Class 2", "Class 1"))
 chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"), 
                         labels = c("Low CH\n eaters\n(28.1%)",  
                                    "Moderate CH\n eaters\n(28.8%)", 
@@ -610,17 +611,17 @@ fig2paper <- ggplot() +
   geom_text(data=chart.data, 
             aes(x = CB, y = pos, fontface = "bold",
                 label = paste0(sprintf("%1.1f", pct*100),"%")),
-            size=4, colour="white", family="Atlas Grotesk Medium") +
+            size=4, colour="white") +
+  labs(title = " ", x = "Between Individual Classes", y = "Percentage") +
+  scale_y_continuous(labels=percent) +
   theme(legend.position="right", #legend.direction="horizontal",
         legend.title = element_blank(),
         axis.text = element_text(size = 15, face = "bold"),
-        legend.text = element_text(size = 12, face = "bold"), 
+        legend.text = element_text(size = 12, face = "bold"),
         axis.title = element_text(size = 18, face = "bold"),
-        axis.line = element_line(colour = "black"),
-        plot.title=element_text(family="Atlas Grotesk Medium"),
-        text=element_text(family="Atlas Grotesk Light")) +
-  labs(title = " ", x = "Between Individual Classes", y = "Percentage") +
-  scale_y_continuous(labels=percent)
+        axis.line = element_line(colour = "black"))
+        # plot.title=element_text(family="Atlas Grotesk Medium"),
+        # text=element_text(family="Atlas Grotesk Light"))
 
 
 # producing graph for the poster ------------------------------------------
@@ -850,22 +851,23 @@ CB1 <- ggplot() +
   geom_bar(aes(y = pct, x = Slot, fill = Sources), data = CB1sources, width = 0.6,
            stat="identity") +
   geom_text(data=CB1sources, aes(x = Slot, y = pos, label = paste0(sprintf("%1.1f", pct*100),"%")),
-  size=4, colour="black", family="Atlas Grotesk Medium") +
+  size=4, colour="black") +
   geom_text(data= Text, aes(x = Slot, y = pos, label = TotalEner), 
-            size = 4, colour = "black", family="Atlas Grotesk Medium") +
+            size = 4, colour = "black") +
   theme(#legend.position="right", #legend.direction="horizontal",
         legend.title = element_blank(),
         axis.text = element_text(size = 15),
         legend.text = element_text(size = 13), 
         axis.title = element_text(size = 18),
         axis.line = element_line(colour = "black"),
-        plot.title=element_text(family="Atlas Grotesk Medium"),
-        text=element_text(family="Atlas Grotesk Light"),
+        # plot.title=element_text(family="Atlas Grotesk Medium"),
+        # text=element_text(family="Atlas Grotesk Light"),
         legend.position = "none", 
         axis.text.x=element_blank()) + 
         # legend.position = "bottom", 
         # legend.direction = "horizontal") +
-  labs(title = "Low carbohydrate eaters (28.1%) [high fat and drinking at night]", x = " ", y = "Percentage") +
+  labs(title = "Low carbohydrate eaters (28.1%) [high fat and drinking at night]",
+       x = " ", y = "Percentage") +
   # theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   scale_y_continuous(labels=percent)
 

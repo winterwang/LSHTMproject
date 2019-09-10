@@ -23735,4 +23735,1079 @@ DM_undiag {c |}             1              2              3          Total
  {txt}closed on:  {res} 9 Sep 2019, 20:10:33
 {txt}{.-}
 {smcl}
-{txt}{sf}{ul off}
+{txt}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 9 Sep 2019, 21:27:27
+{txt}
+{com}. 
+. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+{txt}
+{com}. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear // with CHO details
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. 
+. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,457       25.69       97.18
+{txt}         40 {c |}{res}        160        2.82      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. gen Obesity = BMI >=  30
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. tabulate DM4cat
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. tabulate DM4cat CB
+
+           {txt}{c |}                CB
+    DM4cat {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       681        634      1,122 {txt}{c |}{res}     2,437 
+{txt}         1 {c |}{res}        24         37         45 {txt}{c |}{res}       106 
+{txt}         2 {c |}{res}        22         22         49 {txt}{c |}{res}        93 
+{txt}         3 {c |}{res}        85         55         72 {txt}{c |}{res}       212 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+
+{com}. dis 24+22+85
+{res}131
+
+{com}. tabulate DM CB
+
+           {txt}{c |}                CB
+        DM {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       705        671      1,167 {txt}{c |}{res}     2,543 
+{txt}         1 {c |}{res}       152        119        206 {txt}{c |}{res}       477 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       857        790      1,373 {txt}{c |}{res}     3,020 
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if !missing(A1C) & !missing(DM4cat)
+{err}variable {bf}DM{sf} already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. drop DM
+
+. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if !missing(A1C) & !missing(DM4cat)
+{txt}(3,342 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. tabulate DM CB
+
+           {txt}{c |}                CB
+        DM {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       705        671      1,167 {txt}{c |}{res}     2,543 
+{txt}         1 {c |}{res}        93         70        107 {txt}{c |}{res}       270 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       798        741      1,274 {txt}{c |}{res}     2,813 
+
+{com}. tabulate DM4cat CB
+
+           {txt}{c |}                CB
+    DM4cat {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       681        634      1,122 {txt}{c |}{res}     2,437 
+{txt}         1 {c |}{res}        24         37         45 {txt}{c |}{res}       106 
+{txt}         2 {c |}{res}        22         22         49 {txt}{c |}{res}        93 
+{txt}         3 {c |}{res}        85         55         72 {txt}{c |}{res}       212 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+
+{com}. tabulate DM4cat
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
+{err}variable {bf}DM{sf} already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. drop DM
+
+. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. tabulate DM4cat
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. tabulate DM
+
+         {txt}DM {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,543       89.29       89.29
+{txt}          1 {c |}{res}        305       10.71      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. tabulate DM CB
+
+           {txt}{c |}                CB
+        DM {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       705        671      1,167 {txt}{c |}{res}     2,543 
+{txt}         1 {c |}{res}       107         77        121 {txt}{c |}{res}       305 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+
+{com}. tabulate DM4cat CB
+
+           {txt}{c |}                CB
+    DM4cat {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       681        634      1,122 {txt}{c |}{res}     2,437 
+{txt}         1 {c |}{res}        24         37         45 {txt}{c |}{res}       106 
+{txt}         2 {c |}{res}        22         22         49 {txt}{c |}{res}        93 
+{txt}         3 {c |}{res}        85         55         72 {txt}{c |}{res}       212 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
+{err}variable {bf}DM{sf} already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. 
+. gen logalc = ln(Alcoholg+1)
+{txt}
+{com}. summ logalc, detail
+
+                           {txt}logalc
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}      6,155
+{txt}25%    {res}        0              0       {txt}Sum of Wgt. {res}      6,155
+
+{txt}50%    {res} .8120407                      {txt}Mean          {res} 1.418113
+                        {txt}Largest       Std. Dev.     {res} 1.541663
+{txt}75%    {res} 2.862201       5.496676
+{txt}90%    {res}  3.58957       5.636581       {txt}Variance      {res} 2.376725
+{txt}95%    {res} 3.996199       5.856217       {txt}Skewness      {res}  .456594
+{txt}99%    {res} 4.558136       5.998341       {txt}Kurtosis      {res} 1.683058
+{txt}
+{com}. gen logMVP = ln(MVPAtime+1)
+{txt}(2,345 missing values generated)
+
+{com}. summ logMVP, detail
+
+                           {txt}logMVP
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res} .0082988              0
+{txt}10%    {res} .0219789              0       {txt}Obs         {res}      3,810
+{txt}25%    {res} .1515964              0       {txt}Sum of Wgt. {res}      3,810
+
+{txt}50%    {res} .4692903                      {txt}Mean          {res} .6409135
+                        {txt}Largest       Std. Dev.     {res} .6119579
+{txt}75%    {res} .9204094       2.695431
+{txt}90%    {res} 1.649997       2.725101       {txt}Variance      {res} .3744925
+{txt}95%    {res} 2.016542       2.737698       {txt}Skewness      {res} 1.159103
+{txt}99%    {res} 2.335029       2.740097       {txt}Kurtosis      {res} 3.616459
+{txt}
+{com}. gen logGlu = ln(Glucose)
+{txt}(3,225 missing values generated)
+
+{com}. summ logGlu, detail
+
+                           {txt}logGlu
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.386294       .9321641
+{txt} 5%    {res} 1.463255       1.050822
+{txt}10%    {res} 1.501853       1.121678       {txt}Obs         {res}      2,930
+{txt}25%    {res} 1.562346       1.134623       {txt}Sum of Wgt. {res}      2,930
+
+{txt}50%    {res} 1.631199                      {txt}Mean          {res} 1.657517
+                        {txt}Largest       Std. Dev.     {res}  .176031
+{txt}75%    {res} 1.706565       2.867899
+{txt}90%    {res} 1.818888       2.938103       {txt}Variance      {res} .0309869
+{txt}95%    {res} 1.950187       2.970414       {txt}Skewness      {res} 2.456614
+{txt}99%    {res} 2.384165       3.055886       {txt}Kurtosis      {res} 14.03048
+{txt}
+{com}. gen logA1C = ln(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. summ logA1C, detail
+
+                           {txt}logA1C
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.547562       1.029619
+{txt} 5%    {res} 1.589235       1.252763
+{txt}10%    {res} 1.609438       1.308333       {txt}Obs         {res}      3,020
+{txt}25%    {res} 1.667707       1.410987       {txt}Sum of Wgt. {res}      3,020
+
+{txt}50%    {res} 1.704748                      {txt}Mean          {res} 1.721032
+                        {txt}Largest       Std. Dev.     {res} .1128544
+{txt}75%    {res} 1.757858       2.459589
+{txt}90%    {res} 1.824549       2.509599       {txt}Variance      {res} .0127361
+{txt}95%    {res}  1.88707       2.624669       {txt}Skewness      {res} 2.343269
+{txt}99%    {res} 2.208274       2.667228       {txt}Kurtosis      {res} 14.51465
+{txt}
+{com}. gen logChol = ln(Chol)
+{txt}(3,071 missing values generated)
+
+{com}. summ logChol, detail
+
+                           {txt}logChol
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.029619       .6418539
+{txt} 5%    {res} 1.223775       .7419373
+{txt}10%    {res} 1.308333       .7884573       {txt}Obs         {res}      3,084
+{txt}25%    {res} 1.458615       .8329091       {txt}Sum of Wgt. {res}      3,084
+
+{txt}50%    {res} 1.609438                      {txt}Mean          {res} 1.602148
+                        {txt}Largest       Std. Dev.     {res} .2215028
+{txt}75%    {res} 1.757858       2.251292
+{txt}90%    {res}  1.88707       2.282382       {txt}Variance      {res} .0490635
+{txt}95%    {res}  1.94591       2.322388       {txt}Skewness      {res}-.2705115
+{txt}99%    {res} 2.079442       2.341806       {txt}Kurtosis      {res} 3.205754
+{txt}
+{com}. gen logLDL = ln(LDL)
+{txt}(3,113 missing values generated)
+
+{com}. gen logHDL = ln(HDL)
+{txt}(3,071 missing values generated)
+
+{com}. gen logTG = ln(Trig)
+{txt}(3,080 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svyset area [pweight = wtb1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtb1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. tabulate DM CB, col
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+           {c |}                CB
+        DM {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       705        671      1,167 {txt}{c |}{res}     2,543 
+           {txt}{c |}{res}     86.82      89.71      90.61 {txt}{c |}{res}     89.29 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+         1 {c |}{res}       107         77        121 {txt}{c |}{res}       305 
+           {txt}{c |}{res}     13.18      10.29       9.39 {txt}{c |}{res}     10.71 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+           {txt}{c |}{res}    100.00     100.00     100.00 {txt}{c |}{res}    100.00 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy: tabulate DM CB, col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     2,848
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,168{txt}{col 49}Population size{col 67}={res}  5,327.336
+{txt}{col 49}Design df{col 67}= {res}     1,156
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+       DM {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+        0 {c |}         {res}0.878          0.910          0.915          0.903
+          {txt}{c |}       {res}(0.015)        (0.013)        (0.010)        (0.007)
+          {txt}{c |} {res}[0.846,0.905]  [0.880,0.934]  [0.894,0.933]  [0.888,0.917]
+          {txt}{c |} 
+        1 {c |}         {res}0.122          0.090          0.085          0.097
+          {txt}{c |}       {res}(0.015)        (0.013)        (0.010)        (0.007)
+          {txt}{c |} {res}[0.095,0.154]  [0.066,0.120]  [0.067,0.106]  [0.083,0.112]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}   8.2930
+{txt}{col 5}Design-based{col 19}F({res}2.00{txt}, {res}2306.44{txt}){col 35}= {res}   2.5159{col 51}{txt}P = {res}0.0812
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy: logistic DM ib3.CB
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,853
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,410{txt}{col 49}Population size{col 67}={res}  5,327.336
+{txt}{col 49}Design df{col 67}= {res}     1,398
+{txt}{col 49}F({res}   2{txt},{res}   1397{txt}){col 67}= {res}      2.57
+{txt}{col 49}Prob > F{col 67}= {res}    0.0769
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}          DM{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 1.495046{col 26}{space 2}  .276485{col 37}{space 1}    2.17{col 46}{space 3}0.030{col 54}{space 4} 1.040164{col 67}{space 3} 2.148855
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} 1.059969{col 26}{space 2}  .221332{col 37}{space 1}    0.28{col 46}{space 3}0.780{col 54}{space 4} .7037195{col 67}{space 3} 1.596564
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0927812{col 26}{space 2} .0118115{col 37}{space 1}  -18.68{col 46}{space 3}0.000{col 54}{space 4} .0722776{col 67}{space 3} .1191012
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy: logistic DM ib3.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,759
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,409{txt}{col 49}Population size{col 67}={res} 5,130.3249
+{txt}{col 49}Design df{col 67}= {res}     1,397
+{txt}{col 49}F({res}   9{txt},{res}   1389{txt}){col 67}= {res}     11.53
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}          DM{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}  1.66098{col 26}{space 2} .3530611{col 37}{space 1}    2.39{col 46}{space 3}0.017{col 54}{space 4} 1.094648{col 67}{space 3} 2.520312
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} 1.231679{col 26}{space 2}  .288954{col 37}{space 1}    0.89{col 46}{space 3}0.375{col 54}{space 4} .7773762{col 67}{space 3}  1.95148
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2}  .380015{col 26}{space 2} .0751615{col 37}{space 1}   -4.89{col 46}{space 3}0.000{col 54}{space 4} .2578098{col 67}{space 3} .5601471
+{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.042095{col 26}{space 2}  .006883{col 37}{space 1}    6.24{col 46}{space 3}0.000{col 54}{space 4}  1.02868{col 67}{space 3} 1.055685
+{txt}{space 6}bmival {c |}{col 14}{res}{space 2}  1.11947{col 26}{space 2} .0191838{col 37}{space 1}    6.59{col 46}{space 3}0.000{col 54}{space 4} 1.082463{col 67}{space 3} 1.157742
+{txt}{space 12} {c |}
+{space 5}cigsta3 {c |}
+{space 2}ex-smoker  {c |}{col 14}{res}{space 2} 1.033367{col 26}{space 2} .2999364{col 37}{space 1}    0.11{col 46}{space 3}0.910{col 54}{space 4} .5847603{col 67}{space 3} 1.826129
+{txt}{space 6}Never  {c |}{col 14}{res}{space 2} .9365053{col 26}{space 2} .2629269{col 37}{space 1}   -0.23{col 46}{space 3}0.815{col 54}{space 4}  .539915{col 67}{space 3} 1.624408
+{txt}{space 12} {c |}
+{space 4}Alcoholg {c |}{col 14}{res}{space 2} .9802196{col 26}{space 2} .0069116{col 37}{space 1}   -2.83{col 46}{space 3}0.005{col 54}{space 4} .9667548{col 67}{space 3}  .993872
+{txt}{space 4}EnergykJ {c |}{col 14}{res}{space 2} .9999075{col 26}{space 2} .0000429{col 37}{space 1}   -2.16{col 46}{space 3}0.031{col 54}{space 4} .9998234{col 67}{space 3} .9999917
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0014311{col 26}{space 2} .0011227{col 37}{space 1}   -8.35{col 46}{space 3}0.000{col 54}{space 4} .0003071{col 67}{space 3} .0066686
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy: logistic DM ib3.CB i.Sex age wstval i.cigsta3 Alcoholg EnergykJ 
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     5,817
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,409{txt}{col 49}Population size{col 67}={res} 5,252.7835
+{txt}{col 49}Design df{col 67}= {res}     1,397
+{txt}{col 49}F({res}   9{txt},{res}   1389{txt}){col 67}= {res}     13.79
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}          DM{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 1.667447{col 26}{space 2} .3520696{col 37}{space 1}    2.42{col 46}{space 3}0.016{col 54}{space 4} 1.101973{col 67}{space 3} 2.523092
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} 1.215746{col 26}{space 2} .2861513{col 37}{space 1}    0.83{col 46}{space 3}0.407{col 54}{space 4} .7661629{col 67}{space 3} 1.929144
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .5994908{col 26}{space 2} .1255101{col 37}{space 1}   -2.44{col 46}{space 3}0.015{col 54}{space 4} .3975754{col 67}{space 3} .9039524
+{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.033578{col 26}{space 2} .0064729{col 37}{space 1}    5.27{col 46}{space 3}0.000{col 54}{space 4} 1.020958{col 67}{space 3} 1.046354
+{txt}{space 6}wstval {c |}{col 14}{res}{space 2} 1.052891{col 26}{space 2} .0073545{col 37}{space 1}    7.38{col 46}{space 3}0.000{col 54}{space 4} 1.038563{col 67}{space 3} 1.067418
+{txt}{space 12} {c |}
+{space 5}cigsta3 {c |}
+{space 2}ex-smoker  {c |}{col 14}{res}{space 2} .8935828{col 26}{space 2} .2567541{col 37}{space 1}   -0.39{col 46}{space 3}0.695{col 54}{space 4} .5085646{col 67}{space 3} 1.570086
+{txt}{space 6}Never  {c |}{col 14}{res}{space 2} .9294003{col 26}{space 2} .2522072{col 37}{space 1}   -0.27{col 46}{space 3}0.787{col 54}{space 4} .5457776{col 67}{space 3} 1.582668
+{txt}{space 12} {c |}
+{space 4}Alcoholg {c |}{col 14}{res}{space 2} .9778103{col 26}{space 2} .0069842{col 37}{space 1}   -3.14{col 46}{space 3}0.002{col 54}{space 4} .9642052{col 67}{space 3} .9916074
+{txt}{space 4}EnergykJ {c |}{col 14}{res}{space 2} .9999197{col 26}{space 2}  .000044{col 37}{space 1}   -1.83{col 46}{space 3}0.068{col 54}{space 4} .9998333{col 67}{space 3} 1.000006
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0002962{col 26}{space 2} .0002796{col 37}{space 1}   -8.61{col 46}{space 3}0.000{col 54}{space 4} .0000465{col 67}{space 3} .0018872
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. tab DM
+
+         {txt}DM {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,543       89.29       89.29
+{txt}          1 {c |}{res}        305       10.71      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. tab DM4
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM_undiag = DM4cat == 2 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. tab DM_undiag 
+
+  {txt}DM_undiag {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,755       96.73       96.73
+{txt}          1 {c |}{res}         93        3.27      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. gen DM_forundiag = DM4cat != 3 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svyset area [pweight = wtb1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtb1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. tabulate DM4cat CB, col
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+           {c |}                CB
+    DM4cat {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       681        634      1,122 {txt}{c |}{res}     2,437 
+           {txt}{c |}{res}     83.87      84.76      87.11 {txt}{c |}{res}     85.57 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+         1 {c |}{res}        24         37         45 {txt}{c |}{res}       106 
+           {txt}{c |}{res}      2.96       4.95       3.49 {txt}{c |}{res}      3.72 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+         2 {c |}{res}        22         22         49 {txt}{c |}{res}        93 
+           {txt}{c |}{res}      2.71       2.94       3.80 {txt}{c |}{res}      3.27 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+         3 {c |}{res}        85         55         72 {txt}{c |}{res}       212 
+           {txt}{c |}{res}     10.47       7.35       5.59 {txt}{c |}{res}      7.44 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+           {txt}{c |}{res}    100.00     100.00     100.00 {txt}{c |}{res}    100.00 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. tabulate DM_undiag CB if DM_forundi, col 
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+           {c |}                CB
+ DM_undiag {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       705        671      1,167 {txt}{c |}{res}     2,543 
+           {txt}{c |}{res}     96.97      96.83      95.97 {txt}{c |}{res}     96.47 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+         1 {c |}{res}        22         22         49 {txt}{c |}{res}        93 
+           {txt}{c |}{res}      3.03       3.17       4.03 {txt}{c |}{res}      3.53 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       727        693      1,216 {txt}{c |}{res}     2,636 
+           {txt}{c |}{res}    100.00     100.00     100.00 {txt}{c |}{res}    100.00 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy: tabulate DM_undiag CB , col se ci format(%7.3f)
+{txt}(running tabulate on estimation sample)
+{res}
+{txt}{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     2,848
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,168{txt}{col 49}Population size{col 67}={res}  5,327.336
+{txt}{col 49}Design df{col 67}= {res}     1,156
+
+{txt}{hline 10}{c TT}{hline 59}
+          {c |}                             CB                            
+DM_undiag {c |}             1              2              3          Total
+{hline 10}{c +}{hline 59}
+        0 {c |}         {res}0.972          0.969          0.958          0.965
+          {txt}{c |}       {res}(0.007)        (0.009)        (0.008)        (0.005)
+          {txt}{c |} {res}[0.954,0.982]  [0.944,0.983]  [0.941,0.971]  [0.955,0.973]
+          {txt}{c |} 
+        1 {c |}         {res}0.028          0.031          0.042          0.035
+          {txt}{c |}       {res}(0.007)        (0.009)        (0.008)        (0.005)
+          {txt}{c |} {res}[0.018,0.046]  [0.017,0.056]  [0.029,0.059]  [0.027,0.045]
+          {txt}{c |} 
+    Total {c |}         {res}1.000          1.000          1.000          1.000
+          {txt}{c |}              {res}                                             
+          {txt}{c |}              {res}                                             
+{txt}{hline 10}{c BT}{hline 59}
+  Key:  {col 1}{res}column proportion
+{col 9}(linearized standard error of column proportion)
+{col 9}[95% confidence interval for column proportion]
+
+{txt}  Pearson:
+{col 5}Uncorrected{col 19}chi2({res}2{txt}){col 35}= {res}   3.1420
+{txt}{col 5}Design-based{col 19}F({res}1.96{txt}, {res}2264.49{txt}){col 35}= {res}   0.8488{col 51}{txt}P = {res}0.4260
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy, subpop(DM_forundi): logistic DM_undiag ib3.CB
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     2,848
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,168{txt}{col 49}Population size{col 67}={res}  5,327.336
+{txt}{col 49}Subpop. no. obs{col 67}={res}      2,047
+{txt}{col 49}Subpop. size{col 67}={res} 5,000.3031
+{txt}{col 49}Design df{col 67}= {res}     1,156
+{txt}{col 49}F({res}   2{txt},{res}   1155{txt}){col 67}= {res}      0.71
+{txt}{col 49}Prob > F{col 67}= {res}    0.4930
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   DM_undiag{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .7075693{col 26}{space 2} .2266637{col 37}{space 1}   -1.08{col 46}{space 3}0.280{col 54}{space 4} .3774055{col 67}{space 3} 1.326569
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .7464579{col 26}{space 2} .2703738{col 37}{space 1}   -0.81{col 46}{space 3}0.420{col 54}{space 4} .3667492{col 67}{space 3} 1.519292
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0458358{col 26}{space 2} .0085693{col 37}{space 1}  -16.49{col 46}{space 3}0.000{col 54}{space 4} .0317614{col 67}{space 3} .0661468
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy, subpop(DM_forundi): logistic DM_undiag ib3.CB i.Sex age bmi i.cigsta3 Alcoholg EnergykJ 
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     2,764
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,160{txt}{col 49}Population size{col 67}={res} 5,154.9702
+{txt}{col 49}Subpop. no. obs{col 67}={res}      1,963
+{txt}{col 49}Subpop. size{col 67}={res} 4,827.9373
+{txt}{col 49}Design df{col 67}= {res}     1,148
+{txt}{col 49}F({res}   9{txt},{res}   1140{txt}){col 67}= {res}     10.45
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   DM_undiag{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .7625663{col 26}{space 2} .2637661{col 37}{space 1}   -0.78{col 46}{space 3}0.433{col 54}{space 4} .3868499{col 67}{space 3} 1.503186
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .9464053{col 26}{space 2} .3589467{col 37}{space 1}   -0.15{col 46}{space 3}0.885{col 54}{space 4} .4496742{col 67}{space 3} 1.991848
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .3690159{col 26}{space 2} .1219107{col 37}{space 1}   -3.02{col 46}{space 3}0.003{col 54}{space 4} .1929919{col 67}{space 3} .7055876
+{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.049195{col 26}{space 2} .0107103{col 37}{space 1}    4.70{col 46}{space 3}0.000{col 54}{space 4}  1.02839{col 67}{space 3} 1.070421
+{txt}{space 6}bmival {c |}{col 14}{res}{space 2} 1.146476{col 26}{space 2} .0268164{col 37}{space 1}    5.84{col 46}{space 3}0.000{col 54}{space 4} 1.095051{col 67}{space 3} 1.200317
+{txt}{space 12} {c |}
+{space 5}cigsta3 {c |}
+{space 2}ex-smoker  {c |}{col 14}{res}{space 2} .6811623{col 26}{space 2} .2997428{col 37}{space 1}   -0.87{col 46}{space 3}0.383{col 54}{space 4} .2872681{col 67}{space 3} 1.615153
+{txt}{space 6}Never  {c |}{col 14}{res}{space 2} .5737016{col 26}{space 2} .2432605{col 37}{space 1}   -1.31{col 46}{space 3}0.190{col 54}{space 4} .2496775{col 67}{space 3} 1.318235
+{txt}{space 12} {c |}
+{space 4}Alcoholg {c |}{col 14}{res}{space 2} .9960986{col 26}{space 2} .0083805{col 37}{space 1}   -0.46{col 46}{space 3}0.642{col 54}{space 4} .9797908{col 67}{space 3} 1.012678
+{txt}{space 4}EnergykJ {c |}{col 14}{res}{space 2} .9998793{col 26}{space 2} .0000685{col 37}{space 1}   -1.76{col 46}{space 3}0.078{col 54}{space 4} .9997448{col 67}{space 3} 1.000014
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0003592{col 26}{space 2} .0004095{col 37}{space 1}   -6.96{col 46}{space 3}0.000{col 54}{space 4} .0000384{col 67}{space 3} .0033631
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD00635.000000"
+{txt}
+{com}. svy, subpop(DM_forundi): logistic DM_undiag ib3.CB i.Sex age wstval i.cigsta3 Alcoholg EnergykJ 
+{txt}(running logistic on estimation sample)
+{res}
+{txt}Survey: Logistic regression
+
+{col 1}Number of strata{col 20}= {res}       12{txt}{col 49}Number of obs{col 67}= {res}     2,816
+{txt}{col 1}Number of PSUs{col 20}= {res}    1,166{txt}{col 49}Population size{col 67}={res} 5,258.6804
+{txt}{col 49}Subpop. no. obs{col 67}={res}      2,015
+{txt}{col 49}Subpop. size{col 67}={res} 4,931.6476
+{txt}{col 49}Design df{col 67}= {res}     1,154
+{txt}{col 49}F({res}   9{txt},{res}   1146{txt}){col 67}= {res}      9.84
+{txt}{col 49}Prob > F{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}   DM_undiag{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}CB {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .6891244{col 26}{space 2} .2373866{col 37}{space 1}   -1.08{col 46}{space 3}0.280{col 54}{space 4} .3505674{col 67}{space 3} 1.354639
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .8526188{col 26}{space 2} .3386057{col 37}{space 1}   -0.40{col 46}{space 3}0.688{col 54}{space 4} .3911624{col 67}{space 3} 1.858458
+{txt}{space 12} {c |}
+{space 9}Sex {c |}
+{space 6}Women  {c |}{col 14}{res}{space 2} .6340436{col 26}{space 2} .2278852{col 37}{space 1}   -1.27{col 46}{space 3}0.205{col 54}{space 4} .3132296{col 67}{space 3}  1.28344
+{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.038278{col 26}{space 2} .0105435{col 37}{space 1}    3.70{col 46}{space 3}0.000{col 54}{space 4} 1.017796{col 67}{space 3} 1.059172
+{txt}{space 6}wstval {c |}{col 14}{res}{space 2} 1.060062{col 26}{space 2} .0105149{col 37}{space 1}    5.88{col 46}{space 3}0.000{col 54}{space 4} 1.039631{col 67}{space 3} 1.080894
+{txt}{space 12} {c |}
+{space 5}cigsta3 {c |}
+{space 2}ex-smoker  {c |}{col 14}{res}{space 2} .6405693{col 26}{space 2} .2801237{col 37}{space 1}   -1.02{col 46}{space 3}0.309{col 54}{space 4} .2716072{col 67}{space 3} 1.510745
+{txt}{space 6}Never  {c |}{col 14}{res}{space 2} .5869383{col 26}{space 2} .2385648{col 37}{space 1}   -1.31{col 46}{space 3}0.190{col 54}{space 4} .2643948{col 67}{space 3} 1.302963
+{txt}{space 12} {c |}
+{space 4}Alcoholg {c |}{col 14}{res}{space 2} .9929939{col 26}{space 2} .0084766{col 37}{space 1}   -0.82{col 46}{space 3}0.410{col 54}{space 4}  .976501{col 67}{space 3} 1.009765
+{txt}{space 4}EnergykJ {c |}{col 14}{res}{space 2} .9999324{col 26}{space 2} .0000771{col 37}{space 1}   -0.88{col 46}{space 3}0.381{col 54}{space 4} .9997811{col 67}{space 3} 1.000084
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0000618{col 26}{space 2} .0000878{col 37}{space 1}   -6.82{col 46}{space 3}0.000{col 54}{space 4} 3.80e-06{col 67}{space 3} .0010039
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. {smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}10 Sep 2019, 10:05:34
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD02129.000000"
+{txt}
+{com}. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear // with CHO details
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD02129.000000"
+{txt}
+{com}. 
+. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,457       25.69       97.18
+{txt}         40 {c |}{res}        160        2.82      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. gen Obesity = BMI >=  30
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. 
+. 
+. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen DM_undiag = DM4cat == 2 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen DM_forundiag = DM4cat != 3 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen nonDM = A1C <= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. gen DM_a1conly = A1C >= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. 
+. tab DM
+
+         {txt}DM {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,543       89.29       89.29
+{txt}          1 {c |}{res}        305       10.71      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+{txt}
+{com}. tab DM_a1c
+
+ {txt}DM_a1conly {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,838       93.97       93.97
+{txt}          1 {c |}{res}        182        6.03      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      3,020      100.00
+{txt}
+{com}. tab DM4cat
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. brow
+
+. tabulate Nday
+
+      {txt}Ndays {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      6,155      100.00      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+
+{com}. 
