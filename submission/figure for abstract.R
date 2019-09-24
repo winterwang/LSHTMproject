@@ -10,12 +10,9 @@ ggthemr("greyscale")
 # Fig 1. ------------------------------------------------------------------
 
 # Sources energy by slot --------------------------------------------------
-library(plyr)
-library(readr)
 CB1sources <- read_csv("Tablecsv/CB1sources.csv")
 # library(ggthemr)
 # ggthemr("fresh", layout = "scientific")
-library(scales)
 CB1sources$Slot <- factor(CB1sources$Slot, levels = c("6 am – 9 am", 
                                                       "9 am – 12 am",
                                                       "12 noon – 2 pm",
@@ -110,7 +107,8 @@ Text$pos <- rep(1.10, 7)
 ggthemr_reset()
 
 library("ggsci")
-ggthemr("greyscale", layout = "scientific") # for paper
+# ggthemr("greyscale", layout = "scientific") # for paper
+ggthemr("fresh", layout = "scientific")
 
 
 CB1 <- ggplot() +
@@ -126,18 +124,20 @@ CB1 <- ggplot() +
             colour = "black") +
   geom_text(aes(y=-0.03, x="12noon \n-2pm", label="3.1", fontface = "bold"), size = 3.5, 
             colour = "black") + 
-  theme_bw()  + #scale_fill_nejm() + # comment out for paper
+  # scale_fill_manual(values = c("#1b9e77", "#d95f02", "#377eb8",  "#e41a1c")) + 
+  # scale_fill_manual(values = c("#984ea3", "#4daf4a", "#377eb8",  "#d7191c")) + 
+  theme_bw()  + scale_fill_nejm() + # comment out for paper
   theme(#legend.position="right", #legend.direction="horizontal",
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     panel.border = element_blank(),
     legend.title = element_blank(),
-    axis.text = element_text(size = 12, face = "bold"),
-    legend.text = element_text(size = 10), 
-    axis.title = element_text(size = 13, face = "bold"),
-    axis.line = element_line(colour = "black"),
+    axis.text = element_text(size = 12, face = "bold", color = "black"),
+    legend.text = element_text(size = 10, color = "black"), 
+    axis.title = element_text(size = 13, face = "bold", color = "black"),
+    axis.line = element_line(colour = "black", color = "black"),
     plot.title=element_text(size = 14, 
-                            face = "bold", hjust = 0.5),
+                            face = "bold", hjust = 0.5, color = "black"),
     # text=element_text(family="Atlas Grotesk Light"),
     legend.position = "none") + 
   # legend.position = "bottom", 
@@ -255,18 +255,18 @@ CB2 <- ggplot() +
             colour = "black") + 
   geom_text(aes(y=-0.03, x="5pm \n-8pm", label="3.7", fontface = "bold"), size = 3.5, 
             colour = "black")  + 
-  theme_bw()  + # scale_fill_nejm() + # comment out for the paper
+  theme_bw()  +  scale_fill_nejm() + # comment out for the paper
   theme(#legend.position="right", #legend.direction="horizontal",
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     panel.border = element_blank(),
     legend.title = element_blank(),
-    axis.text = element_text(size = 12, face = "bold"),
-    legend.text = element_text(size = 10), 
-    axis.title = element_text(size = 13, face = "bold"),
-    axis.line = element_line(colour = "black"),
+    axis.text = element_text(size = 12, face = "bold", color = "black"),
+    legend.text = element_text(size = 10, color = "black"), 
+    axis.title = element_text(size = 13, face = "bold", color = "black"),
+    axis.line = element_line(colour = "black", color = "black"),
     plot.title=element_text(size = 14, 
-                            face = "bold", hjust = 0.5),
+                            face = "bold", hjust = 0.5, color = "black"),
     # text=element_text(family="Atlas Grotesk Light"),
     # axis.text.y=element_blank(),
     legend.position = "none") + 
@@ -391,19 +391,19 @@ CB3 <- ggplot() +
             colour = "black") + 
   geom_text(aes(y=-0.03, x="5pm \n-8pm", label="4.0", fontface = "bold"), size = 3.5, 
             colour = "black") + 
-  theme_bw()  + # scale_fill_nejm() + # comment out for the paper
+  theme_bw()  +  scale_fill_nejm() + # comment out for the paper
   theme(legend.position="bottom", 
     legend.direction="horizontal",
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     panel.border = element_blank(),
     # legend.title = element_blank(),
-    axis.text = element_text(size = 12, face = "bold"),
-    legend.text = element_text(size = 10), 
-    axis.title = element_text(size = 13, face = "bold"),
-    axis.line = element_line(colour = "black"),
+    axis.text = element_text(size = 12, face = "bold", color = "black"),
+    legend.text = element_text(size = 10, color = "black"), 
+    axis.title = element_text(size = 13, face = "bold", color = "black"),
+    axis.line = element_line(colour = "black", color = "black"),
     plot.title=element_text(size = 14, 
-                            face = "bold", hjust = 0.5)) +#,
+                            face = "bold", hjust = 0.5, color = "black")) +#,
   #scale_fill_manual(values = c("#db735c", "#EFA86E", "#9A8A76", "#F3C57B"),
   #                  labels =  c("Carbo-\nhydrate","Fat", "Protein",  "Alcohol")) + 
   labs(title = "High carbohydrate eaters (43.1%)\n[eating early]", x = " ", 
@@ -437,18 +437,18 @@ CB3noleg <- ggplot() +
             colour = "black") + 
   geom_text(aes(y=-0.03, x="5pm \n-8pm", label="4.0", fontface = "bold"), size = 3.5, 
             colour = "black") + 
-  theme_bw()  + # scale_fill_nejm() + # comment out for the paper
+  theme_bw()  +  scale_fill_nejm() + # comment out for the paper
   theme(#legend.position="bottom", 
         #legend.direction="horizontal",
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
         #legend.title = element_blank(),
-        axis.text = element_text(size = 12, face = "bold"),
-        legend.text = element_text(size = 10), 
-        axis.title = element_text(size = 13, face = "bold"),
-        axis.line = element_line(colour = "black"),
-        plot.title=element_text(size = 14, 
+        axis.text = element_text(size = 12, face = "bold", color = "black"),
+        legend.text = element_text(size = 10, color = "black"), 
+        axis.title = element_text(size = 13, face = "bold", color = "black"),
+        axis.line = element_line(colour = "black", color = "black"),
+        plot.title=element_text(size = 14, color = "black", 
                                 face = "bold", hjust = 0.5),
         # text=element_text(family="Atlas Grotesk Light"),
         # axis.text.y=element_blank(),

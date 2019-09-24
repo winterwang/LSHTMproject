@@ -601,9 +601,11 @@ chart.data$CB <- factor(chart.data$CB, levels = c("1", "2", "3"),
 
 
 library(ggthemr)
+library("ggsci")
+
 # ggthemr("dust", layout = "scientific")
-# ggthemr("fresh", layout = "scientific")
-ggthemr("greyscale", layout = "scientific")
+ggthemr("fresh", layout = "scientific")
+# ggthemr("greyscale", layout = "scientific")
 
 fig2paper <- ggplot() + 
   geom_bar(aes(y = pct, x = CB, fill = CW_new), data = chart.data, width = 0.6,
@@ -614,12 +616,14 @@ fig2paper <- ggplot() +
             size=4, colour="white") +
   labs(title = " ", x = "Between Individual Classes", y = "Percentage") +
   scale_y_continuous(labels=percent) +
+   # scale_fill_nejm() +
+  scale_fill_manual(values = c("#0072B5FF", "#E18727FF", "#20854EFF")) + 
   theme(legend.position="right", #legend.direction="horizontal",
         legend.title = element_blank(),
-        axis.text = element_text(size = 15, face = "bold"),
-        legend.text = element_text(size = 12, face = "bold"),
-        axis.title = element_text(size = 18, face = "bold"),
-        axis.line = element_line(colour = "black"))
+        axis.text = element_text(size = 15, face = "bold", color = "black"),
+        legend.text = element_text(size = 12, face = "bold", color = "black"),
+        axis.title = element_text(size = 18, face = "bold", color = "black"),
+        axis.line = element_line(colour = "black", color = "black"))
         # plot.title=element_text(family="Atlas Grotesk Medium"),
         # text=element_text(family="Atlas Grotesk Light"))
 

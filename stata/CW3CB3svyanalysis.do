@@ -114,25 +114,30 @@ svy: tabulate Education CB, col se ci format(%7.3f)
 *********************************************************
 gen Totfibre = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
 svy: mean Totfibre, over(CB)
+svy: mean Totfibre
 test [Totfibre]1 = [Totfibre]2 = [Totfibre]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 gen TotNMES = NMES6 + NMES9 + NMES12 + NMES14 + NMES17 + NMES20 + NMES22 
 svy: mean TotNMES, over(CB)
+svy: mean TotNMES
 test [TotNMES]1 = [TotNMES]2 = [TotNMES]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 gen TotSugar = Sugar6 + Sugar9 + Sugar12 + Sugar14 + Sugar17 + Sugar20 + Sugar22 
 svy: mean TotSugar, over(CB)
+svy: mean TotSugar
 test [TotSugar]1 = [TotSugar]2 = [TotSugar]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 gen TotStarch = Starch6 + Starch9 + Starch12 + Starch14 + Starch17 + Starch20 + Starch22 
 svy: mean TotStarch, over(CB)
-test [TotSugar]1 = [TotSugar]2 = [TotSugar]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+svy: mean TotStarch
+test [TotStarch]1 = [TotStarch]2 = [TotStarch]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 
 
 svy: mean EnergykJ, over(CB)
+svy: mean EnergykJ
 test [EnergykJ]1 = [EnergykJ]2 = [EnergykJ]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Energy6, over(CB)
@@ -158,76 +163,98 @@ test [Energy22_6]1 = [Energy22_6]2 = [Energy22_6]3, mtest(b) // bonferroni-adjus
 
 
 svy: mean Carbohydrateg, over(CB)
+svy: mean Carbohydrateg
 test [Carbohydrateg]1 = [Carbohydrateg]2 = [Carbohydrateg]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Carb6, over(CB)
+svy: mean Carb6
 test [Carb6_9]1 = [Carb6_9]2 = [Carb6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Carb9, over(CB)
+svy: mean Carb9
 test [Carb9_12]1 = [Carb9_12]2 = [Carb9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Carb12, over(CB)
+svy: mean Carb12
 test [Carb12_14]1 = [Carb12_14]2 = [Carb12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Carb14, over(CB)
+svy: mean Carb14
 test [Carb14_17]1 = [Carb14_17]2 = [Carb14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Carb17, over(CB)
+svy: mean Carb17
 test [Carb17_20]1 = [Carb17_20]2 = [Carb17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean Carb20, over(CB)
+svy: mean Carb20
 test [Carb20_22]1 = [Carb20_22]2 = [Carb20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Carb22, over(CB)
+svy: mean Carb22
 test [Carb22_6]1 = [Carb22_6]2 = [Carb22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar6, over(CB)
+svy: mean Sugar6
 test [Sugar6_9]1 = [Sugar6_9]2 = [Sugar6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
-svy: mean Sugar, over(
 svy: mean Sugar9, over(CB)
+svy: mean Sugar9
 test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar12, over(CB)
+svy: mean Sugar12
 test [Sugar9_12]1 = [Sugar9_12]2 = [Sugar9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar14, over(CB)
+svy: mean Sugar14
 test [Sugar14_17]1 = [Sugar14_17]2 = [Sugar14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar17, over(CB)
+svy: mean Sugar17
 test [Sugar17_20]1 = [Sugar17_20]2 = [Sugar17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar20, over(CB)
+svy: mean Sugar20
 test [Sugar20_22]1 = [Sugar20_22]2 = [Sugar20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Sugar22, over(CB)
+svy: mean Sugar22
 test [Sugar22_6]1 = [Sugar22_6]2 = [Sugar22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch6, over(CB)
+svy: mean Starch6
 test [Starch6_9]1 = [Starch6_9]2 = [Starch6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch9, over(CB)
+svy: mean Starch9
 test [Sugar12_14]1 = [Sugar12_14]2 = [Sugar12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch12, over(CB)
+svy: mean Starch12
 test [Starch12_14]1 = [Starch12_14]2 = [Starch12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch14, over(CB)
+svy: mean Starch14
 test [Starch14_17]1 = [Starch14_17]2 = [Starch14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch17, over(CB)
+svy: mean Starch17
 test [Starch17_20]1 = [Starch17_20]2 = [Starch17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean Starch20, over(CB)
+svy: mean Starch20
 test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Starch22, over(CB)
+svy: mean Starch22
 test [Starch20_22]1 = [Starch20_22]2 = [Starch20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre6, over(CB)
+svy: mean Fibre6
 test [Starch22_6]1 = [Starch22_6]2 = [Starch22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 gen Fibreg = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
@@ -236,52 +263,67 @@ test [Fibreg]1 = [Fibreg]2 = [Fibreg]3, mtest(b) // bonferroni-adjusted p-values
 
 
 svy: mean Fibre9, over(CB)
+svy: mean Fibre9
 test [Fibre9_12]1 = [Fibre9_12]2 = [Fibre9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean Fibre12, over(CB)
+svy: mean Fibre12
 test [Fibre12_14]1 = [Fibre12_14]2 = [Fibre12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre14, over(CB)
+svy: mean Fibre14
 test [Fibre14_17]1 = [Fibre14_17]2 = [Fibre14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre17, over(CB)
+svy: mean Fibre17
 test [Fibre17_20]1 = [Fibre17_20]2 = [Fibre17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre20, over(CB)
+svy: mean Fibre20
 test [Fibre20_22]1 = [Fibre20_22]2 = [Fibre20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fibre22, over(CB)
+svy: mean Fibre22
 test [Fibre22_6]1 = [Fibre22_6]2 = [Fibre22_6]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES6, over(CB)
+svy: mean NMES6
 test [NMES6_9]1 = [NMES6_9]2 = [NMES6_9]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES9, over(CB)
+svy: mean NMES9
 test [NMES9_12]1 = [NMES9_12]2 = [NMES9_12]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean NMES12, over(CB)
+svy: mean NMES12
 test [NMES12_14]1 = [NMES12_14]2 = [NMES12_14]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES14, over(CB)
+svy: mean NMES14
 test [NMES14_17]1 = [NMES14_17]2 = [NMES14_17]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES17, over(CB)
+svy: mean NMES17
 test [NMES17_20]1 = [NMES17_20]2 = [NMES17_20]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean NMES20, over(CB)
+svy: mean NMES20
 test [NMES20_22]1 = [NMES20_22]2 = [NMES20_22]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean NMES22, over(CB)
+svy: mean NMES22
 
 
 svy: mean CHO, over(CB)
+svy: mean CHO
 test [CHOpctotE]1 = [CHOpctotE]2 = [CHOpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 
 svy: mean Proteing, over(CB)
+svy: mean Proteing
 test [Proteing]1 = [Proteing]2 = [Proteing]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Prot6, over(CB)
@@ -307,9 +349,11 @@ test [Prot22_6]1 = [Prot22_6]2 = [Prot22_6]3, mtest(b) // bonferroni-adjusted p-
 
 
 svy: mean Proteinp, over(CB)
+svy: mean Proteinp
 test [ProteinpctotE]1 = [ProteinpctotE]2 = [ProteinpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
 
 svy: mean Fatg, over(CB)
+svy: mean Fatg
 test [Fatg]1 = [Fatg]2 = [Fatg]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
 
 
@@ -338,9 +382,11 @@ test [Fat22_6]1 = [Fat22_6]2 = [Fat22_6]3, mtest(b) // bonferroni-adjusted p-val
 
 
 svy: mean Fatp, over(CB)
+svy: mean Fatp
 test [FatpctotE]1 = [FatpctotE]2 = [FatpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
 
 svy: mean Alcoholg, over(CB)
+svy: mean Alcoholg
 test [Alcoholg]1 = [Alcoholg]2 = [Alcoholg]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
 
 svy, subpop(Men): mean Alcoholg, over(CB)
@@ -366,6 +412,7 @@ test [Alc14_17]1 = [Alc14_17]2 = [Alc14_17]3, mtest(b) // bonferroni-adjusted p-
 
 
 svy: mean Alcoholp, over(CB)
+svy: mean Alcoholp
 test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
 
 

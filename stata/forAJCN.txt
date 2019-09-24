@@ -24810,4 +24810,3428 @@ lower than Degree {c |}{res}      4,607       75.94       75.94
 {txt}{hline 12}{c +}{hline 35}
       Total {c |}{res}      6,155      100.00
 
+{com}. {smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}11 Sep 2019, 14:05:03
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD96856.000000"
+{txt}
+{com}. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear // with CHO details
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD96856.000000"
+{txt}
+{com}. svyset area [pweight = wtb1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wtb1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD96856.000000"
+{txt}
+{com}. svydescribe wti // describe the weighted data set
+
+{txt}Survey: Describing stage 1 sampling units
+
+      pweight:{col 16}{res}wtb1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{col 30}#Obs with  #Obs with{col 55}#Obs per included Unit
+{col 11} #Units    #Units   complete  missing   {col 51}{hline 28}
+Stratum   included  omitted     data      data      min       mean      max   
+{hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}
+{res}       1        42{txt} {res}        0       215         0         2       5.1         8
+       2       111{txt} {res}        0       480         0         1       4.3         9
+       3        83{txt} {res}        0       340         0         1       4.1         7
+       4        71{txt} {res}        0       327         0         1       4.6         8
+       5        84{txt} {res}        0       403         0         1       4.8         8
+       6        89{txt} {res}        0       424         0         2       4.8         9
+       7       111{txt} {res}        0       380         0         1       3.4         8
+       8       130{txt} {res}        0       575         0         1       4.4         8
+       9        82{txt} {res}        0       348         0         2       4.2         8
+      10       184{txt} {res}        0       846         0         1       4.6         9
+      11       255{txt} {res}        0     1,033         0         1       4.1         9
+      12       172{txt} {res}        0       784         0         1       4.6         9
+{txt}{hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}  {hline 8}
+{res}      12     1,414         0     6,155         0         1       4.4         9
+{txt}{col 31}{hline 18}
+{res}{col 34}     6,155
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. exit
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Sep 2019, 11:42:01
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear // with CHO details
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. 
+. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,457       25.69       97.18
+{txt}         40 {c |}{res}        160        2.82      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. gen Obesity = BMI >=  30
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. 
+. 
+. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen DM_undiag = DM4cat == 2 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen DM_forundiag = DM4cat != 3 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen nonDM = A1C <= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. gen DM_a1conly = A1C >= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. 
+. tab DM
+
+         {txt}DM {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,543       89.29       89.29
+{txt}          1 {c |}{res}        305       10.71      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+{txt}
+{com}. tab DM_a1c
+
+ {txt}DM_a1conly {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,838       93.97       93.97
+{txt}          1 {c |}{res}        182        6.03      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      3,020      100.00
+{txt}
+{com}. tab DM4cat
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. gen logalc = ln(Alcoholg+1)
+{txt}
+{com}. summ logalc, detail
+
+                           {txt}logalc
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}      6,155
+{txt}25%    {res}        0              0       {txt}Sum of Wgt. {res}      6,155
+
+{txt}50%    {res} .8120407                      {txt}Mean          {res} 1.418113
+                        {txt}Largest       Std. Dev.     {res} 1.541663
+{txt}75%    {res} 2.862201       5.496676
+{txt}90%    {res}  3.58957       5.636581       {txt}Variance      {res} 2.376725
+{txt}95%    {res} 3.996199       5.856217       {txt}Skewness      {res}  .456594
+{txt}99%    {res} 4.558136       5.998341       {txt}Kurtosis      {res} 1.683058
+{txt}
+{com}. gen logMVP = ln(MVPAtime+1)
+{txt}(2,345 missing values generated)
+
+{com}. summ logMVP, detail
+
+                           {txt}logMVP
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res} .0082988              0
+{txt}10%    {res} .0219789              0       {txt}Obs         {res}      3,810
+{txt}25%    {res} .1515964              0       {txt}Sum of Wgt. {res}      3,810
+
+{txt}50%    {res} .4692903                      {txt}Mean          {res} .6409135
+                        {txt}Largest       Std. Dev.     {res} .6119579
+{txt}75%    {res} .9204094       2.695431
+{txt}90%    {res} 1.649997       2.725101       {txt}Variance      {res} .3744925
+{txt}95%    {res} 2.016542       2.737698       {txt}Skewness      {res} 1.159103
+{txt}99%    {res} 2.335029       2.740097       {txt}Kurtosis      {res} 3.616459
+{txt}
+{com}. gen logGlu = ln(Glucose)
+{txt}(3,225 missing values generated)
+
+{com}. summ logGlu, detail
+
+                           {txt}logGlu
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.386294       .9321641
+{txt} 5%    {res} 1.463255       1.050822
+{txt}10%    {res} 1.501853       1.121678       {txt}Obs         {res}      2,930
+{txt}25%    {res} 1.562346       1.134623       {txt}Sum of Wgt. {res}      2,930
+
+{txt}50%    {res} 1.631199                      {txt}Mean          {res} 1.657517
+                        {txt}Largest       Std. Dev.     {res}  .176031
+{txt}75%    {res} 1.706565       2.867899
+{txt}90%    {res} 1.818888       2.938103       {txt}Variance      {res} .0309869
+{txt}95%    {res} 1.950187       2.970414       {txt}Skewness      {res} 2.456614
+{txt}99%    {res} 2.384165       3.055886       {txt}Kurtosis      {res} 14.03048
+{txt}
+{com}. gen logA1C = ln(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. summ logA1C, detail
+
+                           {txt}logA1C
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.547562       1.029619
+{txt} 5%    {res} 1.589235       1.252763
+{txt}10%    {res} 1.609438       1.308333       {txt}Obs         {res}      3,020
+{txt}25%    {res} 1.667707       1.410987       {txt}Sum of Wgt. {res}      3,020
+
+{txt}50%    {res} 1.704748                      {txt}Mean          {res} 1.721032
+                        {txt}Largest       Std. Dev.     {res} .1128544
+{txt}75%    {res} 1.757858       2.459589
+{txt}90%    {res} 1.824549       2.509599       {txt}Variance      {res} .0127361
+{txt}95%    {res}  1.88707       2.624669       {txt}Skewness      {res} 2.343269
+{txt}99%    {res} 2.208274       2.667228       {txt}Kurtosis      {res} 14.51465
+{txt}
+{com}. gen logChol = ln(Chol)
+{txt}(3,071 missing values generated)
+
+{com}. summ logChol, detail
+
+                           {txt}logChol
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.029619       .6418539
+{txt} 5%    {res} 1.223775       .7419373
+{txt}10%    {res} 1.308333       .7884573       {txt}Obs         {res}      3,084
+{txt}25%    {res} 1.458615       .8329091       {txt}Sum of Wgt. {res}      3,084
+
+{txt}50%    {res} 1.609438                      {txt}Mean          {res} 1.602148
+                        {txt}Largest       Std. Dev.     {res} .2215028
+{txt}75%    {res} 1.757858       2.251292
+{txt}90%    {res}  1.88707       2.282382       {txt}Variance      {res} .0490635
+{txt}95%    {res}  1.94591       2.322388       {txt}Skewness      {res}-.2705115
+{txt}99%    {res} 2.079442       2.341806       {txt}Kurtosis      {res} 3.205754
+{txt}
+{com}. gen logLDL = ln(LDL)
+{txt}(3,113 missing values generated)
+
+{com}. gen logHDL = ln(HDL)
+{txt}(3,071 missing values generated)
+
+{com}. gen logTG = ln(Trig)
+{txt}(3,080 missing values generated)
+
+{com}. 
+. 
+. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svyset area [pweight = wti1to8], strata(gor)
+
+      {txt}pweight:{col 16}{res}wti1to8
+          {txt}VCE:{col 16}{res}linearized
+  {txt}Single unit:{col 16}{res}missing
+     {txt}Strata 1:{col 16}{res}gor
+         {txt}SU 1:{col 16}{res}area
+        {txt}FPC 1:{col 16}<zero>
+{p2colreset}{...}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Totfibre, over(CB)
+{txt}(running mean on estimation sample)
+{err}variable {bf}Totfibre{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. gen Totfibre = Fibre6 + Fibre9 + Fibre12 + Fibre14 + Fibre17 + Fibre20 + Fibre22
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Totfibre, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Totfibre     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 13.73404{col 26}{space 2} .1508705{col 37}{space 5} 13.43808{col 51}{space 3} 14.02999
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 12.51001{col 26}{space 2} .1995034{col 37}{space 5} 12.11865{col 51}{space 3} 12.90137
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 14.67221{col 26}{space 2} .1403065{col 37}{space 5} 14.39698{col 51}{space 3} 14.94744
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Totfibre
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Totfibre {c |}{col 14}{res}{space 2} 13.78628{col 26}{space 2} .0972172{col 37}{space 5} 13.59558{col 51}{space 3} 13.97699
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. gen TotNMES = NMES6 + NMES9 + NMES12 + NMES14 + NMES17 + NMES20 + NMES22 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotNMES, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}TotNMES      {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 46.05588{col 26}{space 2} 1.009152{col 37}{space 5} 44.07627{col 51}{space 3} 48.03549
+{txt}{space 11}2 {c |}{col 14}{res}{space 2}   60.679{col 26}{space 2} 1.595536{col 37}{space 5}  57.5491{col 51}{space 3} 63.80889
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 61.51251{col 26}{space 2} 1.072976{col 37}{space 5}  59.4077{col 51}{space 3} 63.61732
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotNMES
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 5}TotNMES {c |}{col 14}{res}{space 2} 56.88901{col 26}{space 2}  .710052{col 37}{space 5} 55.49614{col 51}{space 3} 58.28189
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. gen TotSugar = Sugar6 + Sugar9 + Sugar12 + Sugar14 + Sugar17 + Sugar20 + Sugar22 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotSugar, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}TotSugar     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 83.40286{col 26}{space 2}  1.17726{col 37}{space 5} 81.09348{col 51}{space 3} 85.71224
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 92.23012{col 26}{space 2} 1.723067{col 37}{space 5} 88.85005{col 51}{space 3} 95.61019
+{txt}{space 11}3 {c |}{col 14}{res}{space 2}  104.898{col 26}{space 2} 1.203548{col 37}{space 5} 102.5371{col 51}{space 3}  107.259
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotSugar
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}TotSugar {c |}{col 14}{res}{space 2} 95.16927{col 26}{space 2} .7864407{col 37}{space 5} 93.62654{col 51}{space 3} 96.71199
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. gen TotStarch = Starch6 + Starch9 + Starch12 + Starch14 + Starch17 + Starch20 + Starch22 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotStarch, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}TotStarch    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 120.3066{col 26}{space 2} 1.341367{col 37}{space 5} 117.6753{col 51}{space 3} 122.9379
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 125.9694{col 26}{space 2} 1.634027{col 37}{space 5}  122.764{col 51}{space 3} 129.1748
+{txt}{space 11}3 {c |}{col 14}{res}{space 2}  128.387{col 26}{space 2} 1.113464{col 37}{space 5} 126.2028{col 51}{space 3} 130.5713
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotStarch
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}TotStarch {c |}{col 14}{res}{space 2} 125.4018{col 26}{space 2} .7687037{col 37}{space 5} 123.8939{col 51}{space 3} 126.9098
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean TotStarch, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}TotStarch    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 120.3066{col 26}{space 2} 1.341367{col 37}{space 5} 117.6753{col 51}{space 3} 122.9379
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 125.9694{col 26}{space 2} 1.634027{col 37}{space 5}  122.764{col 51}{space 3} 129.1748
+{txt}{space 11}3 {c |}{col 14}{res}{space 2}  128.387{col 26}{space 2} 1.113464{col 37}{space 5} 126.2028{col 51}{space 3} 130.5713
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. test [TotStarch]1 = [TotStarch]2 = [TotStarch]3, mtest(b) // bonferroni-adjusted p-values for multiple group comparison
+
+{txt}Adjusted Wald test
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}[TotStarch]1 - [TotStarch]2 = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} [TotStarch]1 - [TotStarch]3 = 0{p_end}
+
+{txt}{hline 7}{c TT}{hline 31}
+       {c |}{ralign 12:F(df,1401)}     df       p
+{hline 7}{c  +}{hline 31}
+  (1){col 8}{c |}{res}{col 12}     7.41{col 22}     1{col 33}0.0131{txt} #
+  (2){col 8}{c |}{res}{col 12}    21.02{col 22}     1{col 33}0.0000{txt} #
+{hline 7}{c +}{hline 31}
+  all  {c |}{res}{col 12}    10.70{col 22}     2{col 33}0.0000
+{txt}{hline 7}{c BT}{hline 31}
+{ralign 39:{it:# Bonferroni-adjusted p-values}}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean EnergykJ, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}EnergykJ     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 7985.807{col 26}{space 2} 81.81228{col 37}{space 5} 7825.319{col 51}{space 3} 8146.295
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 7341.812{col 26}{space 2} 86.32953{col 37}{space 5} 7172.463{col 51}{space 3} 7511.161
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 7677.816{col 26}{space 2} 62.22181{col 37}{space 5} 7555.758{col 51}{space 3} 7799.874
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean EnergykJ
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}EnergykJ {c |}{col 14}{res}{space 2} 7668.868{col 26}{space 2} 43.73913{col 37}{space 5} 7583.067{col 51}{space 3} 7754.669
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carbohydrateg, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 1}         Over{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carbohydrateg {txt}{c |}
+{space 12}1 {c |}{col 15}{res}{space 2} 203.8066{col 27}{space 2} 2.036181{col 38}{space 5} 199.8123{col 52}{space 3} 207.8009
+{txt}{space 12}2 {c |}{col 15}{res}{space 2} 218.3005{col 27}{space 2} 2.760996{col 38}{space 5} 212.8843{col 52}{space 3} 223.7166
+{txt}{space 12}3 {c |}{col 15}{res}{space 2} 233.3792{col 27}{space 2} 1.933048{col 38}{space 5} 229.5872{col 52}{space 3} 237.1711
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carbohydrateg
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+Carbohydrateg {c |}{col 15}{res}{space 2}  220.668{col 27}{space 2} 1.279458{col 38}{space 5} 218.1582{col 52}{space 3} 223.1779
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar, over(CB)
+{txt}(running mean on estimation sample)
+{bf}{err}Sugar{sf} ambiguous abbreviation
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean CHO, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}CHOpctotE    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 40.57897{col 26}{space 2} .2174402{col 37}{space 5} 40.15243{col 51}{space 3} 41.00552
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 47.29193{col 26}{space 2} .2545958{col 37}{space 5}  46.7925{col 51}{space 3} 47.79136
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 48.31808{col 26}{space 2} .1682932{col 37}{space 5} 47.98795{col 51}{space 3} 48.64821
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean CHO
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}CHOpctotE {c |}{col 14}{res}{space 2} 45.82859{col 26}{space 2} .1379548{col 37}{space 5} 45.55797{col 51}{space 3} 46.09921
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Proteing, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Proteing     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}  79.8651{col 26}{space 2} .9859775{col 37}{space 5} 77.93095{col 51}{space 3} 81.79925
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 69.29984{col 26}{space 2} .8701306{col 37}{space 5} 67.59294{col 51}{space 3} 71.00674
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 73.65228{col 26}{space 2}  .588477{col 37}{space 5} 72.49789{col 51}{space 3} 74.80667
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Proteing
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Proteing {c |}{col 14}{res}{space 2} 74.16704{col 26}{space 2} .4576982{col 37}{space 5} 73.26919{col 51}{space 3} 75.06489
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Proteinp, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 1}         Over{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}ProteinpctotE {txt}{c |}
+{space 12}1 {c |}{col 15}{res}{space 2} 17.18894{col 27}{space 2} .1341095{col 38}{space 5} 16.92586{col 52}{space 3} 17.45202
+{txt}{space 12}2 {c |}{col 15}{res}{space 2} 16.31716{col 27}{space 2} .1493761{col 38}{space 5} 16.02414{col 52}{space 3} 16.61019
+{txt}{space 12}3 {c |}{col 15}{res}{space 2} 16.48454{col 27}{space 2} .0874099{col 38}{space 5} 16.31307{col 52}{space 3} 16.65601
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Proteinp
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+ProteinpctotE {c |}{col 15}{res}{space 2} 16.63638{col 27}{space 2} .0675535{col 38}{space 5} 16.50386{col 52}{space 3} 16.76889
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fatg, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fatg         {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 74.72167{col 26}{space 2} .8441035{col 37}{space 5} 73.06582{col 51}{space 3} 76.37751
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 63.80496{col 26}{space 2}   .88675{col 37}{space 5} 62.06546{col 51}{space 3} 65.54446
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 65.72083{col 26}{space 2} .6671533{col 37}{space 5}  64.4121{col 51}{space 3} 67.02955
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fatg
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 8}Fatg {c |}{col 14}{res}{space 2}  67.7249{col 26}{space 2} .4670101{col 37}{space 5} 66.80879{col 51}{space 3} 68.64102
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fatp, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}FatpctotE    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 35.41249{col 26}{space 2} .2189796{col 37}{space 5} 34.98293{col 51}{space 3} 35.84205
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 32.55646{col 26}{space 2} .2212659{col 37}{space 5} 32.12241{col 51}{space 3} 32.99051
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 32.03559{col 26}{space 2} .1455424{col 37}{space 5} 31.75009{col 51}{space 3}  32.3211
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fatp
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}FatpctotE {c |}{col 14}{res}{space 2} 33.14282{col 26}{space 2} .1101899{col 37}{space 5} 32.92667{col 51}{space 3} 33.35898
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholg, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Alcoholg     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 20.77598{col 26}{space 2}  1.25634{col 37}{space 5} 18.31147{col 51}{space 3} 23.24049
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 10.70163{col 26}{space 2}  .652326{col 37}{space 5} 9.421988{col 51}{space 3} 11.98127
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 8.978988{col 26}{space 2}  .426255{col 37}{space 5} 8.142821{col 51}{space 3} 9.815154
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholg
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Alcoholg {c |}{col 14}{res}{space 2} 12.81923{col 26}{space 2} .4579148{col 37}{space 5} 11.92095{col 51}{space 3}  13.7175
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb6, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb6_9      {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}  23.0122{col 26}{space 2} .6395353{col 37}{space 5} 21.75765{col 51}{space 3} 24.26675
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 11.16131{col 26}{space 2}  .586621{col 37}{space 5} 10.01056{col 51}{space 3} 12.31206
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 37.99515{col 26}{space 2} .6137917{col 37}{space 5}  36.7911{col 51}{space 3}  39.1992
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb6
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 5}Carb6_9 {c |}{col 14}{res}{space 2} 26.05304{col 26}{space 2} .4082811{col 37}{space 5} 25.25213{col 51}{space 3} 26.85394
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb9, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb9_12     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 25.11369{col 26}{space 2}  .627916{col 37}{space 5} 23.88194{col 51}{space 3} 26.34545
+{txt}{space 11}2 {c |}{col 14}{res}{space 2}  33.0382{col 26}{space 2} .8226241{col 37}{space 5} 31.42449{col 51}{space 3}  34.6519
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 26.16186{col 26}{space 2} .5535055{col 37}{space 5} 25.07608{col 51}{space 3} 27.24765
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb9
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Carb9_12 {c |}{col 14}{res}{space 2} 27.83563{col 26}{space 2} .3678703{col 37}{space 5} 27.11399{col 51}{space 3} 28.55727
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb12, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb12_14    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 42.61804{col 26}{space 2} .8496119{col 37}{space 5} 40.95139{col 51}{space 3} 44.28469
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 38.68951{col 26}{space 2} .8501009{col 37}{space 5}  37.0219{col 51}{space 3} 40.35711
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 51.56549{col 26}{space 2} .7006468{col 37}{space 5} 50.19106{col 51}{space 3} 52.93992
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb12
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Carb12_14 {c |}{col 14}{res}{space 2} 45.33648{col 26}{space 2} .4587173{col 37}{space 5} 44.43663{col 51}{space 3} 46.23632
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb14, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb14_17    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 25.03116{col 26}{space 2} .7100144{col 37}{space 5} 23.63835{col 51}{space 3} 26.42397
+{txt}{space 11}2 {c |}{col 14}{res}{space 2}  33.6299{col 26}{space 2} 1.013034{col 37}{space 5} 31.64268{col 51}{space 3} 35.61713
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 24.65013{col 26}{space 2} .5270825{col 37}{space 5} 23.61617{col 51}{space 3} 25.68408
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb14
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Carb14_17 {c |}{col 14}{res}{space 2} 27.33227{col 26}{space 2} .4314081{col 37}{space 5} 26.48599{col 51}{space 3} 28.17854
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb17, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb17_20    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 55.99728{col 26}{space 2}  .977358{col 37}{space 5} 54.08004{col 51}{space 3} 57.91452
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 54.56273{col 26}{space 2}   1.2507{col 37}{space 5} 52.10929{col 51}{space 3} 57.01618
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 62.87268{col 26}{space 2} .7951682{col 37}{space 5} 61.31283{col 51}{space 3} 64.43252
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb17
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Carb17_20 {c |}{col 14}{res}{space 2}  58.5403{col 26}{space 2} .5711748{col 37}{space 5} 57.41985{col 51}{space 3} 59.66075
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb20, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb20_22    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 23.26737{col 26}{space 2} .6828271{col 37}{space 5}  21.9279{col 51}{space 3} 24.60684
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 29.65433{col 26}{space 2} 1.017661{col 37}{space 5} 27.65802{col 51}{space 3} 31.65063
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 23.69314{col 26}{space 2} .5980664{col 37}{space 5} 22.51994{col 51}{space 3} 24.86634
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb20
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Carb20_22 {c |}{col 14}{res}{space 2} 25.28114{col 26}{space 2} .4463943{col 37}{space 5} 24.40546{col 51}{space 3} 26.15681
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb22, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Carb22_6     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 8.782471{col 26}{space 2} .5385194{col 37}{space 5}  7.72608{col 51}{space 3} 9.838861
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 17.56904{col 26}{space 2} 1.202813{col 37}{space 5} 15.20954{col 51}{space 3} 19.92855
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 6.444161{col 26}{space 2} .3221857{col 37}{space 5} 5.812143{col 51}{space 3} 7.076179
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Carb22
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Carb22_6 {c |}{col 14}{res}{space 2} 10.29641{col 26}{space 2}  .412309{col 37}{space 5} 9.487603{col 51}{space 3} 11.10522
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar6, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar6_9     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 10.23208{col 26}{space 2} .3364785{col 37}{space 5} 9.572026{col 51}{space 3} 10.89214
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 5.300699{col 26}{space 2} .2756477{col 37}{space 5} 4.759972{col 51}{space 3} 5.841425
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 19.67885{col 26}{space 2} .3455373{col 37}{space 5} 19.00103{col 51}{space 3} 20.35668
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar6
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Sugar6_9 {c |}{col 14}{res}{space 2}  12.8776{col 26}{space 2} .2211204{col 37}{space 5} 12.44384{col 51}{space 3} 13.31136
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar9, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar9_12    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 11.57185{col 26}{space 2} .3472826{col 37}{space 5}  10.8906{col 51}{space 3}  12.2531
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 15.71058{col 26}{space 2} .4575874{col 37}{space 5} 14.81295{col 51}{space 3} 16.60821
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 14.20877{col 26}{space 2} .2998768{col 37}{space 5} 13.62051{col 51}{space 3} 14.79702
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar9
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Sugar9_12 {c |}{col 14}{res}{space 2} 13.89125{col 26}{space 2} .2074963{col 37}{space 5} 13.48421{col 51}{space 3} 14.29829
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar12, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar12_14   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 14.73237{col 26}{space 2}  .365463{col 37}{space 5} 14.01546{col 51}{space 3} 15.44929
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 14.88177{col 26}{space 2} .4292968{col 37}{space 5} 14.03964{col 51}{space 3} 15.72391
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 19.36693{col 26}{space 2} .3424878{col 37}{space 5} 18.69508{col 51}{space 3} 20.03877
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar12
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Sugar12_14 {c |}{col 14}{res}{space 2} 16.76658{col 26}{space 2} .2200161{col 37}{space 5} 16.33498{col 51}{space 3} 17.19818
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar14, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar14_17   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 11.95663{col 26}{space 2} .3552259{col 37}{space 5}  11.2598{col 51}{space 3} 12.65346
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 14.54352{col 26}{space 2} .5072004{col 37}{space 5} 13.54857{col 51}{space 3} 15.53848
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 13.35219{col 26}{space 2} .2787493{col 37}{space 5} 12.80538{col 51}{space 3}   13.899
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar14
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Sugar14_17 {c |}{col 14}{res}{space 2} 13.29781{col 26}{space 2} .2112499{col 37}{space 5} 12.88341{col 51}{space 3} 13.71221
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar17, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar17_20   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 18.67843{col 26}{space 2} .3995588{col 37}{space 5} 17.89464{col 51}{space 3} 19.46223
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 18.57175{col 26}{space 2} .4973932{col 37}{space 5} 17.59604{col 51}{space 3} 19.54747
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 21.76451{col 26}{space 2} .3970706{col 37}{space 5} 20.98559{col 51}{space 3} 22.54342
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar17
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Sugar17_20 {c |}{col 14}{res}{space 2} 19.97388{col 26}{space 2} .2530114{col 37}{space 5} 19.47756{col 51}{space 3}  20.4702
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar20, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar20_22   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}  10.9073{col 26}{space 2} .3015701{col 37}{space 5} 10.31572{col 51}{space 3} 11.49888
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 13.19395{col 26}{space 2} .5309836{col 37}{space 5} 12.15234{col 51}{space 3} 14.23556
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 12.40244{col 26}{space 2} .3075579{col 37}{space 5} 11.79912{col 51}{space 3} 13.00576
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar20
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Sugar20_22 {c |}{col 14}{res}{space 2}  12.2052{col 26}{space 2} .2197878{col 37}{space 5} 11.77405{col 51}{space 3} 12.63635
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar22, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Sugar22_6    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 5.324195{col 26}{space 2} .3773415{col 37}{space 5}  4.58398{col 51}{space 3}  6.06441
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 10.02784{col 26}{space 2} .7253008{col 37}{space 5} 8.605047{col 51}{space 3} 11.45063
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 4.124361{col 26}{space 2}  .207914{col 37}{space 5} 3.716505{col 51}{space 3} 4.532217
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Sugar22
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Sugar22_6 {c |}{col 14}{res}{space 2} 6.156947{col 26}{space 2} .2521835{col 37}{space 5} 5.662249{col 51}{space 3} 6.651645
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch6, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch6_9    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 12.77649{col 26}{space 2} .3916652{col 37}{space 5} 12.00818{col 51}{space 3} 13.54481
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 5.858481{col 26}{space 2} .3642045{col 37}{space 5} 5.144036{col 51}{space 3} 6.572926
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 18.31318{col 26}{space 2} .3825446{col 37}{space 5} 17.56276{col 51}{space 3}  19.0636
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch6
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Starch6_9 {c |}{col 14}{res}{space 2} 13.17246{col 26}{space 2} .2377118{col 37}{space 5} 12.70615{col 51}{space 3} 13.63876
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch9, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch9_12   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 13.53594{col 26}{space 2} .3988426{col 37}{space 5} 12.75355{col 51}{space 3} 14.31834
+{txt}{space 11}2 {c |}{col 14}{res}{space 2}  17.3186{col 26}{space 2} .4787007{col 37}{space 5} 16.37955{col 51}{space 3} 18.25765
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 11.94836{col 26}{space 2} .3292653{col 37}{space 5} 11.30245{col 51}{space 3} 12.59426
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch9
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Starch9_12 {c |}{col 14}{res}{space 2} 13.93809{col 26}{space 2} .2194929{col 37}{space 5} 13.50752{col 51}{space 3} 14.36866
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch12, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch12_14  {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}   27.861{col 26}{space 2} .6453272{col 37}{space 5} 26.59509{col 51}{space 3} 29.12691
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 23.78484{col 26}{space 2} .5809456{col 37}{space 5} 22.64522{col 51}{space 3} 24.92445
+{txt}{space 11}3 {c |}{col 14}{res}{space 2}  32.1717{col 26}{space 2} .4812938{col 37}{space 5} 31.22757{col 51}{space 3} 33.11583
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch12
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 1}Starch12_14 {c |}{col 14}{res}{space 2} 28.54479{col 26}{space 2} .3211549{col 37}{space 5}  27.9148{col 51}{space 3} 29.17479
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch14, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch14_17  {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 13.05965{col 26}{space 2} .4783326{col 37}{space 5} 12.12133{col 51}{space 3} 13.99797
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 19.06706{col 26}{space 2} .6915406{col 37}{space 5}  17.7105{col 51}{space 3} 20.42363
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 11.28822{col 26}{space 2} .3481848{col 37}{space 5}  10.6052{col 51}{space 3} 11.97124
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch14
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 1}Starch14_17 {c |}{col 14}{res}{space 2} 14.02052{col 26}{space 2} .2986824{col 37}{space 5} 13.43461{col 51}{space 3} 14.60644
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch17, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch17_20  {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 37.26885{col 26}{space 2} .7712088{col 37}{space 5}   35.756{col 51}{space 3}  38.7817
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 35.95819{col 26}{space 2} .9666577{col 37}{space 5} 34.06194{col 51}{space 3} 37.85444
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 41.06639{col 26}{space 2} .5890078{col 37}{space 5} 39.91096{col 51}{space 3} 42.22182
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch17
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 1}Starch17_20 {c |}{col 14}{res}{space 2} 38.52488{col 26}{space 2} .4371573{col 37}{space 5} 37.66733{col 51}{space 3} 39.38243
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch20, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch20_22  {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 12.34761{col 26}{space 2} .4943148{col 37}{space 5} 11.37793{col 51}{space 3} 13.31728
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 16.44657{col 26}{space 2} .7140287{col 37}{space 5} 15.04589{col 51}{space 3} 17.84725
+{txt}{space 11}3 {c |}{col 14}{res}{space 2}  11.2804{col 26}{space 2} .4188037{col 37}{space 5} 10.45885{col 51}{space 3} 12.10195
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch20
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 1}Starch20_22 {c |}{col 14}{res}{space 2} 13.06401{col 26}{space 2} .3124746{col 37}{space 5} 12.45105{col 51}{space 3} 13.67698
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch22, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Starch22_6   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 3.457018{col 26}{space 2} .2742204{col 37}{space 5} 2.919092{col 51}{space 3} 3.994945
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 7.535638{col 26}{space 2} .6229214{col 37}{space 5} 6.313679{col 51}{space 3} 8.757596
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 2.318779{col 26}{space 2} .1700058{col 37}{space 5} 1.985285{col 51}{space 3} 2.652272
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Starch22
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Starch22_6 {c |}{col 14}{res}{space 2} 4.137074{col 26}{space 2} .2167062{col 37}{space 5}  3.71197{col 51}{space 3} 4.562177
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre6, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre6_9     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 1.404262{col 26}{space 2} .0526342{col 37}{space 5} 1.301012{col 51}{space 3} 1.507512
+{txt}{space 11}2 {c |}{col 14}{res}{space 2}  .565295{col 26}{space 2}  .041302{col 37}{space 5} .4842745{col 51}{space 3} .6463154
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 2.047937{col 26}{space 2} .0533634{col 37}{space 5} 1.943256{col 51}{space 3} 2.152618
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre6
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}Fibre6_9 {c |}{col 14}{res}{space 2} 1.440347{col 26}{space 2} .0316373{col 37}{space 5} 1.378286{col 51}{space 3} 1.502409
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre9, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre9_12    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}  1.48525{col 26}{space 2} .0463577{col 37}{space 5} 1.394312{col 51}{space 3} 1.576188
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 1.623409{col 26}{space 2} .0523672{col 37}{space 5} 1.520682{col 51}{space 3} 1.726136
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 1.271602{col 26}{space 2} .0334861{col 37}{space 5} 1.205914{col 51}{space 3}  1.33729
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre9
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Fibre9_12 {c |}{col 14}{res}{space 2} 1.433053{col 26}{space 2} .0240184{col 37}{space 5} 1.385937{col 51}{space 3} 1.480169
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre12, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre12_14   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 3.099162{col 26}{space 2} .0728186{col 37}{space 5} 2.956317{col 51}{space 3} 3.242007
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 2.337843{col 26}{space 2} .0616309{col 37}{space 5} 2.216944{col 51}{space 3} 2.458742
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 3.625653{col 26}{space 2} .0596639{col 37}{space 5} 3.508613{col 51}{space 3} 3.742694
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre12
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Fibre12_14 {c |}{col 14}{res}{space 2} 3.107153{col 26}{space 2} .0391577{col 37}{space 5}  3.03034{col 51}{space 3} 3.183967
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre14, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre14_17   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 1.608752{col 26}{space 2} .0545122{col 37}{space 5} 1.501817{col 51}{space 3} 1.715686
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 1.874285{col 26}{space 2} .0750272{col 37}{space 5} 1.727108{col 51}{space 3} 2.021463
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 1.297175{col 26}{space 2} .0384609{col 37}{space 5} 1.221727{col 51}{space 3} 1.372622
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre14
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Fibre14_17 {c |}{col 14}{res}{space 2} 1.550988{col 26}{space 2} .0323645{col 37}{space 5}   1.4875{col 51}{space 3} 1.614476
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre17, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre17_20   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 4.355095{col 26}{space 2} .0822673{col 37}{space 5} 4.193714{col 51}{space 3} 4.516475
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 3.724184{col 26}{space 2}  .091952{col 37}{space 5} 3.543806{col 51}{space 3} 3.904562
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 4.869604{col 26}{space 2} .0690838{col 37}{space 5} 4.734085{col 51}{space 3} 5.005122
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre17
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Fibre17_20 {c |}{col 14}{res}{space 2} 4.395319{col 26}{space 2}  .047344{col 37}{space 5} 4.302446{col 51}{space 3} 4.488192
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre20, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre20_22   {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}   1.4408{col 26}{space 2} .0578292{col 37}{space 5} 1.327358{col 51}{space 3} 1.554241
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 1.644758{col 26}{space 2} .0709957{col 37}{space 5} 1.505489{col 51}{space 3} 1.784027
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 1.321701{col 26}{space 2}  .047126{col 37}{space 5} 1.229256{col 51}{space 3} 1.414146
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre20
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}Fibre20_22 {c |}{col 14}{res}{space 2}  1.44809{col 26}{space 2} .0343213{col 37}{space 5} 1.380763{col 51}{space 3} 1.515416
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre22, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Fibre22_6    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} .3407162{col 26}{space 2} .0252439{col 37}{space 5} .2911963{col 51}{space 3} .3902361
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} .7402338{col 26}{space 2} .0549475{col 37}{space 5} .6324456{col 51}{space 3}  .848022
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} .2385403{col 26}{space 2} .0160943{col 37}{space 5} .2069689{col 51}{space 3} .2701118
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Fibre22
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}Fibre22_6 {c |}{col 14}{res}{space 2} .4113348{col 26}{space 2} .0192957{col 37}{space 5} .3734833{col 51}{space 3} .4491863
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES6, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES6_9      {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}  4.72446{col 26}{space 2} .2085345{col 37}{space 5} 4.315386{col 51}{space 3} 5.133533
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 3.214489{col 26}{space 2} .1764769{col 37}{space 5} 2.868302{col 51}{space 3} 3.560677
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 11.14467{col 26}{space 2} .2500345{col 37}{space 5} 10.65419{col 51}{space 3} 11.63515
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES6
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 5}NMES6_9 {c |}{col 14}{res}{space 2}  7.05027{col 26}{space 2} .1468951{col 37}{space 5} 6.762112{col 51}{space 3} 7.338428
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES9, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES9_12     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}  5.67939{col 26}{space 2} .2472483{col 37}{space 5} 5.194374{col 51}{space 3} 6.164406
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 9.566968{col 26}{space 2} .3447015{col 37}{space 5} 8.890782{col 51}{space 3} 10.24315
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 8.105669{col 26}{space 2} .2251825{col 37}{space 5} 7.663938{col 51}{space 3}   8.5474
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES9
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}NMES9_12 {c |}{col 14}{res}{space 2} 7.836289{col 26}{space 2} .1528735{col 37}{space 5} 7.536404{col 51}{space 3} 8.136175
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES12, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES12_14    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 7.253591{col 26}{space 2} .2754527{col 37}{space 5} 6.713247{col 51}{space 3} 7.793935
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 9.116836{col 26}{space 2} .3707901{col 37}{space 5} 8.389473{col 51}{space 3} 9.844199
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 10.30041{col 26}{space 2} .2605373{col 37}{space 5} 9.789325{col 51}{space 3} 10.81149
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES12
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}NMES12_14 {c |}{col 14}{res}{space 2}  9.09685{col 26}{space 2} .1726397{col 37}{space 5}  8.75819{col 51}{space 3}  9.43551
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES14, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES14_17    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2}   6.9691{col 26}{space 2} .2726691{col 37}{space 5} 6.434217{col 51}{space 3} 7.503983
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 9.912412{col 26}{space 2} .4458836{col 37}{space 5} 9.037741{col 51}{space 3} 10.78708
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 8.637343{col 26}{space 2} .2358883{col 37}{space 5} 8.174611{col 51}{space 3} 9.100075
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES14
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}NMES14_17 {c |}{col 14}{res}{space 2} 8.529612{col 26}{space 2} .1813453{col 37}{space 5} 8.173875{col 51}{space 3} 8.885349
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES17, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES17_20    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 10.18139{col 26}{space 2} .3167609{col 37}{space 5} 9.560018{col 51}{space 3} 10.80277
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 11.77081{col 26}{space 2} .4339747{col 37}{space 5}  10.9195{col 51}{space 3} 12.62212
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 12.07003{col 26}{space 2} .3277477{col 37}{space 5}  11.4271{col 51}{space 3} 12.71296
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES17
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}NMES17_20 {c |}{col 14}{res}{space 2} 11.44851{col 26}{space 2} .2096563{col 37}{space 5} 11.03724{col 51}{space 3} 11.85978
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES20, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES20_22    {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 7.316246{col 26}{space 2}  .250463{col 37}{space 5} 6.824923{col 51}{space 3} 7.807569
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 9.417751{col 26}{space 2} .4836475{col 37}{space 5}    8.469{col 51}{space 3}  10.3665
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 8.323366{col 26}{space 2} .2554884{col 37}{space 5} 7.822185{col 51}{space 3} 8.824546
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES20
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}NMES20_22 {c |}{col 14}{res}{space 2} 8.351382{col 26}{space 2} .1907438{col 37}{space 5} 7.977208{col 51}{space 3} 8.725556
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES22, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}NMES22_6     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 3.931697{col 26}{space 2} .3441252{col 37}{space 5} 3.256641{col 51}{space 3} 4.606753
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 7.679733{col 26}{space 2} .6495504{col 37}{space 5} 6.405538{col 51}{space 3} 8.953929
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 2.931022{col 26}{space 2} .1710004{col 37}{space 5} 2.595578{col 51}{space 3} 3.266467
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean NMES22
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 4}NMES22_6 {c |}{col 14}{res}{space 2}   4.5761{col 26}{space 2} .2237079{col 37}{space 5} 4.137261{col 51}{space 3} 5.014938
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholp, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 1}         Over{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}AlcoholpctotE {txt}{c |}
+{space 12}1 {c |}{col 15}{res}{space 2} 6.817537{col 27}{space 2} .2749739{col 38}{space 5} 6.278132{col 52}{space 3} 7.356941
+{txt}{space 12}2 {c |}{col 15}{res}{space 2} 3.821393{col 27}{space 2} .2194098{col 38}{space 5} 3.390986{col 52}{space 3} 4.251799
+{txt}{space 12}3 {c |}{col 15}{res}{space 2} 3.158028{col 27}{space 2} .1351555{col 38}{space 5} 2.892899{col 52}{space 3} 3.423157
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholg, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}{col 26}  Linearized
+{col 1}        Over{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}Alcoholg     {txt}{c |}
+{space 11}1 {c |}{col 14}{res}{space 2} 20.77598{col 26}{space 2}  1.25634{col 37}{space 5} 18.31147{col 51}{space 3} 23.24049
+{txt}{space 11}2 {c |}{col 14}{res}{space 2} 10.70163{col 26}{space 2}  .652326{col 37}{space 5} 9.421988{col 51}{space 3} 11.98127
+{txt}{space 11}3 {c |}{col 14}{res}{space 2} 8.978988{col 26}{space 2}  .426255{col 37}{space 5} 8.142821{col 51}{space 3} 9.815154
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
+
+{txt}Adjusted Wald test
+{err}equation [AlcoholpctotE] not found
+{txt}{search r(303), local:r(303);}
+
+end of do-file
+
+{search r(303), local:r(303);}
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholp, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 1}         Over{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}AlcoholpctotE {txt}{c |}
+{space 12}1 {c |}{col 15}{res}{space 2} 6.817537{col 27}{space 2} .2749739{col 38}{space 5} 6.278132{col 52}{space 3} 7.356941
+{txt}{space 12}2 {c |}{col 15}{res}{space 2} 3.821393{col 27}{space 2} .2194098{col 38}{space 5} 3.390986{col 52}{space 3} 4.251799
+{txt}{space 12}3 {c |}{col 15}{res}{space 2} 3.158028{col 27}{space 2} .1351555{col 38}{space 5} 2.892899{col 52}{space 3} 3.423157
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. test [AlcoholpctotE]1 = [AlcoholpctotE]2 = [AlcoholpctotE]3, mtest(b) // bonferroni-adjusted p-values for multiple group Fatg
+
+{txt}Adjusted Wald test
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}[AlcoholpctotE]1 - [AlcoholpctotE]2 = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} [AlcoholpctotE]1 - [AlcoholpctotE]3 = 0{p_end}
+
+{txt}{hline 7}{c TT}{hline 31}
+       {c |}{ralign 12:F(df,1401)}     df       p
+{hline 7}{c  +}{hline 31}
+  (1){col 8}{c |}{res}{col 12}    77.00{col 22}     1{col 33}0.0000{txt} #
+  (2){col 8}{c |}{res}{col 12}   140.82{col 22}     1{col 33}0.0000{txt} #
+{hline 7}{c +}{hline 31}
+  all  {c |}{res}{col 12}    70.62{col 22}     2{col 33}0.0000
+{txt}{hline 7}{c BT}{hline 31}
+{ralign 39:{it:# Bonferroni-adjusted p-values}}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholp, over(CB)
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+            {txt}1: CB = {res}1
+            {txt}2: CB = {res}2
+            {txt}3: CB = {res}3
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 1}         Over{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{res}AlcoholpctotE {txt}{c |}
+{space 12}1 {c |}{col 15}{res}{space 2} 6.817537{col 27}{space 2} .2749739{col 38}{space 5} 6.278132{col 52}{space 3} 7.356941
+{txt}{space 12}2 {c |}{col 15}{res}{space 2} 3.821393{col 27}{space 2} .2194098{col 38}{space 5} 3.390986{col 52}{space 3} 4.251799
+{txt}{space 12}3 {c |}{col 15}{res}{space 2} 3.158028{col 27}{space 2} .1351555{col 38}{space 5} 2.892899{col 52}{space 3} 3.423157
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD71907.000000"
+{txt}
+{com}. svy: mean Alcoholp
+{txt}(running mean on estimation sample)
+{res}
+{txt}Survey: Mean estimation
+
+{col 1}Number of strata{col 18}= {res}     12{txt}{col 35}Number of obs{col 51}= {res}     6,155
+{txt}{col 1}Number of PSUs{col 18}= {res}  1,414{txt}{col 35}Population size{col 51}={res}      6,155
+{txt}{col 35}Design df{col 51}= {res}     1,402
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 15}{c |}{col 27}  Linearized
+{col 15}{c |}       Mean{col 27}   Std. Err.{col 39}     [95% Con{col 52}f. Interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+AlcoholpctotE {c |}{col 15}{res}{space 2} 4.386271{col 27}{space 2} .1209754{col 38}{space 5} 4.148959{col 52}{space 3} 4.623584
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangcc.me/Documents/LSHTMproject/stata/forAJCN.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}24 Sep 2019, 14:59:09
+{txt}
+{com}. 
+. // use "/home/wangcc-me/Downloads/UKDA-6533-stata11_se/stata11_se/CW3CB3_7regss.dta", clear
+. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss.dta", clear
+{txt}
+{com}. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD02639.000000"
+{txt}
+{com}. 
+. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,457       25.69       97.18
+{txt}         40 {c |}{res}        160        2.82      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. gen Obesity = BMI >=  30
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. **********************************************************
+. // variables need to be log transfomred                 //
+. **********************************************************
+. 
+. gen logalc = ln(Alcoholg+1)
+{txt}
+{com}. summ logalc, detail
+
+                           {txt}logalc
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}      6,155
+{txt}25%    {res}        0              0       {txt}Sum of Wgt. {res}      6,155
+
+{txt}50%    {res} .8120407                      {txt}Mean          {res} 1.418113
+                        {txt}Largest       Std. Dev.     {res} 1.541663
+{txt}75%    {res} 2.862201       5.496676
+{txt}90%    {res}  3.58957       5.636581       {txt}Variance      {res} 2.376725
+{txt}95%    {res} 3.996199       5.856217       {txt}Skewness      {res}  .456594
+{txt}99%    {res} 4.558136       5.998341       {txt}Kurtosis      {res} 1.683058
+{txt}
+{com}. gen logMVP = ln(MVPAtime+1)
+{txt}(2,345 missing values generated)
+
+{com}. summ logMVP, detail
+
+                           {txt}logMVP
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res} .0082988              0
+{txt}10%    {res} .0219789              0       {txt}Obs         {res}      3,810
+{txt}25%    {res} .1515964              0       {txt}Sum of Wgt. {res}      3,810
+
+{txt}50%    {res} .4692903                      {txt}Mean          {res} .6409135
+                        {txt}Largest       Std. Dev.     {res} .6119579
+{txt}75%    {res} .9204094       2.695431
+{txt}90%    {res} 1.649997       2.725101       {txt}Variance      {res} .3744925
+{txt}95%    {res} 2.016542       2.737698       {txt}Skewness      {res} 1.159103
+{txt}99%    {res} 2.335029       2.740097       {txt}Kurtosis      {res} 3.616459
+{txt}
+{com}. gen logGlu = ln(Glucose)
+{txt}(3,225 missing values generated)
+
+{com}. summ logGlu, detail
+
+                           {txt}logGlu
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.386294       .9321641
+{txt} 5%    {res} 1.463255       1.050822
+{txt}10%    {res} 1.501853       1.121678       {txt}Obs         {res}      2,930
+{txt}25%    {res} 1.562346       1.134623       {txt}Sum of Wgt. {res}      2,930
+
+{txt}50%    {res} 1.631199                      {txt}Mean          {res} 1.657517
+                        {txt}Largest       Std. Dev.     {res}  .176031
+{txt}75%    {res} 1.706565       2.867899
+{txt}90%    {res} 1.818888       2.938103       {txt}Variance      {res} .0309869
+{txt}95%    {res} 1.950187       2.970414       {txt}Skewness      {res} 2.456614
+{txt}99%    {res} 2.384165       3.055886       {txt}Kurtosis      {res} 14.03048
+{txt}
+{com}. gen logA1C = ln(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. summ logA1C, detail
+
+                           {txt}logA1C
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.547562       1.029619
+{txt} 5%    {res} 1.589235       1.252763
+{txt}10%    {res} 1.609438       1.308333       {txt}Obs         {res}      3,020
+{txt}25%    {res} 1.667707       1.410987       {txt}Sum of Wgt. {res}      3,020
+
+{txt}50%    {res} 1.704748                      {txt}Mean          {res} 1.721032
+                        {txt}Largest       Std. Dev.     {res} .1128544
+{txt}75%    {res} 1.757858       2.459589
+{txt}90%    {res} 1.824549       2.509599       {txt}Variance      {res} .0127361
+{txt}95%    {res}  1.88707       2.624669       {txt}Skewness      {res} 2.343269
+{txt}99%    {res} 2.208274       2.667228       {txt}Kurtosis      {res} 14.51465
+{txt}
+{com}. gen logChol = ln(Chol)
+{txt}(3,071 missing values generated)
+
+{com}. summ logChol, detail
+
+                           {txt}logChol
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 1.029619       .6418539
+{txt} 5%    {res} 1.223775       .7419373
+{txt}10%    {res} 1.308333       .7884573       {txt}Obs         {res}      3,084
+{txt}25%    {res} 1.458615       .8329091       {txt}Sum of Wgt. {res}      3,084
+
+{txt}50%    {res} 1.609438                      {txt}Mean          {res} 1.602148
+                        {txt}Largest       Std. Dev.     {res} .2215028
+{txt}75%    {res} 1.757858       2.251292
+{txt}90%    {res}  1.88707       2.282382       {txt}Variance      {res} .0490635
+{txt}95%    {res}  1.94591       2.322388       {txt}Skewness      {res}-.2705115
+{txt}99%    {res} 2.079442       2.341806       {txt}Kurtosis      {res} 3.205754
+{txt}
+{com}. gen logLDL = ln(LDL)
+{txt}(3,113 missing values generated)
+
+{com}. gen logHDL = ln(HDL)
+{txt}(3,071 missing values generated)
+
+{com}. gen logTG = ln(Trig)
+{txt}(3,080 missing values generated)
+
+{com}. 
+. 
+. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD02639.000000"
+{txt}
+{com}. use "/Users/wangcc.me/Documents/LSHTMproject/Rcode/CW3CB3_7regss_withCHOdetail.dta", clear // with CHO details
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/l8/3xvfqqnx1j5czqkc3chq4j6r0000gn/T//SD02639.000000"
+{txt}
+{com}. 
+. label define smoking 1 "current" 2 "ex-smoker" 3 "Never"
+{txt}
+{com}. label values cigsta3 smoking
+{txt}
+{com}. label define drinking 1 "yes" 2 "no"
+{txt}
+{com}. label values dnnow drinking
+{txt}
+{com}. label define gender 1 "Men" 2 "Women"
+{txt}
+{com}. label values Sex gender
+{txt}
+{com}. label define paid 1 "No" 2 "Yes"
+{txt}
+{com}. label values paidemployment paid
+{txt}
+{com}. label define ethnicity5 1 "White" 2 "Mixed" 3 "Black" 4 "Asian" 5 "Other"
+{txt}
+{com}. label values ethgrp5 ethnicity5
+{txt}
+{com}. label define ethnicity2 1 "White" 2 "non-White"
+{txt}
+{com}. label values ethgrp2 ethnicity2
+{txt}
+{com}. 
+. gen Married = 1 if MarStat == 2 | MarSt2 == 2 
+{txt}(3,300 missing values generated)
+
+{com}. replace Married = 1 if MarSt2 == 3
+{txt}(12 real changes made)
+
+{com}. replace Married = 0 if Married !=1
+{txt}(3,288 real changes made)
+
+{com}. tab Married
+
+    {txt}Married {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      3,288       53.42       53.42
+{txt}          1 {c |}{res}      2,867       46.58      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. tab MarSt2
+
+     {txt}MarSt2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,295       28.51       28.51
+{txt}          2 {c |}{res}      2,106       46.37       74.88
+{txt}          3 {c |}{res}         12        0.26       75.14
+{txt}          4 {c |}{res}        179        3.94       79.08
+{txt}          5 {c |}{res}        528       11.62       90.71
+{txt}          6 {c |}{res}        419        9.23       99.93
+{txt}          7 {c |}{res}          3        0.07      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      4,542      100.00
+{txt}
+{com}. tab MarStat
+
+    {txt}MarStat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        447       27.71       27.71
+{txt}          2 {c |}{res}        749       46.44       74.15
+{txt}          3 {c |}{res}         59        3.66       77.81
+{txt}          4 {c |}{res}        187       11.59       89.40
+{txt}          5 {c |}{res}        171       10.60      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,613      100.00
+{txt}
+{com}. 
+. label define Partner 0 "No" 1 "Yes"
+{txt}
+{com}. label values Married Partner
+{txt}
+{com}. 
+. gen Education = qual7 == 1
+{txt}
+{com}. label define Ed 0 "lower than Degree" 1 "Degree or higher"
+{txt}
+{com}. label values Education Ed
+{txt}
+{com}. 
+. replace Education = . if qual7 >100
+{txt}(88 real changes made, 88 to missing)
+
+{com}. tab Educ
+
+        {txt}Education {c |}      Freq.     Percent        Cum.
+{hline 18}{c +}{hline 35}
+lower than Degree {c |}{res}      4,607       75.94       75.94
+{txt} Degree or higher {c |}{res}      1,460       24.06      100.00
+{txt}{hline 18}{c +}{hline 35}
+            Total {c |}{res}      6,067      100.00
+{txt}
+{com}. 
+. 
+. egen BMIcat = cut(bmival), at(10, 25, 30, 40, 60)
+{txt}(484 missing values generated)
+
+{com}. tab BMIcat
+
+     {txt}BMIcat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         10 {c |}{res}      1,950       34.39       34.39
+{txt}         25 {c |}{res}      2,104       37.10       71.49
+{txt}         30 {c |}{res}      1,457       25.69       97.18
+{txt}         40 {c |}{res}        160        2.82      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,671      100.00
+{txt}
+{com}. gen Obesity = BMI >=  30
+{txt}
+{com}. tab Obesity
+
+    {txt}Obesity {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      4,054       65.87       65.87
+{txt}          1 {c |}{res}      2,101       34.13      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,155      100.00
+{txt}
+{com}. 
+. 
+. gen DM = (A1C >= 6.5 | Glu >= 7 | DM4cat == 3) if  !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen DM_undiag = DM4cat == 2 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen DM_forundiag = DM4cat != 3 if !missing(DM4cat)
+{txt}(3,307 missing values generated)
+
+{com}. gen nonDM = A1C <= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. gen DM_a1conly = A1C >= 6.5 if !missing(A1C)
+{txt}(3,135 missing values generated)
+
+{com}. 
+. tab DM
+
+         {txt}DM {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,543       89.29       89.29
+{txt}          1 {c |}{res}        305       10.71      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+{txt}
+{com}. tab DM_a1c
+
+ {txt}DM_a1conly {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,838       93.97       93.97
+{txt}          1 {c |}{res}        182        6.03      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      3,020      100.00
+{txt}
+{com}. tab DM4cat
+
+     {txt}DM4cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,437       85.57       85.57
+{txt}          1 {c |}{res}        106        3.72       89.29
+{txt}          2 {c |}{res}         93        3.27       92.56
+{txt}          3 {c |}{res}        212        7.44      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,848      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tabulate DM CB
+
+           {txt}{c |}                CB
+        DM {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}       705        671      1,167 {txt}{c |}{res}     2,543 
+{txt}         1 {c |}{res}       107         77        121 {txt}{c |}{res}       305 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+
+{com}. tabulate DM_forundiag CB
+
+{txt}DM_forundi {c |}                CB
+        ag {c |}         1          2          3 {c |}     Total
+{hline 11}{c +}{hline 33}{c +}{hline 10}
+         0 {c |}{res}        85         55         72 {txt}{c |}{res}       212 
+{txt}         1 {c |}{res}       727        693      1,216 {txt}{c |}{res}     2,636 
+{txt}{hline 11}{c +}{hline 33}{c +}{hline 10}
+     Total {c |}{res}       812        748      1,288 {txt}{c |}{res}     2,848 
+
+{com}. display 85/812
+{res}.1046798
+
 {com}. 
